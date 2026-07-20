@@ -118,6 +118,8 @@
       [data-theme="dark"] .admin-sidebar.collapsed .sidebar-collapse-btn{background:#171433}
       .admin-sidebar.collapsed ~ .admin-content{margin-left:70px}
       .admin-sidebar{display:flex;flex-direction:column;min-height:100vh}
+      .admin-sidebar::-webkit-scrollbar{display:none}
+      .admin-sidebar{-ms-overflow-style:none;scrollbar-width:none}
     </style>
     @stack('styles')
 </head>
