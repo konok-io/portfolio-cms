@@ -53,10 +53,10 @@ Route::post('/subscribe', [\App\Http\Controllers\SubscriberController::class, 's
 */
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::middleware('guest')->group(function () {
-        Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-        Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
-    });
+    // GET /login - shows form (or redirects to dashboard if already logged in)
+    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+    // POST /login - validates credentials (only for guests)
+    Route::post('/login', [LoginController::class, 'login'])->name('login.submit')->middleware('guest');
 
     Route::middleware('auth')->group(function () {
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
