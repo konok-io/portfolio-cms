@@ -109,17 +109,18 @@
       .admin-sidebar.collapsed .sidebar-brand{justify-content:center;padding:1rem}
       .admin-sidebar.collapsed .nav-link{justify-content:center;padding:12px}
       .admin-sidebar.collapsed .nav-link i{font-size:1.1rem}
-      .sidebar-collapse-btn{background:#f4f4f9;border:1px solid #e2e2e8;color:#666;cursor:pointer;padding:6px 10px;border-radius:10px;transition:all .25s;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,0.08)}
-      .sidebar-collapse-btn:hover{background:#4F2FE8;color:#fff;border-color:#4F2FE8;box-shadow:0 4px 12px rgba(79,47,232,0.3);transform:translateY(-1px)}
-      .sidebar-collapse-btn:active{transform:translateY(0)}
-      .admin-sidebar.collapsed .sidebar-collapse-btn{background:#f8f8fc}
+      .sidebar-collapse-btn{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);color:#fff;cursor:pointer;padding:6px 10px;border-radius:8px;transition:all .25s;display:flex;align-items:center;justify-content:center;min-width:34px;min-height:34px}
+      .sidebar-collapse-btn:hover{background:#4F2FE8;border-color:#4F2FE8;box-shadow:0 4px 12px rgba(79,47,232,0.4)}
+      .sidebar-collapse-btn:active{transform:scale(0.95)}
+      .admin-sidebar.collapsed .sidebar-collapse-btn{background:rgba(255,255,255,0.05)}
       [data-theme="dark"] .sidebar-collapse-btn{background:#1E1A44;color:#9B98C7;border-color:#2C2860}
       [data-theme="dark"] .sidebar-collapse-btn:hover{background:#4F2FE8;color:#fff;border-color:#4F2FE8}
       [data-theme="dark"] .admin-sidebar.collapsed .sidebar-collapse-btn{background:#171433}
       .admin-sidebar.collapsed ~ .admin-content{margin-left:70px}
       .admin-sidebar{display:flex;flex-direction:column;min-height:100vh}
-      .admin-sidebar::-webkit-scrollbar{display:none}
-      .admin-sidebar{-ms-overflow-style:none;scrollbar-width:none}
+      .admin-sidebar .nav::-webkit-scrollbar{display:none}
+      .admin-sidebar .nav{-ms-overflow-style:none;scrollbar-width:none}
+      .admin-sidebar.collapsed .sidebar-brand{height:auto;min-height:64px;padding:1rem}
     </style>
     @stack('styles')
 </head>

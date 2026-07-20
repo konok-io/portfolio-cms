@@ -151,6 +151,8 @@ body.admin-body {
   flex-direction: column;
   flex-wrap: nowrap;
 }
+.admin-sidebar .nav::-webkit-scrollbar{display:none}
+.admin-sidebar .nav{-ms-overflow-style:none;scrollbar-width:none}
 .admin-sidebar .sidebar-brand {
   height: 64px;
   padding: 0 1.5rem;
