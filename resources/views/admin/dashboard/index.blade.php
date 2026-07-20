@@ -103,6 +103,24 @@
             </div>
         </div>
     </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="stat-card">
+            <div class="stat-icon" style="background: rgba(14,165,233,0.1); color:#0ea5e9;"><i class="fa-solid fa-globe"></i></div>
+            <div>
+                <div class="stat-value">{{ $topCountries->count() > 0 ? $topCountries->first()->total : 0 }}</div>
+                <div class="stat-label">Top Country Visitors</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="stat-card">
+            <div class="stat-icon" style="background: rgba(168,85,247,0.1); color:#9333ea;"><i class="fa-solid fa-file-alt"></i></div>
+            <div>
+                <div class="stat-value">{{ $topPages->count() > 0 ? $topPages->first()->total : 0 }}</div>
+                <div class="stat-label">Top Page Views</div>
+            </div>
+        </div>
+    </div>
 </div>
 
 {{-- Quick Actions --}}
@@ -376,50 +394,6 @@
                     <li class="list-group-item text-center text-muted small py-4">No messages yet.</li>
                 @endforelse
             </ul>
-        </div>
-    </div>
-
-    {{-- Top Countries --}}
-    <div class="col-lg-4">
-        <div class="admin-card mb-3">
-            <div class="card-header-custom">
-                <i class="fa-solid fa-globe me-2"></i>Top Countries
-            </div>
-            <div class="card-body-custom">
-                @forelse($topCountries as $index => $country)
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <div class="d-flex align-items-center gap-2">
-                            <span class="badge bg-light text-dark">{{ $index + 1 }}</span>
-                            <span class="small">{{ $country->country ?: 'Unknown' }}</span>
-                        </div>
-                        <span class="badge bg-primary rounded-pill">{{ $country->total }}</span>
-                    </div>
-                @empty
-                    <p class="text-muted small text-center py-3 mb-0">No country data available</p>
-                @endforelse
-            </div>
-        </div>
-    </div>
-
-    {{-- Top Pages --}}
-    <div class="col-lg-4">
-        <div class="admin-card mb-3">
-            <div class="card-header-custom">
-                <i class="fa-solid fa-file-alt me-2"></i>Top Pages
-            </div>
-            <div class="card-body-custom">
-                @forelse($topPages as $index => $page)
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <div class="d-flex align-items-center gap-2">
-                            <span class="badge bg-light text-dark">{{ $index + 1 }}</span>
-                            <span class="small text-truncate" style="max-width:150px;" title="{{ $page->page_url }}">{{ basename($page->page_url) ?: '/' }}</span>
-                        </div>
-                        <span class="badge bg-info rounded-pill">{{ $page->total }}</span>
-                    </div>
-                @empty
-                    <p class="text-muted small text-center py-3 mb-0">No page data available</p>
-                @endforelse
-            </div>
         </div>
     </div>
 
