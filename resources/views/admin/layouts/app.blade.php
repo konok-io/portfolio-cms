@@ -99,6 +99,26 @@
       [data-theme="dark"] .btn-close{filter:invert(1) grayscale(100%) brightness(200%)}
       [data-theme="dark"] .admin-sidebar .nav-link{color:#9B98C7}
       [data-theme="dark"] .admin-sidebar .nav-link:hover,[data-theme="dark"] .admin-sidebar .nav-link.active{color:#fff;background:linear-gradient(135deg,#4F2FE8,#7C3AED)}
+      /* Sidebar collapse styles */
+      .admin-sidebar.collapsed{width:70px!important}
+      .admin-sidebar.collapsed .sidebar-brand span,
+      .admin-sidebar.collapsed .nav-section-title,
+      .admin-sidebar.collapsed .nav-link .fa-solid,
+      .admin-sidebar.collapsed .nav-link i:not(.fa-solid),
+      .admin-sidebar.collapsed .nav-link span,
+      .admin-sidebar.collapsed .badge{display:none!important}
+      .admin-sidebar.collapsed .sidebar-brand{justify-content:center}
+      .admin-sidebar.collapsed .nav-link{justify-content:center;padding:12px}
+      .admin-sidebar.collapsed .nav-link i{font-size:1.2rem}
+      .admin-sidebar.collapsed .admin-sidebar-toggle{justify-content:center}
+      .sidebar-collapse-btn{background:0;border:0;color:#9B98C7;cursor:pointer;padding:8px;margin-left:auto;border-radius:8px;transition:all .3s}
+      .sidebar-collapse-btn:hover{background:#f0f0f9;color:#4F2FE8}
+      [data-theme="dark"] .sidebar-collapse-btn{color:#9B98C7}
+      [data-theme="dark"] .sidebar-collapse-btn:hover{background:#1E1A44;color:#8B7BF0}
+      .admin-sidebar.collapsed + .admin-content{margin-left:70px}
+      .sidebar-footer{border-top:1px solid #e2e2e8;padding:8px}
+      [data-theme="dark"] .sidebar-footer{border-color:#2C2860}
+      .admin-sidebar.collapsed .sidebar-footer{padding:8px 4px}
     </style>
     @stack('styles')
 </head>
@@ -182,10 +202,15 @@
             <form action="{{ route('admin.logout') }}" method="POST">
                 @csrf
                 <button type="submit" class="nav-link border-0 bg-transparent w-100 text-start">
-                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                    <i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span>
                 </button>
             </form>
         </nav>
+        <div class="sidebar-footer">
+            <button type="button" class="sidebar-collapse-btn w-100" onclick="toggleSidebarCollapse()" title="Toggle Sidebar">
+                <i class="fa-solid fa-chevrons-left" id="sidebarCollapseIcon"></i>
+            </button>
+        </div>
     </aside>
 
     {{-- ============ MAIN CONTENT ============ --}}
@@ -349,6 +374,39 @@
   var observer = new MutationObserver(applyFonts);
   observer.observe(document.body, { childList: true, subtree: true });
 })();
+
+// Sidebar collapse functionality
+(function(){
+  // Restore collapsed state from localStorage
+  var sidebar = document.querySelector('.admin-sidebar');
+  var icon = document.getElementById('sidebarCollapseIcon');
+  if(localStorage.getItem('sidebar-collapsed') === 'true' && sidebar) {
+    sidebar.classList.add('collapsed');
+    if(icon) {
+      icon.classList.remove('fa-chevrons-left');
+      icon.classList.add('fa-chevrons-right');
+    }
+  }
+})();
+
+function toggleSidebarCollapse() {
+  var sidebar = document.querySelector('.admin-sidebar');
+  var icon = document.getElementById('sidebarCollapseIcon');
+  if(sidebar) {
+    sidebar.classList.toggle('collapsed');
+    if(icon) {
+      if(sidebar.classList.contains('collapsed')) {
+        icon.classList.remove('fa-chevrons-left');
+        icon.classList.add('fa-chevrons-right');
+        localStorage.setItem('sidebar-collapsed', 'true');
+      } else {
+        icon.classList.remove('fa-chevrons-right');
+        icon.classList.add('fa-chevrons-left');
+        localStorage.setItem('sidebar-collapsed', 'false');
+      }
+    }
+  }
+}
 </script>
 </body>
 </html>
