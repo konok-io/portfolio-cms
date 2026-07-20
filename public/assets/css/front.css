@@ -12,33 +12,27 @@
   font-display: swap;
 }
 
-/* Apply Bangla font to all text */
-* {
-  font-family: var(--font-body), 'Bangla', 'Noto Sans Bengali', sans-serif !important;
-}
-
-/* Google Translate specific styles */
+/* Google Translate container styles */
 .goog-text-highlight,
-.goog-text-highlight *,
-.translated-ltr,
-.translated-rtl,
-.translated-rtl *,
-.goog-tooltip,
-.goog-tooltip:hover,
-#goog-gt-tt,
-.goog-translations,
-.goog-translations * {
-  font-family: 'Bangla', 'Noto Sans Bengali', var(--font-body), sans-serif !important;
-}
-
-/* Target span elements with Bengali characters */
-span:lang(bn),
-span:lang(bengali) {
+.goog-text-highlight * {
   font-family: 'Bangla', 'Noto Sans Bengali', sans-serif !important;
 }
 
-/* Force Bangla font for translated content */
-[style*="font-family"] {
+body.TEWGTB-BANGLA * {
+  font-family: 'Bangla', 'Noto Sans Bengali', sans-serif !important;
+}
+
+/* Translated content */
+.TEWGTB-BANGLA .translated-ltr,
+.TEWGTB-BANGLA .translated-rtl,
+.TEWGTB-BANGLA .translated-rtl * {
+  font-family: 'Bangla', 'Noto Sans Bengali', sans-serif !important;
+}
+
+/* Bengali text detection */
+.TEWGTB-BANGLA [lang="bn"],
+.TEWGTB-BANGLA [lang="bengali"],
+.TEWGTB-BANGLA span:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([data-icon]) {
   font-family: 'Bangla', 'Noto Sans Bengali', sans-serif !important;
 }
 
