@@ -37,11 +37,12 @@
                         </div>
                         <div class="col-12">
                             <label class="form-label-admin">Address</label>
-                            <textarea name="address" class="form-control" rows="2">{{ old('address', $setting->address) }}</textarea>
+                            <textarea name="address" class="form-control" rows="2" placeholder="123 Main Street, City, Country">{{ old('address', $setting->address) }}</textarea>
                         </div>
                         <div class="col-12">
-                            <label class="form-label-admin">Google Map Embed Code</label>
-                            <textarea name="google_map" class="form-control" rows="3" placeholder="<iframe src=...></iframe>">{{ old('google_map', $setting->google_map) }}</textarea>
+                            <label class="form-label-admin">Google Map URL</label>
+                            <input type="url" name="google_map" class="form-control" value="{{ old('google_map', $setting->google_map) }}" placeholder="https://www.google.com/maps/@26.2760657,50.2151092,15z">
+                            <small class="text-muted d-block mt-1 text-start">Paste a Google Maps share link (e.g., https://www.google.com/maps/@26.2760657,50.2151092,15z)</small>
                         </div>
                     </div>
                 </div>
