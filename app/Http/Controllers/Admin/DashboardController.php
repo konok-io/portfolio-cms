@@ -55,10 +55,8 @@ class DashboardController extends Controller
             ->groupBy('status')
             ->get();
 
-        $skillsByCategory = Skill::select('category', DB::raw('COUNT(*) as total'))
-            ->groupBy('category')
-            ->orderByDesc('total')
-            ->take(6)
+        $skillStats = Skill::select('is_active', DB::raw('COUNT(*) as total'))
+            ->groupBy('is_active')
             ->get();
 
         $license = $this->licenseInfo();
@@ -71,7 +69,7 @@ class DashboardController extends Controller
             'visitorChart',
             'browserStats',
             'projectStats',
-            'skillsByCategory',
+            'skillStats',
             'license'
         ));
     }

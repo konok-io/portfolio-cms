@@ -276,7 +276,7 @@
         </div>
         
         <div class="admin-card mb-3">
-            <div class="card-header-custom">Skills by Category</div>
+            <div class="card-header-custom">Skills Status</div>
             <div class="card-body-custom">
                 <canvas id="skillsChart" height="180"></canvas>
             </div>
@@ -445,19 +445,20 @@
         }
     });
 
-    // Skills by Category Chart
+    // Skills Status Chart
     const skillsCtx = document.getElementById('skillsChart');
     new Chart(skillsCtx, {
-        type: 'polarArea',
+        type: 'doughnut',
         data: {
-            labels: {!! json_encode($skillsByCategory->pluck('category')) !!},
+            labels: {!! json_encode($skillStats->pluck('is_active')->map(fn($a) => $a ? 'Active' : 'Inactive')->toArray()) !!},
             datasets: [{
-                data: {!! json_encode($skillsByCategory->pluck('total')) !!},
-                backgroundColor: ['rgba(37,99,235,0.7)', 'rgba(249,115,22,0.7)', 'rgba(34,197,94,0.7)', 'rgba(168,85,247,0.7)', 'rgba(14,165,233,0.7)', 'rgba(220,38,38,0.7)'],
+                data: {!! json_encode($skillStats->pluck('total')) !!},
+                backgroundColor: ['#16a34a', '#dc2626'],
             }]
         },
         options: {
-            plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } } }
+            plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
+            cutout: '60%'
         }
     });
 </script>
