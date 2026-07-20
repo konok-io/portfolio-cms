@@ -102,8 +102,8 @@
       /* Sidebar collapse styles */
       .admin-sidebar.collapsed{width:70px!important}
       .admin-sidebar.collapsed .sidebar-brand span,
-      .admin-sidebar.collapsed .nav-section-title,
-      .admin-sidebar.collapsed .nav-link span,
+      .admin-sidebar.collapsed .nav-section-title > span,
+      .admin-sidebar.collapsed .nav-link > span,
       .admin-sidebar.collapsed .badge.ms-auto{display:none!important}
       .admin-sidebar.collapsed .sidebar-brand{justify-content:center}
       .admin-sidebar.collapsed .nav-link{justify-content:center;padding:12px}
@@ -136,72 +136,72 @@
 
         <nav class="nav flex-column pb-4">
             <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                <i class="fa-solid fa-gauge"></i> Dashboard
+                <i class="fa-solid fa-gauge"></i><span>Dashboard</span>
             </a>
 
-            <div class="nav-section-title">Content</div>
+            <div class="nav-section-title"><span>Content</span></div>
             <a href="{{ route('admin.about.edit') }}" class="nav-link {{ request()->routeIs('admin.about.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-user"></i> About Me
+                <i class="fa-solid fa-user"></i><span>About Me</span>
             </a>
             <a href="{{ route('admin.skills.index') }}" class="nav-link {{ request()->routeIs('admin.skills.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-chart-simple"></i> Skills
+                <i class="fa-solid fa-chart-simple"></i><span>Skills</span>
             </a>
             <a href="{{ route('admin.services.index') }}" class="nav-link {{ request()->routeIs('admin.services.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-briefcase"></i> Services
+                <i class="fa-solid fa-briefcase"></i><span>Services</span>
             </a>
             <a href="{{ route('admin.experience.index') }}" class="nav-link {{ request()->routeIs('admin.experience.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-building"></i> Experience
+                <i class="fa-solid fa-building"></i><span>Experience</span>
             </a>
             <a href="{{ route('admin.education.index') }}" class="nav-link {{ request()->routeIs('admin.education.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-graduation-cap"></i> Education
+                <i class="fa-solid fa-graduation-cap"></i><span>Education</span>
             </a>
             <a href="{{ route('admin.projects.index') }}" class="nav-link {{ request()->routeIs('admin.projects.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-diagram-project"></i> Projects
+                <i class="fa-solid fa-diagram-project"></i><span>Projects</span>
             </a>
             <a href="{{ route('admin.blog.index') }}" class="nav-link {{ request()->routeIs('admin.blog.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-newspaper"></i> Blog Posts
+                <i class="fa-solid fa-newspaper"></i><span>Blog Posts</span>
             </a>
             <a href="{{ route('admin.testimonials.index') }}" class="nav-link {{ request()->routeIs('admin.testimonials.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-quote-left"></i> Testimonials
+                <i class="fa-solid fa-quote-left"></i><span>Testimonials</span>
             </a>
 
-            <div class="nav-section-title">Communication</div>
+            <div class="nav-section-title"><span>Communication</span></div>
             @php($unread = \Illuminate\Support\Facades\Schema::hasTable('contact_messages') ? \App\Models\ContactMessage::unread()->count() : 0)
             <a href="{{ route('admin.messages.index') }}" class="nav-link {{ request()->routeIs('admin.messages.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-envelope"></i> Messages
+                <i class="fa-solid fa-envelope"></i><span>Messages</span>
                 @if($unread > 0)
                     <span class="badge bg-danger ms-auto">{{ $unread }}</span>
                 @endif
             </a>
 
-            <div class="nav-section-title">Administration</div>
+            <div class="nav-section-title"><span>Administration</span></div>
             <a href="{{ route('admin.users.index') }}" class="nav-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-users"></i> Users
+                <i class="fa-solid fa-users"></i><span>Users</span>
             </a>
             <a href="{{ route('admin.roles.index') }}" class="nav-link {{ request()->routeIs('admin.roles.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-user-shield"></i> Roles &amp; Permissions
+                <i class="fa-solid fa-user-shield"></i><span>Roles &amp; Permissions</span>
             </a>
             <a href="{{ route('admin.settings.edit') }}" class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-gear"></i> Site Settings
+                <i class="fa-solid fa-gear"></i><span>Site Settings</span>
             </a>
             <a href="{{ route('admin.seo.edit') }}" class="nav-link {{ request()->routeIs('admin.seo.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-magnifying-glass-chart"></i> SEO Settings
+                <i class="fa-solid fa-magnifying-glass-chart"></i><span>SEO Settings</span>
             </a>
             <a href="{{ route('admin.license.index') }}" class="nav-link {{ request()->routeIs('admin.license.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-certificate"></i> License
+                <i class="fa-solid fa-certificate"></i><span>License</span>
             </a>
 
-            <div class="nav-section-title">Account</div>
+            <div class="nav-section-title"><span>Account</span></div>
             <a href="{{ route('admin.profile.edit') }}" class="nav-link {{ request()->routeIs('admin.profile.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-id-badge"></i> My Profile
+                <i class="fa-solid fa-id-badge"></i><span>My Profile</span>
             </a>
             <a href="{{ route('home') }}" target="_blank" class="nav-link">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i> View Website
+                <i class="fa-solid fa-arrow-up-right-from-square"></i><span>View Website</span>
             </a>
             <form action="{{ route('admin.logout') }}" method="POST">
                 @csrf
                 <button type="submit" class="nav-link border-0 bg-transparent w-100 text-start">
-                    <i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span>
+                    <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
                 </button>
             </form>
         </nav>
