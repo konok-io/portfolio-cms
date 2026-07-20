@@ -397,6 +397,50 @@
         </div>
     </div>
 
+    {{-- Top Countries --}}
+    <div class="col-lg-4">
+        <div class="admin-card mb-3">
+            <div class="card-header-custom">
+                <i class="fa-solid fa-globe me-2"></i>Top Countries
+            </div>
+            <div class="card-body-custom p-0">
+                @forelse($topCountries as $index => $country)
+                    <div class="d-flex justify-content-between align-items-center px-3 py-2 {{ !$loop->last ? 'border-bottom' : '' }}">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge bg-primary rounded-circle" style="width:24px;height:24px;line-height:16px;font-size:11px;">{{ $index + 1 }}</span>
+                            <span class="small fw-medium">{{ $country->country ?: 'Unknown' }}</span>
+                        </div>
+                        <span class="badge bg-success rounded-pill">{{ $country->total }} visits</span>
+                    </div>
+                @empty
+                    <p class="text-muted small text-center py-4 mb-0">No country data available</p>
+                @endforelse
+            </div>
+        </div>
+    </div>
+
+    {{-- Top Pages --}}
+    <div class="col-lg-4">
+        <div class="admin-card mb-3">
+            <div class="card-header-custom">
+                <i class="fa-solid fa-file-alt me-2"></i>Top Pages
+            </div>
+            <div class="card-body-custom p-0">
+                @forelse($topPages as $index => $page)
+                    <div class="d-flex justify-content-between align-items-center px-3 py-2 {{ !$loop->last ? 'border-bottom' : '' }}">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge bg-info rounded-circle" style="width:24px;height:24px;line-height:16px;font-size:11px;">{{ $index + 1 }}</span>
+                            <span class="small fw-medium text-truncate" style="max-width:120px;" title="{{ $page->page_url }}">{{ basename($page->page_url) ?: '/' }}</span>
+                        </div>
+                        <span class="badge bg-warning text-dark rounded-pill">{{ $page->total }} views</span>
+                    </div>
+                @empty
+                    <p class="text-muted small text-center py-4 mb-0">No page data available</p>
+                @endforelse
+            </div>
+        </div>
+    </div>
+
     {{-- Quick Stats Summary --}}
     <div class="col-lg-4">
         <div class="admin-card mb-3">
