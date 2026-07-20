@@ -59,6 +59,22 @@ class DashboardController extends Controller
             ->groupBy('is_active')
             ->get();
 
+        $topCountries = Visitor::select('country', DB::raw('COUNT(*) as total'))
+            ->whereNotNull('country')
+            ->where('country', '!=', '')
+            ->groupBy('country')
+            ->orderByDesc('total')
+            ->take(5)
+            ->get();
+
+        $topPages = Visitor::select('page_url', DB::raw('COUNT(*) as total'))
+            ->whereNotNull('page_url')
+            ->where('page_url', '!=', '')
+            ->groupBy('page_url')
+            ->orderByDesc('total')
+            ->take(5)
+            ->get();
+
         $license = $this->licenseInfo();
 
         return view('admin.dashboard.index', compact(
@@ -70,6 +86,8 @@ class DashboardController extends Controller
             'browserStats',
             'projectStats',
             'skillStats',
+            'topCountries',
+            'topPages',
             'license'
         ));
     }

@@ -354,7 +354,7 @@
     </div>
 
     {{-- Recent Messages --}}
-    <div class="col-12">
+    <div class="col-lg-8">
         <div class="admin-card">
             <div class="card-header-custom d-flex justify-content-between align-items-center">
                 Recent Messages
@@ -376,6 +376,87 @@
                     <li class="list-group-item text-center text-muted small py-4">No messages yet.</li>
                 @endforelse
             </ul>
+        </div>
+    </div>
+
+    {{-- Top Countries --}}
+    <div class="col-lg-4">
+        <div class="admin-card mb-3">
+            <div class="card-header-custom">
+                <i class="fa-solid fa-globe me-2"></i>Top Countries
+            </div>
+            <div class="card-body-custom">
+                @forelse($topCountries as $index => $country)
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge bg-light text-dark">{{ $index + 1 }}</span>
+                            <span class="small">{{ $country->country ?: 'Unknown' }}</span>
+                        </div>
+                        <span class="badge bg-primary rounded-pill">{{ $country->total }}</span>
+                    </div>
+                @empty
+                    <p class="text-muted small text-center py-3 mb-0">No country data available</p>
+                @endforelse
+            </div>
+        </div>
+    </div>
+
+    {{-- Top Pages --}}
+    <div class="col-lg-4">
+        <div class="admin-card mb-3">
+            <div class="card-header-custom">
+                <i class="fa-solid fa-file-alt me-2"></i>Top Pages
+            </div>
+            <div class="card-body-custom">
+                @forelse($topPages as $index => $page)
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge bg-light text-dark">{{ $index + 1 }}</span>
+                            <span class="small text-truncate" style="max-width:150px;" title="{{ $page->page_url }}">{{ basename($page->page_url) ?: '/' }}</span>
+                        </div>
+                        <span class="badge bg-info rounded-pill">{{ $page->total }}</span>
+                    </div>
+                @empty
+                    <p class="text-muted small text-center py-3 mb-0">No page data available</p>
+                @endforelse
+            </div>
+        </div>
+    </div>
+
+    {{-- Quick Stats Summary --}}
+    <div class="col-lg-4">
+        <div class="admin-card mb-3">
+            <div class="card-header-custom">
+                <i class="fa-solid fa-chart-pie me-2"></i>Quick Stats
+            </div>
+            <div class="card-body-custom">
+                <div class="row g-2 text-center">
+                    <div class="col-6">
+                        <div class="p-2 rounded-3 bg-light">
+                            <div class="h4 mb-0 text-primary">{{ $stats['visitors'] > 0 ? number_format($stats['visitors']) : 0 }}</div>
+                            <small class="text-muted">Total Views</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="p-2 rounded-3 bg-light">
+                            <div class="h4 mb-0 text-success">{{ $stats['visitors_today'] }}</div>
+                            <small class="text-muted">Today</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="p-2 rounded-3 bg-light">
+                            <div class="h4 mb-0 text-warning">{{ $stats['messages'] }}</div>
+                            <small class="text-muted">Messages</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="p-2 rounded-3 bg-light">
+                            <div class="h4 mb-0 text-info">{{ $stats['unread_messages'] }}</div>
+                            <small class="text-muted">Unread</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
