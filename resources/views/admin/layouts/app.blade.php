@@ -101,15 +101,21 @@
       [data-theme="dark"] .admin-sidebar .nav-link:hover,[data-theme="dark"] .admin-sidebar .nav-link.active{color:#fff;background:linear-gradient(135deg,#4F2FE8,#7C3AED)}
       /* Sidebar collapse styles */
       .admin-sidebar.collapsed{width:70px!important}
+      .admin-sidebar.collapsed .sidebar-brand i:first-child,
       .admin-sidebar.collapsed .sidebar-brand span,
       .admin-sidebar.collapsed .nav-section-title > span,
       .admin-sidebar.collapsed .nav-link > span,
       .admin-sidebar.collapsed .badge.ms-auto{display:none!important}
-      .admin-sidebar.collapsed .sidebar-brand{justify-content:center}
+      .admin-sidebar.collapsed .sidebar-brand{justify-content:center;padding:1rem}
       .admin-sidebar.collapsed .nav-link{justify-content:center;padding:12px}
       .admin-sidebar.collapsed .nav-link i{font-size:1.1rem}
-      .sidebar-collapse-btn{background:0;border:1px solid #e2e2e8;color:#666;cursor:pointer;padding:6px 10px;border-radius:6px;transition:all .3s;display:flex;align-items:center;justify-content:center}
-      .sidebar-collapse-btn:hover{background:#4F2FE8;color:#fff;border-color:#4F2FE8}
+      .sidebar-collapse-btn{background:#f4f4f9;border:1px solid #e2e2e8;color:#666;cursor:pointer;padding:6px 10px;border-radius:10px;transition:all .25s;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,0.08)}
+      .sidebar-collapse-btn:hover{background:#4F2FE8;color:#fff;border-color:#4F2FE8;box-shadow:0 4px 12px rgba(79,47,232,0.3);transform:translateY(-1px)}
+      .sidebar-collapse-btn:active{transform:translateY(0)}
+      .admin-sidebar.collapsed .sidebar-collapse-btn{background:#f8f8fc}
+      [data-theme="dark"] .sidebar-collapse-btn{background:#1E1A44;color:#9B98C7;border-color:#2C2860}
+      [data-theme="dark"] .sidebar-collapse-btn:hover{background:#4F2FE8;color:#fff;border-color:#4F2FE8}
+      [data-theme="dark"] .admin-sidebar.collapsed .sidebar-collapse-btn{background:#171433}
       .admin-sidebar.collapsed ~ .admin-content{margin-left:70px}
       .admin-sidebar{display:flex;flex-direction:column;min-height:100vh}
     </style>
