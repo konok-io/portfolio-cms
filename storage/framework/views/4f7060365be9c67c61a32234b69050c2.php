@@ -177,6 +177,30 @@
   }
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+// Apply Bangla font when Bengali is translated
+(function() {
+  function applyBanglaFont() {
+    var m = document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);
+    var lang = m ? m[1] : '';
+    if (lang === 'bn' || lang === 'bengali') {
+      document.body.classList.add('TEWGTB-BANGLA');
+    } else {
+      document.body.classList.remove('TEWGTB-BANGLA');
+    }
+  }
+  
+  // Apply on page load
+  applyBanglaFont();
+  
+  // Watch for language changes
+  setInterval(applyBanglaFont, 1000);
+  
+  // Also apply when translation happens
+  var observer = new MutationObserver(applyBanglaFont);
+  observer.observe(document.body, { childList: true, subtree: true });
+})();
+</script>
 </body>
 </html>
 <?php /**PATH C:\laragon\www\portfolio-cms\resources\views/front/layouts/app.blade.php ENDPATH**/ ?>
