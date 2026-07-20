@@ -116,7 +116,7 @@
                     </div>
                     @endif
 
-                    @if($siteSetting->google_map && \Illuminate\Support\Str::contains($siteSetting->google_map, 'maps.google.com'))
+                    @if($siteSetting->google_map && \Illuminate\Support\Str::contains($siteSetting->google_map, ['google.com/maps', 'maps.google.com']))
                     <div class="google-map mt-4">
                         {!! $siteSetting->google_map !!}
                     </div>
