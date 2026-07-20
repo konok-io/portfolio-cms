@@ -2,6 +2,21 @@
    Portfolio CMS — Modern SaaS Theme
    Design tokens
    ========================================================= */
+
+/* Bangla Font for Google Translate */
+@font-face {
+  font-family: 'Bangla';
+  src: url('/fonts/bangla.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Apply Bangla font to translated Bengali text */
+body, h1, h2, h3, h4, h5, h6, p, span, a, li, td, th, label, button, input, textarea, select {
+  font-family: var(--font-body), 'Bangla', sans-serif !important;
+}
+
 :root {
   --color-primary: #2563EB;
   --color-primary-dark: #1d4ed8;
