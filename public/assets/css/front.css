@@ -54,7 +54,16 @@ body div:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*=
 }
 
 /* Button cursor */
-.btn {
+.btn,
+a.btn,
+.btn-primary-custom,
+.btn-outline-custom {
+  cursor: pointer;
+}
+
+/* Ensure anchor buttons work */
+a[href^="#"],
+a[href*="#contact"] {
   cursor: pointer;
 }
 

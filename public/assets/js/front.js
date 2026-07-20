@@ -23,9 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // --- Smooth scroll for in-page anchor links (e.g. Hire Me -> #contact) ---
-    // Handles links like "#contact" on the current page, and also links like
-    // "/#contact" or "https://site/#contact" when we are already on that page,
-    // offsetting for the sticky navbar so the target isn't hidden under it.
     function scrollToHash(hash) {
         if (!hash || hash === '#') return false;
         const target = document.querySelector(hash);
@@ -36,15 +33,13 @@ document.addEventListener('DOMContentLoaded', function () {
         return true;
     }
 
-    document.querySelectorAll('a[href*="#"]').forEach(function (link) {
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
         link.addEventListener('click', function (e) {
-            const url = new URL(this.href, window.location.origin);
-            const samePage = url.pathname === window.location.pathname;
-            if (samePage && url.hash) {
-                if (scrollToHash(url.hash)) {
-                    e.preventDefault();
-                    history.replaceState(null, '', url.hash);
-                }
+            const hash = this.getAttribute('href');
+            if (hash && hash !== '#' && hash.startsWith('#')) {
+                e.preventDefault();
+                scrollToHash(hash);
+                history.replaceState(null, '', hash);
             }
         });
     });
