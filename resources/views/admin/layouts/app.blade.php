@@ -112,10 +112,9 @@
       .sidebar-collapse-btn:hover{background:#4F2FE8;color:#fff;border-color:#4F2FE8}
       .sidebar-collapse-btn .collapse-icon{transition:transform .3s}
       .admin-sidebar.collapsed ~ .admin-content{margin-left:70px}
-      .admin-sidebar.collapsed .sidebar-collapse-btn{width:100%;justify-content:center}
       .admin-sidebar.collapsed .sidebar-collapse-btn .btn-text{display:none}
       .admin-sidebar:not(.collapsed) .sidebar-collapse-btn .btn-icon{display:none}
-      .sidebar-footer{border-top:1px solid #e2e2e8;padding:12px;margin-top:auto}
+      .sidebar-footer{border-top:1px solid #e2e2e8;padding:12px;margin-top:auto;display:flex;justify-content:center}
       [data-theme="dark"] .sidebar-footer{border-color:#2C2860}
       .admin-sidebar{display:flex;flex-direction:column;min-height:100vh}
     </style>
