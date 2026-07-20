@@ -1,6 +1,6 @@
 @extends('front.layouts.app')
 @section('title', 'Contact | ' . ($siteSetting->site_name ?? 'Portfolio CMS'))
-@section('meta_description', 'Get in touch with us. We would love to hear from you.')
+@section('meta_description', 'Get in touch with us. We would love to hear from you. Feel free to send me a message about your project or inquiry.')
 
 @section('content')
 <section class="contact-page-section">
