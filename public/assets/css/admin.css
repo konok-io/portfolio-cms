@@ -11,9 +11,34 @@
   font-display: swap;
 }
 
-/* Apply Bangla font to translated Bengali text */
-body, h1, h2, h3, h4, h5, h6, p, span, a, li, td, th, label, button, input, textarea, select {
-  font-family: 'Inter', -apple-system, 'Bangla', sans-serif !important;
+/* Apply Bangla font to all text */
+* {
+  font-family: 'Inter', -apple-system, 'Bangla', 'Noto Sans Bengali', sans-serif !important;
+}
+
+/* Google Translate specific styles */
+.goog-text-highlight,
+.goog-text-highlight *,
+.translated-ltr,
+.translated-rtl,
+.translated-rtl *,
+.goog-tooltip,
+.goog-tooltip:hover,
+#goog-gt-tt,
+.goog-translations,
+.goog-translations * {
+  font-family: 'Bangla', 'Noto Sans Bengali', 'Inter', sans-serif !important;
+}
+
+/* Target span elements with Bengali characters */
+span:lang(bn),
+span:lang(bengali) {
+  font-family: 'Bangla', 'Noto Sans Bengali', sans-serif !important;
+}
+
+/* Force Bangla font for translated content */
+[style*="font-family"] {
+  font-family: 'Bangla', 'Noto Sans Bengali', sans-serif !important;
 }
 
 :root {
