@@ -21,7 +21,7 @@
                     {{ $about->short_intro ?? 'I design and build modern, high-performing web applications tailored to your business goals.' }}
                 </p>
                 <div class="d-flex flex-wrap gap-3">
-                    <a href="{{ route('home') }}#contact" class="btn btn-primary-custom">
+                    <a href="#contact" class="btn btn-primary-custom">
                         <i class="fa-solid fa-paper-plane me-2"></i>Hire Me
                     </a>
                     @if($about->cv_url ?? false)
