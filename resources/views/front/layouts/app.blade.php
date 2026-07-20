@@ -64,7 +64,11 @@
       [data-theme="dark"] body{background:#0A0A1F!important;color:#EDECFF}
       [data-theme="dark"] .site-navbar{background:#12102E!important}
       [data-theme="dark"] section,[data-theme="dark"] .section,[data-theme="dark"] .bg-white,[data-theme="dark"] .bg-body{background:#0A0A1F!important}
-      [data-theme="dark"] .bg-light-custom,[data-theme="dark"] .section-alt,[data-theme="dark"] .bg-light,[data-theme="dark"] .bg-body-tertiary{background:#12102E!important}
+      [data-theme="dark"] .bg-light-custom,[data-theme="dark"] .bg-light,[data-theme="dark"] .bg-body-tertiary{background:#12102E!important}
+      [data-theme="dark"] .section-alt{background:#0f0d24!important}
+      [data-theme="dark"] .section-tint{background:#1a1650!important}
+      [data-theme="dark"] .section-accent-tint{background:#1c1000!important}
+      [data-theme="dark"] .section-dark-tint{background:#131225!important}
       [data-theme="dark"] .card,[data-theme="dark"] .experience-card,[data-theme="dark"] .skill-card,[data-theme="dark"] .service-card,[data-theme="dark"] .project-card,[data-theme="dark"] .blog-card,[data-theme="dark"] .testimonial-card{background:#171433!important;color:#EDECFF!important;border-color:#2C2860!important}
       [data-theme="dark"] h1,[data-theme="dark"] h2,[data-theme="dark"] h3,[data-theme="dark"] h4,[data-theme="dark"] h5,[data-theme="dark"] h6,[data-theme="dark"] p,[data-theme="dark"] li,[data-theme="dark"] span,[data-theme="dark"] .nav-link,[data-theme="dark"] .navbar-brand{color:#EDECFF!important}
       [data-theme="dark"] .text-muted,[data-theme="dark"] .text-secondary,[data-theme="dark"] small{color:#9B98C7!important}

@@ -171,6 +171,22 @@ a {
 .bg-light-custom { background-color: var(--color-light); }
 
 /* =========================================================
+   Section Alternating Backgrounds (Light Mode)
+   ========================================================= */
+.section-alt {
+  background-color: #f0f4f8;
+}
+.section-tint {
+  background-color: #eff6ff;
+}
+.section-accent-tint {
+  background-color: #fff7ed;
+}
+.section-dark-tint {
+  background-color: #f8fafc;
+}
+
+/* =========================================================
    Buttons
    ========================================================= */
 .btn-primary-custom {

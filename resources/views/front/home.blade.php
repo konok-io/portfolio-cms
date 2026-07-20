@@ -113,7 +113,7 @@
      3. SKILLS
      ========================================================= --}}
 @if($skills->isNotEmpty())
-<section id="skills" class="section-padding bg-light-custom">
+<section id="skills" class="section-padding section-alt">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
             <span class="section-eyebrow">My Skills</span>
@@ -172,7 +172,7 @@
      5. EXPERIENCE
      ========================================================= --}}
 @if($experiences->isNotEmpty())
-<section id="experience" class="section-padding bg-light-custom">
+<section id="experience" class="section-padding section-tint">
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-4 reveal-on-scroll">
@@ -234,7 +234,7 @@
      7. PORTFOLIO PROJECTS
      ========================================================= --}}
 @if($projects->isNotEmpty())
-<section id="portfolio" class="section-padding bg-light-custom">
+<section id="portfolio" class="section-padding section-alt">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
             <span class="section-eyebrow">Recent Work</span>
@@ -308,7 +308,7 @@
      9. BLOG POSTS
      ========================================================= --}}
 @if($blogs->isNotEmpty())
-<section id="blog" class="section-padding bg-light-custom">
+<section id="blog" class="section-padding section-tint">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
             <span class="section-eyebrow">From the Blog</span>
