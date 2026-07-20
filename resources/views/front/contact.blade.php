@@ -116,27 +116,8 @@
                     </div>
                     @endif
 
-                    @php
-                        $mapUrl = $siteSetting->google_map ?? '';
-                        $isEmbed = \Illuminate\Support\Str::contains($mapUrl, ['<iframe', 'google.com/maps', 'maps.google.com']);
-                        $embedUrl = $mapUrl;
-                        
-                        // If it's a plain URL, convert to embed format
-                        if (!$isEmbed && $mapUrl && (Str::startsWith(trim($mapUrl), 'http://') || Str::startsWith(trim($mapUrl), 'https://'))) {
-                            $encodedUrl = urlencode(trim($mapUrl));
-                            $embedUrl = 'https://www.google.com/maps?output=embed&q=' . $encodedUrl;
-                            $isEmbed = true;
-                        }
-                    @endphp
-
-                    @if($isEmbed)
-                    <div class="google-map mt-4">
-                        @if(\Illuminate\Support\Str::contains($mapUrl, '<iframe'))
-                            {!! $mapUrl !!}
-                        @else
-                            <iframe src="{{ $embedUrl }}" width="100%" height="250" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        @endif
-                    </div>
+                    @if($siteSetting->google_map && $siteSetting->address)
+                    <div class="google-map mt-4" id="contactMap"></div>
                     @else
                     <div class="google-map-placeholder mt-4">
                         <i class="fa-solid fa-map-location-dot"></i>
@@ -149,6 +130,34 @@
     </div>
 </section>
 @endsection
+
+@push('scripts')
+@if($siteSetting->google_map && $siteSetting->address)
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const map = L.map('contactMap').setView([0, 0], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+    
+    const searchQuery = "{{ addslashes($siteSetting->address) }}";
+    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(searchQuery)}`)
+        .then(r => r.json())
+        .then(data => {
+            if (data && data.length > 0) {
+                const lat = parseFloat(data[0].lat);
+                const lon = parseFloat(data[0].lon);
+                map.setView([lat, lon], 15);
+                L.marker([lat, lon]).addTo(map)
+                    .bindPopup("{{ addslashes($siteSetting->address) }}").openPopup();
+            }
+        });
+});
+</script>
+@endif
+@endpush
 
 @push('styles')
 <style>
@@ -210,6 +219,11 @@
 .google-map {
     border-radius: 12px;
     overflow: hidden;
+}
+.google-map, #contactMap {
+    height: 250px;
+    border-radius: 12px;
+    z-index: 1;
 }
 .google-map iframe {
     width: 100%;
