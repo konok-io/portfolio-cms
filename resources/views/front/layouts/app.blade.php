@@ -29,7 +29,7 @@
     @endif
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" id="bs-ltr">
     <script>
       (function(){try{
@@ -178,26 +178,37 @@
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script>
-// Apply Bangla font when Bengali is translated
+// Apply language-specific fonts
 (function() {
-  function applyBanglaFont() {
+  function applyFonts() {
     var m = document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);
     var lang = m ? m[1] : '';
+    
+    // Bengali
     if (lang === 'bn' || lang === 'bengali') {
       document.body.classList.add('TEWGTB-BANGLA');
-    } else {
+      document.body.classList.remove('TEWGTB-ARABIC');
+    }
+    // Arabic and other RTL languages
+    else if (lang === 'ar' || lang === 'ur' || lang === 'fa' || lang === 'he' || lang === 'ps' || lang === 'sd') {
+      document.body.classList.add('TEWGTB-ARABIC');
       document.body.classList.remove('TEWGTB-BANGLA');
+    }
+    // English / others
+    else {
+      document.body.classList.remove('TEWGTB-BANGLA');
+      document.body.classList.remove('TEWGTB-ARABIC');
     }
   }
   
   // Apply on page load
-  applyBanglaFont();
+  applyFonts();
   
   // Watch for language changes
-  setInterval(applyBanglaFont, 1000);
+  setInterval(applyFonts, 1000);
   
   // Also apply when translation happens
-  var observer = new MutationObserver(applyBanglaFont);
+  var observer = new MutationObserver(applyFonts);
   observer.observe(document.body, { childList: true, subtree: true });
 })();
 </script>

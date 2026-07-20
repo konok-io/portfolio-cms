@@ -12,7 +12,7 @@
   font-display: swap;
 }
 
-/* Apply Bangla font ONLY to text elements (not icons) */
+/* Apply Bangla font to text elements */
 body.TEWGTB-BANGLA h1,
 body.TEWGTB-BANGLA h2,
 body.TEWGTB-BANGLA h3,
@@ -20,8 +20,8 @@ body.TEWGTB-BANGLA h4,
 body.TEWGTB-BANGLA h5,
 body.TEWGTB-BANGLA h6,
 body.TEWGTB-BANGLA p,
-body.TEWGTB-BANGLA span:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([class*="fi"]):not([class*="icon"]):not([data-icon]),
-body.TEWGTB-BANGLA a:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
+body.TEWGTB-BANGLA span,
+body.TEWGTB-BANGLA a,
 body.TEWGTB-BANGLA li,
 body.TEWGTB-BANGLA td,
 body.TEWGTB-BANGLA th,
@@ -30,16 +30,40 @@ body.TEWGTB-BANGLA button,
 body.TEWGTB-BANGLA input,
 body.TEWGTB-BANGLA textarea,
 body.TEWGTB-BANGLA select,
-body.TEWGTB-BANGLA div:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="btn"]):not([class*="nav"]),
+body.TEWGTB-BANGLA div,
 body.TEWGTB-BANGLA .translated-ltr,
 body.TEWGTB-BANGLA .translated-rtl {
   font-family: 'Bangla', 'Noto Sans Bengali', var(--font-body), sans-serif !important;
 }
 
+/* Apply Cairo font to Arabic text */
+body.TEWGTB-ARABIC h1,
+body.TEWGTB-ARABIC h2,
+body.TEWGTB-ARABIC h3,
+body.TEWGTB-ARABIC h4,
+body.TEWGTB-ARABIC h5,
+body.TEWGTB-ARABIC h6,
+body.TEWGTB-ARABIC p,
+body.TEWGTB-ARABIC span,
+body.TEWGTB-ARABIC a,
+body.TEWGTB-ARABIC li,
+body.TEWGTB-ARABIC td,
+body.TEWGTB-ARABIC th,
+body.TEWGTB-ARABIC label,
+body.TEWGTB-ARABIC button,
+body.TEWGTB-ARABIC input,
+body.TEWGTB-ARABIC textarea,
+body.TEWGTB-ARABIC select,
+body.TEWGTB-ARABIC div,
+body.TEWGTB-ARABIC .translated-ltr,
+body.TEWGTB-ARABIC .translated-rtl {
+  font-family: 'Cairo', 'Noto Sans Arabic', var(--font-body), sans-serif !important;
+}
+
 /* Google Translate highlight */
 .goog-text-highlight,
 .goog-text-highlight * {
-  font-family: 'Bangla', 'Noto Sans Bengali', sans-serif !important;
+  font-family: 'Cairo', 'Noto Sans Arabic', 'Bangla', 'Noto Sans Bengali', sans-serif !important;
 }
 
 :root {
