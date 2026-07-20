@@ -111,6 +111,14 @@
       [dir="rtl"] .footer-social a{margin-right:0;margin-left:.5rem}
       [dir="rtl"] .text-md-end{text-align:left!important}
       [data-theme="dark"] .text-primary,[data-theme="dark"] .eyebrow{color:#8B7BF0!important}
+      [data-theme="dark"] .hero-section{background:linear-gradient(135deg, #0A0A1F 0%, #12102E 55%, #0A0A1F 100%)}
+      [data-theme="dark"] .hero-section::before{background:radial-gradient(circle, rgba(139,123,240,0.25) 0%, rgba(139,123,240,0) 70%)}
+      [data-theme="dark"] .hero-section::after{background:radial-gradient(circle, rgba(34,211,238,0.15) 0%, rgba(34,211,238,0) 70%)}
+      [data-theme="dark"] .hero-eyebrow{background:rgba(139,123,240,0.15);color:#8B7BF0}
+      [data-theme="dark"] .hero-title{color:#EDECFF!important}
+      [data-theme="dark"] .hero-section .lead{color:#9B98C7!important}
+      [data-theme="dark"] .hero-section .badge-floating{background:#171433!important;border-color:#2C2860!important;color:#EDECFF!important}
+      [data-theme="dark"] .hero-section .badge-floating .small{color:#9B98C7!important}
     </style>
     @stack('styles')
 </head>
