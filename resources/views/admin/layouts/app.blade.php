@@ -108,14 +108,9 @@
       .admin-sidebar.collapsed .sidebar-brand{justify-content:center}
       .admin-sidebar.collapsed .nav-link{justify-content:center;padding:12px}
       .admin-sidebar.collapsed .nav-link i{font-size:1.1rem}
-      .sidebar-collapse-btn{background:0;border:1px solid #e2e2e8;color:#666;cursor:pointer;padding:8px 12px;border-radius:8px;transition:all .3s;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:500}
+      .sidebar-collapse-btn{background:0;border:1px solid #e2e2e8;color:#666;cursor:pointer;padding:6px 10px;border-radius:6px;transition:all .3s;display:flex;align-items:center;justify-content:center}
       .sidebar-collapse-btn:hover{background:#4F2FE8;color:#fff;border-color:#4F2FE8}
-      .sidebar-collapse-btn .collapse-icon{transition:transform .3s}
       .admin-sidebar.collapsed ~ .admin-content{margin-left:70px}
-      .admin-sidebar.collapsed .sidebar-collapse-btn .btn-text{display:none}
-      .admin-sidebar:not(.collapsed) .sidebar-collapse-btn .btn-icon{display:none}
-      .sidebar-footer{border-top:1px solid #e2e2e8;padding:12px;margin-top:auto;display:flex;justify-content:center}
-      [data-theme="dark"] .sidebar-footer{border-color:#2C2860}
       .admin-sidebar{display:flex;flex-direction:column;min-height:100vh}
     </style>
     @stack('styles')
@@ -131,6 +126,10 @@
         <div class="sidebar-brand">
             <i class="fa-solid fa-circle-nodes"></i>
             <span>{{ $siteSetting->site_name ?? 'Portfolio CMS' }}</span>
+            <button type="button" class="sidebar-collapse-btn ms-auto" onclick="toggleSidebarCollapse()" title="Toggle Sidebar">
+                <i class="fa-solid fa-angles-left collapse-icon" id="sidebarCollapseIcon"></i>
+                <i class="fa-solid fa-angles-right btn-icon" id="sidebarExpandIcon" style="display:none"></i>
+            </button>
         </div>
 
         <nav class="nav flex-column pb-4">
@@ -204,13 +203,6 @@
                 </button>
             </form>
         </nav>
-        <div class="sidebar-footer">
-            <button type="button" class="sidebar-collapse-btn" onclick="toggleSidebarCollapse()" title="Toggle Sidebar">
-                <i class="fa-solid fa-angles-left collapse-icon" id="sidebarCollapseIcon"></i>
-                <span class="btn-text">Collapse</span>
-                <i class="fa-solid fa-angles-right btn-icon" id="sidebarExpandIcon" style="display:none"></i>
-            </button>
-        </div>
     </aside>
 
     {{-- ============ MAIN CONTENT ============ --}}
