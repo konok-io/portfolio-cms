@@ -29,9 +29,25 @@
   font-display: swap;
 }
 
-/* Apply English font to all elements by default */
-body,
-body * {
+/* Apply English font to text elements (exclude icons) */
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6,
+body p,
+body span:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([class*="fi"]):not([class*="icon"]):not([data-icon]),
+body a:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
+body li,
+body td,
+body th,
+body label,
+body button,
+body input,
+body textarea,
+body select,
+body div:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="btn"]):not([class*="nav"]):not([class*="icon"]) {
   font-family: 'English', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
 }
 
@@ -43,8 +59,8 @@ body.TEWGTB-BANGLA h4,
 body.TEWGTB-BANGLA h5,
 body.TEWGTB-BANGLA h6,
 body.TEWGTB-BANGLA p,
-body.TEWGTB-BANGLA span,
-body.TEWGTB-BANGLA a,
+body.TEWGTB-BANGLA span:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
+body.TEWGTB-BANGLA a:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
 body.TEWGTB-BANGLA li,
 body.TEWGTB-BANGLA td,
 body.TEWGTB-BANGLA th,
@@ -53,14 +69,13 @@ body.TEWGTB-BANGLA button,
 body.TEWGTB-BANGLA input,
 body.TEWGTB-BANGLA textarea,
 body.TEWGTB-BANGLA select,
-body.TEWGTB-BANGLA div,
+body.TEWGTB-BANGLA div:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
 body.TEWGTB-BANGLA .translated-ltr,
 body.TEWGTB-BANGLA .translated-rtl {
   font-family: 'Bangla', 'Noto Sans Bengali', 'English', sans-serif !important;
 }
 
-/* Apply Arabic font to ALL elements (including English text) when Arabic/RTL selected */
-body.TEWGTB-ARABIC,
+/* Apply Arabic font to text elements (exclude icons) when Arabic/RTL selected */
 body.TEWGTB-ARABIC h1,
 body.TEWGTB-ARABIC h2,
 body.TEWGTB-ARABIC h3,
@@ -68,8 +83,8 @@ body.TEWGTB-ARABIC h4,
 body.TEWGTB-ARABIC h5,
 body.TEWGTB-ARABIC h6,
 body.TEWGTB-ARABIC p,
-body.TEWGTB-ARABIC span,
-body.TEWGTB-ARABIC a,
+body.TEWGTB-ARABIC span:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
+body.TEWGTB-ARABIC a:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
 body.TEWGTB-ARABIC li,
 body.TEWGTB-ARABIC td,
 body.TEWGTB-ARABIC th,
@@ -78,7 +93,7 @@ body.TEWGTB-ARABIC button,
 body.TEWGTB-ARABIC input,
 body.TEWGTB-ARABIC textarea,
 body.TEWGTB-ARABIC select,
-body.TEWGTB-ARABIC div,
+body.TEWGTB-ARABIC div:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
 body.TEWGTB-ARABIC .translated-ltr,
 body.TEWGTB-ARABIC .translated-rtl {
   font-family: 'Arabic', 'English', sans-serif !important;
