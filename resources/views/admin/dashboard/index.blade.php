@@ -63,7 +63,25 @@
             <div class="stat-icon" style="background: rgba(220,38,38,0.1); color:#dc2626;"><i class="fa-solid fa-envelope"></i></div>
             <div>
                 <div class="stat-value">{{ $stats['messages'] }}</div>
-                <div class="stat-label">Total Messages ({{ $stats['unread_messages'] }} unread)</div>
+                <div class="stat-label">Messages ({{ $stats['unread_messages'] }} unread)</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="stat-card">
+            <div class="stat-icon" style="background: rgba(59,130,246,0.1); color:#3b82f6;"><i class="fa-solid fa-building"></i></div>
+            <div>
+                <div class="stat-value">{{ $stats['experiences'] }}</div>
+                <div class="stat-label">Work Experience</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="stat-card">
+            <div class="stat-icon" style="background: rgba(16,185,129,0.1); color:#10b981;"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div>
+                <div class="stat-value">{{ $stats['educations'] }}</div>
+                <div class="stat-label">Education</div>
             </div>
         </div>
     </div>
@@ -82,6 +100,49 @@
             <div>
                 <div class="stat-value">{{ $stats['visitors_today'] }}</div>
                 <div class="stat-label">Visitors Today</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- Quick Actions --}}
+<div class="row g-3 mb-4">
+    <div class="col-12">
+        <div class="admin-card">
+            <div class="card-header-custom">Quick Actions</div>
+            <div class="card-body-custom">
+                <div class="row g-2">
+                    <div class="col-md-2 col-6">
+                        <a href="{{ route('admin.projects.create') }}" class="btn btn-outline-primary btn-sm w-100">
+                            <i class="fa-solid fa-plus me-1"></i> New Project
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-6">
+                        <a href="{{ route('admin.blog.create') }}" class="btn btn-outline-primary btn-sm w-100">
+                            <i class="fa-solid fa-plus me-1"></i> New Blog
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-6">
+                        <a href="{{ route('admin.services.create') }}" class="btn btn-outline-primary btn-sm w-100">
+                            <i class="fa-solid fa-plus me-1"></i> New Service
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-6">
+                        <a href="{{ route('admin.skills.create') }}" class="btn btn-outline-primary btn-sm w-100">
+                            <i class="fa-solid fa-plus me-1"></i> New Skill
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-6">
+                        <a href="{{ route('admin.experience.create') }}" class="btn btn-outline-primary btn-sm w-100">
+                            <i class="fa-solid fa-plus me-1"></i> Add Experience
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-6">
+                        <a href="{{ route('admin.messages.index') }}" class="btn btn-outline-primary btn-sm w-100">
+                            <i class="fa-solid fa-envelope me-1"></i> View Messages
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -189,7 +250,7 @@
 @endisset
 
 <div class="row g-3">
-    {{-- Visitor Chart --}}
+    {{-- Charts Section --}}
     <div class="col-lg-8">
         <div class="admin-card mb-3">
             <div class="card-header-custom">Visitor Trend (Last 14 Days)</div>
@@ -197,7 +258,33 @@
                 <canvas id="visitorChart" height="110"></canvas>
             </div>
         </div>
+        
+        <div class="admin-card mb-3">
+            <div class="card-header-custom">Projects by Status</div>
+            <div class="card-body-custom">
+                <canvas id="projectChart" height="180"></canvas>
+            </div>
+        </div>
+    </div>
 
+    <div class="col-lg-4">
+        <div class="admin-card mb-3">
+            <div class="card-header-custom">Browser Breakdown</div>
+            <div class="card-body-custom">
+                <canvas id="browserChart" height="180"></canvas>
+            </div>
+        </div>
+        
+        <div class="admin-card mb-3">
+            <div class="card-header-custom">Skills by Category</div>
+            <div class="card-body-custom">
+                <canvas id="skillsChart" height="180"></canvas>
+            </div>
+        </div>
+    </div>
+
+    {{-- Recent Projects Table --}}
+    <div class="col-lg-6">
         <div class="admin-card">
             <div class="card-header-custom d-flex justify-content-between align-items-center">
                 Recent Projects
@@ -228,15 +315,46 @@
         </div>
     </div>
 
-    {{-- Browser Stats + Recent Messages --}}
-    <div class="col-lg-4">
-        <div class="admin-card mb-3">
-            <div class="card-header-custom">Browser Breakdown</div>
-            <div class="card-body-custom">
-                <canvas id="browserChart" height="200"></canvas>
+    {{-- Recent Blog Posts --}}
+    <div class="col-lg-6">
+        <div class="admin-card">
+            <div class="card-header-custom d-flex justify-content-between align-items-center">
+                Recent Blog Posts
+                <a href="{{ route('admin.blog.index') }}" class="small">View All</a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-admin mb-0">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Status</th>
+                            <th>Created</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($recentBlogs as $blog)
+                            <tr>
+                                <td>{{ \Illuminate\Support\Str::limit($blog->title, 30) }}</td>
+                                <td>
+                                    @if($blog->is_published)
+                                        <span class="badge bg-success">Published</span>
+                                    @else
+                                        <span class="badge bg-secondary">Draft</span>
+                                    @endif
+                                </td>
+                                <td>{{ $blog->created_at->diffForHumans() }}</td>
+                            </tr>
+                        @empty
+                            <tr><td colspan="3" class="text-center text-muted py-4">No blog posts yet.</td></tr>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
         </div>
+    </div>
 
+    {{-- Recent Messages --}}
+    <div class="col-12">
         <div class="admin-card">
             <div class="card-header-custom d-flex justify-content-between align-items-center">
                 Recent Messages
@@ -247,7 +365,8 @@
                     <li class="list-group-item d-flex justify-content-between align-items-start">
                         <div>
                             <div class="fw-semibold small">{{ $message->name }}</div>
-                            <div class="text-muted small">{{ \Illuminate\Support\Str::limit($message->message, 40) }}</div>
+                            <div class="text-muted small">{{ \Illuminate\Support\Str::limit($message->message, 60) }}</div>
+                            <div class="text-muted small mt-1"><i class="fa-solid fa-clock me-1"></i>{{ $message->created_at->diffForHumans() }}</div>
                         </div>
                         @if(!$message->is_read)
                             <span class="badge bg-danger">New</span>
@@ -266,11 +385,12 @@
 @push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
+    // Visitor Trend Chart
     const visitorCtx = document.getElementById('visitorChart');
     new Chart(visitorCtx, {
         type: 'line',
         data: {
-            labels: {!! json_encode($visitorChart->pluck('date')) !!},
+            labels: {!! json_encode($visitorChart->pluck('date')->map(fn($d) => \Carbon\Carbon::parse($d)->format('M d'))->toArray()) !!},
             datasets: [{
                 label: 'Visitors',
                 data: {!! json_encode($visitorChart->pluck('total')) !!},
@@ -278,15 +398,18 @@
                 backgroundColor: 'rgba(37,99,235,0.08)',
                 fill: true,
                 tension: 0.35,
-                pointRadius: 3,
+                pointRadius: 4,
+                pointHoverRadius: 6,
             }]
         },
         options: {
             plugins: { legend: { display: false } },
-            scales: { y: { beginAtZero: true } }
+            scales: { y: { beginAtZero: true } },
+            interaction: { intersect: false, mode: 'index' }
         }
     });
 
+    // Browser Breakdown Chart
     const browserCtx = document.getElementById('browserChart');
     new Chart(browserCtx, {
         type: 'doughnut',
@@ -298,7 +421,43 @@
             }]
         },
         options: {
-            plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } }
+            plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
+            cutout: '60%'
+        }
+    });
+
+    // Project Status Chart
+    const projectCtx = document.getElementById('projectChart');
+    new Chart(projectCtx, {
+        type: 'bar',
+        data: {
+            labels: {!! json_encode($projectStats->pluck('status')->map(fn($s) => ucfirst(str_replace('_', ' ', $s)))->toArray()) !!},
+            datasets: [{
+                label: 'Projects',
+                data: {!! json_encode($projectStats->pluck('total')) !!},
+                backgroundColor: ['#16a34a', '#F97316', '#2563EB', '#9333ea', '#dc2626'],
+                borderRadius: 6,
+            }]
+        },
+        options: {
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true } }
+        }
+    });
+
+    // Skills by Category Chart
+    const skillsCtx = document.getElementById('skillsChart');
+    new Chart(skillsCtx, {
+        type: 'polarArea',
+        data: {
+            labels: {!! json_encode($skillsByCategory->pluck('category')) !!},
+            datasets: [{
+                data: {!! json_encode($skillsByCategory->pluck('total')) !!},
+                backgroundColor: ['rgba(37,99,235,0.7)', 'rgba(249,115,22,0.7)', 'rgba(34,197,94,0.7)', 'rgba(168,85,247,0.7)', 'rgba(14,165,233,0.7)', 'rgba(220,38,38,0.7)'],
+            }]
+        },
+        options: {
+            plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } } }
         }
     });
 </script>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\ContactMessage;
+use App\Models\Education;
+use App\Models\Experience;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\Skill;
@@ -26,10 +28,13 @@ class DashboardController extends Controller
             'unread_messages' => ContactMessage::unread()->count(),
             'visitors'        => Visitor::count(),
             'visitors_today'  => Visitor::whereDate('visited_date', today())->count(),
+            'experiences'     => Experience::count(),
+            'educations'      => Education::count(),
         ];
 
         $recentMessages = ContactMessage::latest()->take(5)->get();
         $recentProjects = Project::latest()->take(5)->get();
+        $recentBlogs = Blog::latest()->take(5)->get();
 
         $visitorChart = Visitor::select(
                 DB::raw('DATE(visited_date) as date'),
@@ -46,14 +51,27 @@ class DashboardController extends Controller
             ->take(6)
             ->get();
 
+        $projectStats = Project::select('status', DB::raw('COUNT(*) as total'))
+            ->groupBy('status')
+            ->get();
+
+        $skillsByCategory = Skill::select('category', DB::raw('COUNT(*) as total'))
+            ->groupBy('category')
+            ->orderByDesc('total')
+            ->take(6)
+            ->get();
+
         $license = $this->licenseInfo();
 
         return view('admin.dashboard.index', compact(
             'stats',
             'recentMessages',
             'recentProjects',
+            'recentBlogs',
             'visitorChart',
             'browserStats',
+            'projectStats',
+            'skillsByCategory',
             'license'
         ));
     }
