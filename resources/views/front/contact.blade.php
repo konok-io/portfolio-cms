@@ -116,7 +116,7 @@
                     </div>
                     @endif
 
-                    @if($siteSetting->google_map && $siteSetting->address)
+                    @if($siteSetting->google_map)
                     <div class="google-map mt-4" id="contactMap"></div>
                     @else
                     <div class="google-map-placeholder mt-4">
@@ -132,7 +132,7 @@
 @endsection
 
 @push('scripts')
-@if($siteSetting->google_map && $siteSetting->address)
+@if($siteSetting->google_map)
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
@@ -142,18 +142,33 @@ document.addEventListener('DOMContentLoaded', function() {
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
     
-    const searchQuery = "{{ addslashes($siteSetting->address) }}";
-    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(searchQuery)}`)
-        .then(r => r.json())
-        .then(data => {
-            if (data && data.length > 0) {
-                const lat = parseFloat(data[0].lat);
-                const lon = parseFloat(data[0].lon);
-                map.setView([lat, lon], 15);
-                L.marker([lat, lon]).addTo(map)
-                    .bindPopup("{{ addslashes($siteSetting->address) }}").openPopup();
-            }
-        });
+    const mapUrl = "{{ addslashes($siteSetting->google_map) }}";
+    const address = "{{ addslashes($siteSetting->address ?? '') }}";
+    
+    // Extract coordinates from Google Maps URL if present
+    const coordMatch = mapUrl.match(/@(-?\d+\.?\d*),(-?\d+\.?\d*)/);
+    
+    if (coordMatch) {
+        const lat = parseFloat(coordMatch[1]);
+        const lon = parseFloat(coordMatch[2]);
+        map.setView([lat, lon], 15);
+        L.marker([lat, lon]).addTo(map)
+            .bindPopup(address || 'Location').openPopup();
+    } else {
+        // Fallback: search by address
+        const searchQuery = address || mapUrl;
+        fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(searchQuery)}`)
+            .then(r => r.json())
+            .then(data => {
+                if (data && data.length > 0) {
+                    const lat = parseFloat(data[0].lat);
+                    const lon = parseFloat(data[0].lon);
+                    map.setView([lat, lon], 15);
+                    L.marker([lat, lon]).addTo(map)
+                        .bindPopup(address || 'Location').openPopup();
+                }
+            });
+    }
 });
 </script>
 @endif
