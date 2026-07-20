@@ -11,7 +11,7 @@
   font-display: swap;
 }
 
-/* Arabic Font for Google Translate */
+/* Arabic Font - includes English characters for RTL mode */
 @font-face {
   font-family: 'Arabic';
   src: url('/fonts/Arabic.ttf') format('truetype');
@@ -44,7 +44,8 @@ body.TEWGTB-BANGLA .translated-rtl {
   font-family: 'Bangla', 'Noto Sans Bengali', 'Inter', sans-serif !important;
 }
 
-/* Apply Arabic font to Arabic/RTL text */
+/* Apply Arabic font to ALL elements (including English text) when Arabic/RTL selected */
+body.TEWGTB-ARABIC,
 body.TEWGTB-ARABIC h1,
 body.TEWGTB-ARABIC h2,
 body.TEWGTB-ARABIC h3,
@@ -65,7 +66,7 @@ body.TEWGTB-ARABIC select,
 body.TEWGTB-ARABIC div,
 body.TEWGTB-ARABIC .translated-ltr,
 body.TEWGTB-ARABIC .translated-rtl {
-  font-family: 'Arabic', 'Cairo', 'Noto Sans Arabic', 'Inter', sans-serif !important;
+  font-family: 'Arabic', 'Inter', sans-serif !important;
 }
 
 /* Google Translate highlight */
