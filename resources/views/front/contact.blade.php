@@ -116,9 +116,14 @@
                     </div>
                     @endif
 
-                    @if($siteSetting->google_map)
+                    @if($siteSetting->google_map && \Illuminate\Support\Str::contains($siteSetting->google_map, 'maps.google.com'))
                     <div class="google-map mt-4">
                         {!! $siteSetting->google_map !!}
+                    </div>
+                    @else
+                    <div class="google-map-placeholder mt-4">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <p>Map location will appear here</p>
                     </div>
                     @endif
                 </div>
@@ -193,6 +198,27 @@
     width: 100%;
     height: 200px;
     border: 0;
+}
+.google-map-placeholder {
+    background: #f8fafc;
+    border: 2px dashed #e2e8f0;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    color: #94a3b8;
+}
+[data-theme="dark"] .google-map-placeholder {
+    background: #12102E;
+    border-color: #2C2860;
+    color: #6B6790;
+}
+.google-map-placeholder i {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+.google-map-placeholder p {
+    margin: 0;
+    font-size: 0.9rem;
 }
 </style>
 @endpush
