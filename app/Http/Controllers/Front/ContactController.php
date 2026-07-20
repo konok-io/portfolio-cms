@@ -4,10 +4,22 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\ContactMessage;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    public function index()
+    {
+        $siteSetting = Setting::instance();
+        $seoMeta = app(\App\Models\SeoSetting::class)::where('page', 'contact')->first() ?? new \App\Models\SeoSetting();
+
+        return view('front.contact', [
+            'siteSetting' => $siteSetting,
+            'seoMeta' => $seoMeta,
+        ]);
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([

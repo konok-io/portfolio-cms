@@ -165,6 +165,9 @@
             <a href="{{ route('admin.settings.edit') }}" class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-gear"></i> Site Settings
             </a>
+            <a href="{{ route('admin.settings.edit') }}#contact-section" class="nav-link">
+                <i class="fa-solid fa-address-card"></i> Contact Info
+            </a>
             <a href="{{ route('admin.seo.edit') }}" class="nav-link {{ request()->routeIs('admin.seo.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-magnifying-glass-chart"></i> SEO Settings
             </a>

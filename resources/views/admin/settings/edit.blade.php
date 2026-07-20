@@ -19,7 +19,7 @@
 
     <div class="row g-3">
         <div class="col-lg-8">
-            <div class="admin-card mb-3">
+            <div class="admin-card mb-3" id="contact-section">
                 <div class="card-header-custom">General</div>
                 <div class="card-body-custom">
                     <div class="row g-3">

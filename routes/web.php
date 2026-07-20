@@ -43,6 +43,7 @@ Route::prefix('blog')->name('blog.')->group(function () {
     Route::get('/{blog:slug}', [BlogController::class, 'show'])->name('show');
 });
 
+Route::get('/contact', [\App\Http\Controllers\Front\ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::post('/subscribe', [\App\Http\Controllers\SubscriberController::class, 'store'])->name('subscribe.store');
 
