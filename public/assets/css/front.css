@@ -12,27 +12,33 @@
   font-display: swap;
 }
 
-/* Google Translate container styles */
+/* Apply Bangla font ONLY to text elements (not icons) */
+body.TEWGTB-BANGLA h1,
+body.TEWGTB-BANGLA h2,
+body.TEWGTB-BANGLA h3,
+body.TEWGTB-BANGLA h4,
+body.TEWGTB-BANGLA h5,
+body.TEWGTB-BANGLA h6,
+body.TEWGTB-BANGLA p,
+body.TEWGTB-BANGLA span:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([class*="fi"]):not([class*="icon"]):not([data-icon]),
+body.TEWGTB-BANGLA a:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
+body.TEWGTB-BANGLA li,
+body.TEWGTB-BANGLA td,
+body.TEWGTB-BANGLA th,
+body.TEWGTB-BANGLA label,
+body.TEWGTB-BANGLA button,
+body.TEWGTB-BANGLA input,
+body.TEWGTB-BANGLA textarea,
+body.TEWGTB-BANGLA select,
+body.TEWGTB-BANGLA div:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="btn"]):not([class*="nav"]),
+body.TEWGTB-BANGLA .translated-ltr,
+body.TEWGTB-BANGLA .translated-rtl {
+  font-family: 'Bangla', 'Noto Sans Bengali', var(--font-body), sans-serif !important;
+}
+
+/* Google Translate highlight */
 .goog-text-highlight,
 .goog-text-highlight * {
-  font-family: 'Bangla', 'Noto Sans Bengali', sans-serif !important;
-}
-
-body.TEWGTB-BANGLA * {
-  font-family: 'Bangla', 'Noto Sans Bengali', sans-serif !important;
-}
-
-/* Translated content */
-.TEWGTB-BANGLA .translated-ltr,
-.TEWGTB-BANGLA .translated-rtl,
-.TEWGTB-BANGLA .translated-rtl * {
-  font-family: 'Bangla', 'Noto Sans Bengali', sans-serif !important;
-}
-
-/* Bengali text detection */
-.TEWGTB-BANGLA [lang="bn"],
-.TEWGTB-BANGLA [lang="bengali"],
-.TEWGTB-BANGLA span:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([data-icon]) {
   font-family: 'Bangla', 'Noto Sans Bengali', sans-serif !important;
 }
 
