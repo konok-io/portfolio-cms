@@ -12,6 +12,15 @@
   font-display: swap;
 }
 
+/* Arabic Font for Google Translate */
+@font-face {
+  font-family: 'Arabic';
+  src: url('/fonts/Arabic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Apply Bangla font to text elements */
 body.TEWGTB-BANGLA h1,
 body.TEWGTB-BANGLA h2,
@@ -36,7 +45,7 @@ body.TEWGTB-BANGLA .translated-rtl {
   font-family: 'Bangla', 'Noto Sans Bengali', var(--font-body), sans-serif !important;
 }
 
-/* Apply Cairo font to Arabic text */
+/* Apply Arabic font to Arabic/RTL text */
 body.TEWGTB-ARABIC h1,
 body.TEWGTB-ARABIC h2,
 body.TEWGTB-ARABIC h3,
@@ -57,13 +66,13 @@ body.TEWGTB-ARABIC select,
 body.TEWGTB-ARABIC div,
 body.TEWGTB-ARABIC .translated-ltr,
 body.TEWGTB-ARABIC .translated-rtl {
-  font-family: 'Cairo', 'Noto Sans Arabic', var(--font-body), sans-serif !important;
+  font-family: 'Arabic', 'Cairo', 'Noto Sans Arabic', var(--font-body), sans-serif !important;
 }
 
 /* Google Translate highlight */
 .goog-text-highlight,
 .goog-text-highlight * {
-  font-family: 'Cairo', 'Noto Sans Arabic', 'Bangla', 'Noto Sans Bengali', sans-serif !important;
+  font-family: 'Arabic', 'Cairo', 'Noto Sans Arabic', 'Bangla', 'Noto Sans Bengali', sans-serif !important;
 }
 
 :root {
