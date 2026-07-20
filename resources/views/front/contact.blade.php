@@ -116,9 +116,26 @@
                     </div>
                     @endif
 
-                    @if($siteSetting->google_map && \Illuminate\Support\Str::contains($siteSetting->google_map, ['google.com/maps', 'maps.google.com']))
+                    @php
+                        $mapUrl = $siteSetting->google_map ?? '';
+                        $isEmbed = \Illuminate\Support\Str::contains($mapUrl, ['<iframe', 'google.com/maps', 'maps.google.com']);
+                        $embedUrl = $mapUrl;
+                        
+                        // If it's a plain URL, convert to embed format
+                        if (!$isEmbed && $mapUrl && (Str::startsWith(trim($mapUrl), 'http://') || Str::startsWith(trim($mapUrl), 'https://'))) {
+                            $encodedUrl = urlencode(trim($mapUrl));
+                            $embedUrl = 'https://www.google.com/maps?output=embed&q=' . $encodedUrl;
+                            $isEmbed = true;
+                        }
+                    @endphp
+
+                    @if($isEmbed)
                     <div class="google-map mt-4">
-                        {!! $siteSetting->google_map !!}
+                        @if(\Illuminate\Support\Str::contains($mapUrl, '<iframe'))
+                            {!! $mapUrl !!}
+                        @else
+                            <iframe src="{{ $embedUrl }}" width="100%" height="250" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        @endif
                     </div>
                     @else
                     <div class="google-map-placeholder mt-4">
