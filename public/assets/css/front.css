@@ -3,6 +3,15 @@
    Design tokens
    ========================================================= */
 
+/* English Font - Default website font */
+@font-face {
+  font-family: 'English';
+  src: url('/fonts/English.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Bangla Font for Google Translate */
 @font-face {
   font-family: 'Bangla';
@@ -19,6 +28,17 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+}
+
+/* Apply English font to all elements by default */
+body,
+body * {
+  font-family: 'English', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6,
+.font-heading {
+  font-family: 'English', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
 }
 
 /* Apply Bangla font to text elements */
@@ -42,7 +62,7 @@ body.TEWGTB-BANGLA select,
 body.TEWGTB-BANGLA div,
 body.TEWGTB-BANGLA .translated-ltr,
 body.TEWGTB-BANGLA .translated-rtl {
-  font-family: 'Bangla', 'Noto Sans Bengali', var(--font-body), sans-serif !important;
+  font-family: 'Bangla', 'Noto Sans Bengali', 'English', sans-serif !important;
 }
 
 /* Apply Arabic font to ALL elements (including English text) when Arabic/RTL selected */
@@ -67,13 +87,13 @@ body.TEWGTB-ARABIC select,
 body.TEWGTB-ARABIC div,
 body.TEWGTB-ARABIC .translated-ltr,
 body.TEWGTB-ARABIC .translated-rtl {
-  font-family: 'Arabic', var(--font-body), sans-serif !important;
+  font-family: 'Arabic', 'English', sans-serif !important;
 }
 
 /* Google Translate highlight */
 .goog-text-highlight,
 .goog-text-highlight * {
-  font-family: 'Arabic', 'Cairo', 'Noto Sans Arabic', 'Bangla', 'Noto Sans Bengali', sans-serif !important;
+  font-family: 'Arabic', 'English', 'Cairo', 'Noto Sans Arabic', 'Bangla', 'Noto Sans Bengali', sans-serif !important;
 }
 
 :root {
@@ -88,8 +108,8 @@ body.TEWGTB-ARABIC .translated-rtl {
   --color-muted: #64748b;
   --color-border: #e2e8f0;
 
-  --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'English', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'English', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
   --radius-sm: 8px;
   --radius-md: 14px;
