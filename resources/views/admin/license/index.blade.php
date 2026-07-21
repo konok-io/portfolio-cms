@@ -19,7 +19,7 @@
     .lic-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px}
     .lic-badge.active,.lic-badge.grace{background:rgba(34,197,94,.12);color:#16a34a}
     .lic-badge.expired,.lic-badge.blocked,.lic-badge.pending{background:rgba(220,38,38,.12);color:#dc2626}
-    .lic-note{background:rgba(79,47,232,.08);border:1px solid rgba(124,58,237,.3);border-radius:12px;padding:16px 18px;font-size:14px;line-height:1.7}
+    .lic-note{background:rgba(79,47,232,.08);border:1px solid rgba(124,58,237,.3);border-radius:12px;padding:16px 18px;font-size:14px;line-height:1.7;margin-bottom:20px}
     [data-theme="dark"] .lic-note{background:rgba(79,47,232,.15);color:#EDECFF}
     .lic-note code{background:rgba(124,58,237,.15);padding:2px 7px;border-radius:5px;font-size:13px}
 </style>
