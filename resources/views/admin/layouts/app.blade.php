@@ -135,22 +135,24 @@
       [data-theme="dark"] .admin-sidebar .nav-link{color:#9B98C7}
       [data-theme="dark"] .admin-sidebar .nav-link:hover,[data-theme="dark"] .admin-sidebar .nav-link.active{color:#fff;background:linear-gradient(135deg,#4F2FE8,#7C3AED)}
       /* Sidebar collapse styles */
-      .admin-sidebar.collapsed{width:70px!important}
-      .admin-sidebar.collapsed .sidebar-brand i:first-child,
+      .admin-sidebar.collapsed{width:70px!important;position:relative}
       .admin-sidebar.collapsed .sidebar-brand span,
       .admin-sidebar.collapsed .nav-section-title > span,
       .admin-sidebar.collapsed .nav-link > span,
       .admin-sidebar.collapsed .badge.ms-auto{display:none!important}
-      .admin-sidebar .sidebar-brand{padding:1rem 0 1rem 1rem}
+      .admin-sidebar .sidebar-brand{padding:1rem 0.5rem 1rem 1rem}
+      .admin-sidebar .site-logo-icon{font-size:1.2rem}
       .admin-sidebar.collapsed .sidebar-brand{justify-content:center;padding:1rem}
       .admin-sidebar.collapsed .sidebar-brand > div{display:none}
-      .admin-sidebar.collapsed .sidebar-brand .sidebar-collapse-btn{margin:0}
+      .admin-sidebar.collapsed .sidebar-brand .sidebar-collapse-btn{
+        margin:0;position:absolute;right:50%;transform:translateX(50%)
+      }
       .admin-sidebar.collapsed .nav-link i{font-size:1.1rem}
       /* Mobile sidebar header */
       @media (max-width: 991.98px){
         .admin-sidebar .sidebar-brand{padding:1rem}
         .admin-sidebar .sidebar-brand > div:first-child{display:flex!important;align-items:center;gap:0.75rem}
-        .admin-sidebar .sidebar-brand .sidebar-collapse-btn{display:flex!important}
+        .admin-sidebar .sidebar-brand .sidebar-collapse-btn{display:flex!important;position:static;transform:none}
       }
       .sidebar-collapse-btn{
         background:transparent;
@@ -200,7 +202,7 @@
     <aside class="admin-sidebar">
         <div class="sidebar-brand d-flex align-items-center justify-content-between w-100">
             <div class="d-flex align-items-center gap-2">
-                <i class="fa-solid fa-circle-nodes"></i>
+                <i class="fa-solid fa-circle-nodes site-logo-icon"></i>
                 <span>{{ $siteSetting->site_name ?? 'Portfolio CMS' }}</span>
             </div>
             <button type="button" class="sidebar-collapse-btn" onclick="toggleSidebarCollapse()" title="Toggle Sidebar">
