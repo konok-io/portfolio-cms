@@ -76,7 +76,7 @@
                         </div>
 
                         <div class="mb-2">
-                            <label for="primary_color" class="form-label small">Primary Color</label>
+                            <label for="primary_color" class="form-label small">Primary Color (Accent)</label>
                             <div class="d-flex gap-2">
                                 <input type="color" class="form-control form-control-color form-control-sm" 
                                        id="primary_color" name="primary_color" 
@@ -85,9 +85,56 @@
                                        value="{{ old('primary_color', $settings->primary_color) }}"
                                        pattern="^#[0-9A-Fa-f]{6}$">
                             </div>
-                            @error('primary_color')
-                                <div class="text-danger small mt-1">{{ $message }}</div>
-                            @enderror
+                        </div>
+
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <label for="heading_color" class="form-label small">Heading Color</label>
+                                <div class="d-flex gap-1">
+                                    <input type="color" class="form-control form-control-color form-control-sm" 
+                                           id="heading_color" name="heading_color" 
+                                           value="{{ old('heading_color', $settings->heading_color ?? '#1a1a2e') }}">
+                                    <input type="text" class="form-control form-control-sm" 
+                                           value="{{ old('heading_color', $settings->heading_color ?? '#1a1a2e') }}"
+                                           pattern="^#[0-9A-Fa-f]{6}$">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label for="text_color" class="form-label small">Text Color</label>
+                                <div class="d-flex gap-1">
+                                    <input type="color" class="form-control form-control-color form-control-sm" 
+                                           id="text_color" name="text_color" 
+                                           value="{{ old('text_color', $settings->text_color ?? '#4a5568') }}">
+                                    <input type="text" class="form-control form-control-sm" 
+                                           value="{{ old('text_color', $settings->text_color ?? '#4a5568') }}"
+                                           pattern="^#[0-9A-Fa-f]{6}$">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-2 mt-1">
+                            <div class="col-6">
+                                <label for="background_color" class="form-label small">Background Color</label>
+                                <div class="d-flex gap-1">
+                                    <input type="color" class="form-control form-control-color form-control-sm" 
+                                           id="background_color" name="background_color" 
+                                           value="{{ old('background_color', $settings->background_color ?? '#ffffff') }}">
+                                    <input type="text" class="form-control form-control-sm" 
+                                           value="{{ old('background_color', $settings->background_color ?? '#ffffff') }}"
+                                           pattern="^#[0-9A-Fa-f]{6}$">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label for="header_bg_color" class="form-label small">Header BG Color</label>
+                                <div class="d-flex gap-1">
+                                    <input type="color" class="form-control form-control-color form-control-sm" 
+                                           id="header_bg_color" name="header_bg_color" 
+                                           value="{{ old('header_bg_color', $settings->header_bg_color ?? '#1a1a2e') }}">
+                                    <input type="text" class="form-control form-control-sm" 
+                                           value="{{ old('header_bg_color', $settings->header_bg_color ?? '#1a1a2e') }}"
+                                           pattern="^#[0-9A-Fa-f]{6}$">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

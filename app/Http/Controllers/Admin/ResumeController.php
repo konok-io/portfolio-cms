@@ -31,6 +31,10 @@ class ResumeController extends Controller
         $request->validate([
             'template' => 'required|in:modern,creative,tech,corporate',
             'primary_color' => 'required|hex_color',
+            'heading_color' => 'nullable|hex_color',
+            'text_color' => 'nullable|hex_color',
+            'background_color' => 'nullable|hex_color',
+            'header_bg_color' => 'nullable|hex_color',
             'include_photo' => 'nullable|boolean',
             'include_skills' => 'nullable|boolean',
             'include_experience' => 'nullable|boolean',
@@ -43,6 +47,10 @@ class ResumeController extends Controller
         $settings->update([
             'template' => $request->template,
             'primary_color' => $request->primary_color,
+            'heading_color' => $request->heading_color,
+            'text_color' => $request->text_color,
+            'background_color' => $request->background_color,
+            'header_bg_color' => $request->header_bg_color,
             'include_photo' => $request->boolean('include_photo'),
             'include_skills' => $request->boolean('include_skills'),
             'include_experience' => $request->boolean('include_experience'),

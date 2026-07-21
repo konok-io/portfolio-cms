@@ -11,21 +11,21 @@
             font-family: 'Poppins', sans-serif;
             font-size: 10pt;
             line-height: 1.7;
-            color: #2d3436;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: {{ $settings->text_color ?? '#2d3436' }};
+            background: linear-gradient(135deg, {{ $settings->primary_color }}44 0%, {{ $settings->primary_color }}22 100%);
             padding: 40px;
             min-height: 100vh;
         }
         .resume {
             max-width: 850px;
             margin: 0 auto;
-            background: white;
+            background: {{ $settings->background_color ?? '#ffffff' }};
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 25px 50px rgba(0,0,0,0.25);
         }
         .header {
-            background: linear-gradient(135deg, {{ $settings->primary_color }} 0%, #4a5568 100%);
+            background: linear-gradient(135deg, {{ $settings->header_bg_color ?? $settings->primary_color }} 0%, {{ $settings->primary_color }}cc 100%);
             color: white;
             padding: 50px;
             position: relative;
@@ -72,12 +72,14 @@
             font-weight: 700;
             letter-spacing: -0.5px;
             margin-bottom: 5px;
+            color: {{ $settings->heading_color ?? '#ffffff' }};
         }
         .header-text h2 {
             font-size: 14pt;
             font-weight: 400;
             opacity: 0.9;
             margin-bottom: 20px;
+            color: {{ $settings->primary_color }};
         }
         .contact-row {
             display: flex;
@@ -96,7 +98,7 @@
         .section-icon {
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, {{ $settings->primary_color }}, {{ $settings->primary_color }}aa);
+            background: {{ $settings->primary_color }};
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -109,10 +111,10 @@
         .section-title {
             font-size: 14pt;
             font-weight: 700;
-            color: #1a202c;
+            color: {{ $settings->heading_color ?? '#1a202c' }};
             letter-spacing: 1px;
         }
-        .summary p { color: #4a5568; font-size: 11pt; line-height: 1.8; }
+        .summary p { color: {{ $settings->text_color ?? '#4a5568' }}; font-size: 11pt; line-height: 1.8; }
         .experience-item {
             background: linear-gradient(135deg, #f8fafc, #f1f5f9);
             border-radius: 15px;
@@ -122,18 +124,18 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
         .experience-header { display: flex; justify-content: space-between; margin-bottom: 5px; }
-        .experience-title { font-weight: 700; font-size: 11pt; color: #1a202c; }
+        .experience-title { font-weight: 700; font-size: 11pt; color: {{ $settings->heading_color ?? '#1a202c' }}; }
         .experience-date { font-size: 9pt; color: {{ $settings->primary_color }}; font-weight: 600; }
-        .experience-company { font-size: 10pt; color: #718096; margin-bottom: 8px; }
-        .experience-description { color: #4a5568; font-size: 9pt; }
+        .experience-company { font-size: 10pt; color: {{ $settings->text_color ?? '#718096' }}; margin-bottom: 8px; }
+        .experience-description { color: {{ $settings->text_color ?? '#4a5568' }}; font-size: 9pt; }
         .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
         .skill-item {
-            background: linear-gradient(135deg, {{ $settings->primary_color }}15, {{ $settings->primary_color }}08);
+            background: {{ $settings->primary_color }}15;
             padding: 10px 15px;
             border-radius: 10px;
             font-size: 10pt;
             font-weight: 500;
-            color: #2d3748;
+            color: {{ $settings->heading_color ?? '#2d3748' }};
             text-align: center;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
@@ -144,8 +146,8 @@
             padding: 15px 0;
             border-bottom: 1px dashed #e2e8f0;
         }
-        .education-degree { font-weight: 600; font-size: 11pt; color: #1a202c; }
-        .education-school { font-size: 10pt; color: #718096; }
+        .education-degree { font-weight: 600; font-size: 11pt; color: {{ $settings->heading_color ?? '#1a202c' }}; }
+        .education-school { font-size: 10pt; color: {{ $settings->text_color ?? '#718096' }}; }
         .education-date { font-size: 9pt; color: {{ $settings->primary_color }}; font-weight: 600; }
         .project-item {
             background: linear-gradient(135deg, #f8fafc, #edf2f7);
@@ -154,10 +156,10 @@
             margin-bottom: 10px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.05);
         }
-        .project-title { font-weight: 600; font-size: 11pt; color: #1a202c; }
-        .project-description { color: #4a5568; font-size: 9pt; margin-top: 5px; }
+        .project-title { font-weight: 600; font-size: 11pt; color: {{ $settings->heading_color ?? '#1a202c' }}; }
+        .project-description { color: {{ $settings->text_color ?? '#4a5568' }}; font-size: 9pt; margin-top: 5px; }
         .footer {
-            background: linear-gradient(135deg, #1a202c, #2d3748);
+            background: {{ $settings->footer_bg_color ?? '#1a202c' }};
             color: #a0aec0;
             padding: 20px 40px;
             text-align: center;

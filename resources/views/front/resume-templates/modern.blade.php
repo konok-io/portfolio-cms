@@ -23,10 +23,10 @@
             width: 210mm;
             min-height: 297mm;
             margin: 0 auto;
-            background: white;
+            background: {{ $settings->background_color ?? '#ffffff' }};
         }
         .header {
-            background: {{ $settings->primary_color }};
+            background: {{ $settings->header_bg_color ?? '#1a1a2e' }};
             color: white;
             padding: 25mm 15mm;
             display: flex;
@@ -56,12 +56,14 @@
             font-size: 22pt;
             font-weight: 700;
             margin-bottom: 3px;
+            color: {{ $settings->heading_color ?? '#ffffff' }};
         }
         .header-right h2 {
             font-size: 11pt;
             font-weight: 400;
             opacity: 0.9;
             margin-bottom: 12px;
+            color: {{ $settings->primary_color }};
         }
         .contact-grid {
             font-size: 9pt;
@@ -87,28 +89,28 @@
             padding-bottom: 4px;
             border-bottom: 2px solid {{ $settings->primary_color }};
         }
-        .summary p { color: #4a4a68; font-size: 9pt; text-align: justify; }
+        .summary p { color: {{ $settings->text_color ?? '#4a5568' }}; font-size: 9pt; text-align: justify; }
         .experience-item {
             margin-bottom: 10px;
             padding-left: 8px;
             border-left: 3px solid {{ $settings->primary_color }};
         }
-        .experience-title { font-weight: 700; font-size: 10pt; color: #1a1a2e; }
+        .experience-title { font-weight: 700; font-size: 10pt; color: {{ $settings->heading_color ?? '#1a1a2e' }}; }
         .experience-date { font-size: 8pt; color: {{ $settings->primary_color }}; font-weight: 500; }
-        .experience-company { color: #6b7280; font-size: 9pt; margin-bottom: 3px; }
-        .experience-description { color: #4a4a68; font-size: 8pt; }
+        .experience-company { color: {{ $settings->text_color ?? '#6b7280' }}; font-size: 9pt; margin-bottom: 3px; }
+        .experience-description { color: {{ $settings->text_color ?? '#4a5568' }}; font-size: 8pt; }
         .skill-item { margin-bottom: 6px; }
-        .skill-name { font-size: 9pt; font-weight: 600; color: #1a1a2e; margin-bottom: 2px; }
+        .skill-name { font-size: 9pt; font-weight: 600; color: {{ $settings->heading_color ?? '#1a1a2e' }}; margin-bottom: 2px; }
         .skill-bar { height: 4px; background: #e5e7eb; }
         .skill-progress { height: 100%; background: {{ $settings->primary_color }}; }
         .education-item { margin-bottom: 8px; }
-        .education-degree { font-weight: 700; font-size: 9pt; color: #1a1a2e; }
-        .education-school { color: #6b7280; font-size: 8pt; }
+        .education-degree { font-weight: 700; font-size: 9pt; color: {{ $settings->heading_color ?? '#1a1a2e' }}; }
+        .education-school { color: {{ $settings->text_color ?? '#6b7280' }}; font-size: 8pt; }
         .education-date { font-size: 8pt; color: {{ $settings->primary_color }}; }
         .project-item { margin-bottom: 6px; }
-        .project-title { font-weight: 700; font-size: 9pt; color: #1a1a2e; }
-        .project-description { color: #4a4a68; font-size: 8pt; }
-        .footer { background: #1a1a2e; color: #9ca3af; padding: 8px 15mm; text-align: center; font-size: 8pt; }
+        .project-title { font-weight: 700; font-size: 9pt; color: {{ $settings->heading_color ?? '#1a1a2e' }}; }
+        .project-description { color: {{ $settings->text_color ?? '#4a5568' }}; font-size: 8pt; }
+        .footer { background: {{ $settings->footer_bg_color ?? '#1a1a2e' }}; color: #9ca3af; padding: 8px 15mm; text-align: center; font-size: 8pt; }
     </style>
 </head>
 <body>

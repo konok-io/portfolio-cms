@@ -11,21 +11,21 @@
             font-family: 'Inter', sans-serif;
             font-size: 10pt;
             line-height: 1.6;
-            color: #1a1a2e;
-            background: linear-gradient(135deg, #667eea22 0%, #764ba222 100%);
+            color: {{ $settings->text_color ?? '#4a5568' }};
+            background: linear-gradient(135deg, {{ $settings->primary_color }}22 0%, {{ $settings->primary_color }}11 100%);
             padding: 40px;
             min-height: 100vh;
         }
         .resume {
             max-width: 850px;
             margin: 0 auto;
-            background: white;
+            background: {{ $settings->background_color ?? '#ffffff' }};
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 25px 50px rgba(0,0,0,0.15);
         }
         .header {
-            background: linear-gradient(135deg, {{ $settings->primary_color }} 0%, {{ $settings->primary_color }}cc 100%);
+            background: {{ $settings->header_bg_color ?? '#1a1a2e' }};
             color: white;
             padding: 0;
             display: flex;
@@ -57,12 +57,14 @@
             font-weight: 700;
             letter-spacing: -0.5px;
             margin-bottom: 5px;
+            color: {{ $settings->heading_color ?? '#ffffff' }};
         }
         .header-right h2 {
             font-size: 12pt;
             font-weight: 400;
             opacity: 0.9;
             margin-bottom: 20px;
+            color: {{ $settings->primary_color }};
         }
         .contact-grid {
             display: grid;
@@ -94,7 +96,7 @@
             padding-bottom: 8px;
             border-bottom: 2px solid {{ $settings->primary_color }}30;
         }
-        .summary p { color: #4a4a68; text-align: justify; font-size: 10pt; line-height: 1.7; }
+        .summary p { color: {{ $settings->text_color ?? '#4a5568' }}; text-align: justify; font-size: 10pt; line-height: 1.7; }
         .experience-item {
             margin-bottom: 15px;
             padding: 15px;
@@ -104,22 +106,22 @@
             border-left: 4px solid {{ $settings->primary_color }};
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
-        .experience-title { font-weight: 700; font-size: 11pt; color: #1a1a2e; }
+        .experience-title { font-weight: 700; font-size: 11pt; color: {{ $settings->heading_color ?? '#1a1a2e' }}; }
         .experience-date { font-size: 9pt; color: {{ $settings->primary_color }}; font-weight: 600; margin-bottom: 5px; }
-        .experience-company { color: #6b7280; font-size: 10pt; margin-bottom: 5px; }
-        .experience-description { color: #4a4a68; font-size: 9pt; }
+        .experience-company { color: {{ $settings->text_color ?? '#4a5568' }}; font-size: 10pt; margin-bottom: 5px; }
+        .experience-description { color: {{ $settings->text_color ?? '#4a5568' }}; font-size: 9pt; }
         .skill-item { margin-bottom: 12px; }
-        .skill-name { font-size: 9pt; font-weight: 600; color: #1a1a2e; margin-bottom: 5px; }
+        .skill-name { font-size: 9pt; font-weight: 600; color: {{ $settings->heading_color ?? '#1a1a2e' }}; margin-bottom: 5px; }
         .skill-bar { height: 6px; background: #e5e7eb; border-radius: 3px; overflow: hidden; }
         .skill-progress { height: 100%; background: linear-gradient(90deg, {{ $settings->primary_color }}, {{ $settings->primary_color }}aa); border-radius: 3px; }
         .education-item { margin-bottom: 12px; padding: 12px; background: #f8fafc; border-radius: 8px; }
-        .education-degree { font-weight: 700; font-size: 10pt; color: #1a1a2e; }
-        .education-school { color: #6b7280; font-size: 9pt; margin-bottom: 3px; }
+        .education-degree { font-weight: 700; font-size: 10pt; color: {{ $settings->heading_color ?? '#1a1a2e' }}; }
+        .education-school { color: {{ $settings->text_color ?? '#4a5568' }}; font-size: 9pt; margin-bottom: 3px; }
         .education-date { font-size: 9pt; color: {{ $settings->primary_color }}; }
         .project-item { margin-bottom: 10px; padding: 12px; background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 10px; }
-        .project-title { font-weight: 700; font-size: 10pt; color: #1a1a2e; }
-        .project-description { color: #4a4a68; font-size: 9pt; margin-top: 5px; }
-        .footer { background: linear-gradient(135deg, #1a1a2e, #2d2d4a); color: #9ca3af; padding: 15px 30px; text-align: center; font-size: 8pt; }
+        .project-title { font-weight: 700; font-size: 10pt; color: {{ $settings->heading_color ?? '#1a1a2e' }}; }
+        .project-description { color: {{ $settings->text_color ?? '#4a5568' }}; font-size: 9pt; margin-top: 5px; }
+        .footer { background: {{ $settings->footer_bg_color ?? '#1a1a2e' }}; color: #9ca3af; padding: 15px 30px; text-align: center; font-size: 8pt; }
     </style>
 </head>
 <body>

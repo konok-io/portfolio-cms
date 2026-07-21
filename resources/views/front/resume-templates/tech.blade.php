@@ -21,10 +21,10 @@
             width: 210mm;
             min-height: 297mm;
             margin: 0 auto;
-            background: #ffffff;
+            background: {{ $settings->background_color ?? '#ffffff' }};
         }
         .header {
-            background: #1e293b;
+            background: {{ $settings->header_bg_color ?? '#1e293b' }};
             padding: 15mm;
         }
         .header-content {
