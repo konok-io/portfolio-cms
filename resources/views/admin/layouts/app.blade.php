@@ -33,7 +33,8 @@
           var m=document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);
           var l=m?m[1]:'en';
           var rtl=['ar','ur','fa','he','ps','sd'];
-          document.documentElement.setAttribute('dir',rtl.indexOf(l)>=0?'rtl':'ltr');
+          var isRtl=rtl.indexOf(l)>=0;
+          document.documentElement.setAttribute('dir',isRtl?'rtl':'ltr');
           // Apply language-specific font classes
           document.body.classList.remove('TEWGTB-BANGLA','TEWGTB-ARABIC','TEWGTB-URDU','TEWGTB-HINDI','TEWGTB-FILIPINO');
           if(l==='bn')document.body.classList.add('TEWGTB-BANGLA');
@@ -41,6 +42,13 @@
           else if(l==='ur')document.body.classList.add('TEWGTB-URDU');
           else if(l==='hi')document.body.classList.add('TEWGTB-HINDI');
           else if(l==='tl')document.body.classList.add('TEWGTB-FILIPINO');
+          // RTL: flip collapse icons
+          if(isRtl){
+            var collapseIcon=document.getElementById('sidebarCollapseIcon');
+            var expandIcon=document.getElementById('sidebarExpandIcon');
+            if(collapseIcon){collapseIcon.classList.remove('fa-chevron-left');collapseIcon.classList.add('fa-chevron-right');}
+            if(expandIcon){expandIcon.classList.remove('fa-chevron-right');expandIcon.classList.add('fa-chevron-left');}
+          }
         }catch(e){}
       })();
     </script>
@@ -164,6 +172,10 @@
       }
       [data-theme="dark"] .sidebar-collapse-btn i{color:#fff!important}
       .admin-sidebar.collapsed ~ .admin-content{margin-left:70px}
+      /* RTL support */
+      [dir="rtl"] .admin-sidebar{left:auto;right:0}
+      [dir="rtl"] .admin-sidebar.collapsed{width:70px!important}
+      [dir="rtl"] .admin-sidebar.collapsed ~ .admin-content{margin-left:0;margin-right:70px}
       .admin-sidebar{display:flex;flex-direction:column;min-height:100vh}
       .admin-sidebar .nav::-webkit-scrollbar{display:none}
       .admin-sidebar .nav{-ms-overflow-style:none;scrollbar-width:none}
