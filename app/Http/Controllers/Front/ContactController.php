@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\ContactMessage;
 use App\Models\Setting;
+use App\Models\User;
+use App\Notifications\NewContactMessage;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -30,7 +32,16 @@ class ContactController extends Controller
 
         $validated['ip_address'] = $request->ip();
 
-        ContactMessage::create($validated);
+        $contactMessage = ContactMessage::create($validated);
+
+        // Send email notification to admin users
+        $adminUsers = User::whereHas('roles', function ($query) {
+            $query->where('name', 'Admin');
+        })->get();
+
+        foreach ($adminUsers as $admin) {
+            $admin->notify(new NewContactMessage($contactMessage));
+        }
 
         if ($request->wantsJson()) {
             return response()->json(['success' => true, 'message' => 'Your message has been sent successfully!']);

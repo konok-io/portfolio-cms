@@ -273,6 +273,9 @@
             <a href="{{ route('admin.testimonials.index') }}" class="nav-link {{ request()->routeIs('admin.testimonials.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-quote-left"></i><span>Testimonials</span>
             </a>
+            <a href="{{ route('admin.tags.index') }}" class="nav-link {{ request()->routeIs('admin.tags.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-tags"></i><span>Tags</span>
+            </a>
 
             <div class="nav-section-title"><span>Communication</span></div>
             @php($unread = \Illuminate\Support\Facades\Schema::hasTable('contact_messages') ? \App\Models\ContactMessage::unread()->count() : 0)
@@ -296,8 +299,32 @@
             <a href="{{ route('admin.seo.edit') }}" class="nav-link {{ request()->routeIs('admin.seo.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-magnifying-glass-chart"></i><span>SEO Settings</span>
             </a>
+            <a href="{{ route('admin.custom-pages.index') }}" class="nav-link {{ request()->routeIs('admin.custom-pages.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-file-lines"></i><span>Custom Pages</span>
+            </a>
+            <a href="{{ route('admin.analytics.index') }}" class="nav-link {{ request()->routeIs('admin.analytics.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-chart-line"></i><span>Analytics</span>
+            </a>
+            <a href="{{ route('admin.statistics.index') }}" class="nav-link {{ request()->routeIs('admin.statistics.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-chart-bar"></i><span>Statistics</span>
+            </a>
+            <a href="{{ route('admin.faqs.index') }}" class="nav-link {{ request()->routeIs('admin.faqs.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-question-circle"></i><span>FAQs</span>
+            </a>
+            <a href="{{ route('admin.pricing.index') }}" class="nav-link {{ request()->routeIs('admin.pricing.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-tags"></i><span>Pricing</span>
+            </a>
+            <a href="{{ route('admin.resume.index') }}" class="nav-link {{ request()->routeIs('admin.resume.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-file-pdf"></i><span>Resume Builder</span>
+            </a>
+            <a href="{{ route('admin.certifications.index') }}" class="nav-link {{ request()->routeIs('admin.certifications.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-certificate"></i><span>Certifications</span>
+            </a>
+            <a href="{{ route('admin.newsletter.index') }}" class="nav-link {{ request()->routeIs('admin.newsletter.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-envelope-open-text"></i><span>Newsletter</span>
+            </a>
             <a href="{{ route('admin.license.index') }}" class="nav-link {{ request()->routeIs('admin.license.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-certificate"></i><span>License</span>
+                <i class="fa-solid fa-shield-halved"></i><span>License</span>
             </a>
 
             <div class="nav-section-title"><span>Account</span></div>

@@ -73,6 +73,11 @@ class Project extends Model
         return $this->hasMany(ProjectGallery::class)->orderBy('sort_order');
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'project_tag');
+    }
+
     public function getFeaturedImageUrlAttribute(): ?string
     {
         return $this->featured_image ? asset('storage/' . $this->featured_image) : null;
@@ -98,6 +103,13 @@ class Project extends Model
     public function scopeOrdered($query)
     {
         return $query->orderBy('sort_order')->orderByDesc('id');
+    }
+
+    public function scopeByTag($query, $tagSlug)
+    {
+        return $query->whereHas('tags', function ($q) use ($tagSlug) {
+            $q->where('slug', $tagSlug);
+        });
     }
 
     public function getRouteKeyName(): string

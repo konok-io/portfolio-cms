@@ -1,0 +1,98 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\ResumeSetting;
+use App\Models\About;
+use App\Models\Skill;
+use App\Models\Experience;
+use App\Models\Education;
+use App\Models\Project;
+use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+
+class ResumeController extends Controller
+{
+    /**
+     * Display resume settings
+     */
+    public function index()
+    {
+        $settings = ResumeSetting::instance();
+        return view('admin.resume.index', compact('settings'));
+    }
+
+    /**
+     * Update resume settings
+     */
+    public function update(Request $request)
+    {
+        $request->validate([
+            'template' => 'required|in:modern,classic,minimal',
+            'primary_color' => 'required|hex_color',
+            'include_photo' => 'nullable|boolean',
+            'include_skills' => 'nullable|boolean',
+            'include_experience' => 'nullable|boolean',
+            'include_education' => 'nullable|boolean',
+            'include_projects' => 'nullable|boolean',
+            'include_certifications' => 'nullable|boolean',
+        ]);
+
+        $settings = ResumeSetting::instance();
+        $settings->update([
+            'template' => $request->template,
+            'primary_color' => $request->primary_color,
+            'include_photo' => $request->boolean('include_photo'),
+            'include_skills' => $request->boolean('include_skills'),
+            'include_experience' => $request->boolean('include_experience'),
+            'include_education' => $request->boolean('include_education'),
+            'include_projects' => $request->boolean('include_projects'),
+            'include_certifications' => $request->boolean('include_certifications'),
+        ]);
+
+        return redirect()->back()->with('success', 'Resume settings updated successfully!');
+    }
+
+    /**
+     * Preview resume
+     */
+    public function preview()
+    {
+        $settings = ResumeSetting::instance();
+        $about = About::first();
+        $skills = Skill::where('is_active', true)->orderBy('sort_order')->get();
+        $experiences = Experience::orderBy('start_date', 'desc')->get();
+        $educations = Education::orderBy('start_date', 'desc')->get();
+        $projects = Project::where('is_published', true)->orderBy('created_at', 'desc')->limit(5)->get();
+
+        return view('front.resume-preview', compact(
+            'settings', 'about', 'skills', 'experiences', 'educations', 'projects'
+        ));
+    }
+
+    /**
+     * Download resume as PDF
+     */
+    public function download()
+    {
+        $settings = ResumeSetting::instance();
+        $about = About::first();
+        $skills = Skill::where('is_active', true)->orderBy('sort_order')->get();
+        $experiences = Experience::orderBy('start_date', 'desc')->get();
+        $educations = Education::orderBy('start_date', 'desc')->get();
+        $projects = Project::where('is_published', true)->orderBy('created_at', 'desc')->limit(5)->get();
+
+        $view = 'front.resume-templates.' . $settings->template;
+        
+        $pdf = Pdf::loadView($view, compact(
+            'settings', 'about', 'skills', 'experiences', 'educations', 'projects'
+        ));
+
+        $pdf->setPaper('A4', 'portrait');
+
+        $filename = 'resume-' . ($about->name ?? 'portfolio') . '-' . date('Y-m-d') . '.pdf';
+
+        return $pdf->download($filename);
+    }
+}

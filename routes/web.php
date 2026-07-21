@@ -5,7 +5,9 @@ use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\ExperienceController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\PricingController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\Admin\RoleController;
@@ -18,8 +20,11 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Front\BlogController;
 use App\Http\Controllers\Front\ContactController;
+use App\Http\Controllers\Front\FaqController as FrontFaqController;
 use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\PricingController as FrontPricingController;
 use App\Http\Controllers\Front\ProjectController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\RobotsTxtController;
 use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +34,9 @@ use Illuminate\Support\Facades\Route;
 | Front-End (Public) Routes
 |--------------------------------------------------------------------------
 */
+
+// Language Switch
+Route::get('/language/{locale}', [LanguageController::class, 'switch'])->name('language.switch');
 
 // Sitemap (Public)
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);
@@ -53,6 +61,8 @@ Route::prefix('blog')->name('blog.')->group(function () {
 
 Route::get('/contact', [\App\Http\Controllers\Front\ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/faq', [FrontFaqController::class, 'index'])->name('faq');
+Route::get('/pricing', [FrontPricingController::class, 'index'])->name('pricing');
 Route::post('/subscribe', [\App\Http\Controllers\SubscriberController::class, 'store'])->name('subscribe.store');
 
 /*
@@ -133,6 +143,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     // License information
     Route::get('/license', [\App\Http\Controllers\Admin\LicenseController::class, 'index'])->name('license.index');
 
+    // Analytics
+    Route::get('/analytics', [\App\Http\Controllers\Admin\AnalyticsController::class, 'index'])->name('analytics.index');
+
     // SEO Settings
     Route::get('/seo', [SeoController::class, 'edit'])->name('seo.edit');
     Route::put('/seo', [SeoController::class, 'update'])->name('seo.update');
@@ -140,7 +153,37 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     // Users & Roles
     Route::resource('users', UserController::class)->except(['show']);
     Route::resource('roles', RoleController::class)->except(['show']);
+    
+    // FAQs
+    Route::resource('faqs', FaqController::class)->except(['show']);
+    
+    // Pricing Plans
+    Route::resource('pricing', PricingController::class)->except(['show']);
+    
+    // Resume Builder
+    Route::get('/resume', [\App\Http\Controllers\Admin\ResumeController::class, 'index'])->name('resume.index');
+    Route::put('/resume', [\App\Http\Controllers\Admin\ResumeController::class, 'update'])->name('resume.update');
+    Route::get('/resume/preview', [\App\Http\Controllers\Admin\ResumeController::class, 'preview'])->name('resume.preview');
+    Route::get('/resume/download', [\App\Http\Controllers\Admin\ResumeController::class, 'download'])->name('resume.download');
+    
+    // Newsletter Campaigns
+    Route::resource('newsletter', NewsletterCampaignController::class);
+    
+    // Tags
+    Route::resource('tags', TagController::class);
+    
+    // Statistics
+    Route::resource('statistics', StatisticController::class);
+    
+    // Certifications
+    Route::resource('certifications', CertificationController::class);
+    
+    // Custom Pages (Admin only - for CRUD)
+    Route::resource('custom-pages', CustomPageController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
 });
+
+// Custom Pages (Public - for viewing)
+Route::get('/{page:slug}', [\App\Http\Controllers\Front\CustomPageController::class, 'show'])->name('page.show');
 
 /*
 |--------------------------------------------------------------------------
