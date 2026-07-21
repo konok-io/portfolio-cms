@@ -81,8 +81,9 @@
                                 <a href="{{ $about->instagram }}" target="_blank" class="btn btn-sm btn-outline-custom d-flex align-items-center justify-content-center" style="width:36px;height:36px;padding:0;"><i class="fa-brands fa-instagram"></i></a>
                             @endif
                             @if($about->cv_url ?? false)
-                                <a href="{{ $about->cv_url }}" target="_blank" class="btn btn-sm btn-danger d-flex align-items-center justify-content-center" style="width:36px;height:36px;padding:0;">
+                                <a href="{{ $about->cv_url }}" target="_blank" class="btn btn-sm btn-danger d-flex align-items-center justify-content-center gap-1" style="height:36px;padding:0 8px;white-space:nowrap;">
                                     <i class="fa-solid fa-file-lines"></i>
+                                    <span style="font-size:11px;">CV</span>
                                 </a>
                             @endif
                         </div>
