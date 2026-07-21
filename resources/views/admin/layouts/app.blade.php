@@ -149,7 +149,7 @@
       /* RTL: Use padding-right for RTL languages */
       [dir="rtl"] .admin-sidebar.collapsed .sidebar-brand > div:first-child{padding-left:0!important;padding-right:10px!important}
       /* RTL sidebar brand padding when expanded */
-      [dir="rtl"] .admin-sidebar .sidebar-brand{padding-right:1rem!important}
+      [dir="rtl"] .admin-sidebar .sidebar-brand{padding-right:0!important}
       /* RTL sidebar brand padding when collapsed */
       [dir="rtl"] .admin-sidebar.collapsed .sidebar-brand{padding-right:0.5rem!important}
       .admin-sidebar.collapsed .sidebar-collapse-btn{
