@@ -64,7 +64,7 @@
             <div class="reveal-on-scroll is-visible" style="width: var(--text-col); flex: 0 0 var(--text-col);">
                 <span class="section-eyebrow">About Me</span>
                 <h2 class="section-title mb-4">A little about my background &amp; approach</h2>
-                <p class="text-muted mb-4">{{ strip_tags($about->description ?? 'I am a dedicated developer focused on building reliable, user-friendly software.') }}</p>
+                <p class="text-muted mb-4 text-justify">{{ strip_tags($about->description ?? 'I am a dedicated developer focused on building reliable, user-friendly software.') }}</p>
 
                 <div class="row g-3 mb-4">
                     @if($about->email ?? false)
