@@ -46,11 +46,11 @@
       .goog-te-banner-frame,.skiptranslate iframe{display:none!important}
       body{top:0!important}
       font font{background:transparent!important;box-shadow:none!important}
-      /* Topbar matches sidebar header gradient */
-      .admin-topbar{background:linear-gradient(135deg,#4F2FE8,#7C3AED);color:#fff}
+      /* Topbar matches sidebar header */
+      .admin-topbar{background:#0F172A;color:#fff}
       .admin-topbar .text-dark{color:#fff!important}
-      .admin-topbar .gt-btn,.admin-topbar .theme-toggle-btn{background:rgba(255,255,255,0.15);color:#fff;border-color:rgba(255,255,255,0.3)}
-      .admin-topbar .gt-btn:hover,.admin-topbar .theme-toggle-btn:hover{background:rgba(255,255,255,0.25);border-color:rgba(255,255,255,0.5)}
+      .admin-topbar .gt-btn,.admin-topbar .theme-toggle-btn{background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.2)}
+      .admin-topbar .gt-btn:hover,.admin-topbar .theme-toggle-btn:hover{background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.4)}
       .admin-topbar .sidebar-toggle-btn{color:#fff}
       .admin-topbar .lang-menu button{color:#333}
       /* Page header padding */
