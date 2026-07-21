@@ -66,7 +66,7 @@ class ResumeController extends Controller
         $educations = Education::orderBy('start_date', 'desc')->get();
         $projects = Project::where('is_active', true)->orderBy('created_at', 'desc')->limit(5)->get();
 
-        return view('front.resume-preview', compact(
+        return view('front.resume-templates.' . $settings->template, compact(
             'settings', 'about', 'skills', 'experiences', 'educations', 'projects'
         ));
     }
@@ -87,24 +87,31 @@ class ResumeController extends Controller
             'settings', 'about', 'skills', 'experiences', 'educations', 'projects'
         ))->render();
 
-        $mpdf = new Mpdf([
-            'mode' => 'UTF-8',
-            'format' => 'A4',
-            'orientation' => 'P',
-            'margin_left' => 15,
-            'margin_right' => 15,
-            'margin_top' => 15,
-            'margin_bottom' => 15,
-        ]);
+        try {
+            $mpdf = new Mpdf([
+                'mode' => 'UTF-8',
+                'format' => 'A4',
+                'orientation' => 'P',
+                'margin_left' => 15,
+                'margin_right' => 15,
+                'margin_top' => 15,
+                'margin_bottom' => 15,
+            ]);
 
-        $mpdf->WriteHTML($view);
+            $mpdf->WriteHTML($view);
 
-        $filename = 'resume-' . ($about->name ?? 'portfolio') . '-' . date('Y-m-d') . '.pdf';
+            $filename = 'resume-' . ($about->name ?? 'portfolio') . '-' . date('Y-m-d') . '.pdf';
 
-        return response()->streamDownload(
-            fn () => $mpdf->Output($filename, 'S'),
-            $filename,
-            ['Content-Type' => 'application/pdf']
-        );
+            return response()->streamDownload(
+                fn () => $mpdf->Output($filename, \Mpdf\Output\Destination::STRING_RETURN),
+                $filename,
+                ['Content-Type' => 'application/pdf']
+            );
+        } catch (\Exception $e) {
+            return response($view, 200, [
+                'Content-Type' => 'text/html',
+                'Content-Disposition' => 'inline; filename="resume-preview.html"'
+            ]);
+        }
     }
 }
