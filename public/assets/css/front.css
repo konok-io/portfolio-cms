@@ -67,7 +67,7 @@ a[href*="#contact"] {
   cursor: pointer;
 }
 
-/* Apply Bangla font to text elements */
+/* Apply Bangla font to text elements (exclude icons) */
 body.TEWGTB-BANGLA h1,
 body.TEWGTB-BANGLA h2,
 body.TEWGTB-BANGLA h3,
@@ -75,17 +75,17 @@ body.TEWGTB-BANGLA h4,
 body.TEWGTB-BANGLA h5,
 body.TEWGTB-BANGLA h6,
 body.TEWGTB-BANGLA p,
-body.TEWGTB-BANGLA span:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
-body.TEWGTB-BANGLA a:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
+body.TEWGTB-BANGLA span:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([class*="fi-"]):not([class*="icon"]),
+body.TEWGTB-BANGLA a:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([class*="fi-"]),
 body.TEWGTB-BANGLA li,
-body.TEWGTB-BANGLA td,
-body.TEWGTB-BANGLA th,
+body.TEWGTB-BANGLA td:not(:has(i)):not(:has([class*="fa-"])):not(:has([class*="fab"])):not(:has([class*="fas"])):not(:has([class*="far"])),
+body.TEWGTB-BANGLA th:not(:has(i)):not(:has([class*="fa-"])):not(:has([class*="fab"])):not(:has([class*="fas"])):not(:has([class*="far"])),
 body.TEWGTB-BANGLA label,
-body.TEWGTB-BANGLA button,
-body.TEWGTB-BANGLA input,
+body.TEWGTB-BANGLA button:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-BANGLA input:not(:has(i)),
 body.TEWGTB-BANGLA textarea,
 body.TEWGTB-BANGLA select,
-body.TEWGTB-BANGLA div:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
+body.TEWGTB-BANGLA div:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([class*="fi-"]):not([class*="icon"]):not([class*="btn"]):not([class*="nav"]),
 body.TEWGTB-BANGLA .translated-ltr,
 body.TEWGTB-BANGLA .translated-rtl {
   font-family: 'Bangla', 'Noto Sans Bengali', 'English', sans-serif !important;
@@ -99,17 +99,17 @@ body.TEWGTB-ARABIC h4,
 body.TEWGTB-ARABIC h5,
 body.TEWGTB-ARABIC h6,
 body.TEWGTB-ARABIC p,
-body.TEWGTB-ARABIC span:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
-body.TEWGTB-ARABIC a:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
+body.TEWGTB-ARABIC span:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([class*="fi-"]):not([class*="icon"]),
+body.TEWGTB-ARABIC a:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([class*="fi-"]),
 body.TEWGTB-ARABIC li,
-body.TEWGTB-ARABIC td,
-body.TEWGTB-ARABIC th,
+body.TEWGTB-ARABIC td:not(:has(i)):not(:has([class*="fa-"])):not(:has([class*="fab"])):not(:has([class*="fas"])):not(:has([class*="far"])),
+body.TEWGTB-ARABIC th:not(:has(i)):not(:has([class*="fa-"])):not(:has([class*="fab"])):not(:has([class*="fas"])):not(:has([class*="far"])),
 body.TEWGTB-ARABIC label,
-body.TEWGTB-ARABIC button,
-body.TEWGTB-ARABIC input,
+body.TEWGTB-ARABIC button:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-ARABIC input:not(:has(i)),
 body.TEWGTB-ARABIC textarea,
 body.TEWGTB-ARABIC select,
-body.TEWGTB-ARABIC div:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
+body.TEWGTB-ARABIC div:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([class*="fi-"]):not([class*="icon"]):not([class*="btn"]):not([class*="nav"]),
 body.TEWGTB-ARABIC .translated-ltr,
 body.TEWGTB-ARABIC .translated-rtl {
   font-family: 'Arabic', 'English', sans-serif !important;
@@ -619,5 +619,180 @@ a {
     transform: none;
     transition: none;
   }
+}
+
+/* =========================================================
+   ICON FONT PRESERVATION - Ensures Font Awesome icons work
+   with all language fonts (Bengali, Arabic, Urdu, Hindi, etc.)
+   ========================================================= */
+
+/* Force Font Awesome font on all icon elements - override language fonts */
+[class*="fa-"],
+[class*="fa "],
+[class*="fab"],
+[class*="fas"],
+[class*="far"],
+[class*="flaticon"],
+[class*="fi-"],
+[class*="icon-"],
+i[class],
+.fa,
+.fab,
+.fas,
+.far,
+.flaticon,
+[class*="material-icons"],
+[class*="material-symbols"] {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands", "FontAwesome", var(--fa-style-family, "Font Awesome 6 Free") !important;
+  font-weight: var(--fa-style, 900) !important;
+  font-style: normal !important;
+  font-variant: normal !important;
+  text-rendering: auto !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Ensure icons inside language-specific elements also use icon font */
+body.TEWGTB-BANGLA i,
+body.TEWGTB-BANGLA [class*="fa-"],
+body.TEWGTB-BANGLA [class*="fab"],
+body.TEWGTB-BANGLA [class*="fas"],
+body.TEWGTB-BANGLA [class*="far"],
+body.TEWGTB-BANGLA .fa,
+body.TEWGTB-BANGLA .fab,
+body.TEWGTB-BANGLA .fas,
+body.TEWGTB-BANGLA .far,
+body.TEWGTB-ARABIC i,
+body.TEWGTB-ARABIC [class*="fa-"],
+body.TEWGTB-ARABIC [class*="fab"],
+body.TEWGTB-ARABIC [class*="fas"],
+body.TEWGTB-ARABIC [class*="far"],
+body.TEWGTB-ARABIC .fa,
+body.TEWGTB-ARABIC .fab,
+body.TEWGTB-ARABIC .fas,
+body.TEWGTB-ARABIC .far {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands", "FontAwesome" !important;
+  font-weight: 900 !important;
+  font-style: normal !important;
+}
+
+/* Fix for buttons with icons - ensure icon font in buttons */
+.btn i,
+.btn [class*="fa-"],
+.btn [class*="fab"],
+.btn [class*="fas"],
+.btn [class*="far"],
+button i,
+button [class*="fa-"],
+button [class*="fab"],
+button [class*="fas"],
+button [class*="far"],
+a i,
+a [class*="fa-"],
+a [class*="fab"],
+a [class*="fas"],
+a [class*="far"] {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands", "FontAwesome" !important;
+  font-weight: 900 !important;
+}
+
+/* Navbar and navigation icons */
+.navbar i,
+.navbar [class*="fa-"],
+.navbar [class*="fab"],
+.navbar [class*="fas"],
+.navbar [class*="far"],
+.navbar-brand i,
+.navbar-brand [class*="fa-"],
+.navbar-brand [class*="fab"],
+.navbar-brand [class*="fas"],
+.navbar-brand [class*="far"],
+.nav-link i,
+.nav-link [class*="fa-"],
+.nav-link [class*="fab"],
+.nav-link [class*="fas"],
+.nav-link [class*="far"] {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands", "FontAwesome" !important;
+  font-weight: 900 !important;
+}
+
+/* Hero section icons */
+.hero-section i,
+.hero-section [class*="fa-"],
+.hero-section [class*="fab"],
+.hero-section [class*="fas"],
+.hero-section [class*="far"],
+.hero-social a i,
+.hero-social a [class*="fa-"],
+.hero-social a [class*="fab"],
+.hero-social a [class*="fas"],
+.hero-social a [class*="far"] {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands", "FontAwesome" !important;
+  font-weight: 900 !important;
+}
+
+/* Social links and footer icons */
+.social-links i,
+.social-links [class*="fa-"],
+.social-links [class*="fab"],
+.social-links [class*="fas"],
+.social-links [class*="far"],
+.footer-social i,
+.footer-social [class*="fa-"],
+.footer-social [class*="fab"],
+.footer-social [class*="fas"],
+.footer-social [class*="far"],
+.social-icon i,
+.social-icon [class*="fa-"],
+.social-icon [class*="fab"],
+.social-icon [class*="fas"],
+.social-icon [class*="far"] {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands", "FontAwesome" !important;
+  font-weight: 900 !important;
+}
+
+/* Service, skill, project cards icons */
+.service-card i,
+.service-card [class*="fa-"],
+.service-card [class*="fab"],
+.service-card [class*="fas"],
+.service-card [class*="far"],
+.skill-card i,
+.skill-card [class*="fa-"],
+.skill-card [class*="fab"],
+.skill-card [class*="fas"],
+.skill-card [class*="far"],
+.project-card i,
+.project-card [class*="fa-"],
+.project-card [class*="fab"],
+.project-card [class*="fas"],
+.project-card [class*="far"],
+.testimonial-card i,
+.testimonial-card [class*="fa-"],
+.testimonial-card [class*="fab"],
+.testimonial-card [class*="fas"],
+.testimonial-card [class*="far"] {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands", "FontAwesome" !important;
+  font-weight: 900 !important;
+}
+
+/* Back to top button */
+.back-to-top i,
+.back-to-top [class*="fa-"],
+.back-to-top [class*="fab"],
+.back-to-top [class*="fas"],
+.back-to-top [class*="far"] {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands", "FontAwesome" !important;
+  font-weight: 900 !important;
+}
+
+/* Section icons */
+.section i,
+.section [class*="fa-"],
+.section [class*="fab"],
+.section [class*="fas"],
+.section [class*="far"] {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands", "FontAwesome" !important;
+  font-weight: 900 !important;
 }
 
