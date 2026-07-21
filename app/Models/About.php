@@ -21,6 +21,7 @@ class About extends Model
         'address',
         'phone',
         'email',
+        'whatsapp',
         'linkedin',
         'github',
         'facebook',
