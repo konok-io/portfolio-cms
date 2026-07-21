@@ -492,10 +492,9 @@
   function hideLoader() {
     if (loader && !loaderHidden) {
       loaderHidden = true;
-      loader.classList.add('hidden');
-      setTimeout(function() {
-        loader.style.display = 'none';
-      }, 300);
+      loader.style.opacity = '0';
+      loader.style.pointerEvents = 'none';
+      setTimeout(function() { loader.style.display = 'none'; }, 200);
     }
   }
   
@@ -509,7 +508,6 @@
     
     var bannerFrame = document.querySelector('.goog-te-banner-frame');
     var completionDiv = document.querySelector('[id^="goog-gt-"]');
-    var translateIndicator = document.querySelector('.goog-te-indicator');
     var translatedElements = document.querySelectorAll('.goog-text-highlight');
     
     if (!bannerFrame && !completionDiv && translatedElements.length > 0) {
@@ -520,22 +518,19 @@
     return false;
   }
   
-  setTimeout(function() {
-    if (checkTranslationComplete()) return;
-    
-    var attempts = 0;
-    var interval = setInterval(function() {
-      attempts++;
-      if (checkTranslationComplete() || attempts > 40) {
-        clearInterval(interval);
-        hideLoader();
-      }
-    }, 100);
-  }, 300);
+  var attempts = 0;
+  var checkInterval = setInterval(function() {
+    attempts++;
+    if (checkTranslationComplete() || attempts > 30) {
+      clearInterval(checkInterval);
+      hideLoader();
+    }
+  }, 50);
   
   setTimeout(function() {
+    clearInterval(checkInterval);
     hideLoader();
-  }, 4000);
+  }, 1500);
 })();
 </script>
 <script>

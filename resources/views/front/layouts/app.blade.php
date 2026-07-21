@@ -241,10 +241,9 @@
   function hideLoader() {
     if (loader && !loaderHidden) {
       loaderHidden = true;
-      loader.classList.add('hidden');
-      setTimeout(function() {
-        loader.style.display = 'none';
-      }, 300);
+      loader.style.opacity = '0';
+      loader.style.pointerEvents = 'none';
+      setTimeout(function() { loader.style.display = 'none'; }, 200);
     }
   }
   
@@ -256,13 +255,10 @@
       return true;
     }
     
-    // Check for translation completion indicators
     var bannerFrame = document.querySelector('.goog-te-banner-frame');
     var completionDiv = document.querySelector('[id^="goog-gt-"]');
-    var translateIndicator = document.querySelector('.goog-te-indicator');
     var translatedElements = document.querySelectorAll('.goog-text-highlight');
     
-    // Translation is complete when banner is gone and we have translated content
     if (!bannerFrame && !completionDiv && translatedElements.length > 0) {
       hideLoader();
       return true;
@@ -271,24 +267,21 @@
     return false;
   }
   
-  // Initial check after page load
-  setTimeout(function() {
-    if (checkTranslationComplete()) return;
-    
-    var attempts = 0;
-    var interval = setInterval(function() {
-      attempts++;
-      if (checkTranslationComplete() || attempts > 40) { // Max 4 seconds (40 * 100ms)
-        clearInterval(interval);
-        hideLoader();
-      }
-    }, 100);
-  }, 300); // Wait 300ms for Google Translate to initialize
+  // Check frequently
+  var attempts = 0;
+  var checkInterval = setInterval(function() {
+    attempts++;
+    if (checkTranslationComplete() || attempts > 30) {
+      clearInterval(checkInterval);
+      hideLoader();
+    }
+  }, 50);
   
-  // Force hide after 4 seconds max
+  // Max 1.5 seconds
   setTimeout(function() {
+    clearInterval(checkInterval);
     hideLoader();
-  }, 4000);
+  }, 1500);
 })();
 </script>
 <script>
