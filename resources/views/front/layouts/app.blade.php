@@ -47,10 +47,35 @@
     <script>(function(){try{var t=localStorage.getItem('pc-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
     <script>(function(){try{var m=document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);var l=m?m[1]:'en';var rtl=['ar','ur','fa','he','ps','sd'];if(rtl.indexOf(l)>=0){document.documentElement.setAttribute('dir','rtl');}else{document.documentElement.setAttribute('dir','ltr');}}catch(e){}})();</script>
     <style>
-      /* Hide content until translation is complete */
-      body:not(.translation-done) .main-content { display: none; }
-      body.translation-done .main-content { display: block !important; }
-      body.translation-done { opacity: 1 !important; }
+      /* Translation loading overlay */
+      .translation-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #f8fafc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 99999;
+        transition: opacity 0.4s ease-out;
+      }
+      .translation-loader.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .translation-loader .spinner {
+        width: 48px;
+        height: 48px;
+        border: 4px solid #e2e8f0;
+        border-top-color: #4F2FE8;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
       .gtranslate-wrap{position:relative}
       .gt-btn,.theme-toggle-btn{display:inline-flex;align-items:center;gap:7px;font-size:.9rem;font-weight:500;color:inherit;background:transparent;border:1px solid rgba(125,125,150,.3);border-radius:20px;padding:6px 13px;cursor:pointer}
       .theme-toggle-btn{width:38px;height:38px;justify-content:center;border-radius:50%;padding:0}
@@ -128,6 +153,11 @@
 </head>
 <body>
 
+    <!-- Translation Loading Overlay -->
+    <div class="translation-loader" id="translationLoader">
+        <div class="spinner"></div>
+    </div>
+
     @include('front.partials.navbar')
 
     <div class="main-content">
@@ -203,26 +233,26 @@
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script>
-// Wait for Google Translate to finish, then reload
+// Wait for Google Translate to finish, then show content
 (function() {
-  function checkTranslation() {
-    // Check if Google Translate has finished
-    var frame = document.querySelector('.goog-te-banner-frame');
-    if (frame) {
-      frame.style.display = 'none';
+  var loader = document.getElementById('translationLoader');
+  
+  function hideLoader() {
+    if (loader) {
+      loader.classList.add('hidden');
+      setTimeout(function() {
+        loader.style.display = 'none';
+      }, 400);
     }
-    
-    // Check if translation is complete by looking for translated elements
+  }
+  
+  function checkTranslation() {
     var lang = document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);
     if (lang && lang[1] && lang[1] !== 'en') {
-      // Wait for translation to complete
-      var translateFrame = document.querySelector('.goog-text-highlight');
       var bannerFrame = document.querySelector('.goog-te-banner-frame');
       var completionDiv = document.querySelector('[id^="goog-gt-"]');
       
-      // If no banner and no completion div, translation is likely done
       if (!bannerFrame && !completionDiv) {
-        // Also check if the frame is hidden
         var allFrames = document.querySelectorAll('iframe');
         var bannerVisible = false;
         allFrames.forEach(function(f) {
@@ -232,36 +262,32 @@
         });
         
         if (!bannerVisible) {
-          document.body.classList.add('translation-done');
+          hideLoader();
           return true;
         }
       }
     } else {
-      // English - show immediately
-      document.body.classList.add('translation-done');
+      hideLoader();
       return true;
     }
     return false;
   }
   
-  // Initial check
   if (checkTranslation()) return;
   
-  // Keep checking until done
   var attempts = 0;
   var interval = setInterval(function() {
     attempts++;
-    if (checkTranslation() || attempts > 60) { // 60 attempts = ~3 seconds max
+    if (checkTranslation() || attempts > 60) {
       clearInterval(interval);
-      if (attempts > 60) {
-        document.body.classList.add('translation-done');
-      }
+      hideLoader();
     }
   }, 50);
   
-  // Additional: Force show after 3 seconds
+  // Force hide after 3 seconds
   setTimeout(function() {
-    document.body.classList.add('translation-done');
+    clearInterval(interval);
+    hideLoader();
   }, 3000);
 })();
 </script>

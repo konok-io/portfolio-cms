@@ -54,10 +54,35 @@
       })();
     </script>
     <style>
-      /* Hide content until translation is complete */
-      body:not(.translation-done) .main-content, body:not(.translation-done) #content { display: none; }
-      body.translation-done .main-content, body.translation-done #content { display: block !important; }
-      body.translation-done { opacity: 1 !important; }
+      /* Translation loading overlay */
+      .translation-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #f8f9fa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 99999;
+        transition: opacity 0.4s ease-out;
+      }
+      .translation-loader.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .translation-loader .spinner {
+        width: 48px;
+        height: 48px;
+        border: 4px solid #e9ecef;
+        border-top-color: #4F2FE8;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
       /* language switch + theme toggle */
       .gtranslate-wrap{position:relative}
       .gt-btn,.theme-toggle-btn{display:inline-flex;align-items:center;gap:7px;font-size:.9rem;font-weight:500;color:#333;background:#fff;border:1px solid #e2e2e8;border-radius:20px;padding:7px 14px;cursor:pointer;transition:border-color .18s,background .18s}
@@ -231,6 +256,11 @@
 <body class="admin-body"
       data-flash-success="{{ session('success') }}"
       data-flash-error="{{ session('error') }}">
+
+    <!-- Translation Loading Overlay -->
+    <div class="translation-loader" id="translationLoader">
+        <div class="spinner"></div>
+    </div>
 
 <div class="admin-wrapper">
 
@@ -456,6 +486,17 @@
 <script>
 // Wait for Google Translate to finish, then show content
 (function() {
+  var loader = document.getElementById('translationLoader');
+  
+  function hideLoader() {
+    if (loader) {
+      loader.classList.add('hidden');
+      setTimeout(function() {
+        loader.style.display = 'none';
+      }, 400);
+    }
+  }
+  
   function checkTranslation() {
     var lang = document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);
     if (lang && lang[1] && lang[1] !== 'en') {
@@ -472,12 +513,12 @@
         });
         
         if (!bannerVisible) {
-          document.body.classList.add('translation-done');
+          hideLoader();
           return true;
         }
       }
     } else {
-      document.body.classList.add('translation-done');
+      hideLoader();
       return true;
     }
     return false;
@@ -490,14 +531,14 @@
     attempts++;
     if (checkTranslation() || attempts > 60) {
       clearInterval(interval);
-      if (attempts > 60) {
-        document.body.classList.add('translation-done');
-      }
+      hideLoader();
     }
   }, 50);
   
+  // Force hide after 3 seconds
   setTimeout(function() {
-    document.body.classList.add('translation-done');
+    clearInterval(interval);
+    hideLoader();
   }, 3000);
 })();
 </script>
