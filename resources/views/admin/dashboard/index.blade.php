@@ -270,10 +270,10 @@
 <div class="row g-3">
     {{-- Charts Row 1: Visitor Trend + Browser Breakdown --}}
     <div class="col-lg-8">
-        <div class="admin-card mb-3 h-100">
+        <div class="admin-card mb-3">
             <div class="card-header-custom">Visitor Trend (Last 14 Days)</div>
-            <div class="card-body-custom py-2 h-100">
-                <div class="chart-container h-100" style="position: relative;">
+            <div class="card-body-custom py-2">
+                <div class="chart-container" style="position: relative; height: 100px;">
                     <canvas id="visitorChart"></canvas>
                 </div>
             </div>
@@ -281,10 +281,10 @@
     </div>
 
     <div class="col-lg-4">
-        <div class="admin-card mb-3 h-100">
+        <div class="admin-card mb-3">
             <div class="card-header-custom">Browser Breakdown</div>
-            <div class="card-body-custom py-2 h-100 d-flex align-items-center justify-content-center">
-                <div class="chart-container" style="position: relative; height: 110px; width: 110px;">
+            <div class="card-body-custom py-2 d-flex align-items-center justify-content-center">
+                <div class="chart-container" style="position: relative; height: 100px; width: 100px;">
                     <canvas id="browserChart"></canvas>
                 </div>
             </div>
@@ -375,7 +375,7 @@
         <div class="admin-card mb-3">
             <div class="card-header-custom">Projects by Status</div>
             <div class="card-body-custom py-2">
-                <div class="chart-container" style="position: relative; height: 140px;">
+                <div class="chart-container" style="position: relative; height: 100px;">
                     <canvas id="projectChart"></canvas>
                 </div>
             </div>
@@ -386,7 +386,7 @@
         <div class="admin-card mb-3">
             <div class="card-header-custom">Skills Status</div>
             <div class="card-body-custom py-2 d-flex align-items-center justify-content-center">
-                <div class="chart-container" style="position: relative; height: 140px; width: 140px;">
+                <div class="chart-container" style="position: relative; height: 100px; width: 100px;">
                     <canvas id="skillsChart"></canvas>
                 </div>
             </div>
