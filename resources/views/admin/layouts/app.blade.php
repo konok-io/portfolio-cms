@@ -141,11 +141,17 @@
       .admin-sidebar.collapsed .nav-section-title > span,
       .admin-sidebar.collapsed .nav-link > span,
       .admin-sidebar.collapsed .badge.ms-auto{display:none!important}
-      .admin-sidebar .sidebar-brand{padding:1rem}
-      .admin-sidebar.collapsed .sidebar-brand{justify-content:center}
+      .admin-sidebar .sidebar-brand{padding:1rem 0 1rem 1rem}
+      .admin-sidebar.collapsed .sidebar-brand{justify-content:center;padding:1rem}
       .admin-sidebar.collapsed .sidebar-brand > div{display:none}
       .admin-sidebar.collapsed .sidebar-brand .sidebar-collapse-btn{margin:0}
       .admin-sidebar.collapsed .nav-link i{font-size:1.1rem}
+      /* Mobile sidebar header */
+      @media (max-width: 991.98px){
+        .admin-sidebar .sidebar-brand{padding:1rem}
+        .admin-sidebar .sidebar-brand > div:first-child{display:flex!important;align-items:center;gap:0.75rem}
+        .admin-sidebar .sidebar-brand .sidebar-collapse-btn{display:flex!important}
+      }
       .sidebar-collapse-btn{
         background:transparent;
         border:1px solid rgba(255,255,255,0.25);
