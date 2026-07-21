@@ -44,6 +44,10 @@
                                 <option value="minimal" {{ old('template', $settings->template) == 'minimal' ? 'selected' : '' }}>Minimal</option>
                                 <option value="creative" {{ old('template', $settings->template) == 'creative' ? 'selected' : '' }}>Creative</option>
                                 <option value="executive" {{ old('template', $settings->template) == 'executive' ? 'selected' : '' }}>Executive</option>
+                                <option value="elegant" {{ old('template', $settings->template) == 'elegant' ? 'selected' : '' }}>Elegant</option>
+                                <option value="tech" {{ old('template', $settings->template) == 'tech' ? 'selected' : '' }}>Tech</option>
+                                <option value="corporate" {{ old('template', $settings->template) == 'corporate' ? 'selected' : '' }}>Corporate</option>
+                                <option value="bold" {{ old('template', $settings->template) == 'bold' ? 'selected' : '' }}>Bold</option>
                             </select>
                             @error('template')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -96,6 +100,30 @@
                                     <div class="template-box executive {{ $settings->template === 'executive' ? 'selected' : '' }}" data-template="executive">
                                         <i class="fa-solid fa-briefcase"></i>
                                         <span>Executive</span>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-2">
+                                    <div class="template-box elegant {{ $settings->template === 'elegant' ? 'selected' : '' }}" data-template="elegant">
+                                        <i class="fa-solid fa-gem"></i>
+                                        <span>Elegant</span>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-2">
+                                    <div class="template-box tech {{ $settings->template === 'tech' ? 'selected' : '' }}" data-template="tech">
+                                        <i class="fa-solid fa-microchip"></i>
+                                        <span>Tech</span>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-2">
+                                    <div class="template-box corporate {{ $settings->template === 'corporate' ? 'selected' : '' }}" data-template="corporate">
+                                        <i class="fa-solid fa-building"></i>
+                                        <span>Corporate</span>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-2">
+                                    <div class="template-box bold {{ $settings->template === 'bold' ? 'selected' : '' }}" data-template="bold">
+                                        <i class="fa-solid fa-type"></i>
+                                        <span>Bold</span>
                                     </div>
                                 </div>
                             </div>
@@ -194,10 +222,27 @@
     gap: 0.5rem;
 }
 
+.template-preview .col-4 {
+    flex: 0 0 auto;
+    width: 20%;
+}
+
+@media (max-width: 991px) {
+    .template-preview .col-4 {
+        width: 33.333%;
+    }
+}
+
+@media (max-width: 767px) {
+    .template-preview .col-4 {
+        width: 50%;
+    }
+}
+
 .template-box {
     border: 2px solid #e2e8f0;
     border-radius: 8px;
-    padding: 1rem;
+    padding: 0.75rem;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -213,8 +258,8 @@
 }
 
 .template-box i {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
     color: #64748b;
 }
 
@@ -224,7 +269,7 @@
 
 .template-box span {
     display: block;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: 600;
 }
 </style>
