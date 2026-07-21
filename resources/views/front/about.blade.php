@@ -28,7 +28,7 @@
             <div class="reveal-on-scroll" style="width: var(--text-col); flex: 0 0 var(--text-col);">
                 <span class="section-eyebrow">{{ $about->title ?? 'Web Developer' }}</span>
                 <h2 class="section-title mb-4">Hi, I'm {{ $about->name ?? 'Your Name' }}</h2>
-                <div class="text-muted mb-4" style="text-align: left; white-space: pre-wrap;">{!! $about->description ?? 'I am a dedicated developer focused on building reliable, user-friendly software.' !!}</div>
+                <div class="text-muted mb-4" style="text-align: justify; text-align-last: left; white-space: pre-wrap;">{!! $about->description ?? 'I am a dedicated developer focused on building reliable, user-friendly software.' !!}</div>
 
                 <div class="row g-3 mb-4">
                     <div class="col-4">
