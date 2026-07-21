@@ -21,17 +21,21 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // Add email_sent field to subscribers table
-        Schema::table('subscribers', function (Blueprint $table) {
-            $table->timestamp('email_sent_at')->nullable()->after('unsubscribed_at');
-        });
+        // Add email_sent field to subscribers table (only if column doesn't exist)
+        if (Schema::hasTable('subscribers') && !Schema::hasColumn('subscribers', 'email_sent_at')) {
+            Schema::table('subscribers', function (Blueprint $table) {
+                $table->timestamp('email_sent_at')->nullable();
+            });
+        }
     }
 
     public function down(): void
     {
-        Schema::table('subscribers', function (Blueprint $table) {
-            $table->dropColumn('email_sent_at');
-        });
+        if (Schema::hasTable('subscribers') && Schema::hasColumn('subscribers', 'email_sent_at')) {
+            Schema::table('subscribers', function (Blueprint $table) {
+                $table->dropColumn('email_sent_at');
+            });
+        }
         
         Schema::dropIfExists('newsletter_campaigns');
     }
