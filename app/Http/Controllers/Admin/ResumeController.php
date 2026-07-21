@@ -55,7 +55,7 @@ class ResumeController extends Controller
     }
 
     /**
-     * Preview resume
+     * Preview resume (beautiful version for screen)
      */
     public function preview()
     {
@@ -66,13 +66,14 @@ class ResumeController extends Controller
         $educations = Education::orderBy('start_date', 'desc')->get();
         $projects = Project::where('is_active', true)->orderBy('created_at', 'desc')->limit(5)->get();
 
-        return view('front.resume-templates.' . $settings->template, compact(
+        // Use preview version with beautiful styles for screen viewing
+        return view('front.resume-templates.' . $settings->template . '-preview', compact(
             'settings', 'about', 'skills', 'experiences', 'educations', 'projects'
         ));
     }
 
     /**
-     * Download resume as PDF
+     * Download resume as PDF (mPDF compatible version)
      */
     public function download()
     {
@@ -83,6 +84,7 @@ class ResumeController extends Controller
         $educations = Education::orderBy('start_date', 'desc')->get();
         $projects = Project::where('is_active', true)->orderBy('created_at', 'desc')->limit(5)->get();
 
+        // Use standard version (mPDF compatible) for PDF export
         $view = view('front.resume-templates.' . $settings->template, compact(
             'settings', 'about', 'skills', 'experiences', 'educations', 'projects'
         ))->render();
