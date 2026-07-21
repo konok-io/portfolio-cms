@@ -64,7 +64,7 @@
                         </div>
                     </div>
                     <div class="col-4">
-                        <div class="d-flex align-items-center gap-2 flex-wrap justify-content-end">
+                        <div class="d-flex align-items-center gap-2 flex-wrap" style="justify-content: flex-end;">
                             @if($about->linkedin ?? false)
                                 <a href="{{ $about->linkedin }}" target="_blank" class="btn btn-sm btn-outline-custom d-flex align-items-center justify-content-center" style="width:36px;height:36px;padding:0;"><i class="fa-brands fa-linkedin-in"></i></a>
                             @endif
@@ -81,7 +81,7 @@
                                 <a href="{{ $about->instagram }}" target="_blank" class="btn btn-sm btn-outline-custom d-flex align-items-center justify-content-center" style="width:36px;height:36px;padding:0;"><i class="fa-brands fa-instagram"></i></a>
                             @endif
                             @if($about->cv_url ?? false)
-                                <a href="{{ $about->cv_url }}" target="_blank" class="btn btn-sm btn-outline-custom d-flex align-items-center justify-content-center" style="width:36px;height:36px;padding:0;">
+                                <a href="{{ $about->cv_url }}" target="_blank" class="btn btn-sm d-flex align-items-center justify-content-center" style="width:36px;height:36px;padding:0;background:var(--bs-secondary-bg);color:var(--bs-secondary-color);border:1px solid var(--bs-border-color);">
                                     <i class="fa-solid fa-file-lines"></i>
                                 </a>
                             @endif
