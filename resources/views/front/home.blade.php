@@ -234,7 +234,7 @@
      7. PORTFOLIO PROJECTS
      ========================================================= --}}
 @if($projects->isNotEmpty())
-<section id="portfolio" class="section-padding">
+<section id="portfolio" class="section-padding section-alt">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
             <span class="section-eyebrow">Recent Work</span>
