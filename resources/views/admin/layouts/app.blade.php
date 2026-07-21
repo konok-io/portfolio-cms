@@ -440,6 +440,13 @@
     }
     location.reload();
   }
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function(e) {
+    var gtranslateWrap = document.querySelector('.gtranslate-wrap');
+    if(gtranslateWrap && !gtranslateWrap.contains(e.target)) {
+      document.body.classList.remove('gt-open');
+    }
+  });
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script>
