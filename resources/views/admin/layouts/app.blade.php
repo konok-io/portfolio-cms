@@ -123,11 +123,9 @@
       .admin-sidebar.collapsed .sidebar-brand{justify-content:center;padding:1rem}
       .admin-sidebar.collapsed .nav-link i{font-size:1.1rem}
       .sidebar-collapse-btn{
-        background:linear-gradient(135deg,rgba(255,255,255,0.15),rgba(255,255,255,0.05));
-        border:1px solid rgba(255,255,255,0.2);
-        backdrop-filter:blur(10px);
-        -webkit-backdrop-filter:blur(10px);
-        color:#fff;
+        background:#fff;
+        border:1px solid #e2e8f0;
+        color:#475569;
         cursor:pointer;
         padding:8px 10px;
         border-radius:10px;
@@ -137,34 +135,35 @@
         justify-content:center;
         min-width:36px;
         min-height:36px;
-        box-shadow:0 2px 8px rgba(0,0,0,0.1),inset 0 1px 0 rgba(255,255,255,0.1)
+        box-shadow:0 2px 8px rgba(0,0,0,0.08)
       }
       .sidebar-collapse-btn:hover{
-        background:linear-gradient(135deg,#4F2FE8,#7C3AED);
-        border-color:transparent;
+        background:#4F2FE8;
+        border-color:#4F2FE8;
+        color:#fff;
         transform:translateY(-1px);
-        box-shadow:0 4px 15px rgba(79,47,232,0.4),0 2px 8px rgba(0,0,0,0.15)
+        box-shadow:0 4px 15px rgba(79,47,232,0.35)
       }
       .sidebar-collapse-btn:active{transform:scale(0.95) translateY(0)}
       .admin-sidebar.collapsed .sidebar-collapse-btn{
-        background:linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02));
-        box-shadow:0 2px 6px rgba(0,0,0,0.08)
+        background:#f1f5f9;
+        box-shadow:0 2px 6px rgba(0,0,0,0.06)
       }
       [data-theme="dark"] .sidebar-collapse-btn{
-        background:linear-gradient(135deg,rgba(30,26,68,0.8),rgba(28,22,60,0.9));
-        border-color:rgba(124,58,237,0.3);
-        color:#9B98C7;
-        box-shadow:0 2px 8px rgba(0,0,0,0.2),inset 0 1px 0 rgba(255,255,255,0.05)
+        background:#1e293b;
+        border-color:#334155;
+        color:#94a3b8;
+        box-shadow:0 2px 8px rgba(0,0,0,0.3)
       }
       [data-theme="dark"] .sidebar-collapse-btn:hover{
-        background:linear-gradient(135deg,#4F2FE8,#7C3AED);
-        border-color:transparent;
+        background:#4F2FE8;
+        border-color:#4F2FE8;
         color:#fff;
-        box-shadow:0 4px 15px rgba(79,47,232,0.5),0 2px 8px rgba(0,0,0,0.2)
+        box-shadow:0 4px 15px rgba(79,47,232,0.4)
       }
       [data-theme="dark"] .admin-sidebar.collapsed .sidebar-collapse-btn{
-        background:linear-gradient(135deg,rgba(22,20,48,0.9),rgba(18,16,40,0.95));
-        border-color:rgba(44,40,96,0.5)
+        background:#0f172a;
+        border-color:#1e293b
       }
       .admin-sidebar.collapsed ~ .admin-content{margin-left:70px}
       .admin-sidebar{display:flex;flex-direction:column;min-height:100vh}
@@ -187,8 +186,8 @@
             <i class="fa-solid fa-circle-nodes"></i>
             <span>{{ $siteSetting->site_name ?? 'Portfolio CMS' }}</span>
             <button type="button" class="sidebar-collapse-btn ms-auto" onclick="toggleSidebarCollapse()" title="Toggle Sidebar">
-                <i class="fa-solid fa-chevrons-left collapse-icon" id="sidebarCollapseIcon"></i>
-                <i class="fa-solid fa-chevrons-right btn-icon" id="sidebarExpandIcon" style="display:none"></i>
+                <i class="fa-solid fa-chevron-left collapse-icon" id="sidebarCollapseIcon"></i>
+                <i class="fa-solid fa-chevron-right btn-icon" id="sidebarExpandIcon" style="display:none"></i>
             </button>
         </div>
 
