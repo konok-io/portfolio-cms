@@ -77,7 +77,7 @@
       .admin-topbar .gt-btn:hover,.admin-topbar .theme-toggle-btn:hover{background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.4)}
       .admin-topbar .sidebar-toggle-btn{color:#fff}
       .admin-topbar .lang-menu button{color:#333}
-      .admin-topbar .dropdown-menu{margin-top:8px;top:40px!important}
+      .admin-topbar .dropdown-menu{margin-top:8px;top:15px!important}
       .admin-topbar .gtranslate-wrap{position:relative}
       /* Page header padding */
       .admin-page-header{padding:10px;border-radius:8px}
