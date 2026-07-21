@@ -100,7 +100,7 @@
                         </div>
                     </div>
                     <div class="col-4">
-                        <div class="d-flex align-items-center gap-2 flex-wrap" style="justify-content: flex-end;">
+                        <div class="d-flex align-items-center gap-2 flex-wrap h-100" style="justify-content: flex-end;">
                             @if($about->linkedin ?? false)
                                 <a href="{{ $about->linkedin }}" target="_blank" class="btn btn-sm btn-outline-custom d-flex align-items-center justify-content-center" style="width:36px;height:36px;padding:0;"><i class="fa-brands fa-linkedin-in"></i></a>
                             @endif
