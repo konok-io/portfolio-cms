@@ -70,7 +70,7 @@
                                 <div class="mb-3">
                                     <h5>{{ $project->title }}</h5>
                                     @if($project->description)
-                                        <p>{{ Str::limit($project->description, 150) }}</p>
+                                        <p>{{ Str::limit(strip_tags($project->description), 150) }}</p>
                                     @endif
                                 </div>
                             @endforeach
