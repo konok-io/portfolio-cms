@@ -155,6 +155,18 @@
         scrollbar-width:none;
       }
       .admin-sidebar.collapsed .nav::-webkit-scrollbar{display:none}
+      
+      /* RTL: Flip collapse/expand icons for RTL languages */
+      [dir="rtl"] #sidebarCollapseIcon,
+      body.TEWGTB-ARABIC #sidebarCollapseIcon,
+      body.TEWGTB-URDU #sidebarCollapseIcon {
+        transform: scaleX(-1);
+      }
+      [dir="rtl"] #sidebarExpandIcon,
+      body.TEWGTB-ARABIC #sidebarExpandIcon,
+      body.TEWGTB-URDU #sidebarExpandIcon {
+        transform: scaleX(-1);
+      }
       /* Mobile sidebar header */
       @media (max-width: 991.98px){
         .admin-sidebar .sidebar-brand{padding:1rem}
@@ -487,6 +499,30 @@ function toggleSidebarCollapse() {
     }
   }
 }
+
+// Function to update collapse icons based on RTL
+function updateCollapseIconsRTL() {
+  var m = document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);
+  var lang = m ? m[1] : '';
+  var rtl = ['ar', 'ur', 'fa', 'he', 'ps', 'sd'];
+  var isRtl = rtl.indexOf(lang) >= 0 || document.documentElement.getAttribute('dir') === 'rtl';
+  
+  var collapseIcon = document.getElementById('sidebarCollapseIcon');
+  var expandIcon = document.getElementById('sidebarExpandIcon');
+  
+  if (collapseIcon) {
+    collapseIcon.style.transform = isRtl ? 'scaleX(-1)' : 'scaleX(1)';
+  }
+  if (expandIcon) {
+    expandIcon.style.transform = isRtl ? 'scaleX(-1)' : 'scaleX(1)';
+  }
+}
+
+// Run on page load
+document.addEventListener('DOMContentLoaded', updateCollapseIconsRTL);
+
+// Run when translation changes
+setInterval(updateCollapseIconsRTL, 1000);
 </script>
 </body>
 </html>
