@@ -144,7 +144,8 @@
       .admin-sidebar .sidebar-brand{padding:1rem 0.5rem 1rem 1rem}
       .admin-sidebar .site-logo-icon{font-size:1.2rem}
       .admin-sidebar.collapsed .sidebar-brand{justify-content:center;padding:0!important}
-      .admin-sidebar.collapsed .sidebar-brand > div:first-child{display:none}
+      .admin-sidebar.collapsed .sidebar-brand > div:first-child{display:flex!important;padding-left:10px!important;align-items:center}
+      .admin-sidebar.collapsed .sidebar-brand > div:first-child span{display:none!important}
       .admin-sidebar.collapsed .sidebar-collapse-btn{
         margin:0;position:static;transform:none;display:flex!important;align-items:center;justify-content:center
       }
