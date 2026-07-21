@@ -57,14 +57,14 @@
 <section id="about" class="section-padding">
     <div class="container">
         <div class="row gy-5 align-items-stretch" style="--img-col: 33%; --text-col: 67%;">
-            <div class="reveal-on-scroll d-flex" style="width: var(--img-col); flex: 0 0 var(--img-col);">
+            <div class="reveal-on-scroll d-flex align-items-stretch" style="width: var(--img-col); flex: 0 0 var(--img-col);">
                 <img src="{{ $about->photo_url ?? 'https://ui-avatars.com/api/?name=About&size=500&background=0F172A&color=fff' }}"
                      alt="About {{ $about->name ?? '' }}" class="img-fluid rounded-4 shadow-sm w-100" style="height: 100%; object-fit: cover;">
             </div>
             <div class="reveal-on-scroll is-visible" style="width: var(--text-col); flex: 0 0 var(--text-col);">
                 <span class="section-eyebrow">About Me</span>
                 <h2 class="section-title mb-4">A little about my background &amp; approach</h2>
-                <p class="text-muted mb-4" style="text-align: justify;">{!! nl2br(e(strip_tags($about->description ?? 'I am a dedicated developer focused on building reliable, user-friendly software.'))) !!}</p>
+                <p class="text-muted mb-4" style="text-align: justify;">{!! preg_replace(['/<p[^>]*>/', '/<\/p>/', '/<br\s*\/?>/'], ["\n", "\n", "\n"], $about->description ?? 'I am a dedicated developer focused on building reliable, user-friendly software.') !!}</p>
 
                 <div class="row g-3 mb-4">
                     <div class="col-4">
