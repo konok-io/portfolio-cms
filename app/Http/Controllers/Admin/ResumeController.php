@@ -29,7 +29,7 @@ class ResumeController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'template' => 'required|in:modern,classic,minimal,creative,executive,elegant,tech,corporate,bold',
+            'template' => 'required|in:modern,creative,tech,corporate',
             'primary_color' => 'required|hex_color',
             'include_photo' => 'nullable|boolean',
             'include_skills' => 'nullable|boolean',

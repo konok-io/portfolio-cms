@@ -40,14 +40,9 @@
                             <label for="template" class="form-label">CV Template</label>
                             <select class="form-select @error('template') is-invalid @enderror" id="template" name="template">
                                 <option value="modern" {{ old('template', $settings->template) == 'modern' ? 'selected' : '' }}>Modern</option>
-                                <option value="classic" {{ old('template', $settings->template) == 'classic' ? 'selected' : '' }}>Classic</option>
-                                <option value="minimal" {{ old('template', $settings->template) == 'minimal' ? 'selected' : '' }}>Minimal</option>
                                 <option value="creative" {{ old('template', $settings->template) == 'creative' ? 'selected' : '' }}>Creative</option>
-                                <option value="executive" {{ old('template', $settings->template) == 'executive' ? 'selected' : '' }}>Executive</option>
-                                <option value="elegant" {{ old('template', $settings->template) == 'elegant' ? 'selected' : '' }}>Elegant</option>
                                 <option value="tech" {{ old('template', $settings->template) == 'tech' ? 'selected' : '' }}>Tech</option>
                                 <option value="corporate" {{ old('template', $settings->template) == 'corporate' ? 'selected' : '' }}>Corporate</option>
-                                <option value="bold" {{ old('template', $settings->template) == 'bold' ? 'selected' : '' }}>Bold</option>
                             </select>
                             @error('template')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -72,58 +67,28 @@
                         <div class="template-preview mt-4">
                             <h6 class="text-muted mb-3">Template Preview</h6>
                             <div class="row g-2">
-                                <div class="col-4 col-md-2">
+                                <div class="col-3">
                                     <div class="template-box modern {{ $settings->template === 'modern' ? 'selected' : '' }}" data-template="modern">
                                         <i class="fa-solid fa-file-lines"></i>
                                         <span>Modern</span>
                                     </div>
                                 </div>
-                                <div class="col-4 col-md-2">
-                                    <div class="template-box classic {{ $settings->template === 'classic' ? 'selected' : '' }}" data-template="classic">
-                                        <i class="fa-solid fa-file-alt"></i>
-                                        <span>Classic</span>
-                                    </div>
-                                </div>
-                                <div class="col-4 col-md-2">
-                                    <div class="template-box minimal {{ $settings->template === 'minimal' ? 'selected' : '' }}" data-template="minimal">
-                                        <i class="fa-solid fa-file"></i>
-                                        <span>Minimal</span>
-                                    </div>
-                                </div>
-                                <div class="col-4 col-md-2">
+                                <div class="col-3">
                                     <div class="template-box creative {{ $settings->template === 'creative' ? 'selected' : '' }}" data-template="creative">
                                         <i class="fa-solid fa-wand-magic-sparkles"></i>
                                         <span>Creative</span>
                                     </div>
                                 </div>
-                                <div class="col-4 col-md-2">
-                                    <div class="template-box executive {{ $settings->template === 'executive' ? 'selected' : '' }}" data-template="executive">
-                                        <i class="fa-solid fa-briefcase"></i>
-                                        <span>Executive</span>
-                                    </div>
-                                </div>
-                                <div class="col-4 col-md-2">
-                                    <div class="template-box elegant {{ $settings->template === 'elegant' ? 'selected' : '' }}" data-template="elegant">
-                                        <i class="fa-solid fa-gem"></i>
-                                        <span>Elegant</span>
-                                    </div>
-                                </div>
-                                <div class="col-4 col-md-2">
+                                <div class="col-3">
                                     <div class="template-box tech {{ $settings->template === 'tech' ? 'selected' : '' }}" data-template="tech">
                                         <i class="fa-solid fa-microchip"></i>
                                         <span>Tech</span>
                                     </div>
                                 </div>
-                                <div class="col-4 col-md-2">
+                                <div class="col-3">
                                     <div class="template-box corporate {{ $settings->template === 'corporate' ? 'selected' : '' }}" data-template="corporate">
                                         <i class="fa-solid fa-building"></i>
                                         <span>Corporate</span>
-                                    </div>
-                                </div>
-                                <div class="col-4 col-md-2">
-                                    <div class="template-box bold {{ $settings->template === 'bold' ? 'selected' : '' }}" data-template="bold">
-                                        <i class="fa-solid fa-type"></i>
-                                        <span>Bold</span>
                                     </div>
                                 </div>
                             </div>
@@ -222,27 +187,10 @@
     gap: 0.5rem;
 }
 
-.template-preview .col-4 {
-    flex: 0 0 auto;
-    width: 20%;
-}
-
-@media (max-width: 991px) {
-    .template-preview .col-4 {
-        width: 33.333%;
-    }
-}
-
-@media (max-width: 767px) {
-    .template-preview .col-4 {
-        width: 50%;
-    }
-}
-
 .template-box {
     border: 2px solid #e2e8f0;
     border-radius: 8px;
-    padding: 0.75rem;
+    padding: 1rem;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -258,8 +206,8 @@
 }
 
 .template-box i {
-    font-size: 1.5rem;
-    margin-bottom: 0.3rem;
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
     color: #64748b;
 }
 
@@ -269,7 +217,7 @@
 
 .template-box span {
     display: block;
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     font-weight: 600;
 }
 </style>
