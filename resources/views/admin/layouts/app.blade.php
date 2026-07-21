@@ -64,7 +64,7 @@
       .lang-menu button{display:block;width:100%;text-align:left;background:none;border:0;color:#333;font-size:14.5px;padding:9px 14px;border-radius:8px;cursor:pointer}
       .lang-menu button:hover{background:#f4f4f9}
       [data-theme="dark"] .lang-menu{background:#171433;border-color:#2C2860}
-      [data-theme="dark"] .lang-menu button{color:#EDECFF}
+      [data-theme="dark"] .lang-menu button,[data-theme="dark"] .admin-topbar .lang-menu button{color:#fff!important}
       [data-theme="dark"] .lang-menu button:hover{background:#1E1A44}
       [data-theme="dark"] .admin-topbar .gt-btn,[data-theme="dark"] .admin-topbar .theme-toggle-btn{color:#fff}
       .goog-te-banner-frame,.skiptranslate iframe{display:none!important}
