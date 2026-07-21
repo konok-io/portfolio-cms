@@ -10,7 +10,7 @@ use App\Models\Experience;
 use App\Models\Education;
 use App\Models\Project;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\Pdf;
+use Mpdf\Mpdf;
 
 class ResumeController extends Controller
 {
@@ -83,16 +83,28 @@ class ResumeController extends Controller
         $educations = Education::orderBy('start_date', 'desc')->get();
         $projects = Project::where('is_active', true)->orderBy('created_at', 'desc')->limit(5)->get();
 
-        $view = 'front.resume-templates.' . $settings->template;
-        
-        $pdf = Pdf::loadView($view, compact(
+        $view = view('front.resume-templates.' . $settings->template, compact(
             'settings', 'about', 'skills', 'experiences', 'educations', 'projects'
-        ));
+        ))->render();
 
-        $pdf->setPaper('A4', 'portrait');
+        $mpdf = new Mpdf([
+            'mode' => 'UTF-8',
+            'format' => 'A4',
+            'orientation' => 'P',
+            'margin_left' => 15,
+            'margin_right' => 15,
+            'margin_top' => 15,
+            'margin_bottom' => 15,
+        ]);
+
+        $mpdf->WriteHTML($view);
 
         $filename = 'resume-' . ($about->name ?? 'portfolio') . '-' . date('Y-m-d') . '.pdf';
 
-        return $pdf->download($filename);
+        return response()->streamDownload(
+            fn () => $mpdf->Output($filename, 'S'),
+            $filename,
+            ['Content-Type' => 'application/pdf']
+        );
     }
 }
