@@ -20,9 +20,12 @@
                 <p class="lead text-muted mb-4" style="max-width: 560px;">
                     {{ $about->short_intro ?? 'I design and build modern, high-performing web applications tailored to your business goals.' }}
                 </p>
-                <div class="d-flex flex-wrap gap-3">
+                <div class="d-flex flex-wrap gap-3" style="position: relative; z-index: 1;">
+                    <a href="{{ route('contact') }}" class="btn btn-primary-custom">
+                        <i class="fa-solid fa-paper-plane me-2"></i>Hire Me
+                    </a>
                     @if($about->cv_url ?? false)
-                        <a href="{{ $about->cv_url }}" class="btn btn-primary-custom" download>
+                        <a href="{{ $about->cv_url }}" class="btn btn-outline-custom" download>
                             <i class="fa-solid fa-download me-2"></i>Download CV
                         </a>
                     @endif
