@@ -16,6 +16,15 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
+    private array $countryNames = [
+        'AF' => 'Afghanistan','AL' => 'Albania','DZ' => 'Algeria','AR' => 'Argentina','AU' => 'Australia','AT' => 'Austria','BD' => 'Bangladesh','BE' => 'Belgium','BR' => 'Brazil','CA' => 'Canada','CL' => 'Chile','CN' => 'China','CO' => 'Colombia','HR' => 'Croatia','CZ' => 'Czech Republic','DK' => 'Denmark','EG' => 'Egypt','FI' => 'Finland','FR' => 'France','DE' => 'Germany','GR' => 'Greece','HK' => 'Hong Kong','HU' => 'Hungary','IS' => 'Iceland','IN' => 'India','ID' => 'Indonesia','IR' => 'Iran','IQ' => 'Iraq','IE' => 'Ireland','IL' => 'Israel','IT' => 'Italy','JP' => 'Japan','JO' => 'Jordan','KZ' => 'Kazakhstan','KE' => 'Kenya','KR' => 'South Korea','KW' => 'Kuwait','LV' => 'Latvia','LB' => 'Lebanon','LY' => 'Libya','LT' => 'Lithuania','MY' => 'Malaysia','MX' => 'Mexico','MA' => 'Morocco','NP' => 'Nepal','NL' => 'Netherlands','NZ' => 'New Zealand','NG' => 'Nigeria','NO' => 'Norway','PK' => 'Pakistan','PH' => 'Philippines','PL' => 'Poland','PT' => 'Portugal','QA' => 'Qatar','RO' => 'Romania','RU' => 'Russia','SA' => 'Saudi Arabia','RS' => 'Serbia','SG' => 'Singapore','SK' => 'Slovakia','SI' => 'Slovenia','ZA' => 'South Africa','ES' => 'Spain','LK' => 'Sri Lanka','SE' => 'Sweden','CH' => 'Switzerland','TW' => 'Taiwan','TH' => 'Thailand','TN' => 'Tunisia','TR' => 'Turkey','UA' => 'Ukraine','AE' => 'United Arab Emirates','GB' => 'United Kingdom','US' => 'United States','VN' => 'Vietnam',
+    ];
+
+    private function getCountryName(?string $code): string
+    {
+        if (!$code) return 'Unknown';
+        return $this->countryNames[strtoupper($code)] ?? $code;
+    }
     public function index()
     {
         $stats = [
@@ -65,7 +74,11 @@ class DashboardController extends Controller
             ->groupBy('country')
             ->orderByDesc('total')
             ->take(5)
-            ->get();
+            ->get()
+            ->map(function ($item) {
+                $item->country = $this->getCountryName($item->country);
+                return $item;
+            });
 
         $topPages = Visitor::select('page_url', DB::raw('COUNT(*) as total'))
             ->whereNotNull('page_url')
