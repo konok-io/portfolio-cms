@@ -495,7 +495,7 @@
       loader.classList.add('hidden');
       setTimeout(function() {
         loader.style.display = 'none';
-      }, 400);
+      }, 300);
     }
   }
   
@@ -512,10 +512,8 @@
     var translateIndicator = document.querySelector('.goog-te-indicator');
     var translatedElements = document.querySelectorAll('.goog-text-highlight');
     
-    if (!bannerFrame && !completionDiv && !translateIndicator && translatedElements.length > 0) {
-      setTimeout(function() {
-        hideLoader();
-      }, 500);
+    if (!bannerFrame && !completionDiv && translatedElements.length > 0) {
+      hideLoader();
       return true;
     }
     
@@ -528,16 +526,16 @@
     var attempts = 0;
     var interval = setInterval(function() {
       attempts++;
-      if (checkTranslationComplete() || attempts > 100) {
+      if (checkTranslationComplete() || attempts > 40) {
         clearInterval(interval);
         hideLoader();
       }
     }, 100);
-  }, 500);
+  }, 300);
   
   setTimeout(function() {
     hideLoader();
-  }, 8000);
+  }, 4000);
 })();
 </script>
 <script>

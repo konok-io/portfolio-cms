@@ -244,7 +244,7 @@
       loader.classList.add('hidden');
       setTimeout(function() {
         loader.style.display = 'none';
-      }, 400);
+      }, 300);
     }
   }
   
@@ -252,25 +252,19 @@
     var lang = document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);
     
     if (!lang || !lang[1] || lang[1] === 'en') {
-      // English - show immediately
       hideLoader();
       return true;
     }
     
-    // Check if Google Translate has completed
+    // Check for translation completion indicators
     var bannerFrame = document.querySelector('.goog-te-banner-frame');
     var completionDiv = document.querySelector('[id^="goog-gt-"]');
     var translateIndicator = document.querySelector('.goog-te-indicator');
-    
-    // Check if translation has been applied (look for highlight class)
     var translatedElements = document.querySelectorAll('.goog-text-highlight');
     
-    // If banner is gone and we have translated elements, translation is done
-    if (!bannerFrame && !completionDiv && !translateIndicator && translatedElements.length > 0) {
-      // Double check - wait a bit more to ensure DOM is updated
-      setTimeout(function() {
-        hideLoader();
-      }, 500);
+    // Translation is complete when banner is gone and we have translated content
+    if (!bannerFrame && !completionDiv && translatedElements.length > 0) {
+      hideLoader();
       return true;
     }
     
@@ -281,21 +275,20 @@
   setTimeout(function() {
     if (checkTranslationComplete()) return;
     
-    // Keep checking
     var attempts = 0;
     var interval = setInterval(function() {
       attempts++;
-      if (checkTranslationComplete() || attempts > 100) {
+      if (checkTranslationComplete() || attempts > 40) { // Max 4 seconds (40 * 100ms)
         clearInterval(interval);
         hideLoader();
       }
     }, 100);
-  }, 500); // Wait 500ms for Google Translate to initialize
+  }, 300); // Wait 300ms for Google Translate to initialize
   
-  // Force hide after 8 seconds max
+  // Force hide after 4 seconds max
   setTimeout(function() {
     hideLoader();
-  }, 8000);
+  }, 4000);
 })();
 </script>
 <script>
