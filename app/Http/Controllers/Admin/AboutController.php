@@ -27,6 +27,7 @@ class AboutController extends Controller
             'description' => ['nullable', 'string'],
             'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'cv_file' => ['nullable', 'file', 'mimes:pdf', 'max:5120'],
+            'hero_photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'address' => ['nullable', 'string', 'max:255'],
             'phone' => ['nullable', 'string', 'max:50'],
             'whatsapp' => ['nullable', 'string', 'max:50'],
@@ -50,6 +51,13 @@ class AboutController extends Controller
                 Storage::disk('public')->delete($about->cv_file);
             }
             $validated['cv_file'] = $request->file('cv_file')->store('about', 'public');
+        }
+
+        if ($request->hasFile('hero_photo')) {
+            if ($about->hero_photo) {
+                Storage::disk('public')->delete($about->hero_photo);
+            }
+            $validated['hero_photo'] = $request->file('hero_photo')->store('about', 'public');
         }
 
         $about->fill($validated)->save();

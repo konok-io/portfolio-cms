@@ -33,7 +33,7 @@
             </div>
             <div class="col-lg-5 order-1 order-lg-2">
                 <div class="hero-photo-frame">
-                    <img src="{{ $about->photo_url }}"
+                    <img src="{{ $about->hero_photo_url ?? $about->photo_url }}"
                          alt="{{ $about->name ?? 'Profile photo' }}"
                          style="object-fit: cover;">
                     <div class="badge-floating">

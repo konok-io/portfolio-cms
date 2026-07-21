@@ -18,6 +18,7 @@ class About extends Model
         'description',
         'photo',
         'cv_file',
+        'hero_photo',
         'address',
         'phone',
         'email',
@@ -36,6 +37,14 @@ class About extends Model
         }
         $name = urlencode($this->name ?? 'Portfolio');
         return "https://ui-avatars.com/api/?name={$name}&size=400&background=2563EB&color=fff";
+    }
+
+    public function getHeroPhotoUrlAttribute(): ?string
+    {
+        if ($this->hero_photo && $this->exists) {
+            return asset('storage/' . $this->hero_photo);
+        }
+        return null;
     }
 
     public function getCvUrlAttribute(): ?string

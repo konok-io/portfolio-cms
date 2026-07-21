@@ -113,6 +113,15 @@
             </div>
 
             <div class="admin-card mb-3">
+                <div class="card-header-custom">Hero Photo</div>
+                <div class="card-body-custom text-center">
+                    <img id="heroPhotoPreview" src="{{ $about->hero_photo_url ?? 'https://via.placeholder.com/400x300?text=No+Hero+Photo' }}" alt="Hero photo preview" class="rounded-3 mb-3 w-100" style="aspect-ratio:4/3; object-fit:cover;">
+                    <input type="file" name="hero_photo" class="form-control" accept="image/*" data-preview-target="#heroPhotoPreview">
+                    <small class="text-muted d-block mt-2">Shown on the right side of the hero section. JPG, PNG or WEBP. Max 2MB.</small>
+                </div>
+            </div>
+
+            <div class="admin-card mb-3">
                 <div class="card-header-custom">CV / Resume</div>
                 <div class="card-body-custom">
                     @if($about->cv_url)
