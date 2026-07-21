@@ -123,47 +123,29 @@
       .admin-sidebar.collapsed .sidebar-brand{justify-content:center;padding:1rem}
       .admin-sidebar.collapsed .nav-link i{font-size:1.1rem}
       .sidebar-collapse-btn{
-        background:rgba(255,255,255,0.95);
-        border:1px solid rgba(226,232,240,0.8);
-        color:#64748b;
+        background:transparent;
+        border:1px solid rgba(255,255,255,0.25);
+        color:#fff;
         cursor:pointer;
-        padding:5px 7px;
-        border-radius:8px;
-        transition:all .3s cubic-bezier(0.4,0,0.2,1);
+        padding:4px 6px;
+        border-radius:6px;
+        transition:all .25s ease;
         display:flex;
         align-items:center;
         justify-content:center;
-        min-width:28px;
-        min-height:28px;
-        box-shadow:0 2px 8px rgba(0,0,0,0.06)
+        min-width:24px;
+        min-height:24px;
       }
       .sidebar-collapse-btn:hover{
-        background:#4F2FE8;
-        border-color:#4F2FE8;
-        color:#fff;
-        transform:translateY(-1px);
-        box-shadow:0 4px 15px rgba(79,47,232,0.35)
+        background:rgba(79,47,232,0.9);
+        border-color:transparent;
+        transform:scale(1.05)
       }
-      .sidebar-collapse-btn:active{transform:scale(0.95) translateY(0)}
-      .admin-sidebar.collapsed .sidebar-collapse-btn{
-        background:rgba(241,245,249,0.9);
-        box-shadow:0 2px 6px rgba(0,0,0,0.04)
-      }
+      .sidebar-collapse-btn:active{transform:scale(0.95)}
       [data-theme="dark"] .sidebar-collapse-btn{
-        background:rgba(30,41,59,0.9);
-        border-color:rgba(51,65,85,0.8);
-        color:#94a3b8;
-        box-shadow:0 2px 8px rgba(0,0,0,0.2)
-      }
-      [data-theme="dark"] .sidebar-collapse-btn:hover{
-        background:#4F2FE8;
-        border-color:#4F2FE8;
-        color:#fff;
-        box-shadow:0 4px 15px rgba(79,47,232,0.4)
-      }
-      [data-theme="dark"] .admin-sidebar.collapsed .sidebar-collapse-btn{
-        background:rgba(15,23,42,0.9);
-        border-color:rgba(30,41,59,0.8)
+        background:transparent;
+        border-color:rgba(255,255,255,0.2);
+        color:#fff
       }
       .admin-sidebar.collapsed ~ .admin-content{margin-left:70px}
       .admin-sidebar{display:flex;flex-direction:column;min-height:100vh}
