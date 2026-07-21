@@ -106,7 +106,7 @@
       .admin-sidebar.collapsed .nav-section-title > span,
       .admin-sidebar.collapsed .nav-link > span,
       .admin-sidebar.collapsed .badge.ms-auto{display:none!important}
-      .admin-sidebar.collapsed .sidebar-brand{justify-content:center;padding:1rem}
+      .admin-sidebar.collapsed .sidebar-brand{justify-content:center;padding-right:0}
       .admin-sidebar.collapsed .nav-link{justify-content:center;padding:12px}
       .admin-sidebar.collapsed .nav-link i{font-size:1.1rem}
       .sidebar-collapse-btn{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);color:#fff;cursor:pointer;padding:6px 10px;border-radius:8px;transition:all .25s;display:flex;align-items:center;justify-content:center;min-width:34px;min-height:34px}
@@ -120,7 +120,7 @@
       .admin-sidebar{display:flex;flex-direction:column;min-height:100vh}
       .admin-sidebar .nav::-webkit-scrollbar{display:none}
       .admin-sidebar .nav{-ms-overflow-style:none;scrollbar-width:none}
-      .admin-sidebar.collapsed .sidebar-brand{height:auto;min-height:64px;padding:1rem}
+      .admin-sidebar.collapsed .sidebar-brand{height:auto;min-height:64px;padding-right:0}
     </style>
     @stack('styles')
 </head>
