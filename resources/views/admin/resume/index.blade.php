@@ -42,6 +42,8 @@
                                 <option value="modern" {{ old('template', $settings->template) == 'modern' ? 'selected' : '' }}>Modern</option>
                                 <option value="classic" {{ old('template', $settings->template) == 'classic' ? 'selected' : '' }}>Classic</option>
                                 <option value="minimal" {{ old('template', $settings->template) == 'minimal' ? 'selected' : '' }}>Minimal</option>
+                                <option value="creative" {{ old('template', $settings->template) == 'creative' ? 'selected' : '' }}>Creative</option>
+                                <option value="executive" {{ old('template', $settings->template) == 'executive' ? 'selected' : '' }}>Executive</option>
                             </select>
                             @error('template')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -66,22 +68,34 @@
                         <div class="template-preview mt-4">
                             <h6 class="text-muted mb-3">Template Preview</h6>
                             <div class="row g-2">
-                                <div class="col-4">
+                                <div class="col-4 col-md-2">
                                     <div class="template-box modern {{ $settings->template === 'modern' ? 'selected' : '' }}" data-template="modern">
                                         <i class="fa-solid fa-file-lines"></i>
                                         <span>Modern</span>
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-4 col-md-2">
                                     <div class="template-box classic {{ $settings->template === 'classic' ? 'selected' : '' }}" data-template="classic">
                                         <i class="fa-solid fa-file-alt"></i>
                                         <span>Classic</span>
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-4 col-md-2">
                                     <div class="template-box minimal {{ $settings->template === 'minimal' ? 'selected' : '' }}" data-template="minimal">
                                         <i class="fa-solid fa-file"></i>
                                         <span>Minimal</span>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-2">
+                                    <div class="template-box creative {{ $settings->template === 'creative' ? 'selected' : '' }}" data-template="creative">
+                                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                        <span>Creative</span>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-2">
+                                    <div class="template-box executive {{ $settings->template === 'executive' ? 'selected' : '' }}" data-template="executive">
+                                        <i class="fa-solid fa-briefcase"></i>
+                                        <span>Executive</span>
                                     </div>
                                 </div>
                             </div>
