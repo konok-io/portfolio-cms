@@ -44,8 +44,8 @@ class NewFeaturesSeeder extends Seeder
             [
                 'name' => 'Basic',
                 'description' => 'Perfect for small projects',
-                'price' => 99,
-                'billing_period' => 'monthly',
+                'monthly_price' => 99,
+                'yearly_price' => 990,
                 'features' => json_encode(['5 Pages', 'Responsive Design', 'Basic SEO', 'Contact Form', 'Email Support']),
                 'is_highlighted' => false,
                 'sort_order' => 1,
@@ -53,8 +53,8 @@ class NewFeaturesSeeder extends Seeder
             [
                 'name' => 'Professional',
                 'description' => 'Best for growing businesses',
-                'price' => 199,
-                'billing_period' => 'monthly',
+                'monthly_price' => 199,
+                'yearly_price' => 1990,
                 'features' => json_encode(['15 Pages', 'Responsive Design', 'Advanced SEO', 'Contact Form', 'Social Media Integration', 'Priority Support']),
                 'is_highlighted' => true,
                 'sort_order' => 2,
@@ -62,8 +62,8 @@ class NewFeaturesSeeder extends Seeder
             [
                 'name' => 'Enterprise',
                 'description' => 'For large scale projects',
-                'price' => 499,
-                'billing_period' => 'monthly',
+                'monthly_price' => 499,
+                'yearly_price' => 4990,
                 'features' => json_encode(['Unlimited Pages', 'Responsive Design', 'Advanced SEO', 'E-commerce Ready', 'Custom Features', '24/7 Support']),
                 'is_highlighted' => false,
                 'sort_order' => 3,
