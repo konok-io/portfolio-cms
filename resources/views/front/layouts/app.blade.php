@@ -47,35 +47,6 @@
     <script>(function(){try{var t=localStorage.getItem('pc-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
     <script>(function(){try{var m=document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);var l=m?m[1]:'en';var rtl=['ar','ur','fa','he','ps','sd'];if(rtl.indexOf(l)>=0){document.documentElement.setAttribute('dir','rtl');}else{document.documentElement.setAttribute('dir','ltr');}}catch(e){}})();</script>
     <style>
-      /* Translation loading overlay */
-      .translation-loader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #f8fafc;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 99999;
-        transition: opacity 0.4s ease-out;
-      }
-      .translation-loader.hidden {
-        opacity: 0;
-        pointer-events: none;
-      }
-      .translation-loader .spinner {
-        width: 48px;
-        height: 48px;
-        border: 4px solid #e2e8f0;
-        border-top-color: #4F2FE8;
-        border-radius: 50%;
-        animation: spin 0.8s linear infinite;
-      }
-      @keyframes spin {
-        to { transform: rotate(360deg); }
-      }
       .gtranslate-wrap{position:relative}
       .gt-btn,.theme-toggle-btn{display:inline-flex;align-items:center;gap:7px;font-size:.9rem;font-weight:500;color:inherit;background:transparent;border:1px solid rgba(125,125,150,.3);border-radius:20px;padding:6px 13px;cursor:pointer}
       .theme-toggle-btn{width:38px;height:38px;justify-content:center;border-radius:50%;padding:0}
@@ -153,11 +124,6 @@
 </head>
 <body>
 
-    <!-- Translation Loading Overlay -->
-    <div class="translation-loader" id="translationLoader">
-        <div class="spinner"></div>
-    </div>
-
     @include('front.partials.navbar')
 
     <div class="main-content">
@@ -232,58 +198,6 @@
   });
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<script>
-// Wait for Google Translate to finish, then show content
-(function() {
-  var loader = document.getElementById('translationLoader');
-  var loaderHidden = false;
-  
-  function hideLoader() {
-    if (loader && !loaderHidden) {
-      loaderHidden = true;
-      loader.style.opacity = '0';
-      loader.style.pointerEvents = 'none';
-      setTimeout(function() { loader.style.display = 'none'; }, 200);
-    }
-  }
-  
-  function checkTranslationComplete() {
-    var lang = document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);
-    
-    if (!lang || !lang[1] || lang[1] === 'en') {
-      hideLoader();
-      return true;
-    }
-    
-    var bannerFrame = document.querySelector('.goog-te-banner-frame');
-    var completionDiv = document.querySelector('[id^="goog-gt-"]');
-    var translatedElements = document.querySelectorAll('.goog-text-highlight');
-    
-    if (!bannerFrame && !completionDiv && translatedElements.length > 0) {
-      hideLoader();
-      return true;
-    }
-    
-    return false;
-  }
-  
-  // Check frequently
-  var attempts = 0;
-  var checkInterval = setInterval(function() {
-    attempts++;
-    if (checkTranslationComplete() || attempts > 30) {
-      clearInterval(checkInterval);
-      hideLoader();
-    }
-  }, 50);
-  
-  // Max 1.5 seconds
-  setTimeout(function() {
-    clearInterval(checkInterval);
-    hideLoader();
-  }, 1500);
-})();
-</script>
 <script>
 // Apply language-specific fonts
 (function() {

@@ -54,35 +54,6 @@
       })();
     </script>
     <style>
-      /* Translation loading overlay */
-      .translation-loader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #f8f9fa;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 99999;
-        transition: opacity 0.4s ease-out;
-      }
-      .translation-loader.hidden {
-        opacity: 0;
-        pointer-events: none;
-      }
-      .translation-loader .spinner {
-        width: 48px;
-        height: 48px;
-        border: 4px solid #e9ecef;
-        border-top-color: #4F2FE8;
-        border-radius: 50%;
-        animation: spin 0.8s linear infinite;
-      }
-      @keyframes spin {
-        to { transform: rotate(360deg); }
-      }
       /* language switch + theme toggle */
       .gtranslate-wrap{position:relative}
       .gt-btn,.theme-toggle-btn{display:inline-flex;align-items:center;gap:7px;font-size:.9rem;font-weight:500;color:#333;background:#fff;border:1px solid #e2e2e8;border-radius:20px;padding:7px 14px;cursor:pointer;transition:border-color .18s,background .18s}
@@ -256,11 +227,6 @@
 <body class="admin-body"
       data-flash-success="{{ session('success') }}"
       data-flash-error="{{ session('error') }}">
-
-    <!-- Translation Loading Overlay -->
-    <div class="translation-loader" id="translationLoader">
-        <div class="spinner"></div>
-    </div>
 
 <div class="admin-wrapper">
 
@@ -483,56 +449,6 @@
   });
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<script>
-// Wait for Google Translate to finish, then show content
-(function() {
-  var loader = document.getElementById('translationLoader');
-  var loaderHidden = false;
-  
-  function hideLoader() {
-    if (loader && !loaderHidden) {
-      loaderHidden = true;
-      loader.style.opacity = '0';
-      loader.style.pointerEvents = 'none';
-      setTimeout(function() { loader.style.display = 'none'; }, 200);
-    }
-  }
-  
-  function checkTranslationComplete() {
-    var lang = document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);
-    
-    if (!lang || !lang[1] || lang[1] === 'en') {
-      hideLoader();
-      return true;
-    }
-    
-    var bannerFrame = document.querySelector('.goog-te-banner-frame');
-    var completionDiv = document.querySelector('[id^="goog-gt-"]');
-    var translatedElements = document.querySelectorAll('.goog-text-highlight');
-    
-    if (!bannerFrame && !completionDiv && translatedElements.length > 0) {
-      hideLoader();
-      return true;
-    }
-    
-    return false;
-  }
-  
-  var attempts = 0;
-  var checkInterval = setInterval(function() {
-    attempts++;
-    if (checkTranslationComplete() || attempts > 30) {
-      clearInterval(checkInterval);
-      hideLoader();
-    }
-  }, 50);
-  
-  setTimeout(function() {
-    clearInterval(checkInterval);
-    hideLoader();
-  }, 1500);
-})();
-</script>
 <script>
 // Apply language-specific fonts
 (function() {
