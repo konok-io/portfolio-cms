@@ -55,7 +55,7 @@ class EducationController extends Controller
         $validated = $request->validate([
             'institute_name' => ['required', 'string', 'max:255'],
             'degree' => ['required', 'string', 'max:255'],
-            'start_year' => ['required', 'digits:4'],
+            'start_date' => ['required', 'digits:4'],
             'end_year' => ['nullable', 'digits:4'],
             'description' => ['nullable', 'string'],
             'sort_order' => ['nullable', 'integer', 'min:0'],

@@ -14,7 +14,7 @@ class Education extends Model
     protected $fillable = [
         'institute_name',
         'degree',
-        'start_year',
+        'start_date',
         'end_year',
         'description',
         'sort_order',
@@ -29,12 +29,12 @@ class Education extends Model
 
     public function scopeOrdered($query)
     {
-        return $query->orderBy('sort_order')->orderByDesc('start_year');
+        return $query->orderBy('sort_order')->orderByDesc('start_date');
     }
 
     public function getDurationAttribute(): string
     {
         $end = $this->end_year ?: 'Present';
-        return "{$this->start_year} - {$end}";
+        return "{$this->start_date} - {$end}";
     }
 }

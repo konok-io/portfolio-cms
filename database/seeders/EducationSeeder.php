@@ -16,7 +16,7 @@ class EducationSeeder extends Seeder
         Education::create([
             'institute_name' => 'University of Dhaka',
             'degree' => 'Bachelor of Science in Computer Science & Engineering',
-            'start_year' => '2014',
+            'start_date' => '2014',
             'end_year' => '2018',
             'description' => 'Graduated with a focus on software engineering, databases, and web technologies.',
             'sort_order' => 0,
@@ -25,7 +25,7 @@ class EducationSeeder extends Seeder
         Education::create([
             'institute_name' => 'Notre Dame College',
             'degree' => 'Higher Secondary Certificate (Science)',
-            'start_year' => '2012',
+            'start_date' => '2012',
             'end_year' => '2014',
             'description' => 'Completed higher secondary education with a major in science.',
             'sort_order' => 1,
