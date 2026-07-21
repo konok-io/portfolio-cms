@@ -191,12 +191,14 @@
 .template-preview .templates-row .col-3 {
     flex: 0 0 auto;
     width: 25%;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .template-box {
     border: 2px solid #e2e8f0;
     border-radius: 6px;
-    padding: 0.5rem;
+    padding: 0.4rem 0.25rem;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
