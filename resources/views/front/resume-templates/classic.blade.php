@@ -231,7 +231,9 @@
                     <div class="education-item clearfix">
                         <span class="education-degree">{{ $edu->degree }} @if($edu->field)in {{ $edu->field }}@endif</span>
                         <span class="education-date">
-                            {{ $edu->start_date->format('Y') }} - {{ $edu->is_current ? 'Present' : $edu->end_date?->format('Y') }}
+                            {{ is_object($edu->start_date) ? $edu->start_date->format('Y') : $edu->start_date }}
+                            -
+                            {{ $edu->is_current ? 'Present' : (is_object($edu->end_date) ? $edu->end_date->format('Y') : ($edu->end_date ?? 'Present')) }}
                         </span>
                         <div class="education-school">{{ $edu->institution }}@if($edu->location), {{ $edu->location }}@endif</div>
                     </div>
