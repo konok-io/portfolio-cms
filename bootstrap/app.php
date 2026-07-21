@@ -3,6 +3,7 @@
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\LanguageManager;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Auth\Middleware\Authenticate as AuthMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -24,6 +25,9 @@ return Application::configure(basePath: dirname(__DIR__))
             \App\Http\Middleware\TrackVisitor::class,
             LanguageManager::class,
         ]);
+        
+        // Override default authentication redirect
+        $middleware->redirectGuestsTo(fn () => route('admin.login'));
     })
     ->withExceptions(function (Exceptions $exceptions) {
         // Redirect unauthenticated admin requests to admin login page
