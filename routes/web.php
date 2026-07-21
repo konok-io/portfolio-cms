@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\StatisticController;
+use App\Http\Controllers\Admin\SubscriberController as AdminSubscriberController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
 use App\Http\Controllers\Admin\UserController;
@@ -186,6 +187,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     
     // Certifications
     Route::resource('certifications', CertificationController::class);
+    
+    // Subscribers
+    Route::get('/subscribers', [AdminSubscriberController::class, 'index'])->name('subscribers.index');
+    Route::delete('/subscribers/{subscriber}', [AdminSubscriberController::class, 'destroy'])->name('subscribers.destroy');
+    Route::get('/subscribers/export', [AdminSubscriberController::class, 'export'])->name('subscribers.export');
     
     // Custom Pages (Admin only - for CRUD)
     Route::resource('custom-pages', AdminCustomPageController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
