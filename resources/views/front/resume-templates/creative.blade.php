@@ -1,161 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume - {{ $about->name ?? 'Portfolio' }}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Crimson+Pro:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             font-size: 9.5pt;
-            line-height: 1.7;
+            line-height: 1.5;
             color: #2d3436;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 2rem;
+            width: 210mm;
+            min-height: 297mm;
         }
         .resume {
-            max-width: 850px;
+            width: 210mm;
+            min-height: 297mm;
             margin: 0 auto;
             background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
         }
         .header {
-            background: linear-gradient(135deg, {{ $settings->primary_color }} 0%, #4a5568 100%);
+            background: {{ $settings->primary_color }};
             color: white;
-            padding: 2.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 400px;
-            height: 400px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-        }
-        .header::after {
-            content: '';
-            position: absolute;
-            bottom: -60%;
-            left: -10%;
-            width: 300px;
-            height: 300px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 50%;
+            padding: 20mm 15mm;
         }
         .header-content {
             display: flex;
             align-items: center;
-            gap: 2rem;
-            position: relative;
-            z-index: 1;
+            gap: 12mm;
         }
-        @if($settings->include_photo && $about->photo_url)
         .photo {
-            width: 120px;
-            height: 120px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid white;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            border: 3px solid white;
         }
-        @endif
         .header-text { flex: 1; }
         .header-text h1 {
-            font-size: 28pt;
+            font-size: 22pt;
             font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.25rem;
+            margin-bottom: 2px;
         }
         .header-text h2 {
             font-size: 11pt;
             font-weight: 400;
             opacity: 0.9;
-            margin-bottom: 1rem;
+            margin-bottom: 8px;
         }
         .contact-row {
             display: flex;
-            gap: 1.5rem;
+            gap: 10mm;
             font-size: 9pt;
-            opacity: 0.95;
         }
-        .contact-item { display: flex; align-items: center; gap: 0.4rem; }
-        .body { padding: 2rem 2.5rem; }
-        .section { margin-bottom: 1.8rem; }
+        .contact-item { margin-bottom: 2px; }
+        .body { padding: 15mm; }
+        .section { margin-bottom: 12mm; }
         .section-header {
             display: flex;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 6px;
         }
         .section-icon {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, {{ $settings->primary_color }}, {{ $settings->primary_color }}aa);
-            border-radius: 10px;
+            width: 24px;
+            height: 24px;
+            background: {{ $settings->primary_color }};
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 14pt;
-            margin-right: 0.75rem;
+            font-size: 12pt;
+            margin-right: 6px;
         }
         .section-title {
-            font-size: 13pt;
+            font-size: 11pt;
             font-weight: 700;
             color: #1a202c;
         }
-        .summary p { color: #4a5568; font-size: 10pt; }
+        .summary p { color: #4a5568; font-size: 9pt; }
         .experience-item {
             background: #f8fafc;
-            border-radius: 12px;
-            padding: 1rem 1.25rem;
-            margin-bottom: 0.8rem;
-            border-left: 4px solid {{ $settings->primary_color }};
+            padding: 8px 10px;
+            margin-bottom: 6px;
+            border-left: 3px solid {{ $settings->primary_color }};
         }
-        .experience-header { display: flex; justify-content: space-between; margin-bottom: 0.2rem; }
-        .experience-title { font-weight: 700; font-size: 10pt; color: #1a202c; }
-        .experience-date { font-size: 9pt; color: {{ $settings->primary_color }}; font-weight: 600; }
-        .experience-company { font-size: 9pt; color: #718096; margin-bottom: 0.25rem; }
-        .experience-description { color: #4a5568; font-size: 9pt; }
-        .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+        .experience-header { display: flex; justify-content: space-between; margin-bottom: 2px; }
+        .experience-title { font-weight: 700; font-size: 9pt; color: #1a202c; }
+        .experience-date { font-size: 8pt; color: {{ $settings->primary_color }}; font-weight: 600; }
+        .experience-company { font-size: 8pt; color: #718096; margin-bottom: 2px; }
+        .experience-description { color: #4a5568; font-size: 8pt; }
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 4px; }
         .skill-item {
-            background: linear-gradient(135deg, {{ $settings->primary_color }}15, {{ $settings->primary_color }}08);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-size: 9pt;
+            background: #f0f0f0;
+            padding: 4px 8px;
+            font-size: 8pt;
             font-weight: 500;
             color: #2d3748;
-            text-align: center;
         }
         .education-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.75rem 0;
+            padding: 6px 0;
             border-bottom: 1px dashed #e2e8f0;
         }
-        .education-degree { font-weight: 600; font-size: 10pt; color: #1a202c; }
-        .education-school { font-size: 9pt; color: #718096; }
-        .education-date { font-size: 9pt; color: {{ $settings->primary_color }}; font-weight: 600; }
+        .education-degree { font-weight: 600; font-size: 9pt; color: #1a202c; }
+        .education-school { font-size: 8pt; color: #718096; }
+        .education-date { font-size: 8pt; color: {{ $settings->primary_color }}; font-weight: 600; }
         .project-item {
-            background: linear-gradient(135deg, #f8fafc, #edf2f7);
-            padding: 0.75rem 1rem;
-            border-radius: 10px;
-            margin-bottom: 0.5rem;
+            background: #f8fafc;
+            padding: 6px 8px;
+            margin-bottom: 4px;
         }
-        .project-title { font-weight: 600; font-size: 10pt; color: #1a202c; }
-        .project-description { color: #4a5568; font-size: 9pt; margin-top: 0.2rem; }
+        .project-title { font-weight: 600; font-size: 9pt; color: #1a202c; }
+        .project-description { color: #4a5568; font-size: 8pt; margin-top: 2px; }
         .footer {
             background: #1a202c;
             color: #a0aec0;
-            padding: 1rem 2.5rem;
+            padding: 8px 15mm;
             text-align: center;
             font-size: 8pt;
         }
@@ -189,7 +155,7 @@
             @if($about->short_intro)
                 <div class="section">
                     <div class="section-header">
-                        <div class="section-icon">◆</div>
+                        <div class="section-icon">*</div>
                         <div class="section-title">About Me</div>
                     </div>
                     <div class="summary"><p>{{ $about->short_intro }}</p></div>
@@ -198,7 +164,7 @@
             @if($settings->include_experience && $experiences->count() > 0)
                 <div class="section">
                     <div class="section-header">
-                        <div class="section-icon">◇</div>
+                        <div class="section-icon">+</div>
                         <div class="section-title">Experience</div>
                     </div>
                     @foreach($experiences as $exp)
@@ -218,7 +184,7 @@
             @if($settings->include_skills && $skills->count() > 0)
                 <div class="section">
                     <div class="section-header">
-                        <div class="section-icon">★</div>
+                        <div class="section-icon">#</div>
                         <div class="section-title">Skills</div>
                     </div>
                     <div class="skills-grid">
@@ -231,7 +197,7 @@
             @if($settings->include_education && $educations->count() > 0)
                 <div class="section">
                     <div class="section-header">
-                        <div class="section-icon">✦</div>
+                        <div class="section-icon">^</div>
                         <div class="section-title">Education</div>
                     </div>
                     @foreach($educations as $edu)
@@ -248,7 +214,7 @@
             @if($settings->include_projects && $projects->count() > 0)
                 <div class="section">
                     <div class="section-header">
-                        <div class="section-icon">●</div>
+                        <div class="section-icon">!</div>
                         <div class="section-title">Projects</div>
                     </div>
                     @foreach($projects as $project)

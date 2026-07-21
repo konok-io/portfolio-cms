@@ -1,109 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume - {{ $about->name ?? 'Portfolio' }}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             font-size: 9pt;
-            line-height: 1.6;
+            line-height: 1.5;
             color: #1f2937;
-            background: #0f172a;
+            width: 210mm;
+            min-height: 297mm;
         }
         .resume {
-            max-width: 794px;
+            width: 210mm;
+            min-height: 297mm;
             margin: 0 auto;
             background: #ffffff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.4);
         }
         .header {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-            padding: 2.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 300px;
-            height: 100%;
-            background: linear-gradient(135deg, {{ $settings->primary_color }}20, transparent);
-            clip-path: polygon(100% 0, 0 0, 100% 100%);
-        }
-        .header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, {{ $settings->primary_color }}60, transparent);
+            background: #1e293b;
+            padding: 15mm;
         }
         .header-content {
             display: flex;
             align-items: center;
-            gap: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-        @if($settings->include_photo && $about->photo_url)
-        .photo-container {
-            position: relative;
+            gap: 10mm;
         }
         .photo {
-            width: 100px;
-            height: 100px;
-            border-radius: 12px;
+            width: 60px;
+            height: 60px;
             object-fit: cover;
             border: 2px solid {{ $settings->primary_color }};
-            box-shadow: 0 0 30px {{ $settings->primary_color }}40;
         }
-        .photo-glow {
-            position: absolute;
-            inset: -4px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, {{ $settings->primary_color }}, #06b6d4);
-            z-index: -1;
-            opacity: 0.5;
-            filter: blur(10px);
-        }
-        @endif
         .header-text { flex: 1; }
         .header-text h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 26pt;
+            font-size: 20pt;
             font-weight: 700;
             color: #ffffff;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.25rem;
+            margin-bottom: 2px;
         }
         .header-text h2 {
-            font-family: 'Inter', sans-serif;
-            font-size: 11pt;
+            font-size: 10pt;
             font-weight: 400;
             color: {{ $settings->primary_color }};
-            letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 1rem;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
         }
         .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.8rem;
+            display: flex;
+            gap: 8mm;
         }
         .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
             font-size: 8pt;
             color: #94a3b8;
         }
@@ -111,122 +65,99 @@
             color: {{ $settings->primary_color }};
             font-weight: 500;
         }
-        .body { padding: 2rem 2.5rem; }
+        .body { padding: 12mm 15mm; }
         .two-column {
-            display: grid;
-            grid-template-columns: 1.8fr 1.2fr;
-            gap: 2.5rem;
+            display: flex;
+            gap: 12mm;
         }
-        .main-content, .sidebar { min-width: 0; }
-        .section { margin-bottom: 1.6rem; }
+        .main-content { width: 60%; }
+        .sidebar { width: 40%; }
+        .section { margin-bottom: 10mm; }
         .section-header {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 1rem;
+            gap: 6px;
+            margin-bottom: 6px;
         }
         .section-icon {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, {{ $settings->primary_color }}, #06b6d4);
-            border-radius: 8px;
+            width: 20px;
+            height: 20px;
+            background: {{ $settings->primary_color }};
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 14pt;
+            font-size: 10pt;
         }
         .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 12pt;
+            font-size: 10pt;
             font-weight: 600;
             color: #0f172a;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .summary p { color: #475569; font-size: 9pt; line-height: 1.7; }
+        .summary p { color: #475569; font-size: 8pt; }
         .experience-item {
-            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-            border-radius: 10px;
-            padding: 1rem 1.2rem;
-            margin-bottom: 0.8rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .experience-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(180deg, {{ $settings->primary_color }}, #06b6d4);
+            background: #f8fafc;
+            padding: 8px 10px;
+            margin-bottom: 6px;
+            border-left: 3px solid {{ $settings->primary_color }};
         }
         .experience-header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 0.15rem;
+            margin-bottom: 2px;
         }
-        .experience-title { font-weight: 700; font-size: 10pt; color: #0f172a; }
+        .experience-title { font-weight: 700; font-size: 9pt; color: #0f172a; }
         .experience-date { font-size: 8pt; color: {{ $settings->primary_color }}; font-weight: 600; }
-        .experience-company { font-size: 9pt; color: #64748b; margin-bottom: 0.25rem; }
-        .experience-description { color: #475569; font-size: 8.5pt; }
+        .experience-company { font-size: 8pt; color: #64748b; margin-bottom: 2px; }
+        .experience-description { color: #475569; font-size: 8pt; }
         .skill-card {
-            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-            border-radius: 10px;
-            padding: 1rem;
-            margin-bottom: 0.6rem;
+            background: #f8fafc;
+            padding: 6px 8px;
+            margin-bottom: 4px;
         }
-        .skill-name { font-weight: 600; font-size: 9pt; color: #0f172a; margin-bottom: 0.3rem; }
+        .skill-name { font-weight: 600; font-size: 8pt; color: #0f172a; margin-bottom: 2px; }
         .skill-bar {
-            height: 4px;
+            height: 3px;
             background: #e2e8f0;
-            border-radius: 2px;
-            overflow: hidden;
         }
         .skill-progress {
             height: 100%;
-            background: linear-gradient(90deg, {{ $settings->primary_color }}, #06b6d4);
-            border-radius: 2px;
+            background: {{ $settings->primary_color }};
         }
         .education-item {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            padding: 0.8rem 0;
+            padding: 6px 0;
             border-bottom: 1px dashed #e2e8f0;
         }
         .education-info { flex: 1; }
-        .education-degree { font-weight: 600; font-size: 9pt; color: #0f172a; }
-        .education-school { font-size: 8.5pt; color: #64748b; }
+        .education-degree { font-weight: 600; font-size: 8pt; color: #0f172a; }
+        .education-school { font-size: 8pt; color: #64748b; }
         .education-date { font-size: 8pt; color: {{ $settings->primary_color }}; font-weight: 500; }
         .project-item {
-            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-            border-radius: 10px;
-            padding: 0.8rem 1rem;
-            margin-bottom: 0.5rem;
+            background: #f8fafc;
+            padding: 6px 8px;
+            margin-bottom: 4px;
         }
-        .project-title { font-weight: 600; font-size: 9pt; color: #0f172a; }
-        .project-description { color: #475569; font-size: 8.5pt; margin-top: 0.2rem; }
+        .project-title { font-weight: 600; font-size: 8pt; color: #0f172a; }
+        .project-description { color: #475569; font-size: 8pt; margin-top: 2px; }
         .footer {
-            background: #0f172a;
-            padding: 1rem 2.5rem;
+            background: #1e293b;
+            padding: 6px 15mm;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .footer-text { font-size: 8pt; color: #64748b; }
+        .footer-text { font-size: 8pt; color: #94a3b8; }
         .footer-badge {
-            background: {{ $settings->primary_color }}20;
-            color: {{ $settings->primary_color }};
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
+            background: {{ $settings->primary_color }};
+            color: white;
+            padding: 2px 8px;
             font-size: 8pt;
             font-weight: 600;
-        }
-        @page {
-            size: A4;
-            margin: 0;
         }
     </style>
 </head>
@@ -235,10 +166,7 @@
         <div class="header">
             <div class="header-content">
                 @if($settings->include_photo && $about->photo_url)
-                    <div class="photo-container">
-                        <div class="photo-glow"></div>
-                        <img src="{{ $about->photo_url }}" alt="{{ $about->name }}" class="photo">
-                    </div>
+                    <img src="{{ $about->photo_url }}" alt="{{ $about->name }}" class="photo">
                 @endif
                 <div class="header-text">
                     <h1>{{ $about->name ?? 'Your Name' }}</h1>
@@ -263,7 +191,7 @@
                     @if($about->short_intro)
                         <div class="section">
                             <div class="section-header">
-                                <div class="section-icon">⚡</div>
+                                <div class="section-icon">+</div>
                                 <div class="section-title">About Me</div>
                             </div>
                             <div class="summary"><p>{{ $about->short_intro }}</p></div>
@@ -272,7 +200,7 @@
                     @if($settings->include_experience && $experiences->count() > 0)
                         <div class="section">
                             <div class="section-header">
-                                <div class="section-icon">💼</div>
+                                <div class="section-icon">*</div>
                                 <div class="section-title">Experience</div>
                             </div>
                             @foreach($experiences as $exp)
@@ -292,7 +220,7 @@
                     @if($settings->include_education && $educations->count() > 0)
                         <div class="section">
                             <div class="section-header">
-                                <div class="section-icon">🎓</div>
+                                <div class="section-icon">^</div>
                                 <div class="section-title">Education</div>
                             </div>
                             @foreach($educations as $edu)
@@ -309,7 +237,7 @@
                     @if($settings->include_projects && $projects->count() > 0)
                         <div class="section">
                             <div class="section-header">
-                                <div class="section-icon">🚀</div>
+                                <div class="section-icon">#</div>
                                 <div class="section-title">Projects</div>
                             </div>
                             @foreach($projects as $project)
@@ -327,7 +255,7 @@
                     @if($settings->include_skills && $skills->count() > 0)
                         <div class="section">
                             <div class="section-header">
-                                <div class="section-icon">⚙️</div>
+                                <div class="section-icon">!</div>
                                 <div class="section-title">Skills</div>
                             </div>
                             @foreach($skills as $index => $skill)

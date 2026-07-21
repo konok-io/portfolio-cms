@@ -1,112 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume - {{ $about->name ?? 'Portfolio' }}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Source Sans Pro', sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             font-size: 9.5pt;
-            line-height: 1.65;
+            line-height: 1.5;
             color: #2d3748;
-            background: #cbd5e0;
+            width: 210mm;
+            min-height: 297mm;
         }
         .resume {
-            max-width: 794px;
+            width: 210mm;
+            min-height: 297mm;
             margin: 0 auto;
             background: #ffffff;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         }
         .header {
-            background: linear-gradient(180deg, #1a365d 0%, #2c5282 100%);
+            background: #1a365d;
             color: white;
-            padding: 0;
         }
         .header-top {
             background: {{ $settings->primary_color }};
-            padding: 0.6rem 2.5rem;
+            padding: 4px 15mm;
             display: flex;
             justify-content: space-between;
-            font-size: 8pt;
+            font-size: 7pt;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
         .header-main {
-            padding: 2.5rem;
+            padding: 15mm;
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 12mm;
         }
         .header-text { flex: 1; }
         .header-text h1 {
-            font-family: 'Merriweather', serif;
-            font-size: 28pt;
+            font-size: 22pt;
             font-weight: 700;
-            margin-bottom: 0.25rem;
-            letter-spacing: 1px;
+            margin-bottom: 2px;
         }
         .header-text h2 {
-            font-family: 'Source Sans Pro', sans-serif;
-            font-size: 11pt;
+            font-size: 10pt;
             font-weight: 400;
             color: #bee3f8;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 1.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
         }
         .contact-row {
             display: flex;
-            gap: 2rem;
-            font-size: 8.5pt;
+            gap: 10mm;
+            font-size: 8pt;
         }
         .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
             color: #e2e8f0;
         }
         .header-photo {
             text-align: center;
         }
-        @if($settings->include_photo && $about->photo_url)
         .photo {
-            width: 110px;
-            height: 110px;
-            border-radius: 4px;
+            width: 70px;
+            height: 70px;
             object-fit: cover;
-            border: 3px solid {{ $settings->primary_color }};
+            border: 2px solid {{ $settings->primary_color }};
         }
-        @endif
-        .body { padding: 2rem 2.5rem; }
+        .body { padding: 12mm 15mm; }
         .two-column {
-            display: grid;
-            grid-template-columns: 1.6fr 1.4fr;
-            gap: 2.5rem;
+            display: flex;
+            gap: 12mm;
         }
-        .main-content, .sidebar { min-width: 0; }
-        .section { margin-bottom: 1.6rem; }
+        .main-content { width: 60%; }
+        .sidebar { width: 40%; }
+        .section { margin-bottom: 10mm; }
         .section-header {
-            background: linear-gradient(90deg, {{ $settings->primary_color }}, {{ $settings->primary_color }}20);
-            padding: 0.6rem 1rem;
-            margin-bottom: 1rem;
-            border-radius: 0 4px 4px 0;
-            margin-left: -1rem;
+            background: {{ $settings->primary_color }};
+            padding: 4px 8px;
+            margin-bottom: 6px;
         }
         .section-title {
-            font-family: 'Merriweather', serif;
-            font-size: 12pt;
+            font-size: 10pt;
             font-weight: 700;
-            color: #1a365d;
+            color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .summary p { color: #4a5568; font-size: 9.5pt; text-align: justify; }
+        .summary p { color: #4a5568; font-size: 9pt; text-align: justify; }
         .experience-item {
-            margin-bottom: 1.2rem;
-            padding-bottom: 1.2rem;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
             border-bottom: 1px solid #e2e8f0;
         }
         .experience-item:last-child {
@@ -117,50 +107,45 @@
         .experience-header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 0.2rem;
+            margin-bottom: 2px;
         }
-        .experience-title { font-weight: 700; font-size: 10pt; color: #1a365d; }
-        .experience-date { font-size: 8.5pt; color: {{ $settings->primary_color }}; font-weight: 600; }
-        .experience-company { font-size: 9pt; color: #718096; margin-bottom: 0.3rem; font-weight: 600; }
-        .experience-description { color: #4a5568; font-size: 9pt; }
-        .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+        .experience-title { font-weight: 700; font-size: 9pt; color: #1a365d; }
+        .experience-date { font-size: 8pt; color: {{ $settings->primary_color }}; font-weight: 600; }
+        .experience-company { font-size: 8pt; color: #718096; margin-bottom: 2px; font-weight: 600; }
+        .experience-description { color: #4a5568; font-size: 8pt; }
+        .skills-grid { display: flex; flex-direction: column; gap: 3px; }
         .skill-item {
             background: #f7fafc;
-            padding: 0.5rem 0.8rem;
-            border-left: 3px solid {{ $settings->primary_color }};
-            font-size: 8.5pt;
+            padding: 4px 6px;
+            border-left: 2px solid {{ $settings->primary_color }};
+            font-size: 8pt;
             color: #2d3748;
         }
         .education-item {
-            margin-bottom: 1rem;
-            padding-left: 1rem;
+            margin-bottom: 6px;
+            padding-left: 8px;
             border-left: 2px solid {{ $settings->primary_color }};
         }
-        .education-degree { font-weight: 700; font-size: 10pt; color: #1a365d; }
-        .education-school { font-size: 9pt; color: #718096; margin-bottom: 0.15rem; }
-        .education-date { font-size: 8.5pt; color: {{ $settings->primary_color }}; font-weight: 600; }
+        .education-degree { font-weight: 700; font-size: 9pt; color: #1a365d; }
+        .education-school { font-size: 8pt; color: #718096; margin-bottom: 1px; }
+        .education-date { font-size: 8pt; color: {{ $settings->primary_color }}; font-weight: 600; }
         .project-item {
             background: #f7fafc;
-            padding: 0.7rem 1rem;
-            margin-bottom: 0.5rem;
-            border-radius: 0 4px 4px 0;
-            border-left: 4px solid {{ $settings->primary_color }};
+            padding: 6px 8px;
+            margin-bottom: 4px;
+            border-left: 3px solid {{ $settings->primary_color }};
         }
-        .project-title { font-weight: 700; font-size: 9.5pt; color: #1a365d; }
-        .project-description { color: #4a5568; font-size: 8.5pt; margin-top: 0.2rem; }
+        .project-title { font-weight: 700; font-size: 9pt; color: #1a365d; }
+        .project-description { color: #4a5568; font-size: 8pt; margin-top: 2px; }
         .footer {
             background: #1a365d;
             color: #a0aec0;
-            padding: 1rem 2.5rem;
+            padding: 6px 15mm;
             display: flex;
             justify-content: space-between;
             font-size: 8pt;
         }
         .footer span { color: {{ $settings->primary_color }}; }
-        @page {
-            size: A4;
-            margin: 0;
-        }
     </style>
 </head>
 <body>
