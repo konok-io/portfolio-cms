@@ -171,23 +171,26 @@
 <div class="row g-3 mb-4">
     <div class="col-12">
         <div class="admin-card">
-            <div class="card-header-custom d-flex align-items-center justify-content-between">
-                <span><i class="fa-solid fa-key me-2"></i>License Information</span>
-                @if(($license['ready'] ?? false) && ($license['status'] ?? '') !== '')
-                    @php
-                        $st = strtolower($license['status'] ?? 'unknown');
-                        $badge = match($st) {
-                            'active'  => 'success',
-                            'grace'   => 'warning',
-                            'expired', 'blocked', 'verification_failed' => 'danger',
-                            'pending' => 'secondary',
-                            default   => 'secondary',
-                        };
-                    @endphp
-                    <span class="badge bg-{{ $badge }} text-uppercase">{{ $st }}</span>
-                @endif
+            <div class="card-header-custom d-flex align-items-center justify-content-between cursor-pointer" onclick="toggleLicenseDetails()" style="cursor:pointer">
+                <span>
+                    <i class="fa-solid fa-key me-2"></i>License Information
+                    @if(($license['ready'] ?? false) && ($license['status'] ?? '') !== '')
+                        @php
+                            $st = strtolower($license['status'] ?? 'unknown');
+                            $badge = match($st) {
+                                'active'  => 'success',
+                                'grace'   => 'warning',
+                                'expired', 'blocked', 'verification_failed' => 'danger',
+                                'pending' => 'secondary',
+                                default   => 'secondary',
+                            };
+                        @endphp
+                        <span class="badge bg-{{ $badge }} text-uppercase ms-2">{{ $st }}</span>
+                    @endif
+                </span>
+                <i class="fa-solid fa-chevron-down" id="licenseToggleIcon"></i>
             </div>
-            <div class="card-body-custom">
+            <div class="card-body-custom" id="licenseDetails" style="display:none">
                 @if(! ($license['ready'] ?? false))
                     {{-- Package present but not migrated/activated yet --}}
                     <div class="text-muted">
@@ -614,5 +617,20 @@
             cutout: '60%'
         }
     });
+
+    // License toggle
+    function toggleLicenseDetails() {
+        const details = document.getElementById('licenseDetails');
+        const icon = document.getElementById('licenseToggleIcon');
+        if (details.style.display === 'none') {
+            details.style.display = 'block';
+            icon.classList.remove('fa-chevron-down');
+            icon.classList.add('fa-chevron-up');
+        } else {
+            details.style.display = 'none';
+            icon.classList.remove('fa-chevron-up');
+            icon.classList.add('fa-chevron-down');
+        }
+    }
 </script>
 @endpush
