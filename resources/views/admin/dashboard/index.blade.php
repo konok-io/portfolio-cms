@@ -270,7 +270,7 @@
 <div class="row g-3">
     {{-- Charts Section --}}
     <div class="col-lg-8">
-        <div class="admin-card mb-3">
+        <div class="admin-card mb-3 h-100">
             <div class="card-header-custom">Visitor Trend (Last 14 Days)</div>
             <div class="card-body-custom">
                 <canvas id="visitorChart" height="150"></canvas>
@@ -281,7 +281,7 @@
     <div class="col-lg-4">
         <div class="admin-card mb-3 h-100">
             <div class="card-header-custom">Browser Breakdown</div>
-            <div class="card-body-custom d-flex align-items-center justify-content-center">
+            <div class="card-body-custom d-flex align-items-center justify-content-center h-100">
                 <canvas id="browserChart" height="150"></canvas>
             </div>
         </div>
