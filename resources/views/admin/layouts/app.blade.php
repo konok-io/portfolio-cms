@@ -47,7 +47,7 @@
       body{top:0!important}
       font font{background:transparent!important;box-shadow:none!important}
       /* Topbar matches sidebar header */
-      .admin-topbar{background:#0F172A;color:#fff;position:relative;z-index:100}
+      .admin-topbar{background:#0F172A;color:#fff;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
       .admin-topbar .text-dark{color:#fff!important}
       .admin-topbar .gt-btn,.admin-topbar .theme-toggle-btn{background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.2)}
       .admin-topbar .gt-btn:hover,.admin-topbar .theme-toggle-btn:hover{background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.4)}
@@ -187,8 +187,8 @@
             <i class="fa-solid fa-circle-nodes"></i>
             <span>{{ $siteSetting->site_name ?? 'Portfolio CMS' }}</span>
             <button type="button" class="sidebar-collapse-btn ms-auto" onclick="toggleSidebarCollapse()" title="Toggle Sidebar">
-                <i class="fa-solid fa-ellipsis-v collapse-icon" id="sidebarCollapseIcon"></i>
-                <i class="fa-solid fa-bars-staggered btn-icon" id="sidebarExpandIcon" style="display:none"></i>
+                <i class="fa-solid fa-chevrons-left collapse-icon" id="sidebarCollapseIcon"></i>
+                <i class="fa-solid fa-chevrons-right btn-icon" id="sidebarExpandIcon" style="display:none"></i>
             </button>
         </div>
 
