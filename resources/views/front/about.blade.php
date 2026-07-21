@@ -19,7 +19,7 @@
 {{-- Intro: photo + bio --}}
 <section class="section-padding">
     <div class="container">
-        <div class="row gy-5 align-items-stretch" style="--img-col: 30%; --text-col: 70%;">
+        <div class="row gy-5 align-items-stretch" style="--img-col: 33%; --text-col: 67%;">
             <div class="reveal-on-scroll d-flex" style="width: var(--img-col); flex: 0 0 var(--img-col);">
                 <img src="{{ $about->photo_url }}"
                      alt="{{ $about->name ?? 'Profile photo' }}"
@@ -28,7 +28,7 @@
             <div class="reveal-on-scroll" style="width: var(--text-col); flex: 0 0 var(--text-col);">
                 <span class="section-eyebrow">{{ $about->title ?? 'Web Developer' }}</span>
                 <h2 class="section-title mb-4">Hi, I'm {{ $about->name ?? 'Your Name' }}</h2>
-                <p class="text-muted mb-4" style="text-align: justify;">{{ strip_tags($about->description ?? 'I am a dedicated developer focused on building reliable, user-friendly software.') }}</p>
+                <p class="text-muted mb-4" style="text-align: justify;">{!! nl2br(e(strip_tags($about->description ?? 'I am a dedicated developer focused on building reliable, user-friendly software.'))) !!}</p>
 
                 <div class="row g-3 mb-4">
                     <div class="col-4">
