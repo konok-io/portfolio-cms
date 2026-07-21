@@ -21,10 +21,10 @@
             width: 210mm;
             min-height: 297mm;
             margin: 0 auto;
-            background: #ffffff;
+            background: {{ $settings->background_color ?? '#ffffff';
         }
         .header {
-            background: #1a365d;
+            background: {{ $settings->header_bg_color ?? '#1a365d';
             color: white;
         }
         .header-top {
@@ -89,7 +89,7 @@
         .section-title {
             font-size: 10pt;
             font-weight: 700;
-            color: #ffffff;
+            color: {{ $settings->background_color ?? '#ffffff';
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -109,7 +109,7 @@
             justify-content: space-between;
             margin-bottom: 2px;
         }
-        .experience-title { font-weight: 700; font-size: 9pt; color: #1a365d; }
+        .experience-title { font-weight: 700; font-size: 9pt; color: {{ $settings->header_bg_color ?? '#1a365d'; }
         .experience-date { font-size: 8pt; color: {{ $settings->primary_color }}; font-weight: 600; }
         .experience-company { font-size: 8pt; color: #718096; margin-bottom: 2px; font-weight: 600; }
         .experience-description { color: #4a5568; font-size: 8pt; }
@@ -126,7 +126,7 @@
             padding-left: 8px;
             border-left: 2px solid {{ $settings->primary_color }};
         }
-        .education-degree { font-weight: 700; font-size: 9pt; color: #1a365d; }
+        .education-degree { font-weight: 700; font-size: 9pt; color: {{ $settings->header_bg_color ?? '#1a365d'; }
         .education-school { font-size: 8pt; color: #718096; margin-bottom: 1px; }
         .education-date { font-size: 8pt; color: {{ $settings->primary_color }}; font-weight: 600; }
         .project-item {
@@ -135,10 +135,10 @@
             margin-bottom: 4px;
             border-left: 3px solid {{ $settings->primary_color }};
         }
-        .project-title { font-weight: 700; font-size: 9pt; color: #1a365d; }
+        .project-title { font-weight: 700; font-size: 9pt; color: {{ $settings->header_bg_color ?? '#1a365d'; }
         .project-description { color: #4a5568; font-size: 8pt; margin-top: 2px; }
         .footer {
-            background: #1a365d;
+            background: {{ $settings->header_bg_color ?? '#1a365d';
             color: #a0aec0;
             padding: 6px 15mm;
             display: flex;

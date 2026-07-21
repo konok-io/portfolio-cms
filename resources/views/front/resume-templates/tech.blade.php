@@ -21,10 +21,10 @@
             width: 210mm;
             min-height: 297mm;
             margin: 0 auto;
-            background: {{ $settings->background_color ?? '#ffffff' }};
+            background: {{ $settings->background_color ?? '{{ $settings->background_color ?? '#ffffff'' }};
         }
         .header {
-            background: {{ $settings->header_bg_color ?? '#1e293b' }};
+            background: {{ $settings->header_bg_color ?? '{{ $settings->header_bg_color ?? '#1e293b'' }};
             padding: 15mm;
         }
         .header-content {
@@ -42,7 +42,7 @@
         .header-text h1 {
             font-size: 20pt;
             font-weight: 700;
-            color: #ffffff;
+            color: {{ $settings->background_color ?? '#ffffff';
             margin-bottom: 2px;
         }
         .header-text h2 {
@@ -145,7 +145,7 @@
         .project-title { font-weight: 600; font-size: 8pt; color: #0f172a; }
         .project-description { color: #475569; font-size: 8pt; margin-top: 2px; }
         .footer {
-            background: #1e293b;
+            background: {{ $settings->header_bg_color ?? '#1e293b';
             padding: 6px 15mm;
             display: flex;
             justify-content: space-between;
