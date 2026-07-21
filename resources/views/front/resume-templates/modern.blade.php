@@ -259,12 +259,12 @@
                     @foreach($experiences as $exp)
                         <div class="experience-item">
                             <div class="experience-header">
-                                <span class="experience-title">{{ $exp->job_title }}</span>
+                                <span class="experience-title">{{ $exp->designation }}</span>
                                 <span class="experience-date">
                                     {{ $exp->start_date->format('M Y') }} - {{ $exp->is_current ? 'Present' : $exp->end_date?->format('M Y') }}
                                 </span>
                             </div>
-                            <div class="experience-company">{{ $exp->company }}@if($exp->location), {{ $exp->location }}@endif</div>
+                            <div class="experience-company">{{ $exp->company_name }}</div>
                             @if($exp->description)
                                 <div class="experience-description">{{ $exp->description }}</div>
                             @endif
@@ -280,14 +280,14 @@
                     @foreach($educations as $edu)
                         <div class="education-item">
                             <div class="education-header">
-                                <span class="education-degree">{{ $edu->degree }} @if($edu->field)in {{ $edu->field }}@endif</span>
+                                <span class="education-degree">{{ $edu->degree }} </span>
                                 <span class="education-date">
-                                    {{ is_object($edu->start_date) ? $edu->start_date->format('Y') : $edu->start_date }}
+                                    {{ $edu->start_date }}
                                     -
-                                    {{ $edu->is_current ? 'Present' : (is_object($edu->end_date) ? $edu->end_date->format('Y') : ($edu->end_date ?? 'Present')) }}
+                                    {{ $edu->end_year ?? 'Present' }}
                                 </span>
                             </div>
-                            <div class="education-school">{{ $edu->institution }}@if($edu->location), {{ $edu->location }}@endif</div>
+                            <div class="education-school">{{ $edu->institute_name }}</div>
                         </div>
                     @endforeach
                 </div>
