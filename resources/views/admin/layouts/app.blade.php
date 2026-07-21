@@ -47,12 +47,14 @@
       body{top:0!important}
       font font{background:transparent!important;box-shadow:none!important}
       /* Topbar matches sidebar header */
-      .admin-topbar{background:#0F172A;color:#fff}
+      .admin-topbar{background:#0F172A;color:#fff;position:relative;z-index:100}
       .admin-topbar .text-dark{color:#fff!important}
       .admin-topbar .gt-btn,.admin-topbar .theme-toggle-btn{background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.2)}
       .admin-topbar .gt-btn:hover,.admin-topbar .theme-toggle-btn:hover{background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.4)}
       .admin-topbar .sidebar-toggle-btn{color:#fff}
       .admin-topbar .lang-menu button{color:#333}
+      .admin-topbar .dropdown-menu{margin-top:8px}
+      .admin-topbar .gtranslate-wrap{position:relative}
       /* Page header padding */
       .admin-page-header{padding:10px;border-radius:8px}
       /* Card padding */
