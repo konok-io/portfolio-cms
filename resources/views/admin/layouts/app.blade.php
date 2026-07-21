@@ -53,6 +53,8 @@
       .admin-topbar .gt-btn:hover,.admin-topbar .theme-toggle-btn:hover{background:rgba(255,255,255,0.25);border-color:rgba(255,255,255,0.5)}
       .admin-topbar .sidebar-toggle-btn{color:#fff}
       .admin-topbar .lang-menu button{color:#333}
+      /* Page header padding */
+      .admin-page-header{padding:10px}
       /* dark theme */
       [data-theme="dark"] body,[data-theme="dark"] .admin-body,[data-theme="dark"] .admin-wrapper,[data-theme="dark"] .admin-main,[data-theme="dark"] .admin-content{background:#0A0A1F!important;color:#EDECFF}
       [data-theme="dark"] .admin-topbar,[data-theme="dark"] .admin-sidebar,[data-theme="dark"] .card,[data-theme="dark"] .admin-card,[data-theme="dark"] .stat-card,[data-theme="dark"] .dropdown-menu,[data-theme="dark"] .admin-page-header{background:#171433!important;color:#EDECFF!important;border-color:#2C2860!important}
