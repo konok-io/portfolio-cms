@@ -273,7 +273,7 @@
         <div class="admin-card mb-3">
             <div class="card-header-custom">Visitor Trend (Last 14 Days)</div>
             <div class="card-body-custom">
-                <canvas id="visitorChart" height="200"></canvas>
+                <canvas id="visitorChart" height="300"></canvas>
             </div>
         </div>
     </div>
@@ -282,7 +282,7 @@
         <div class="admin-card mb-3 h-100">
             <div class="card-header-custom">Browser Breakdown</div>
             <div class="card-body-custom d-flex align-items-center justify-content-center">
-                <canvas id="browserChart" height="200"></canvas>
+                <canvas id="browserChart" height="300"></canvas>
             </div>
         </div>
     </div>
@@ -293,7 +293,7 @@
             <div class="card-header-custom">
                 <i class="fa-solid fa-globe me-2"></i>Top Countries
             </div>
-            <div class="card-body-custom p-0" style="min-height:180px;">
+            <div class="card-body-custom p-0" style="min-height:300px;">
                 @forelse($topCountries as $index => $country)
                     <div class="d-flex justify-content-between align-items-center px-3 py-2 {{ !$loop->last ? 'border-bottom' : '' }}">
                         <div class="d-flex align-items-center gap-2">
@@ -314,7 +314,7 @@
             <div class="card-header-custom">
                 <i class="fa-solid fa-file-alt me-2"></i>Top Pages
             </div>
-            <div class="card-body-custom p-0" style="min-height:180px;">
+            <div class="card-body-custom p-0" style="min-height:300px;">
                 @forelse($topPages as $index => $page)
                     <div class="d-flex justify-content-between align-items-center px-3 py-2 {{ !$loop->last ? 'border-bottom' : '' }}">
                         <div class="d-flex align-items-center gap-2">
@@ -335,7 +335,7 @@
             <div class="card-header-custom">
                 <i class="fa-solid fa-chart-pie me-2"></i>Quick Stats
             </div>
-            <div class="card-body-custom" style="min-height:180px;">
+            <div class="card-body-custom" style="min-height:300px;">
                 <div class="row g-2 text-center h-100 d-flex align-items-center">
                     <div class="col-6">
                         <div class="p-2 rounded-3 bg-light">
@@ -370,8 +370,8 @@
     <div class="col-lg-6">
         <div class="admin-card mb-3">
             <div class="card-header-custom">Projects by Status</div>
-            <div class="card-body-custom" style="min-height:200px;">
-                <canvas id="projectChart" height="150"></canvas>
+            <div class="card-body-custom">
+                <canvas id="projectChart" height="300"></canvas>
             </div>
         </div>
     </div>
@@ -379,8 +379,8 @@
     <div class="col-lg-6">
         <div class="admin-card mb-3">
             <div class="card-header-custom">Skills Status</div>
-            <div class="card-body-custom" style="min-height:200px;">
-                <canvas id="skillsChart" height="150"></canvas>
+            <div class="card-body-custom">
+                <canvas id="skillsChart" height="300"></canvas>
             </div>
         </div>
     </div>
@@ -392,7 +392,7 @@
                 Recent Projects
                 <a href="{{ route('admin.projects.index') }}" class="small">View All</a>
             </div>
-            <div class="table-responsive" style="min-height:180px;">
+            <div class="table-responsive" style="min-height:300px;">
                 <table class="table table-admin mb-0">
                     <thead>
                         <tr>
@@ -424,7 +424,7 @@
                 Recent Blog Posts
                 <a href="{{ route('admin.blog.index') }}" class="small">View All</a>
             </div>
-            <div class="table-responsive" style="min-height:180px;">
+            <div class="table-responsive" style="min-height:300px;">
                 <table class="table table-admin mb-0">
                     <thead>
                         <tr>
