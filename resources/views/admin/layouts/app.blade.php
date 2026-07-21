@@ -328,7 +328,6 @@
                 <div class="gtranslate-wrap">
                     <button type="button" class="gt-btn" onclick="document.body.classList.toggle('gt-open')">
                         <i class="fa-solid fa-language"></i>
-                        <span class="d-none d-md-inline">Language</span>
                         <i class="fa-solid fa-chevron-down" style="font-size:.7em"></i>
                     </button>
                     <div id="google_translate_element" style="display:none"></div>
