@@ -47,6 +47,9 @@
     <script>(function(){try{var t=localStorage.getItem('pc-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
     <script>(function(){try{var m=document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);var l=m?m[1]:'en';var rtl=['ar','ur','fa','he','ps','sd'];if(rtl.indexOf(l)>=0){document.documentElement.setAttribute('dir','rtl');}else{document.documentElement.setAttribute('dir','ltr');}}catch(e){}})();</script>
     <style>
+      /* Hide content until Google Translate finishes */
+      body { opacity: 0; transition: opacity 0.3s ease-in-out; }
+      body.gt-ready, body.TEWGTB-BANGLA, body.TEWGTB-ARABIC, body.TEWGTB-URDU, body.TEWGTB-HINDI, body.TEWGTB-FILIPINO { opacity: 1 !important; }
       .gtranslate-wrap{position:relative}
       .gt-btn,.theme-toggle-btn{display:inline-flex;align-items:center;gap:7px;font-size:.9rem;font-weight:500;color:inherit;background:transparent;border:1px solid rgba(125,125,150,.3);border-radius:20px;padding:6px 13px;cursor:pointer}
       .theme-toggle-btn{width:38px;height:38px;justify-content:center;border-radius:50%;padding:0}
@@ -197,7 +200,7 @@
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script>
-// Apply language-specific fonts
+// Apply language-specific fonts and show content after translation
 (function() {
   function applyFonts() {
     var m = document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);
@@ -218,13 +221,21 @@
       document.body.classList.remove('TEWGTB-BANGLA');
       document.body.classList.remove('TEWGTB-ARABIC');
     }
+    
+    // Show content after translation
+    document.body.classList.add('gt-ready');
   }
   
   // Apply on page load
   applyFonts();
   
   // Watch for language changes
-  setInterval(applyFonts, 1000);
+  setInterval(applyFonts, 500);
+  
+  // Fallback: show content after 3 seconds regardless
+  setTimeout(function() {
+    document.body.classList.add('gt-ready');
+  }, 3000);
   
   // Also apply when translation happens
   var observer = new MutationObserver(applyFonts);

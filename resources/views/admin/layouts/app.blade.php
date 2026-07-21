@@ -43,6 +43,8 @@
           else if(l==='ur'||l==='urdu')body.classList.add('TEWGTB-URDU');
           else if(l==='hi'||l==='hindi')body.classList.add('TEWGTB-HINDI');
           else if(l==='tl'||l==='filipino')body.classList.add('TEWGTB-FILIPINO');
+          // Show content after translation
+          body.classList.add('gt-ready');
           // RTL: flip collapse icons
           if(isRtl){
             var collapseIcon=document.getElementById('sidebarCollapseIcon');
@@ -52,8 +54,13 @@
           }
         }catch(e){}
       })();
+      // Fallback: show content after 3 seconds regardless
+      setTimeout(function(){document.body.classList.add('gt-ready');},3000);
     </script>
     <style>
+      /* Hide content until Google Translate finishes */
+      body { opacity: 0; transition: opacity 0.3s ease-in-out; }
+      body.gt-ready, body.TEWGTB-BANGLA, body.TEWGTB-ARABIC, body.TEWGTB-URDU, body.TEWGTB-HINDI, body.TEWGTB-FILIPINO { opacity: 1 !important; }
       /* language switch + theme toggle */
       .gtranslate-wrap{position:relative}
       .gt-btn,.theme-toggle-btn{display:inline-flex;align-items:center;gap:7px;font-size:.9rem;font-weight:500;color:#333;background:#fff;border:1px solid #e2e2e8;border-radius:20px;padding:7px 14px;cursor:pointer;transition:border-color .18s,background .18s}
