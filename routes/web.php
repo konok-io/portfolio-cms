@@ -20,6 +20,8 @@ use App\Http\Controllers\Front\BlogController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\ProjectController;
+use App\Http\Controllers\RobotsTxtController;
+use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +29,12 @@ use Illuminate\Support\Facades\Route;
 | Front-End (Public) Routes
 |--------------------------------------------------------------------------
 */
+
+// Sitemap (Public)
+Route::get('/sitemap.xml', [SitemapController::class, 'index']);
+
+// Robots.txt (Public)
+Route::get('/robots.txt', [RobotsTxtController::class, 'index']);
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
