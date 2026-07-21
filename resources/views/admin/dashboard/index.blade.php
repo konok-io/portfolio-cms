@@ -368,18 +368,18 @@
 
     {{-- Projects by Status & Skills Status --}}
     <div class="col-lg-6">
-        <div class="admin-card mb-3">
+        <div class="admin-card mb-3 h-100">
             <div class="card-header-custom">Projects by Status</div>
-            <div class="card-body-custom">
+            <div class="card-body-custom h-100">
                 <canvas id="projectChart" height="150"></canvas>
             </div>
         </div>
     </div>
 
     <div class="col-lg-6">
-        <div class="admin-card mb-3">
+        <div class="admin-card mb-3 h-100">
             <div class="card-header-custom">Skills Status</div>
-            <div class="card-body-custom">
+            <div class="card-body-custom h-100">
                 <canvas id="skillsChart" height="150"></canvas>
             </div>
         </div>
