@@ -23,7 +23,7 @@
             <div class="col-lg-5 reveal-on-scroll">
                 <img src="{{ $about->photo_url }}"
                      alt="{{ $about->name ?? 'Profile photo' }}"
-                     class="img-fluid rounded-4 shadow-sm" style="max-width: 400px; object-fit: cover;">
+                     class="img-fluid rounded-4 shadow-sm">
             </div>
             <div class="col-lg-7 reveal-on-scroll">
                 <span class="section-eyebrow">{{ $about->title ?? 'Web Developer' }}</span>
