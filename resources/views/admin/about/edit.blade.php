@@ -59,11 +59,11 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label-admin">Phone</label>
-                            <input type="text" name="phone" class="form-control" value="{{ old('phone', $about->phone) }}">
+                            <input type="text" name="phone" class="form-control" value="{{ old('phone', $about->phone) }}" dir="ltr">
                         </div>
                         <div class="col-md-6">
                             <label class="form-label-admin"><i class="fa-brands fa-whatsapp me-1"></i> WhatsApp</label>
-                            <input type="text" name="whatsapp" class="form-control" value="{{ old('whatsapp', $about->whatsapp) }}" placeholder="+880 1XXX XXXXXX">
+                            <input type="text" name="whatsapp" class="form-control" value="{{ old('whatsapp', $about->whatsapp) }}" placeholder="+880 1XXX XXXXXX" dir="ltr">
                         </div>
                         <div class="col-md-6">
                             <label class="form-label-admin">Address</label>
