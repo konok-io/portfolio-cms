@@ -46,6 +46,13 @@
       .goog-te-banner-frame,.skiptranslate iframe{display:none!important}
       body{top:0!important}
       font font{background:transparent!important;box-shadow:none!important}
+      /* Topbar matches sidebar header gradient */
+      .admin-topbar{background:linear-gradient(135deg,#4F2FE8,#7C3AED);color:#fff}
+      .admin-topbar .text-dark{color:#fff!important}
+      .admin-topbar .gt-btn,.admin-topbar .theme-toggle-btn{background:rgba(255,255,255,0.15);color:#fff;border-color:rgba(255,255,255,0.3)}
+      .admin-topbar .gt-btn:hover,.admin-topbar .theme-toggle-btn:hover{background:rgba(255,255,255,0.25);border-color:rgba(255,255,255,0.5)}
+      .admin-topbar .sidebar-toggle-btn{color:#fff}
+      .admin-topbar .lang-menu button{color:#333}
       /* dark theme */
       [data-theme="dark"] body,[data-theme="dark"] .admin-body,[data-theme="dark"] .admin-wrapper,[data-theme="dark"] .admin-main,[data-theme="dark"] .admin-content{background:#0A0A1F!important;color:#EDECFF}
       [data-theme="dark"] .admin-topbar,[data-theme="dark"] .admin-sidebar,[data-theme="dark"] .card,[data-theme="dark"] .admin-card,[data-theme="dark"] .stat-card,[data-theme="dark"] .dropdown-menu,[data-theme="dark"] .admin-page-header{background:#171433!important;color:#EDECFF!important;border-color:#2C2860!important}
