@@ -147,7 +147,7 @@
       .admin-sidebar.collapsed .sidebar-brand > div:first-child{display:flex!important;padding-left:10px!important;align-items:center}
       .admin-sidebar.collapsed .sidebar-brand > div:first-child span{display:none!important}
       /* RTL: Use padding-right for RTL languages */
-      [dir="rtl"] .admin-sidebar.collapsed .sidebar-brand > div:first-child{padding-left:0!important;padding-right:10px!important}
+      [dir="rtl"] .admin-sidebar.collapsed .sidebar-brand > div:first-child{padding-left:0!important;padding-right:0!important}
       [dir="rtl"] .admin-sidebar.collapsed .sidebar-brand{padding-right:0!important}
       /* RTL sidebar brand padding when expanded */
       [dir="rtl"] .admin-sidebar .sidebar-brand{padding-left:0!important;padding-right:1rem!important}
