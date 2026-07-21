@@ -59,13 +59,14 @@
       .gt-btn,.theme-toggle-btn{display:inline-flex;align-items:center;gap:7px;font-size:.9rem;font-weight:500;color:#333;background:#fff;border:1px solid #e2e2e8;border-radius:20px;padding:7px 14px;cursor:pointer;transition:border-color .18s,background .18s}
       .theme-toggle-btn{width:38px;height:38px;justify-content:center;border-radius:50%;padding:0}
       .gt-btn:hover,.theme-toggle-btn:hover{border-color:#4F2FE8}
-      .lang-menu{position:absolute;top:44px;right:0;z-index:1050;background:#fff;border:1px solid #e2e2e8;border-radius:12px;padding:6px;display:none;box-shadow:0 24px 60px -30px rgba(0,0,0,.3);max-height:360px;overflow:auto;min-width:170px}
+      .lang-menu{position:absolute;top:64px;right:0;z-index:1050;background:#fff;border:1px solid #e2e2e8;border-radius:12px;padding:6px;display:none;box-shadow:0 24px 60px -30px rgba(0,0,0,.3);max-height:360px;overflow:auto;min-width:170px}
       body.gt-open .lang-menu{display:block}
       .lang-menu button{display:block;width:100%;text-align:left;background:none;border:0;color:#333;font-size:14.5px;padding:9px 14px;border-radius:8px;cursor:pointer}
       .lang-menu button:hover{background:#f4f4f9}
       [data-theme="dark"] .lang-menu{background:#171433;border-color:#2C2860}
       [data-theme="dark"] .lang-menu button{color:#EDECFF}
       [data-theme="dark"] .lang-menu button:hover{background:#1E1A44}
+      [data-theme="dark"] .admin-topbar .gt-btn,[data-theme="dark"] .admin-topbar .theme-toggle-btn{color:#fff}
       .goog-te-banner-frame,.skiptranslate iframe{display:none!important}
       body{top:0!important}
       font font{background:transparent!important;box-shadow:none!important}
