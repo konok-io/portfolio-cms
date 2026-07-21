@@ -143,10 +143,10 @@
       .admin-sidebar.collapsed .badge.ms-auto{display:none!important}
       .admin-sidebar .sidebar-brand{padding:1rem 0.5rem 1rem 1rem}
       .admin-sidebar .site-logo-icon{font-size:1.2rem}
-      .admin-sidebar.collapsed .sidebar-brand{justify-content:center;padding:1rem}
-      .admin-sidebar.collapsed .sidebar-brand > div{display:none}
-      .admin-sidebar.collapsed .sidebar-brand .sidebar-collapse-btn{
-        margin:0;position:absolute;right:50%;transform:translateX(50%)
+      .admin-sidebar.collapsed .sidebar-brand{justify-content:center;padding:0!important}
+      .admin-sidebar.collapsed .sidebar-brand > div:first-child{display:none}
+      .admin-sidebar.collapsed .sidebar-collapse-btn{
+        margin:0;position:static;transform:none;display:flex!important;align-items:center;justify-content:center
       }
       .admin-sidebar.collapsed .nav-link i{font-size:1.1rem}
       /* Mobile sidebar header */
@@ -159,14 +159,14 @@
         background:transparent;
         border:1px solid rgba(255,255,255,0.25);
         cursor:pointer;
-        padding:3px 5px;
+        padding:5px 7px;
         border-radius:5px;
         transition:all .25s ease;
         display:flex;
         align-items:center;
         justify-content:center;
-        min-width:20px;
-        min-height:20px;
+        min-width:26px;
+        min-height:26px;
       }
       .sidebar-collapse-btn i{color:#fff!important;font-size:11px!important}
       .sidebar-collapse-btn:hover{
@@ -180,16 +180,16 @@
         border-color:rgba(255,255,255,0.2)
       }
       [data-theme="dark"] .sidebar-collapse-btn i{color:#fff!important}
-      .admin-sidebar.collapsed ~ .admin-content{margin-left:70px}
+      .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important}
       /* RTL support */
       [dir="rtl"] .admin-sidebar{left:auto;right:0}
       [dir="rtl"] .admin-sidebar.collapsed{width:70px!important}
-      [dir="rtl"] .admin-sidebar.collapsed ~ .admin-content{margin-left:0;margin-right:70px}
+      [dir="rtl"] .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important;margin-right:0!important}
       /* Language-specific sidebar collapse */
-      body.TEWGTB-BANGLA .admin-sidebar.collapsed ~ .admin-content{margin-left:70px!important}
-      body.TEWGTB-ARABIC .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important;margin-right:70px!important}
-      body.TEWGTB-URDU .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important;margin-right:70px!important}
-      body.TEWGTB-HINDI .admin-sidebar.collapsed ~ .admin-content{margin-left:70px!important}
+      body.TEWGTB-BANGLA .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important}
+      body.TEWGTB-ARABIC .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important;margin-right:0!important}
+      body.TEWGTB-URDU .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important;margin-right:0!important}
+      body.TEWGTB-HINDI .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important}
       .admin-sidebar{display:flex;flex-direction:column;min-height:100vh}
       .admin-sidebar .nav::-webkit-scrollbar{display:none}
       .admin-sidebar .nav{-ms-overflow-style:none;scrollbar-width:none}
