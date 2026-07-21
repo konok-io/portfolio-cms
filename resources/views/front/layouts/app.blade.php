@@ -47,9 +47,10 @@
     <script>(function(){try{var t=localStorage.getItem('pc-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
     <script>(function(){try{var m=document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);var l=m?m[1]:'en';var rtl=['ar','ur','fa','he','ps','sd'];if(rtl.indexOf(l)>=0){document.documentElement.setAttribute('dir','rtl');}else{document.documentElement.setAttribute('dir','ltr');}}catch(e){}})();</script>
     <style>
-      /* Hide content until Google Translate finishes */
-      body { opacity: 0; transition: opacity 0.3s ease-in-out; }
-      body.gt-ready, body.TEWGTB-BANGLA, body.TEWGTB-ARABIC, body.TEWGTB-URDU, body.TEWGTB-HINDI, body.TEWGTB-FILIPINO { opacity: 1 !important; }
+      /* Hide content until translation is complete */
+      body:not(.translation-done) .main-content { display: none; }
+      body.translation-done .main-content { display: block !important; }
+      body.translation-done { opacity: 1 !important; }
       .gtranslate-wrap{position:relative}
       .gt-btn,.theme-toggle-btn{display:inline-flex;align-items:center;gap:7px;font-size:.9rem;font-weight:500;color:inherit;background:transparent;border:1px solid rgba(125,125,150,.3);border-radius:20px;padding:6px 13px;cursor:pointer}
       .theme-toggle-btn{width:38px;height:38px;justify-content:center;border-radius:50%;padding:0}
@@ -129,9 +130,11 @@
 
     @include('front.partials.navbar')
 
+    <div class="main-content">
     <main>
         @yield('content')
     </main>
+    </div>
 
     @include('front.partials.footer')
 
@@ -200,7 +203,70 @@
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script>
-// Apply language-specific fonts and show content after translation
+// Wait for Google Translate to finish, then reload
+(function() {
+  function checkTranslation() {
+    // Check if Google Translate has finished
+    var frame = document.querySelector('.goog-te-banner-frame');
+    if (frame) {
+      frame.style.display = 'none';
+    }
+    
+    // Check if translation is complete by looking for translated elements
+    var lang = document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);
+    if (lang && lang[1] && lang[1] !== 'en') {
+      // Wait for translation to complete
+      var translateFrame = document.querySelector('.goog-text-highlight');
+      var bannerFrame = document.querySelector('.goog-te-banner-frame');
+      var completionDiv = document.querySelector('[id^="goog-gt-"]');
+      
+      // If no banner and no completion div, translation is likely done
+      if (!bannerFrame && !completionDiv) {
+        // Also check if the frame is hidden
+        var allFrames = document.querySelectorAll('iframe');
+        var bannerVisible = false;
+        allFrames.forEach(function(f) {
+          if (f.style.display !== 'none' && f.src && f.src.indexOf('translate') > -1) {
+            bannerVisible = true;
+          }
+        });
+        
+        if (!bannerVisible) {
+          document.body.classList.add('translation-done');
+          return true;
+        }
+      }
+    } else {
+      // English - show immediately
+      document.body.classList.add('translation-done');
+      return true;
+    }
+    return false;
+  }
+  
+  // Initial check
+  if (checkTranslation()) return;
+  
+  // Keep checking until done
+  var attempts = 0;
+  var interval = setInterval(function() {
+    attempts++;
+    if (checkTranslation() || attempts > 60) { // 60 attempts = ~3 seconds max
+      clearInterval(interval);
+      if (attempts > 60) {
+        document.body.classList.add('translation-done');
+      }
+    }
+  }, 50);
+  
+  // Additional: Force show after 3 seconds
+  setTimeout(function() {
+    document.body.classList.add('translation-done');
+  }, 3000);
+})();
+</script>
+<script>
+// Apply language-specific fonts
 (function() {
   function applyFonts() {
     var m = document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);
@@ -221,9 +287,6 @@
       document.body.classList.remove('TEWGTB-BANGLA');
       document.body.classList.remove('TEWGTB-ARABIC');
     }
-    
-    // Show content after translation
-    document.body.classList.add('gt-ready');
   }
   
   // Apply on page load
@@ -232,14 +295,10 @@
   // Watch for language changes
   setInterval(applyFonts, 500);
   
-  // Fallback: show content after 3 seconds regardless
-  setTimeout(function() {
-    document.body.classList.add('gt-ready');
-  }, 3000);
-  
   // Also apply when translation happens
   var observer = new MutationObserver(applyFonts);
   observer.observe(document.body, { childList: true, subtree: true });
+
 })();
 </script>
 </body>
