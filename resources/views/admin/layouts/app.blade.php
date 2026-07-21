@@ -135,7 +135,8 @@
       [data-theme="dark"] .btn-link{color:#22D3EE!important}
       [data-theme="dark"] .btn-close{filter:invert(1) grayscale(100%) brightness(200%)}
       [data-theme="dark"] .admin-sidebar .nav-link{color:#9B98C7}
-      [data-theme="dark"] .admin-sidebar .nav-link:hover,[data-theme="dark"] .admin-sidebar .nav-link.active{color:#fff;background:linear-gradient(135deg,#4F2FE8,#7C3AED)}
+      [data-theme="dark"] .admin-sidebar .nav-link:hover{color:#fff;background:rgba(79,47,232,0.25)}
+      [data-theme="dark"] .admin-sidebar .nav-link.active{color:#fff;background:linear-gradient(135deg,#4F2FE8,#7C3AED)}
       /* Sidebar collapse styles */
       .admin-sidebar.collapsed{width:70px!important}
       .admin-sidebar.collapsed .sidebar-brand span,
