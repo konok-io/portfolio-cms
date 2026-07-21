@@ -119,8 +119,10 @@
       .admin-sidebar.collapsed .nav-section-title > span,
       .admin-sidebar.collapsed .nav-link > span,
       .admin-sidebar.collapsed .badge.ms-auto{display:none!important}
-      .admin-sidebar .sidebar-brand{justify-content:flex-end;padding-right:0}
-      .admin-sidebar.collapsed .sidebar-brand{justify-content:center;padding:1rem}
+      .admin-sidebar .sidebar-brand{padding:1rem}
+      .admin-sidebar.collapsed .sidebar-brand{justify-content:center}
+      .admin-sidebar.collapsed .sidebar-brand > div{display:none}
+      .admin-sidebar.collapsed .sidebar-brand .sidebar-collapse-btn{margin:0}
       .admin-sidebar.collapsed .nav-link i{font-size:1.1rem}
       .sidebar-collapse-btn{
         background:transparent;
@@ -164,10 +166,12 @@
 
     {{-- ============ SIDEBAR ============ --}}
     <aside class="admin-sidebar">
-        <div class="sidebar-brand">
-            <i class="fa-solid fa-circle-nodes"></i>
-            <span>{{ $siteSetting->site_name ?? 'Portfolio CMS' }}</span>
-            <button type="button" class="sidebar-collapse-btn ms-auto" onclick="toggleSidebarCollapse()" title="Toggle Sidebar">
+        <div class="sidebar-brand d-flex align-items-center justify-content-between w-100">
+            <div class="d-flex align-items-center gap-2">
+                <i class="fa-solid fa-circle-nodes"></i>
+                <span>{{ $siteSetting->site_name ?? 'Portfolio CMS' }}</span>
+            </div>
+            <button type="button" class="sidebar-collapse-btn" onclick="toggleSidebarCollapse()" title="Toggle Sidebar">
                 <i class="fa-solid fa-chevron-left collapse-icon" id="sidebarCollapseIcon"></i>
                 <i class="fa-solid fa-chevron-right btn-icon" id="sidebarExpandIcon" style="display:none"></i>
             </button>
