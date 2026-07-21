@@ -43,7 +43,7 @@ class ProjectSeeder extends Seeder
                 'client_name' => fake()->company(),
                 'project_url' => 'https://example.com',
                 'technologies' => 'Laravel, MySQL, Bootstrap 5, jQuery',
-                'description' => '<p>'.fake()->paragraphs(4, true).'</p>',
+                'description' => fake()->paragraphs(4, true),
                 'status' => 'completed',
                 'is_featured' => $index < 4,
                 'is_active' => true,
