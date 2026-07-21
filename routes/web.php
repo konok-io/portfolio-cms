@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AnalyticsController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\CertificationController;
-use App\Http\Controllers\Admin\CustomPageController;
+use App\Http\Controllers\Admin\CustomPageController as AdminCustomPageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\ExperienceController;
@@ -188,7 +188,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::resource('certifications', CertificationController::class);
     
     // Custom Pages (Admin only - for CRUD)
-    Route::resource('custom-pages', CustomPageController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+    Route::resource('custom-pages', AdminCustomPageController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
 });
 
 // Custom Pages (Public - for viewing)
