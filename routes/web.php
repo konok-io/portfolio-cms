@@ -1,25 +1,33 @@
 <?php
 
 use App\Http\Controllers\Admin\AboutController;
+use App\Http\Controllers\Admin\AnalyticsController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
+use App\Http\Controllers\Admin\CertificationController;
+use App\Http\Controllers\Admin\CustomPageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\ExperienceController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\NewsletterCampaignController;
 use App\Http\Controllers\Admin\PricingController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
+use App\Http\Controllers\Admin\ResumeController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SeoController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SkillController;
+use App\Http\Controllers\Admin\StatisticController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Front\BlogController;
 use App\Http\Controllers\Front\ContactController;
+use App\Http\Controllers\Front\CustomPageController;
 use App\Http\Controllers\Front\FaqController as FrontFaqController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PricingController as FrontPricingController;
@@ -27,6 +35,7 @@ use App\Http\Controllers\Front\ProjectController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\RobotsTxtController;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\SubscriberController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -144,7 +153,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::get('/license', [\App\Http\Controllers\Admin\LicenseController::class, 'index'])->name('license.index');
 
     // Analytics
-    Route::get('/analytics', [\App\Http\Controllers\Admin\AnalyticsController::class, 'index'])->name('analytics.index');
+    Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics.index');
 
     // SEO Settings
     Route::get('/seo', [SeoController::class, 'edit'])->name('seo.edit');
@@ -161,10 +170,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::resource('pricing', PricingController::class)->except(['show']);
     
     // Resume Builder
-    Route::get('/resume', [\App\Http\Controllers\Admin\ResumeController::class, 'index'])->name('resume.index');
-    Route::put('/resume', [\App\Http\Controllers\Admin\ResumeController::class, 'update'])->name('resume.update');
-    Route::get('/resume/preview', [\App\Http\Controllers\Admin\ResumeController::class, 'preview'])->name('resume.preview');
-    Route::get('/resume/download', [\App\Http\Controllers\Admin\ResumeController::class, 'download'])->name('resume.download');
+    Route::get('/resume', [ResumeController::class, 'index'])->name('resume.index');
+    Route::put('/resume', [ResumeController::class, 'update'])->name('resume.update');
+    Route::get('/resume/preview', [ResumeController::class, 'preview'])->name('resume.preview');
+    Route::get('/resume/download', [ResumeController::class, 'download'])->name('resume.download');
     
     // Newsletter Campaigns
     Route::resource('newsletter', NewsletterCampaignController::class);
@@ -183,7 +192,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
 });
 
 // Custom Pages (Public - for viewing)
-Route::get('/{page:slug}', [\App\Http\Controllers\Front\CustomPageController::class, 'show'])->name('page.show');
+Route::get('/{page:slug}', [CustomPageController::class, 'show'])->name('page.show');
 
 /*
 |--------------------------------------------------------------------------
