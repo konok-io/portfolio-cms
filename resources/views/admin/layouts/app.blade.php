@@ -127,14 +127,14 @@
         border:1px solid rgba(226,232,240,0.8);
         color:#64748b;
         cursor:pointer;
-        padding:8px 10px;
-        border-radius:10px;
+        padding:5px 7px;
+        border-radius:8px;
         transition:all .3s cubic-bezier(0.4,0,0.2,1);
         display:flex;
         align-items:center;
         justify-content:center;
-        min-width:36px;
-        min-height:36px;
+        min-width:28px;
+        min-height:28px;
         box-shadow:0 2px 8px rgba(0,0,0,0.06)
       }
       .sidebar-collapse-btn:hover{
