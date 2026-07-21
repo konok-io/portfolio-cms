@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container py-3">
-    <div class="row mb-4">
+    <div class="row mb-3">
         <div class="col-12 d-flex justify-content-between align-items-center">
             <h1 class="h3 mb-0">
                 <i class="fa-solid fa-file-pdf me-2 text-primary"></i>
@@ -21,24 +21,50 @@
         </div>
     </div>
 
+    <!-- Template Preview - Full Width -->
+    <div class="card border-0 shadow-sm mb-3">
+        <div class="card-body p-2">
+            <div class="template-preview">
+                <div class="templates-row">
+                    <div class="template-box modern {{ $settings->template === 'modern' ? 'selected' : '' }}" data-template="modern">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <span>Modern</span>
+                    </div>
+                    <div class="template-box creative {{ $settings->template === 'creative' ? 'selected' : '' }}" data-template="creative">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span>Creative</span>
+                    </div>
+                    <div class="template-box tech {{ $settings->template === 'tech' ? 'selected' : '' }}" data-template="tech">
+                        <i class="fa-solid fa-microchip"></i>
+                        <span>Tech</span>
+                    </div>
+                    <div class="template-box corporate {{ $settings->template === 'corporate' ? 'selected' : '' }}" data-template="corporate">
+                        <i class="fa-solid fa-building"></i>
+                        <span>Corporate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <form action="{{ route('admin.resume.update') }}" method="POST">
         @csrf
         @method('PUT')
         
-        <div class="row g-4">
+        <div class="row g-3">
             <!-- Template Settings -->
             <div class="col-lg-6">
                 <div class="card border-0 shadow-sm h-100">
-                    <div class="card-header bg-white py-3">
-                        <h5 class="mb-0">
+                    <div class="card-header bg-white py-2">
+                        <h6 class="mb-0">
                             <i class="fa-solid fa-palette me-2 text-primary"></i>
                             Template Settings
-                        </h5>
+                        </h6>
                     </div>
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <label for="template" class="form-label">CV Template</label>
-                            <select class="form-select @error('template') is-invalid @enderror" id="template" name="template">
+                    <div class="card-body pt-2">
+                        <div class="mb-2">
+                            <label for="template" class="form-label small">CV Template</label>
+                            <select class="form-select form-select-sm @error('template') is-invalid @enderror" id="template" name="template">
                                 <option value="modern" {{ old('template', $settings->template) == 'modern' ? 'selected' : '' }}>Modern</option>
                                 <option value="creative" {{ old('template', $settings->template) == 'creative' ? 'selected' : '' }}>Creative</option>
                                 <option value="tech" {{ old('template', $settings->template) == 'tech' ? 'selected' : '' }}>Tech</option>
@@ -49,49 +75,19 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
-                            <label for="primary_color" class="form-label">Primary Color</label>
+                        <div class="mb-2">
+                            <label for="primary_color" class="form-label small">Primary Color</label>
                             <div class="d-flex gap-2">
-                                <input type="color" class="form-control form-control-color" 
+                                <input type="color" class="form-control form-control-color form-control-sm" 
                                        id="primary_color" name="primary_color" 
                                        value="{{ old('primary_color', $settings->primary_color) }}">
-                                <input type="text" class="form-control" id="primary_color_text" 
+                                <input type="text" class="form-control form-control-sm" id="primary_color_text" 
                                        value="{{ old('primary_color', $settings->primary_color) }}"
                                        pattern="^#[0-9A-Fa-f]{6}$">
                             </div>
                             @error('primary_color')
                                 <div class="text-danger small mt-1">{{ $message }}</div>
                             @enderror
-                        </div>
-
-                        <div class="template-preview mt-4">
-                            <h6 class="text-muted mb-3">Template Preview</h6>
-                            <div class="row g-2 templates-row">
-                                <div class="col-3">
-                                    <div class="template-box modern {{ $settings->template === 'modern' ? 'selected' : '' }}" data-template="modern">
-                                        <i class="fa-solid fa-file-lines"></i>
-                                        <span>Modern</span>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="template-box creative {{ $settings->template === 'creative' ? 'selected' : '' }}" data-template="creative">
-                                        <i class="fa-solid fa-wand-magic-sparkles"></i>
-                                        <span>Creative</span>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="template-box tech {{ $settings->template === 'tech' ? 'selected' : '' }}" data-template="tech">
-                                        <i class="fa-solid fa-microchip"></i>
-                                        <span>Tech</span>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="template-box corporate {{ $settings->template === 'corporate' ? 'selected' : '' }}" data-template="corporate">
-                                        <i class="fa-solid fa-building"></i>
-                                        <span>Corporate</span>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -183,25 +179,25 @@
 
 @push('styles')
 <style>
+.template-preview {
+    width: 100%;
+}
 .template-preview .templates-row {
     display: flex;
     flex-wrap: nowrap;
-    gap: 0.5rem;
-}
-.template-preview .templates-row .col-3 {
-    flex: 0 0 auto;
-    width: 25%;
-    padding-left: 0;
-    padding-right: 0;
+    justify-content: space-between;
+    gap: 0.75rem;
 }
 
 .template-box {
+    flex: 1;
     border: 2px solid #e2e8f0;
     border-radius: 6px;
-    padding: 0.4rem 0.25rem;
+    padding: 0.5rem;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    max-width: 150px;
 }
 
 .template-box:hover {
@@ -214,9 +210,10 @@
 }
 
 .template-box i {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     margin-bottom: 0.25rem;
     color: #64748b;
+    display: block;
 }
 
 .template-box.selected i {
@@ -225,7 +222,7 @@
 
 .template-box span {
     display: block;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 600;
 }
 </style>
