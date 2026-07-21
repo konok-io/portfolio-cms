@@ -3,66 +3,6 @@
    Design tokens
    ========================================================= */
 
-/* ========== FONT ICON PROTECTION ========== */
-/* Ensure Font Awesome icons are always visible and properly styled */
-[class*="fa-"],
-[class*="fab"],
-[class*="fas"],
-[class*="far"],
-[class*="fal"],
-[class*="fat"],
-[class*="fak"],
-[class*="flaticon"],
-[class*="fi-"],
-[class*="icon-"] {
-  font-family: 'Font Awesome 6 Pro', 'Font Awesome 6 Free', 'FontAwesome', 'Font Awesome 5 Pro', 'Font Awesome 5 Free' !important;
-  font-style: normal !important;
-  font-weight: 400 !important;
-  display: inline-block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  filter: none !important;
-}
-
-/* Fix Google Translate wrapping issues with icons */
-body * [class*="fa-"],
-body * [class*="fab"],
-body * [class*="fas"],
-body * [class*="far"],
-body * [class*="fal"],
-body * [class*="fat"],
-body * [class*="fak"] {
-  font-family: 'Font Awesome 6 Pro', 'Font Awesome 6 Free', 'FontAwesome', 'Font Awesome 5 Pro', 'Font Awesome 5 Free' !important;
-  visibility: visible !important;
-  display: inline-block !important;
-  opacity: 1 !important;
-}
-
-/* Fix Google Translate injected elements */
-.goog-te-banner-frame,
-.goog-te-combo,
-#goog-gt-tt,
-.goog-text-highlight {
-  display: none !important;
-}
-
-/* Fix translated content font issues */
-.TEWGTB-BANGLA [class*="fa-"],
-.TEWGTB-ARABIC [class*="fa-"],
-.TEWGTB-BANGLA [class*="fab"],
-.TEWGTB-ARABIC [class*="fab"],
-.TEWGTB-BANGLA [class*="fas"],
-.TEWGTB-ARABIC [class*="fas"],
-.TEWGTB-BANGLA [class*="far"],
-.TEWGTB-ARABIC [class*="far"] {
-  font-family: 'Font Awesome 6 Pro', 'Font Awesome 6 Free', 'FontAwesome' !important;
-  visibility: visible !important;
-  display: inline-block !important;
-  opacity: 1 !important;
-}
-
-/* ========== END FONT ICON PROTECTION ========== */
-
 /* English Font - Default website font */
 @font-face {
   font-family: 'English';

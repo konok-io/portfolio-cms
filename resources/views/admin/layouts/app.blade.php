@@ -36,12 +36,13 @@
           var isRtl=rtl.indexOf(l)>=0;
           document.documentElement.setAttribute('dir',isRtl?'rtl':'ltr');
           // Apply language-specific font classes
-          document.body.classList.remove('TEWGTB-BANGLA','TEWGTB-ARABIC','TEWGTB-URDU','TEWGTB-HINDI','TEWGTB-FILIPINO');
-          if(l==='bn')document.body.classList.add('TEWGTB-BANGLA');
-          else if(l==='ar')document.body.classList.add('TEWGTB-ARABIC');
-          else if(l==='ur')document.body.classList.add('TEWGTB-URDU');
-          else if(l==='hi')document.body.classList.add('TEWGTB-HINDI');
-          else if(l==='tl')document.body.classList.add('TEWGTB-FILIPINO');
+          var body=document.body;
+          body.classList.remove('TEWGTB-BANGLA','TEWGTB-ARABIC','TEWGTB-URDU','TEWGTB-HINDI','TEWGTB-FILIPINO');
+          if(l==='bn'||l==='bengali')body.classList.add('TEWGTB-BANGLA');
+          else if(l==='ar'||l==='arabic')body.classList.add('TEWGTB-ARABIC');
+          else if(l==='ur'||l==='urdu')body.classList.add('TEWGTB-URDU');
+          else if(l==='hi'||l==='hindi')body.classList.add('TEWGTB-HINDI');
+          else if(l==='tl'||l==='filipino')body.classList.add('TEWGTB-FILIPINO');
           // RTL: flip collapse icons
           if(isRtl){
             var collapseIcon=document.getElementById('sidebarCollapseIcon');
@@ -184,6 +185,11 @@
       [dir="rtl"] .admin-sidebar{left:auto;right:0}
       [dir="rtl"] .admin-sidebar.collapsed{width:70px!important}
       [dir="rtl"] .admin-sidebar.collapsed ~ .admin-content{margin-left:0;margin-right:70px}
+      /* Language-specific sidebar collapse */
+      body.TEWGTB-BANGLA .admin-sidebar.collapsed ~ .admin-content{margin-left:70px!important}
+      body.TEWGTB-ARABIC .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important;margin-right:70px!important}
+      body.TEWGTB-URDU .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important;margin-right:70px!important}
+      body.TEWGTB-HINDI .admin-sidebar.collapsed ~ .admin-content{margin-left:70px!important}
       .admin-sidebar{display:flex;flex-direction:column;min-height:100vh}
       .admin-sidebar .nav::-webkit-scrollbar{display:none}
       .admin-sidebar .nav{-ms-overflow-style:none;scrollbar-width:none}
