@@ -487,9 +487,11 @@
 // Wait for Google Translate to finish, then show content
 (function() {
   var loader = document.getElementById('translationLoader');
+  var loaderHidden = false;
   
   function hideLoader() {
-    if (loader) {
+    if (loader && !loaderHidden) {
+      loaderHidden = true;
       loader.classList.add('hidden');
       setTimeout(function() {
         loader.style.display = 'none';
@@ -497,49 +499,45 @@
     }
   }
   
-  function checkTranslation() {
+  function checkTranslationComplete() {
     var lang = document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);
-    if (lang && lang[1] && lang[1] !== 'en') {
-      var bannerFrame = document.querySelector('.goog-te-banner-frame');
-      var completionDiv = document.querySelector('[id^="goog-gt-"]');
-      
-      if (!bannerFrame && !completionDiv) {
-        var allFrames = document.querySelectorAll('iframe');
-        var bannerVisible = false;
-        allFrames.forEach(function(f) {
-          if (f.style.display !== 'none' && f.src && f.src.indexOf('translate') > -1) {
-            bannerVisible = true;
-          }
-        });
-        
-        if (!bannerVisible) {
-          hideLoader();
-          return true;
-        }
-      }
-    } else {
+    
+    if (!lang || !lang[1] || lang[1] === 'en') {
       hideLoader();
       return true;
     }
+    
+    var bannerFrame = document.querySelector('.goog-te-banner-frame');
+    var completionDiv = document.querySelector('[id^="goog-gt-"]');
+    var translateIndicator = document.querySelector('.goog-te-indicator');
+    var translatedElements = document.querySelectorAll('.goog-text-highlight');
+    
+    if (!bannerFrame && !completionDiv && !translateIndicator && translatedElements.length > 0) {
+      setTimeout(function() {
+        hideLoader();
+      }, 500);
+      return true;
+    }
+    
     return false;
   }
   
-  if (checkTranslation()) return;
-  
-  var attempts = 0;
-  var interval = setInterval(function() {
-    attempts++;
-    if (checkTranslation() || attempts > 60) {
-      clearInterval(interval);
-      hideLoader();
-    }
-  }, 50);
-  
-  // Force hide after 3 seconds
   setTimeout(function() {
-    clearInterval(interval);
+    if (checkTranslationComplete()) return;
+    
+    var attempts = 0;
+    var interval = setInterval(function() {
+      attempts++;
+      if (checkTranslationComplete() || attempts > 100) {
+        clearInterval(interval);
+        hideLoader();
+      }
+    }, 100);
+  }, 500);
+  
+  setTimeout(function() {
     hideLoader();
-  }, 3000);
+  }, 8000);
 })();
 </script>
 <script>

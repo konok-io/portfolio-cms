@@ -236,9 +236,11 @@
 // Wait for Google Translate to finish, then show content
 (function() {
   var loader = document.getElementById('translationLoader');
+  var loaderHidden = false;
   
   function hideLoader() {
-    if (loader) {
+    if (loader && !loaderHidden) {
+      loaderHidden = true;
       loader.classList.add('hidden');
       setTimeout(function() {
         loader.style.display = 'none';
@@ -246,49 +248,54 @@
     }
   }
   
-  function checkTranslation() {
+  function checkTranslationComplete() {
     var lang = document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);
-    if (lang && lang[1] && lang[1] !== 'en') {
-      var bannerFrame = document.querySelector('.goog-te-banner-frame');
-      var completionDiv = document.querySelector('[id^="goog-gt-"]');
-      
-      if (!bannerFrame && !completionDiv) {
-        var allFrames = document.querySelectorAll('iframe');
-        var bannerVisible = false;
-        allFrames.forEach(function(f) {
-          if (f.style.display !== 'none' && f.src && f.src.indexOf('translate') > -1) {
-            bannerVisible = true;
-          }
-        });
-        
-        if (!bannerVisible) {
-          hideLoader();
-          return true;
-        }
-      }
-    } else {
+    
+    if (!lang || !lang[1] || lang[1] === 'en') {
+      // English - show immediately
       hideLoader();
       return true;
     }
+    
+    // Check if Google Translate has completed
+    var bannerFrame = document.querySelector('.goog-te-banner-frame');
+    var completionDiv = document.querySelector('[id^="goog-gt-"]');
+    var translateIndicator = document.querySelector('.goog-te-indicator');
+    
+    // Check if translation has been applied (look for highlight class)
+    var translatedElements = document.querySelectorAll('.goog-text-highlight');
+    
+    // If banner is gone and we have translated elements, translation is done
+    if (!bannerFrame && !completionDiv && !translateIndicator && translatedElements.length > 0) {
+      // Double check - wait a bit more to ensure DOM is updated
+      setTimeout(function() {
+        hideLoader();
+      }, 500);
+      return true;
+    }
+    
     return false;
   }
   
-  if (checkTranslation()) return;
-  
-  var attempts = 0;
-  var interval = setInterval(function() {
-    attempts++;
-    if (checkTranslation() || attempts > 60) {
-      clearInterval(interval);
-      hideLoader();
-    }
-  }, 50);
-  
-  // Force hide after 3 seconds
+  // Initial check after page load
   setTimeout(function() {
-    clearInterval(interval);
+    if (checkTranslationComplete()) return;
+    
+    // Keep checking
+    var attempts = 0;
+    var interval = setInterval(function() {
+      attempts++;
+      if (checkTranslationComplete() || attempts > 100) {
+        clearInterval(interval);
+        hideLoader();
+      }
+    }, 100);
+  }, 500); // Wait 500ms for Google Translate to initialize
+  
+  // Force hide after 8 seconds max
+  setTimeout(function() {
     hideLoader();
-  }, 3000);
+  }, 8000);
 })();
 </script>
 <script>
