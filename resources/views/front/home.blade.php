@@ -56,10 +56,10 @@
      ========================================================= --}}
 <section id="about" class="section-padding">
     <div class="container">
-        <div class="row gy-5 align-items-center">
-            <div class="col-lg-3 reveal-on-scroll">
+        <div class="row gy-5 align-items-stretch">
+            <div class="col-lg-3 reveal-on-scroll d-flex">
                 <img src="{{ $about->photo_url ?? 'https://ui-avatars.com/api/?name=About&size=500&background=0F172A&color=fff' }}"
-                     alt="About {{ $about->name ?? '' }}" class="img-fluid rounded-4 shadow-sm w-100" style="max-height: 350px; object-fit: cover;">
+                     alt="About {{ $about->name ?? '' }}" class="img-fluid rounded-4 shadow-sm w-100" style="height: 100%; object-fit: cover;">
             </div>
             <div class="col-lg-9 reveal-on-scroll is-visible">
                 <span class="section-eyebrow">About Me</span>
