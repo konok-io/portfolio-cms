@@ -57,11 +57,11 @@
 <section id="about" class="section-padding">
     <div class="container">
         <div class="row gy-5 align-items-center">
-            <div class="col-lg-5 reveal-on-scroll">
+            <div class="col-lg-4 reveal-on-scroll">
                 <img src="{{ $about->photo_url ?? 'https://ui-avatars.com/api/?name=About&size=500&background=0F172A&color=fff' }}"
                      alt="About {{ $about->name ?? '' }}" class="img-fluid rounded-4 shadow-sm w-100" style="max-height: 400px; object-fit: cover;">
             </div>
-            <div class="col-lg-7 reveal-on-scroll is-visible">
+            <div class="col-lg-8 reveal-on-scroll is-visible">
                 <span class="section-eyebrow">About Me</span>
                 <h2 class="section-title mb-4">A little about my background &amp; approach</h2>
                 <p class="text-muted mb-4">{{ strip_tags($about->description ?? 'I am a dedicated developer focused on building reliable, user-friendly software.') }}</p>
