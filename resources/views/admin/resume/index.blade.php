@@ -183,40 +183,23 @@
 
 @push('styles')
 <style>
-.template-preview {
-    overflow-x: auto;
-}
 .template-preview .templates-row {
     display: flex;
     flex-wrap: nowrap;
-    gap: 0.75rem;
+    gap: 0.5rem;
 }
 .template-preview .templates-row .col-3 {
     flex: 0 0 auto;
     width: 25%;
 }
-@media (max-width: 991px) {
-    .template-preview .templates-row {
-        flex-wrap: wrap;
-    }
-    .template-preview .templates-row .col-3 {
-        width: 48%;
-    }
-}
-@media (max-width: 576px) {
-    .template-preview .templates-row .col-3 {
-        width: 100%;
-    }
-}
 
 .template-box {
     border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 1rem;
+    border-radius: 6px;
+    padding: 0.5rem;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    height: 100%;
 }
 
 .template-box:hover {
@@ -225,12 +208,12 @@
 
 .template-box.selected {
     border-color: #2563eb;
-    background: rgba(37, 99, 235, 0.05);
+    background: rgba(37, 99, 235, 0.08);
 }
 
 .template-box i {
-    font-size: 1.75rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
     color: #64748b;
 }
 
@@ -240,7 +223,7 @@
 
 .template-box span {
     display: block;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: 600;
 }
 </style>
