@@ -28,7 +28,7 @@
             <div class="reveal-on-scroll" style="width: var(--text-col); flex: 0 0 var(--text-col);">
                 <span class="section-eyebrow">{{ $about->title ?? 'Web Developer' }}</span>
                 <h2 class="section-title mb-4">Hi, I'm {{ $about->name ?? 'Your Name' }}</h2>
-                <p class="text-muted mb-4 text-justify">{{ strip_tags($about->description ?? 'I am a dedicated developer focused on building reliable, user-friendly software.') }}</p>
+                <p class="text-muted mb-4" style="text-align: justify;">{{ strip_tags($about->description ?? 'I am a dedicated developer focused on building reliable, user-friendly software.') }}</p>
 
                 <div class="row g-3 mb-4">
                     <div class="col-4">
@@ -81,7 +81,7 @@
                                 <a href="{{ $about->instagram }}" target="_blank" class="btn btn-sm btn-outline-custom d-flex align-items-center justify-content-center" style="width:36px;height:36px;padding:0;"><i class="fa-brands fa-instagram"></i></a>
                             @endif
                             @if($about->cv_url ?? false)
-                                <a href="{{ $about->cv_url }}" target="_blank" class="btn btn-sm d-flex align-items-center justify-content-center" style="width:36px;height:36px;padding:0;background:var(--bs-secondary-bg);color:var(--bs-secondary-color);border:1px solid var(--bs-border-color);">
+                                <a href="{{ $about->cv_url }}" target="_blank" class="btn btn-sm d-flex align-items-center justify-content-center text-white" style="width:36px;height:36px;padding:0;background:#dc3545;">
                                     <i class="fa-solid fa-file-lines"></i>
                                 </a>
                             @endif
