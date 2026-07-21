@@ -146,6 +146,8 @@
       .admin-sidebar.collapsed .sidebar-brand{justify-content:center;padding:0!important}
       .admin-sidebar.collapsed .sidebar-brand > div:first-child{display:flex!important;padding-left:10px!important;align-items:center}
       .admin-sidebar.collapsed .sidebar-brand > div:first-child span{display:none!important}
+      /* RTL: Use padding-right for RTL languages */
+      [dir="rtl"] .admin-sidebar.collapsed .sidebar-brand > div:first-child{padding-left:0!important;padding-right:10px!important}
       .admin-sidebar.collapsed .sidebar-collapse-btn{
         margin:0;position:static;transform:none;display:flex!important;align-items:center;justify-content:center
       }
