@@ -135,16 +135,18 @@
         min-width:20px;
         min-height:20px;
       }
-      .sidebar-collapse-btn i{color:#fff;font-size:11px}
+      .sidebar-collapse-btn i{color:#fff!important;font-size:11px!important}
       .sidebar-collapse-btn:hover{
         background:rgba(79,47,232,0.9);
         border-color:transparent
       }
+      .sidebar-collapse-btn:hover i{color:#fff!important}
       .sidebar-collapse-btn:active{transform:scale(0.95)}
       [data-theme="dark"] .sidebar-collapse-btn{
         background:transparent;
         border-color:rgba(255,255,255,0.2)
       }
+      [data-theme="dark"] .sidebar-collapse-btn i{color:#fff!important}
       .admin-sidebar.collapsed ~ .admin-content{margin-left:70px}
       .admin-sidebar{display:flex;flex-direction:column;min-height:100vh}
       .admin-sidebar .nav::-webkit-scrollbar{display:none}
