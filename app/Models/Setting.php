@@ -12,6 +12,7 @@ class Setting extends Model
         'site_name',
         'logo',
         'header_display',
+        'default_language',
         'favicon',
         'email',
         'phone',
@@ -38,5 +39,10 @@ class Setting extends Model
     public function getFaviconUrlAttribute(): ?string
     {
         return $this->favicon ? asset('storage/' . $this->favicon) : null;
+    }
+    
+    public static function getDefaultLanguage(): string
+    {
+        return static::instance()->default_language ?? 'en';
     }
 }

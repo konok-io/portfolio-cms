@@ -424,7 +424,7 @@
 {{-- Google Translate --}}
 <script type="text/javascript">
   function googleTranslateElementInit(){
-    new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'en,ar,bn,ur,hi,tl',layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:false},'google_translate_element');
+    new google.translate.TranslateElement({pageLanguage:'{{ \App\Models\Setting::getDefaultLanguage() }}',includedLanguages:'en,ar,bn,ur,hi,tl,af,sq,am,hy,az,eu,be,bs,ca,ceb,ny,zh-CN,zh-TW,co,hr,cs,da,nl,eo,et,fil,fi,fr,fy,gl,ka,de,el,gu,ht,ha,haw,iw,hmn,hu,is,ig,id,ga,it,ja,jw,kn,kk,km,rw,ko,ku,ky,lo,la,lv,lt,lb,mk,mg,ms,ml,mt,mi,mr,mn,my,ne,no,ps,fa,pl,pt,pa,ro,ru,sm,gd,sr,st,sn,sd,si,sk,sl,so,es,su,sw,sv,tg,ta,tt,te,th,tr,tk,uk,ug,uz,vi,cy,xh,yi,yo,zu',layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:false},'google_translate_element');
   }
   function pickLang(lang){
     document.body.classList.remove('gt-open');

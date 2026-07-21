@@ -23,6 +23,7 @@ class SettingController extends Controller
         $validated = $request->validate([
             'site_name' => ['required', 'string', 'max:255'],
             'header_display' => ['nullable', 'in:text,logo,both'],
+            'default_language' => ['nullable', 'string', 'max:10'],
             'logo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,svg,webp', 'max:1024'],
             'favicon' => ['nullable', 'image', 'mimes:jpg,jpeg,png,ico,svg', 'max:512'],
             'email' => ['nullable', 'email', 'max:255'],
