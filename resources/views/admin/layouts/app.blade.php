@@ -28,7 +28,21 @@
     <script>
       // Apply saved theme before render (default: light).
       (function(){try{var t=localStorage.getItem('pc-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();
-      (function(){try{var m=document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);var l=m?m[1]:'en';var rtl=['ar','ur','fa','he','ps','sd'];document.documentElement.setAttribute('dir',rtl.indexOf(l)>=0?'rtl':'ltr');}catch(e){}})();
+      (function(){
+        try{
+          var m=document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);
+          var l=m?m[1]:'en';
+          var rtl=['ar','ur','fa','he','ps','sd'];
+          document.documentElement.setAttribute('dir',rtl.indexOf(l)>=0?'rtl':'ltr');
+          // Apply language-specific font classes
+          document.body.classList.remove('TEWGTB-BANGLA','TEWGTB-ARABIC','TEWGTB-URDU','TEWGTB-HINDI','TEWGTB-FILIPINO');
+          if(l==='bn')document.body.classList.add('TEWGTB-BANGLA');
+          else if(l==='ar')document.body.classList.add('TEWGTB-ARABIC');
+          else if(l==='ur')document.body.classList.add('TEWGTB-URDU');
+          else if(l==='hi')document.body.classList.add('TEWGTB-HINDI');
+          else if(l==='tl')document.body.classList.add('TEWGTB-FILIPINO');
+        }catch(e){}
+      })();
     </script>
     <style>
       /* language switch + theme toggle */

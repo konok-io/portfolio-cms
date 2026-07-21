@@ -29,6 +29,24 @@
   font-display: swap;
 }
 
+/* Urdu Font */
+@font-face {
+  font-family: 'Urdu';
+  src: url('/fonts/Urdu.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Hindi Font */
+@font-face {
+  font-family: 'Hindi';
+  src: url('/fonts/Hindi.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Apply English font to text elements (exclude icons) */
 body h1,
 body h2,
@@ -71,7 +89,9 @@ body.TEWGTB-BANGLA textarea,
 body.TEWGTB-BANGLA select,
 body.TEWGTB-BANGLA div:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
 body.TEWGTB-BANGLA .translated-ltr,
-body.TEWGTB-BANGLA .translated-rtl {
+body.TEWGTB-BANGLA .translated-rtl,
+body.admin-body.TEWGTB-BANGLA,
+body.admin-login-wrap.TEWGTB-BANGLA {
   font-family: 'Bangla', 'Noto Sans Bengali', 'English', sans-serif !important;
 }
 
@@ -95,8 +115,62 @@ body.TEWGTB-ARABIC textarea,
 body.TEWGTB-ARABIC select,
 body.TEWGTB-ARABIC div:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
 body.TEWGTB-ARABIC .translated-ltr,
-body.TEWGTB-ARABIC .translated-rtl {
+body.TEWGTB-ARABIC .translated-rtl,
+body.admin-body.TEWGTB-ARABIC,
+body.admin-login-wrap.TEWGTB-ARABIC {
   font-family: 'Arabic', 'English', sans-serif !important;
+}
+
+/* Apply Urdu font */
+body.TEWGTB-URDU h1,
+body.TEWGTB-URDU h2,
+body.TEWGTB-URDU h3,
+body.TEWGTB-URDU h4,
+body.TEWGTB-URDU h5,
+body.TEWGTB-URDU h6,
+body.TEWGTB-URDU p,
+body.TEWGTB-URDU span:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
+body.TEWGTB-URDU a:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
+body.TEWGTB-URDU li,
+body.TEWGTB-URDU td,
+body.TEWGTB-URDU th,
+body.TEWGTB-URDU label,
+body.TEWGTB-URDU button,
+body.TEWGTB-URDU input,
+body.TEWGTB-URDU textarea,
+body.TEWGTB-URDU select,
+body.TEWGTB-URDU div:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
+body.TEWGTB-URDU .translated-ltr,
+body.TEWGTB-URDU .translated-rtl,
+body.admin-body.TEWGTB-URDU,
+body.admin-login-wrap.TEWGTB-URDU {
+  font-family: 'Urdu', 'Arabic', 'English', sans-serif !important;
+}
+
+/* Apply Hindi font */
+body.TEWGTB-HINDI h1,
+body.TEWGTB-HINDI h2,
+body.TEWGTB-HINDI h3,
+body.TEWGTB-HINDI h4,
+body.TEWGTB-HINDI h5,
+body.TEWGTB-HINDI h6,
+body.TEWGTB-HINDI p,
+body.TEWGTB-HINDI span:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
+body.TEWGTB-HINDI a:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
+body.TEWGTB-HINDI li,
+body.TEWGTB-HINDI td,
+body.TEWGTB-HINDI th,
+body.TEWGTB-HINDI label,
+body.TEWGTB-HINDI button,
+body.TEWGTB-HINDI input,
+body.TEWGTB-HINDI textarea,
+body.TEWGTB-HINDI select,
+body.TEWGTB-HINDI div:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
+body.TEWGTB-HINDI .translated-ltr,
+body.TEWGTB-HINDI .translated-rtl,
+body.admin-body.TEWGTB-HINDI,
+body.admin-login-wrap.TEWGTB-HINDI {
+  font-family: 'Hindi', 'English', sans-serif !important;
 }
 
 /* Google Translate highlight */
@@ -116,9 +190,10 @@ body.TEWGTB-ARABIC .translated-rtl {
   --admin-radius: 12px;
 }
 
-body.admin-body {
+body.admin-body,
+body.admin-login-wrap {
   background-color: var(--admin-bg);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'English', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: #1e293b;
 }
 
