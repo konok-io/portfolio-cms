@@ -3,7 +3,7 @@
 @section('title', 'Resume Builder - Admin')
 
 @section('content')
-<div class="container-fluid py-4">
+<div class="container py-3">
     <div class="row mb-4">
         <div class="col-12 d-flex justify-content-between align-items-center">
             <h1 class="h3 mb-0">
