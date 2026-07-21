@@ -148,6 +148,8 @@
       .admin-sidebar.collapsed .sidebar-brand > div:first-child span{display:none!important}
       /* RTL: Use padding-right for RTL languages */
       [dir="rtl"] .admin-sidebar.collapsed .sidebar-brand > div:first-child{padding-left:0!important;padding-right:10px!important}
+      /* RTL sidebar brand padding when expanded */
+      [dir="rtl"] .admin-sidebar .sidebar-brand{padding-left:0!important;padding-right:1rem!important}
       .admin-sidebar.collapsed .sidebar-collapse-btn{
         margin:0;position:static;transform:none;display:flex!important;align-items:center;justify-content:center
       }
