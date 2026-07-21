@@ -268,12 +268,14 @@
 @endisset
 
 <div class="row g-3">
-    {{-- Charts Section --}}
+    {{-- Charts Row 1: Visitor Trend + Browser Breakdown --}}
     <div class="col-lg-8">
-        <div class="admin-card mb-3 h-100">
+        <div class="admin-card mb-3">
             <div class="card-header-custom">Visitor Trend (Last 14 Days)</div>
-            <div class="card-body-custom">
-                <canvas id="visitorChart" height="150"></canvas>
+            <div class="card-body-custom py-2">
+                <div class="chart-container" style="position: relative; height: 120px;">
+                    <canvas id="visitorChart"></canvas>
+                </div>
             </div>
         </div>
     </div>
@@ -281,29 +283,31 @@
     <div class="col-lg-4">
         <div class="admin-card mb-3 h-100">
             <div class="card-header-custom">Browser Breakdown</div>
-            <div class="card-body-custom d-flex align-items-center justify-content-center h-100">
-                <canvas id="browserChart" height="150"></canvas>
+            <div class="card-body-custom py-2 d-flex align-items-center justify-content-center">
+                <div class="chart-container" style="position: relative; height: 140px; width: 140px;">
+                    <canvas id="browserChart"></canvas>
+                </div>
             </div>
         </div>
     </div>
 
-    {{-- Top Countries, Top Pages, Quick Stats --}}
+    {{-- Info Cards Row --}}
     <div class="col-lg-4">
         <div class="admin-card mb-3 h-100">
             <div class="card-header-custom">
                 <i class="fa-solid fa-globe me-2"></i>Top Countries
             </div>
-            <div class="card-body-custom p-0" style="min-height:150px;">
+            <div class="card-body-custom p-0">
                 @forelse($topCountries as $index => $country)
                     <div class="d-flex justify-content-between align-items-center px-3 py-2 {{ !$loop->last ? 'border-bottom' : '' }}">
                         <div class="d-flex align-items-center gap-2">
-                            <span class="badge bg-primary rounded-circle" style="width:24px;height:24px;line-height:16px;font-size:11px;">{{ $index + 1 }}</span>
-                            <span class="small fw-medium">{{ $country->country ?: 'Unknown' }}</span>
+                            <span class="badge bg-primary rounded-circle" style="width:20px;height:20px;line-height:14px;font-size:10px;">{{ $index + 1 }}</span>
+                            <span class="small">{{ $country->country ?: 'Unknown' }}</span>
                         </div>
-                        <span class="badge bg-success rounded-pill">{{ $country->total }} visits</span>
+                        <span class="badge bg-success rounded-pill">{{ $country->total }}</span>
                     </div>
                 @empty
-                    <p class="text-muted small text-center py-4 mb-0">No country data available</p>
+                    <p class="text-muted small text-center py-3 mb-0">No data</p>
                 @endforelse
             </div>
         </div>
@@ -314,17 +318,17 @@
             <div class="card-header-custom">
                 <i class="fa-solid fa-file-alt me-2"></i>Top Pages
             </div>
-            <div class="card-body-custom p-0" style="min-height:150px;">
+            <div class="card-body-custom p-0">
                 @forelse($topPages as $index => $page)
                     <div class="d-flex justify-content-between align-items-center px-3 py-2 {{ !$loop->last ? 'border-bottom' : '' }}">
                         <div class="d-flex align-items-center gap-2">
-                            <span class="badge bg-info rounded-circle" style="width:24px;height:24px;line-height:16px;font-size:11px;">{{ $index + 1 }}</span>
-                            <span class="small fw-medium text-truncate" style="max-width:120px;" title="{{ $page->page_url }}">{{ basename($page->page_url) ?: '/' }}</span>
+                            <span class="badge bg-info rounded-circle" style="width:20px;height:20px;line-height:14px;font-size:10px;">{{ $index + 1 }}</span>
+                            <span class="small text-truncate" style="max-width:100px;" title="{{ $page->page_url }}">{{ basename($page->page_url) ?: '/' }}</span>
                         </div>
-                        <span class="badge bg-warning text-dark rounded-pill">{{ $page->total }} views</span>
+                        <span class="badge bg-warning text-dark rounded-pill">{{ $page->total }}</span>
                     </div>
                 @empty
-                    <p class="text-muted small text-center py-4 mb-0">No page data available</p>
+                    <p class="text-muted small text-center py-3 mb-0">No data</p>
                 @endforelse
             </div>
         </div>
@@ -335,28 +339,28 @@
             <div class="card-header-custom">
                 <i class="fa-solid fa-chart-pie me-2"></i>Quick Stats
             </div>
-            <div class="card-body-custom" style="min-height:150px;">
-                <div class="row g-2 text-center h-100 d-flex align-items-center">
+            <div class="card-body-custom">
+                <div class="row g-2 text-center">
                     <div class="col-6">
-                        <div class="p-2 rounded-3 bg-light">
+                        <div class="p-2 rounded-3 bg-light h-100">
                             <div class="h5 mb-0 text-primary">{{ $stats['visitors'] > 0 ? number_format($stats['visitors']) : 0 }}</div>
                             <small class="text-muted">Total Views</small>
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="p-2 rounded-3 bg-light">
+                        <div class="p-2 rounded-3 bg-light h-100">
                             <div class="h5 mb-0 text-success">{{ $stats['visitors_today'] }}</div>
                             <small class="text-muted">Today</small>
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="p-2 rounded-3 bg-light">
+                        <div class="p-2 rounded-3 bg-light h-100">
                             <div class="h5 mb-0 text-warning">{{ $stats['messages'] }}</div>
                             <small class="text-muted">Messages</small>
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="p-2 rounded-3 bg-light">
+                        <div class="p-2 rounded-3 bg-light h-100">
                             <div class="h5 mb-0 text-info">{{ $stats['unread_messages'] }}</div>
                             <small class="text-muted">Unread</small>
                         </div>
@@ -366,33 +370,37 @@
         </div>
     </div>
 
-    {{-- Projects by Status & Skills Status --}}
+    {{-- Charts Row 2: Projects + Skills --}}
     <div class="col-lg-6">
-        <div class="admin-card mb-3 h-100">
+        <div class="admin-card mb-3">
             <div class="card-header-custom">Projects by Status</div>
-            <div class="card-body-custom h-100">
-                <canvas id="projectChart" height="150"></canvas>
+            <div class="card-body-custom py-2">
+                <div class="chart-container" style="position: relative; height: 140px;">
+                    <canvas id="projectChart"></canvas>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="col-lg-6">
-        <div class="admin-card mb-3 h-100">
+        <div class="admin-card mb-3">
             <div class="card-header-custom">Skills Status</div>
-            <div class="card-body-custom h-100">
-                <canvas id="skillsChart" height="150"></canvas>
+            <div class="card-body-custom py-2 d-flex align-items-center justify-content-center">
+                <div class="chart-container" style="position: relative; height: 140px; width: 140px;">
+                    <canvas id="skillsChart"></canvas>
+                </div>
             </div>
         </div>
     </div>
 
-    {{-- Recent Projects Table --}}
+    {{-- Tables Row --}}
     <div class="col-lg-6">
-        <div class="admin-card mb-3 h-100">
+        <div class="admin-card mb-3">
             <div class="card-header-custom d-flex justify-content-between align-items-center">
                 Recent Projects
                 <a href="{{ route('admin.projects.index') }}" class="small">View All</a>
             </div>
-            <div class="table-responsive" style="min-height:150px;">
+            <div class="table-responsive">
                 <table class="table table-admin mb-0">
                     <thead>
                         <tr>
@@ -409,7 +417,7 @@
                                 <td>{{ $project->created_at->diffForHumans() }}</td>
                             </tr>
                         @empty
-                            <tr><td colspan="3" class="text-center text-muted py-4">No projects yet.</td></tr>
+                            <tr><td colspan="3" class="text-center text-muted py-3">No projects yet.</td></tr>
                         @endforelse
                     </tbody>
                 </table>
@@ -417,14 +425,13 @@
         </div>
     </div>
 
-    {{-- Recent Blog Posts --}}
     <div class="col-lg-6">
-        <div class="admin-card mb-3 h-100">
+        <div class="admin-card mb-3">
             <div class="card-header-custom d-flex justify-content-between align-items-center">
                 Recent Blog Posts
                 <a href="{{ route('admin.blog.index') }}" class="small">View All</a>
             </div>
-            <div class="table-responsive" style="min-height:150px;">
+            <div class="table-responsive">
                 <table class="table table-admin mb-0">
                     <thead>
                         <tr>
@@ -447,7 +454,7 @@
                                 <td>{{ $blog->created_at->diffForHumans() }}</td>
                             </tr>
                         @empty
-                            <tr><td colspan="3" class="text-center text-muted py-4">No blog posts yet.</td></tr>
+                            <tr><td colspan="3" class="text-center text-muted py-3">No blog posts yet.</td></tr>
                         @endforelse
                     </tbody>
                 </table>
@@ -475,7 +482,7 @@
                         @endif
                     </li>
                 @empty
-                    <li class="list-group-item text-center text-muted small py-4">No messages yet.</li>
+                    <li class="list-group-item text-center text-muted small py-3">No messages yet.</li>
                 @endforelse
             </ul>
         </div>
@@ -487,6 +494,13 @@
 @push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
+    // Common chart options
+    const commonOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: { duration: 400 }
+    };
+
     // Visitor Trend Chart
     const visitorCtx = document.getElementById('visitorChart');
     new Chart(visitorCtx, {
@@ -500,13 +514,18 @@
                 backgroundColor: 'rgba(37,99,235,0.08)',
                 fill: true,
                 tension: 0.35,
-                pointRadius: 4,
-                pointHoverRadius: 6,
+                pointRadius: 3,
+                pointHoverRadius: 5,
+                borderWidth: 2
             }]
         },
         options: {
+            ...commonOptions,
             plugins: { legend: { display: false } },
-            scales: { y: { beginAtZero: true } },
+            scales: {
+                y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { font: { size: 10 } } },
+                x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+            },
             interaction: { intersect: false, mode: 'index' }
         }
     });
@@ -520,11 +539,18 @@
             datasets: [{
                 data: {!! json_encode($browserStats->pluck('total')) !!},
                 backgroundColor: ['#2563EB', '#F97316', '#0F172A', '#16a34a', '#9333ea', '#0ea5e9'],
+                borderWidth: 0
             }]
         },
         options: {
-            plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
-            cutout: '60%'
+            ...commonOptions,
+            plugins: { 
+                legend: { 
+                    position: 'bottom', 
+                    labels: { boxWidth: 10, padding: 8, font: { size: 10 } } 
+                } 
+            },
+            cutout: '65%'
         }
     });
 
@@ -538,12 +564,17 @@
                 label: 'Projects',
                 data: {!! json_encode($projectStats->pluck('total')) !!},
                 backgroundColor: ['#16a34a', '#F97316', '#2563EB', '#9333ea', '#dc2626'],
-                borderRadius: 6,
+                borderRadius: 4,
+                borderSkipped: false
             }]
         },
         options: {
+            ...commonOptions,
             plugins: { legend: { display: false } },
-            scales: { y: { beginAtZero: true } }
+            scales: {
+                y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { font: { size: 10 } } },
+                x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+            }
         }
     });
 
@@ -556,11 +587,18 @@
             datasets: [{
                 data: {!! json_encode($skillStats->pluck('total')) !!},
                 backgroundColor: ['#16a34a', '#dc2626'],
+                borderWidth: 0
             }]
         },
         options: {
-            plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
-            cutout: '60%'
+            ...commonOptions,
+            plugins: { 
+                legend: { 
+                    position: 'bottom', 
+                    labels: { boxWidth: 10, padding: 8, font: { size: 10 } } 
+                } 
+            },
+            cutout: '65%'
         }
     });
 </script>
