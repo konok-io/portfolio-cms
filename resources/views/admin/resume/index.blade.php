@@ -66,7 +66,7 @@
 
                         <div class="template-preview mt-4">
                             <h6 class="text-muted mb-3">Template Preview</h6>
-                            <div class="row g-2">
+                            <div class="row g-2 templates-row">
                                 <div class="col-3">
                                     <div class="template-box modern {{ $settings->template === 'modern' ? 'selected' : '' }}" data-template="modern">
                                         <i class="fa-solid fa-file-lines"></i>
@@ -183,8 +183,30 @@
 
 @push('styles')
 <style>
-.template-preview .row {
-    gap: 0.5rem;
+.template-preview {
+    overflow-x: auto;
+}
+.template-preview .templates-row {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+}
+.template-preview .templates-row .col-3 {
+    flex: 0 0 auto;
+    width: 25%;
+}
+@media (max-width: 991px) {
+    .template-preview .templates-row {
+        flex-wrap: wrap;
+    }
+    .template-preview .templates-row .col-3 {
+        width: 48%;
+    }
+}
+@media (max-width: 576px) {
+    .template-preview .templates-row .col-3 {
+        width: 100%;
+    }
 }
 
 .template-box {
@@ -194,6 +216,7 @@
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    height: 100%;
 }
 
 .template-box:hover {
