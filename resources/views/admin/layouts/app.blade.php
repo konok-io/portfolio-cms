@@ -204,16 +204,16 @@
         border-color:rgba(255,255,255,0.2)
       }
       [data-theme="dark"] .sidebar-collapse-btn i{color:#fff!important}
-      .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important}
+      .admin-sidebar.collapsed ~ .admin-content{margin-left:70px!important}
       /* RTL support */
       [dir="rtl"] .admin-sidebar{left:auto;right:0}
       [dir="rtl"] .admin-sidebar.collapsed{width:70px!important}
-      [dir="rtl"] .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important;margin-right:0!important}
+      [dir="rtl"] .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important;margin-right:70px!important}
       /* Language-specific sidebar collapse */
-      body.TEWGTB-BANGLA .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important}
-      body.TEWGTB-ARABIC .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important;margin-right:0!important}
-      body.TEWGTB-URDU .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important;margin-right:0!important}
-      body.TEWGTB-HINDI .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important}
+      body.TEWGTB-BANGLA .admin-sidebar.collapsed ~ .admin-content{margin-left:70px!important}
+      body.TEWGTB-ARABIC .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important;margin-right:70px!important}
+      body.TEWGTB-URDU .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important;margin-right:70px!important}
+      body.TEWGTB-HINDI .admin-sidebar.collapsed ~ .admin-content{margin-left:70px!important}
       .admin-sidebar{display:flex;flex-direction:column;min-height:100vh}
       .admin-sidebar .nav::-webkit-scrollbar{display:none}
       .admin-sidebar .nav{-ms-overflow-style:none;scrollbar-width:none}
