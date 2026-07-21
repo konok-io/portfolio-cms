@@ -64,7 +64,7 @@
             <div class="reveal-on-scroll is-visible" style="width: var(--text-col); flex: 0 0 var(--text-col);">
                 <span class="section-eyebrow">About Me</span>
                 <h2 class="section-title mb-4">A little about my background &amp; approach</h2>
-                <div class="text-muted mb-4" style="text-align: justify; text-align-last: justify; white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word;">{!! $about->description ?? 'I am a dedicated developer focused on building reliable, user-friendly software.' !!}</div>
+                <div class="text-muted mb-4" style="text-align: left; white-space: pre-wrap;">{!! $about->description ?? 'I am a dedicated developer focused on building reliable, user-friendly software.' !!}</div>
 
                 <div class="row g-3 mb-4">
                     <div class="col-4">
