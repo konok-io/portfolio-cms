@@ -64,27 +64,25 @@
                         </div>
                     </div>
                     <div class="col-4">
-                        <div class="d-flex flex-column gap-3">
-                            <div class="d-flex flex-wrap gap-2">
-                                @if($about->linkedin ?? false)
-                                    <a href="{{ $about->linkedin }}" target="_blank" class="btn btn-sm btn-outline-custom"><i class="fa-brands fa-linkedin-in"></i></a>
-                                @endif
-                                @if($about->github ?? false)
-                                    <a href="{{ $about->github }}" target="_blank" class="btn btn-sm btn-outline-custom"><i class="fa-brands fa-github"></i></a>
-                                @endif
-                                @if($about->facebook ?? false)
-                                    <a href="{{ $about->facebook }}" target="_blank" class="btn btn-sm btn-outline-custom"><i class="fa-brands fa-facebook-f"></i></a>
-                                @endif
-                                @if($about->twitter ?? false)
-                                    <a href="{{ $about->twitter }}" target="_blank" class="btn btn-sm btn-outline-custom"><i class="fa-brands fa-x-twitter"></i></a>
-                                @endif
-                                @if($about->instagram ?? false)
-                                    <a href="{{ $about->instagram }}" target="_blank" class="btn btn-sm btn-outline-custom"><i class="fa-brands fa-instagram"></i></a>
-                                @endif
-                            </div>
+                        <div class="d-flex align-items-center gap-2 flex-wrap">
+                            @if($about->linkedin ?? false)
+                                <a href="{{ $about->linkedin }}" target="_blank" class="btn btn-sm btn-outline-custom"><i class="fa-brands fa-linkedin-in"></i></a>
+                            @endif
+                            @if($about->github ?? false)
+                                <a href="{{ $about->github }}" target="_blank" class="btn btn-sm btn-outline-custom"><i class="fa-brands fa-github"></i></a>
+                            @endif
+                            @if($about->facebook ?? false)
+                                <a href="{{ $about->facebook }}" target="_blank" class="btn btn-sm btn-outline-custom"><i class="fa-brands fa-facebook-f"></i></a>
+                            @endif
+                            @if($about->twitter ?? false)
+                                <a href="{{ $about->twitter }}" target="_blank" class="btn btn-sm btn-outline-custom"><i class="fa-brands fa-x-twitter"></i></a>
+                            @endif
+                            @if($about->instagram ?? false)
+                                <a href="{{ $about->instagram }}" target="_blank" class="btn btn-sm btn-outline-custom"><i class="fa-brands fa-instagram"></i></a>
+                            @endif
                             @if($about->cv_url ?? false)
                                 <a href="{{ $about->cv_url }}" target="_blank" class="btn btn-sm btn-outline-custom">
-                                    <i class="fa-solid fa-file-lines me-1"></i>View CV
+                                    <i class="fa-solid fa-file-lines me-1"></i>CV
                                 </a>
                             @endif
                         </div>
