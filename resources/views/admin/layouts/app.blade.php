@@ -123,9 +123,9 @@
       .admin-sidebar.collapsed .sidebar-brand{justify-content:center;padding:1rem}
       .admin-sidebar.collapsed .nav-link i{font-size:1.1rem}
       .sidebar-collapse-btn{
-        background:#fff;
-        border:1px solid #e2e8f0;
-        color:#475569;
+        background:rgba(255,255,255,0.95);
+        border:1px solid rgba(226,232,240,0.8);
+        color:#64748b;
         cursor:pointer;
         padding:8px 10px;
         border-radius:10px;
@@ -135,7 +135,7 @@
         justify-content:center;
         min-width:36px;
         min-height:36px;
-        box-shadow:0 2px 8px rgba(0,0,0,0.08)
+        box-shadow:0 2px 8px rgba(0,0,0,0.06)
       }
       .sidebar-collapse-btn:hover{
         background:#4F2FE8;
@@ -146,14 +146,14 @@
       }
       .sidebar-collapse-btn:active{transform:scale(0.95) translateY(0)}
       .admin-sidebar.collapsed .sidebar-collapse-btn{
-        background:#f1f5f9;
-        box-shadow:0 2px 6px rgba(0,0,0,0.06)
+        background:rgba(241,245,249,0.9);
+        box-shadow:0 2px 6px rgba(0,0,0,0.04)
       }
       [data-theme="dark"] .sidebar-collapse-btn{
-        background:#1e293b;
-        border-color:#334155;
+        background:rgba(30,41,59,0.9);
+        border-color:rgba(51,65,85,0.8);
         color:#94a3b8;
-        box-shadow:0 2px 8px rgba(0,0,0,0.3)
+        box-shadow:0 2px 8px rgba(0,0,0,0.2)
       }
       [data-theme="dark"] .sidebar-collapse-btn:hover{
         background:#4F2FE8;
@@ -162,8 +162,8 @@
         box-shadow:0 4px 15px rgba(79,47,232,0.4)
       }
       [data-theme="dark"] .admin-sidebar.collapsed .sidebar-collapse-btn{
-        background:#0f172a;
-        border-color:#1e293b
+        background:rgba(15,23,42,0.9);
+        border-color:rgba(30,41,59,0.8)
       }
       .admin-sidebar.collapsed ~ .admin-content{margin-left:70px}
       .admin-sidebar{display:flex;flex-direction:column;min-height:100vh}
