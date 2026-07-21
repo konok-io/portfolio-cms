@@ -86,12 +86,12 @@ class NewFeaturesSeeder extends Seeder
 
         // Tags
         $tags = [
-            ['name' => 'Laravel', 'slug' => 'laravel', 'color' => '#FF2D20'],
-            ['name' => 'PHP', 'slug' => 'php', 'color' => '#777BB4'],
-            ['name' => 'JavaScript', 'slug' => 'javascript', 'color' => '#F7DF1E'],
-            ['name' => 'React', 'slug' => 'react', 'color' => '#61DAFB'],
-            ['name' => 'Vue.js', 'slug' => 'vue', 'color' => '#4FC08D'],
-            ['name' => 'Mobile App', 'slug' => 'mobile-app', 'color' => '#3DDC84'],
+            ['name' => 'Laravel', 'slug' => 'laravel'],
+            ['name' => 'PHP', 'slug' => 'php'],
+            ['name' => 'JavaScript', 'slug' => 'javascript'],
+            ['name' => 'React', 'slug' => 'react'],
+            ['name' => 'Vue.js', 'slug' => 'vue'],
+            ['name' => 'Mobile App', 'slug' => 'mobile-app'],
         ];
 
         foreach ($tags as $tag) {
