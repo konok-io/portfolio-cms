@@ -270,10 +270,10 @@
 <div class="row g-3">
     {{-- Charts Row 1: Visitor Trend + Browser Breakdown --}}
     <div class="col-lg-8">
-        <div class="admin-card mb-3">
+        <div class="admin-card mb-3 h-100">
             <div class="card-header-custom">Visitor Trend (Last 14 Days)</div>
-            <div class="card-body-custom py-2">
-                <div class="chart-container" style="position: relative; height: 120px;">
+            <div class="card-body-custom py-2 h-100 d-flex flex-column">
+                <div class="chart-container flex-grow-1" style="position: relative; min-height: 100px;">
                     <canvas id="visitorChart"></canvas>
                 </div>
             </div>
@@ -283,8 +283,8 @@
     <div class="col-lg-4">
         <div class="admin-card mb-3 h-100">
             <div class="card-header-custom">Browser Breakdown</div>
-            <div class="card-body-custom py-2 d-flex align-items-center justify-content-center">
-                <div class="chart-container" style="position: relative; height: 140px; width: 140px;">
+            <div class="card-body-custom py-2 h-100 d-flex flex-column align-items-center justify-content-center">
+                <div class="chart-container" style="position: relative; height: 160px; width: 160px;">
                     <canvas id="browserChart"></canvas>
                 </div>
             </div>
@@ -547,10 +547,18 @@
             plugins: { 
                 legend: { 
                     position: 'bottom', 
-                    labels: { boxWidth: 10, padding: 8, font: { size: 10 } } 
+                    display: true,
+                    fullWidth: true,
+                    labels: { 
+                        boxWidth: 10, 
+                        padding: 10, 
+                        font: { size: 10 },
+                        usePointStyle: false,
+                        textAlign: 'center'
+                    } 
                 } 
             },
-            cutout: '65%'
+            cutout: '60%'
         }
     });
 
@@ -595,10 +603,18 @@
             plugins: { 
                 legend: { 
                     position: 'bottom', 
-                    labels: { boxWidth: 10, padding: 8, font: { size: 10 } } 
+                    display: true,
+                    fullWidth: true,
+                    labels: { 
+                        boxWidth: 10, 
+                        padding: 10, 
+                        font: { size: 10 },
+                        usePointStyle: false,
+                        textAlign: 'center'
+                    } 
                 } 
             },
-            cutout: '65%'
+            cutout: '60%'
         }
     });
 </script>
