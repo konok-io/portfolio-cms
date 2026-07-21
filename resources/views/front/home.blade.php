@@ -56,7 +56,7 @@
      ========================================================= --}}
 <section id="about" class="section-padding">
     <div class="container">
-        <div class="row gy-5 align-items-stretch" style="--img-col: 33%; --text-col: 67%;">
+        <div class="row gy-5 align-items-stretch" style="--img-col: 30%; --text-col: 70%;">
             <div class="reveal-on-scroll d-flex align-items-stretch" style="width: var(--img-col); flex: 0 0 var(--img-col);">
                 <img src="{{ $about->photo_url ?? 'https://ui-avatars.com/api/?name=About&size=500&background=0F172A&color=fff' }}"
                      alt="About {{ $about->name ?? '' }}" class="img-fluid rounded-4 shadow-sm w-100" style="height: 100%; object-fit: cover;">

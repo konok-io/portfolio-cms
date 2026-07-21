@@ -19,7 +19,7 @@
 {{-- Intro: photo + bio --}}
 <section class="section-padding">
     <div class="container">
-        <div class="row gy-5 align-items-stretch" style="--img-col: 33%; --text-col: 67%;">
+        <div class="row gy-5 align-items-stretch" style="--img-col: 30%; --text-col: 70%;">
             <div class="reveal-on-scroll d-flex align-items-stretch" style="width: var(--img-col); flex: 0 0 var(--img-col);">
                 <img src="{{ $about->photo_url }}"
                      alt="{{ $about->name ?? 'Profile photo' }}"
