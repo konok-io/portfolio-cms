@@ -168,103 +168,16 @@
 
 {{-- ===================== License Information ===================== --}}
 @isset($license)
+@if(! ($license['ready'] ?? false))
 <div class="row g-3 mb-4">
     <div class="col-12">
-        <div class="admin-card">
-            <div class="card-header-custom d-flex align-items-center justify-content-between">
-                <span><i class="fa-solid fa-key me-2"></i>License Information</span>
-                @if(($license['ready'] ?? false) && ($license['status'] ?? '') !== '')
-                    @php
-                        $st = strtolower($license['status'] ?? 'unknown');
-                        $badge = match($st) {
-                            'active'  => 'success',
-                            'grace'   => 'warning',
-                            'expired', 'blocked', 'verification_failed' => 'danger',
-                            'pending' => 'secondary',
-                            default   => 'secondary',
-                        };
-                    @endphp
-                    <span class="badge bg-{{ $badge }} text-uppercase">{{ $st }}</span>
-                @endif
-            </div>
-            <div class="card-body-custom">
-                @if(! ($license['ready'] ?? false))
-                    {{-- Package present but not migrated/activated yet --}}
-                    <div class="text-muted">
-                        <i class="fa-solid fa-circle-info me-2"></i>
-                        License package detected, but not set up yet. Run
-                        <code>php artisan mrh-license:install</code> to activate.
-                    </div>
-                @else
-                    <div class="row g-4">
-                        {{-- Expiry + days left highlight --}}
-                        <div class="col-md-4">
-                            <div class="p-3 rounded-3 border h-100">
-                                <div class="small text-muted mb-1">Expires On</div>
-                                <div class="h5 mb-1">
-                                    {{ $license['expires_at'] ? $license['expires_at']->format('d M Y') : 'No expiry' }}
-                                </div>
-                                @if(!is_null($license['days_left']))
-                                    @php $dl = (int) $license['days_left']; @endphp
-                                    @if($dl > 0)
-                                        <span class="badge bg-success">{{ $dl }} day{{ $dl === 1 ? '' : 's' }} left</span>
-                                    @elseif($dl === 0)
-                                        <span class="badge bg-warning text-dark">Expires today</span>
-                                    @else
-                                        <span class="badge bg-danger">Expired {{ abs($dl) }} day{{ abs($dl) === 1 ? '' : 's' }} ago</span>
-                                    @endif
-                                @endif
-                            </div>
-                        </div>
-
-                        {{-- Verification info --}}
-                        <div class="col-md-4">
-                            <div class="p-3 rounded-3 border h-100">
-                                <div class="small text-muted mb-1">Last Verified</div>
-                                <div class="mb-2">{{ $license['last_verified_at'] ? $license['last_verified_at']->diffForHumans() : 'Never' }}</div>
-                                <div class="small text-muted mb-1">Activated</div>
-                                <div>
-                                    @if($license['activated'])
-                                        <span class="text-success"><i class="fa-solid fa-circle-check me-1"></i>Yes</span>
-                                    @else
-                                        <span class="text-danger"><i class="fa-solid fa-circle-xmark me-1"></i>No</span>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-
-                        {{-- Binding info --}}
-                        <div class="col-md-4">
-                            <div class="p-3 rounded-3 border h-100">
-                                <div class="small text-muted mb-1">Server Type</div>
-                                <div class="mb-2 text-capitalize">{{ $license['server_type'] ?? '—' }}</div>
-                                <div class="small text-muted mb-1">Domain</div>
-                                <div class="text-break">{{ $license['normalized_domain'] ?? '—' }}</div>
-                            </div>
-                        </div>
-
-                        {{-- Installation ID (full width) --}}
-                        <div class="col-12">
-                            <div class="p-3 rounded-3 border bg-light">
-                                <div class="small text-muted mb-1">Installation ID</div>
-                                <code class="text-break">{{ $license['installation_id'] ?? '—' }}</code>
-                            </div>
-                        </div>
-
-                        @if($license['grace_ends_at'] && in_array(strtolower($license['status'] ?? ''), ['grace']))
-                        <div class="col-12">
-                            <div class="alert alert-warning mb-0">
-                                <i class="fa-solid fa-triangle-exclamation me-2"></i>
-                                Grace period ends {{ $license['grace_ends_at']->format('d M Y') }} ({{ $license['grace_ends_at']->diffForHumans() }}).
-                            </div>
-                        </div>
-                        @endif
-                    </div>
-                @endif
-            </div>
+        <div class="alert alert-info mb-0 d-flex align-items-center gap-2">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>License package detected, but not set up yet. Run <code>php artisan mrh-license:install</code> to activate.</span>
         </div>
     </div>
 </div>
+@endif
 @endisset
 
 <div class="row g-3">
