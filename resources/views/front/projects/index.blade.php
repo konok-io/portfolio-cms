@@ -5,7 +5,7 @@
 
 @section('content')
 
-<section class="section-padding bg-light-custom" style="padding-top: 8rem;">
+<section class="section-padding section-alt" style="padding-top: 8rem;">
     <div class="container">
         <div class="text-center mb-5">
             <span class="section-eyebrow">Portfolio</span>

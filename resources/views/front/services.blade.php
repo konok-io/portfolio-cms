@@ -6,7 +6,7 @@
 @section('content')
 
 {{-- Page header --}}
-<section class="section-padding bg-light-custom">
+<section class="section-padding section-alt">
     <div class="container">
         <div class="text-center">
             <span class="section-eyebrow">What I Offer</span>

@@ -6,7 +6,7 @@
 @section('content')
 
 {{-- Page header --}}
-<section class="section-padding bg-light-custom">
+<section class="section-padding section-alt">
     <div class="container">
         <div class="text-center">
             <span class="section-eyebrow">Get to know me</span>
@@ -92,7 +92,7 @@
 
 {{-- Skills --}}
 @if($skills->isNotEmpty())
-<section class="section-padding bg-light-custom">
+<section class="section-padding section-alt">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
             <span class="section-eyebrow">My Skills</span>
@@ -150,7 +150,7 @@
 
 {{-- Education --}}
 @if($educations->isNotEmpty())
-<section class="section-padding bg-light-custom">
+<section class="section-padding">
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-4 reveal-on-scroll">
