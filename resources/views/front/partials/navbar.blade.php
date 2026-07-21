@@ -24,7 +24,7 @@
                 <li class="nav-item d-flex align-items-center gap-2 ms-lg-2">
                     <div class="gtranslate-wrap">
                         <button type="button" class="gt-btn" onclick="document.body.classList.toggle('gt-open')">
-                            <i class="fa-solid fa-language"></i><span>Language</span>
+                            <i class="fa-solid fa-language"></i><span>Language</span><i class="fa-solid fa-caret-down ms-1"></i>
                         </button>
                         <div id="google_translate_element" style="display:none"></div>
                     <div class="lang-menu">
