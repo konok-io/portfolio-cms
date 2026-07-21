@@ -125,27 +125,25 @@
       .sidebar-collapse-btn{
         background:transparent;
         border:1px solid rgba(255,255,255,0.25);
-        color:#fff;
         cursor:pointer;
-        padding:4px 6px;
-        border-radius:6px;
+        padding:3px 5px;
+        border-radius:5px;
         transition:all .25s ease;
         display:flex;
         align-items:center;
         justify-content:center;
-        min-width:24px;
-        min-height:24px;
+        min-width:20px;
+        min-height:20px;
       }
+      .sidebar-collapse-btn i{color:#fff;font-size:11px}
       .sidebar-collapse-btn:hover{
         background:rgba(79,47,232,0.9);
-        border-color:transparent;
-        transform:scale(1.05)
+        border-color:transparent
       }
       .sidebar-collapse-btn:active{transform:scale(0.95)}
       [data-theme="dark"] .sidebar-collapse-btn{
         background:transparent;
-        border-color:rgba(255,255,255,0.2);
-        color:#fff
+        border-color:rgba(255,255,255,0.2)
       }
       .admin-sidebar.collapsed ~ .admin-content{margin-left:70px}
       .admin-sidebar{display:flex;flex-direction:column;min-height:100vh}
