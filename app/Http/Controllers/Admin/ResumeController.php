@@ -64,7 +64,7 @@ class ResumeController extends Controller
         $skills = Skill::where('is_active', true)->orderBy('sort_order')->get();
         $experiences = Experience::orderBy('start_date', 'desc')->get();
         $educations = Education::orderBy('start_date', 'desc')->get();
-        $projects = Project::where('is_published', true)->orderBy('created_at', 'desc')->limit(5)->get();
+        $projects = Project::where('is_active', true)->orderBy('created_at', 'desc')->limit(5)->get();
 
         return view('front.resume-preview', compact(
             'settings', 'about', 'skills', 'experiences', 'educations', 'projects'
@@ -81,7 +81,7 @@ class ResumeController extends Controller
         $skills = Skill::where('is_active', true)->orderBy('sort_order')->get();
         $experiences = Experience::orderBy('start_date', 'desc')->get();
         $educations = Education::orderBy('start_date', 'desc')->get();
-        $projects = Project::where('is_published', true)->orderBy('created_at', 'desc')->limit(5)->get();
+        $projects = Project::where('is_active', true)->orderBy('created_at', 'desc')->limit(5)->get();
 
         $view = 'front.resume-templates.' . $settings->template;
         
