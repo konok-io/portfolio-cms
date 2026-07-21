@@ -29,6 +29,7 @@ class AboutController extends Controller
             'cv_file' => ['nullable', 'file', 'mimes:pdf', 'max:5120'],
             'address' => ['nullable', 'string', 'max:255'],
             'phone' => ['nullable', 'string', 'max:50'],
+            'whatsapp' => ['nullable', 'string', 'max:50'],
             'email' => ['nullable', 'email', 'max:255'],
             'linkedin' => ['nullable', 'url', 'max:255'],
             'github' => ['nullable', 'url', 'max:255'],
