@@ -273,7 +273,7 @@
         <div class="admin-card mb-3">
             <div class="card-header-custom">Visitor Trend (Last 14 Days)</div>
             <div class="card-body-custom">
-                <canvas id="visitorChart" height="200"></canvas>
+                <canvas id="visitorChart" height="150"></canvas>
             </div>
         </div>
     </div>
@@ -282,7 +282,7 @@
         <div class="admin-card mb-3 h-100">
             <div class="card-header-custom">Browser Breakdown</div>
             <div class="card-body-custom d-flex align-items-center justify-content-center">
-                <canvas id="browserChart" height="200"></canvas>
+                <canvas id="browserChart" height="150"></canvas>
             </div>
         </div>
     </div>
@@ -293,7 +293,7 @@
             <div class="card-header-custom">
                 <i class="fa-solid fa-globe me-2"></i>Top Countries
             </div>
-            <div class="card-body-custom p-0" style="min-height:200px;">
+            <div class="card-body-custom p-0" style="min-height:150px;">
                 @forelse($topCountries as $index => $country)
                     <div class="d-flex justify-content-between align-items-center px-3 py-2 {{ !$loop->last ? 'border-bottom' : '' }}">
                         <div class="d-flex align-items-center gap-2">
@@ -314,7 +314,7 @@
             <div class="card-header-custom">
                 <i class="fa-solid fa-file-alt me-2"></i>Top Pages
             </div>
-            <div class="card-body-custom p-0" style="min-height:200px;">
+            <div class="card-body-custom p-0" style="min-height:150px;">
                 @forelse($topPages as $index => $page)
                     <div class="d-flex justify-content-between align-items-center px-3 py-2 {{ !$loop->last ? 'border-bottom' : '' }}">
                         <div class="d-flex align-items-center gap-2">
@@ -335,29 +335,29 @@
             <div class="card-header-custom">
                 <i class="fa-solid fa-chart-pie me-2"></i>Quick Stats
             </div>
-            <div class="card-body-custom" style="min-height:200px;">
+            <div class="card-body-custom" style="min-height:150px;">
                 <div class="row g-2 text-center h-100 d-flex align-items-center">
                     <div class="col-6">
                         <div class="p-2 rounded-3 bg-light">
-                            <div class="h4 mb-0 text-primary">{{ $stats['visitors'] > 0 ? number_format($stats['visitors']) : 0 }}</div>
+                            <div class="h5 mb-0 text-primary">{{ $stats['visitors'] > 0 ? number_format($stats['visitors']) : 0 }}</div>
                             <small class="text-muted">Total Views</small>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="p-2 rounded-3 bg-light">
-                            <div class="h4 mb-0 text-success">{{ $stats['visitors_today'] }}</div>
+                            <div class="h5 mb-0 text-success">{{ $stats['visitors_today'] }}</div>
                             <small class="text-muted">Today</small>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="p-2 rounded-3 bg-light">
-                            <div class="h4 mb-0 text-warning">{{ $stats['messages'] }}</div>
+                            <div class="h5 mb-0 text-warning">{{ $stats['messages'] }}</div>
                             <small class="text-muted">Messages</small>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="p-2 rounded-3 bg-light">
-                            <div class="h4 mb-0 text-info">{{ $stats['unread_messages'] }}</div>
+                            <div class="h5 mb-0 text-info">{{ $stats['unread_messages'] }}</div>
                             <small class="text-muted">Unread</small>
                         </div>
                     </div>
@@ -371,7 +371,7 @@
         <div class="admin-card mb-3">
             <div class="card-header-custom">Projects by Status</div>
             <div class="card-body-custom">
-                <canvas id="projectChart" height="200"></canvas>
+                <canvas id="projectChart" height="150"></canvas>
             </div>
         </div>
     </div>
@@ -380,7 +380,7 @@
         <div class="admin-card mb-3">
             <div class="card-header-custom">Skills Status</div>
             <div class="card-body-custom">
-                <canvas id="skillsChart" height="200"></canvas>
+                <canvas id="skillsChart" height="150"></canvas>
             </div>
         </div>
     </div>
@@ -392,7 +392,7 @@
                 Recent Projects
                 <a href="{{ route('admin.projects.index') }}" class="small">View All</a>
             </div>
-            <div class="table-responsive" style="min-height:200px;">
+            <div class="table-responsive" style="min-height:150px;">
                 <table class="table table-admin mb-0">
                     <thead>
                         <tr>
@@ -424,7 +424,7 @@
                 Recent Blog Posts
                 <a href="{{ route('admin.blog.index') }}" class="small">View All</a>
             </div>
-            <div class="table-responsive" style="min-height:200px;">
+            <div class="table-responsive" style="min-height:150px;">
                 <table class="table table-admin mb-0">
                     <thead>
                         <tr>
