@@ -14,7 +14,7 @@
         } catch (\Throwable $e) {}
     @endphp
 
-    <title>@yield('seo_title', @yield('title', $seoMeta->meta_title ?? $siteSetting->site_name ?? 'Portfolio CMS'))</title>
+    <title>@yield('seo_title', $seoMeta->meta_title ?? $siteSetting->site_name ?? 'Portfolio CMS')</title>
     <meta name="description" content="@yield('meta_description', ($seoMeta->meta_description ?? ''))">
     <meta name="keywords" content="@yield('meta_keywords', ($seoMeta->meta_keywords ?? ''))">
 
