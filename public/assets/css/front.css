@@ -1003,7 +1003,15 @@ a [class*="far"] {
 /* =========================================================
    Search Icon - Expand to LEFT (Overlay on Menu)
    ========================================================= */
+.navbar-nav .nav-item.search-nav-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
 .search-navbar-container {
+  display: flex;
+  align-items: center;
   position: relative;
 }
 
@@ -1016,10 +1024,7 @@ a [class*="far"] {
   padding: 0 !important;
   transition: all 0.3s ease;
   color: var(--color-text);
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  position: relative;
   z-index: 1;
   cursor: pointer;
 }
