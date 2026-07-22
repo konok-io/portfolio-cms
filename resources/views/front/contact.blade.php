@@ -75,6 +75,14 @@
                             </div>
 
                             <div class="col-12">
+                                @if($siteSetting->isRecaptchaEnabled())
+                                    <div class="mb-3">
+                                        <div class="g-recaptcha" data-sitekey="{{ $siteSetting->recaptcha_site_key }}"></div>
+                                        @error('recaptcha')
+                                            <div class="text-danger small mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                @endif
                                 <button type="submit" class="btn btn-primary-custom btn-lg">
                                     <i class="fa-solid fa-paper-plane me-2"></i>Send Message
                                 </button>
@@ -140,6 +148,9 @@
 @endsection
 
 @push('scripts')
+@if($siteSetting->isRecaptchaEnabled())
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+@endif
 @if($siteSetting->google_map)
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>

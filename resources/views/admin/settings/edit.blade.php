@@ -92,6 +92,27 @@
                     </div>
                 </div>
             </div>
+
+            <div class="admin-card">
+                <div class="card-header-custom">reCAPTCHA Settings</div>
+                <div class="card-body-custom">
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="recaptchaEnabled" name="recaptcha_enabled" value="1" {{ old('recaptcha_enabled', $setting->recaptcha_enabled ?? false) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="recaptchaEnabled">Enable reCAPTCHA</label>
+                    </div>
+                    <p class="text-muted small mb-3">Get your keys from <a href="https://www.google.com/recaptcha/admin" target="_blank">Google reCAPTCHA</a>. Select "reCAPTCHA v2" with "I'm not a robot" checkbox.</p>
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label-admin">Site Key</label>
+                            <input type="text" name="recaptcha_site_key" class="form-control" value="{{ old('recaptcha_site_key', $setting->recaptcha_site_key) }}" placeholder="6Le...">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label-admin">Secret Key</label>
+                            <input type="text" name="recaptcha_secret_key" class="form-control" value="{{ old('recaptcha_secret_key', $setting->recaptcha_secret_key) }}" placeholder="6Le...">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="col-lg-4">

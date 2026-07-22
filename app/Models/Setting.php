@@ -25,6 +25,9 @@ class Setting extends Model
         'instagram',
         'youtube',
         'maintenance_mode',
+        'recaptcha_site_key',
+        'recaptcha_secret_key',
+        'recaptcha_enabled',
     ];
 
     public static function instance(): self
@@ -41,9 +44,14 @@ class Setting extends Model
     {
         return $this->favicon ? asset('storage/' . $this->favicon) : null;
     }
-    
+
     public static function getDefaultLanguage(): string
     {
         return static::instance()->default_language ?? 'en';
+    }
+    
+    public function isRecaptchaEnabled(): bool
+    {
+        return $this->recaptcha_enabled && !empty($this->recaptcha_site_key) && !empty($this->recaptcha_secret_key);
     }
 }

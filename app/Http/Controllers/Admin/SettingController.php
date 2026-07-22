@@ -37,6 +37,9 @@ class SettingController extends Controller
             'instagram' => ['nullable', 'url', 'max:255'],
             'youtube' => ['nullable', 'url', 'max:255'],
             'maintenance_mode' => ['nullable', 'in:1'],
+            'recaptcha_site_key' => ['nullable', 'string', 'max:255'],
+            'recaptcha_secret_key' => ['nullable', 'string', 'max:255'],
+            'recaptcha_enabled' => ['nullable', 'in:1'],
         ]);
 
         if ($request->hasFile('logo')) {
@@ -53,8 +56,11 @@ class SettingController extends Controller
             $validated['favicon'] = $request->file('favicon')->store('settings', 'public');
         }
 
-        // Handle maintenance_mode checkbox (only sends 1 when checked)
+        // Handle maintenance_mode checkbox
         $validated['maintenance_mode'] = $request->has('maintenance_mode') ? 1 : 0;
+        
+        // Handle recaptcha_enabled checkbox
+        $validated['recaptcha_enabled'] = $request->has('recaptcha_enabled') ? 1 : 0;
 
         $setting->update($validated);
 

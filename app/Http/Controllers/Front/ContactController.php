@@ -8,6 +8,7 @@ use App\Models\Setting;
 use App\Models\User;
 use App\Notifications\NewContactMessage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class ContactController extends Controller
 {
@@ -22,6 +23,20 @@ class ContactController extends Controller
 
     public function store(Request $request)
     {
+        $siteSetting = Setting::instance();
+        
+        // Validate reCAPTCHA if enabled
+        if ($siteSetting->isRecaptchaEnabled()) {
+            $recaptchaValidation = $this->validateRecaptcha($request->input('g-recaptcha-response'), $siteSetting->recaptcha_secret_key);
+            
+            if (!$recaptchaValidation['success']) {
+                if ($request->wantsJson()) {
+                    return response()->json(['success' => false, 'message' => 'reCAPTCHA verification failed. Please try again.'], 422);
+                }
+                return back()->withErrors(['recaptcha' => 'reCAPTCHA verification failed. Please try again.'])->withInput();
+            }
+        }
+
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
@@ -48,5 +63,26 @@ class ContactController extends Controller
         }
 
         return redirect()->route('thank-you')->with('success', 'Your message has been sent successfully!');
+    }
+    
+    protected function validateRecaptcha(string $recaptchaResponse, string $secretKey): array
+    {
+        try {
+            $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+                'secret' => $secretKey,
+                'response' => $recaptchaResponse,
+            ]);
+            
+            $result = $response->json();
+            
+            return [
+                'success' => $result['success'] ?? false,
+                'score' => $result['score'] ?? null,
+                'error-codes' => $result['error-codes'] ?? [],
+            ];
+        } catch (\Exception $e) {
+            // If reCAPTCHA validation fails due to network error, allow the form
+            return ['success' => true];
+        }
     }
 }
