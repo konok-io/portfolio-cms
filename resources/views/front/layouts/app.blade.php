@@ -30,29 +30,29 @@
 
     {{-- JSON-LD Structured Data --}}
     @if(isset($about))
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "{{ $about->name ?? 'Portfolio Owner' }}",
-        "jobTitle": "{{ $about->designation ?? 'Web Developer' }}",
-        "description": "{{ $about->short_bio ?? '' }}",
-        @if($about->photo_url)"image": "{{ $about->photo_url }}",@endif
-        @if($about->facebook || $about->twitter || $about->linkedin || $about->github)
-        "sameAs": [
-            @if($about->facebook){"url": "{{ $about->facebook }}"}@endif
-            @if($about->twitter || $about->linkedin || $about->github),@endif
-            @if($about->twitter){"url": "{{ $about->twitter }}"}@endif
-            @if($about->linkedin || $about->github),@endif
-            @if($about->linkedin){"url": "{{ $about->linkedin }}"}@endif
-            @if($about->github),@endif
-            @if($about->github){"url": "{{ $about->github }}"}@endif
-        ],
-        @endif
-        "url": "{{ url('/') }}",
-        "mainEntityOfPage": {"@type": "WebPage", "@id": "{{ url('/') }}"}
-    }
-    </script>
+    @php
+        $aboutData = [
+            '@context' => 'https://schema.org',
+            '@type' => 'Person',
+            'name' => $about->name ?? 'Portfolio Owner',
+            'jobTitle' => $about->designation ?? 'Web Developer',
+            'description' => $about->short_bio ?? '',
+            'url' => url('/'),
+            'mainEntityOfPage' => ['@type' => 'WebPage', '@id' => url('/')],
+        ];
+        if ($about->photo_url) {
+            $aboutData['image'] = $about->photo_url;
+        }
+        $sameAs = [];
+        if ($about->facebook) $sameAs[] = ['url' => $about->facebook];
+        if ($about->twitter) $sameAs[] = ['url' => $about->twitter];
+        if ($about->linkedin) $sameAs[] = ['url' => $about->linkedin];
+        if ($about->github) $sameAs[] = ['url' => $about->github];
+        if (!empty($sameAs)) {
+            $aboutData['sameAs'] = $sameAs;
+        }
+    @endphp
+    <script type="application/ld+json">{!! json_encode($aboutData, JSON_UNESCAPED_SLASHES) !!}</script>
     @endif
 
     <script type="application/ld+json">
