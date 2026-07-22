@@ -124,7 +124,7 @@
 </head>
 <body>
 
-    @if(!isset($page) || $page->show_in_header !== false)
+    @if(!isset($page) || ($page && $page->show_site_header !== false))
         @include('front.partials.navbar')
     @endif
 
@@ -137,7 +137,7 @@
     </main>
     </div>
 
-    @if(!isset($page) || $page->show_in_footer !== false)
+    @if(!isset($page) || ($page && $page->show_site_footer !== false))
         @include('front.partials.footer')
     @endif
 
