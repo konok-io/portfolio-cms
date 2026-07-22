@@ -39,7 +39,7 @@
                             <li class="mb-2"><a href="{{ route('pricing') }}">Pricing</a></li>
                             <li class="mb-2"><a href="{{ route('privacy') }}">Privacy Policy</a></li>
                             <li class="mb-2"><a href="{{ route('terms') }}">Terms</a></li>
-                            <li class="mb-2"><a href="{{ route('login') }}">Login</a></li>
+                            <li class="mb-2"><a href="{{ route('admin.login') }}">Login</a></li>
                         </div>
                     </div>
                 </ul>
