@@ -67,6 +67,7 @@ class AppServiceProvider extends ServiceProvider
                 ['title' => 'Blog', 'url' => '/blog'],
                 ['title' => 'FAQ', 'url' => '/faq'],
                 ['title' => 'Pricing', 'url' => '/pricing'],
+                ['title' => 'Login', 'url' => route('admin.login')],
             ];
             
             $customLinks = $footerPages->map(function ($page) {

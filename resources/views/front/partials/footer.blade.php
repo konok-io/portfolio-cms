@@ -29,14 +29,13 @@
                     <div class="row">
                         <div class="col-6">
                             @foreach($footerLinks['col1'] as $link)
-                                <li class="mb-2"><a href="{{ url($link['url']) }}">{{ $link['title'] }}</a></li>
+                                <li class="mb-2"><a href="{{ Str::startsWith($link['url'], '/') ? url($link['url']) : $link['url'] }}">{{ $link['title'] }}</a></li>
                             @endforeach
                         </div>
                         <div class="col-6">
                             @foreach($footerLinks['col2'] as $link)
-                                <li class="mb-2"><a href="{{ url($link['url']) }}">{{ $link['title'] }}</a></li>
+                                <li class="mb-2"><a href="{{ Str::startsWith($link['url'], '/') ? url($link['url']) : $link['url'] }}">{{ $link['title'] }}</a></li>
                             @endforeach
-                            <li class="mb-2"><a href="{{ route('admin.login') }}">Login</a></li>
                         </div>
                     </div>
                 </ul>
