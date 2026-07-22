@@ -264,12 +264,14 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
   document.addEventListener('DOMContentLoaded', function() {
     var searchBtn = document.getElementById('searchBtn');
     var searchBox = document.getElementById('searchBox');
+    var searchWrapper = document.getElementById('searchWrapper');
     var searchClose = document.getElementById('searchClose');
     var searchInput = searchBox ? searchBox.querySelector('.search-input') : null;
     
-    if (searchBtn && searchBox) {
+    if (searchBtn && searchBox && searchWrapper) {
       searchBtn.addEventListener('click', function(e) {
         e.preventDefault();
+        searchWrapper.classList.add('active');
         searchBox.classList.add('active');
         if (searchInput) {
           setTimeout(function() {
@@ -279,15 +281,17 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
       });
     }
     
-    if (searchClose && searchBox) {
+    if (searchClose && searchWrapper && searchBox) {
       searchClose.addEventListener('click', function() {
+        searchWrapper.classList.remove('active');
         searchBox.classList.remove('active');
         if (searchInput) searchInput.value = '';
       });
     }
     
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && searchBox && searchBox.classList.contains('active')) {
+      if (e.key === 'Escape' && searchWrapper && searchWrapper.classList.contains('active')) {
+        searchWrapper.classList.remove('active');
         searchBox.classList.remove('active');
         if (searchInput) searchInput.value = '';
       }
@@ -295,8 +299,9 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
     
     // Close when clicking outside
     document.addEventListener('click', function(e) {
-      if (searchBox && searchBox.classList.contains('active')) {
-        if (!searchBox.contains(e.target) && !searchBtn.contains(e.target)) {
+      if (searchWrapper && searchWrapper.classList.contains('active')) {
+        if (!searchWrapper.contains(e.target)) {
+          searchWrapper.classList.remove('active');
           searchBox.classList.remove('active');
           if (searchInput) searchInput.value = '';
         }

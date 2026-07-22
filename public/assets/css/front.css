@@ -1065,7 +1065,10 @@ a [class*="far"] {
   align-items: center;
 }
 
-.search-box.active ~ .search-btn,
+.search-wrapper.active .search-btn {
+  display: none;
+}
+
 .search-box.active .search-icon {
   display: none;
 }
