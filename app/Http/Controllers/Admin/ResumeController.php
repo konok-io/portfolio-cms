@@ -9,6 +9,7 @@ use App\Models\Skill;
 use App\Models\Experience;
 use App\Models\Education;
 use App\Models\Project;
+use App\Models\Certification;
 use Illuminate\Http\Request;
 use Mpdf\Mpdf;
 
@@ -73,10 +74,11 @@ class ResumeController extends Controller
         $experiences = Experience::orderBy('start_date', 'desc')->get();
         $educations = Education::orderBy('start_date', 'desc')->get();
         $projects = Project::where('is_active', true)->orderBy('created_at', 'desc')->limit(5)->get();
+        $certifications = Certification::orderBy('created_at', 'desc')->get();
 
         // Use preview version with beautiful styles for screen viewing
         return view('front.resume-templates.' . $settings->template . '-preview', compact(
-            'settings', 'about', 'skills', 'experiences', 'educations', 'projects'
+            'settings', 'about', 'skills', 'experiences', 'educations', 'projects', 'certifications'
         ));
     }
 
@@ -91,10 +93,11 @@ class ResumeController extends Controller
         $experiences = Experience::orderBy('start_date', 'desc')->get();
         $educations = Education::orderBy('start_date', 'desc')->get();
         $projects = Project::where('is_active', true)->orderBy('created_at', 'desc')->limit(5)->get();
+        $certifications = Certification::orderBy('created_at', 'desc')->get();
 
         // Use standard version (mPDF compatible) for PDF export
         $view = view('front.resume-templates.' . $settings->template, compact(
-            'settings', 'about', 'skills', 'experiences', 'educations', 'projects'
+            'settings', 'about', 'skills', 'experiences', 'educations', 'projects', 'certifications'
         ))->render();
 
         try {

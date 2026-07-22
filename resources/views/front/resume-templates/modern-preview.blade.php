@@ -121,6 +121,9 @@
         .project-item { margin-bottom: 10px; padding: 12px; background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 10px; }
         .project-title { font-weight: 700; font-size: 10pt; color: {{ $settings->heading_color ?? '#1a1a2e' }}; }
         .project-description { color: {{ $settings->text_color ?? '#4a5568' }}; font-size: 9pt; margin-top: 5px; }
+        .certification-item { margin-bottom: 10px; padding: 12px; background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 10px; border-left: 4px solid {{ $settings->primary_color }}; }
+        .certification-name { font-weight: 700; font-size: 10pt; color: {{ $settings->heading_color ?? '#1a1a2e' }}; }
+        .certification-issuer { color: {{ $settings->primary_color }}; font-size: 9pt; margin-top: 3px; }
         .footer { background: {{ $settings->footer_bg_color ?? '#1a1a2e' }}; color: #9ca3af; padding: 15px 30px; text-align: center; font-size: 8pt; }
     </style>
 </head>
@@ -192,6 +195,17 @@
                                 @if($project->description)
                                     <div class="project-description">{{ Str::limit(strip_tags($project->description), 120) }}</div>
                                 @endif
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+                @if($settings->include_certifications && isset($certifications) && $certifications->count() > 0)
+                    <div class="section">
+                        <div class="section-title">Certifications</div>
+                        @foreach($certifications as $cert)
+                            <div class="certification-item">
+                                <div class="certification-name">{{ $cert->name }}</div>
+                                <div class="certification-issuer">{{ $cert->issuer }} - {{ $cert->issue_date }}</div>
                             </div>
                         @endforeach
                     </div>
