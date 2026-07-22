@@ -6,6 +6,15 @@ This is a Laravel-based Portfolio CMS project.
 
 ## Current Working State
 
+**Commit: `6ba630b` - "feat: Add portfolio PDF export functionality"**
+
+### Recent Changes:
+- Portfolio PDF Export (download portfolio as PDF via DomPDF)
+- Client Portal (protected access with progress tracking, file sharing)
+- Service Request Form (quote/inquiry form with admin management)
+- Blog Categories Page (archive view for categories)
+- Project Lightbox (gallery with keyboard navigation)
+
 **Commit: `939db59` - "Add: Service detail pages, testimonials video, alt text, tag filtering, blog tag cloud, lazy loading, JSON-LD structured data, project video embed"**
 
 ### Recent Changes:
@@ -43,11 +52,15 @@ This is a Laravel-based Portfolio CMS project.
 - [x] Add Project Video Embed
 
 ### ✅ COMPLETED (MEDIUM PRIORITY)
+- [x] Add Project Gallery/Lightbox
+- [x] Add Client Portal (protected client access)
+- [x] Add Service Request Form (quote inquiry)
+- [x] Add Portfolio PDF Export
 - [x] Add Lazy Loading for Images
 - [x] Add Related Projects by Tags
 - [x] Add Breadcrumb Navigation on inner pages
 - [x] Add Maintenance Mode toggle in admin settings
-- [x] Add Blog Reading Time calculation
+- [x] Add Blog Categories Archive
 - [x] Create Newsletter Popup modal
 - [x] Add Hero Typing Animation
 - [x] Add Skills Progress Animation on scroll
