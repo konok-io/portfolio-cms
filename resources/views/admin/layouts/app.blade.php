@@ -295,6 +295,9 @@
                     <span class="badge bg-danger ms-auto">{{ $unread }}</span>
                 @endif
             </a>
+            <a href="{{ route('admin.client-portals.index') }}" class="nav-link {{ request()->routeIs('admin.client-portals.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-user-shield"></i><span>Client Portals</span>
+            </a>
 
             <div class="nav-section-title"><span>Administration</span></div>
             <a href="{{ route('admin.users.index') }}" class="nav-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">

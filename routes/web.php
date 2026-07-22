@@ -117,6 +117,20 @@ Route::middleware('auth')->group(function () {
     Route::put('/password', [UserDashboardController::class, 'updatePassword'])->name('user.password.update');
     Route::post('/logout', [FrontendLoginController::class, 'logout'])->name('user.logout');
 });
+
+/*
+|--------------------------------------------------------------------------
+| Client Portal Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/client-portal/access', [App\Http\Controllers\Front\ClientPortalAccessController::class, 'access'])->name('client-portal.access');
+Route::post('/client-portal/verify', [App\Http\Controllers\Front\ClientPortalAccessController::class, 'verify'])->name('client-portal.verify');
+Route::middleware('web')->group(function () {
+    Route::get('/client-portal/dashboard', [App\Http\Controllers\Front\ClientPortalAccessController::class, 'dashboard'])->name('client-portal.dashboard');
+    Route::post('/client-portal/logout', [App\Http\Controllers\Front\ClientPortalAccessController::class, 'logout'])->name('client-portal.logout');
+});
+
 Route::get('/coming-soon', function () {
     return view('front.coming-soon');
 })->name('coming-soon');
@@ -269,6 +283,17 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     // Subscribers
     Route::get('/subscribers', [AdminSubscriberController::class, 'index'])->name('subscribers.index');
     Route::delete('/subscribers/{subscriber}', [AdminSubscriberController::class, 'destroy'])->name('subscribers.destroy');
+
+    // Client Portals
+    Route::get('/client-portals', [App\Http\Controllers\Admin\ClientPortalController::class, 'index'])->name('client-portals.index');
+    Route::get('/client-portals/create', [App\Http\Controllers\Admin\ClientPortalController::class, 'create'])->name('client-portals.create');
+    Route::post('/client-portals', [App\Http\Controllers\Admin\ClientPortalController::class, 'store'])->name('client-portals.store');
+    Route::get('/client-portals/{clientPortal}', [App\Http\Controllers\Admin\ClientPortalController::class, 'show'])->name('client-portals.show');
+    Route::get('/client-portals/{clientPortal}/edit', [App\Http\Controllers\Admin\ClientPortalController::class, 'edit'])->name('client-portals.edit');
+    Route::put('/client-portals/{clientPortal}', [App\Http\Controllers\Admin\ClientPortalController::class, 'update'])->name('client-portals.update');
+    Route::delete('/client-portals/{clientPortal}', [App\Http\Controllers\Admin\ClientPortalController::class, 'destroy'])->name('client-portals.destroy');
+    Route::post('/client-portals/{clientPortal}/add-file', [App\Http\Controllers\Admin\ClientPortalController::class, 'addFile'])->name('client-portals.add-file');
+    Route::post('/client-portals/{clientPortal}/regenerate-token', [App\Http\Controllers\Admin\ClientPortalController::class, 'generateToken'])->name('client-portals.regenerate-token');
     Route::get('/subscribers/export', [AdminSubscriberController::class, 'export'])->name('subscribers.export');
     
     // Custom Pages (Admin only - for CRUD)
