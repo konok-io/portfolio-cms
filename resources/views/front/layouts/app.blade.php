@@ -262,18 +262,18 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
   
   // Navbar Search Toggle
   function toggleNavbarSearch() {
-    var wrapper = document.getElementById('searchWrapper');
+    var formItem = document.getElementById('searchFormItem');
     var input = document.getElementById('navbarSearchInput');
-    wrapper.classList.add('active');
+    formItem.classList.add('active');
     setTimeout(function() {
       if(input) input.focus();
-    }, 300);
+    }, 350);
   }
   
   function closeNavbarSearch() {
-    var wrapper = document.getElementById('searchWrapper');
+    var formItem = document.getElementById('searchFormItem');
     var input = document.getElementById('navbarSearchInput');
-    wrapper.classList.remove('active');
+    formItem.classList.remove('active');
     if(input) input.value = '';
   }
   

@@ -27,19 +27,23 @@
                 
                 <li class="nav-item">
                     <div class="search-icon-wrapper" id="searchWrapper">
-                        <a class="nav-link search-icon-btn" href="#" onclick="toggleNavbarSearch(); return false;" id="searchToggleBtn">
+                        <a class="nav-link search-icon-btn" href="#" onclick="toggleNavbarSearch(); return false;">
                             <i class="fa-solid fa-search"></i>
                         </a>
-                        <form action="{{ route('search') }}" method="GET" class="search-expand-form" id="searchExpandForm">
-                            <input type="text" name="q" class="search-expand-input" placeholder="Search..." autocomplete="off" id="navbarSearchInput">
-                            <button type="submit" class="search-expand-submit">
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </button>
-                            <button type="button" class="search-expand-close" onclick="closeNavbarSearch(); return false;">
-                                <i class="fa-solid fa-times"></i>
-                            </button>
-                        </form>
                     </div>
+                </li>
+                
+                {{-- Hidden Search Form (appears when clicked) --}}
+                <li class="nav-item search-form-item" id="searchFormItem">
+                    <form action="{{ route('search') }}" method="GET" class="search-navbar-form" id="searchNavForm">
+                        <input type="text" name="q" class="search-navbar-input" placeholder="Search..." autocomplete="off" id="navbarSearchInput">
+                        <button type="submit" class="search-navbar-submit">
+                            <i class="fa-solid fa-search"></i>
+                        </button>
+                    </form>
+                    <button type="button" class="search-navbar-close" onclick="closeNavbarSearch(); return false;">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
                 </li>
 
                 <li class="nav-item d-flex align-items-center gap-2 ms-lg-2">
