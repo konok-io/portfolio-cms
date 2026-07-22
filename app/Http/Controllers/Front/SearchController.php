@@ -43,7 +43,7 @@ class SearchController extends Controller
             ->limit(5)
             ->get();
 
-        $pages = CustomPage::where('is_active', true)
+        $pages = CustomPage::where('is_published', true)
             ->where(function ($q) use ($query) {
                 $q->where('title', 'like', "%{$query}%")
                   ->orWhere('content', 'like', "%{$query}%");
