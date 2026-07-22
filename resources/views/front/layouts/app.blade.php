@@ -259,6 +259,46 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
     if(s&&m){s.style.display=dark?'none':'inline';m.style.display=dark?'inline':'none';}
   }
   pcSyncThemeIcon();
+  
+  // Search Overlay
+  document.addEventListener('DOMContentLoaded', function() {
+    var searchBtn = document.getElementById('searchBtn');
+    var searchOverlay = document.getElementById('searchOverlay');
+    var searchClose = document.getElementById('searchClose');
+    var searchInput = searchOverlay ? searchOverlay.querySelector('.search-input') : null;
+    
+    if (searchBtn && searchOverlay) {
+      searchBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        searchOverlay.classList.add('active');
+        if (searchInput) {
+          setTimeout(function() {
+            searchInput.focus();
+          }, 100);
+        }
+      });
+    }
+    
+    if (searchClose && searchOverlay) {
+      searchClose.addEventListener('click', function() {
+        searchOverlay.classList.remove('active');
+      });
+    }
+    
+    if (searchOverlay) {
+      searchOverlay.addEventListener('click', function(e) {
+        if (e.target === searchOverlay) {
+          searchOverlay.classList.remove('active');
+        }
+      });
+    }
+    
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && searchOverlay && searchOverlay.classList.contains('active')) {
+        searchOverlay.classList.remove('active');
+      }
+    });
+  });
 </script>
 <script type="text/javascript">
   function googleTranslateElementInit(){
