@@ -264,13 +264,13 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
   document.addEventListener('DOMContentLoaded', function() {
     var searchBtn = document.getElementById('searchBtn');
     var searchBox = document.getElementById('searchBox');
-    var searchWrapper = document.getElementById('searchWrapper');
+    var searchIconWrap = document.querySelector('.search-icon-wrap');
     var searchInput = searchBox ? searchBox.querySelector('.search-input') : null;
     
-    if (searchBtn && searchBox && searchWrapper) {
+    if (searchBtn && searchBox && searchIconWrap) {
       searchBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        searchWrapper.classList.add('active');
+        searchIconWrap.classList.add('active');
         searchBox.classList.add('active');
         if (searchInput) {
           setTimeout(function() {
@@ -281,8 +281,8 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
     }
     
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && searchWrapper && searchWrapper.classList.contains('active')) {
-        searchWrapper.classList.remove('active');
+      if (e.key === 'Escape' && searchIconWrap && searchIconWrap.classList.contains('active')) {
+        searchIconWrap.classList.remove('active');
         searchBox.classList.remove('active');
         if (searchInput) searchInput.value = '';
       }
@@ -290,9 +290,9 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
     
     // Close when clicking outside
     document.addEventListener('click', function(e) {
-      if (searchWrapper && searchWrapper.classList.contains('active')) {
-        if (!searchWrapper.contains(e.target)) {
-          searchWrapper.classList.remove('active');
+      if (searchIconWrap && searchIconWrap.classList.contains('active')) {
+        if (!searchIconWrap.contains(e.target)) {
+          searchIconWrap.classList.remove('active');
           searchBox.classList.remove('active');
           if (searchInput) searchInput.value = '';
         }

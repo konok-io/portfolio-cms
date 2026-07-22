@@ -27,17 +27,19 @@
 
                 <li class="nav-item d-flex align-items-center gap-2">
                     <div class="search-wrapper" id="searchWrapper">
-                        <a href="#" class="search-btn" id="searchBtn" aria-label="Search">
-                            <i class="fa-solid fa-search"></i>
-                        </a>
-                        <div class="search-box" id="searchBox">
-                            <form action="{{ route('search') }}" method="GET">
-                                <i class="fa-solid fa-search search-icon"></i>
-                                <input type="text" name="q" class="search-input" placeholder="Search..." autocomplete="off">
-                                <button type="submit" class="search-submit" id="searchSubmit">
-                                    <i class="fa-solid fa-search"></i>
-                                </button>
-                            </form>
+                        <div class="search-icon-wrap">
+                            <a href="#" class="search-btn" id="searchBtn" aria-label="Search">
+                                <i class="fa-solid fa-search"></i>
+                            </a>
+                            <div class="search-box" id="searchBox">
+                                <form action="{{ route('search') }}" method="GET">
+                                    <i class="fa-solid fa-search search-icon"></i>
+                                    <input type="text" name="q" class="search-input" placeholder="Search..." autocomplete="off">
+                                    <button type="submit" class="search-submit" id="searchSubmit">
+                                        <i class="fa-solid fa-search"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                     <div class="gtranslate-wrap">
