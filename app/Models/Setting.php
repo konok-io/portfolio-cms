@@ -59,7 +59,21 @@ class Setting extends Model
         'coming_soon_message',
         'coming_soon_date',
         'coming_soon_enabled',
+        'page_content',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'page_content' => 'array',
+            'coming_soon_date' => 'datetime',
+            'recaptcha_enabled' => 'boolean',
+            'analytics_enabled' => 'boolean',
+            'cookie_consent_enabled' => 'boolean',
+            'maintenance_mode' => 'boolean',
+            'coming_soon_enabled' => 'boolean',
+        ];
+    }
 
     public static function instance(): self
     {

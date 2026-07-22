@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}" @if(in_array(app()->getLocale(), ['ar', 'ur', 'he'])) dir="rtl" @endif>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -460,16 +460,11 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
   }
   function pickLang(lang){
     document.body.classList.remove('gt-open');
-    var host = location.hostname;
-    var val = '/en/' + lang;
-    document.cookie = 'googtrans=' + val + ';path=/';
-    document.cookie = 'googtrans=' + val + ';path=/;domain=' + host;
-    document.cookie = 'googtrans=' + val + ';path=/;domain=.' + host;
-    if(lang === 'en'){
-      document.cookie = 'googtrans=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT';
-      document.cookie = 'googtrans=;path=/;domain=' + host + ';expires=Thu, 01 Jan 1970 00:00:00 GMT';
-      document.cookie = 'googtrans=;path=/;domain=.' + host + ';expires=Thu, 01 Jan 1970 00:00:00 GMT';
-    }
+    // Store in localStorage for persistence
+    localStorage.setItem('portfolio_locale', lang);
+    // Also set cookie for server-side
+    document.cookie = 'locale=' + lang + ';path=/;max-age=' + (60*60*24*365);
+    // Reload to apply new language
     location.reload();
   }
   // Close dropdown when clicking outside
