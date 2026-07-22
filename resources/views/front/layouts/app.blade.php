@@ -121,6 +121,51 @@
       [data-theme="dark"] .hero-section .badge-floating .small{color:#9B98C7!important}
     </style>
     @stack('styles')
+    
+    {{-- JSON-LD Structured Data --}}
+    @php
+    $jsonLdScripts = [];
+    
+    // WebSite Schema
+    $jsonLdScripts['website'] = [
+        '@context' => 'https://schema.org',
+        '@type' => 'WebSite',
+        'name' => $siteSetting->site_name ?? 'Portfolio CMS',
+        'url' => url('/'),
+    ];
+    
+    // Person Schema (if $about exists)
+    if (isset($about)) {
+        $personSchema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'Person',
+            'name' => $about->name ?? 'Portfolio Owner',
+            'url' => url('/'),
+        ];
+        if (!empty($about->designation)) {
+            $personSchema['jobTitle'] = $about->designation;
+        }
+        if (!empty($about->short_bio)) {
+            $personSchema['description'] = $about->short_bio;
+        }
+        if (!empty($about->photo_url)) {
+            $personSchema['image'] = $about->photo_url;
+        }
+        $sameAs = [];
+        if (!empty($about->facebook)) $sameAs[] = $about->facebook;
+        if (!empty($about->twitter)) $sameAs[] = $about->twitter;
+        if (!empty($about->linkedin)) $sameAs[] = $about->linkedin;
+        if (!empty($about->github)) $sameAs[] = $about->github;
+        if (!empty($sameAs)) {
+            $personSchema['sameAs'] = $sameAs;
+        }
+        $jsonLdScripts['person'] = $personSchema;
+    }
+    @endphp
+    
+    @foreach($jsonLdScripts as $schema)
+    <script type="application/ld+json">{!! json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+    @endforeach
 </head>
 <body class="{{ (isset($page) && $page && $page->show_site_header === false) ? 'no-header' : 'has-header' }}">
 
