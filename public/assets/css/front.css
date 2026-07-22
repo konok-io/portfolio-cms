@@ -1028,20 +1028,32 @@ a [class*="far"] {
 .nav-search-overlay {
   position: absolute;
   top: 0;
+  left: 0;
   right: 0;
-  height: 100%;
-  width: 0;
-  z-index: 9999;
-  display: flex;
+  bottom: 0;
+  z-index: 1050;
+  display: none;
   align-items: center;
   background: #fff;
   box-sizing: border-box;
-  overflow: hidden;
-  transition: width 0.3s ease;
 }
 
 .site-navbar.search-open .nav-search-overlay {
-  width: calc(100% - 60px);
+  display: flex;
+}
+
+.site-navbar.search-open .menu-items {
+  visibility: hidden;
+}
+
+.site-navbar.search-open .navbar-brand {
+  position: relative;
+  z-index: 1051;
+}
+
+.site-navbar.search-open .nav-actions {
+  position: relative;
+  z-index: 1051;
 }
 
 .nav-search-form {
