@@ -258,6 +258,13 @@
             <a href="{{ route('admin.services.index') }}" class="nav-link {{ request()->routeIs('admin.services.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-briefcase"></i><span>Services</span>
             </a>
+            @php($pendingRequests = \App\Models\ServiceRequest::where('status', 'pending')->count())
+            <a href="{{ route('admin.service-requests.index') }}" class="nav-link {{ request()->routeIs('admin.service-requests.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-file-invoice-dollar"></i><span>Quote Requests</span>
+                @if($pendingRequests > 0)
+                    <span class="badge bg-warning ms-auto">{{ $pendingRequests }}</span>
+                @endif
+            </a>
             <a href="{{ route('admin.experience.index') }}" class="nav-link {{ request()->routeIs('admin.experience.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-building"></i><span>Experience</span>
             </a>

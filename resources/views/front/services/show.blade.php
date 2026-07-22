@@ -63,8 +63,8 @@
                     <div class="card-body p-4">
                         <h5 class="card-title mb-3">Interested in this service?</h5>
                         <p class="text-muted small mb-3">Let's discuss your project and see how I can help you achieve your goals.</p>
-                        <a href="{{ route('contact') }}" class="btn btn-primary-custom w-100">
-                            <i class="fa-solid fa-paper-plane me-2"></i>Get in Touch
+                        <a href="{{ route('quote', ['service_id' => $service->id]) }}" class="btn btn-primary-custom w-100">
+                            <i class="fa-solid fa-paper-plane me-2"></i>Request a Quote
                         </a>
                     </div>
                 </div>

@@ -67,6 +67,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [\App\Http\Controllers\Front\AboutController::class, 'index'])->name('about');
 Route::get('/services', [\App\Http\Controllers\Front\ServiceController::class, 'index'])->name('services');
 Route::get('/services/{service:slug}', [\App\Http\Controllers\Front\ServiceController::class, 'show'])->name('services.show');
+Route::get('/quote', [App\Http\Controllers\Front\ServiceRequestController::class, 'create'])->name('quote');
+Route::post('/quote', [App\Http\Controllers\Front\ServiceRequestController::class, 'store'])->name('quote.store');
 
 Route::prefix('portfolio')->name('projects.')->group(function () {
     Route::get('/', [ProjectController::class, 'index'])->name('index');
@@ -168,6 +170,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
 
     // Services
     Route::resource('services', AdminServiceController::class)->except(['show']);
+
+    // Service Requests
+    Route::get('/service-requests', [App\Http\Controllers\Admin\ServiceRequestController::class, 'index'])->name('service-requests.index');
+    Route::get('/service-requests/{request}', [App\Http\Controllers\Admin\ServiceRequestController::class, 'show'])->name('service-requests.show');
+    Route::post('/service-requests/{request}/status', [App\Http\Controllers\Admin\ServiceRequestController::class, 'updateStatus'])->name('service-requests.status');
+    Route::delete('/service-requests/{request}', [App\Http\Controllers\Admin\ServiceRequestController::class, 'destroy'])->name('service-requests.destroy');
 
     // Media Library
     Route::get('/media', [MediaController::class, 'index'])->name('media.index');

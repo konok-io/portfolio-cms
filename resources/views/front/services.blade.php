@@ -46,8 +46,8 @@
         {{-- Call to action --}}
         <div class="text-center mt-5 reveal-on-scroll">
             <h4 class="mb-3">Have a project in mind?</h4>
-            <a href="{{ route('home') }}#contact" class="btn btn-primary-custom">
-                <i class="fa-solid fa-paper-plane me-2"></i>Hire Me
+            <a href="{{ route('quote') }}" class="btn btn-primary-custom">
+                <i class="fa-solid fa-paper-plane me-2"></i>Get a Quote
             </a>
         </div>
     </div>
