@@ -259,40 +259,6 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
     if(s&&m){s.style.display=dark?'none':'inline';m.style.display=dark?'inline':'none';}
   }
   pcSyncThemeIcon();
-  
-  // Expandable Search (Jago News Style)
-  function toggleSearch() {
-    const container = document.getElementById('searchExpandContainer');
-    const overlay = document.getElementById('searchExpandOverlay');
-    const input = document.querySelector('.search-expand-input');
-    const isOpen = container.classList.contains('active');
-    
-    if (isOpen) {
-      container.classList.remove('active');
-      overlay.classList.remove('active');
-      document.body.classList.remove('search-open');
-    } else {
-      container.classList.add('active');
-      overlay.classList.add('active');
-      document.body.classList.add('search-open');
-      setTimeout(() => {
-        if (input) input.focus();
-      }, 400);
-    }
-  }
-  
-  // Close search on Escape key
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      const container = document.getElementById('searchExpandContainer');
-      const overlay = document.getElementById('searchExpandOverlay');
-      if (container && container.classList.contains('active')) {
-        container.classList.remove('active');
-        overlay.classList.remove('active');
-        document.body.classList.remove('search-open');
-      }
-    }
-  });
 </script>
 <script type="text/javascript">
   function googleTranslateElementInit(){
