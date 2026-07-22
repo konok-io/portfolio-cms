@@ -26,15 +26,21 @@
             <div class="col-lg-2 col-md-4 col-6">
                 <h5 class="mb-3">Quick Links</h5>
                 <ul class="list-unstyled small footer-links">
-                    <li class="mb-2"><a href="{{ route('home') }}#about">About</a></li>
-                    <li class="mb-2"><a href="{{ route('home') }}#services">Services</a></li>
-                    <li class="mb-2"><a href="{{ route('projects.index') }}">Portfolio</a></li>
-                    <li class="mb-2"><a href="{{ route('resume') }}">Resume</a></li>
-                    <li class="mb-2"><a href="{{ route('blog.index') }}">Blog</a></li>
-                    <li class="mb-2"><a href="{{ route('faq') }}">FAQ</a></li>
-                    <li class="mb-2"><a href="{{ route('pricing') }}">Pricing</a></li>
-                    <li class="mb-2"><a href="{{ route('privacy') }}">Privacy Policy</a></li>
-                    <li class="mb-2"><a href="{{ route('terms') }}">Terms of Service</a></li>
+                    <div class="row">
+                        <div class="col-6">
+                            <li class="mb-2"><a href="{{ route('home') }}#about">About</a></li>
+                            <li class="mb-2"><a href="{{ route('home') }}#services">Services</a></li>
+                            <li class="mb-2"><a href="{{ route('projects.index') }}">Portfolio</a></li>
+                            <li class="mb-2"><a href="{{ route('resume') }}">Resume</a></li>
+                            <li class="mb-2"><a href="{{ route('blog.index') }}">Blog</a></li>
+                        </div>
+                        <div class="col-6">
+                            <li class="mb-2"><a href="{{ route('faq') }}">FAQ</a></li>
+                            <li class="mb-2"><a href="{{ route('pricing') }}">Pricing</a></li>
+                            <li class="mb-2"><a href="{{ route('privacy') }}">Privacy Policy</a></li>
+                            <li class="mb-2"><a href="{{ route('terms') }}">Terms</a></li>
+                        </div>
+                    </div>
                 </ul>
             </div>
 

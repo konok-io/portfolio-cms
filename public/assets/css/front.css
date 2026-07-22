@@ -535,22 +535,6 @@ a {
 .site-footer a:hover {
   color: var(--color-primary-light);
 }
-.footer-links {
-  max-height: 200px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-primary) transparent;
-}
-.footer-links::-webkit-scrollbar {
-  width: 4px;
-}
-.footer-links::-webkit-scrollbar-track {
-  background: transparent;
-}
-.footer-links::-webkit-scrollbar-thumb {
-  background: var(--color-primary);
-  border-radius: 2px;
-}
 .footer-social a {
   width: 40px;
   height: 40px;
