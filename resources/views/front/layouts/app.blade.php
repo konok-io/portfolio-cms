@@ -300,10 +300,11 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
       }
     });
     
-    // Close when clicking outside search form (but not on back button)
+    // Close when clicking on overlay background (not on form or back button)
     if (overlay) {
       overlay.addEventListener('click', function(e) {
-        if (!searchForm.contains(e.target)) {
+        // Close if clicking directly on overlay (background) or on back button
+        if (e.target === overlay || e.target === backBtn || backBtn.contains(e.target)) {
           closeSearch();
         }
       });
