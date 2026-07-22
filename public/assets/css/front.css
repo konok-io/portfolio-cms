@@ -252,6 +252,7 @@ a {
   padding-top: 0.85rem;
   padding-bottom: 0.85rem;
   position: relative;
+  overflow: hidden;
   z-index: 1050;
 }
 .site-navbar .navbar-brand {
@@ -1002,15 +1003,8 @@ a [class*="far"] {
 }
 
 /* =========================================================
-   Search Icon - Expand to LEFT (Overlay on Menu)
+   Search Overlay - Full Width Slide Animation
    ========================================================= */
-.navbar-nav .nav-item.search-nav-item {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-/* Search Toggle Button */
 .search-toggle-btn {
   display: flex;
   align-items: center;
@@ -1031,7 +1025,6 @@ a [class*="far"] {
   color: var(--color-primary);
 }
 
-/* Search Overlay - Full Width Overlay */
 .nav-search-overlay {
   position: absolute;
   top: 0;
