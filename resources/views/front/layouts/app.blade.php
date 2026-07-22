@@ -29,44 +29,12 @@
     @endif
 
     {{-- JSON-LD Structured Data --}}
-    @if(isset($about))
-    @php
-        $aboutData = [
-            '@context' => 'https://schema.org',
-            '@type' => 'Person',
-            'name' => $about->name ?? 'Portfolio Owner',
-            'jobTitle' => $about->designation ?? 'Web Developer',
-            'description' => $about->short_bio ?? '',
-            'url' => url('/'),
-            'mainEntityOfPage' => ['@type' => 'WebPage', '@id' => url('/')],
-        ];
-        if ($about->photo_url) {
-            $aboutData['image'] = $about->photo_url;
-        }
-        $sameAs = [];
-        if ($about->facebook) $sameAs[] = ['url' => $about->facebook];
-        if ($about->twitter) $sameAs[] = ['url' => $about->twitter];
-        if ($about->linkedin) $sameAs[] = ['url' => $about->linkedin];
-        if ($about->github) $sameAs[] = ['url' => $about->github];
-        if (!empty($sameAs)) {
-            $aboutData['sameAs'] = $sameAs;
-        }
-    @endphp
-    <script type="application/ld+json">{!! json_encode($aboutData, JSON_UNESCAPED_SLASHES) !!}</script>
-    @endif
-
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "{{ $siteSetting->site_name ?? 'Portfolio CMS' }}",
-        "url": "{{ url('/') }}",
-        "description": "{{ $seoMeta->meta_description ?? 'Personal portfolio website' }}",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "{{ url('/blog?search={search_term_string}') }}",
-            "query-input": "required name=search_term_string"
-        }
+        "url": "{{ url('/') }}"
     }
     </script>
 
