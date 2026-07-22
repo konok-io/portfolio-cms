@@ -33,6 +33,8 @@
                     <li class="mb-2"><a href="{{ route('blog.index') }}">Blog</a></li>
                     <li class="mb-2"><a href="{{ route('faq') }}">FAQ</a></li>
                     <li class="mb-2"><a href="{{ route('pricing') }}">Pricing</a></li>
+                    <li class="mb-2"><a href="{{ route('privacy') }}">Privacy Policy</a></li>
+                    <li class="mb-2"><a href="{{ route('terms') }}">Terms of Service</a></li>
                 </ul>
             </div>
 
