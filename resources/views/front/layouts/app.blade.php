@@ -124,7 +124,9 @@
 </head>
 <body>
 
-    @include('front.partials.navbar')
+    @if(!isset($page) || $page->show_in_header !== false)
+        @include('front.partials.navbar')
+    @endif
 
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress" id="scrollProgress"></div>
@@ -135,7 +137,9 @@
     </main>
     </div>
 
-    @include('front.partials.footer')
+    @if(!isset($page) || $page->show_in_footer !== false)
+        @include('front.partials.footer')
+    @endif
 
 {{-- Newsletter Popup Modal --}}
 @if(!session('newsletter_popup_shown') && !session('newsletter_success'))
