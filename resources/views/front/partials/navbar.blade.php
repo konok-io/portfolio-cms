@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg site-navbar">
     <div class="container">
         @php($headerDisplay = $siteSetting->header_display ?? 'text')
+        @php($headerPages = \App\Models\CustomPage::getHeaderPages())
         <a class="navbar-brand d-flex align-items-center gap-2" href="{{ route('home') }}">
             @if(($headerDisplay === 'logo' || $headerDisplay === 'both') && ($siteSetting->logo_url ?? false))
                 <img src="{{ $siteSetting->logo_url }}" alt="{{ $siteSetting->site_name }}" height="36">
@@ -24,6 +25,9 @@
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('pricing') ? 'active' : '' }}" href="{{ route('pricing') }}">Pricing</a></li>
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('faq') ? 'active' : '' }}" href="{{ route('faq') }}">FAQ</a></li>
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('blog.*') ? 'active' : '' }}" href="{{ route('blog.index') }}">Blog</a></li>
+                @foreach($headerPages as $headerPage)
+                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('page.show') && request()->slug === $headerPage->slug ? 'active' : '' }}" href="{{ route('page.show', $headerPage->slug) }}">{{ $headerPage->title }}</a></li>
+                @endforeach
 
                 <li class="nav-item d-flex align-items-center gap-2">
                     <div class="search-wrapper" id="searchWrapper">

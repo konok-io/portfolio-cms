@@ -1,5 +1,6 @@
 <footer class="site-footer pt-5 pb-4 mt-auto">
     <div class="container">
+        @php($footerPages = \App\Models\CustomPage::getFooterPages())
         <div class="row gy-4">
             <div class="col-lg-3">
                 <h5 class="font-heading mb-3">{{ $siteSetting->site_name ?? 'Portfolio' }}</h5>
@@ -33,6 +34,9 @@
                             <li class="mb-2"><a href="{{ route('projects.index') }}">Portfolio</a></li>
                             <li class="mb-2"><a href="{{ route('resume') }}">Resume</a></li>
                             <li class="mb-2"><a href="{{ route('blog.index') }}">Blog</a></li>
+                            @foreach($footerPages as $footerPage)
+                                <li class="mb-2"><a href="{{ route('page.show', $footerPage->slug) }}">{{ $footerPage->title }}</a></li>
+                            @endforeach
                         </div>
                         <div class="col-6">
                             <li class="mb-2"><a href="{{ route('faq') }}">FAQ</a></li>
