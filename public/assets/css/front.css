@@ -1064,29 +1064,25 @@ a [class*="far"] {
 .search-navbar-form {
   display: flex;
   align-items: stretch;
-  background: white;
-  border-radius: 4px;
+  background: #f8fafc;
   width: 260px;
-  border: 1px solid #e2e8f0;
   transition: box-shadow 0.3s ease;
 }
 
 .search-navbar-form:focus-within {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  background: white;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
 }
 
 .search-navbar-input {
   border: none;
-  border-right: 1px solid #e2e8f0;
   padding: 10px 15px;
   font-size: 0.95rem;
-  background: white;
+  background: transparent;
   color: #1e293b;
   flex: 1;
   opacity: 0;
   transition: opacity 0.3s ease 0.15s;
-  border-radius: 3px 0 0 3px;
 }
 
 .search-form-item.active .search-navbar-input {
@@ -1101,12 +1097,10 @@ a [class*="far"] {
   cursor: pointer;
   transition: all 0.3s ease;
   flex-shrink: 0;
-  border-radius: 0 3px 3px 0;
 }
 
 .search-navbar-submit:hover {
   color: var(--color-primary);
-  background: #f8fafc;
 }
 
 .search-navbar-input:focus {
@@ -1134,13 +1128,16 @@ a [class*="far"] {
 
 /* Dark mode */
 [data-theme="dark"] .search-navbar-form {
+  background: #1a1a40;
+}
+
+[data-theme="dark"] .search-navbar-form:focus-within {
   background: #171433;
-  border-color: #2C2860;
+  box-shadow: 0 0 0 2px rgba(139, 123, 244, 0.2);
 }
 
 [data-theme="dark"] .search-navbar-input {
-  background: #171433;
-  border-color: #2C2860;
+  background: transparent;
   color: #EDECFF;
 }
 
@@ -1155,6 +1152,5 @@ a [class*="far"] {
 
 [data-theme="dark"] .search-navbar-submit:hover {
   color: #8B7BF4;
-  background: #1a1a40;
 }
 
