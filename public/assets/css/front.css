@@ -1063,6 +1063,11 @@ a [class*="far"] {
   padding: 20px;
 }
 
+.search-form-item.active .search-navbar-form,
+#searchFormItem.active .search-navbar-form {
+  width: calc(100% - 40px);
+}
+
 .search-navbar-form {
   display: flex;
   align-items: stretch;
