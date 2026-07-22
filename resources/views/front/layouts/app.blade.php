@@ -40,12 +40,12 @@
         @if($about->photo_url)"image": "{{ $about->photo_url }}",@endif
         @if($about->facebook || $about->twitter || $about->linkedin || $about->github)
         "sameAs": [
-            @if($about->facebook){"url": "{{ $about->facebook }}"}@if($about->twitter || $about->linkedin || $about->github), @endif
-            @endif
-            @if($about->twitter){"url": "{{ $about->twitter }}"}@if($about->linkedin || $about->github), @endif
-            @endif
-            @if($about->linkedin){"url": "{{ $about->linkedin }}"}@if($about->github), @endif
-            @endif
+            @if($about->facebook){"url": "{{ $about->facebook }}"}@endif
+            @if($about->twitter || $about->linkedin || $about->github),@endif
+            @if($about->twitter){"url": "{{ $about->twitter }}"}@endif
+            @if($about->linkedin || $about->github),@endif
+            @if($about->linkedin){"url": "{{ $about->linkedin }}"}@endif
+            @if($about->github),@endif
             @if($about->github){"url": "{{ $about->github }}"}@endif
         ],
         @endif
