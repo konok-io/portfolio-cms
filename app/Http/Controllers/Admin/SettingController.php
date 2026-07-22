@@ -40,6 +40,14 @@ class SettingController extends Controller
             'recaptcha_site_key' => ['nullable', 'string', 'max:255'],
             'recaptcha_secret_key' => ['nullable', 'string', 'max:255'],
             'recaptcha_enabled' => ['nullable', 'in:1'],
+            'mail_driver' => ['nullable', 'string', 'max:50'],
+            'mail_host' => ['nullable', 'string', 'max:255'],
+            'mail_port' => ['nullable', 'string', 'max:10'],
+            'mail_username' => ['nullable', 'string', 'max:255'],
+            'mail_password' => ['nullable', 'string', 'max:255'],
+            'mail_encryption' => ['nullable', 'string', 'max:10'],
+            'mail_from_address' => ['nullable', 'email', 'max:255'],
+            'mail_from_name' => ['nullable', 'string', 'max:255'],
         ]);
 
         if ($request->hasFile('logo')) {
@@ -65,5 +73,22 @@ class SettingController extends Controller
         $setting->update($validated);
 
         return redirect()->route('admin.settings.edit')->with('success', 'Settings updated successfully.');
+    }
+    
+    public function testMail(Request $request)
+    {
+        $setting = Setting::instance();
+        $setting->applyMailConfig();
+        
+        try {
+            \Illuminate\Support\Facades\Mail::raw('This is a test email from Portfolio CMS.', function ($message) use ($setting, $request) {
+                $message->to($request->input('test_email'))
+                    ->subject('Portfolio CMS - Test Email');
+            });
+            
+            return response()->json(['success' => true, 'message' => 'Test email sent successfully!']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Failed to send test email: ' . $e->getMessage()], 500);
+        }
     }
 }

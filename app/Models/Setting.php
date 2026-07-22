@@ -28,6 +28,14 @@ class Setting extends Model
         'recaptcha_site_key',
         'recaptcha_secret_key',
         'recaptcha_enabled',
+        'mail_driver',
+        'mail_host',
+        'mail_port',
+        'mail_username',
+        'mail_password',
+        'mail_encryption',
+        'mail_from_address',
+        'mail_from_name',
     ];
 
     public static function instance(): self
@@ -53,5 +61,19 @@ class Setting extends Model
     public function isRecaptchaEnabled(): bool
     {
         return $this->recaptcha_enabled && !empty($this->recaptcha_site_key) && !empty($this->recaptcha_secret_key);
+    }
+    
+    public function applyMailConfig(): void
+    {
+        config([
+            'mail.default' => $this->mail_driver ?? 'smtp',
+            'mail.mailers.smtp.host' => $this->mail_host ?? '',
+            'mail.mailers.smtp.port' => $this->mail_port ?? 587,
+            'mail.mailers.smtp.username' => $this->mail_username ?? '',
+            'mail.mailers.smtp.password' => $this->mail_password ?? '',
+            'mail.mailers.smtp.encryption' => $this->mail_encryption ?? 'tls',
+            'mail.from.address' => $this->mail_from_address ?? $this->email ?? '',
+            'mail.from.name' => $this->mail_from_name ?? $this->site_name ?? 'Portfolio CMS',
+        ]);
     }
 }

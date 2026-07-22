@@ -113,6 +113,59 @@
                     </div>
                 </div>
             </div>
+
+            <div class="admin-card">
+                <div class="card-header-custom">SMTP / Email Settings</div>
+                <div class="card-body-custom">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label-admin">Mail Driver</label>
+                            <select name="mail_driver" class="form-select">
+                                <option value="smtp" {{ ($setting->mail_driver ?? 'smtp') === 'smtp' ? 'selected' : '' }}>SMTP</option>
+                                <option value="mailgun" {{ ($setting->mail_driver ?? 'smtp') === 'mailgun' ? 'selected' : '' }}>Mailgun</option>
+                                <option value="postmark" {{ ($setting->mail_driver ?? 'smtp') === 'postmark' ? 'selected' : '' }}>Postmark</option>
+                                <option value="sendmail" {{ ($setting->mail_driver ?? 'smtp') === 'sendmail' ? 'selected' : '' }}>Sendmail</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label-admin">SMTP Host</label>
+                            <input type="text" name="mail_host" class="form-control" value="{{ old('mail_host', $setting->mail_host) }}" placeholder="smtp.gmail.com">
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label-admin">SMTP Port</label>
+                            <input type="text" name="mail_port" class="form-control" value="{{ old('mail_port', $setting->mail_port ?? '587') }}" placeholder="587">
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label-admin">Encryption</label>
+                            <select name="mail_encryption" class="form-select">
+                                <option value="tls" {{ ($setting->mail_encryption ?? 'tls') === 'tls' ? 'selected' : '' }}>TLS</option>
+                                <option value="ssl" {{ ($setting->mail_encryption ?? 'tls') === 'ssl' ? 'selected' : '' }}>SSL</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label-admin">Username</label>
+                            <input type="text" name="mail_username" class="form-control" value="{{ old('mail_username', $setting->mail_username) }}" placeholder="your@email.com">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label-admin">Password</label>
+                            <input type="password" name="mail_password" class="form-control" value="{{ old('mail_password', $setting->mail_password) }}" placeholder="App password">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label-admin">From Address</label>
+                            <input type="email" name="mail_from_address" class="form-control" value="{{ old('mail_from_address', $setting->mail_from_address) }}" placeholder="noreply@example.com">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label-admin">From Name</label>
+                            <input type="text" name="mail_from_name" class="form-control" value="{{ old('mail_from_name', $setting->mail_from_name) }}" placeholder="Portfolio CMS">
+                        </div>
+                        <div class="col-12">
+                            <button type="button" class="btn btn-outline-secondary w-100" id="testMailBtn">
+                                <i class="fa-solid fa-paper-plane me-2"></i>Send Test Email
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="col-lg-4">
@@ -336,6 +389,35 @@ document.getElementById('optimizeBtn')?.addEventListener('click', function() {
         alert('Error optimizing');
         btn.disabled = false;
         btn.innerHTML = '<i class="fa-solid fa-rocket me-2"></i>Optimize Application';
+    });
+});
+
+document.getElementById('testMailBtn')?.addEventListener('click', function() {
+    const testEmail = prompt('Enter email address to send test email:');
+    if (!testEmail) return;
+    
+    const btn = this;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending...';
+    
+    fetch('{{ route('admin.settings.testMail') }}', {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ test_email: testEmail }),
+    })
+    .then(r => r.json())
+    .then(data => {
+        alert(data.message);
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i>Send Test Email';
+    })
+    .catch(() => {
+        alert('Error sending test email');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i>Send Test Email';
     });
 });
 </script>
