@@ -41,8 +41,12 @@
                         <div class="col-6">
                             <li class="mb-2"><a href="{{ route('faq') }}">FAQ</a></li>
                             <li class="mb-2"><a href="{{ route('pricing') }}">Pricing</a></li>
+                            @if($siteSetting->show_privacy_in_footer ?? true)
                             <li class="mb-2"><a href="{{ route('privacy') }}">Privacy Policy</a></li>
+                            @endif
+                            @if($siteSetting->show_terms_in_footer ?? true)
                             <li class="mb-2"><a href="{{ route('terms') }}">Terms</a></li>
+                            @endif
                             <li class="mb-2"><a href="{{ route('admin.login') }}">Login</a></li>
                         </div>
                     </div>

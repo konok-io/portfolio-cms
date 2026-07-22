@@ -36,6 +36,10 @@ class SettingController extends Controller
             'github' => ['nullable', 'url', 'max:255'],
             'instagram' => ['nullable', 'url', 'max:255'],
             'youtube' => ['nullable', 'url', 'max:255'],
+            'show_privacy_in_footer' => ['nullable', 'in:1'],
+            'show_terms_in_footer' => ['nullable', 'in:1'],
+            'show_privacy_in_header' => ['nullable', 'in:1'],
+            'show_terms_in_header' => ['nullable', 'in:1'],
         ]);
 
         if ($request->hasFile('logo')) {

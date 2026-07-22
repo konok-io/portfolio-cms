@@ -34,6 +34,39 @@
                             <strong>Site is in Maintenance Mode!</strong> Only admins can see the site.
                         </div>
                     @endif
+                    
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label-admin fw-bold mb-3">Navigation Page Visibility</label>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="showPrivacyInHeader" name="show_privacy_in_header" value="1" {{ old('show_privacy_in_header', $setting->show_privacy_in_footer ?? true) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="showPrivacyInHeader">Show Privacy Policy in Header</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="showTermsInHeader" name="show_terms_in_header" value="1" {{ old('show_terms_in_header', $setting->show_terms_in_header ?? true) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="showTermsInHeader">Show Terms in Header</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="showPrivacyInFooter" name="show_privacy_in_footer" value="1" {{ old('show_privacy_in_footer', $setting->show_privacy_in_footer ?? true) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="showPrivacyInFooter">Show Privacy Policy in Footer</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="showTermsInFooter" name="show_terms_in_footer" value="1" {{ old('show_terms_in_footer', $setting->show_terms_in_footer ?? true) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="showTermsInFooter">Show Terms in Footer</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr class="my-4">
+                    
                     <div class="row g-3">
                         <div class="col-12">
                             <label class="form-label-admin">Website Name <span class="required-star">*</span></label>
