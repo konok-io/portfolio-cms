@@ -24,7 +24,7 @@
             </div>
 
             <div class="col-lg-3 col-md-4 col-6">
-                <h5 class="mb-3">@lang('common.footer.quick_links')</h5>
+                <h5 class="mb-3">@trans('common.footer.quick_links')</h5>
                 <ul class="list-unstyled small footer-links">
                     <div class="row">
                         <div class="col-6">
@@ -42,7 +42,7 @@
             </div>
 
             <div class="col-lg-3 col-md-4 col-6">
-                <h5 class="mb-3">@lang('common.contact.title')</h5>
+                <h5 class="mb-3">@trans('common.contact.title')</h5>
                 <ul class="list-unstyled small">
                     @if($siteSetting->email ?? false)
                         <li class="mb-2"><i class="fa-solid fa-envelope me-2"></i>{{ $siteSetting->email }}</li>
@@ -57,7 +57,7 @@
             </div>
 
             <div class="col-lg-3 col-md-4">
-                <h5 class="mb-3">@lang('common.newsletter.title')</h5>
+                <h5 class="mb-3">@trans('common.newsletter.title')</h5>
                 <p class="small mb-3">Get notified about new projects and blog posts.</p>
                 @if(session('newsletter_success'))
                     <div class="alert alert-success py-2 px-3 small mb-2">{{ session('newsletter_success') }}</div>

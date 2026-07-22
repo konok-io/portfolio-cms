@@ -114,6 +114,32 @@ class TranslationHelper
     {
         return ['en', 'bn', 'ar'];
     }
+
+    /**
+     * Get locale display name
+     */
+    public static function getLocaleName(string $locale): string
+    {
+        $names = [
+            'en' => 'English',
+            'bn' => 'বাংলা',
+            'ar' => 'العربية',
+        ];
+        return $names[$locale] ?? $locale;
+    }
+
+    /**
+     * Get locale native name
+     */
+    public static function getLocaleNativeName(string $locale): string
+    {
+        $names = [
+            'en' => 'English',
+            'bn' => 'বাংলা',
+            'ar' => 'العربية',
+        ];
+        return $names[$locale] ?? $locale;
+    }
     
     /**
      * Set locale

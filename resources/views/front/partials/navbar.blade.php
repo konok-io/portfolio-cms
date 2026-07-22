@@ -102,9 +102,6 @@
                         <i class="fa-solid fa-moon" id="pcMoon" style="display:none"></i>
                     </button>
                 </li>
-                <li class="nav-item">
-                    <a class="btn btn-primary-custom ms-lg-2 mt-2 mt-lg-0" href="{{ route('contact') }}">Get in Touch</a>
-                </li>
             </ul>
         </div>
     </div>

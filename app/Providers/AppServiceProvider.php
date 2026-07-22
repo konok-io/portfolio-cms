@@ -111,6 +111,14 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('isRtl', function () {
             return "<?php echo App\Helpers\TranslationHelper::isRtl() ? 'dir=\"rtl\"' : ''; ?>";
         });
+
+        Blade::directive('localeName', function ($expression) {
+            return "<?php echo App\Helpers\TranslationHelper::getLocaleName({$expression}); ?>";
+        });
+
+        Blade::directive('localeNativeName', function ($expression) {
+            return "<?php echo App\Helpers\TranslationHelper::getLocaleNativeName({$expression}); ?>";
+        });
     }
 
     protected function getSiteSetting(): Setting
