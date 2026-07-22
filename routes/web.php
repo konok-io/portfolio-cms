@@ -79,8 +79,8 @@ Route::get('/coming-soon', function () {
 })->name('coming-soon');
 Route::get('/faq', [FrontFaqController::class, 'index'])->name('faq');
 Route::get('/pricing', [FrontPricingController::class, 'index'])->name('pricing');
-Route::get('/privacy', [\App\Http\Controllers\Front\PrivacyPolicyController::class, 'index'])->name('privacy');
-Route::get('/terms', [\App\Http\Controllers\Front\TermsController::class, 'index'])->name('terms');
+Route::get('/privacy', function () { return view('front.privacy'); })->name('privacy');
+Route::get('/terms', function () { return view('front.terms'); })->name('terms');
 Route::get('/resume', [\App\Http\Controllers\Front\ResumeController::class, 'index'])->name('resume');
 Route::get('/resume/preview', [\App\Http\Controllers\Front\ResumeController::class, 'preview'])->name('resume.preview');
 Route::get('/search', [\App\Http\Controllers\Front\SearchController::class, 'search'])->name('search');
