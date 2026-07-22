@@ -72,14 +72,15 @@
             font-weight: 700;
             letter-spacing: -0.5px;
             margin-bottom: 5px;
-            color: {{ $settings->heading_color ?? '#ffffff' }};
+            color: {{ $settings->header_text_color ?? '#ffffff' }};
         }
         .header-text h2 {
             font-size: 14pt;
             font-weight: 400;
             opacity: 0.9;
             margin-bottom: 20px;
-            color: {{ $settings->primary_color }};
+            color: {{ $settings->header_text_color ?? '#ffffff' }};
+            opacity: 0.85;
         }
         .contact-row {
             display: flex;

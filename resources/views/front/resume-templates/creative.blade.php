@@ -45,14 +45,15 @@
             font-size: 22pt;
             font-weight: 700;
             margin-bottom: 2px;
-            color: {{ $settings->heading_color ?? '#ffffff' }};
+            color: {{ $settings->header_text_color ?? '#ffffff' }};
         }
         .header-text h2 {
             font-size: 11pt;
             font-weight: 400;
             opacity: 0.9;
             margin-bottom: 8px;
-            color: {{ $settings->primary_color }};
+            color: {{ $settings->header_text_color ?? '#ffffff' }};
+            opacity: 0.85;
         }
         .contact-row {
             display: flex;

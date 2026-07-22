@@ -56,14 +56,15 @@
             font-size: 22pt;
             font-weight: 700;
             margin-bottom: 3px;
-            color: {{ $settings->heading_color ?? '#ffffff' }};
+            color: {{ $settings->header_text_color ?? '#ffffff' }};
         }
         .header-right h2 {
             font-size: 11pt;
             font-weight: 400;
             opacity: 0.9;
             margin-bottom: 12px;
-            color: {{ $settings->primary_color }};
+            color: {{ $settings->header_text_color ?? '#ffffff' }};
+            opacity: 0.85;
         }
         .contact-grid {
             font-size: 9pt;
