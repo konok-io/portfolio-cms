@@ -1058,15 +1058,15 @@ a [class*="far"] {
 .search-form-item.active {
   opacity: 1;
   pointer-events: auto;
-  width: 280px;
+  width: 260px;
 }
 
 .search-navbar-form {
   display: flex;
   align-items: stretch;
   background: white;
-  border-radius: 50px;
-  width: 280px;
+  border-radius: 8px;
+  width: 260px;
   border: 1px solid #e2e8f0;
   transition: box-shadow 0.3s ease;
 }
@@ -1083,15 +1083,29 @@ a [class*="far"] {
   font-size: 0.95rem;
   background: white;
   color: #1e293b;
-  width: 200px;
+  flex: 1;
   opacity: 0;
-  transition: opacity 0.3s ease 0.2s;
-  border-radius: 50px 0 0 50px;
+  transition: opacity 0.3s ease 0.15s;
+  border-radius: 7px 0 0 7px;
 }
 
 .search-form-item.active .search-navbar-input {
   opacity: 1;
-  padding-left: 20px;
+}
+
+.search-navbar-submit {
+  background: var(--color-primary);
+  border: none;
+  padding: 10px 14px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  flex-shrink: 0;
+  border-radius: 0 7px 7px 0;
+}
+
+.search-navbar-submit:hover {
+  background: var(--color-primary-dark);
 }
 
 .search-navbar-input:focus {
