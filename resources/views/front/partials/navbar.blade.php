@@ -26,7 +26,7 @@
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('blog.*') ? 'active' : '' }}" href="{{ route('blog.index') }}">Blog</a></li>
                 
                 <li class="nav-item">
-                    <button class="search-toggle-btn" onclick="openNavbarSearch()" aria-label="Search">
+                    <button class="search-toggle-btn" id="searchToggleBtn" aria-label="Search">
                         <i class="fa-solid fa-search"></i>
                     </button>
                 </li>
@@ -62,7 +62,7 @@
     <div class="nav-search-overlay" id="navSearchOverlay">
         <div class="container h-100">
             <form action="{{ route('search') }}" method="GET" class="nav-search-form">
-                <button type="button" class="nav-search-back" onclick="closeNavbarSearch()" aria-label="Close search">
+                <button type="button" class="nav-search-back" id="searchBackBtn" aria-label="Close search">
                     <i class="fa-solid fa-arrow-left"></i>
                 </button>
                 <input type="text" name="q" class="nav-search-input" placeholder="Search..." autocomplete="off" id="navSearchInput">

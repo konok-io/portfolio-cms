@@ -260,43 +260,52 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
   }
   pcSyncThemeIcon();
   
-  // Navbar Search Toggle - Full Width Overlay
-  function openNavbarSearch() {
-    var navbar = document.querySelector('.site-navbar');
-    var input = document.getElementById('navSearchInput');
-    if(navbar) {
-      navbar.classList.add('search-open');
-      setTimeout(function() {
-        if(input) input.focus();
-      }, 350);
-    }
-  }
-  
-  function closeNavbarSearch() {
-    var navbar = document.querySelector('.site-navbar');
-    var input = document.getElementById('navSearchInput');
-    if(navbar) {
-      navbar.classList.remove('search-open');
-    }
-    if(input) input.value = '';
-  }
-  
-  // Close search on Escape
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      closeNavbarSearch();
-    }
-  });
-  
-  // Close search when clicking outside
-  document.addEventListener('click', function(e) {
+  // Navbar Search - Event Listeners
+  document.addEventListener('DOMContentLoaded', function() {
+    var toggleBtn = document.getElementById('searchToggleBtn');
+    var backBtn = document.getElementById('searchBackBtn');
     var navbar = document.querySelector('.site-navbar');
     var overlay = document.getElementById('navSearchOverlay');
+    var input = document.getElementById('navSearchInput');
     
-    if (navbar && overlay) {
-      if (!overlay.contains(e.target) && navbar.classList.contains('search-open')) {
-        closeNavbarSearch();
+    function openSearch() {
+      if (navbar) {
+        navbar.classList.add('search-open');
+        setTimeout(function() {
+          if (input) input.focus();
+        }, 100);
       }
+    }
+    
+    function closeSearch() {
+      if (navbar) {
+        navbar.classList.remove('search-open');
+        if (input) input.value = '';
+      }
+    }
+    
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', openSearch);
+    }
+    
+    if (backBtn) {
+      backBtn.addEventListener('click', closeSearch);
+    }
+    
+    // Close on Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && navbar && navbar.classList.contains('search-open')) {
+        closeSearch();
+      }
+    });
+    
+    // Close when clicking outside overlay
+    if (overlay) {
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) {
+          closeSearch();
+        }
+      });
     }
   });
 </script>
