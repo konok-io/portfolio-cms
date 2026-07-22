@@ -23,6 +23,31 @@
                     {!! $project->description !!}
                 </div>
 
+                {{-- Social Share Buttons --}}
+                <div class="mt-4 pt-4 border-top">
+                    <h6 class="mb-3">Share this project</h6>
+                    <div class="share-buttons">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->url()) }}" target="_blank" class="share-btn facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->url()) }}&text={{ urlencode($project->title) }}" target="_blank" class="share-btn twitter">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode(request()->url()) }}&title={{ urlencode($project->title) }}" target="_blank" class="share-btn linkedin">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://wa.me/?text={{ urlencode($project->title . ' ' . request()->url()) }}" target="_blank" class="share-btn whatsapp">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.reddit.com/submit?url={{ urlencode(request()->url()) }}&title={{ urlencode($project->title) }}" target="_blank" class="share-btn reddit">
+                            <i class="fa-brands fa-reddit"></i>
+                        </a>
+                        <button onclick="copyLink()" class="share-btn copy-link" title="Copy Link">
+                            <i class="fa-solid fa-link"></i>
+                        </button>
+                    </div>
+                </div>
+
                 @if($project->gallery->isNotEmpty())
                     <h5 class="mt-5 mb-3">Project Gallery</h5>
                     <div class="row g-3">

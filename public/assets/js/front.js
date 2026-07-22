@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // --- Navbar shrink on scroll ---
     const navbar = document.querySelector('.site-navbar');
     const backToTop = document.querySelector('.back-to-top');
+    const scrollProgress = document.getElementById('scrollProgress');
 
     window.addEventListener('scroll', function () {
         if (window.scrollY > 60) {
@@ -14,6 +15,14 @@ document.addEventListener('DOMContentLoaded', function () {
             backToTop?.classList.add('show');
         } else {
             backToTop?.classList.remove('show');
+        }
+
+        // Scroll Progress Bar
+        if (scrollProgress) {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            scrollProgress.style.width = scrolled + '%';
         }
     });
 
