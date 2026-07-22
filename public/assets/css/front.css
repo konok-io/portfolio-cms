@@ -1007,6 +1007,8 @@ a [class*="far"] {
   display: flex;
   align-items: center;
   position: relative;
+  height: 100%;
+  padding: 8px 0;
 }
 
 .search-icon-btn {
@@ -1060,6 +1062,7 @@ a [class*="far"] {
   overflow: hidden;
   transform: translateX(100%);
   transition: transform 0.35s ease;
+  height: 40px;
 }
 
 .search-form-item.active .search-navbar-form {
@@ -1074,6 +1077,7 @@ a [class*="far"] {
   background: white;
   color: #1e293b;
   width: 200px;
+  height: 100%;
 }
 
 .search-navbar-input:focus {
@@ -1091,6 +1095,7 @@ a [class*="far"] {
   color: white;
   cursor: pointer;
   transition: background 0.3s ease;
+  height: 100%;
 }
 
 .search-navbar-submit:hover {
