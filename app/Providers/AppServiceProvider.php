@@ -76,7 +76,7 @@ class AppServiceProvider extends ServiceProvider
             
             // Generate srcset for different widths (if using an image CDN or media library)
             $widths = [320, 640, 960, 1280, 1920];
-            $srcset = collect($widths)->map(fn($w) => {
+            $srcset = collect($widths)->map(function ($w) use ($src) {
                 // This assumes an image CDN that supports width parameter
                 // Replace with your actual image processing URL pattern
                 $processedSrc = $src . (str_contains($src, '?') ? '&' : '?') . "w={$w}";
