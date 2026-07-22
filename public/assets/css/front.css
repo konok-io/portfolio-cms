@@ -1072,9 +1072,12 @@ a [class*="far"] {
   border-radius: 0 !important;
 }
 
+.search-form-item.active .search-navbar-form {
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3);
+}
+
 .search-navbar-form:focus-within {
   background: white;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
 }
 
 .search-navbar-input {
