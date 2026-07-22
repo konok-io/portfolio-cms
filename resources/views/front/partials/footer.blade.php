@@ -1,6 +1,5 @@
 <footer class="site-footer pt-5 pb-4 mt-auto">
     <div class="container">
-        @php($footerPages = \App\Models\CustomPage::getFooterPages())
         <div class="row gy-4">
             <div class="col-lg-3">
                 <h5 class="font-heading mb-3">{{ $siteSetting->site_name ?? 'Portfolio' }}</h5>
@@ -29,18 +28,15 @@
                 <ul class="list-unstyled small footer-links">
                     <div class="row">
                         <div class="col-6">
-                            <li class="mb-2"><a href="{{ route('home') }}#about">About</a></li>
-                            <li class="mb-2"><a href="{{ route('projects.index') }}">Portfolio</a></li>
-                            <li class="mb-2"><a href="{{ route('blog.index') }}">Blog</a></li>
-                            <li class="mb-2"><a href="{{ route('faq') }}">FAQ</a></li>
+                            @foreach($footerLinks['col1'] as $link)
+                                <li class="mb-2"><a href="{{ url($link['url']) }}">{{ $link['title'] }}</a></li>
+                            @endforeach
                         </div>
                         <div class="col-6">
-                            <li class="mb-2"><a href="{{ route('home') }}#services">Services</a></li>
-                            <li class="mb-2"><a href="{{ route('resume') }}">Resume</a></li>
-                            <li class="mb-2"><a href="{{ route('pricing') }}">Pricing</a></li>
-                            @foreach($footerPages as $index => $page)
-                                <li class="mb-2"><a href="{{ route('page.show', $page->slug) }}">{{ $page->title }}</a></li>
+                            @foreach($footerLinks['col2'] as $link)
+                                <li class="mb-2"><a href="{{ url($link['url']) }}">{{ $link['title'] }}</a></li>
                             @endforeach
+                            <li class="mb-2"><a href="{{ route('admin.login') }}">Login</a></li>
                         </div>
                     </div>
                 </ul>
