@@ -514,5 +514,7 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
 </script>
 @endif
 
+@yield('scripts')
+
 </body>
 </html>

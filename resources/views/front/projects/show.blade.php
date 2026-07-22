@@ -78,11 +78,16 @@
 
                 @if($project->gallery->isNotEmpty())
                     <h5 class="mt-5 mb-3">Project Gallery</h5>
-                    <div class="row g-3">
-                        @foreach($project->gallery as $image)
-                            <div class="col-md-4">
-                                <a href="{{ $image->image_url }}" target="_blank">
-                                    <img src="{{ $image->image_url }}" alt="Gallery image" class="img-fluid rounded-3" style="aspect-ratio: 4/3; object-fit: cover; width: 100%;">
+                    <div class="row g-3" id="projectGallery">
+                        @foreach($project->gallery as $index => $image)
+                            <div class="col-md-4 col-6">
+                                <a href="{{ $image->image_url }}" class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-image="{{ $image->image_url }}" data-title="{{ $project->title }} - Image {{ $index + 1 }}">
+                                    <div class="position-relative overflow-hidden rounded-3">
+                                        <img src="{{ $image->image_url }}" alt="Gallery image {{ $index + 1 }}" class="img-fluid w-100" style="aspect-ratio: 4/3; object-fit: cover;" loading="lazy">
+                                        <div class="gallery-overlay">
+                                            <i class="fa-solid fa-expand"></i>
+                                        </div>
+                                    </div>
                                 </a>
                             </div>
                         @endforeach
@@ -235,6 +240,114 @@
     border-color: var(--color-primary);
     background: var(--color-primary-tint);
 }
+
+/* Gallery Lightbox Styles */
+.gallery-item {
+    display: block;
+    cursor: pointer;
+}
+.gallery-item .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.gallery-item .gallery-overlay i {
+    color: white;
+    font-size: 1.5rem;
+}
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+.gallery-item img {
+    transition: transform 0.3s ease;
+}
 </style>
 
+{{-- Gallery Lightbox Modal --}}
+<div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h6 class="modal-title" id="galleryModalLabel"></h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center p-0">
+                <img src="" id="galleryModalImage" class="img-fluid" alt="Gallery image">
+            </div>
+            <div class="modal-footer justify-content-between border-0">
+                <button type="button" class="btn btn-outline-light" id="galleryPrev">
+                    <i class="fa-solid fa-chevron-left"></i> Previous
+                </button>
+                <span class="text-muted"><span id="currentIndex">1</span> / <span id="totalImages">{{ $project->gallery->count() }}</span></span>
+                <button type="button" class="btn btn-outline-light" id="galleryNext">
+                    Next <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endsection
+
+@section('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('galleryModal');
+    const modalImage = document.getElementById('galleryModalImage');
+    const modalTitle = document.getElementById('galleryModalLabel');
+    const currentIndexEl = document.getElementById('currentIndex');
+    const totalImages = {{ $project->gallery->count() }};
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    let currentIndex = 0;
+
+    const images = Array.from(galleryItems).map(item => ({
+        image: item.dataset.image,
+        title: item.dataset.title
+    }));
+
+    function updateModal(index) {
+        currentIndex = index;
+        modalImage.src = images[index].image;
+        modalTitle.textContent = images[index].title;
+        currentIndexEl.textContent = index + 1;
+    }
+
+    galleryItems.forEach((item, index) => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            currentIndex = index;
+            updateModal(currentIndex);
+            new bootstrap.Modal(modal).show();
+        });
+    });
+
+    document.getElementById('galleryPrev')?.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateModal(currentIndex);
+    });
+
+    document.getElementById('galleryNext')?.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateModal(currentIndex);
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (!modal.classList.contains('show')) return;
+        if (e.key === 'ArrowLeft') {
+            document.getElementById('galleryPrev')?.click();
+        } else if (e.key === 'ArrowRight') {
+            document.getElementById('galleryNext')?.click();
+        }
+    });
+});
+</script>
 @endsection
