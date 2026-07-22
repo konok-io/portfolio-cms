@@ -25,8 +25,9 @@
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('faq') ? 'active' : '' }}" href="{{ route('faq') }}">FAQ</a></li>
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('blog.*') ? 'active' : '' }}" href="{{ route('blog.index') }}">Blog</a></li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#searchModal">
-                        <i class="fa-solid fa-search"></i>
+                    <a class="nav-link search-toggle-btn" href="#" onclick="toggleSearch(); return false;">
+                        <i class="fa-solid fa-search search-icon"></i>
+                        <i class="fa-solid fa-times close-icon" style="display:none;"></i>
                     </a>
                 </li>
                 <li class="nav-item d-flex align-items-center gap-2 ms-lg-2">
@@ -56,3 +57,28 @@
         </div>
     </div>
 </nav>
+
+{{-- Expandable Search Bar (Jago News Style) --}}
+<div class="search-expand-overlay" id="searchExpandOverlay" onclick="toggleSearch()"></div>
+<div class="search-expand-container" id="searchExpandContainer">
+    <div class="search-expand-inner">
+        <form action="{{ route('search') }}" method="GET" class="search-expand-form">
+            <button type="button" class="search-expand-close" onclick="toggleSearch()">
+                <i class="fa-solid fa-times"></i>
+            </button>
+            <div class="search-expand-input-wrap">
+                <input type="text" name="q" class="search-expand-input" placeholder="Search projects, blogs, services..." autocomplete="off">
+                <button type="submit" class="search-expand-submit">
+                    <i class="fa-solid fa-search"></i>
+                </button>
+            </div>
+            <div class="search-expand-suggestions">
+                <span class="search-suggestion-label">Quick:</span>
+                <a href="{{ route('projects.index') }}" class="search-suggestion-link">Projects</a>
+                <a href="{{ route('blog.index') }}" class="search-suggestion-link">Blog</a>
+                <a href="{{ route('services') }}" class="search-suggestion-link">Services</a>
+                <a href="{{ route('resume') }}" class="search-suggestion-link">Resume</a>
+            </div>
+        </form>
+    </div>
+</div>

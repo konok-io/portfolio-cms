@@ -259,6 +259,40 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
     if(s&&m){s.style.display=dark?'none':'inline';m.style.display=dark?'inline':'none';}
   }
   pcSyncThemeIcon();
+  
+  // Expandable Search (Jago News Style)
+  function toggleSearch() {
+    const container = document.getElementById('searchExpandContainer');
+    const overlay = document.getElementById('searchExpandOverlay');
+    const input = document.querySelector('.search-expand-input');
+    const isOpen = container.classList.contains('active');
+    
+    if (isOpen) {
+      container.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.classList.remove('search-open');
+    } else {
+      container.classList.add('active');
+      overlay.classList.add('active');
+      document.body.classList.add('search-open');
+      setTimeout(() => {
+        if (input) input.focus();
+      }, 400);
+    }
+  }
+  
+  // Close search on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const container = document.getElementById('searchExpandContainer');
+      const overlay = document.getElementById('searchExpandOverlay');
+      if (container && container.classList.contains('active')) {
+        container.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.classList.remove('search-open');
+      }
+    }
+  });
 </script>
 <script type="text/javascript">
   function googleTranslateElementInit(){
@@ -323,42 +357,6 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
 
 })();
 </script>
-
-{{-- Search Modal --}}
-<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content border-0 shadow-lg">
-            <div class="modal-header border-0 pb-0">
-                <h5 class="modal-title" id="searchModalLabel">
-                    <i class="fa-solid fa-search me-2 text-primary-custom"></i>Search
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body pt-3">
-                <form action="{{ route('search') }}" method="GET" id="searchForm">
-                    <div class="input-group">
-                        <input type="text" name="q" class="form-control form-control-lg border-primary" 
-                               placeholder="Search projects, blogs, services, pages..." 
-                               autocomplete="off" id="searchInput" required>
-                        <button class="btn btn-primary-custom" type="submit">
-                            <i class="fa-solid fa-search"></i>
-                        </button>
-                    </div>
-                </form>
-                <div class="mt-3 small text-muted">
-                    <span>Quick links:</span>
-                    <a href="{{ route('projects.index') }}" class="text-decoration-none me-3">Projects</a>
-                    <a href="{{ route('blog.index') }}" class="text-decoration-none me-3">Blog</a>
-                    <a href="{{ route('services') }}" class="text-decoration-none me-3">Services</a>
-                    <a href="{{ route('resume') }}" class="text-decoration-none">Resume</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-{{-- Quick Search Results Dropdown --}}
-<div class="position-fixed top-0 end-0 p-3" style="z-index: 9999; max-width: 400px; width: 100%;" id="quickSearchResults"></div>
 
 </body>
 </html>
