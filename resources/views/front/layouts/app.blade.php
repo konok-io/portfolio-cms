@@ -260,17 +260,17 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
   }
   pcSyncThemeIcon();
   
-  // Search Overlay
+  // Search
   document.addEventListener('DOMContentLoaded', function() {
     var searchBtn = document.getElementById('searchBtn');
-    var searchOverlay = document.getElementById('searchOverlay');
+    var searchBox = document.getElementById('searchBox');
     var searchClose = document.getElementById('searchClose');
-    var searchInput = searchOverlay ? searchOverlay.querySelector('.search-input') : null;
+    var searchInput = searchBox ? searchBox.querySelector('.search-input') : null;
     
-    if (searchBtn && searchOverlay) {
+    if (searchBtn && searchBox) {
       searchBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        searchOverlay.classList.add('active');
+        searchBox.classList.add('active');
         if (searchInput) {
           setTimeout(function() {
             searchInput.focus();
@@ -279,17 +279,27 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
       });
     }
     
-    if (searchClose && searchOverlay) {
+    if (searchClose && searchBox) {
       searchClose.addEventListener('click', function() {
-        searchOverlay.classList.remove('active');
+        searchBox.classList.remove('active');
         if (searchInput) searchInput.value = '';
       });
     }
     
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && searchOverlay && searchOverlay.classList.contains('active')) {
-        searchOverlay.classList.remove('active');
+      if (e.key === 'Escape' && searchBox && searchBox.classList.contains('active')) {
+        searchBox.classList.remove('active');
         if (searchInput) searchInput.value = '';
+      }
+    });
+    
+    // Close when clicking outside
+    document.addEventListener('click', function(e) {
+      if (searchBox && searchBox.classList.contains('active')) {
+        if (!searchBox.contains(e.target) && !searchBtn.contains(e.target)) {
+          searchBox.classList.remove('active');
+          if (searchInput) searchInput.value = '';
+        }
       }
     });
   });
