@@ -1049,13 +1049,16 @@ a [class*="far"] {
   transform: translateY(-50%);
   opacity: 0;
   z-index: 2;
-  transition: all 0.35s ease;
+  transition: opacity 0.3s ease;
   pointer-events: none;
+  width: 40px;
+  overflow: hidden;
 }
 
 .search-form-item.active {
   opacity: 1;
   pointer-events: auto;
+  width: 260px;
 }
 
 .search-navbar-form {
@@ -1063,13 +1066,8 @@ a [class*="far"] {
   align-items: stretch;
   background: white;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
-  transform: translateX(100%);
-  transition: transform 0.35s ease;
-}
-
-.search-form-item.active .search-navbar-form {
-  transform: translateX(0);
+  width: 260px;
+  transition: width 0.35s ease;
 }
 
 .search-navbar-input {
@@ -1079,7 +1077,14 @@ a [class*="far"] {
   font-size: 0.95rem;
   background: white;
   color: #1e293b;
-  width: 200px;
+  width: 0;
+  opacity: 0;
+  transition: width 0.35s ease 0.05s, opacity 0.3s ease;
+}
+
+.search-form-item.active .search-navbar-input {
+  width: 180px;
+  opacity: 1;
 }
 
 .search-navbar-input:focus {
@@ -1097,6 +1102,7 @@ a [class*="far"] {
   color: white;
   cursor: pointer;
   transition: background 0.3s ease;
+  flex-shrink: 0;
 }
 
 .search-navbar-submit:hover {
