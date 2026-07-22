@@ -125,7 +125,7 @@
         .certification-item { margin-bottom: 10px; padding: 12px; background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 10px; border-left: 4px solid {{ $settings->primary_color }}; }
         .certification-name { font-weight: 700; font-size: 10pt; color: {{ $settings->heading_color ?? '#1a1a2e' }}; }
         .certification-issuer { color: {{ $settings->primary_color }}; font-size: 9pt; margin-top: 3px; }
-        .footer { background: {{ $settings->footer_bg_color ?? '#1a1a2e' }}; color: #9ca3af; padding: 15px 30px; text-align: center; font-size: 8pt; }
+        .footer { background: {{ $settings->footer_bg_color ?? '#1a1a2e' }}; color: {{ $settings->footer_text_color ?? '#9ca3af' }}; padding: 15px 30px; text-align: center; font-size: 8pt; }
     </style>
 </head>
 <body>

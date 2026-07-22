@@ -115,7 +115,7 @@
         .certification-item:last-child { border-bottom: none; }
         .certification-name { font-weight: 700; font-size: 9pt; color: {{ $settings->heading_color ?? '#1a1a2e' }}; }
         .certification-issuer { font-size: 8pt; color: {{ $settings->primary_color }}; }
-        .footer { background: {{ $settings->footer_bg_color ?? '#1a1a2e' }}; color: #9ca3af; padding: 8px 15mm; text-align: center; font-size: 8pt; }
+        .footer { background: {{ $settings->footer_bg_color ?? '#1a1a2e' }}; color: {{ $settings->footer_text_color ?? '#9ca3af' }}; padding: 8px 15mm; text-align: center; font-size: 8pt; }
     </style>
 </head>
 <body>

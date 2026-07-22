@@ -161,6 +161,20 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="row g-2 mt-1">
+                            <div class="col-6">
+                                <label for="footer_text_color" class="form-label small">Footer Text Color</label>
+                                <div class="d-flex gap-1">
+                                    <input type="color" class="form-control form-control-color form-control-sm" 
+                                           id="footer_text_color" name="footer_text_color" 
+                                           value="{{ old('footer_text_color', $settings->footer_text_color ?? '#9ca3af') }}">
+                                    <input type="text" class="form-control form-control-sm" 
+                                           value="{{ old('footer_text_color', $settings->footer_text_color ?? '#9ca3af') }}"
+                                           pattern="^#[0-9A-Fa-f]{6}$">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

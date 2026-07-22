@@ -20,6 +20,7 @@ class ResumeSetting extends Model
         'header_bg_color',
         'header_text_color',
         'footer_bg_color',
+        'footer_text_color',
         'include_photo',
         'include_skills',
         'include_experience',
@@ -41,6 +42,7 @@ class ResumeSetting extends Model
         'header_bg_color' => 'string',
         'header_text_color' => 'string',
         'footer_bg_color' => 'string',
+        'footer_text_color' => 'string',
     ];
 
     /**
