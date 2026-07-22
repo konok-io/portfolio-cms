@@ -58,6 +58,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/about', [\App\Http\Controllers\Front\AboutController::class, 'index'])->name('about');
 Route::get('/services', [\App\Http\Controllers\Front\ServiceController::class, 'index'])->name('services');
+Route::get('/services/{service:slug}', [\App\Http\Controllers\Front\ServiceController::class, 'show'])->name('services.show');
 
 Route::prefix('portfolio')->name('projects.')->group(function () {
     Route::get('/', [ProjectController::class, 'index'])->name('index');

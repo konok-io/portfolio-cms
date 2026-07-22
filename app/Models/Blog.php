@@ -74,6 +74,11 @@ class Blog extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'blog_tag');
+    }
+
     public function getFeaturedImageUrlAttribute(): ?string
     {
         return $this->featured_image ? asset('storage/' . $this->featured_image) : null;
