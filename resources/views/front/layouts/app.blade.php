@@ -266,6 +266,7 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
     var backBtn = document.getElementById('searchBackBtn');
     var navbar = document.querySelector('.site-navbar');
     var overlay = document.getElementById('navSearchOverlay');
+    var searchForm = overlay ? overlay.querySelector('.nav-search-form') : null;
     var input = document.getElementById('navSearchInput');
     
     function openSearch() {
@@ -299,10 +300,10 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
       }
     });
     
-    // Close when clicking outside overlay
+    // Close when clicking outside search form (but not on back button)
     if (overlay) {
       overlay.addEventListener('click', function(e) {
-        if (e.target === overlay) {
+        if (!searchForm.contains(e.target)) {
           closeSearch();
         }
       });
