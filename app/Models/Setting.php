@@ -25,28 +25,11 @@ class Setting extends Model
         'instagram',
         'youtube',
         'maintenance_mode',
-        'show_privacy_in_footer',
-        'show_terms_in_footer',
-        'show_privacy_in_header',
-        'show_terms_in_header',
-    ];
-
-    protected $casts = [
-        'show_privacy_in_footer' => 'boolean',
-        'show_terms_in_footer' => 'boolean',
-        'show_privacy_in_header' => 'boolean',
-        'show_terms_in_header' => 'boolean',
     ];
 
     public static function instance(): self
     {
-        return static::firstOrCreate(['id' => 1], [
-            'site_name' => 'Portfolio CMS',
-            'show_privacy_in_footer' => true,
-            'show_terms_in_footer' => true,
-            'show_privacy_in_header' => true,
-            'show_terms_in_header' => true,
-        ]);
+        return static::firstOrCreate(['id' => 1], ['site_name' => 'Portfolio CMS']);
     }
 
     public function getLogoUrlAttribute(): ?string
