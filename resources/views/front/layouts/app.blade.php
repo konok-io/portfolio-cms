@@ -150,6 +150,13 @@
       [data-theme="dark"] .google-map-placeholder{background:#12102E!important;border-color:#2C2860!important;color:#6B6790!important}
       [data-theme="dark"] .newsletter-popup,[data-theme="dark"] .cookie-consent{background:#171433!important;color:#EDECFF!important}
       [data-theme="dark"] .newsletter-popup .btn-outline-light,[data-theme="dark"] .cookie-consent .btn-outline-light{color:#EDECFF!important;border-color:#4F2FE8!important}
+      
+      /* Dropdown z-index fixes */
+      .navbar { z-index: 1020 !important; }
+      .dropdown-menu { z-index: 1050 !important; }
+      .gtranslate-wrap { position: relative; z-index: 1030; }
+      .gt_open .goog-te-menu-value { z-index: 1051 !important; }
+      .lang-menu { z-index: 1051 !important; }
     </style>
     @stack('styles')
     
