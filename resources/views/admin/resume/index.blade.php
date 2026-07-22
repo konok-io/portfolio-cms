@@ -75,19 +75,19 @@
                             @enderror
                         </div>
 
-                        <div class="mb-2">
-                            <label for="primary_color" class="form-label small">Primary Color (Accent)</label>
-                            <div class="d-flex gap-2">
-                                <input type="color" class="form-control form-control-color form-control-sm" 
-                                       id="primary_color" name="primary_color" 
-                                       value="{{ old('primary_color', $settings->primary_color) }}">
-                                <input type="text" class="form-control form-control-sm" id="primary_color_text" 
-                                       value="{{ old('primary_color', $settings->primary_color) }}"
-                                       pattern="^#[0-9A-Fa-f]{6}$">
-                            </div>
-                        </div>
-
+                        <!-- Row 1: Primary + Heading Color -->
                         <div class="row g-2">
+                            <div class="col-6">
+                                <label for="primary_color" class="form-label small">Primary Color (Accent)</label>
+                                <div class="d-flex gap-1">
+                                    <input type="color" class="form-control form-control-color form-control-sm" 
+                                           id="primary_color" name="primary_color" 
+                                           value="{{ old('primary_color', $settings->primary_color) }}">
+                                    <input type="text" class="form-control form-control-sm" 
+                                           value="{{ old('primary_color', $settings->primary_color) }}"
+                                           pattern="^#[0-9A-Fa-f]{6}$">
+                                </div>
+                            </div>
                             <div class="col-6">
                                 <label for="heading_color" class="form-label small">Heading Color</label>
                                 <div class="d-flex gap-1">
@@ -99,6 +99,10 @@
                                            pattern="^#[0-9A-Fa-f]{6}$">
                                 </div>
                             </div>
+                        </div>
+
+                        <!-- Row 2: Header Text + Text Color -->
+                        <div class="row g-2 mt-1">
                             <div class="col-6">
                                 <label for="header_text_color" class="form-label small">Header Text Color</label>
                                 <div class="d-flex gap-1">
@@ -110,9 +114,6 @@
                                            pattern="^#[0-9A-Fa-f]{6}$">
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row g-2 mt-1">
                             <div class="col-6">
                                 <label for="text_color" class="form-label small">Text Color</label>
                                 <div class="d-flex gap-1">
@@ -124,6 +125,10 @@
                                            pattern="^#[0-9A-Fa-f]{6}$">
                                 </div>
                             </div>
+                        </div>
+
+                        <!-- Row 3: Background + Header BG Color -->
+                        <div class="row g-2 mt-1">
                             <div class="col-6">
                                 <label for="background_color" class="form-label small">Background Color</label>
                                 <div class="d-flex gap-1">
@@ -135,9 +140,6 @@
                                            pattern="^#[0-9A-Fa-f]{6}$">
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row g-2 mt-1">
                             <div class="col-6">
                                 <label for="header_bg_color" class="form-label small">Header BG Color</label>
                                 <div class="d-flex gap-1">
@@ -149,6 +151,10 @@
                                            pattern="^#[0-9A-Fa-f]{6}$">
                                 </div>
                             </div>
+                        </div>
+
+                        <!-- Row 4: Footer BG + Footer Text Color -->
+                        <div class="row g-2 mt-1">
                             <div class="col-6">
                                 <label for="footer_bg_color" class="form-label small">Footer BG Color</label>
                                 <div class="d-flex gap-1">
@@ -160,9 +166,6 @@
                                            pattern="^#[0-9A-Fa-f]{6}$">
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row g-2 mt-1">
                             <div class="col-6">
                                 <label for="footer_text_color" class="form-label small">Footer Text Color</label>
                                 <div class="d-flex gap-1">
