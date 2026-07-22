@@ -170,6 +170,26 @@
 
     @stack('scripts')
 
+{{-- Copy Link Function for Social Share --}}
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+        if (window.Swal) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Link Copied!',
+                text: 'The link has been copied to your clipboard.',
+                confirmButtonColor: '#2563EB',
+                timer: 2000,
+                showConfirmButton: false
+            });
+        } else {
+            alert('Link copied to clipboard!');
+        }
+    });
+}
+</script>
+
 <script>
   function pcToggleTheme(){
     var el=document.documentElement, dark=el.getAttribute('data-theme')==='dark';
