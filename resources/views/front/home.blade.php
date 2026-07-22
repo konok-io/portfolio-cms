@@ -143,9 +143,9 @@
 <section id="services" class="section-padding section-tint">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
-            <span class="section-eyebrow">What I Offer</span>
-            <h2 class="section-title">Services built around your goals</h2>
-            <p class="section-subtitle mx-auto">End-to-end web development services to help your idea reach production.</p>
+            <span class="section-eyebrow">{{ PageContent::get('home', 'services_eyebrow', app()->getLocale()) }}</span>
+            <h2 class="section-title">{{ PageContent::get('home', 'services_title', app()->getLocale()) }}</h2>
+            <p class="section-subtitle mx-auto">{{ PageContent::get('home', 'services_subtitle', app()->getLocale()) }}</p>
         </div>
         <div class="row g-4">
             @foreach($services as $service)
@@ -373,8 +373,8 @@
 <section id="blog" class="section-padding section-tint">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
-            <span class="section-eyebrow">From the Blog</span>
-            <h2 class="section-title">Latest Articles</h2>
+            <span class="section-eyebrow">{{ PageContent::get('home', 'blog_eyebrow', app()->getLocale()) }}</span>
+            <h2 class="section-title">{{ PageContent::get('home', 'blog_title', app()->getLocale()) }}</h2>
         </div>
         <div class="row g-4">
             @foreach($blogs as $blog)
@@ -390,7 +390,7 @@
                             <h6 class="mt-1 mb-2"><a href="{{ route('blog.show', $blog->slug) }}" class="text-decoration-none text-dark">{{ $blog->title }}</a></h6>
                             <p class="text-muted small">{{ $blog->short_description }}</p>
                             <a href="{{ route('blog.show', $blog->slug) }}" class="small text-primary-custom fw-semibold">
-                                Read More <i class="fa-solid fa-arrow-right ms-1"></i>
+                                {{ PageContent::get('home', 'blog_card_link', app()->getLocale()) }} <i class="fa-solid fa-arrow-right ms-1"></i>
                             </a>
                         </div>
                     </div>
@@ -398,7 +398,7 @@
             @endforeach
         </div>
         <div class="text-center mt-5">
-            <a href="{{ route('blog.index') }}" class="btn btn-outline-custom">View All Articles</a>
+            <a href="{{ route('blog.index') }}" class="btn btn-outline-custom">{{ PageContent::get('home', 'blog_button', app()->getLocale()) }}</a>
         </div>
     </div>
 </section>

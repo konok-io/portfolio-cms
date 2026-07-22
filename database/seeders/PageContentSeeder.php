@@ -60,6 +60,7 @@ class PageContentSeeder extends Seeder
                 'skills_subtitle' => 'A snapshot of the tools and languages I use to bring projects to life.',
                 
                 // Services Section
+                'services_eyebrow' => 'What I Offer',
                 'services_title' => 'Services built around your goals',
                 'services_subtitle' => 'End-to-end web development services to help your idea reach production.',
                 'services_button' => 'Learn More',
@@ -88,6 +89,7 @@ class PageContentSeeder extends Seeder
                 'certifications_verify' => 'Verify',
                 
                 // Blog Section
+                'blog_eyebrow' => 'From the Blog',
                 'blog_title' => 'Latest Articles',
                 'blog_button' => 'View All Articles',
                 'blog_card_link' => 'Read More',

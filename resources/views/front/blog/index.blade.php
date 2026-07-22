@@ -1,16 +1,16 @@
 @extends('front.layouts.app')
 
-@section('title', 'Blog | ' . ($siteSetting->site_name ?? 'Portfolio CMS'))
-@section('meta_description', 'Articles and tutorials on web development, Laravel, and more.')
+@section('title', PageContent::get('blog', 'page_title', app()->getLocale()) . ' | ' . ($siteSetting->site_name ?? 'Portfolio CMS'))
+@section('meta_description', PageContent::get('blog', 'page_subtitle', app()->getLocale()))
 
 @section('content')
 
 <section class="section-padding section-alt" style="padding-top: 8rem;">
     <div class="container">
         <div class="text-center mb-5">
-            <span class="section-eyebrow">Blog</span>
-            <h1 class="section-title">Latest Articles &amp; Insights</h1>
-            <p class="section-subtitle mx-auto">Thoughts on web development, Laravel, and building better software.</p>
+            <span class="section-eyebrow">{{ PageContent::get('blog', 'page_eyebrow', app()->getLocale()) }}</span>
+            <h1 class="section-title">{{ PageContent::get('blog', 'page_title', app()->getLocale()) }}</h1>
+            <p class="section-subtitle mx-auto">{{ PageContent::get('blog', 'page_subtitle', app()->getLocale()) }}</p>
         </div>
 
         <div class="row g-5">
@@ -19,20 +19,20 @@
                 @if(request('tag') || request('category') || request('search'))
                     <div class="mb-4">
                         <span class="badge bg-primary me-2">
-                            Filter: 
+                            {{ PageContent::get('blog', 'filter_label', app()->getLocale()) }}: 
                             @if(request('category')) Category: {{ request('category') }} @endif
                             @if(request('tag')) Tag: {{ request('tag') }} @endif
                             @if(request('search')) Search: "{{ request('search') }}" @endif
                         </span>
-                        <a href="{{ route('blog.index') }}" class="btn btn-sm btn-outline-secondary">Clear All</a>
+                        <a href="{{ route('blog.index') }}" class="btn btn-sm btn-outline-secondary">{{ PageContent::get('blog', 'filter_clear', app()->getLocale()) }}</a>
                     </div>
                 @endif
 
                 @if($blogs->isEmpty())
                     <div class="text-center py-5">
                         <i class="fa-solid fa-newspaper fa-3x text-muted mb-3"></i>
-                        <p class="text-muted">No articles found with the selected filter.</p>
-                        <a href="{{ route('blog.index') }}" class="btn btn-outline-primary">View All Articles</a>
+                        <p class="text-muted">{{ PageContent::get('blog', 'empty_text', app()->getLocale()) }}</p>
+                        <a href="{{ route('blog.index') }}" class="btn btn-outline-primary">{{ PageContent::get('blog', 'empty_button', app()->getLocale()) }}</a>
                     </div>
                 @else
                     <div class="row g-4">
@@ -77,21 +77,21 @@
 
             <div class="col-lg-4">
                 <div class="p-4 rounded-4 border shadow-sm bg-white mb-4">
-                    <h6 class="mb-3">Search</h6>
+                    <h6 class="mb-3">{{ PageContent::get('blog', 'sidebar_search', app()->getLocale()) }}</h6>
                     <form action="{{ route('blog.index') }}" method="GET" class="d-flex gap-2">
-                        <input type="text" name="search" class="form-control" placeholder="Search articles..." value="{{ request('search') }}">
+                        <input type="text" name="search" class="form-control" placeholder="{{ PageContent::get('blog', 'sidebar_search_placeholder', app()->getLocale()) }}" value="{{ request('search') }}">
                         <button type="submit" class="btn btn-primary-custom"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </form>
                 </div>
 
                 @if($categories->isNotEmpty())
                     <div class="p-4 rounded-4 border shadow-sm bg-white mb-4">
-                        <h6 class="mb-3">Categories</h6>
+                        <h6 class="mb-3">{{ PageContent::get('blog', 'sidebar_categories', app()->getLocale()) }}</h6>
                         <ul class="list-unstyled mb-0">
                             <li class="mb-2">
                                 <a href="{{ route('blog.index', request()->except(['category'])) }}"
                                    class="d-flex justify-content-between text-decoration-none {{ !request('category') ? 'text-primary-custom fw-semibold' : 'text-dark' }}">
-                                    <span><i class="fa-solid fa-chevron-right me-2 small"></i>All Categories</span>
+                                    <span><i class="fa-solid fa-chevron-right me-2 small"></i>{{ PageContent::get('blog', 'sidebar_all_categories', app()->getLocale()) }}</span>
                                 </a>
                             </li>
                             @foreach($categories as $category)
@@ -106,7 +106,7 @@
                         </ul>
                         <div class="mt-3 pt-3 border-top">
                             <a href="{{ route('blog.categories') }}" class="btn btn-sm btn-outline-primary w-100">
-                                <i class="fa-solid fa-folder-open me-1"></i>View All Categories
+                                <i class="fa-solid fa-folder-open me-1"></i>{{ PageContent::get('blog', 'sidebar_view_categories', app()->getLocale()) }}
                             </a>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
 
                 @if($tags->isNotEmpty())
                     <div class="p-4 rounded-4 border shadow-sm bg-white">
-                        <h6 class="mb-3">Popular Tags</h6>
+                        <h6 class="mb-3">{{ PageContent::get('blog', 'sidebar_tags', app()->getLocale()) }}</h6>
                         <div class="d-flex flex-wrap gap-2">
                             @foreach($tags as $tag)
                                 <a href="{{ route('blog.index', array_merge(request()->except(['tag']), ['tag' => $tag->slug])) }}"

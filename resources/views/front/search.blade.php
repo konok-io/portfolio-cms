@@ -1,13 +1,13 @@
 @extends('front.layouts.app')
 
-@section('seo_title', 'Search: ' . $query . ' - ' . ($siteSetting->site_name ?? 'Portfolio'))
+@section('seo_title', PageContent::get('search', 'page_title', app()->getLocale()) . ': ' . $query . ' - ' . ($siteSetting->site_name ?? 'Portfolio'))
 @section('meta_description', 'Search results for ' . $query . '. Find projects, blog posts, and services matching your query.')
 
 @section('content')
 <section class="section-padding" style="padding-top: 8rem;">
     <div class="container">
         <div class="text-center mb-5">
-            <h1 class="section-title">Search Results</h1>
+            <h1 class="section-title">{{ PageContent::get('search', 'page_title', app()->getLocale()) }}</h1>
             <p class="text-muted">Found {{ $totalResults }} results for "{{ $query }}"</p>
         </div>
 
@@ -16,7 +16,7 @@
             <div class="col-lg-6">
                 <form action="{{ route('search') }}" method="GET" class="d-flex gap-2">
                     <input type="text" name="q" class="form-control form-control-lg" 
-                           placeholder="Search projects, blogs, services..." 
+                           placeholder="{{ PageContent::get('search', 'form_placeholder', app()->getLocale()) }}" 
                            value="{{ $query }}" required>
                     <button type="submit" class="btn btn-primary-custom">
                         <i class="fa-solid fa-search"></i>
@@ -30,7 +30,7 @@
                 <!-- Projects -->
                 @if($projects->isNotEmpty())
                     <div class="col-12">
-                        <h4 class="mb-4"><i class="fa-solid fa-folder-open text-primary-custom me-2"></i>Projects ({{ $projects->count() }})</h4>
+                        <h4 class="mb-4"><i class="fa-solid fa-folder-open text-primary-custom me-2"></i>{{ PageContent::get('search', 'projects_title', app()->getLocale()) }} ({{ $projects->count() }})</h4>
                         <div class="row g-3 mb-5">
                             @foreach($projects as $project)
                                 <div class="col-md-6 col-lg-4">
@@ -128,12 +128,12 @@
         @else
             <div class="text-center py-5">
                 <i class="fa-solid fa-search text-muted" style="font-size: 4rem;"></i>
-                <h4 class="mt-4">No results found</h4>
-                <p class="text-muted">Try different keywords or browse our sections</p>
+                <h4 class="mt-4">{{ PageContent::get('search', 'empty_title', app()->getLocale()) }}</h4>
+                <p class="text-muted">{{ PageContent::get('search', 'empty_text', app()->getLocale()) }}</p>
                 <div class="d-flex justify-content-center gap-3 mt-4">
-                    <a href="{{ route('projects.index') }}" class="btn btn-outline-primary">Browse Projects</a>
-                    <a href="{{ route('blog.index') }}" class="btn btn-outline-primary">Browse Blog</a>
-                    <a href="{{ route('services') }}" class="btn btn-outline-primary">Browse Services</a>
+                    <a href="{{ route('projects.index') }}" class="btn btn-outline-primary">{{ PageContent::get('search', 'empty_projects', app()->getLocale()) }}</a>
+                    <a href="{{ route('blog.index') }}" class="btn btn-outline-primary">{{ PageContent::get('search', 'empty_blogs', app()->getLocale()) }}</a>
+                    <a href="{{ route('services') }}" class="btn btn-outline-primary">{{ PageContent::get('search', 'empty_services', app()->getLocale()) }}</a>
                 </div>
             </div>
         @endif

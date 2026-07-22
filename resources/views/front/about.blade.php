@@ -1,6 +1,6 @@
 @extends('front.layouts.app')
 
-@section('title', 'About ' . ($about->name ?? '') . ' | ' . ($siteSetting->site_name ?? 'Portfolio'))
+@section('title', PageContent::get('about', 'page_title', app()->getLocale()) . ' | ' . ($siteSetting->site_name ?? 'Portfolio'))
 @section('meta_description', $about->short_intro ?? 'Learn more about me, my background and approach.')
 
 @section('content')
@@ -9,8 +9,8 @@
 <section class="section-padding section-alt">
     <div class="container">
         <div class="text-center">
-            <span class="section-eyebrow">Get to know me</span>
-            <h1 class="section-title">About Me</h1>
+            <span class="section-eyebrow">{{ PageContent::get('about', 'page_eyebrow', app()->getLocale()) }}</span>
+            <h1 class="section-title">{{ PageContent::get('about', 'page_title', app()->getLocale()) }}</h1>
             <p class="section-subtitle mx-auto">{{ $about->short_intro ?? 'A little about who I am and what I do.' }}</p>
         </div>
     </div>
