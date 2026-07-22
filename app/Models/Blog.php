@@ -83,6 +83,16 @@ class Blog extends Model
     {
         return $this->belongsToMany(Tag::class, 'blog_tag');
     }
+    
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->whereNull('parent_id')->orderByDesc('created_at');
+    }
+    
+    public function allComments()
+    {
+        return $this->hasMany(Comment::class)->orderByDesc('created_at');
+    }
 
     public function getFeaturedImageUrlAttribute(): ?string
     {

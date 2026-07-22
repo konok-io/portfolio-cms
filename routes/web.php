@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ExperienceController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\CacheController;
+use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\NewsletterCampaignController;
@@ -72,6 +73,14 @@ Route::prefix('portfolio')->name('projects.')->group(function () {
 Route::prefix('blog')->name('blog.')->group(function () {
     Route::get('/', [BlogController::class, 'index'])->name('index');
     Route::get('/{blog:slug}', [BlogController::class, 'show'])->name('show');
+    Route::post('/{blog:slug}/comments', [CommentController::class, 'store'])->name('comments.store');
+});
+
+Route::prefix('admin/comments')->name('admin.comments.')->group(function () {
+    Route::get('/', [CommentController::class, 'index'])->name('index');
+    Route::post('/{comment}/approve', [CommentController::class, 'approve'])->name('approve');
+    Route::post('/{comment}/reject', [CommentController::class, 'reject'])->name('reject');
+    Route::delete('/{comment}', [CommentController::class, 'destroy'])->name('destroy');
 });
 
 Route::get('/contact', [\App\Http\Controllers\Front\ContactController::class, 'index'])->name('contact');

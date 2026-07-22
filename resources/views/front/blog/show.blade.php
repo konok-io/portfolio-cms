@@ -94,6 +94,95 @@
                         </div>
                     </div>
                 @endif
+                
+                {{-- Comments Section --}}
+                <div class="mt-5 pt-4 border-top" id="comments">
+                    <h5 class="mb-4">
+                        <i class="fa-solid fa-comments me-2"></i>Comments ({{ $blog->allComments->where('is_approved', true)->count() }})
+                    </h5>
+                    
+                    {{-- Comment Form --}}
+                    <div class="card mb-4">
+                        <div class="card-body p-4">
+                            <h6 class="mb-3">Leave a Comment</h6>
+                            @if(session('success'))
+                                <div class="alert alert-success">{{ session('success') }}</div>
+                            @endif
+                            <form method="POST" action="{{ route('blog.comments.store', $blog) }}">
+                                @csrf
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Name *</label>
+                                        <input type="text" name="name" class="form-control" required placeholder="Your name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Email *</label>
+                                        <input type="email" name="email" class="form-control" required placeholder="your@email.com">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Website</label>
+                                        <input type="url" name="website" class="form-control" placeholder="https://yoursite.com">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Comment *</label>
+                                        <textarea name="comment" class="form-control" rows="4" required placeholder="Share your thoughts..."></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary-custom">
+                                            <i class="fa-solid fa-paper-plane me-2"></i>Post Comment
+                                        </button>
+                                        <small class="text-muted ms-2">Your comment will be reviewed before publishing.</small>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    {{-- Comments List --}}
+                    @php
+                        $approvedComments = $blog->comments->where('is_approved', true)->whereNull('parent_id');
+                    @endphp
+                    @if($approvedComments->isEmpty())
+                        <p class="text-muted">No comments yet. Be the first to share your thoughts!</p>
+                    @else
+                        @foreach($approvedComments as $comment)
+                            <div class="comment-item mb-4">
+                                <div class="d-flex gap-3">
+                                    <div class="flex-shrink-0">
+                                        <img src="https://ui-avatars.com/api/?name={{ urlencode($comment->name) }}&background=4F2FE8&color=fff" alt="{{ $comment->name }}" width="48" height="48" class="rounded-circle">
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="bg-light rounded-3 p-3">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <strong>{{ $comment->name }}</strong>
+                                                <small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
+                                            </div>
+                                            <p class="mb-0">{{ $comment->comment }}</p>
+                                        </div>
+                                        @if($comment->replies->where('is_approved', true)->isNotEmpty())
+                                            @foreach($comment->replies->where('is_approved', true) as $reply)
+                                                <div class="d-flex gap-3 mt-3 ms-4">
+                                                    <div class="flex-shrink-0">
+                                                        <img src="https://ui-avatars.com/api/?name={{ urlencode($reply->name) }}&background=3A356E&color=fff" alt="{{ $reply->name }}" width="36" height="36" class="rounded-circle">
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <div class="bg-light rounded-3 p-3">
+                                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                                <strong>{{ $reply->name }}</strong>
+                                                                <small class="text-muted">{{ $reply->created_at->diffForHumans() }}</small>
+                                                            </div>
+                                                            <p class="mb-0">{{ $reply->comment }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
             </div>
 
             <div class="col-lg-4">

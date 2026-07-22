@@ -270,6 +270,9 @@
             <a href="{{ route('admin.blog.index') }}" class="nav-link {{ request()->routeIs('admin.blog.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-newspaper"></i><span>Blog Posts</span>
             </a>
+            <a href="{{ route('admin.comments.index') }}" class="nav-link {{ request()->routeIs('admin.comments.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-comments"></i><span>Comments</span>
+            </a>
             <a href="{{ route('admin.testimonials.index') }}" class="nav-link {{ request()->routeIs('admin.testimonials.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-quote-left"></i><span>Testimonials</span>
             </a>
