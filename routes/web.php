@@ -266,6 +266,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::get('/seo', [SeoController::class, 'edit'])->name('seo.edit');
     Route::put('/seo', [SeoController::class, 'update'])->name('seo.update');
 
+    // Content Settings
+    Route::get('/content', [\App\Http\Controllers\Admin\ContentController::class, 'index'])->name('content.index');
+    Route::post('/content', [\App\Http\Controllers\Admin\ContentController::class, 'update'])->name('content.update');
+    Route::get('/content/reset', [\App\Http\Controllers\Admin\ContentController::class, 'reset'])->name('content.reset');
+
     // Users & Roles
     Route::resource('users', UserController::class)->except(['show']);
     Route::get('users/{user}/export', [UserController::class, 'exportData'])->name('users.export');

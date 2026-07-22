@@ -318,6 +318,9 @@
             <a href="{{ route('admin.seo.edit') }}" class="nav-link {{ request()->routeIs('admin.seo.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-magnifying-glass-chart"></i><span>SEO Settings</span>
             </a>
+            <a href="{{ route('admin.content.index') }}" class="nav-link {{ request()->routeIs('admin.content.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-language"></i><span>Content Settings</span>
+            </a>
             <a href="{{ route('admin.custom-pages.index') }}" class="nav-link {{ request()->routeIs('admin.custom-pages.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-file-lines"></i><span>Custom Pages</span>
             </a>
