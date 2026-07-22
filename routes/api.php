@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Route;
 use Mrh\License\Http\Controllers\ActivationController;
 use Mrh\License\Http\Controllers\InstallController;
@@ -41,4 +42,30 @@ Route::prefix('mrh-license/api')
         Route::post('activate', [ActivationController::class, 'activate'])->name('activate');
         Route::post('verify', [VerificationController::class, 'verify'])->name('verify');
         Route::post('reset', [LicenseController::class, 'reset'])->name('reset');
+    });
+
+/*
+|--------------------------------------------------------------------------
+| Portfolio CMS Public API
+|--------------------------------------------------------------------------
+| Public REST API endpoints to fetch portfolio data.
+| No authentication required - data is limited to public content.
+*/
+
+Route::prefix('portfolio')
+    ->name('api.')
+    ->group(function (): void {
+        Route::get('/', [ApiController::class, 'index'])->name('index');
+        Route::get('/about', [ApiController::class, 'about'])->name('about');
+        Route::get('/skills', [ApiController::class, 'skills'])->name('skills');
+        Route::get('/services', [ApiController::class, 'services'])->name('services');
+        Route::get('/projects', [ApiController::class, 'projects'])->name('projects');
+        Route::get('/projects/{slug}', [ApiController::class, 'project'])->name('projects.show');
+        Route::get('/blogs', [ApiController::class, 'blogs'])->name('blogs');
+        Route::get('/blogs/{slug}', [ApiController::class, 'blog'])->name('blogs.show');
+        Route::get('/testimonials', [ApiController::class, 'testimonials'])->name('testimonials');
+        Route::get('/experience', [ApiController::class, 'experience'])->name('experience');
+        Route::get('/education', [ApiController::class, 'education'])->name('education');
+        Route::get('/certifications', [ApiController::class, 'certifications'])->name('certifications');
+        Route::get('/settings', [ApiController::class, 'settings'])->name('settings');
     });
