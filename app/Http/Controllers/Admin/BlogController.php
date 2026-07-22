@@ -147,6 +147,7 @@ class BlogController extends Controller
             ],
             'blog_category_id' => ['nullable', 'exists:blog_categories,id'],
             'featured_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'alt_text' => ['required', 'string', 'max:255'],
             'short_description' => ['nullable', 'string', 'max:500'],
             'description' => ['nullable', 'string'],
             'meta_title' => ['nullable', 'string', 'max:255'],

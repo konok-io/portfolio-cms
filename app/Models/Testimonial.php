@@ -15,6 +15,7 @@ class Testimonial extends Model
         'client_name',
         'company',
         'photo',
+        'video_url',
         'rating',
         'review',
         'is_active',
@@ -35,6 +36,30 @@ class Testimonial extends Model
         return $this->photo
             ? asset('storage/' . $this->photo)
             : 'https://ui-avatars.com/api/?name=' . urlencode($this->client_name) . '&background=2563EB&color=fff';
+    }
+    
+    public function hasVideo(): bool
+    {
+        return !empty($this->video_url);
+    }
+    
+    public function getVideoEmbedUrl(): ?string
+    {
+        if (!$this->video_url) {
+            return null;
+        }
+        
+        // YouTube
+        if (preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/', $this->video_url, $matches)) {
+            return 'https://www.youtube.com/embed/' . $matches[1];
+        }
+        
+        // Vimeo
+        if (preg_match('/vimeo\.com\/(\d+)/', $this->video_url, $matches)) {
+            return 'https://player.vimeo.com/video/' . $matches[1];
+        }
+        
+        return $this->video_url;
     }
 
     public function scopeActive($query)

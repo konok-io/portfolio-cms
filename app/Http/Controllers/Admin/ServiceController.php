@@ -24,14 +24,20 @@ class ServiceController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'slug' => ['nullable', 'string', 'max:255', 'unique:services,slug'],
             'icon' => ['nullable', 'string', 'max:100'],
             'description' => ['nullable', 'string'],
+            'content' => ['nullable', 'string'],
+            'image' => ['nullable', 'url'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'is_active' => ['nullable', 'boolean'],
         ]);
 
         $validated['is_active'] = $request->boolean('is_active');
         $validated['sort_order'] = $validated['sort_order'] ?? 0;
+        if (empty($validated['slug'])) {
+            $validated['slug'] = \Illuminate\Support\Str::slug($request->name);
+        }
 
         Service::create($validated);
 
@@ -47,7 +53,20 @@ class ServiceController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'slug' => ['nullable', 'string', 'max:255', 'unique:services,slug,' . $service->id],
             'icon' => ['nullable', 'string', 'max:100'],
+            'description' => ['nullable', 'string'],
+            'content' => ['nullable', 'string'],
+            'image' => ['nullable', 'url'],
+            'sort_order' => ['nullable', 'integer', 'min:0'],
+            'is_active' => ['nullable', 'boolean'],
+        ]);
+
+        if (empty($validated['slug'])) {
+            $validated['slug'] = \Illuminate\Support\Str::slug($request->name);
+        }
+        
+        $service->update($validated);
             'description' => ['nullable', 'string'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'is_active' => ['nullable', 'boolean'],

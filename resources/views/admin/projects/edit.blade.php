@@ -56,6 +56,11 @@
                             <label class="form-label-admin">Project URL</label>
                             <input type="url" name="project_url" class="form-control" value="{{ old('project_url', $project->project_url) }}" placeholder="https://">
                         </div>
+                        <div class="col-md-6">
+                            <label class="form-label-admin">Video URL</label>
+                            <input type="url" name="video_url" class="form-control" value="{{ old('video_url', $project->video_url) }}" placeholder="https://youtube.com/watch?v=...">
+                            <small class="text-muted">YouTube or Vimeo URL for project demo video</small>
+                        </div>
                         <div class="col-12">
                             <label class="form-label-admin">Technologies Used</label>
                             <input type="text" name="technologies" class="form-control" value="{{ old('technologies', $project->technologies) }}" placeholder="Laravel, Vue.js, MySQL (comma separated)">
@@ -102,6 +107,14 @@
                     <img id="featuredPreview" src="{{ $project->featured_image_url ?? 'https://placehold.co/400x300/e2e8f0/64748b?text=No+Image' }}" class="rounded-3 mb-3 w-100" style="aspect-ratio:4/3; object-fit:cover;">
                     <input type="file" name="featured_image" class="form-control" accept="image/*" data-preview-target="#featuredPreview">
                     <small class="text-muted d-block mt-2">JPG, PNG or WEBP. Max 2MB.</small>
+                </div>
+            </div>
+            <div class="admin-card mb-3">
+                <div class="card-header-custom">SEO Image Alt Text</div>
+                <div class="card-body-custom">
+                    <label class="form-label-admin">Alt Text <span class="required-star">*</span></label>
+                    <input type="text" name="alt_text" class="form-control" value="{{ old('alt_text', $project->alt_text) }}" required placeholder="Describe the image for accessibility and SEO">
+                    <small class="text-muted">Required for accessibility and SEO. Describe what's in the image.</small>
                 </div>
             </div>
 

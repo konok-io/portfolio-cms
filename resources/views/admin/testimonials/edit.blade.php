@@ -30,6 +30,11 @@
                             <label class="form-label-admin">Company</label>
                             <input type="text" name="company" class="form-control" value="{{ old('company', $testimonial->company) }}">
                         </div>
+                        <div class="col-md-6">
+                            <label class="form-label-admin">Video URL</label>
+                            <input type="url" name="video_url" class="form-control" value="{{ old('video_url', $testimonial->video_url) }}" placeholder="https://youtube.com/watch?v=...">
+                            <small class="text-muted">YouTube or Vimeo URL for video testimonial</small>
+                        </div>
                         <div class="col-md-4">
                             <label class="form-label-admin">Rating <span class="required-star">*</span></label>
                             <select name="rating" class="form-select" required>

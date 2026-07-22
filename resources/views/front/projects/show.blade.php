@@ -29,11 +29,20 @@
                 </div>
 
                 <img src="{{ $project->featured_image_url ?? 'https://placehold.co/1000x600/2563EB/ffffff?text=' . urlencode($project->title) }}"
-                     alt="{{ $project->title }}" class="img-fluid rounded-4 shadow-sm mb-4 w-100" style="aspect-ratio: 16/9; object-fit: cover;">
+                     alt="{{ $project->alt_text ?? $project->title }}" class="img-fluid rounded-4 shadow-sm mb-4 w-100" style="aspect-ratio: 16/9; object-fit: cover;">
 
                 <div class="content-body">
                     {!! $project->description !!}
                 </div>
+
+                @if($project->hasVideo())
+                    <div class="mt-4">
+                        <h5 class="mb-3"><i class="fa-solid fa-play-circle me-2 text-primary-custom"></i>Project Demo</h5>
+                        <div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow-sm">
+                            <iframe src="{{ $project->getVideoEmbedUrl() }}" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                @endif
 
                 {{-- Social Share Buttons - Professional --}}
                 <div class="share-section mt-4 pt-4 border-top">
@@ -112,6 +121,15 @@
                         </div>
                     @endif
 
+                    @if($project->tags->isNotEmpty())
+                        <h6 class="mb-2 small text-muted">Tags</h6>
+                        <div class="d-flex flex-wrap gap-2 mb-4">
+                            @foreach($project->tags as $tag)
+                                <a href="{{ route('projects.index', ['tag' => $tag->slug]) }}" class="badge bg-secondary text-decoration-none">{{ $tag->name }}</a>
+                            @endforeach
+                        </div>
+                    @endif
+
                     @if($project->project_url)
                         <a href="{{ $project->project_url }}" target="_blank" class="btn btn-primary-custom w-100">
                             <i class="fa-solid fa-arrow-up-right-from-square me-2"></i>Visit Live Site
@@ -129,10 +147,17 @@
                         <div class="col-md-4">
                             <div class="project-card">
                                 <div class="project-img-wrap">
-                                    <img src="{{ $related->featured_image_url ?? 'https://placehold.co/600x450/2563EB/ffffff?text=' . urlencode($related->title) }}" alt="{{ $related->title }}">
+                                    <img src="{{ $related->featured_image_url ?? 'https://placehold.co/600x450/2563EB/ffffff?text=' . urlencode($related->title) }}" alt="{{ $related->alt_text ?? $related->title }}" loading="lazy">
                                 </div>
                                 <div class="p-3">
                                     <h6 class="mb-1">{{ $related->title }}</h6>
+                                    @if($related->tags->isNotEmpty())
+                                        <div class="mb-2">
+                                            @foreach($related->tags->take(2) as $tag)
+                                                <span class="badge bg-secondary" style="font-size: 0.7rem;">{{ $tag->name }}</span>
+                                            @endforeach
+                                        </div>
+                                    @endif
                                     <a href="{{ route('projects.show', $related->slug) }}" class="small text-primary-custom fw-semibold">
                                         View Project <i class="fa-solid fa-arrow-right ms-1"></i>
                                     </a>
@@ -144,12 +169,62 @@
             </div>
         @endif
 
-        <div class="mt-5">
+        {{-- Prev/Next Navigation --}}
+        @if($prevProject || $nextProject)
+            <div class="project-nav mt-5 pt-4 border-top">
+                <div class="row g-3">
+                    <div class="col-6">
+                        @if($prevProject)
+                            <a href="{{ route('projects.show', $prevProject->slug) }}" class="project-nav-btn">
+                                <div class="d-flex align-items-center gap-3">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                    <div class="text-start">
+                                        <div class="small text-muted">Previous</div>
+                                        <div class="fw-semibold">{{ $prevProject->title }}</div>
+                                    </div>
+                                </div>
+                            </a>
+                        @endif
+                    </div>
+                    <div class="col-6">
+                        @if($nextProject)
+                            <a href="{{ route('projects.show', $nextProject->slug) }}" class="project-nav-btn text-end">
+                                <div class="d-flex align-items-center justify-content-end gap-3">
+                                    <div class="text-end">
+                                        <div class="small text-muted">Next</div>
+                                        <div class="fw-semibold">{{ $nextProject->title }}</div>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </div>
+                            </a>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        @endif
+        
+        <div class="mt-4">
             <a href="{{ route('projects.index') }}" class="btn btn-outline-custom">
                 <i class="fa-solid fa-arrow-left me-2"></i>Back to Portfolio
             </a>
         </div>
     </div>
 </section>
+
+<style>
+.project-nav-btn {
+    display: block;
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+}
+.project-nav-btn:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary-tint);
+}
+</style>
 
 @endsection

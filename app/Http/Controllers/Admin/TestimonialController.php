@@ -78,6 +78,7 @@ class TestimonialController extends Controller
             'client_name' => ['required', 'string', 'max:255'],
             'company' => ['nullable', 'string', 'max:255'],
             'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'video_url' => ['nullable', 'url', 'max:500'],
             'rating' => ['required', 'integer', 'min:1', 'max:5'],
             'review' => ['required', 'string'],
             'is_active' => ['nullable', 'boolean'],

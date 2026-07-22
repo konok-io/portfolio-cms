@@ -35,7 +35,7 @@
             </div>
             <div class="col-lg-5 order-1 order-lg-2">
                 <div class="hero-photo-frame">
-                    <img src="{{ $about->hero_photo_url ?? $about->photo_url }}"
+                    <img src="{{ $about->hero_photo_url ?? $about->photo_url }}" loading="eager"
                          alt="{{ $about->name ?? 'Profile photo' }}"
                          style="object-fit: cover;">
                     <div class="badge-floating">
@@ -54,80 +54,53 @@
 </section>
 
 {{-- =========================================================
-     2. ABOUT ME
+     2. WHY CHOOSE ME
      ========================================================= --}}
 <section id="about" class="section-padding">
     <div class="container">
-        <div class="row gy-5 align-items-stretch" style="--img-col: 30%; --text-col: 70%;">
-            <div class="reveal-on-scroll d-flex align-items-stretch" style="width: var(--img-col); flex: 0 0 var(--img-col);">
-                <img src="{{ $about->photo_url ?? 'https://ui-avatars.com/api/?name=About&size=500&background=0F172A&color=fff' }}"
-                     alt="About {{ $about->name ?? '' }}" class="img-fluid rounded-4 shadow-sm w-100" style="height: 100%; object-fit: cover;">
-            </div>
-            <div class="reveal-on-scroll is-visible" style="width: var(--text-col); flex: 0 0 var(--text-col);">
-                <span class="section-eyebrow">About Me</span>
-                <h2 class="section-title mb-4">A little about my background &amp; approach</h2>
-                <div class="text-muted mb-4" style="text-align: justify; text-align-last: left; white-space: pre-wrap;">{!! $about->description ?? 'I am a dedicated developer focused on building reliable, user-friendly software.' !!}</div>
-
-                <div class="row g-3 mb-4">
-                    <div class="col-4">
-                        <div class="d-flex flex-column gap-2">
-                            @if($about->email ?? false)
-                                <div class="d-flex align-items-center gap-2">
-                                    <i class="fa-solid fa-envelope text-primary-custom"></i>
-                                    <span class="small">{{ $about->email }}</span>
-                                </div>
-                            @endif
-                            @if($about->address ?? false)
-                                <div class="d-flex align-items-center gap-2">
-                                    <i class="fa-solid fa-location-dot text-primary-custom"></i>
-                                    <span class="small">{{ $about->address }}</span>
-                                </div>
-                            @endif
+        <div class="text-center mb-5">
+            <span class="section-eyebrow">Why Work With Me</span>
+            <h2 class="section-title">What sets me apart</h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm reveal-on-scroll">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-box mx-auto mb-3" style="width:60px;height:60px;">
+                            <i class="fa-solid fa-code"></i>
                         </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="d-flex flex-column gap-2">
-                            @if($about->phone ?? false)
-                                <div class="d-flex align-items-center gap-2">
-                                    <i class="fa-solid fa-phone text-primary-custom"></i>
-                                    <span class="small">{{ $about->phone }}</span>
-                                </div>
-                            @endif
-                            @if($about->whatsapp ?? false)
-                                <div class="d-flex align-items-center gap-2">
-                                    <i class="fa-brands fa-whatsapp text-primary-custom"></i>
-                                    <span class="small">{{ $about->whatsapp }}</span>
-                                </div>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="d-flex align-items-center gap-2 flex-wrap h-100" style="justify-content: flex-end;">
-                            @if($about->linkedin ?? false)
-                                <a href="{{ $about->linkedin }}" target="_blank" class="btn btn-sm btn-outline-custom d-flex align-items-center justify-content-center" style="width:36px;height:36px;padding:0;"><i class="fa-brands fa-linkedin-in"></i></a>
-                            @endif
-                            @if($about->github ?? false)
-                                <a href="{{ $about->github }}" target="_blank" class="btn btn-sm btn-outline-custom d-flex align-items-center justify-content-center" style="width:36px;height:36px;padding:0;"><i class="fa-brands fa-github"></i></a>
-                            @endif
-                            @if($about->facebook ?? false)
-                                <a href="{{ $about->facebook }}" target="_blank" class="btn btn-sm btn-outline-custom d-flex align-items-center justify-content-center" style="width:36px;height:36px;padding:0;"><i class="fa-brands fa-facebook-f"></i></a>
-                            @endif
-                            @if($about->twitter ?? false)
-                                <a href="{{ $about->twitter }}" target="_blank" class="btn btn-sm btn-outline-custom d-flex align-items-center justify-content-center" style="width:36px;height:36px;padding:0;"><i class="fa-brands fa-x-twitter"></i></a>
-                            @endif
-                            @if($about->instagram ?? false)
-                                <a href="{{ $about->instagram }}" target="_blank" class="btn btn-sm btn-outline-custom d-flex align-items-center justify-content-center" style="width:36px;height:36px;padding:0;"><i class="fa-brands fa-instagram"></i></a>
-                            @endif
-                            @if($about->cv_url ?? false)
-                                <a href="{{ $about->cv_url }}" target="_blank" class="btn btn-sm btn-danger d-flex align-items-center justify-content-center gap-1" style="height:36px;padding:0 8px;white-space:nowrap;">
-                                    <i class="fa-solid fa-file-lines"></i>
-                                    <span style="font-size:11px;">CV</span>
-                                </a>
-                            @endif
-                        </div>
+                        <h5 class="card-title mb-2">Clean Code</h5>
+                        <p class="card-text text-muted small">Writing maintainable, well-documented code that scales with your business needs.</p>
                     </div>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm reveal-on-scroll">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-box mx-auto mb-3" style="width:60px;height:60px;">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <h5 class="card-title mb-2">On-Time Delivery</h5>
+                        <p class="card-text text-muted small">Respecting deadlines and communicating transparently throughout every project.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm reveal-on-scroll">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-box mx-auto mb-3" style="width:60px;height:60px;">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+                        <h5 class="card-title mb-2">Dedicated Support</h5>
+                        <p class="card-text text-muted small">Post-launch support and maintenance to keep your project running smoothly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5 reveal-on-scroll">
+            <a href="{{ route('about') }}" class="btn btn-outline-custom">
+                <i class="fa-solid fa-user me-2"></i>Learn More About Me
+            </a>
         </div>
     </div>
 </section>
@@ -272,7 +245,7 @@
                             @if($project->category)
                                 <span class="project-category-tag">{{ $project->category->name }}</span>
                             @endif
-                            <img src="{{ $project->featured_image_url ?? 'https://placehold.co/600x450/2563EB/ffffff?text=' . urlencode($project->title) }}" alt="{{ $project->title }}">
+                            <img src="{{ $project->featured_image_url ?? 'https://placehold.co/600x450/2563EB/ffffff?text=' . urlencode($project->title) }}" alt="{{ $project->alt_text ?? $project->title }}" loading="lazy">
                         </div>
                         <div class="p-3">
                             <h6 class="mb-1">{{ $project->title }}</h6>
@@ -306,18 +279,23 @@
                 @foreach($testimonials->chunk(3) as $index => $testimonialGroup)
                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                         <div class="row g-4">
-                            @foreach($testimonialGroup as $testimonial)
+                                                            @foreach($testimonialGroup as $testimonial)
                                 <div class="col-md-6 col-lg-4">
                                     <div class="testimonial-card h-100 d-flex flex-column">
                                         <i class="fa-solid fa-quote-left quote-icon mb-3"></i>
                                         <p class="text-muted small flex-grow-1">{{ $testimonial->review }}</p>
+                                        @if($testimonial->hasVideo())
+                                            <a href="#" class="btn btn-sm btn-outline-primary mb-2 video-testimonial-btn" data-video="{{ $testimonial->getVideoEmbedUrl() }}">
+                                                <i class="fa-solid fa-play me-1"></i>Watch Video
+                                            </a>
+                                        @endif
                                         <div class="star-rating mb-2">
                                             @for($i = 1; $i <= 5; $i++)
                                                 <i class="fa-{{ $i <= $testimonial->rating ? 'solid' : 'regular' }} fa-star"></i>
                                             @endfor
                                         </div>
                                         <div class="d-flex align-items-center gap-3">
-                                            <img src="{{ $testimonial->photo_url }}" alt="{{ $testimonial->client_name }}" width="48" height="48" class="rounded-circle object-fit-cover">
+                                            <img src="{{ $testimonial->photo_url }}" alt="{{ $testimonial->client_name }}" width="48" height="48" class="rounded-circle object-fit-cover" loading="lazy">
                                             <div>
                                                 <h6 class="mb-0">{{ $testimonial->client_name }}</h6>
                                                 <span class="small text-muted">{{ $testimonial->company }}</span>
@@ -403,7 +381,7 @@
                 <div class="col-md-6 col-lg-4 reveal-on-scroll">
                     <div class="blog-card h-100">
                         <div class="blog-img-wrap">
-                            <img src="{{ $blog->featured_image_url ?? 'https://placehold.co/600x400/0F172A/ffffff?text=' . urlencode($blog->title) }}" alt="{{ $blog->title }}">
+                            <img src="{{ $blog->featured_image_url ?? 'https://placehold.co/600x400/0F172A/ffffff?text=' . urlencode($blog->title) }}" alt="{{ $blog->alt_text ?? $blog->title }}" loading="lazy">
                         </div>
                         <div class="p-3">
                             @if($blog->category)

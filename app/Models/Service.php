@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Service extends Model
 {
@@ -13,8 +14,11 @@ class Service extends Model
 
     protected $fillable = [
         'name',
+        'slug',
         'icon',
         'description',
+        'content',
+        'image',
         'sort_order',
         'is_active',
     ];
@@ -26,6 +30,17 @@ class Service extends Model
             'sort_order' => 'integer',
         ];
     }
+    
+    protected static function boot()
+    {
+        parent::boot();
+        
+        static::creating(function ($service) {
+            if (empty($service->slug)) {
+                $service->slug = Str::slug($service->name);
+            }
+        });
+    }
 
     public function scopeActive($query)
     {
@@ -35,5 +50,10 @@ class Service extends Model
     public function scopeOrdered($query)
     {
         return $query->orderBy('sort_order')->orderBy('id');
+    }
+    
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
     }
 }

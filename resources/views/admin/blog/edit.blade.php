@@ -103,6 +103,14 @@
                     <small class="text-muted d-block mt-2">JPG, PNG or WEBP. Max 2MB.</small>
                 </div>
             </div>
+            <div class="admin-card mb-3">
+                <div class="card-header-custom">SEO Image Alt Text</div>
+                <div class="card-body-custom">
+                    <label class="form-label-admin">Alt Text <span class="required-star">*</span></label>
+                    <input type="text" name="alt_text" class="form-control" value="{{ old('alt_text', $blog->alt_text) }}" required placeholder="Describe the image for accessibility and SEO">
+                    <small class="text-muted">Required for accessibility and SEO. Describe what's in the image.</small>
+                </div>
+            </div>
 
             <button type="submit" class="btn btn-admin-primary w-100 py-2">
                 <i class="fa-solid fa-floppy-disk me-2"></i>Update Post

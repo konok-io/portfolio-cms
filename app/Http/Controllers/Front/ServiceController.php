@@ -19,4 +19,24 @@ class ServiceController extends Controller
 
         return view('front.services', compact('about', 'services'));
     }
+    
+    public function show($slug)
+    {
+        $about = About::first() ?? new About([
+            'name'  => 'Your Name',
+            'title' => 'Web Developer',
+        ]);
+        
+        $service = Service::where('slug', $slug)
+            ->active()
+            ->firstOrFail();
+            
+        $relatedServices = Service::active()
+            ->ordered()
+            ->where('id', '!=', $service->id)
+            ->limit(3)
+            ->get();
+            
+        return view('front.services.show', compact('about', 'service', 'relatedServices'));
+    }
 }

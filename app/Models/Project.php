@@ -17,8 +17,10 @@ class Project extends Model
         'slug',
         'project_category_id',
         'featured_image',
+        'alt_text',
         'client_name',
         'project_url',
+        'video_url',
         'technologies',
         'description',
         'status',
@@ -110,6 +112,30 @@ class Project extends Model
         return $query->whereHas('tags', function ($q) use ($tagSlug) {
             $q->where('slug', $tagSlug);
         });
+    }
+    
+    public function hasVideo(): bool
+    {
+        return !empty($this->video_url);
+    }
+    
+    public function getVideoEmbedUrl(): ?string
+    {
+        if (!$this->video_url) {
+            return null;
+        }
+        
+        // YouTube
+        if (preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/', $this->video_url, $matches)) {
+            return 'https://www.youtube.com/embed/' . $matches[1];
+        }
+        
+        // Vimeo
+        if (preg_match('/vimeo\.com\/(\d+)/', $this->video_url, $matches)) {
+            return 'https://player.vimeo.com/video/' . $matches[1];
+        }
+        
+        return $this->video_url;
     }
 
     public function getRouteKeyName(): string

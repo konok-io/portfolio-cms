@@ -28,6 +28,48 @@
         <link rel="icon" href="{{ asset('storage/' . $siteSetting->favicon) }}">
     @endif
 
+    {{-- JSON-LD Structured Data --}}
+    @if(isset($about))
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "{{ $about->name ?? 'Portfolio Owner' }}",
+        "jobTitle": "{{ $about->designation ?? 'Web Developer' }}",
+        "description": "{{ $about->short_bio ?? '' }}",
+        @if($about->photo_url)"image": "{{ $about->photo_url }}",@endif
+        @if($about->facebook || $about->twitter || $about->linkedin || $about->github)
+        "sameAs": [
+            @if($about->facebook){"url": "{{ $about->facebook }}"}@if($about->twitter || $about->linkedin || $about->github), @endif
+            @endif
+            @if($about->twitter){"url": "{{ $about->twitter }}"}@if($about->linkedin || $about->github), @endif
+            @endif
+            @if($about->linkedin){"url": "{{ $about->linkedin }}"}@if($about->github), @endif
+            @endif
+            @if($about->github){"url": "{{ $about->github }}"}@endif
+        ],
+        @endif
+        "url": "{{ url('/') }}",
+        "mainEntityOfPage": {"@type": "WebPage", "@id": "{{ url('/') }}"}
+    }
+    </script>
+    @endif
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "{{ $siteSetting->site_name ?? 'Portfolio CMS' }}",
+        "url": "{{ url('/') }}",
+        "description": "{{ $seoMeta->meta_description ?? 'Personal portfolio website' }}",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "{{ url('/blog?search={search_term_string}') }}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" id="bs-ltr">
@@ -437,6 +479,38 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
     });
 </script>
 @endif
+
+{{-- Video Modal --}}
+<div class="modal fade" id="videoModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="ratio ratio-16x9">
+                    <iframe id="videoFrame" src="" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.video-testimonial-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            var videoUrl = this.getAttribute('data-video');
+            document.getElementById('videoFrame').src = videoUrl;
+            new bootstrap.Modal(document.getElementById('videoModal')).show();
+        });
+    });
+    document.getElementById('videoModal').addEventListener('hidden.bs.modal', function() {
+        document.getElementById('videoFrame').src = '';
+    });
+});
+</script>
 
 </body>
 </html>
