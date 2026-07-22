@@ -15,7 +15,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="mainNav">
-            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+            <ul class="navbar-nav menu-items">
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}#home">Home</a></li>
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">About</a></li>
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('services') ? 'active' : '' }}" href="{{ route('services') }}">Services</a></li>
@@ -24,14 +24,15 @@
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('pricing') ? 'active' : '' }}" href="{{ route('pricing') }}">Pricing</a></li>
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('faq') ? 'active' : '' }}" href="{{ route('faq') }}">FAQ</a></li>
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('blog.*') ? 'active' : '' }}" href="{{ route('blog.index') }}">Blog</a></li>
-                
                 <li class="nav-item">
                     <button class="search-toggle-btn" id="searchToggleBtn" aria-label="Search">
                         <i class="fa-solid fa-search"></i>
                     </button>
                 </li>
-
-                <li class="nav-item d-flex align-items-center gap-2 ms-lg-2">
+            </ul>
+            
+            <ul class="navbar-nav nav-actions ms-auto align-items-lg-center gap-lg-1">
+                <li class="nav-item">
                     <div class="gtranslate-wrap">
                         <button type="button" class="gt-btn" onclick="document.body.classList.toggle('gt-open')">
                             <i class="fa-solid fa-language"></i><i class="fa-solid fa-chevron-down" style="font-size:.7em"></i>
@@ -46,6 +47,8 @@
                         <button type="button" onclick="pickLang('tl')">Filipino</button>
                     </div>
                     </div>
+                </li>
+                <li class="nav-item">
                     <button type="button" class="theme-toggle-btn" onclick="pcToggleTheme()" aria-label="Toggle theme">
                         <i class="fa-solid fa-sun" id="pcSun"></i>
                         <i class="fa-solid fa-moon" id="pcMoon" style="display:none"></i>
