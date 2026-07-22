@@ -154,6 +154,15 @@
         }
         .project-title { font-weight: 700; font-size: 10pt; color: #1a365d; }
         .project-description { color: #4a5568; font-size: 9pt; margin-top: 5px; }
+        .certification-item {
+            background: #f7fafc;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            border-left: 3px solid #1a365d;
+        }
+        .cert-name { font-weight: 700; font-size: 10pt; color: #1a365d; }
+        .cert-issuer { color: {{ $settings->primary_color }}; font-size: 9pt; margin-top: 3px; }
         .footer {
             background: linear-gradient(180deg, #1a365d, #2c5282);
             color: #a0aec0;
@@ -250,6 +259,19 @@
                                     @if($project->description)
                                         <div class="project-description">{{ Str::limit(strip_tags($project->description), 120) }}</div>
                                     @endif
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                    @if($settings->include_certifications && $certifications && $certifications->count() > 0)
+                        <div class="section">
+                            <div class="section-header">
+                                <div class="section-title">Certifications</div>
+                            </div>
+                            @foreach($certifications as $cert)
+                                <div class="certification-item">
+                                    <div class="cert-name">{{ $cert->name }}</div>
+                                    <div class="cert-issuer">{{ $cert->issuer ?? '' }} - {{ $cert->issue_date ?? '' }}</div>
                                 </div>
                             @endforeach
                         </div>
