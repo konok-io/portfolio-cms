@@ -1108,7 +1108,7 @@ a [class*="far"] {
   background: transparent;
   border: none;
   outline: none;
-  color: var(--color-primary);
+  color: var(--color-text);
   font-size: 1rem;
   cursor: pointer;
   padding: 5px;
@@ -1116,7 +1116,16 @@ a [class*="far"] {
 }
 
 .search-box .search-submit:hover {
-  color: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+/* Dark mode */
+[data-theme="dark"] .search-box .search-submit {
+  color: #EDECFF;
+}
+
+[data-theme="dark"] .search-box .search-submit:hover {
+  color: var(--color-primary);
 }
 
 /* Dark mode */
