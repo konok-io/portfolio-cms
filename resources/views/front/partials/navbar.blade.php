@@ -25,7 +25,7 @@
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('faq') ? 'active' : '' }}" href="{{ route('faq') }}">FAQ</a></li>
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('blog.*') ? 'active' : '' }}" href="{{ route('blog.index') }}">Blog</a></li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('search') }}" aria-label="Search">
+                    <a href="#" class="search-btn" id="searchBtn" aria-label="Search">
                         <i class="fa-solid fa-search"></i>
                     </a>
                 </li>
@@ -54,6 +54,19 @@
                     <a class="btn btn-primary-custom ms-lg-2 mt-2 mt-lg-0" href="{{ route('contact') }}">Get in Touch</a>
                 </li>
             </ul>
+        </div>
+    </div>
+    
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-box">
+            <form action="{{ route('search') }}" method="GET">
+                <i class="fa-solid fa-search search-icon"></i>
+                <input type="text" name="q" class="search-input" placeholder="Search..." autocomplete="off">
+                <button type="button" class="search-close" id="searchClose">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </form>
         </div>
     </div>
 </nav>
