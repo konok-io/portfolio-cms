@@ -1042,30 +1042,25 @@ a [class*="far"] {
   display: flex;
 }
 
-.site-navbar.search-open .menu-items {
-  display: none !important;
-}
-
 .site-navbar.search-open .navbar-brand {
   position: relative;
-  z-index: 1051;
+  z-index: 1052;
 }
 
-.site-navbar.search-open .nav-actions {
+.site-navbar.search-open #mainNav {
   position: relative;
   z-index: 1051;
 }
 
-.menu-items {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
+.site-navbar.search-open #mainNav .gt-btn,
+.site-navbar.search-open #mainNav .theme-toggle-btn,
+.site-navbar.search-open #mainNav .btn-primary-custom {
+  position: relative;
+  z-index: 1052;
 }
 
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+.site-navbar.search-open #mainNav .navbar-nav {
+  visibility: hidden;
 }
 
 .nav-search-form {
