@@ -104,6 +104,11 @@
                                 </li>
                             @endforeach
                         </ul>
+                        <div class="mt-3 pt-3 border-top">
+                            <a href="{{ route('blog.categories') }}" class="btn btn-sm btn-outline-primary w-100">
+                                <i class="fa-solid fa-folder-open me-1"></i>View All Categories
+                            </a>
+                        </div>
                     </div>
                 @endif
 

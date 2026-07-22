@@ -33,6 +33,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\FrontendLoginController;
 use App\Http\Controllers\Front\BlogController;
+use App\Http\Controllers\Front\BlogCategoryController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\CustomPageController;
 use App\Http\Controllers\Front\UserDashboardController;
@@ -75,6 +76,8 @@ Route::prefix('portfolio')->name('projects.')->group(function () {
 
 Route::prefix('blog')->name('blog.')->group(function () {
     Route::get('/', [BlogController::class, 'index'])->name('index');
+    Route::get('/categories', [BlogCategoryController::class, 'index'])->name('categories');
+    Route::get('/categories/{category:slug}', [BlogCategoryController::class, 'show'])->name('category');
     Route::get('/{blog:slug}', [BlogController::class, 'show'])->name('show');
     Route::post('/{blog:slug}/comments', [CommentController::class, 'store'])->name('comments.store');
 });
