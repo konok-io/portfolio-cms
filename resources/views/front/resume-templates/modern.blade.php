@@ -189,13 +189,13 @@
                         @endforeach
                     </div>
                 @endif
-                @if($settings->include_certifications && isset($certifications) && $certifications->count() > 0)
+                @if($settings->include_certifications && $certifications && $certifications->count() > 0)
                     <div class="section">
                         <div class="section-title">Certifications</div>
                         @foreach($certifications as $cert)
                             <div class="certification-item">
                                 <div class="certification-name">{{ $cert->name }}</div>
-                                <div class="certification-issuer">{{ $cert->issuer }} - {{ $cert->issue_date }}</div>
+                                <div class="certification-issuer">{{ $cert->issuer ?? '' }} - {{ $cert->issue_date ?? '' }}</div>
                             </div>
                         @endforeach
                     </div>

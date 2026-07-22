@@ -34,6 +34,11 @@ class ResumeSetting extends Model
         'include_education' => 'boolean',
         'include_projects' => 'boolean',
         'include_certifications' => 'boolean',
+        'heading_color' => 'string',
+        'text_color' => 'string',
+        'background_color' => 'string',
+        'header_bg_color' => 'string',
+        'footer_bg_color' => 'string',
     ];
 
     /**

@@ -52,12 +52,12 @@ class ResumeController extends Controller
             'text_color' => $request->text_color,
             'background_color' => $request->background_color,
             'header_bg_color' => $request->header_bg_color,
-            'include_photo' => $request->boolean('include_photo'),
-            'include_skills' => $request->boolean('include_skills'),
-            'include_experience' => $request->boolean('include_experience'),
-            'include_education' => $request->boolean('include_education'),
-            'include_projects' => $request->boolean('include_projects'),
-            'include_certifications' => $request->boolean('include_certifications'),
+            'include_photo' => $request->has('include_photo'),
+            'include_skills' => $request->has('include_skills'),
+            'include_experience' => $request->has('include_experience'),
+            'include_education' => $request->has('include_education'),
+            'include_projects' => $request->has('include_projects'),
+            'include_certifications' => $request->has('include_certifications'),
         ]);
 
         return redirect()->back()->with('success', 'Resume settings updated successfully!');
