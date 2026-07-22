@@ -1112,6 +1112,7 @@ a [class*="far"] {
   padding: 10px 14px;
   color: #1e293b;
   cursor: pointer;
+  outline: none;
   caret-color: transparent;
   user-select: none;
   -webkit-user-select: none;
