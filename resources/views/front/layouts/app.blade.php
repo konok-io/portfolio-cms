@@ -266,7 +266,6 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
     var backBtn = document.getElementById('searchBackBtn');
     var navbar = document.querySelector('.site-navbar');
     var overlay = document.getElementById('navSearchOverlay');
-    var searchForm = overlay ? overlay.querySelector('.nav-search-form') : null;
     var input = document.getElementById('navSearchInput');
     
     function openSearch() {
@@ -300,15 +299,14 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
       }
     });
     
-    // Close when clicking on overlay background (not on form or back button)
-    if (overlay) {
-      overlay.addEventListener('click', function(e) {
-        // Close if clicking directly on overlay (background) or on back button
-        if (e.target === overlay || e.target === backBtn || backBtn.contains(e.target)) {
+    // Close when clicking outside the navbar
+    document.addEventListener('click', function(e) {
+      if (navbar && navbar.classList.contains('search-open')) {
+        if (!navbar.contains(e.target)) {
           closeSearch();
         }
-      });
-    }
+      }
+    });
   });
 </script>
 <script type="text/javascript">
