@@ -299,6 +299,9 @@
             <a href="{{ route('admin.media.index') }}" class="nav-link {{ request()->routeIs('admin.media.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-images"></i><span>Media Library</span>
             </a>
+            <a href="{{ route('admin.menu.index') }}" class="nav-link {{ request()->routeIs('admin.menu.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-list"></i><span>Menu Builder</span>
+            </a>
             <a href="{{ route('admin.seo.edit') }}" class="nav-link {{ request()->routeIs('admin.seo.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-magnifying-glass-chart"></i><span>SEO Settings</span>
             </a>

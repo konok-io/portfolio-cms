@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ExperienceController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\CacheController;
+use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\NewsletterCampaignController;
 use App\Http\Controllers\Admin\PricingController;
@@ -140,6 +141,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     // Cache Management
     Route::post('/cache/clear', [CacheController::class, 'clear'])->name('cache.clear');
     Route::post('/cache/optimize', [CacheController::class, 'optimize'])->name('cache.optimize');
+
+    // Menu Builder
+    Route::get('/menu', [MenuController::class, 'index'])->name('menu.index');
+    Route::post('/menu', [MenuController::class, 'store'])->name('menu.store');
+    Route::put('/menu/{menu}', [MenuController::class, 'update'])->name('menu.update');
+    Route::delete('/menu/{menu}', [MenuController::class, 'destroy'])->name('menu.destroy');
+    Route::post('/menu/reorder', [MenuController::class, 'reorder'])->name('menu.reorder');
 
     // Experience
     Route::resource('experience', ExperienceController::class)->except(['show']);
