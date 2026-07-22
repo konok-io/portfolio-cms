@@ -10,7 +10,7 @@ class TermsController extends Controller
 {
     public function index()
     {
-        $siteSetting = Setting::getSiteSetting();
+        $siteSetting = Setting::instance();
         return view('front.terms', compact('siteSetting'));
     }
 }

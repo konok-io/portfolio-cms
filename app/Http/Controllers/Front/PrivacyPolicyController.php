@@ -10,7 +10,7 @@ class PrivacyPolicyController extends Controller
 {
     public function index()
     {
-        $siteSetting = Setting::getSiteSetting();
+        $siteSetting = Setting::instance();
         return view('front.privacy', compact('siteSetting'));
     }
 }
