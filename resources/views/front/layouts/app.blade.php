@@ -122,7 +122,7 @@
     </style>
     @stack('styles')
 </head>
-<body>
+<body class="{{ (isset($page) && $page && $page->show_site_header === false) ? 'no-header' : 'has-header' }}">
 
     @if(!isset($page) || ($page && $page->show_site_header !== false))
         @include('front.partials.navbar')

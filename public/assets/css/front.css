@@ -1160,3 +1160,13 @@ a [class*="far"] {
   color: #9B98C7;
 }
 
+
+/* Adjust content when header is hidden */
+body.no-header .site-navbar {
+  display: none !important;
+}
+body.no-header .main-content,
+body.no-header main {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
