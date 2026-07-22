@@ -24,11 +24,6 @@
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('pricing') ? 'active' : '' }}" href="{{ route('pricing') }}">Pricing</a></li>
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('faq') ? 'active' : '' }}" href="{{ route('faq') }}">FAQ</a></li>
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('blog.*') ? 'active' : '' }}" href="{{ route('blog.index') }}">Blog</a></li>
-                <li class="nav-item">
-                    <button class="search-toggle-btn" aria-label="Search">
-                        <i class="fa-solid fa-search"></i>
-                    </button>
-                </li>
 
                 <li class="nav-item d-flex align-items-center gap-2 ms-lg-2">
                     <div class="gtranslate-wrap">
