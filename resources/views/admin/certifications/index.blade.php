@@ -24,8 +24,9 @@
                     </h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.certifications.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.certifications.store') }}" method="POST" enctype="multipart/form-data" id="certificationForm">
                         @csrf
+                        <input type="hidden" id="cert_id" name="cert_id" value="">
                         <div class="mb-3">
                             <label for="name" class="form-label">Certification Name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" 
@@ -116,9 +117,14 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-100">
-                            <i class="fa-solid fa-plus me-2"></i>Add Certification
-                        </button>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary flex-grow-1" id="submitBtn">
+                                <i class="fa-solid fa-plus me-2"></i>Add Certification
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="resetForm()" id="cancelBtn" style="display: none;">
+                                <i class="fa-solid fa-times me-2"></i>Cancel
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -175,6 +181,11 @@
                                             </td>
                                             <td>
                                                 <div class="btn-group btn-group-sm">
+                                                    @if($cert->credential_url)
+                                                        <a href="{{ $cert->credential_url }}" target="_blank" class="btn btn-outline-info" title="View Credential">
+                                                            <i class="fa-solid fa-eye"></i>
+                                                        </a>
+                                                    @endif
                                                     <button type="button" class="btn btn-outline-primary" 
                                                             onclick="editCertification({{ $cert->id }}, '{{ addslashes($cert->name) }}', '{{ addslashes($cert->issuer) }}', '{{ $cert->issue_date?->format('Y-m-d') }}', '{{ $cert->expiry_date?->format('Y-m-d') }}', '{{ $cert->credential_id ?? '' }}', '{{ $cert->credential_url ?? '' }}', `{{ addslashes($cert->description ?? '') }}`, {{ $cert->sort_order }}, {{ $cert->is_active ? 'true' : 'false' }})">
                                                         <i class="fa-solid fa-edit"></i>
@@ -206,3 +217,54 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+function editCertification(id, name, issuer, issueDate, expiryDate, credentialId, credentialUrl, description, sortOrder, isActive) {
+    document.getElementById('cert_id').value = id;
+    document.getElementById('name').value = name;
+    document.getElementById('issuer').value = issuer;
+    document.getElementById('issue_date').value = issueDate;
+    document.getElementById('expiry_date').value = expiryDate;
+    document.getElementById('credential_id').value = credentialId;
+    document.getElementById('credential_url').value = credentialUrl;
+    document.getElementById('description').value = description;
+    document.getElementById('sort_order').value = sortOrder;
+    document.getElementById('is_active').checked = isActive;
+    
+    // Change form action to update
+    document.getElementById('certificationForm').action = '/admin/certifications/' + id;
+    
+    // Show hidden method field
+    let methodField = document.getElementById('method_field');
+    if (!methodField) {
+        methodField = document.createElement('input');
+        methodField.type = 'hidden';
+        methodField.id = 'method_field';
+        methodField.name = '_method';
+        methodField.value = 'PUT';
+        document.getElementById('certificationForm').appendChild(methodField);
+    }
+    methodField.value = 'PUT';
+    
+    // Change button text and show cancel
+    document.getElementById('submitBtn').innerHTML = '<i class="fa-solid fa-save me-2"></i>Update Certification';
+    document.querySelector('#certificationForm h5').innerHTML = '<i class="fa-solid fa-edit me-2 text-primary"></i>Edit Certification';
+    document.getElementById('cancelBtn').style.display = 'inline-block';
+    
+    // Scroll to form
+    document.getElementById('certificationForm').scrollIntoView({ behavior: 'smooth' });
+}
+
+function resetForm() {
+    document.getElementById('certificationForm').reset();
+    document.getElementById('cert_id').value = '';
+    document.getElementById('certificationForm').action = '/admin/certifications';
+    let methodField = document.getElementById('method_field');
+    if (methodField) methodField.remove();
+    document.getElementById('submitBtn').innerHTML = '<i class="fa-solid fa-plus me-2"></i>Add Certification';
+    document.querySelector('#certificationForm h5').innerHTML = '<i class="fa-solid fa-plus me-2 text-primary"></i>Add New Certification';
+    document.getElementById('cancelBtn').style.display = 'none';
+}
+</script>
+@endpush
