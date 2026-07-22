@@ -24,8 +24,9 @@
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('pricing') ? 'active' : '' }}" href="{{ route('pricing') }}">Pricing</a></li>
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('faq') ? 'active' : '' }}" href="{{ route('faq') }}">FAQ</a></li>
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('blog.*') ? 'active' : '' }}" href="{{ route('blog.index') }}">Blog</a></li>
-                <li class="nav-item search-item">
-                    <div class="search-wrapper">
+
+                <li class="nav-item d-flex align-items-center gap-2">
+                    <div class="search-wrapper" id="searchWrapper">
                         <div class="search-box" id="searchBox">
                             <form action="{{ route('search') }}" method="GET">
                                 <i class="fa-solid fa-search search-icon"></i>
@@ -35,13 +36,10 @@
                                 </button>
                             </form>
                         </div>
-                        <a href="#" class="search-btn" id="searchBtn" aria-label="Search">
-                            <i class="fa-solid fa-search"></i>
-                        </a>
                     </div>
-                </li>
-
-                <li class="nav-item d-flex align-items-center gap-2 ms-lg-2">
+                    <a href="#" class="search-btn" id="searchBtn" aria-label="Search">
+                        <i class="fa-solid fa-search"></i>
+                    </a>
                     <div class="gtranslate-wrap">
                         <button type="button" class="gt-btn" onclick="document.body.classList.toggle('gt-open')">
                             <i class="fa-solid fa-language"></i><i class="fa-solid fa-chevron-down" style="font-size:.7em"></i>
