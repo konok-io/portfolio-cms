@@ -30,9 +30,12 @@ use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\FrontendLoginController;
 use App\Http\Controllers\Front\BlogController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\CustomPageController;
+use App\Http\Controllers\Front\UserDashboardController;
 use App\Http\Controllers\Front\FaqController as FrontFaqController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PricingController as FrontPricingController;
@@ -88,6 +91,27 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 Route::get('/thank-you', function () {
     return view('front.thank-you');
 })->name('thank-you');
+
+/*
+|--------------------------------------------------------------------------
+| User Authentication Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [FrontendLoginController::class, 'showLoginForm'])->name('user.login');
+    Route::post('/login', [FrontendLoginController::class, 'login'])->name('user.login.submit');
+    Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('user.register');
+    Route::post('/register', [RegisterController::class, 'register'])->name('user.register');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
+    Route::get('/profile', [UserDashboardController::class, 'profile'])->name('user.profile');
+    Route::put('/profile', [UserDashboardController::class, 'updateProfile'])->name('user.profile.update');
+    Route::put('/password', [UserDashboardController::class, 'updatePassword'])->name('user.password.update');
+    Route::post('/logout', [FrontendLoginController::class, 'logout'])->name('user.logout');
+});
 Route::get('/coming-soon', function () {
     return view('front.coming-soon');
 })->name('coming-soon');

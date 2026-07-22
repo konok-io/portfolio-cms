@@ -29,6 +29,28 @@
                     <li class="nav-item"><a class="nav-link {{ request()->routeIs('page.show') && request()->slug === $headerPage->slug ? 'active' : '' }}" href="{{ route('page.show', $headerPage->slug) }}">{{ $headerPage->title }}</a></li>
                 @endforeach
 
+                @guest
+                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('user.login') ? 'active' : '' }}" href="{{ route('user.login') }}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('user.register') ? 'active' : '' }}" href="{{ route('user.register') }}">Register</a></li>
+                @else
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user-circle me-1"></i>{{ Auth::user()->name }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="{{ route('user.dashboard') }}"><i class="fa-solid fa-tachometer-alt me-2"></i>Dashboard</a></li>
+                            <li><a class="dropdown-item" href="{{ route('user.profile') }}"><i class="fa-solid fa-user me-2"></i>Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form method="POST" action="{{ route('user.logout') }}">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item"><i class="fa-solid fa-sign-out-alt me-2"></i>Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @endguest
+
                 <li class="nav-item d-flex align-items-center gap-2">
                     <div class="search-wrapper" id="searchWrapper">
                         <div class="search-icon-wrap">
