@@ -1071,12 +1071,18 @@ a [class*="far"] {
   height: 40px;
   transition: box-shadow 0.3s ease, border 0.3s ease;
   border-radius: 0 !important;
+  border: none;
+  outline: 1px solid #cbd5e1;
 }
 
 .search-form-item.active .search-navbar-form,
 #searchFormItem.active .search-navbar-form {
-  box-shadow: none;
-  border: 1px solid #cbd5e1;
+  outline: 1px solid #cbd5e1;
+}
+
+.search-form-item.active .search-navbar-form:focus-within,
+#searchFormItem.active .search-navbar-form:focus-within {
+  outline-color: var(--color-primary);
 }
 
 .search-navbar-form:focus-within {
