@@ -1093,7 +1093,7 @@ a [class*="far"] {
 
 .search-navbar-input {
   border: none;
-  padding: 10px 15px;
+  padding: 10px 15px 10px 20px;
   font-size: 0.95rem;
   background: transparent;
   color: #1e293b;
@@ -1113,6 +1113,8 @@ a [class*="far"] {
   color: #1e293b;
   cursor: pointer;
   caret-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
   transition: all 0.3s ease;
   flex-shrink: 0;
 }
