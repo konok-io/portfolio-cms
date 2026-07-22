@@ -23,7 +23,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-2 col-md-4 col-6">
+            <div class="col-lg-3 col-md-4 col-6">
                 <h5 class="mb-3">Quick Links</h5>
                 <ul class="list-unstyled small footer-links">
                     <div class="row">
