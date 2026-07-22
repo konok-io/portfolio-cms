@@ -315,6 +315,9 @@
             <a href="{{ route('admin.menu-builder.index') }}" class="nav-link {{ request()->routeIs('admin.menu-builder.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-list"></i><span>Menu Builder</span>
             </a>
+            <a href="{{ route('admin.backup.index') }}" class="nav-link {{ request()->routeIs('backup.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-database"></i><span>Backup</span>
+            </a>
             <a href="{{ route('admin.seo.edit') }}" class="nav-link {{ request()->routeIs('admin.seo.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-magnifying-glass-chart"></i><span>SEO Settings</span>
             </a>

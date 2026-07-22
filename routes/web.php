@@ -214,6 +214,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::delete('/menu/{menu}', [MenuController::class, 'destroy'])->name('menu.destroy');
     Route::post('/menu/reorder', [MenuController::class, 'reorder'])->name('menu.reorder');
 
+    // Backup Management
+    Route::get('/backup', [App\Http\Controllers\Admin\BackupController::class, 'index'])->name('backup.index');
+    Route::post('/backup', [App\Http\Controllers\Admin\BackupController::class, 'create'])->name('backup.create');
+    Route::get('/backup/download/{filename}', [App\Http\Controllers\Admin\BackupController::class, 'download'])->name('backup.download');
+    Route::get('/backup/download-all', [App\Http\Controllers\Admin\BackupController::class, 'downloadAll'])->name('backup.download-all');
+    Route::delete('/backup/{filename}', [App\Http\Controllers\Admin\BackupController::class, 'destroy'])->name('backup.destroy');
+
     // Experience
     Route::resource('experience', ExperienceController::class)->except(['show']);
 
