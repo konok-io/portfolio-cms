@@ -134,13 +134,17 @@ class NewFeaturesSeeder extends Seeder
             [
                 'template' => 'modern',
                 'primary_color' => '#2563eb',
-                'show_photo' => true,
-                'show_summary' => true,
-                'show_skills' => true,
-                'show_education' => true,
-                'show_experience' => true,
-                'show_projects' => false,
-                'show_certifications' => true,
+                'heading_color' => '#1a1a2e',
+                'text_color' => '#4a5568',
+                'background_color' => '#ffffff',
+                'header_bg_color' => '#1a1a2e',
+                'footer_bg_color' => '#1a1a2e',
+                'include_photo' => true,
+                'include_skills' => true,
+                'include_education' => true,
+                'include_experience' => true,
+                'include_projects' => false,
+                'include_certifications' => true,
             ]
         );
 
