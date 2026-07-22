@@ -27,34 +27,20 @@
             <div class="col-lg-3 col-md-4 col-6">
                 <h5 class="mb-3">Quick Links</h5>
                 <ul class="list-unstyled small footer-links">
-                    @php
-                        $quickLinks = collect([
-                            ['title' => 'About', 'url' => route('home') . '#about'],
-                            ['title' => 'Services', 'url' => route('home') . '#services'],
-                            ['title' => 'Portfolio', 'url' => route('projects.index')],
-                            ['title' => 'Resume', 'url' => route('resume')],
-                            ['title' => 'Blog', 'url' => route('blog.index')],
-                            ['title' => 'FAQ', 'url' => route('faq')],
-                            ['title' => 'Pricing', 'url' => route('pricing')],
-                        ]);
-                        $footerPagesCollection = $footerPages->map(function($page) {
-                            return ['title' => $page->title, 'url' => route('page.show', $page->slug)];
-                        });
-                        $allLinks = $quickLinks->merge($footerPagesCollection);
-                        $col1Links = $allLinks->filter(fn($link, $key) => $key % 2 === 0);
-                        $col2Links = $allLinks->filter(fn($link, $key) => $key % 2 !== 0);
-                    @endphp
                     <div class="row">
                         <div class="col-6">
-                            @foreach($col1Links as $link)
-                                <li class="mb-2"><a href="{{ $link['url'] }}">{{ $link['title'] }}</a></li>
-                            @endforeach
+                            <li class="mb-2"><a href="{{ route('home') }}#about">About</a></li>
+                            <li class="mb-2"><a href="{{ route('projects.index') }}">Portfolio</a></li>
+                            <li class="mb-2"><a href="{{ route('blog.index') }}">Blog</a></li>
+                            <li class="mb-2"><a href="{{ route('faq') }}">FAQ</a></li>
                         </div>
                         <div class="col-6">
-                            @foreach($col2Links as $link)
-                                <li class="mb-2"><a href="{{ $link['url'] }}">{{ $link['title'] }}</a></li>
+                            <li class="mb-2"><a href="{{ route('home') }}#services">Services</a></li>
+                            <li class="mb-2"><a href="{{ route('resume') }}">Resume</a></li>
+                            <li class="mb-2"><a href="{{ route('pricing') }}">Pricing</a></li>
+                            @foreach($footerPages as $index => $page)
+                                <li class="mb-2"><a href="{{ route('page.show', $page->slug) }}">{{ $page->title }}</a></li>
                             @endforeach
-                            <li class="mb-2"><a href="{{ route('admin.login') }}">Login</a></li>
                         </div>
                     </div>
                 </ul>
