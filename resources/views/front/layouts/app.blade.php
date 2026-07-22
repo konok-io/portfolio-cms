@@ -259,55 +259,6 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
     if(s&&m){s.style.display=dark?'none':'inline';m.style.display=dark?'inline':'none';}
   }
   pcSyncThemeIcon();
-  
-  // Navbar Search - Event Listeners
-  document.addEventListener('DOMContentLoaded', function() {
-    var toggleBtn = document.getElementById('searchToggleBtn');
-    var backBtn = document.getElementById('searchBackBtn');
-    var navbar = document.querySelector('.site-navbar');
-    var overlay = document.getElementById('navSearchOverlay');
-    var input = document.getElementById('navSearchInput');
-    
-    function openSearch() {
-      if (navbar) {
-        navbar.classList.add('search-open');
-        setTimeout(function() {
-          if (input) input.focus();
-        }, 100);
-      }
-    }
-    
-    function closeSearch() {
-      if (navbar) {
-        navbar.classList.remove('search-open');
-        if (input) input.value = '';
-      }
-    }
-    
-    if (toggleBtn) {
-      toggleBtn.addEventListener('click', openSearch);
-    }
-    
-    if (backBtn) {
-      backBtn.addEventListener('click', closeSearch);
-    }
-    
-    // Close on Escape
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && navbar && navbar.classList.contains('search-open')) {
-        closeSearch();
-      }
-    });
-    
-    // Close when clicking outside the navbar
-    document.addEventListener('click', function(e) {
-      if (navbar && navbar.classList.contains('search-open')) {
-        if (!navbar.contains(e.target)) {
-          closeSearch();
-        }
-      }
-    });
-  });
 </script>
 <script type="text/javascript">
   function googleTranslateElementInit(){
