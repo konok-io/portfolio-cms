@@ -4,38 +4,6 @@
 @section('meta_description', $blog->meta_description ?: \Illuminate\Support\Str::limit(strip_tags($blog->description), 160))
 @section('meta_keywords', $blog->meta_keywords)
 
-{{-- Article Structured Data --}}
-@section('jsonld')
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "{{ $blog->title }}",
-    "description": "{{ $blog->short_description ?? \Illuminate\Support\Str::limit(strip_tags($blog->description), 160) }}",
-    "image": "{{ $blog->featured_image_url ?? '' }}",
-    "datePublished": "{{ $blog->published_at?->toIso8601String() }}",
-    "dateModified": "{{ $blog->updated_at?->toIso8601String() }}",
-    "author": {
-        "@type": "Person",
-        "name": "{{ $blog->author?->name ?? $siteSetting->site_name ?? 'Author' }}",
-        "url": "{{ url('/') }}"
-    },
-    "publisher": {
-        "@type": "Organization",
-        "name": "{{ $siteSetting->site_name ?? 'Portfolio CMS' }}",
-        "logo": {
-            "@type": "ImageObject",
-            "url": "{{ $siteSetting && $siteSetting->favicon ? asset('storage/' . $siteSetting->favicon) : url('/favicon.ico') }}"
-        }
-    },
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "{{ route('blog.show', $blog->slug) }}"
-    }
-}
-</script>
-@endsection
-
 @section('content')
 
 <section class="section-padding" style="padding-top: 8rem;">
