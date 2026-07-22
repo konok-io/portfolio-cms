@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\CustomPage;
+use App\Models\MenuItem;
 use App\Models\Setting;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
@@ -33,6 +34,11 @@ class AppServiceProvider extends ServiceProvider
             // Share footer quick links data
             if (! $view->offsetExists('footerLinks')) {
                 $view->with('footerLinks', $this->getFooterLinks());
+            }
+
+            // Share menu items for front navbar
+            if (! $view->offsetExists('menuItems')) {
+                $view->with('menuItems', $this->getMenuItems());
             }
         });
     }
@@ -90,6 +96,18 @@ class AppServiceProvider extends ServiceProvider
             return ['col1' => $col1, 'col2' => $col2];
         } catch (\Throwable $e) {
             return ['col1' => [], 'col2' => []];
+        }
+    }
+
+    protected function getMenuItems()
+    {
+        try {
+            if (!Schema::hasTable('menu_items')) {
+                return collect([]);
+            }
+            return MenuItem::active()->ordered()->get();
+        } catch (\Throwable $e) {
+            return collect([]);
         }
     }
 }

@@ -248,6 +248,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
     Route::post('/settings/test-mail', [SettingController::class, 'testMail'])->name('settings.testMail');
 
+    // Menu Builder
+    Route::get('/menu-builder', [App\Http\Controllers\Admin\MenuBuilderController::class, 'index'])->name('menu-builder.index');
+    Route::post('/menu-builder', [App\Http\Controllers\Admin\MenuBuilderController::class, 'store'])->name('menu-builder.store');
+    Route::put('/menu-builder/{menuItem}', [App\Http\Controllers\Admin\MenuBuilderController::class, 'update'])->name('menu-builder.update');
+    Route::delete('/menu-builder/{menuItem}', [App\Http\Controllers\Admin\MenuBuilderController::class, 'destroy'])->name('menu-builder.destroy');
+    Route::post('/menu-builder/reorder', [App\Http\Controllers\Admin\MenuBuilderController::class, 'reorder'])->name('menu-builder.reorder');
+    Route::post('/menu-builder/{menuItem}/toggle', [App\Http\Controllers\Admin\MenuBuilderController::class, 'toggle'])->name('menu-builder.toggle');
+
     // License information
     Route::get('/license', [\App\Http\Controllers\Admin\LicenseController::class, 'index'])->name('license.index');
 

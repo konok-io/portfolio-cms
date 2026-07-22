@@ -2,25 +2,50 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class MenuItem extends Model
 {
-    protected $table = 'menu_items';
-    
+    use HasFactory;
+
     protected $fillable = [
-        'title',
+        'name',
         'url',
-        'target',
+        'route',
         'icon',
-        'position',
+        'order',
         'is_active',
+        'target',
     ];
-    
-    public static function getNavigationMenu(): \Illuminate\Database\Eloquent\Collection
+
+    protected $casts = [
+        'is_active' => 'boolean',
+        'order' => 'integer',
+    ];
+
+    public static function getActiveMenuItems()
     {
         return static::where('is_active', true)
-            ->orderBy('position')
+            ->orderBy('order')
             ->get();
+    }
+
+    public function getLinkAttribute(): string
+    {
+        if ($this->route) {
+            return route($this->route);
+        }
+        return $this->url ?? '#';
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
+
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('order');
     }
 }
