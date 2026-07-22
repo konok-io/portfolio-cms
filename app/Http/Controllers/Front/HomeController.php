@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\About;
 use App\Models\Blog;
+use App\Models\Certification;
 use App\Models\Education;
 use App\Models\Experience;
 use App\Models\Project;
@@ -23,13 +24,14 @@ class HomeController extends Controller
             'short_intro' => 'Welcome to my portfolio.',
         ]);
 
-        $skills       = Skill::active()->ordered()->get();
-        $services     = Service::active()->ordered()->get();
-        $experiences  = Experience::ordered()->get();
-        $educations   = Education::ordered()->get();
-        $projects     = Project::active()->ordered()->with('category')->take(8)->get();
-        $testimonials = Testimonial::active()->ordered()->get();
-        $blogs        = Blog::published()->with('category')->latest('published_at')->take(3)->get();
+        $skills         = Skill::active()->ordered()->get();
+        $services       = Service::active()->ordered()->get();
+        $experiences    = Experience::ordered()->get();
+        $educations     = Education::ordered()->get();
+        $projects       = Project::active()->ordered()->with('category')->take(8)->get();
+        $testimonials   = Testimonial::active()->ordered()->get();
+        $blogs          = Blog::published()->with('category')->latest('published_at')->take(3)->get();
+        $certifications = Certification::where('is_active', true)->orderBy('sort_order')->get();
 
         return view('front.home', compact(
             'about',
@@ -39,7 +41,8 @@ class HomeController extends Controller
             'educations',
             'projects',
             'testimonials',
-            'blogs'
+            'blogs',
+            'certifications'
         ));
     }
 }

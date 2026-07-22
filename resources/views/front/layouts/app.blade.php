@@ -126,6 +126,9 @@
 
     @include('front.partials.navbar')
 
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <div class="main-content">
     <main>
         @yield('content')
@@ -133,6 +136,16 @@
     </div>
 
     @include('front.partials.footer')
+
+    <!-- WhatsApp Floating Button -->
+    @if($about->whatsapp ?? false)
+        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $about->whatsapp) }}" 
+           target="_blank" 
+           class="whatsapp-float" 
+           title="Chat on WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    @endif
 
     <a href="#" class="back-to-top" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>

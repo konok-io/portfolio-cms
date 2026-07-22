@@ -326,6 +326,49 @@
 @endif
 
 {{-- =========================================================
+     8.5 CERTIFICATIONS & BADGES
+     ========================================================= --}}
+@if($certifications->isNotEmpty())
+<section id="certifications" class="section-padding">
+    <div class="container">
+        <div class="text-center mb-5 reveal-on-scroll">
+            <span class="section-eyebrow">Credentials</span>
+            <h2 class="section-title">Certifications & Badges</h2>
+            <p class="text-muted">Professional certifications and achievements</p>
+        </div>
+        <div class="row g-4">
+            @foreach($certifications as $cert)
+                <div class="col-md-6 col-lg-3 reveal-on-scroll">
+                    <div class="certification-card h-100 text-center p-4">
+                        @if($cert->badge_image)
+                            <img src="{{ asset('storage/' . $cert->badge_image) }}" 
+                                 alt="{{ $cert->name }}" 
+                                 class="cert-badge mb-3"
+                                 style="width: 80px; height: 80px; object-fit: contain;">
+                        @else
+                            <div class="cert-icon mb-3">
+                                <i class="fa-solid fa-certificate"></i>
+                            </div>
+                        @endif
+                        <h6 class="mb-2">{{ $cert->name }}</h6>
+                        <p class="small text-muted mb-1">{{ $cert->issuer }}</p>
+                        <span class="small text-accent-custom">{{ $cert->issue_date?->format('M Y') }}</span>
+                        @if($cert->credential_url)
+                            <div class="mt-2">
+                                <a href="{{ $cert->credential_url }}" target="_blank" class="btn btn-sm btn-outline-custom">
+                                    <i class="fa-solid fa-external-link me-1"></i>Verify
+                                </a>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
+{{-- =========================================================
      9. BLOG POSTS
      ========================================================= --}}
 @if($blogs->isNotEmpty())
