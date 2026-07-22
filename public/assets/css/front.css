@@ -251,9 +251,18 @@ a {
   transition: all 0.3s ease;
   padding-top: 0.85rem;
   padding-bottom: 0.85rem;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   overflow: hidden;
   z-index: 1050;
+}
+.site-navbar.scroll-up {
+  transform: translateY(0);
+}
+.site-navbar.scroll-down {
+  transform: translateY(-100%);
 }
 .site-navbar .navbar-brand {
   font-family: var(--font-heading);

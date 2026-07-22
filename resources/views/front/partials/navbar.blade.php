@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg sticky-top site-navbar">
+<nav class="navbar navbar-expand-lg site-navbar">
     <div class="container">
         @php($headerDisplay = $siteSetting->header_display ?? 'text')
         <a class="navbar-brand d-flex align-items-center gap-2" href="{{ route('home') }}">
