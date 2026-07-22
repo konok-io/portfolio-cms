@@ -27,6 +27,9 @@
 
                 <li class="nav-item d-flex align-items-center gap-2">
                     <div class="search-wrapper" id="searchWrapper">
+                        <a href="#" class="search-btn" id="searchBtn" aria-label="Search">
+                            <i class="fa-solid fa-search"></i>
+                        </a>
                         <div class="search-box" id="searchBox">
                             <form action="{{ route('search') }}" method="GET">
                                 <i class="fa-solid fa-search search-icon"></i>
@@ -36,9 +39,6 @@
                                 </button>
                             </form>
                         </div>
-                        <a href="#" class="search-btn" id="searchBtn" aria-label="Search">
-                            <i class="fa-solid fa-search"></i>
-                        </a>
                     </div>
                     <div class="gtranslate-wrap">
                         <button type="button" class="gt-btn" onclick="document.body.classList.toggle('gt-open')">

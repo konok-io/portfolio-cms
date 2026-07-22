@@ -1033,6 +1033,7 @@ a [class*="far"] {
 }
 
 .search-btn {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1048,9 +1049,9 @@ a [class*="far"] {
 
 .search-box {
   position: absolute;
-  right: 100%;
+  left: 0;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateX(-100%) translateY(-50%);
   background: #fff;
   border: 1px solid var(--color-border);
   border-radius: 8px;
