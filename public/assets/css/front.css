@@ -1117,21 +1117,6 @@ a [class*="far"] {
   color: #94a3b8;
 }
 
-.search-navbar-submit {
-  background: var(--color-primary);
-  border: none;
-  padding: 10px 15px;
-  color: white;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  flex-shrink: 0;
-  border-radius: 0 50px 50px 0;
-}
-
-.search-navbar-submit:hover {
-  background: var(--color-primary-dark);
-}
-
 /* Dark mode */
 [data-theme="dark"] .search-navbar-form {
   background: #1a1a40;
