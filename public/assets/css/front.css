@@ -1043,8 +1043,7 @@ a [class*="far"] {
 }
 
 .site-navbar.search-open .menu-items {
-  visibility: hidden;
-  position: absolute;
+  display: none !important;
 }
 
 .site-navbar.search-open .navbar-brand {
@@ -1055,14 +1054,6 @@ a [class*="far"] {
 .site-navbar.search-open .nav-actions {
   position: relative;
   z-index: 1051;
-  margin-left: auto;
-}
-
-#mainNav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
 }
 
 .menu-items {
