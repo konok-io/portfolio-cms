@@ -1105,6 +1105,7 @@ a [class*="far"] {
 .search-box .search-submit {
   background: transparent;
   border: none;
+  outline: none;
   color: var(--color-primary);
   font-size: 1rem;
   cursor: pointer;
