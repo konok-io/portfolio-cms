@@ -279,7 +279,7 @@
 
 
 <?php if($testimonials->isNotEmpty()): ?>
-<section id="testimonials" class="section-padding">
+<section id="testimonials" class="section-padding section-alt">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
             <span class="section-eyebrow">Client Feedback</span>
@@ -303,6 +303,47 @@
                                 <span class="small text-muted"><?php echo e($testimonial->company); ?></span>
                             </div>
                         </div>
+                    </div>
+                </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+
+
+<?php if($certifications->isNotEmpty()): ?>
+<section id="certifications" class="section-padding section-alt">
+    <div class="container">
+        <div class="text-center mb-5 reveal-on-scroll">
+            <span class="section-eyebrow">Credentials</span>
+            <h2 class="section-title">Certifications & Badges</h2>
+            <p class="text-muted">Professional certifications and achievements</p>
+        </div>
+        <div class="row g-4">
+            <?php $__currentLoopData = $certifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cert): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="col-md-6 col-lg-3 reveal-on-scroll">
+                    <div class="certification-card h-100 text-center p-4">
+                        <?php if($cert->badge_image): ?>
+                            <img src="<?php echo e(asset('storage/' . $cert->badge_image)); ?>" 
+                                 alt="<?php echo e($cert->name); ?>" 
+                                 class="cert-badge mb-3"
+                                 style="width: 80px; height: 80px; object-fit: contain;">
+                        <?php else: ?>
+                            <div class="cert-icon mb-3">
+                                <i class="fa-solid fa-certificate"></i>
+                            </div>
+                        <?php endif; ?>
+                        <h6 class="mb-2"><?php echo e($cert->name); ?></h6>
+                        <p class="small text-muted mb-1"><?php echo e($cert->issuer); ?></p>
+                        <span class="small text-accent-custom"><?php echo e($cert->issue_date?->format('M Y')); ?></span>
+                        <?php if($cert->credential_url): ?>
+                            <div class="mt-2">
+                                <a href="<?php echo e($cert->credential_url); ?>" target="_blank" class="btn btn-sm btn-outline-custom">
+                                    <i class="fa-solid fa-external-link me-1"></i>Verify
+                                </a>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
