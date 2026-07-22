@@ -1066,7 +1066,7 @@ a [class*="far"] {
 }
 
 .search-wrapper.active .search-btn {
-  display: none;
+  visibility: hidden;
 }
 
 .search-box.active .search-icon {
