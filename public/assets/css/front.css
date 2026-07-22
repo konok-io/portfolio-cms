@@ -1053,6 +1053,7 @@ a [class*="far"] {
   pointer-events: none;
   width: 0;
   overflow: hidden;
+  padding-left: 10px;
 }
 
 .search-form-item.active {
@@ -1066,7 +1067,9 @@ a [class*="far"] {
   align-items: stretch;
   background: #f8fafc;
   width: 260px;
+  height: 40px;
   transition: box-shadow 0.3s ease;
+  border-radius: 0 !important;
 }
 
 .search-navbar-form:focus-within {
