@@ -1077,6 +1077,9 @@ a [class*="far"] {
 .search-form-item.active .search-navbar-form,
 #searchFormItem.active .search-navbar-form {
   outline: 1px solid #cbd5e1;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .search-form-item.active .search-navbar-form:focus-within,
