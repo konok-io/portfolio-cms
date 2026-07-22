@@ -142,7 +142,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-8">
-                    <p class="mb-2 mb-md-0">We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies. <a href="{{ route('custom-page', 'privacy-policy') }}">Learn more</a></p>
+                    <p class="mb-2 mb-md-0">We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies. <a href="{{ route('page.show', 'privacy-policy') }}">Learn more</a></p>
                 </div>
                 <div class="col-md-4 text-md-end">
                     <button class="btn btn-light btn-sm me-2" onclick="acceptCookies()">Accept All</button>
