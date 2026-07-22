@@ -73,6 +73,9 @@ Route::get('/contact', [\App\Http\Controllers\Front\ContactController::class, 'i
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::get('/faq', [FrontFaqController::class, 'index'])->name('faq');
 Route::get('/pricing', [FrontPricingController::class, 'index'])->name('pricing');
+Route::get('/resume', [\App\Http\Controllers\Front\ResumeController::class, 'index'])->name('resume');
+Route::get('/resume/preview', [\App\Http\Controllers\Front\ResumeController::class, 'preview'])->name('resume.preview');
+Route::get('/search', [\App\Http\Controllers\Front\SearchController::class, 'search'])->name('search');
 Route::post('/subscribe', [\App\Http\Controllers\SubscriberController::class, 'store'])->name('subscribe.store');
 
 /*

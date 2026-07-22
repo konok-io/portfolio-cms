@@ -66,9 +66,9 @@
       [data-theme="dark"] section,[data-theme="dark"] .section,[data-theme="dark"] .bg-white,[data-theme="dark"] .bg-body{background:#0A0A1F!important}
       [data-theme="dark"] .bg-light-custom,[data-theme="dark"] .bg-light,[data-theme="dark"] .bg-body-tertiary{background:#12102E!important}
       [data-theme="dark"] .section-alt{background:#1a1a40!important}
-      [data-theme="dark"] .section-tint{background:#222055!important}
-      [data-theme="dark"] .section-accent-tint{background:#1c1000!important}
-      [data-theme="dark"] .section-dark-tint{background:#131225!important}
+      [data-theme="dark"] .section-tint{background:#1e1b38!important}
+      [data-theme="dark"] .section-accent-tint{background:#1c1a00!important}
+      [data-theme="dark"] .section-dark-tint{background:#222055!important}
       [data-theme="dark"] .card,[data-theme="dark"] .experience-card,[data-theme="dark"] .skill-card,[data-theme="dark"] .service-card,[data-theme="dark"] .project-card,[data-theme="dark"] .blog-card,[data-theme="dark"] .testimonial-card{background:#171433!important;color:#EDECFF!important;border-color:#2C2860!important}
       [data-theme="dark"] h1,[data-theme="dark"] h2,[data-theme="dark"] h3,[data-theme="dark"] h4,[data-theme="dark"] h5,[data-theme="dark"] h6,[data-theme="dark"] p,[data-theme="dark"] li,[data-theme="dark"] span,[data-theme="dark"] .nav-link,[data-theme="dark"] .navbar-brand{color:#EDECFF!important}
       [data-theme="dark"] .text-muted,[data-theme="dark"] .text-secondary,[data-theme="dark"] small{color:#9B98C7!important}
@@ -323,5 +323,42 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
 
 })();
 </script>
+
+{{-- Search Modal --}}
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title" id="searchModalLabel">
+                    <i class="fa-solid fa-search me-2 text-primary-custom"></i>Search
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body pt-3">
+                <form action="{{ route('search') }}" method="GET" id="searchForm">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control form-control-lg border-primary" 
+                               placeholder="Search projects, blogs, services, pages..." 
+                               autocomplete="off" id="searchInput" required>
+                        <button class="btn btn-primary-custom" type="submit">
+                            <i class="fa-solid fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+                <div class="mt-3 small text-muted">
+                    <span>Quick links:</span>
+                    <a href="{{ route('projects.index') }}" class="text-decoration-none me-3">Projects</a>
+                    <a href="{{ route('blog.index') }}" class="text-decoration-none me-3">Blog</a>
+                    <a href="{{ route('services') }}" class="text-decoration-none me-3">Services</a>
+                    <a href="{{ route('resume') }}" class="text-decoration-none">Resume</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- Quick Search Results Dropdown --}}
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 9999; max-width: 400px; width: 100%;" id="quickSearchResults"></div>
+
 </body>
 </html>

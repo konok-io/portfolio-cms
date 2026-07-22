@@ -29,7 +29,10 @@
                     <li class="mb-2"><a href="{{ route('home') }}#about">About</a></li>
                     <li class="mb-2"><a href="{{ route('home') }}#services">Services</a></li>
                     <li class="mb-2"><a href="{{ route('projects.index') }}">Portfolio</a></li>
+                    <li class="mb-2"><a href="{{ route('resume') }}">Resume</a></li>
                     <li class="mb-2"><a href="{{ route('blog.index') }}">Blog</a></li>
+                    <li class="mb-2"><a href="{{ route('faq') }}">FAQ</a></li>
+                    <li class="mb-2"><a href="{{ route('pricing') }}">Pricing</a></li>
                 </ul>
             </div>
 
