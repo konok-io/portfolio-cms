@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg sticky-top site-navbar">
-    <div class="container">
+<nav class="navbar navbar-expand-lg sticky-top site-navbar" id="mainNavbar">
+    <div class="container position-relative">
         @php($headerDisplay = $siteSetting->header_display ?? 'text')
         <a class="navbar-brand d-flex align-items-center gap-2" href="{{ route('home') }}">
             @if(($headerDisplay === 'logo' || $headerDisplay === 'both') && ($siteSetting->logo_url ?? false))
@@ -59,26 +59,39 @@
 </nav>
 
 {{-- Expandable Search Bar (Jago News Style) --}}
-<div class="search-expand-overlay" id="searchExpandOverlay" onclick="toggleSearch()"></div>
-<div class="search-expand-container" id="searchExpandContainer">
-    <div class="search-expand-inner">
-        <form action="{{ route('search') }}" method="GET" class="search-expand-form">
-            <button type="button" class="search-expand-close" onclick="toggleSearch()">
-                <i class="fa-solid fa-times"></i>
-            </button>
-            <div class="search-expand-input-wrap">
-                <input type="text" name="q" class="search-expand-input" placeholder="Search projects, blogs, services..." autocomplete="off">
-                <button type="submit" class="search-expand-submit">
-                    <i class="fa-solid fa-search"></i>
-                </button>
+<div class="search-expand-wrapper" id="searchExpandWrapper">
+    <div class="search-expand-overlay" id="searchExpandOverlay" onclick="toggleSearch()"></div>
+    <div class="search-expand-container" id="searchExpandContainer">
+        <div class="search-expand-header">
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="search-brand">
+                        <i class="fa-solid fa-search me-2"></i>Search
+                    </div>
+                    <button type="button" class="search-expand-close" onclick="toggleSearch()">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </div>
             </div>
-            <div class="search-expand-suggestions">
-                <span class="search-suggestion-label">Quick:</span>
-                <a href="{{ route('projects.index') }}" class="search-suggestion-link">Projects</a>
-                <a href="{{ route('blog.index') }}" class="search-suggestion-link">Blog</a>
-                <a href="{{ route('services') }}" class="search-suggestion-link">Services</a>
-                <a href="{{ route('resume') }}" class="search-suggestion-link">Resume</a>
+        </div>
+        <div class="search-expand-body">
+            <div class="container">
+                <form action="{{ route('search') }}" method="GET" class="search-expand-form">
+                    <div class="search-expand-input-wrap">
+                        <input type="text" name="q" class="search-expand-input" placeholder="Search projects, blogs, services..." autocomplete="off">
+                        <button type="submit" class="search-expand-submit">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <div class="search-expand-suggestions">
+                        <span class="search-suggestion-label">Quick:</span>
+                        <a href="{{ route('projects.index') }}" class="search-suggestion-link">Projects</a>
+                        <a href="{{ route('blog.index') }}" class="search-suggestion-link">Blog</a>
+                        <a href="{{ route('services') }}" class="search-suggestion-link">Services</a>
+                        <a href="{{ route('resume') }}" class="search-suggestion-link">Resume</a>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 </div>
