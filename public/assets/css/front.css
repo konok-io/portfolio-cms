@@ -1087,6 +1087,8 @@ a [class*="far"] {
   color: var(--color-text);
   font-size: 1rem;
   margin-right: 10px;
+  border: none;
+  outline: none;
 }
 
 .search-box .search-input {
