@@ -12,7 +12,7 @@
     <div class="container">
         <div class="row align-items-center gy-5">
             <div class="col-lg-7 order-2 order-lg-1">
-                <span class="hero-eyebrow"><i class="fa-solid fa-circle-check"></i> Available for new projects</span>
+                <span class="hero-eyebrow"><i class="fa-solid fa-circle-check"></i> {{ PageContent::get('home', 'hero_eyebrow', app()->getLocale()) }}</span>
                 <h1 class="hero-title">
                     Hi, I'm {{ $about->name ?? 'Your Name' }} —<br>
                     <span class="text-primary-custom">
@@ -24,11 +24,11 @@
                 </p>
                 <div class="d-flex flex-wrap gap-3" style="position: relative; z-index: 1;">
                     <a href="{{ route('contact') }}" class="btn btn-primary-custom">
-                        <i class="fa-solid fa-paper-plane me-2"></i>Hire Me
+                        <i class="fa-solid fa-paper-plane me-2"></i>{{ PageContent::get('home', 'hero_button_hire', app()->getLocale()) }}
                     </a>
                     @if($about->cv_url ?? false)
                         <a href="{{ $about->cv_url }}" class="btn btn-outline-custom" download>
-                            <i class="fa-solid fa-download me-2"></i>Download CV
+                            <i class="fa-solid fa-download me-2"></i>{{ PageContent::get('home', 'hero_button_cv', app()->getLocale()) }}
                         </a>
                     @endif
                 </div>
@@ -44,7 +44,7 @@
                         </div>
                         <div>
                             <div class="fw-bold">{{ $experiences->count() }}+</div>
-                            <div class="small text-muted">Years Experience</div>
+                            <div class="small text-muted">{{ PageContent::get('home', 'hero_badge', app()->getLocale()) }}</div>
                         </div>
                     </div>
                 </div>
@@ -59,8 +59,8 @@
 <section id="about" class="section-padding">
     <div class="container">
         <div class="text-center mb-5">
-            <span class="section-eyebrow">Why Work With Me</span>
-            <h2 class="section-title">What sets me apart</h2>
+            <span class="section-eyebrow">{{ PageContent::get('home', 'why_eyebrow', app()->getLocale()) }}</span>
+            <h2 class="section-title">{{ PageContent::get('home', 'why_title', app()->getLocale()) }}</h2>
         </div>
         <div class="row g-4">
             <div class="col-md-4">
@@ -69,8 +69,8 @@
                         <div class="icon-box mx-auto mb-3" style="width:60px;height:60px;">
                             <i class="fa-solid fa-code"></i>
                         </div>
-                        <h5 class="card-title mb-2">Clean Code</h5>
-                        <p class="card-text text-muted small">Writing maintainable, well-documented code that scales with your business needs.</p>
+                        <h5 class="card-title mb-2">{{ PageContent::get('home', 'why_card1_title', app()->getLocale()) }}</h5>
+                        <p class="card-text text-muted small">{{ PageContent::get('home', 'why_card1_text', app()->getLocale()) }}</p>
                     </div>
                 </div>
             </div>
@@ -80,8 +80,8 @@
                         <div class="icon-box mx-auto mb-3" style="width:60px;height:60px;">
                             <i class="fa-solid fa-clock"></i>
                         </div>
-                        <h5 class="card-title mb-2">On-Time Delivery</h5>
-                        <p class="card-text text-muted small">Respecting deadlines and communicating transparently throughout every project.</p>
+                        <h5 class="card-title mb-2">{{ PageContent::get('home', 'why_card2_title', app()->getLocale()) }}</h5>
+                        <p class="card-text text-muted small">{{ PageContent::get('home', 'why_card2_text', app()->getLocale()) }}</p>
                     </div>
                 </div>
             </div>
@@ -91,8 +91,8 @@
                         <div class="icon-box mx-auto mb-3" style="width:60px;height:60px;">
                             <i class="fa-solid fa-headset"></i>
                         </div>
-                        <h5 class="card-title mb-2">Dedicated Support</h5>
-                        <p class="card-text text-muted small">Post-launch support and maintenance to keep your project running smoothly.</p>
+                        <h5 class="card-title mb-2">{{ PageContent::get('home', 'why_card3_title', app()->getLocale()) }}</h5>
+                        <p class="card-text text-muted small">{{ PageContent::get('home', 'why_card3_text', app()->getLocale()) }}</p>
                     </div>
                 </div>
             </div>
@@ -411,16 +411,16 @@
     <div class="container">
         <div class="row g-5">
             <div class="col-lg-5 reveal-on-scroll">
-                <span class="section-eyebrow">Get In Touch</span>
-                <h2 class="section-title mb-4">Let's build something great together</h2>
-                <p class="text-muted mb-4">Have a project in mind or just want to say hello? Fill out the form and I'll get back to you shortly.</p>
+                <span class="section-eyebrow">{{ PageContent::get('home', 'contact_eyebrow', app()->getLocale()) }}</span>
+                <h2 class="section-title mb-4">{{ PageContent::get('home', 'contact_title', app()->getLocale()) }}</h2>
+                <p class="text-muted mb-4">{{ PageContent::get('home', 'contact_text', app()->getLocale()) }}</p>
 
                 <div class="d-flex flex-column gap-3">
                     @if($about->email ?? false)
                         <div class="d-flex align-items-center gap-3">
                             <div class="icon-box mb-0" style="width:48px;height:48px;"><i class="fa-solid fa-envelope"></i></div>
                             <div>
-                                <div class="small text-muted">Email</div>
+                                <div class="small text-muted">{{ PageContent::get('home', 'contact_label_email', app()->getLocale()) }}</div>
                                 <div class="fw-semibold">{{ $about->email }}</div>
                             </div>
                         </div>
@@ -429,7 +429,7 @@
                         <div class="d-flex align-items-center gap-3">
                             <div class="icon-box mb-0" style="width:48px;height:48px;"><i class="fa-solid fa-phone"></i></div>
                             <div>
-                                <div class="small text-muted">Phone</div>
+                                <div class="small text-muted">{{ PageContent::get('home', 'contact_label_phone', app()->getLocale()) }}</div>
                                 <div class="fw-semibold">{{ $about->phone }}</div>
                             </div>
                         </div>
@@ -438,7 +438,7 @@
                         <div class="d-flex align-items-center gap-3">
                             <div class="icon-box mb-0" style="width:48px;height:48px;"><i class="fa-solid fa-location-dot"></i></div>
                             <div>
-                                <div class="small text-muted">Location</div>
+                                <div class="small text-muted">{{ PageContent::get('home', 'contact_label_location', app()->getLocale()) }}</div>
                                 <div class="fw-semibold">{{ $about->address }}</div>
                             </div>
                         </div>
@@ -451,28 +451,28 @@
                         @csrf
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label class="form-label small fw-semibold">Name</label>
+                                <label class="form-label small fw-semibold">{{ PageContent::get('home', 'contact_form_name', app()->getLocale()) }}</label>
                                 <input type="text" name="name" class="form-control" required>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label small fw-semibold">Email</label>
+                                <label class="form-label small fw-semibold">{{ PageContent::get('home', 'contact_form_email', app()->getLocale()) }}</label>
                                 <input type="email" name="email" class="form-control" required>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label small fw-semibold">Phone</label>
+                                <label class="form-label small fw-semibold">{{ PageContent::get('home', 'contact_form_phone', app()->getLocale()) }}</label>
                                 <input type="text" name="phone" class="form-control">
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label small fw-semibold">Subject</label>
+                                <label class="form-label small fw-semibold">{{ PageContent::get('home', 'contact_form_subject', app()->getLocale()) }}</label>
                                 <input type="text" name="subject" class="form-control">
                             </div>
                             <div class="col-12">
-                                <label class="form-label small fw-semibold">Message</label>
+                                <label class="form-label small fw-semibold">{{ PageContent::get('home', 'contact_form_message', app()->getLocale()) }}</label>
                                 <textarea name="message" rows="5" class="form-control" required></textarea>
                             </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary-custom w-100">
-                                    <i class="fa-solid fa-paper-plane me-2"></i>Send Message
+                                    <i class="fa-solid fa-paper-plane me-2"></i>{{ PageContent::get('home', 'contact_form_button', app()->getLocale()) }}
                                 </button>
                             </div>
                         </div>

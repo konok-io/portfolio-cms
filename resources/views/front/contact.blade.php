@@ -1,6 +1,6 @@
 @extends('front.layouts.app')
-@section('title', 'Contact | ' . ($siteSetting->site_name ?? 'Portfolio CMS'))
-@section('meta_description', 'Get in touch with us. We would love to hear from you. Feel free to send me a message about your project or inquiry.')
+@section('title', PageContent::get('contact', 'page_title', app()->getLocale()) . ' | ' . ($siteSetting->site_name ?? 'Portfolio CMS'))
+@section('meta_description', PageContent::get('contact', 'page_subtitle', app()->getLocale()))
 
 @section('content')
 <section class="contact-page-section">
@@ -9,14 +9,14 @@
         <nav aria-label="breadcrumb" class="mb-4">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fa-solid fa-home"></i></a></li>
-                <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                <li class="breadcrumb-item active" aria-current="page">{{ PageContent::get('contact', 'page_title', app()->getLocale()) }}</li>
             </ol>
         </nav>
 
         <div class="text-center mb-5">
-            <span class="section-eyebrow">Get In Touch</span>
-            <h1 class="section-title">Let's Work Together</h1>
-            <p class="section-subtitle mx-auto">Have a project in mind? Fill out the form below and I'll get back to you within 24 hours.</p>
+            <span class="section-eyebrow">{{ PageContent::get('contact', 'page_eyebrow', app()->getLocale()) }}</span>
+            <h1 class="section-title">{{ PageContent::get('contact', 'page_title', app()->getLocale()) }}</h1>
+            <p class="section-subtitle mx-auto">{{ PageContent::get('contact', 'page_subtitle', app()->getLocale()) }}</p>
         </div>
 
         <div class="row g-5">
@@ -54,7 +54,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label for="phone" class="form-label">Phone Number</label>
+                                <label for="phone" class="form-label">{{ PageContent::get('contact', 'form_phone', app()->getLocale()) }}</label>
                                 <input type="tel" class="form-control @error('phone') is-invalid @enderror" 
                                        id="phone" name="phone" value="{{ old('phone') }}">
                                 @error('phone')
@@ -63,7 +63,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label for="subject" class="form-label">Subject</label>
+                                <label for="subject" class="form-label">{{ PageContent::get('contact', 'form_subject', app()->getLocale()) }}</label>
                                 <input type="text" class="form-control @error('subject') is-invalid @enderror" 
                                        id="subject" name="subject" value="{{ old('subject') }}">
                                 @error('subject')
@@ -72,7 +72,7 @@
                             </div>
 
                             <div class="col-12">
-                                <label for="message" class="form-label">Your Message <span class="text-danger">*</span></label>
+                                <label for="message" class="form-label">{{ PageContent::get('contact', 'form_message', app()->getLocale()) }} <span class="text-danger">*</span></label>
                                 <textarea class="form-control @error('message') is-invalid @enderror" 
                                           id="message" name="message" rows="5" required>{{ old('message') }}</textarea>
                                 @error('message')
@@ -90,7 +90,7 @@
                                     </div>
                                 @endif
                                 <button type="submit" class="btn btn-primary-custom btn-lg">
-                                    <i class="fa-solid fa-paper-plane me-2"></i>Send Message
+                                    <i class="fa-solid fa-paper-plane me-2"></i>{{ PageContent::get('contact', 'form_button', app()->getLocale()) }}
                                 </button>
                             </div>
                         </div>

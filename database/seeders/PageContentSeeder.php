@@ -36,6 +36,10 @@ class PageContentSeeder extends Seeder
                 'hero_badge_ar' => 'سنوات الخبرة',
                 
                 // Why Choose Me Section
+                'why_eyebrow' => 'Why Work With Me',
+                'why_eyebrow_en' => 'Why Work With Me',
+                'why_eyebrow_bn' => 'আমার সাথে কেন কাজ করবেন',
+                'why_eyebrow_ar' => 'لماذا تعمل معي',
                 'why_title' => 'What sets me apart',
                 'why_title_en' => 'What sets me apart',
                 'why_title_bn' => 'আমাকে আলাদা করে কী',
