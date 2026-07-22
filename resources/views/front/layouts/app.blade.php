@@ -151,12 +151,16 @@
       [data-theme="dark"] .newsletter-popup,[data-theme="dark"] .cookie-consent{background:#171433!important;color:#EDECFF!important}
       [data-theme="dark"] .newsletter-popup .btn-outline-light,[data-theme="dark"] .cookie-consent .btn-outline-light{color:#EDECFF!important;border-color:#4F2FE8!important}
       
-      /* Dropdown z-index fixes */
-      .navbar { z-index: 1020 !important; }
-      .dropdown-menu { z-index: 1050 !important; }
-      .gtranslate-wrap { position: relative; z-index: 1030; }
-      .gt_open .goog-te-menu-value { z-index: 1051 !important; }
-      .lang-menu { z-index: 1051 !important; }
+      /* Dropdown z-index fixes - force above everything */
+      .navbar { z-index: 9999 !important; position: relative; }
+      .navbar-collapse { z-index: 9998; }
+      .dropdown-menu { z-index: 99999 !important; position: absolute !important; }
+      .dropdown { position: static !important; }
+      .gtranslate-wrap { position: relative; z-index: 99997; }
+      .gt_open .goog-te-menu-value { z-index: 99998 !important; }
+      .lang-menu { z-index: 99998 !important; position: absolute !important; right: 0; }
+      .search-wrapper { z-index: 99996; position: relative; }
+      .search-results { z-index: 99997 !important; }
     </style>
     @stack('styles')
     
