@@ -13,10 +13,11 @@ use App\Models\ResumeSetting;
 use App\Models\Service;
 use App\Models\Skill;
 use App\Models\Testimonial;
+use Illuminate\Http\Request;
 
 class ResumeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $settings = ResumeSetting::instance();
         $about = About::first() ?? new About([
@@ -42,7 +43,7 @@ class ResumeController extends Controller
         ));
     }
 
-    public function preview()
+    public function preview(Request $request)
     {
         $settings = ResumeSetting::instance();
         $about = About::first() ?? new About([
@@ -57,7 +58,15 @@ class ResumeController extends Controller
         $projects = Project::active()->ordered()->limit(5)->get();
         $certifications = Certification::where('is_active', true)->orderBy('sort_order')->get();
 
-        $template = $settings->template ?? 'modern';
+        // Allow template override from request, fallback to settings
+        $template = $request->get('template') ?? $settings->template ?? 'modern';
+        
+        // Validate template
+        $validTemplates = ['modern', 'creative', 'tech', 'corporate'];
+        if (!in_array($template, $validTemplates)) {
+            $template = 'modern';
+        }
+        
         return view("front.resume-templates.{$template}-preview", compact(
             'settings',
             'about',
