@@ -165,7 +165,7 @@
      4. SERVICES
      ========================================================= --}}
 @if($services->isNotEmpty())
-<section id="services" class="section-padding">
+<section id="services" class="section-padding section-tint">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
             <span class="section-eyebrow">What I Offer</span>
@@ -224,7 +224,7 @@
      6. EDUCATION
      ========================================================= --}}
 @if($educations->isNotEmpty())
-<section id="education" class="section-padding">
+<section id="education" class="section-padding section-accent-tint">
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-4 reveal-on-scroll">
@@ -255,7 +255,7 @@
      7. PORTFOLIO PROJECTS
      ========================================================= --}}
 @if($projects->isNotEmpty())
-<section id="portfolio" class="section-padding section-alt">
+<section id="portfolio" class="section-padding section-dark-tint">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
             <span class="section-eyebrow">Recent Work</span>
@@ -293,7 +293,7 @@
      8. TESTIMONIALS
      ========================================================= --}}
 @if($testimonials->isNotEmpty())
-<section id="testimonials" class="section-padding section-alt">
+<section id="testimonials" class="section-padding">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
             <span class="section-eyebrow">Client Feedback</span>
@@ -372,7 +372,7 @@
      9. BLOG POSTS
      ========================================================= --}}
 @if($blogs->isNotEmpty())
-<section id="blog" class="section-padding section-alt">
+<section id="blog" class="section-padding section-tint">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
             <span class="section-eyebrow">From the Blog</span>
