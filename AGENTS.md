@@ -6,13 +6,17 @@ This is a Laravel-based Portfolio CMS project.
 
 ## Search Box Configuration (Important)
 
-**Commit: `02c8a87` - "Change search box slide direction to right"**
+**Commit: `5a2f199` - "Change search box width to 800px"**
 
-The search box in the navbar slides from the search icon position to the **right side**. This is the correct/working state.
+The search box in the navbar:
+- Width: 800px
+- No animation
+- Appears at search icon position to the right
+- This is the correct/working state
 
 If you want to revert to this state later:
 ```bash
-git reset --hard 02c8a87
+git reset --hard 5a2f199
 git push origin main --force
 ```
 
