@@ -282,20 +282,14 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
     if (searchClose && searchOverlay) {
       searchClose.addEventListener('click', function() {
         searchOverlay.classList.remove('active');
-      });
-    }
-    
-    if (searchOverlay) {
-      searchOverlay.addEventListener('click', function(e) {
-        if (e.target === searchOverlay) {
-          searchOverlay.classList.remove('active');
-        }
+        if (searchInput) searchInput.value = '';
       });
     }
     
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && searchOverlay && searchOverlay.classList.contains('active')) {
         searchOverlay.classList.remove('active');
+        if (searchInput) searchInput.value = '';
       }
     });
   });
