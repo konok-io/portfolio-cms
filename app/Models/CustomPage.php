@@ -22,6 +22,8 @@ class CustomPage extends Model
         'is_published',
         'show_in_footer',
         'show_in_header',
+        'show_site_header',
+        'show_site_footer',
         'sort_order',
     ];
 
@@ -29,6 +31,8 @@ class CustomPage extends Model
         'is_published' => 'boolean',
         'show_in_footer' => 'boolean',
         'show_in_header' => 'boolean',
+        'show_site_header' => 'boolean',
+        'show_site_footer' => 'boolean',
         'sort_order' => 'integer',
     ];
 

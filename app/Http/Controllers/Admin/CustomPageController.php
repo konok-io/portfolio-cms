@@ -40,6 +40,8 @@ class CustomPageController extends Controller
             'is_published' => 'nullable|boolean',
             'show_in_footer' => 'nullable|boolean',
             'show_in_header' => 'nullable|boolean',
+            'show_site_header' => 'nullable|boolean',
+            'show_site_footer' => 'nullable|boolean',
             'sort_order' => 'nullable|integer',
         ]);
 
@@ -53,6 +55,8 @@ class CustomPageController extends Controller
             'is_published' => $request->boolean('is_published'),
             'show_in_footer' => $request->boolean('show_in_footer'),
             'show_in_header' => $request->boolean('show_in_header'),
+            'show_site_header' => $request->boolean('show_site_header'),
+            'show_site_footer' => $request->boolean('show_site_footer'),
             'sort_order' => $request->sort_order ?? 0,
         ]);
 
@@ -82,6 +86,8 @@ class CustomPageController extends Controller
             'is_published' => 'nullable|boolean',
             'show_in_footer' => 'nullable|boolean',
             'show_in_header' => 'nullable|boolean',
+            'show_site_header' => 'nullable|boolean',
+            'show_site_footer' => 'nullable|boolean',
             'sort_order' => 'nullable|integer',
         ]);
 
@@ -95,6 +101,8 @@ class CustomPageController extends Controller
             'is_published' => $request->boolean('is_published'),
             'show_in_footer' => $request->boolean('show_in_footer'),
             'show_in_header' => $request->boolean('show_in_header'),
+            'show_site_header' => $request->boolean('show_site_header'),
+            'show_site_footer' => $request->boolean('show_site_footer'),
             'sort_order' => $request->sort_order ?? 0,
         ]);
 

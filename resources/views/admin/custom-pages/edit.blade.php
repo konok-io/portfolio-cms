@@ -95,6 +95,18 @@
                                        {{ old('show_in_footer', $customPage->show_in_footer) ? 'checked' : '' }}>
                                 <label class="form-check-label" for="show_in_footer">Show in Footer Menu</label>
                             </div>
+                            <hr class="my-2">
+                            <small class="text-muted d-block mb-2">Page Layout</small>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="show_site_header" name="show_site_header" value="1"
+                                       {{ old('show_site_header', $customPage->show_site_header ?? true) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="show_site_header">Show Site Header</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="show_site_footer" name="show_site_footer" value="1"
+                                       {{ old('show_site_footer', $customPage->show_site_footer ?? true) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="show_site_footer">Show Site Footer</label>
+                            </div>
                         </div>
 
                         <hr>
