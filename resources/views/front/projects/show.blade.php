@@ -129,6 +129,16 @@
                             @endforeach
                         </div>
                     @endif
+                    
+                    {{-- Statistics --}}
+                    <div class="d-flex justify-content-between py-2 border-bottom">
+                        <span class="text-muted"><i class="fa-solid fa-eye me-1"></i> Views</span>
+                        <span class="fw-semibold">{{ number_format($project->view_count ?? 0) }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between py-2 border-bottom mb-4">
+                        <span class="text-muted"><i class="fa-solid fa-download me-1"></i> Downloads</span>
+                        <span class="fw-semibold">{{ number_format($project->download_count ?? 0) }}</span>
+                    </div>
 
                     @if($project->project_url)
                         <a href="{{ $project->project_url }}" target="_blank" class="btn btn-primary-custom w-100">

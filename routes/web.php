@@ -66,6 +66,7 @@ Route::get('/services/{service:slug}', [\App\Http\Controllers\Front\ServiceContr
 Route::prefix('portfolio')->name('projects.')->group(function () {
     Route::get('/', [ProjectController::class, 'index'])->name('index');
     Route::get('/{project:slug}', [ProjectController::class, 'show'])->name('show');
+    Route::get('/{project:slug}/download', [ProjectController::class, 'download'])->name('download');
 });
 
 Route::prefix('blog')->name('blog.')->group(function () {

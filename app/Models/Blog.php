@@ -36,6 +36,11 @@ class Blog extends Model
             'views'        => 'integer',
         ];
     }
+    
+    public function incrementViewCount(): void
+    {
+        $this->increment('views');
+    }
 
     protected static function booted(): void
     {
