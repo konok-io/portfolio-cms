@@ -86,6 +86,10 @@
                                     <span style="font-size:11px;">CV</span>
                                 </a>
                             @endif
+                            <a href="{{ route('portfolio.pdf') }}" target="_blank" class="btn btn-sm btn-primary d-flex align-items-center justify-content-center gap-1" style="height:36px;padding:0 8px;white-space:nowrap;" title="Download Portfolio PDF">
+                                <i class="fa-solid fa-file-pdf"></i>
+                                <span style="font-size:11px;">PDF</span>
+                            </a>
                         </div>
                     </div>
                 </div>
