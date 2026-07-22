@@ -36,6 +36,7 @@ class SettingController extends Controller
             'github' => ['nullable', 'url', 'max:255'],
             'instagram' => ['nullable', 'url', 'max:255'],
             'youtube' => ['nullable', 'url', 'max:255'],
+            'maintenance_mode' => ['nullable', 'in:1'],
         ]);
 
         if ($request->hasFile('logo')) {
@@ -51,6 +52,9 @@ class SettingController extends Controller
             }
             $validated['favicon'] = $request->file('favicon')->store('settings', 'public');
         }
+
+        // Handle maintenance_mode checkbox (only sends 1 when checked)
+        $validated['maintenance_mode'] = $request->has('maintenance_mode') ? 1 : 0;
 
         $setting->update($validated);
 
