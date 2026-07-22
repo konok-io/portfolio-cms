@@ -1044,7 +1044,7 @@ a [class*="far"] {
 /* Search Form - Hidden initially, shows on LEFT with overlay */
 .search-form-item {
   position: absolute;
-  right: 0;
+  left: 0;
   top: 50%;
   transform: translateY(-50%);
   opacity: 0;
@@ -1059,7 +1059,7 @@ a [class*="far"] {
 #searchFormItem.active {
   opacity: 1;
   pointer-events: auto;
-  width: 260px;
+  width: calc(100% - 50px);
 }
 
 .search-navbar-form {
@@ -1080,6 +1080,7 @@ a [class*="far"] {
   max-width: 100%;
   width: 100%;
   box-sizing: border-box;
+  margin-right: 40px;
 }
 
 .search-form-item.active .search-navbar-form:focus-within,
