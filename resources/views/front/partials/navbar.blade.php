@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg sticky-top site-navbar">
-    <div class="container d-flex align-items-center justify-content-between">
+    <div class="container">
         @php($headerDisplay = $siteSetting->header_display ?? 'text')
         <a class="navbar-brand d-flex align-items-center gap-2" href="{{ route('home') }}">
             @if(($headerDisplay === 'logo' || $headerDisplay === 'both') && ($siteSetting->logo_url ?? false))
@@ -10,8 +10,12 @@
             @endif
         </a>
 
-        <div class="d-flex align-items-center gap-2">
-            <ul class="navbar-nav menu-items mb-0">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}#home">Home</a></li>
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">About</a></li>
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('services') ? 'active' : '' }}" href="{{ route('services') }}">Services</a></li>
@@ -25,10 +29,8 @@
                         <i class="fa-solid fa-search"></i>
                     </button>
                 </li>
-            </ul>
-            
-            <ul class="navbar-nav nav-actions mb-0 align-items-center gap-2">
-                <li class="nav-item">
+
+                <li class="nav-item d-flex align-items-center gap-2 ms-lg-2">
                     <div class="gtranslate-wrap">
                         <button type="button" class="gt-btn" onclick="document.body.classList.toggle('gt-open')">
                             <i class="fa-solid fa-language"></i><i class="fa-solid fa-chevron-down" style="font-size:.7em"></i>
@@ -43,25 +45,15 @@
                         <button type="button" onclick="pickLang('tl')">Filipino</button>
                     </div>
                     </div>
-                </li>
-                <li class="nav-item">
                     <button type="button" class="theme-toggle-btn" onclick="pcToggleTheme()" aria-label="Toggle theme">
                         <i class="fa-solid fa-sun" id="pcSun"></i>
                         <i class="fa-solid fa-moon" id="pcMoon" style="display:none"></i>
                     </button>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-primary-custom" href="{{ route('contact') }}">Get in Touch</a>
+                    <a class="btn btn-primary-custom ms-lg-2 mt-2 mt-lg-0" href="{{ route('contact') }}">Get in Touch</a>
                 </li>
             </ul>
-        </div>
-        
-        <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <div class="collapse navbar-collapse" id="mainNav">
-            <!-- Mobile menu will be here -->
         </div>
     </div>
     
