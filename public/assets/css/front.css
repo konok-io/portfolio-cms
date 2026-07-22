@@ -1018,8 +1018,11 @@ a [class*="far"] {
   padding: 0 !important;
   transition: all 0.3s ease;
   color: var(--color-text);
-  opacity: 1;
-  visibility: visible;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
 }
 
 .search-icon-btn:hover {
@@ -1031,7 +1034,6 @@ a [class*="far"] {
 /* Hide icon when search is active */
 .search-navbar-container.active .search-icon-btn {
   opacity: 0;
-  visibility: hidden;
   pointer-events: none;
 }
 
@@ -1042,17 +1044,12 @@ a [class*="far"] {
   top: 50%;
   transform: translateY(-50%);
   opacity: 0;
-  visibility: hidden;
-  z-index: 1050;
+  z-index: 2;
   transition: all 0.35s ease;
-  width: 40px;
-  overflow: hidden;
 }
 
 .search-form-item.active {
   opacity: 1;
-  visibility: visible;
-  width: 260px;
 }
 
 .search-navbar-form {
@@ -1061,7 +1058,12 @@ a [class*="far"] {
   background: white;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   overflow: hidden;
-  width: 260px;
+  transform: translateX(100%);
+  transition: transform 0.35s ease;
+}
+
+.search-form-item.active .search-navbar-form {
+  transform: translateX(0);
 }
 
 .search-navbar-input {
@@ -1071,7 +1073,7 @@ a [class*="far"] {
   font-size: 0.95rem;
   background: white;
   color: #1e293b;
-  width: 180px;
+  width: 200px;
 }
 
 .search-navbar-input:focus {
