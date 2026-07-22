@@ -1,7 +1,7 @@
 <footer class="site-footer pt-5 pb-4 mt-auto">
     <div class="container">
         <div class="row gy-4">
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <h5 class="font-heading mb-3">{{ $siteSetting->site_name ?? 'Portfolio' }}</h5>
                 <p class="small mb-3">Building thoughtful, modern web experiences — from idea to launch.</p>
                 <div class="footer-social">
