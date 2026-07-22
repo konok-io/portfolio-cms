@@ -1028,49 +1028,38 @@ a [class*="far"] {
 
 /* Search Form - Hidden initially, shows on LEFT with overlay */
 .search-form-item {
-  display: none !important;
   position: absolute;
   right: 100%;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateX(-10px);
+  opacity: 0;
+  visibility: hidden;
   z-index: 1050;
+  transition: all 0.35s ease;
 }
 
 .search-form-item.active {
-  display: flex !important;
-  align-items: center;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
 }
 
 .search-navbar-form {
   display: flex;
   align-items: center;
   background: white;
-  border-radius: 25px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   overflow: hidden;
-  animation: searchSlideIn 0.35s ease;
-}
-
-@keyframes searchSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-50%) translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(-50%) translateX(0);
-  }
 }
 
 .search-navbar-input {
   border: none;
   border-right: 1px solid #e2e8f0;
-  border-radius: 25px 0 0 25px;
   padding: 12px 15px;
   font-size: 0.95rem;
   background: white;
   color: #1e293b;
-  width: 240px;
+  width: 220px;
 }
 
 .search-navbar-input:focus {
@@ -1084,7 +1073,6 @@ a [class*="far"] {
 .search-navbar-submit {
   background: var(--color-primary);
   border: none;
-  border-radius: 0 25px 25px 0;
   padding: 12px 15px;
   color: white;
   cursor: pointer;
