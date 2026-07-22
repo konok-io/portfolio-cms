@@ -1083,20 +1083,6 @@ a [class*="far"] {
   background: var(--color-primary-dark);
 }
 
-.search-navbar-close {
-  background: transparent;
-  border: none;
-  padding: 10px 12px;
-  color: #94a3b8;
-  cursor: pointer;
-  transition: color 0.3s ease;
-  margin-left: 5px;
-}
-
-.search-navbar-close:hover {
-  color: #475569;
-}
-
 /* Dark mode */
 [data-theme="dark"] .search-navbar-form {
   background: #171433;
@@ -1119,13 +1105,5 @@ a [class*="far"] {
 
 [data-theme="dark"] .search-navbar-submit:hover {
   opacity: 0.9;
-}
-
-[data-theme="dark"] .search-navbar-close {
-  color: #9B98C7;
-}
-
-[data-theme="dark"] .search-navbar-close:hover {
-  color: #EDECFF;
 }
 
