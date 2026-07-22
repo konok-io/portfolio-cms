@@ -899,29 +899,47 @@ a [class*="far"] {
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
-/* Social Share Buttons */
+/* Social Share Buttons - Professional */
+.share-section {
+  background: linear-gradient(135deg, rgba(79, 47, 232, 0.05), rgba(34, 211, 238, 0.05));
+  padding: 20px 25px;
+  border-radius: 12px;
+  border: 1px solid rgba(79, 47, 232, 0.1) !important;
+}
+
+.share-title {
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
 .share-buttons {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
 .share-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
   color: white;
+  font-size: 14px;
+  font-weight: 500;
   transition: all 0.3s ease;
   border: none;
+  text-decoration: none;
 }
 
 .share-btn:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   color: white;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.share-btn i {
+  font-size: 16px;
 }
 
 .share-btn.facebook { background: #1877F2; }
@@ -930,6 +948,24 @@ a [class*="far"] {
 .share-btn.reddit { background: #FF4500; }
 .share-btn.whatsapp { background: #25D366; }
 .share-btn.copy-link { background: #6B7280; }
+
+/* Dark mode for share section */
+[data-theme="dark"] .share-section {
+  background: linear-gradient(135deg, rgba(79, 47, 232, 0.15), rgba(34, 211, 238, 0.1));
+  border-color: rgba(139, 123, 240, 0.2) !important;
+}
+
+[data-theme="dark"] .share-title {
+  color: #EDECFF;
+}
+
+[data-theme="dark"] .share-btn {
+  opacity: 0.9;
+}
+
+[data-theme="dark"] .share-btn:hover {
+  opacity: 1;
+}
 
 /* Cookie Consent Banner */
 .cookie-consent {
