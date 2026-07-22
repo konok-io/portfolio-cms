@@ -1046,7 +1046,7 @@ a [class*="far"] {
 
 .search-box {
   position: absolute;
-  left: 100%;
+  right: 100%;
   top: 50%;
   transform: translateY(-50%);
   background: #fff;
@@ -1054,9 +1054,10 @@ a [class*="far"] {
   border-radius: 8px;
   padding: 0 15px;
   height: 40px;
-  right: 0;
+  left: 0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   display: none;
+  z-index: 1050;
 }
 
 .search-box.active {
