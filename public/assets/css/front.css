@@ -1018,12 +1018,19 @@ a [class*="far"] {
   padding: 0 !important;
   transition: all 0.3s ease;
   color: var(--color-text);
+  opacity: 1;
 }
 
 .search-icon-btn:hover {
   background: rgba(37, 99, 235, 0.1);
   border-radius: 50%;
   color: var(--color-primary);
+}
+
+/* Hide icon when search is active */
+.search-navbar-container.active .search-icon-btn {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Search Form - Hidden initially, shows on LEFT with overlay */
