@@ -3,21 +3,19 @@
 @section('title', $project->title . ' | ' . ($siteSetting->site_name ?? 'Portfolio CMS'))
 @section('meta_description', \Illuminate\Support\Str::limit(strip_tags($project->description), 160))
 
+@php
+    $breadcrumbs = [
+        ['title' => 'Portfolio', 'url' => route('projects.index')],
+        ['title' => $project->title, 'url' => null, 'active' => true]
+    ];
+@endphp
+
 @section('content')
 
 <section class="section-padding" style="padding-top: 8rem;">
     <div class="container">
         {{-- Breadcrumb --}}
-        <nav aria-label="breadcrumb" class="mb-4">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fa-solid fa-home"></i></a></li>
-                <li class="breadcrumb-item"><a href="{{ route('projects.index') }}">Portfolio</a></li>
-                @if($project->category)
-                    <li class="breadcrumb-item"><a href="{{ route('projects.index', ['category' => $project->category->slug]) }}">{{ $project->category->name }}</a></li>
-                @endif
-                <li class="breadcrumb-item active" aria-current="page">{{ Str::limit($project->title, 30) }}</li>
-            </ol>
-        </nav>
+        <x-front-breadcrumb :items="$breadcrumbs" />
 
         <div class="row g-5">
             <div class="col-lg-8">
@@ -29,7 +27,7 @@
                 </div>
 
                 <img src="{{ $project->featured_image_url ?? 'https://placehold.co/1000x600/2563EB/ffffff?text=' . urlencode($project->title) }}"
-                     alt="{{ $project->alt_text ?? $project->title }}" class="img-fluid rounded-4 shadow-sm mb-4 w-100" style="aspect-ratio: 16/9; object-fit: cover;">
+                     alt="{{ $project->alt_text ?? $project->title }}" class="img-fluid rounded-4 shadow-sm mb-4 w-100" style="aspect-ratio: 16/9; object-fit: cover;" loading="lazy">
 
                 <div class="content-body">
                     {!! $project->description !!}

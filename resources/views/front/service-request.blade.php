@@ -1,6 +1,7 @@
 @extends('front.layouts.app')
 
 @section('seo_title', 'Get a Quote')
+@section('meta_description', 'Request a personalized quote for your project. Tell us about your requirements and get a detailed estimate within 24 hours.')
 
 @section('content')
 <section class="section-padding" style="padding-top: 8rem;">
@@ -39,6 +40,11 @@
 
                         <form method="POST" action="{{ route('quote.store') }}">
                             @csrf
+                            
+                            {{-- Honeypot spam protection - hidden from users --}}
+                            <div class="honeypot-field" aria-hidden="true">
+                                <input type="text" name="company_url" tabindex="-1" autocomplete="off">
+                            </div>
 
                             {{-- Service Selection --}}
                             <div class="mb-4">
@@ -97,6 +103,16 @@
                                     <textarea name="message" class="form-control" rows="5" required placeholder="Tell us about your project, goals, timeline, and any specific requirements...">{{ old('message') }}</textarea>
                                     <small class="text-muted">Max 2000 characters</small>
                                 </div>
+                                
+                                {{-- reCAPTCHA --}}
+                                @if($siteSetting->isRecaptchaEnabled())
+                                    <div class="col-12 mt-3">
+                                        <div class="g-recaptcha" data-sitekey="{{ $siteSetting->recaptcha_site_key }}"></div>
+                                        @error('recaptcha')
+                                            <div class="text-danger small mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                @endif
                             </div>
 
                             <button type="submit" class="btn btn-primary-custom w-100 mt-4">
@@ -140,3 +156,9 @@
 }
 </style>
 @endsection
+
+@push('scripts')
+@if($siteSetting->isRecaptchaEnabled())
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+@endif
+@endpush

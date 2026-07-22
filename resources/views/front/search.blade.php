@@ -1,6 +1,7 @@
 @extends('front.layouts.app')
 
-@section('title', 'Search: ' . $query . ' - ' . ($siteSetting->site_name ?? 'Portfolio'))
+@section('seo_title', 'Search: ' . $query . ' - ' . ($siteSetting->site_name ?? 'Portfolio'))
+@section('meta_description', 'Search results for ' . $query . '. Find projects, blog posts, and services matching your query.')
 
 @section('content')
 <section class="section-padding" style="padding-top: 8rem;">

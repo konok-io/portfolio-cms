@@ -89,6 +89,55 @@
                             <label class="form-label-admin"><i class="fa-brands fa-youtube me-1"></i> YouTube</label>
                             <input type="url" name="youtube" class="form-control" value="{{ old('youtube', $setting->youtube) }}">
                         </div>
+                        <div class="col-md-6">
+                            <label class="form-label-admin"><i class="fa-brands fa-whatsapp me-1"></i> WhatsApp</label>
+                            <input type="url" name="whatsapp" class="form-control" value="{{ old('whatsapp', $setting->whatsapp) }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-admin"><i class="fa-brands fa-whatsapp me-1"></i> WhatsApp Number <small class="text-muted">(for chat link)</small></label>
+                            <input type="text" name="whatsapp_number" class="form-control" value="{{ old('whatsapp_number', $setting->whatsapp_number) }}" placeholder="8801712345678">
+                            <small class="text-muted">Format: Country code + number (no + or spaces)</small>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label-admin"><i class="fa-solid fa-comment me-1"></i> WhatsApp Default Message</label>
+                            <input type="text" name="whatsapp_default_message" class="form-control" value="{{ old('whatsapp_default_message', $setting->whatsapp_default_message) }}" placeholder="Hello! I would like to inquire about your services.">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-admin"><i class="fa-brands fa-tiktok me-1"></i> TikTok</label>
+                            <input type="url" name="tiktok" class="form-control" value="{{ old('tiktok', $setting->tiktok) }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-admin"><i class="fa-brands fa-snapchat me-1"></i> Snapchat</label>
+                            <input type="url" name="snapchat" class="form-control" value="{{ old('snapchat', $setting->snapchat) }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-admin"><i class="fa-brands fa-pinterest me-1"></i> Pinterest</label>
+                            <input type="url" name="pinterest" class="form-control" value="{{ old('pinterest', $setting->pinterest) }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-admin"><i class="fa-brands fa-discord me-1"></i> Discord</label>
+                            <input type="url" name="discord" class="form-control" value="{{ old('discord', $setting->discord) }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header-custom">Cookie Consent Settings</div>
+                <div class="card-body-custom">
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="cookieConsentEnabled" name="cookie_consent_enabled" value="1" {{ old('cookie_consent_enabled', $setting->cookie_consent_enabled ?? true) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="cookieConsentEnabled">Enable Cookie Consent Banner</label>
+                    </div>
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="cookieEssentialOnly" name="cookie_essential_only" value="1" {{ old('cookie_essential_only', $setting->cookie_essential_only ?? false) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="cookieEssentialOnly">Essential Cookies Only (No Analytics/Marketing)</label>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label-admin">Cookie Expiry (Days)</label>
+                            <input type="number" name="cookie_expiry_days" class="form-control" value="{{ old('cookie_expiry_days', $setting->cookie_expiry_days ?? 365) }}" min="1" max="365">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -132,6 +181,57 @@
                             <label class="form-label-admin">Google Tag Manager ID <small class="text-muted">(GTM)</small></label>
                             <input type="text" name="google_tag_manager_id" class="form-control" value="{{ old('google_tag_manager_id', $setting->google_tag_manager_id) }}" placeholder="GTM-XXXXXXX">
                             <small class="text-muted">Format: GTM-XXXXXXX</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header-custom">404 Error Page Settings</div>
+                <div class="card-body-custom">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label-admin">404 Page Title</label>
+                            <input type="text" name="404_title" class="form-control" value="{{ old('404_title', $setting->{'404_title'}) }}" placeholder="Page Not Found">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label-admin">404 Page Message</label>
+                            <textarea name="404_message" class="form-control" rows="2" placeholder="Oops! The page you're looking for doesn't exist...">{{ old('404_message', $setting->{'404_message'}) }}</textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-admin">Button Text</label>
+                            <input type="text" name="404_button_text" class="form-control" value="{{ old('404_button_text', $setting->{'404_button_text'}) }}" placeholder="Back to Home">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-admin">Icon <small class="text-muted">(FontAwesome class)</small></label>
+                            <input type="text" name="404_icon" class="form-control" value="{{ old('404_icon', $setting->{'404_icon'}) }}" placeholder="fa-compass">
+                            <small class="text-muted">Examples: fa-compass, fa-search, fa-ghost, fa-map</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header-custom">Coming Soon Page Settings</div>
+                <div class="card-body-custom">
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="comingSoonEnabled" name="coming_soon_enabled" value="1" {{ old('coming_soon_enabled', $setting->coming_soon_enabled ?? false) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="comingSoonEnabled">Enable Coming Soon Page</label>
+                    </div>
+                    <p class="text-muted small mb-3">When enabled, visitors will see the coming soon page instead of the main content. Enable this when you're working on the site.</p>
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label-admin">Coming Soon Title</label>
+                            <input type="text" name="coming_soon_title" class="form-control" value="{{ old('coming_soon_title', $setting->coming_soon_title) }}" placeholder="Coming Soon">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label-admin">Coming Soon Message</label>
+                            <textarea name="coming_soon_message" class="form-control" rows="2" placeholder="We're working on something exciting. Stay tuned!">{{ old('coming_soon_message', $setting->coming_soon_message) }}</textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-admin">Launch Date & Time</label>
+                            <input type="datetime-local" name="coming_soon_date" class="form-control" value="{{ old('coming_soon_date', $setting->coming_soon_date ? \Carbon\Carbon::parse($setting->coming_soon_date)->format('Y-m-d\TH:i') : '') }}">
+                            <small class="text-muted">Countdown will show until this date</small>
                         </div>
                     </div>
                 </div>

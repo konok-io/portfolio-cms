@@ -24,6 +24,15 @@ class Setting extends Model
         'github',
         'instagram',
         'youtube',
+        'whatsapp',
+        'whatsapp_number',
+        'whatsapp_default_message',
+        'tiktok',
+        'snapchat',
+        'pinterest',
+        'reddit',
+        'discord',
+        'twitch',
         'maintenance_mode',
         'recaptcha_site_key',
         'recaptcha_secret_key',
@@ -39,6 +48,17 @@ class Setting extends Model
         'google_analytics_id',
         'google_tag_manager_id',
         'analytics_enabled',
+        'cookie_consent_enabled',
+        'cookie_essential_only',
+        'cookie_expiry_days',
+        '404_title',
+        '404_message',
+        '404_button_text',
+        '404_icon',
+        'coming_soon_title',
+        'coming_soon_message',
+        'coming_soon_date',
+        'coming_soon_enabled',
     ];
 
     public static function instance(): self
@@ -81,6 +101,71 @@ class Setting extends Model
     public function getGoogleTagManagerId(): ?string
     {
         return $this->analytics_enabled ? $this->google_tag_manager_id : null;
+    }
+
+    public function getWhatsAppLink(): ?string
+    {
+        if (empty($this->whatsapp_number)) {
+            return null;
+        }
+        
+        // Clean the number (remove spaces, dashes, etc.)
+        $number = preg_replace('/[^0-9+]/', '', $this->whatsapp_number);
+        
+        // Remove leading + if present
+        $number = ltrim($number, '+');
+        
+        // Default message
+        $message = $this->whatsapp_default_message ?? 'Hello! I would like to inquire about your services.';
+        
+        return "https://wa.me/{$number}?text=" . urlencode($message);
+    }
+
+    public function isCookieConsentEnabled(): bool
+    {
+        return $this->cookie_consent_enabled ?? true;
+    }
+
+    // 404 Page Helpers
+    public function get404Title(): string
+    {
+        return $this->{'404_title'} ?? 'Page Not Found';
+    }
+
+    public function get404Message(): string
+    {
+        return $this->{'404_message'} ?? 'Oops! The page you\'re looking for doesn\'t exist or has been moved.';
+    }
+
+    public function get404ButtonText(): string
+    {
+        return $this->{'404_button_text'} ?? 'Back to Home';
+    }
+
+    public function get404Icon(): string
+    {
+        return $this->{'404_icon'} ?? 'fa-compass';
+    }
+
+    // Coming Soon Page Helpers
+    public function isComingSoonEnabled(): bool
+    {
+        return $this->coming_soon_enabled ?? false;
+    }
+
+    public function getComingSoonTitle(): string
+    {
+        return $this->coming_soon_title ?? 'Coming Soon';
+    }
+
+    public function getComingSoonMessage(): string
+    {
+        return $this->coming_soon_message ?? 'We\'re working on something exciting. Stay tuned!';
+    }
+
+    public function getComingSoonDate(): ?\Carbon\Carbon
+    {
+        return $this->coming_soon_date ? \Carbon\Carbon::parse($this->coming_soon_date) : null;
     }
 
     public function applyMailConfig(): void

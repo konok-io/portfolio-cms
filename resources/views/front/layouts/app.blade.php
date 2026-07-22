@@ -17,11 +17,38 @@
     <title>@yield('seo_title', $seoMeta->meta_title ?? $siteSetting->site_name ?? 'Portfolio CMS')</title>
     <meta name="description" content="@yield('meta_description', ($seoMeta->meta_description ?? ''))">
     <meta name="keywords" content="@yield('meta_keywords', ($seoMeta->meta_keywords ?? ''))">
-
-    <meta property="og:title" content="@yield('title', ($siteSetting->site_name ?? 'Portfolio CMS'))">
-    <meta property="og:description" content="@yield('meta_description', ($seoMeta->meta_description ?? ''))">
+    
+    {{-- Canonical URL --}}
+    <link rel="canonical" href="{{ $seoMeta->canonical_url ?? url()->current() }}">
+    
+    {{-- Open Graph Tags --}}
+    <meta property="og:title" content="@yield('og_title', ($seoMeta->og_title ?? $siteSetting->site_name ?? 'Portfolio CMS'))">
+    <meta property="og:description" content="@yield('meta_description', ($seoMeta->og_description ?? $seoMeta->meta_description ?? ''))">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="{{ $seoMeta->og_type ?? 'website' }}">
+    <meta property="og:site_name" content="{{ $seoMeta->og_site_name ?? $siteSetting->site_name ?? 'Portfolio CMS' }}">
+    <meta property="og:locale" content="{{ $seoMeta->og_locale ?? 'en_US' }}">
     @if($seoMeta && $seoMeta->og_image)
         <meta property="og:image" content="{{ asset('storage/' . $seoMeta->og_image) }}">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta property="og:image:alt" content="{{ $seoMeta->og_title ?? $siteSetting->site_name ?? 'Portfolio CMS' }}">
+    @endif
+    
+    {{-- Twitter Card Tags --}}
+    <meta name="twitter:card" content="{{ $seoMeta->twitter_card_type ?? 'summary_large_image' }}">
+    @if($seoMeta && $seoMeta->twitter_site)
+        <meta name="twitter:site" content="{{ $seoMeta->twitter_site }}">
+    @endif
+    @if($seoMeta && $seoMeta->twitter_creator)
+        <meta name="twitter:creator" content="{{ $seoMeta->twitter_creator }}">
+    @endif
+    <meta name="twitter:title" content="@yield('twitter_title', ($seoMeta->twitter_title ?? $seoMeta->og_title ?? $siteSetting->site_name ?? 'Portfolio CMS'))">
+    <meta name="twitter:description" content="@yield('meta_description', ($seoMeta->twitter_description ?? $seoMeta->meta_description ?? ''))">
+    @if($seoMeta && $seoMeta->twitter_image)
+        <meta name="twitter:image" content="{{ asset('storage/' . $seoMeta->twitter_image) }}">
+    @elseif($seoMeta && $seoMeta->og_image)
+        <meta name="twitter:image" content="{{ asset('storage/' . $seoMeta->og_image) }}">
     @endif
 
     @if($siteSetting && $siteSetting->favicon)
@@ -44,7 +71,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/front.css') }}">
 
-    <script>(function(){try{var t=localStorage.getItem('pc-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
+    {{-- Dark Mode: FOUC Prevention with localStorage + Cookie fallback --}}
+    <script>
+    (function(){
+      try {
+        // Try localStorage first
+        var theme = localStorage.getItem('pc-theme');
+        
+        // Fallback to cookie if localStorage not available
+        if (!theme) {
+          var cookieMatch = document.cookie.match(/pc-theme=([^;]+)/);
+          theme = cookieMatch ? cookieMatch[1] : null;
+        }
+        
+        // Fallback to system preference
+        if (!theme) {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        
+        if (theme === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch(e) {}
+    })();
+    </script>
     <script>(function(){try{var m=document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);var l=m?m[1]:'en';var rtl=['ar','ur','fa','he','ps','sd'];if(rtl.indexOf(l)>=0){document.documentElement.setAttribute('dir','rtl');}else{document.documentElement.setAttribute('dir','ltr');}}catch(e){}})();</script>
     <style>
       .gtranslate-wrap{position:relative}
@@ -61,45 +111,48 @@
       .goog-te-banner-frame,.skiptranslate iframe{display:none!important}
       body{top:0!important}
       font font{background:transparent!important;box-shadow:none!important}
-      [data-theme="dark"] body{background:#0A0A1F!important;color:#EDECFF}
+      [data-theme="dark"] body{background:#0A0A1F!important;color:#E8E6F2}
       [data-theme="dark"] .site-navbar{background:#12102E!important}
       [data-theme="dark"] section,[data-theme="dark"] .section,[data-theme="dark"] .bg-white,[data-theme="dark"] .bg-body{background:#0A0A1F!important}
-      [data-theme="dark"] .bg-light-custom,[data-theme="dark"] .bg-light,[data-theme="dark"] .bg-body-tertiary{background:#12102E!important}
+      [data-theme="dark"] .bg-light-custom,[data-theme="dark"] .bg-light,[data-theme="dark"] .bg-body-tertiary{background:#171433!important}
       [data-theme="dark"] .section-alt{background:#1a1a40!important}
       [data-theme="dark"] .section-tint{background:#1e1b38!important}
       [data-theme="dark"] .section-accent-tint{background:#1c1a00!important}
       [data-theme="dark"] .section-dark-tint{background:#222055!important}
-      [data-theme="dark"] .card,[data-theme="dark"] .experience-card,[data-theme="dark"] .skill-card,[data-theme="dark"] .service-card,[data-theme="dark"] .project-card,[data-theme="dark"] .blog-card,[data-theme="dark"] .testimonial-card{background:#171433!important;color:#EDECFF!important;border-color:#2C2860!important}
-      [data-theme="dark"] h1,[data-theme="dark"] h2,[data-theme="dark"] h3,[data-theme="dark"] h4,[data-theme="dark"] h5,[data-theme="dark"] h6,[data-theme="dark"] p,[data-theme="dark"] li,[data-theme="dark"] span,[data-theme="dark"] .nav-link,[data-theme="dark"] .navbar-brand{color:#EDECFF!important}
-      [data-theme="dark"] .text-muted,[data-theme="dark"] .text-secondary,[data-theme="dark"] small{color:#9B98C7!important}
-      [data-theme="dark"] .text-dark{color:#EDECFF!important}
-      [data-theme="dark"] .border,[data-theme="dark"] .border-top,[data-theme="dark"] .border-bottom,[data-theme="dark"] hr{border-color:#2C2860!important}
-      [data-theme="dark"] a:not(.btn){color:#22D3EE}
-      [data-theme="dark"] .form-control,[data-theme="dark"] .form-select,[data-theme="dark"] textarea{background:#171433;color:#EDECFF;border-color:#2C2860}
-      [data-theme="dark"] .form-control::placeholder{color:#6B6790}
+      [data-theme="dark"] .card,[data-theme="dark"] .experience-card,[data-theme="dark"] .skill-card,[data-theme="dark"] .service-card,[data-theme="dark"] .project-card,[data-theme="dark"] .blog-card,[data-theme="dark"] .testimonial-card{background:#171433!important;color:#E8E6F2!important;border-color:#3D3A70!important}
+      [data-theme="dark"] h1,[data-theme="dark"] h2,[data-theme="dark"] h3,[data-theme="dark"] h4,[data-theme="dark"] h5,[data-theme="dark"] h6,[data-theme="dark"] p,[data-theme="dark"] li,[data-theme="dark"] span,[data-theme="dark"] .nav-link,[data-theme="dark"] .navbar-brand{color:#E8E6F2!important}
+      [data-theme="dark"] .text-muted,[data-theme="dark"] .text-secondary,[data-theme="dark"] small{color:#A8A4C8!important}
+      [data-theme="dark"] .text-dark{color:#E8E6F2!important}
+      [data-theme="dark"] .border,[data-theme="dark"] .border-top,[data-theme="dark"] .border-bottom,[data-theme="dark"] hr{border-color:#3D3A70!important}
+      [data-theme="dark"] a:not(.btn){color:#67E8F9}
+      [data-theme="dark"] a:not(.btn):hover{color:#A5F3FC}
+      [data-theme="dark"] .form-control,[data-theme="dark"] .form-select,[data-theme="dark"] textarea{background:#171433;color:#E8E6F2;border-color:#3D3A70}
+      [data-theme="dark"] .form-control:focus{background:#1E1B44;border-color:#4F2FE8;box-shadow:0 0 0 3px rgba(79,47,232,0.3)}
+      [data-theme="dark"] .form-control::placeholder{color:#7B7890}
       [data-theme="dark"] footer{background:#12102E!important}
       [data-theme="dark"] .footer-social a{background:#4F2FE8!important;color:#fff!important;border-color:#4F2FE8!important}
       [data-theme="dark"] .footer-social a i{color:#fff!important}
       [data-theme="dark"] .footer-social a:hover{background:#fff!important;border-color:#fff!important}
       [data-theme="dark"] .footer-social a:hover i{color:#4F2FE8!important}
-      [data-theme="dark"] footer .form-control{background:#0A0A1F!important;color:#EDECFF!important;border-color:#2C2860!important}
-      [data-theme="dark"] footer .form-control::placeholder{color:#6B6790!important}
+      [data-theme="dark"] footer .form-control{background:#0A0A1F!important;color:#E8E6F2!important;border-color:#3D3A70!important}
+      [data-theme="dark"] footer .form-control::placeholder{color:#7B7890!important}
       [data-theme="dark"] .btn-primary-custom{background:#4F2FE8!important;color:#fff!important;border-color:#4F2FE8}
-      [data-theme="dark"] .btn-primary-custom:hover{background:#7C3AED!important;color:#fff!important}
-      [data-theme="dark"] .btn-outline-primary,[data-theme="dark"] .btn-outline-secondary,[data-theme="dark"] .btn-outline-light{color:#EDECFF!important;border-color:#4F2FE8!important}
+      [data-theme="dark"] .btn-primary-custom:hover{background:#6D5AE8!important;color:#fff!important}
+      [data-theme="dark"] .btn-outline-primary,[data-theme="dark"] .btn-outline-secondary,[data-theme="dark"] .btn-outline-light{color:#E8E6F2!important;border-color:#4F2FE8!important}
       [data-theme="dark"] .btn-outline-primary:hover,[data-theme="dark"] .btn-outline-secondary:hover{background:#4F2FE8!important;color:#fff!important}
-      [data-theme="dark"] .btn-light{background:#1E1A44!important;color:#EDECFF!important;border-color:#2C2860!important}
+      [data-theme="dark"] .btn-light{background:#2A2755!important;color:#E8E6F2!important;border-color:#3D3A70!important}
       [data-theme="dark"] .btn-primary,[data-theme="dark"] .btn-primary-custom{background:#4F2FE8!important;color:#fff!important;border-color:#4F2FE8!important}
-      [data-theme="dark"] .btn-primary:hover,[data-theme="dark"] .btn-primary-custom:hover{background:#7C3AED!important;color:#fff!important;border-color:#7C3AED!important}
+      [data-theme="dark"] .btn-primary:hover,[data-theme="dark"] .btn-primary-custom:hover{background:#6D5AE8!important;color:#fff!important;border-color:#6D5AE8!important}
       [data-theme="dark"] .btn-secondary{background:#3A356E!important;color:#fff!important;border-color:#3A356E!important}
       [data-theme="dark"] .btn-success{background:#16a34a!important;color:#fff!important;border-color:#16a34a!important}
       [data-theme="dark"] .btn-danger{background:#dc2626!important;color:#fff!important;border-color:#dc2626!important}
       [data-theme="dark"] .btn-warning{background:#d97706!important;color:#fff!important;border-color:#d97706!important}
       [data-theme="dark"] .btn-info{background:#0891B2!important;color:#fff!important;border-color:#0891B2!important}
-      [data-theme="dark"] .btn-dark{background:#1E1A44!important;color:#fff!important;border-color:#2C2860!important}
-      [data-theme="dark"] .btn-outline-primary,[data-theme="dark"] .btn-outline-light,[data-theme="dark"] .btn-outline-secondary,[data-theme="dark"] .btn-outline-dark{color:#EDECFF!important;border-color:#4F2FE8!important;background:transparent!important}
+      [data-theme="dark"] .btn-dark{background:#2A2755!important;color:#fff!important;border-color:#3D3A70!important}
+      [data-theme="dark"] .btn-outline-primary,[data-theme="dark"] .btn-outline-light,[data-theme="dark"] .btn-outline-secondary,[data-theme="dark"] .btn-outline-dark{color:#E8E6F2!important;border-color:#4F2FE8!important;background:transparent!important}
       [data-theme="dark"] .btn-outline-primary:hover,[data-theme="dark"] .btn-outline-light:hover,[data-theme="dark"] .btn-outline-secondary:hover,[data-theme="dark"] .btn-outline-dark:hover{background:#4F2FE8!important;color:#fff!important}
-      [data-theme="dark"] .btn-link{color:#22D3EE!important}
+      [data-theme="dark"] .btn-link{color:#67E8F9!important}
+      [data-theme="dark"] .btn-link:hover{color:#A5F3FC}
       [data-theme="dark"] .btn-close{filter:invert(1) grayscale(100%) brightness(200%)}
       [data-theme="dark"] .btn-outline-custom{color:#EDECFF!important;border-color:#7C3AED!important;background:transparent!important}
       [data-theme="dark"] .btn-outline-custom:hover{background:#4F2FE8!important;color:#fff!important;border-color:#4F2FE8!important}
@@ -110,19 +163,106 @@
       [dir="rtl"] .navbar-nav .ms-lg-2{margin-left:0!important;margin-right:.5rem!important}
       [dir="rtl"] .footer-social a{margin-right:0;margin-left:.5rem}
       [dir="rtl"] .text-md-end{text-align:left!important}
-      [data-theme="dark"] .text-primary,[data-theme="dark"] .eyebrow{color:#8B7BF0!important}
-      [data-theme="dark"] .hero-section{background:linear-gradient(180deg, #0A0A1F 0%, #12102E 60%, #0f0d24 100%);border-color:#2C2860!important}
-      [data-theme="dark"] .hero-section::before{background:radial-gradient(circle, rgba(139,123,240,0.25) 0%, rgba(139,123,240,0) 70%)}
+      [data-theme="dark"] .text-primary,[data-theme="dark"] .eyebrow{color:#A5B4FC!important}
+      [data-theme="dark"] .hero-section{background:linear-gradient(180deg, #0A0A1F 0%, #12102E 60%, #0f0d24 100%);border-color:#3D3A70!important}
+      [data-theme="dark"] .hero-section::before{background:radial-gradient(circle, rgba(165,180,252,0.25) 0%, rgba(165,180,252,0) 70%)}
       [data-theme="dark"] .hero-section::after{background:radial-gradient(circle, rgba(34,211,238,0.15) 0%, rgba(34,211,238,0) 70%)}
-      [data-theme="dark"] .hero-eyebrow{background:rgba(139,123,240,0.15);color:#8B7BF0}
-      [data-theme="dark"] .hero-title{color:#EDECFF!important}
-      [data-theme="dark"] .hero-section .lead{color:#9B98C7!important}
-      [data-theme="dark"] .hero-section .badge-floating{background:#171433!important;border-color:#2C2860!important;color:#EDECFF!important}
-      [data-theme="dark"] .hero-section .badge-floating .small{color:#9B98C7!important}
+      [data-theme="dark"] .hero-eyebrow{background:rgba(165,180,252,0.15);color:#A5B4FC}
+      [data-theme="dark"] .hero-title{color:#E8E6F2!important}
+      [data-theme="dark"] .hero-section .lead{color:#A8A4C8!important}
+      [data-theme="dark"] .hero-section .badge-floating{background:#171433!important;border-color:#3D3A70!important;color:#E8E6F2!important}
+      [data-theme="dark"] .hero-section .badge-floating .small{color:#A8A4C8!important}
+      
+      /* Accessibility: High contrast focus outlines */
+      :focus-visible {
+        outline: 3px solid #2563EB;
+        outline-offset: 2px;
+      }
+      [data-theme="dark"] :focus-visible {
+        outline-color: #67E8F9;
+      }
     </style>
     @stack('styles')
+    
+    {{-- JSON-LD Structured Data --}}
+    @php
+        $schemas = [];
+        
+        // Organization Schema
+        if ($seoMeta && $seoMeta->organization_name) {
+            $schemas[] = [
+                '@context' => 'https://schema.org',
+                '@type' => 'Organization',
+                'name' => $seoMeta->organization_name,
+                'url' => url('/'),
+                'logo' => $siteSetting->logo_url ? asset('storage/' . $siteSetting->logo_url) : null,
+                'contactPoint' => [
+                    '@type' => 'ContactPoint',
+                    'telephone' => $seoMeta->organization_phone ?? $siteSetting->phone ?? null,
+                    'email' => $seoMeta->organization_email ?? $siteSetting->email ?? null,
+                    'address' => $seoMeta->organization_address ?? $siteSetting->address ?? null,
+                ],
+                'sameAs' => array_filter([
+                    $siteSetting->facebook ?? null,
+                    $siteSetting->twitter ?? null,
+                    $siteSetting->linkedin ?? null,
+                    $siteSetting->instagram ?? null,
+                    $siteSetting->github ?? null,
+                    $siteSetting->youtube ?? null,
+                ]),
+            ];
+        }
+        
+        // WebSite Schema
+        $schemas[] = [
+            '@context' => 'https://schema.org',
+            '@type' => 'WebSite',
+            'name' => $siteSetting->site_name ?? 'Portfolio',
+            'url' => url('/'),
+            'description' => $seoMeta->meta_description ?? null,
+            'potentialAction' => [
+                '@type' => 'SearchAction',
+                'target' => [
+                    '@type' => 'EntryPoint',
+                    'urlTemplate' => url('/search?q={search_term_string}'),
+                ],
+                'query-input' => 'required name=search_term_string',
+            ],
+        ];
+        
+        // Person Schema (if about section exists)
+        if (isset($about) && $about) {
+            $schemas[] = [
+                '@context' => 'https://schema.org',
+                '@type' => 'Person',
+                'name' => $about->name ?? null,
+                'url' => url('/'),
+                'image' => $about->photo_url ?? null,
+                'jobTitle' => $about->title ?? null,
+                'description' => $about->short_intro ?? $about->description ?? null,
+                'email' => $siteSetting->email ?? null,
+                'telephone' => $siteSetting->phone ?? null,
+                'address' => $siteSetting->address ?? null,
+                'sameAs' => array_filter([
+                    $siteSetting->facebook ?? null,
+                    $siteSetting->twitter ?? null,
+                    $siteSetting->linkedin ?? null,
+                    $siteSetting->github ?? null,
+                    $siteSetting->instagram ?? null,
+                ]),
+            ];
+        }
+    @endphp
+    
+    @foreach($schemas as $schema)
+        <script type="application/ld+json">
+            {!! json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+        </script>
+    @endforeach
 </head>
 <body>
+    <!-- Skip to main content link for keyboard users -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
     @include('front.partials.navbar')
 
@@ -130,7 +270,7 @@
     <div class="scroll-progress" id="scrollProgress"></div>
 
     <div class="main-content">
-    <main>
+    <main id="main-content">
         @yield('content')
     </main>
     </div>
@@ -157,7 +297,8 @@
         <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $about->whatsapp) }}" 
            target="_blank" 
            class="whatsapp-float" 
-           title="Chat on WhatsApp">
+           title="Chat on WhatsApp"
+           aria-label="Chat on WhatsApp">
             <i class="fa-brands fa-whatsapp"></i>
         </a>
     @endif
@@ -249,8 +390,21 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
 <script>
   function pcToggleTheme(){
     var el=document.documentElement, dark=el.getAttribute('data-theme')==='dark';
-    if(dark){el.removeAttribute('data-theme');try{localStorage.setItem('pc-theme','light')}catch(e){}}
-    else{el.setAttribute('data-theme','dark');try{localStorage.setItem('pc-theme','dark')}catch(e){}}
+    var newTheme = dark ? 'light' : 'dark';
+    
+    if(dark){el.removeAttribute('data-theme');}
+    else{el.setAttribute('data-theme','dark');}
+    
+    // Save to localStorage
+    try{localStorage.setItem('pc-theme', newTheme);}catch(e){}
+    
+    // Also set cookie for cross-page persistence (expires in 1 year)
+    try{
+      var d = new Date();
+      d.setTime(d.getTime() + (365*24*60*60*1000));
+      document.cookie = 'pc-theme=' + newTheme + ';expires=' + d.toUTCString() + ';path=/;SameSite=Lax';
+    }catch(e){}
+    
     pcSyncThemeIcon();
   }
   function pcSyncThemeIcon(){

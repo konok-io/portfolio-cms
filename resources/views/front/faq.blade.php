@@ -1,6 +1,7 @@
 @extends('front.layouts.app')
 
 @section('seo_title', 'FAQ - ' . ($siteSetting->site_name ?? 'Portfolio'))
+@section('meta_description', 'Find answers to frequently asked questions about our services, pricing, process, and more. Get the information you need to make informed decisions.')
 
 @section('content')
 <!-- Page Header -->

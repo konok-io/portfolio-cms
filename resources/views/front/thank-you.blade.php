@@ -1,6 +1,7 @@
 @extends('front.layouts.app')
 
-@section('title', 'Thank You')
+@section('seo_title', 'Thank You - Message Received')
+@section('meta_description', 'Thank you for contacting us. Your message has been received and we will get back to you shortly.')
 
 @section('content')
 <section class="py-5 mt-5">

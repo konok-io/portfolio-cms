@@ -24,7 +24,7 @@
             </div>
 
             <div class="col-lg-3 col-md-4 col-6">
-                <h5 class="mb-3">Quick Links</h5>
+                <h5 class="mb-3">@lang('common.footer.quick_links')</h5>
                 <ul class="list-unstyled small footer-links">
                     <div class="row">
                         <div class="col-6">
@@ -42,7 +42,7 @@
             </div>
 
             <div class="col-lg-3 col-md-4 col-6">
-                <h5 class="mb-3">Contact</h5>
+                <h5 class="mb-3">@lang('common.contact.title')</h5>
                 <ul class="list-unstyled small">
                     @if($siteSetting->email ?? false)
                         <li class="mb-2"><i class="fa-solid fa-envelope me-2"></i>{{ $siteSetting->email }}</li>
@@ -57,13 +57,16 @@
             </div>
 
             <div class="col-lg-3 col-md-4">
-                <h5 class="mb-3">Newsletter</h5>
+                <h5 class="mb-3">@lang('common.newsletter.title')</h5>
                 <p class="small mb-3">Get notified about new projects and blog posts.</p>
                 @if(session('newsletter_success'))
                     <div class="alert alert-success py-2 px-3 small mb-2">{{ session('newsletter_success') }}</div>
                 @endif
                 <form class="d-flex gap-2" action="{{ route('subscribe.store') }}" method="POST">
                     @csrf
+                    <div class="honeypot-field" aria-hidden="true">
+                        <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+                    </div>
                     <input type="email" name="email" class="form-control form-control-sm @error('email') is-invalid @enderror" placeholder="Your email" aria-label="Email" required>
                     <button class="btn btn-sm btn-primary-custom" type="submit"><i class="fa-solid fa-paper-plane"></i></button>
                 </form>

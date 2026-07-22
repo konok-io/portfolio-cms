@@ -28,6 +28,12 @@
 
                     <form action="{{ route('contact.store') }}" method="POST" class="contact-form">
                         @csrf
+                        
+                        {{-- Honeypot spam protection - hidden from users --}}
+                        <div class="honeypot-field" aria-hidden="true">
+                            <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+                        </div>
+                        
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="name" class="form-label">Your Name <span class="text-danger">*</span></label>

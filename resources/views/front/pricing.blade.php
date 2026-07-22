@@ -1,6 +1,7 @@
 @extends('front.layouts.app')
 
 @section('seo_title', 'Pricing - ' . ($siteSetting->site_name ?? 'Portfolio'))
+@section('meta_description', 'View our transparent pricing plans. Choose from flexible packages designed to fit different budgets and project requirements.')
 
 @section('content')
 <!-- Page Header -->

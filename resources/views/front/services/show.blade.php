@@ -3,6 +3,13 @@
 @section('title', $service->name . ' | ' . ($siteSetting->site_name ?? 'Services'))
 @section('meta_description', $service->description ?? $service->name . ' service details.')
 
+@php
+    $breadcrumbs = [
+        ['title' => 'Services', 'url' => route('services.index')],
+        ['title' => $service->name, 'url' => null, 'active' => true]
+    ];
+@endphp
+
 @section('content')
 
 {{-- Page Header --}}
@@ -11,13 +18,7 @@
         <div class="text-center">
             <span class="section-eyebrow">Services</span>
             <h1 class="section-title">{{ $service->name }}</h1>
-            <nav aria-label="breadcrumb" class="d-flex justify-content-center mt-3">
-                <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('services') }}">Services</a></li>
-                    <li class="breadcrumb-item active">{{ $service->name }}</li>
-                </ol>
-            </nav>
+            <x-front-breadcrumb :items="$breadcrumbs" class="d-flex justify-content-center mt-3" />
         </div>
     </div>
 </section>
@@ -28,7 +29,7 @@
         <div class="row gy-5">
             <div class="col-lg-8">
                 @if($service->image)
-                    <img src="{{ $service->image }}" alt="{{ $service->name }}" class="img-fluid rounded-4 mb-4 w-100">
+                    <img src="{{ $service->image }}" alt="{{ $service->name }}" class="img-fluid rounded-4 mb-4 w-100" loading="lazy">
                 @endif
                 
                 @if($service->content)

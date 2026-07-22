@@ -25,6 +25,15 @@ class ContactController extends Controller
     {
         $siteSetting = Setting::instance();
         
+        // Honeypot spam protection - reject if field is filled
+        if ($request->filled('website_url')) {
+            // Bot detected - silently "succeed" but don't save
+            if ($request->wantsJson()) {
+                return response()->json(['success' => true, 'message' => 'Message sent successfully!']);
+            }
+            return back()->with('success', 'Message sent successfully!');
+        }
+        
         // Validate reCAPTCHA if enabled
         if ($siteSetting->isRecaptchaEnabled()) {
             $recaptchaValidation = $this->validateRecaptcha($request->input('g-recaptcha-response'), $siteSetting->recaptcha_secret_key);
@@ -81,8 +90,9 @@ class ContactController extends Controller
                 'error-codes' => $result['error-codes'] ?? [],
             ];
         } catch (\Exception $e) {
-            // If reCAPTCHA validation fails due to network error, allow the form
-            return ['success' => true];
+            // Log the error but block form submission for security
+            \Log::error('reCAPTCHA validation failed: ' . $e->getMessage());
+            return ['success' => false, 'error-codes' => ['network-error']];
         }
     }
 }

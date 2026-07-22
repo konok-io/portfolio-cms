@@ -70,7 +70,7 @@ Route::get('/portfolio-preview', [\App\Http\Controllers\Front\PortfolioExportCon
 Route::get('/services', [\App\Http\Controllers\Front\ServiceController::class, 'index'])->name('services');
 Route::get('/services/{service:slug}', [\App\Http\Controllers\Front\ServiceController::class, 'show'])->name('services.show');
 Route::get('/quote', [App\Http\Controllers\Front\ServiceRequestController::class, 'create'])->name('quote');
-Route::post('/quote', [App\Http\Controllers\Front\ServiceRequestController::class, 'store'])->name('quote.store');
+Route::post('/quote', [App\Http\Controllers\Front\ServiceRequestController::class, 'store'])->name('quote.store')->middleware('throttle:3,60');
 
 Route::prefix('portfolio')->name('projects.')->group(function () {
     Route::get('/', [ProjectController::class, 'index'])->name('index');
@@ -83,7 +83,7 @@ Route::prefix('blog')->name('blog.')->group(function () {
     Route::get('/categories', [BlogCategoryController::class, 'index'])->name('categories');
     Route::get('/categories/{category:slug}', [BlogCategoryController::class, 'show'])->name('category');
     Route::get('/{blog:slug}', [BlogController::class, 'show'])->name('show');
-    Route::post('/{blog:slug}/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::post('/{blog:slug}/comments', [CommentController::class, 'store'])->name('comments.store')->middleware('throttle:5,60');
 });
 
 Route::prefix('admin/comments')->name('admin.comments.')->group(function () {
@@ -94,7 +94,7 @@ Route::prefix('admin/comments')->name('admin.comments.')->group(function () {
 });
 
 Route::get('/contact', [\App\Http\Controllers\Front\ContactController::class, 'index'])->name('contact');
-Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store')->middleware('throttle:3,60');
 Route::get('/thank-you', function () {
     return view('front.thank-you');
 })->name('thank-you');
@@ -147,7 +147,7 @@ Route::get('/terms', function () { return view('front.terms'); })->name('terms')
 Route::get('/resume', [\App\Http\Controllers\Front\ResumeController::class, 'index'])->name('resume');
 Route::get('/resume/preview', [\App\Http\Controllers\Front\ResumeController::class, 'preview'])->name('resume.preview');
 Route::get('/search', [\App\Http\Controllers\Front\SearchController::class, 'search'])->name('search');
-Route::post('/subscribe', [\App\Http\Controllers\SubscriberController::class, 'store'])->name('subscribe.store');
+Route::post('/subscribe', [\App\Http\Controllers\SubscriberController::class, 'store'])->name('subscribe.store')->middleware('throttle:2,60');
 
 /*
 |--------------------------------------------------------------------------
@@ -268,6 +268,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
 
     // Users & Roles
     Route::resource('users', UserController::class)->except(['show']);
+    Route::get('users/{user}/export', [UserController::class, 'exportData'])->name('users.export');
+    Route::post('users/bulk-delete', [UserController::class, 'bulkDestroy'])->name('users.bulk-destroy');
     Route::resource('roles', RoleController::class)->except(['show']);
     
     // FAQs

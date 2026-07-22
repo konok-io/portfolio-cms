@@ -17,14 +17,46 @@
         <div class="collapse navbar-collapse" id="mainNav">
             <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
                 @forelse($menuItems as $menuItem)
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs($menuItem->route) ? 'active' : '' }}" 
-                           href="{{ $menuItem->link }}" 
-                           target="{{ $menuItem->target }}">
-                            @if($menuItem->icon)<i class="{{ $menuItem->icon }} me-1"></i>@endif
-                            {{ $menuItem->title }}
-                        </a>
-                    </li>
+                    @if($menuItem->children && $menuItem->children->count() > 0)
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {{ request()->routeIs($menuItem->route) ? 'active' : '' }}" 
+                               href="{{ $menuItem->link }}" 
+                               target="{{ $menuItem->target }}"
+                               role="button" 
+                               data-bs-toggle="dropdown" 
+                               aria-expanded="false"
+                               aria-haspopup="true">
+                                @if($menuItem->icon)<i class="{{ $menuItem->icon }} me-1"></i>@endif
+                                {{ $menuItem->name }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown-{{ $menuItem->id }}">
+                                <li>
+                                    <a class="dropdown-item" href="{{ $menuItem->link }}" target="{{ $menuItem->target }}">
+                                        @if($menuItem->icon)<i class="{{ $menuItem->icon }} me-2"></i>@endif
+                                        {{ $menuItem->name }}
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                @foreach($menuItem->children as $child)
+                                    <li>
+                                        <a class="dropdown-item" href="{{ $child->link }}" target="{{ $child->target }}">
+                                            @if($child->icon)<i class="{{ $child->icon }} me-2"></i>@endif
+                                            {{ $child->name }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs($menuItem->route) ? 'active' : '' }}" 
+                               href="{{ $menuItem->link }}" 
+                               target="{{ $menuItem->target }}">
+                                @if($menuItem->icon)<i class="{{ $menuItem->icon }} me-1"></i>@endif
+                                {{ $menuItem->name }}
+                            </a>
+                        </li>
+                    @endif
                 @empty
                     {{-- Fallback if no menu items --}}
                     <li class="nav-item"><a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Home</a></li>
@@ -43,8 +75,8 @@
                             <div class="search-box" id="searchBox">
                                 <form action="{{ route('search') }}" method="GET">
                                     <i class="fa-solid fa-search search-icon"></i>
-                                    <input type="text" name="q" class="search-input" placeholder="Search..." autocomplete="off">
-                                    <button type="submit" class="search-submit" id="searchSubmit">
+                                    <input type="text" name="q" class="search-input" placeholder="Search..." autocomplete="off" aria-label="Search query">
+                                    <button type="submit" class="search-submit" id="searchSubmit" aria-label="Submit search">
                                         <i class="fa-solid fa-search"></i>
                                     </button>
                                 </form>
@@ -52,17 +84,17 @@
                         </div>
                     </div>
                     <div class="gtranslate-wrap">
-                        <button type="button" class="gt-btn" onclick="document.body.classList.toggle('gt-open')">
+                        <button type="button" class="gt-btn" onclick="document.body.classList.toggle('gt-open')" aria-label="Select language" aria-expanded="false" aria-haspopup="listbox">
                             <i class="fa-solid fa-language"></i><i class="fa-solid fa-chevron-down" style="font-size:.7em"></i>
                         </button>
                         <div id="google_translate_element" style="display:none"></div>
-                    <div class="lang-menu">
-                        <button type="button" onclick="pickLang('en')">English</button>
-                        <button type="button" onclick="pickLang('ar')">العربية</button>
-                        <button type="button" onclick="pickLang('bn')">বাংলা</button>
-                        <button type="button" onclick="pickLang('ur')">اردو</button>
-                        <button type="button" onclick="pickLang('hi')">हिन्दी</button>
-                        <button type="button" onclick="pickLang('tl')">Filipino</button>
+                    <div class="lang-menu" role="listbox" aria-label="Language selection">
+                        <button type="button" onclick="pickLang('en')" role="option" aria-label="English">English</button>
+                        <button type="button" onclick="pickLang('ar')" role="option" aria-label="Arabic">العربية</button>
+                        <button type="button" onclick="pickLang('bn')" role="option" aria-label="Bengali">বাংলা</button>
+                        <button type="button" onclick="pickLang('ur')" role="option" aria-label="Urdu">اردو</button>
+                        <button type="button" onclick="pickLang('hi')" role="option" aria-label="Hindi">हिन्दी</button>
+                        <button type="button" onclick="pickLang('tl')" role="option" aria-label="Filipino">Filipino</button>
                     </div>
                     </div>
                     <button type="button" class="theme-toggle-btn" onclick="pcToggleTheme()" aria-label="Toggle theme">

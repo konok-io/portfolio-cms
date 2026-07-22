@@ -11,6 +11,7 @@ use App\Models\Education;
 use App\Models\Project;
 use App\Models\Certification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Mpdf\Mpdf;
 
 class ResumeController extends Controller
@@ -45,9 +46,39 @@ class ResumeController extends Controller
             'include_education' => 'nullable|boolean',
             'include_projects' => 'nullable|boolean',
             'include_certifications' => 'nullable|boolean',
+            'cv_file' => 'nullable|file|mimes:pdf|max:10240',
+            'use_custom_cv' => 'nullable|boolean',
+            'remove_cv' => 'nullable|string',
         ]);
 
         $settings = ResumeSetting::instance();
+        
+        // Handle CV file upload
+        $cvFile = $settings->cv_file;
+        $cvFilename = $settings->cv_filename;
+        
+        // Check if user wants to remove existing CV
+        if ($request->remove_cv === '1' && $settings->cv_file) {
+            Storage::disk('public')->delete($settings->cv_file);
+            $cvFile = null;
+            $cvFilename = null;
+        }
+        
+        // Handle new CV file upload
+        if ($request->hasFile('cv_file')) {
+            // Delete old file
+            if ($settings->cv_file) {
+                Storage::disk('public')->delete($settings->cv_file);
+            }
+            
+            $file = $request->file('cv_file');
+            $filename = $file->getClientOriginalName();
+            $path = $file->storeAs('resumes', $filename, 'public');
+            
+            $cvFile = $path;
+            $cvFilename = $filename;
+        }
+        
         $settings->update([
             'template' => $request->template,
             'primary_color' => $request->primary_color,
@@ -64,6 +95,9 @@ class ResumeController extends Controller
             'include_education' => $request->has('include_education'),
             'include_projects' => $request->has('include_projects'),
             'include_certifications' => $request->has('include_certifications'),
+            'cv_file' => $cvFile,
+            'cv_filename' => $cvFilename,
+            'use_custom_cv' => $request->has('use_custom_cv'),
         ]);
 
         return redirect()->back()->with('success', 'Resume settings updated successfully!');
@@ -95,6 +129,19 @@ class ResumeController extends Controller
     {
         $settings = ResumeSetting::instance();
         $about = About::first();
+        
+        // If custom CV is enabled and file exists, download it directly
+        if ($settings->use_custom_cv && $settings->cv_file) {
+            $path = storage_path('app/public/' . $settings->cv_file);
+            if (file_exists($path)) {
+                $filename = $settings->cv_filename ?? 'resume.pdf';
+                return response()->download($path, $filename, [
+                    'Content-Type' => 'application/pdf',
+                ]);
+            }
+        }
+        
+        // Otherwise generate PDF from template
         $skills = Skill::where('is_active', true)->orderBy('sort_order')->get();
         $experiences = Experience::orderBy('start_date', 'desc')->get();
         $educations = Education::orderBy('start_date', 'desc')->get();

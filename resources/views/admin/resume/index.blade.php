@@ -192,6 +192,48 @@
                         </h5>
                     </div>
                     <div class="card-body">
+                        {{-- Custom CV Upload Section --}}
+                        <div class="mb-4 p-3 border rounded bg-light">
+                            <h6 class="mb-3">
+                                <i class="fa-solid fa-file-pdf me-2 text-danger"></i>
+                                Custom CV Upload
+                            </h6>
+                            <p class="text-muted small mb-3">Upload your own pre-made CV/resume PDF file. This will be used instead of the auto-generated resume.</p>
+                            
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="use_custom_cv" name="use_custom_cv" value="1" 
+                                       {{ old('use_custom_cv', $settings->use_custom_cv ?? false) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="use_custom_cv">
+                                    Use custom CV file (instead of auto-generated)
+                                </label>
+                            </div>
+                            
+                            <div class="mb-3" id="cv-upload-section">
+                                <label for="cv_file" class="form-label small">Upload CV File (PDF only, max 10MB)</label>
+                                <input type="file" class="form-control form-control-sm @error('cv_file') is-invalid @enderror" 
+                                       id="cv_file" name="cv_file" accept=".pdf">
+                                @error('cv_file')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                                
+                                @if($settings->cv_file)
+                                    <div class="mt-2 d-flex align-items-center gap-2">
+                                        <span class="badge bg-success">
+                                            <i class="fa-solid fa-check me-1"></i>File uploaded
+                                        </span>
+                                        <span class="small text-muted">{{ $settings->cv_filename ?? 'resume.pdf' }}</span>
+                                        <a href="{{ $settings->cv_file_url }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="document.getElementById('remove_cv').value='1'; this.closest('.d-flex').remove();">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </div>
+                                    <input type="hidden" id="remove_cv" name="remove_cv" value="0">
+                                @endif
+                            </div>
+                        </div>
+                        
                         <p class="text-muted small mb-3">Select which sections to include in your resume:</p>
                         
                         <div class="form-check form-switch mb-3">

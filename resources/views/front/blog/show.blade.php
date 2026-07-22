@@ -4,21 +4,19 @@
 @section('meta_description', $blog->meta_description ?: \Illuminate\Support\Str::limit(strip_tags($blog->description), 160))
 @section('meta_keywords', $blog->meta_keywords)
 
+@php
+    $breadcrumbs = [
+        ['title' => 'Blog', 'url' => route('blog.index')],
+        ['title' => $blog->title, 'url' => null, 'active' => true]
+    ];
+@endphp
+
 @section('content')
 
 <section class="section-padding" style="padding-top: 8rem;">
     <div class="container">
         {{-- Breadcrumb --}}
-        <nav aria-label="breadcrumb" class="mb-4">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fa-solid fa-home"></i></a></li>
-                <li class="breadcrumb-item"><a href="{{ route('blog.index') }}">Blog</a></li>
-                @if($blog->category)
-                    <li class="breadcrumb-item"><a href="{{ route('blog.index', ['category' => $blog->category->slug]) }}">{{ $blog->category->name }}</a></li>
-                @endif
-                <li class="breadcrumb-item active" aria-current="page">{{ Str::limit($blog->title, 30) }}</li>
-            </ol>
-        </nav>
+        <x-front-breadcrumb :items="$breadcrumbs" />
 
         <div class="row g-5">
             <div class="col-lg-8">
@@ -36,7 +34,7 @@
                 </div>
 
                 <img src="{{ $blog->featured_image_url ?? 'https://placehold.co/1000x600/0F172A/ffffff?text=' . urlencode($blog->title) }}"
-                     alt="{{ $blog->title }}" class="img-fluid rounded-4 shadow-sm mb-4 w-100" style="aspect-ratio: 16/9; object-fit: cover;">
+                     alt="{{ $blog->title }}" class="img-fluid rounded-4 shadow-sm mb-4 w-100" style="aspect-ratio: 16/9; object-fit: cover;" loading="lazy">
 
                 <article class="content-body">
                     {!! $blog->description !!}
@@ -110,6 +108,12 @@
                             @endif
                             <form method="POST" action="{{ route('blog.comments.store', $blog) }}">
                                 @csrf
+                                
+                                {{-- Honeypot spam protection - hidden from users --}}
+                                <div class="honeypot-field" aria-hidden="true">
+                                    <input type="text" name="homepage" tabindex="-1" autocomplete="off">
+                                </div>
+                                
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label class="form-label">Name *</label>
@@ -128,6 +132,14 @@
                                         <textarea name="comment" class="form-control" rows="4" required placeholder="Share your thoughts..."></textarea>
                                     </div>
                                     <div class="col-12">
+                                        @if($siteSetting->isRecaptchaEnabled())
+                                            <div class="mb-3">
+                                                <div class="g-recaptcha" data-sitekey="{{ $siteSetting->recaptcha_site_key }}"></div>
+                                                @error('recaptcha')
+                                                    <div class="text-danger small mt-1">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        @endif
                                         <button type="submit" class="btn btn-primary-custom">
                                             <i class="fa-solid fa-paper-plane me-2"></i>Post Comment
                                         </button>
@@ -209,3 +221,9 @@
 </section>
 
 @endsection
+
+@push('scripts')
+@if($siteSetting->isRecaptchaEnabled())
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+@endif
+@endpush

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Comment;
+use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class CommentController extends Controller
 {
@@ -56,6 +58,23 @@ class CommentController extends Controller
 
     public function store(Request $request, Blog $blog)
     {
+        $siteSetting = Setting::instance();
+        
+        // Honeypot spam protection - reject if field is filled
+        if ($request->filled('homepage')) {
+            // Bot detected - silently "succeed" but don't save
+            return back()->with('success', 'Your comment has been submitted and is awaiting approval.');
+        }
+        
+        // Validate reCAPTCHA if enabled
+        if ($siteSetting->isRecaptchaEnabled()) {
+            $recaptchaValidation = $this->validateRecaptcha($request->input('g-recaptcha-response'), $siteSetting->recaptcha_secret_key);
+            
+            if (!$recaptchaValidation['success']) {
+                return back()->withErrors(['recaptcha' => 'reCAPTCHA verification failed. Please try again.'])->withInput();
+            }
+        }
+
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
@@ -70,5 +89,26 @@ class CommentController extends Controller
         Comment::create($validated);
 
         return back()->with('success', 'Your comment has been submitted and is awaiting approval.');
+    }
+    
+    protected function validateRecaptcha(string $recaptchaResponse, string $secretKey): array
+    {
+        try {
+            $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+                'secret' => $secretKey,
+                'response' => $recaptchaResponse,
+            ]);
+            
+            $result = $response->json();
+            
+            return [
+                'success' => $result['success'] ?? false,
+                'score' => $result['score'] ?? null,
+                'error-codes' => $result['error-codes'] ?? [],
+            ];
+        } catch (\Exception $e) {
+            \Log::error('reCAPTCHA validation failed: ' . $e->getMessage());
+            return ['success' => false, 'error-codes' => ['network-error']];
+        }
     }
 }
