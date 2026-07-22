@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg sticky-top site-navbar">
+<nav class="navbar navbar-expand-lg sticky-top site-navbar" style="position: relative; overflow: hidden;">
     <div class="container">
         @php($headerDisplay = $siteSetting->header_display ?? 'text')
         <a class="navbar-brand d-flex align-items-center gap-2" href="{{ route('home') }}">
@@ -54,10 +54,11 @@
                 <li class="nav-item">
                     <a class="btn btn-primary-custom ms-lg-2 mt-2 mt-lg-0" href="{{ route('contact') }}">Get in Touch</a>
                 </li>
+            </ul>
         </div>
     </div>
     
-    <!-- Search Overlay - Outside container, inside navbar -->
+    <!-- Search Overlay -->
     <div class="nav-search-overlay" id="navSearchOverlay">
         <div class="container h-100">
             <form action="{{ route('search') }}" method="GET" class="nav-search-form">
