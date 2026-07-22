@@ -266,8 +266,77 @@
             <button type="submit" class="btn btn-admin-primary w-100 py-2">
                 <i class="fa-solid fa-floppy-disk me-2"></i>Save Settings
             </button>
+
+            <hr class="my-3">
+
+            <div class="d-grid gap-2">
+                <button type="button" class="btn btn-outline-secondary" id="clearCacheBtn">
+                    <i class="fa-solid fa-broom me-2"></i>Clear Cache
+                </button>
+                <button type="button" class="btn btn-outline-primary" id="optimizeBtn">
+                    <i class="fa-solid fa-rocket me-2"></i>Optimize Application
+                </button>
+            </div>
         </div>
     </div>
 </form>
 
 @endsection
+
+@push('scripts')
+<script>
+document.getElementById('clearCacheBtn')?.addEventListener('click', function() {
+    if (!confirm('Clear all application caches?')) return;
+    
+    const btn = this;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Clearing...';
+    
+    fetch('{{ route('admin.cache.clear') }}', {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(r => r.json())
+    .then(data => {
+        alert(data.message);
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-broom me-2"></i>Clear Cache';
+    })
+    .catch(() => {
+        alert('Error clearing cache');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-broom me-2"></i>Clear Cache';
+    });
+});
+
+document.getElementById('optimizeBtn')?.addEventListener('click', function() {
+    if (!confirm('Optimize application (create config, route, and view caches)?')) return;
+    
+    const btn = this;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Optimizing...';
+    
+    fetch('{{ route('admin.cache.optimize') }}', {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(r => r.json())
+    .then(data => {
+        alert(data.message);
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-rocket me-2"></i>Optimize Application';
+    })
+    .catch(() => {
+        alert('Error optimizing');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-rocket me-2"></i>Optimize Application';
+    });
+});
+</script>
+@endpush

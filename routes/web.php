@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\ExperienceController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\CacheController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\NewsletterCampaignController;
 use App\Http\Controllers\Admin\PricingController;
@@ -135,6 +136,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::post('/media/upload', [MediaController::class, 'upload'])->name('media.upload');
     Route::put('/media/{media}', [MediaController::class, 'update'])->name('media.update');
     Route::delete('/media/{media}', [MediaController::class, 'destroy'])->name('media.destroy');
+
+    // Cache Management
+    Route::post('/cache/clear', [CacheController::class, 'clear'])->name('cache.clear');
+    Route::post('/cache/optimize', [CacheController::class, 'optimize'])->name('cache.optimize');
 
     // Experience
     Route::resource('experience', ExperienceController::class)->except(['show']);
