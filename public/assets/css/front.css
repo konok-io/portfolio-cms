@@ -1028,6 +1028,8 @@ a [class*="far"] {
 /* Search */
 .search-wrapper {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .search-btn {
@@ -1046,7 +1048,7 @@ a [class*="far"] {
 
 .search-box {
   position: absolute;
-  right: 0;
+  right: 100%;
   top: 50%;
   transform: translateY(-50%);
   background: #fff;

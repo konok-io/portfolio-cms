@@ -36,10 +36,10 @@
                                 </button>
                             </form>
                         </div>
+                        <a href="#" class="search-btn" id="searchBtn" aria-label="Search">
+                            <i class="fa-solid fa-search"></i>
+                        </a>
                     </div>
-                    <a href="#" class="search-btn" id="searchBtn" aria-label="Search">
-                        <i class="fa-solid fa-search"></i>
-                    </a>
                     <div class="gtranslate-wrap">
                         <button type="button" class="gt-btn" onclick="document.body.classList.toggle('gt-open')">
                             <i class="fa-solid fa-language"></i><i class="fa-solid fa-chevron-down" style="font-size:.7em"></i>
