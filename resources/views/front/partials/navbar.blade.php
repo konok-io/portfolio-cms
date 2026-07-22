@@ -58,13 +58,14 @@
                                 <i class="fa-solid fa-search"></i>
                             </a>
                             <div class="search-box" id="searchBox">
-                                <form action="{{ route('search') }}" method="GET">
+                                <form action="{{ route('search') }}" method="GET" id="searchForm">
                                     <i class="fa-solid fa-search search-icon"></i>
-                                    <input type="text" name="q" class="search-input" placeholder="Search..." autocomplete="off">
+                                    <input type="text" name="q" class="search-input" id="searchInput" placeholder="Search..." autocomplete="off">
                                     <button type="submit" class="search-submit" id="searchSubmit">
                                         <i class="fa-solid fa-search"></i>
                                     </button>
                                 </form>
+                                <div class="search-results" id="searchResults"></div>
                             </div>
                         </div>
                     </div>

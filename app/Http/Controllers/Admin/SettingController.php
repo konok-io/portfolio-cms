@@ -40,6 +40,9 @@ class SettingController extends Controller
             'recaptcha_site_key' => ['nullable', 'string', 'max:255'],
             'recaptcha_secret_key' => ['nullable', 'string', 'max:255'],
             'recaptcha_enabled' => ['nullable', 'in:1'],
+            'google_analytics_id' => ['nullable', 'string', 'max:50'],
+            'google_tag_manager_id' => ['nullable', 'string', 'max:50'],
+            'analytics_enabled' => ['nullable', 'in:1'],
             'mail_driver' => ['nullable', 'string', 'max:50'],
             'mail_host' => ['nullable', 'string', 'max:255'],
             'mail_port' => ['nullable', 'string', 'max:10'],
@@ -69,6 +72,9 @@ class SettingController extends Controller
         
         // Handle recaptcha_enabled checkbox
         $validated['recaptcha_enabled'] = $request->has('recaptcha_enabled') ? 1 : 0;
+
+        // Handle analytics_enabled checkbox
+        $validated['analytics_enabled'] = $request->has('analytics_enabled') ? 1 : 0;
 
         $setting->update($validated);
 

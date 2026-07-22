@@ -36,6 +36,9 @@ class Setting extends Model
         'mail_encryption',
         'mail_from_address',
         'mail_from_name',
+        'google_analytics_id',
+        'google_tag_manager_id',
+        'analytics_enabled',
     ];
 
     public static function instance(): self
@@ -57,12 +60,29 @@ class Setting extends Model
     {
         return static::instance()->default_language ?? 'en';
     }
-    
+
     public function isRecaptchaEnabled(): bool
     {
         return $this->recaptcha_enabled && !empty($this->recaptcha_site_key) && !empty($this->recaptcha_secret_key);
     }
-    
+
+    public function isAnalyticsEnabled(): bool
+    {
+        return $this->analytics_enabled && (
+            !empty($this->google_analytics_id) || !empty($this->google_tag_manager_id)
+        );
+    }
+
+    public function getGoogleAnalyticsId(): ?string
+    {
+        return $this->analytics_enabled ? $this->google_analytics_id : null;
+    }
+
+    public function getGoogleTagManagerId(): ?string
+    {
+        return $this->analytics_enabled ? $this->google_tag_manager_id : null;
+    }
+
     public function applyMailConfig(): void
     {
         config([

@@ -197,6 +197,9 @@
     @foreach($jsonLdScripts as $schema)
     <script type="application/ld+json">{!! json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
     @endforeach
+
+    {{-- Analytics Integration --}}
+    @include('front.partials.analytics')
 </head>
 <body class="{{ (isset($page) && $page && $page->show_site_header === false) ? 'no-header' : 'has-header' }}">
 
@@ -212,6 +215,9 @@
         @yield('content')
     </main>
     </div>
+
+    {{-- UI Components: Progress Bar, Back to Top, Cookie Consent --}}
+    @include('front.partials.ui-components')
 
     @if(!isset($page) || ($page && $page->show_site_footer !== false))
         @include('front.partials.footer')
@@ -407,6 +413,98 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
     });
   });
 </script>
+<script>
+// Live Search Enhancement
+document.addEventListener('DOMContentLoaded', function() {
+  var searchInput = document.getElementById('searchInput');
+  var searchResults = document.getElementById('searchResults');
+  var searchTimeout;
+
+  if (searchInput && searchResults) {
+    searchInput.addEventListener('input', function() {
+      var query = this.value.trim();
+      clearTimeout(searchTimeout);
+      
+      if (query.length < 2) {
+        searchResults.innerHTML = '';
+        searchResults.style.display = 'none';
+        return;
+      }
+      
+      searchTimeout = setTimeout(function() {
+        searchResults.innerHTML = '<div class="search-loading"><i class="fa-solid fa-spinner fa-spin"></i> Searching...</div>';
+        searchResults.style.display = 'block';
+        
+        fetch('/search?q=' + encodeURIComponent(query) + '&live=1', {
+          headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.total > 0) {
+            var html = '<div class="search-results-list">';
+            
+            if (data.projects && data.projects.length > 0) {
+              html += '<div class="search-section-title"><i class="fa-solid fa-folder-open me-2"></i>Projects</div>';
+              data.projects.forEach(function(p) {
+                html += '<a href="' + p.url + '" class="search-result-item"><span>' + p.title + '</span><small>' + (p.category || '') + '</small></a>';
+              });
+            }
+            
+            if (data.blogs && data.blogs.length > 0) {
+              html += '<div class="search-section-title"><i class="fa-solid fa-newspaper me-2"></i>Blog Posts</div>';
+              data.blogs.forEach(function(b) {
+                html += '<a href="' + b.url + '" class="search-result-item"><span>' + b.title + '</span><small>' + (b.category || '') + '</small></a>';
+              });
+            }
+            
+            if (data.services && data.services.length > 0) {
+              html += '<div class="search-section-title"><i class="fa-solid fa-briefcase me-2"></i>Services</div>';
+              data.services.forEach(function(s) {
+                html += '<a href="' + s.url + '" class="search-result-item"><span>' + s.title + '</span></a>';
+              });
+            }
+            
+            html += '<a href="/search?q=' + encodeURIComponent(query) + '" class="search-view-all">View all ' + data.total + ' results <i class="fa-solid fa-arrow-right ms-1"></i></a>';
+            html += '</div>';
+            searchResults.innerHTML = html;
+          } else {
+            searchResults.innerHTML = '<div class="search-no-results"><i class="fa-solid fa-search me-2"></i>No results found</div>';
+          }
+        })
+        .catch(function() {
+          searchResults.innerHTML = '';
+          searchResults.style.display = 'none';
+        });
+      }, 300);
+    });
+    
+    searchInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        searchResults.innerHTML = '';
+        searchResults.style.display = 'none';
+      }
+    });
+  }
+});
+</script>
+<style>
+.search-results { position: absolute; top: 100%; right: 0; width: 350px; max-height: 400px; overflow-y: auto; background: #fff; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); margin-top: 10px; z-index: 1000; display: none; }
+.search-results-list { padding: 0.5rem; }
+.search-section-title { font-size: 11px; font-weight: 600; text-transform: uppercase; color: #666; padding: 0.5rem; border-bottom: 1px solid #eee; }
+.search-result-item { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0.75rem; color: #333; text-decoration: none; border-radius: 8px; transition: background 0.2s; }
+.search-result-item:hover { background: #f5f5f5; }
+.search-result-item span { font-size: 13px; }
+.search-result-item small { font-size: 11px; color: #999; }
+.search-view-all { display: block; padding: 0.75rem; text-align: center; color: #4F2FE8; font-weight: 600; font-size: 13px; border-top: 1px solid #eee; text-decoration: none; }
+.search-view-all:hover { background: #f8f5ff; }
+.search-loading, .search-no-results { padding: 1.5rem; text-align: center; color: #666; font-size: 13px; }
+[data-theme="dark"] .search-results { background: #1a1a2e; }
+[data-theme="dark"] .search-result-item { color: #e0e0e0; }
+[data-theme="dark"] .search-result-item:hover { background: #2a2a4e; }
+[data-theme="dark"] .search-section-title { color: #aaa; border-bottom-color: #333; }
+[data-theme="dark"] .search-view-all { border-top-color: #333; }
+[data-theme="dark"] .search-view-all:hover { background: #2a2a4e; }
+</style>
 <script type="text/javascript">
   function googleTranslateElementInit(){
     new google.translate.TranslateElement({pageLanguage:'{{ \App\Models\Setting::getDefaultLanguage() }}',includedLanguages:'en,ar,bn,ur,hi,tl,af,sq,am,hy,az,eu,be,bs,ca,ceb,ny,zh-CN,zh-TW,co,hr,cs,da,nl,eo,et,fil,fi,fr,fy,gl,ka,de,el,gu,ht,ha,haw,iw,hmn,hu,is,ig,id,ga,it,ja,jw,kn,kk,km,rw,ko,ku,ky,lo,la,lv,lt,lb,mk,mg,ms,ml,mt,mi,mr,mn,my,ne,no,ps,fa,pl,pt,pa,ro,ru,sm,gd,sr,st,sn,sd,si,sk,sl,so,es,su,sw,sv,tg,ta,tt,te,th,tr,tk,uk,ug,uz,vi,cy,xh,yi,yo,zu',layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:false},'google_translate_element');

@@ -115,6 +115,29 @@
             </div>
 
             <div class="admin-card">
+                <div class="card-header-custom">Analytics Settings</div>
+                <div class="card-body-custom">
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="analyticsEnabled" name="analytics_enabled" value="1" {{ old('analytics_enabled', $setting->analytics_enabled ?? false) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="analyticsEnabled">Enable Analytics</label>
+                    </div>
+                    <p class="text-muted small mb-3">Track visitor behavior and website performance. Get your tracking IDs from <a href="https://analytics.google.com" target="_blank">Google Analytics</a> or <a href="https://tagmanager.google.com" target="_blank">Google Tag Manager</a>.</p>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label-admin">Google Analytics ID <small class="text-muted">(GA4)</small></label>
+                            <input type="text" name="google_analytics_id" class="form-control" value="{{ old('google_analytics_id', $setting->google_analytics_id) }}" placeholder="G-XXXXXXXXXX">
+                            <small class="text-muted">Format: G-XXXXXXXXXX or GTM-XXXXXXX</small>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-admin">Google Tag Manager ID <small class="text-muted">(GTM)</small></label>
+                            <input type="text" name="google_tag_manager_id" class="form-control" value="{{ old('google_tag_manager_id', $setting->google_tag_manager_id) }}" placeholder="GTM-XXXXXXX">
+                            <small class="text-muted">Format: GTM-XXXXXXX</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card">
                 <div class="card-header-custom">SMTP / Email Settings</div>
                 <div class="card-body-custom">
                     <div class="row g-3">

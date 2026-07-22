@@ -139,6 +139,10 @@ Route::get('/coming-soon', function () {
 Route::get('/faq', [FrontFaqController::class, 'index'])->name('faq');
 Route::get('/pricing', [FrontPricingController::class, 'index'])->name('pricing');
 Route::get('/privacy', function () { return view('front.privacy'); })->name('privacy');
+
+// Cookie Consent
+Route::post('/cookie/accept', [App\Http\Controllers\Front\CookieController::class, 'accept'])->name('cookie.accept');
+Route::post('/cookie/decline', [App\Http\Controllers\Front\CookieController::class, 'decline'])->name('cookie.decline');
 Route::get('/terms', function () { return view('front.terms'); })->name('terms');
 Route::get('/resume', [\App\Http\Controllers\Front\ResumeController::class, 'index'])->name('resume');
 Route::get('/resume/preview', [\App\Http\Controllers\Front\ResumeController::class, 'preview'])->name('resume.preview');
