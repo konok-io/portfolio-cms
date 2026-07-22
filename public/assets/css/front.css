@@ -1061,11 +1061,7 @@ a [class*="far"] {
   pointer-events: auto;
   width: 260px;
   padding: 20px;
-}
-
-.search-form-item.active .search-navbar-form,
-#searchFormItem.active .search-navbar-form {
-  width: calc(100% - 40px);
+  box-sizing: border-box;
 }
 
 .search-navbar-form {
