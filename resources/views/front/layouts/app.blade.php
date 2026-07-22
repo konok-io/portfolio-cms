@@ -395,18 +395,41 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
 @if(!session('newsletter_popup_shown') && !session('newsletter_success'))
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(function() {
-            var popup = new bootstrap.Modal(document.getElementById('newsletterModal'));
-            popup.show();
-            fetch('{{ route("subscribe.store") }}', { 
-                method: 'POST', 
-                headers: { 
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: '_popup_shown=1'
-            });
-        }, 5000);
+        // Check localStorage for newsletter popup state
+        const getTodayString = function() {
+            return new Date().toISOString().split('T')[0];
+        };
+        
+        const today = getTodayString();
+        const lastClosedDate = localStorage.getItem('newsletter_popup_closed_date');
+        const isSubscribed = localStorage.getItem('newsletter_subscribed') === 'true';
+        
+        // Check if we should show the popup
+        const shouldShow = !isSubscribed && lastClosedDate !== today;
+        
+        if (shouldShow) {
+            setTimeout(function() {
+                var popupElement = document.getElementById('newsletterModal');
+                var popup = new bootstrap.Modal(popupElement);
+                popup.show();
+                
+                // Track popup shown
+                localStorage.setItem('newsletter_popup_shown_date', today);
+                
+                // Handle popup close (X button or backdrop click)
+                popupElement.addEventListener('hidden.bs.modal', function() {
+                    localStorage.setItem('newsletter_popup_closed_date', getTodayString());
+                });
+                
+                // Handle form submission (subscribe)
+                var form = popupElement.querySelector('form');
+                if (form) {
+                    form.addEventListener('submit', function() {
+                        localStorage.setItem('newsletter_subscribed', 'true');
+                    });
+                }
+            }, 5000);
+        }
     });
 </script>
 @endif
