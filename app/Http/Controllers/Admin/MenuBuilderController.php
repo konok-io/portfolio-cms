@@ -19,7 +19,7 @@ class MenuBuilderController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
             'url' => 'nullable|string|max:255',
             'route' => 'nullable|string|max:255',
             'icon' => 'nullable|string|max:255',
@@ -39,7 +39,7 @@ class MenuBuilderController extends Controller
     public function update(Request $request, MenuItem $menuItem)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
             'url' => 'nullable|string|max:255',
             'route' => 'nullable|string|max:255',
             'icon' => 'nullable|string|max:255',

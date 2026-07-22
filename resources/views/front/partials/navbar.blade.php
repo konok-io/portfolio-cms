@@ -23,7 +23,7 @@
                            href="{{ $menuItem->link }}" 
                            target="{{ $menuItem->target }}">
                             @if($menuItem->icon)<i class="{{ $menuItem->icon }} me-1"></i>@endif
-                            {{ $menuItem->name }}
+                            {{ $menuItem->title }}
                         </a>
                     </li>
                 @empty

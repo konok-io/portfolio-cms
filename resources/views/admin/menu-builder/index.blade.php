@@ -37,7 +37,7 @@
                                     @foreach($menuItems as $item)
                                         <tr class="{{ !$item->is_active ? 'text-muted opacity-50' : '' }}">
                                             <td>{{ $item->order }}</td>
-                                            <td><strong>{{ $item->name }}</strong></td>
+                                            <td><strong>{{ $item->title }}</strong></td>
                                             <td><code class="small">{{ $item->route ?? $item->url ?? '-' }}</code></td>
                                             <td>@if($item->icon)<i class="{{ $item->icon }}"></i>@else-@endif</td>
                                             <td>
@@ -70,7 +70,7 @@
                                                         <div class="modal-body">
                                                             <div class="mb-3">
                                                                 <label class="form-label">Name *</label>
-                                                                <input type="text" name="name" class="form-control" value="{{ $item->name }}" required>
+                                                                <input type="text" name="name" class="form-control" value="{{ $item->title }}" required>
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label class="form-label">Route</label>
