@@ -25,29 +25,21 @@
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('faq') ? 'active' : '' }}" href="{{ route('faq') }}">FAQ</a></li>
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('blog.*') ? 'active' : '' }}" href="{{ route('blog.index') }}">Blog</a></li>
                 
-                {{-- Search Dropdown --}}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-search me-1"></i> Search
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end search-dropdown p-3" aria-labelledby="searchDropdown">
-                        <li>
-                            <form action="{{ route('search') }}" method="GET" class="search-form-inline">
-                                <div class="input-group">
-                                    <input type="text" name="q" class="form-control" placeholder="Search..." required>
-                                    <button type="submit" class="btn btn-primary-custom">
-                                        <i class="fa-solid fa-search"></i>
-                                    </button>
-                                </div>
-                            </form>
-                        </li>
-                        <li class="mt-2"><hr class="dropdown-divider"></li>
-                        <li class="quick-links-label">Quick Links</li>
-                        <li><a class="dropdown-item" href="{{ route('projects.index') }}"><i class="fa-solid fa-folder-open me-2"></i>Projects</a></li>
-                        <li><a class="dropdown-item" href="{{ route('blog.index') }}"><i class="fa-solid fa-newspaper me-2"></i>Blog</a></li>
-                        <li><a class="dropdown-item" href="{{ route('services') }}"><i class="fa-solid fa-briefcase me-2"></i>Services</a></li>
-                        <li><a class="dropdown-item" href="{{ route('resume') }}"><i class="fa-solid fa-file-alt me-2"></i>Resume</a></li>
-                    </ul>
+                <li class="nav-item">
+                    <div class="search-icon-wrapper" id="searchWrapper">
+                        <a class="nav-link search-icon-btn" href="#" onclick="toggleNavbarSearch(); return false;" id="searchToggleBtn">
+                            <i class="fa-solid fa-search"></i>
+                        </a>
+                        <form action="{{ route('search') }}" method="GET" class="search-expand-form" id="searchExpandForm">
+                            <input type="text" name="q" class="search-expand-input" placeholder="Search..." autocomplete="off" id="navbarSearchInput">
+                            <button type="submit" class="search-expand-submit">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                            <button type="button" class="search-expand-close" onclick="closeNavbarSearch(); return false;">
+                                <i class="fa-solid fa-times"></i>
+                            </button>
+                        </form>
+                    </div>
                 </li>
 
                 <li class="nav-item d-flex align-items-center gap-2 ms-lg-2">

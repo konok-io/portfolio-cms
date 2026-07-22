@@ -259,6 +259,30 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
     if(s&&m){s.style.display=dark?'none':'inline';m.style.display=dark?'inline':'none';}
   }
   pcSyncThemeIcon();
+  
+  // Navbar Search Toggle
+  function toggleNavbarSearch() {
+    var wrapper = document.getElementById('searchWrapper');
+    var input = document.getElementById('navbarSearchInput');
+    wrapper.classList.add('active');
+    setTimeout(function() {
+      if(input) input.focus();
+    }, 300);
+  }
+  
+  function closeNavbarSearch() {
+    var wrapper = document.getElementById('searchWrapper');
+    var input = document.getElementById('navbarSearchInput');
+    wrapper.classList.remove('active');
+    if(input) input.value = '';
+  }
+  
+  // Close search on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeNavbarSearch();
+    }
+  });
 </script>
 <script type="text/javascript">
   function googleTranslateElementInit(){
