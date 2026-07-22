@@ -26,7 +26,7 @@
         }
         .header {
             background: {{ $settings->header_bg_color ?? '#1a1a2e' }};
-            color: white;
+            color: {{ $settings->header_text_color ?? '#ffffff' }};
             padding: 0;
             display: flex;
         }

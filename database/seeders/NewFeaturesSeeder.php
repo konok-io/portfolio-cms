@@ -138,6 +138,7 @@ class NewFeaturesSeeder extends Seeder
                 'text_color' => '#4a5568',
                 'background_color' => '#ffffff',
                 'header_bg_color' => '#1a1a2e',
+                'header_text_color' => '#ffffff',
                 'footer_bg_color' => '#1a1a2e',
                 'include_photo' => true,
                 'include_skills' => true,

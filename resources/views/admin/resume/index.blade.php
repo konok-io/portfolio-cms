@@ -100,6 +100,20 @@
                                 </div>
                             </div>
                             <div class="col-6">
+                                <label for="header_text_color" class="form-label small">Header Text Color</label>
+                                <div class="d-flex gap-1">
+                                    <input type="color" class="form-control form-control-color form-control-sm" 
+                                           id="header_text_color" name="header_text_color" 
+                                           value="{{ old('header_text_color', $settings->header_text_color ?? '#ffffff') }}">
+                                    <input type="text" class="form-control form-control-sm" 
+                                           value="{{ old('header_text_color', $settings->header_text_color ?? '#ffffff') }}"
+                                           pattern="^#[0-9A-Fa-f]{6}$">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-2 mt-1">
+                            <div class="col-6">
                                 <label for="text_color" class="form-label small">Text Color</label>
                                 <div class="d-flex gap-1">
                                     <input type="color" class="form-control form-control-color form-control-sm" 
@@ -110,9 +124,6 @@
                                            pattern="^#[0-9A-Fa-f]{6}$">
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row g-2 mt-1">
                             <div class="col-6">
                                 <label for="background_color" class="form-label small">Background Color</label>
                                 <div class="d-flex gap-1">
@@ -124,6 +135,9 @@
                                            pattern="^#[0-9A-Fa-f]{6}$">
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="row g-2 mt-1">
                             <div class="col-6">
                                 <label for="header_bg_color" class="form-label small">Header BG Color</label>
                                 <div class="d-flex gap-1">
@@ -132,6 +146,17 @@
                                            value="{{ old('header_bg_color', $settings->header_bg_color ?? '#1a1a2e') }}">
                                     <input type="text" class="form-control form-control-sm" 
                                            value="{{ old('header_bg_color', $settings->header_bg_color ?? '#1a1a2e') }}"
+                                           pattern="^#[0-9A-Fa-f]{6}$">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label for="footer_bg_color" class="form-label small">Footer BG Color</label>
+                                <div class="d-flex gap-1">
+                                    <input type="color" class="form-control form-control-color form-control-sm" 
+                                           id="footer_bg_color" name="footer_bg_color" 
+                                           value="{{ old('footer_bg_color', $settings->footer_bg_color ?? '#1a1a2e') }}">
+                                    <input type="text" class="form-control form-control-sm" 
+                                           value="{{ old('footer_bg_color', $settings->footer_bg_color ?? '#1a1a2e') }}"
                                            pattern="^#[0-9A-Fa-f]{6}$">
                                 </div>
                             </div>

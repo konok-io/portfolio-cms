@@ -13,14 +13,15 @@ return new class extends Migration
             $table->string('text_color')->default('#4a5568')->after('heading_color');
             $table->string('background_color')->default('#ffffff')->after('text_color');
             $table->string('header_bg_color')->default('#1a1a2e')->after('background_color');
-            $table->string('footer_bg_color')->default('#1a1a2e')->after('header_bg_color');
+            $table->string('header_text_color')->default('#ffffff')->after('header_bg_color');
+            $table->string('footer_bg_color')->default('#1a1a2e')->after('header_text_color');
         });
     }
 
     public function down(): void
     {
         Schema::table('resume_settings', function (Blueprint $table) {
-            $table->dropColumn(['heading_color', 'text_color', 'background_color', 'header_bg_color', 'footer_bg_color']);
+            $table->dropColumn(['heading_color', 'text_color', 'background_color', 'header_bg_color', 'header_text_color', 'footer_bg_color']);
         });
     }
 };
