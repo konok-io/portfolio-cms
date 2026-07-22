@@ -83,14 +83,14 @@
                             <i class="fa-solid fa-language"></i><i class="fa-solid fa-chevron-down" style="font-size:.7em"></i>
                         </button>
                         <div id="google_translate_element" style="display:none"></div>
-                    <div class="lang-menu">
-                        <button type="button" onclick="pickLang('en')">English</button>
-                        <button type="button" onclick="pickLang('ar')">العربية</button>
-                        <button type="button" onclick="pickLang('bn')">বাংলা</button>
-                        <button type="button" onclick="pickLang('ur')">اردو</button>
-                        <button type="button" onclick="pickLang('hi')">हिन्दी</button>
-                        <button type="button" onclick="pickLang('tl')">Filipino</button>
-                    </div>
+                        <div class="lang-menu">
+                            <button type="button" onclick="pickLang('en')">English</button>
+                            <button type="button" onclick="pickLang('ar')">العربية</button>
+                            <button type="button" onclick="pickLang('bn')">বাংলা</button>
+                            <button type="button" onclick="pickLang('ur')">اردو</button>
+                            <button type="button" onclick="pickLang('hi')">हिन्दी</button>
+                            <button type="button" onclick="pickLang('tl')">Filipino</button>
+                        </div>
                     </div>
                     <button type="button" class="theme-toggle-btn" onclick="pcToggleTheme()" aria-label="Toggle theme">
                         <i class="fa-solid fa-sun" id="pcSun"></i>
