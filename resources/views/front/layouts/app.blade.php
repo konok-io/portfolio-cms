@@ -265,7 +265,6 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
     var searchBtn = document.getElementById('searchBtn');
     var searchBox = document.getElementById('searchBox');
     var searchWrapper = document.getElementById('searchWrapper');
-    var searchClose = document.getElementById('searchClose');
     var searchInput = searchBox ? searchBox.querySelector('.search-input') : null;
     
     if (searchBtn && searchBox && searchWrapper) {
@@ -278,14 +277,6 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
             searchInput.focus();
           }, 100);
         }
-      });
-    }
-    
-    if (searchClose && searchWrapper && searchBox) {
-      searchClose.addEventListener('click', function() {
-        searchWrapper.classList.remove('active');
-        searchBox.classList.remove('active');
-        if (searchInput) searchInput.value = '';
       });
     }
     

@@ -31,8 +31,8 @@
                             <form action="{{ route('search') }}" method="GET">
                                 <i class="fa-solid fa-search search-icon"></i>
                                 <input type="text" name="q" class="search-input" placeholder="Search..." autocomplete="off">
-                                <button type="button" class="search-close" id="searchClose">
-                                    <i class="fa-solid fa-times"></i>
+                                <button type="submit" class="search-submit" id="searchSubmit">
+                                    <i class="fa-solid fa-search"></i>
                                 </button>
                             </form>
                         </div>

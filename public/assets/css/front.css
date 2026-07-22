@@ -1101,18 +1101,18 @@ a [class*="far"] {
   color: #94a3b8;
 }
 
-.search-box .search-close {
+.search-box .search-submit {
   background: transparent;
   border: none;
-  color: var(--color-text);
+  color: var(--color-primary);
   font-size: 1rem;
   cursor: pointer;
   padding: 5px;
   transition: color 0.3s;
 }
 
-.search-box .search-close:hover {
-  color: var(--color-primary);
+.search-box .search-submit:hover {
+  color: var(--color-secondary);
 }
 
 /* Dark mode */
