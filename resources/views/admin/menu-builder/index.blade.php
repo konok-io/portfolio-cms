@@ -36,7 +36,7 @@
                                 <tbody>
                                     @foreach($menuItems as $item)
                                         <tr class="{{ !$item->is_active ? 'text-muted opacity-50' : '' }}">
-                                            <td>{{ $item->order }}</td>
+                                            <td>{{ $item->position }}</td>
                                             <td><strong>{{ $item->title }}</strong></td>
                                             <td><code class="small">{{ $item->route ?? $item->url ?? '-' }}</code></td>
                                             <td>@if($item->icon)<i class="{{ $item->icon }}"></i>@else-@endif</td>
@@ -92,7 +92,7 @@
                                                                 </div>
                                                                 <div class="col-6 mb-3">
                                                                     <label class="form-label">Order</label>
-                                                                    <input type="number" name="order" class="form-control" value="{{ $item->order }}" min="0">
+                                                                    <input type="number" name="order" class="form-control" value="{{ $item->position }}" min="0">
                                                                 </div>
                                                             </div>
                                                             <div class="form-check">

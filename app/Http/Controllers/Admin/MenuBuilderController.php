@@ -23,12 +23,12 @@ class MenuBuilderController extends Controller
             'url' => 'nullable|string|max:255',
             'route' => 'nullable|string|max:255',
             'icon' => 'nullable|string|max:255',
-            'order' => 'nullable|integer|min:0',
+            'position' => 'nullable|integer|min:0',
             'target' => 'nullable|in:_self,_blank',
         ]);
 
         $validated['is_active'] = $request->boolean('is_active');
-        $validated['order'] = $validated['order'] ?? MenuItem::max('order') + 1;
+        $validated['position'] = $validated['position'] ?? MenuItem::max('position') + 1;
 
         MenuItem::create($validated);
 
@@ -43,7 +43,7 @@ class MenuBuilderController extends Controller
             'url' => 'nullable|string|max:255',
             'route' => 'nullable|string|max:255',
             'icon' => 'nullable|string|max:255',
-            'order' => 'nullable|integer|min:0',
+            'position' => 'nullable|integer|min:0',
             'target' => 'nullable|in:_self,_blank',
         ]);
 
@@ -65,10 +65,10 @@ class MenuBuilderController extends Controller
 
     public function reorder(Request $request)
     {
-        $order = $request->input('order', []);
+        $positions = $request->input('position', []);
         
-        foreach ($order as $index => $id) {
-            MenuItem::where('id', $id)->update(['order' => $index]);
+        foreach ($positions as $index => $id) {
+            MenuItem::where('id', $id)->update(['position' => $index]);
         }
 
         return response()->json(['success' => true]);

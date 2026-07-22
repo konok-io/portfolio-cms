@@ -14,20 +14,20 @@ class MenuItem extends Model
         'url',
         'route',
         'icon',
-        'order',
+        'position',
         'is_active',
         'target',
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
-        'order' => 'integer',
+        'position' => 'integer',
     ];
 
     public static function getActiveMenuItems()
     {
         return static::where('is_active', true)
-            ->orderBy('order')
+            ->orderBy('position')
             ->get();
     }
 
@@ -46,6 +46,6 @@ class MenuItem extends Model
 
     public function scopeOrdered($query)
     {
-        return $query->orderBy('order');
+        return $query->orderBy('position');
     }
 }
