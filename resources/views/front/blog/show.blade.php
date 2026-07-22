@@ -8,6 +8,18 @@
 
 <section class="section-padding" style="padding-top: 8rem;">
     <div class="container">
+        {{-- Breadcrumb --}}
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fa-solid fa-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="{{ route('blog.index') }}">Blog</a></li>
+                @if($blog->category)
+                    <li class="breadcrumb-item"><a href="{{ route('blog.index', ['category' => $blog->category->slug]) }}">{{ $blog->category->name }}</a></li>
+                @endif
+                <li class="breadcrumb-item active" aria-current="page">{{ Str::limit($blog->title, 30) }}</li>
+            </ol>
+        </nav>
+
         <div class="row g-5">
             <div class="col-lg-8">
                 <div class="mb-4">
@@ -15,9 +27,10 @@
                         <span class="section-eyebrow">{{ $blog->category->name }}</span>
                     @endif
                     <h1 class="section-title">{{ $blog->title }}</h1>
-                    <div class="d-flex gap-4 small text-muted mt-3">
+                    <div class="d-flex flex-wrap gap-4 small text-muted mt-3">
                         <span><i class="fa-solid fa-user me-1"></i>{{ $blog->author->name ?? 'Admin' }}</span>
                         <span><i class="fa-regular fa-calendar me-1"></i>{{ $blog->published_at?->format('M d, Y') }}</span>
+                        <span><i class="fa-regular fa-clock me-1"></i>{{ ceil(strlen(strip_tags($blog->description)) / 1000) }} min read</span>
                         <span><i class="fa-regular fa-eye me-1"></i>{{ $blog->views }} views</span>
                     </div>
                 </div>

@@ -7,6 +7,18 @@
 
 <section class="section-padding" style="padding-top: 8rem;">
     <div class="container">
+        {{-- Breadcrumb --}}
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fa-solid fa-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="{{ route('projects.index') }}">Portfolio</a></li>
+                @if($project->category)
+                    <li class="breadcrumb-item"><a href="{{ route('projects.index', ['category' => $project->category->slug]) }}">{{ $project->category->name }}</a></li>
+                @endif
+                <li class="breadcrumb-item active" aria-current="page">{{ Str::limit($project->title, 30) }}</li>
+            </ol>
+        </nav>
+
         <div class="row g-5">
             <div class="col-lg-8">
                 <div class="mb-4">

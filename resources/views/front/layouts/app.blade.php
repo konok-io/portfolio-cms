@@ -137,6 +137,33 @@
 
     @include('front.partials.footer')
 
+{{-- Newsletter Popup Modal --}}
+@if(!session('newsletter_popup_shown') && !session('newsletter_success'))
+<div class="modal fade" id="newsletterModal" tabindex="-1" aria-labelledby="newsletterModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="newsletterModalLabel">
+                    <i class="fa-solid fa-envelope me-2 text-primary"></i>Subscribe to Newsletter
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p class="text-muted">Get notified about new projects and blog posts.</p>
+                <form action="{{ route('newsletter.subscribe') }}" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                        <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter your email" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary-custom w-100">Subscribe</button>
+                </form>
+                <p class="small text-muted mt-3 mb-0">No spam, unsubscribe anytime.</p>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+
     {{-- Cookie Consent Banner --}}
     <div class="cookie-consent" id="cookieConsent">
         <div class="container">
@@ -363,6 +390,26 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
 
 })();
 </script>
+
+{{-- Newsletter Popup Script --}}
+@if(!session('newsletter_popup_shown') && !session('newsletter_success'))
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            var popup = new bootstrap.Modal(document.getElementById('newsletterModal'));
+            popup.show();
+            fetch('{{ route("subscribe.store") }}', { 
+                method: 'POST', 
+                headers: { 
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: '_popup_shown=1'
+            });
+        }, 5000);
+    });
+</script>
+@endif
 
 </body>
 </html>

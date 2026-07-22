@@ -24,6 +24,7 @@ class Setting extends Model
         'github',
         'instagram',
         'youtube',
+        'maintenance_mode',
     ];
 
     public static function instance(): self

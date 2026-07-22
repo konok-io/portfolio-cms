@@ -5,6 +5,14 @@
 @section('content')
 <section class="contact-page-section">
     <div class="container py-5">
+        {{-- Breadcrumb --}}
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fa-solid fa-home"></i></a></li>
+                <li class="breadcrumb-item active" aria-current="page">Contact</li>
+            </ol>
+        </nav>
+
         <div class="text-center mb-5">
             <span class="section-eyebrow">Get In Touch</span>
             <h1 class="section-title">Let's Work Together</h1>

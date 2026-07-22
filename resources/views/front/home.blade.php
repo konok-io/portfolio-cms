@@ -15,7 +15,9 @@
                 <span class="hero-eyebrow"><i class="fa-solid fa-circle-check"></i> Available for new projects</span>
                 <h1 class="hero-title">
                     Hi, I'm {{ $about->name ?? 'Your Name' }} —<br>
-                    <span class="text-primary-custom">{{ $about->title ?? 'Web Developer' }}</span>
+                    <span class="text-primary-custom">
+                        <span id="typed-text"></span><span class="cursor">|</span>
+                    </span>
                 </h1>
                 <p class="lead text-muted mb-4" style="max-width: 560px;">
                     {{ $about->short_intro ?? 'I design and build modern, high-performing web applications tailored to your business goals.' }}
@@ -299,27 +301,45 @@
             <span class="section-eyebrow">Client Feedback</span>
             <h2 class="section-title">What clients say about working with me</h2>
         </div>
-        <div class="row g-4">
-            @foreach($testimonials as $testimonial)
-                <div class="col-md-6 col-lg-4 reveal-on-scroll">
-                    <div class="testimonial-card h-100 d-flex flex-column">
-                        <i class="fa-solid fa-quote-left quote-icon mb-3"></i>
-                        <p class="text-muted small flex-grow-1">{{ $testimonial->review }}</p>
-                        <div class="star-rating mb-2">
-                            @for($i = 1; $i <= 5; $i++)
-                                <i class="fa-{{ $i <= $testimonial->rating ? 'solid' : 'regular' }} fa-star"></i>
-                            @endfor
-                        </div>
-                        <div class="d-flex align-items-center gap-3">
-                            <img src="{{ $testimonial->photo_url }}" alt="{{ $testimonial->client_name }}" width="48" height="48" class="rounded-circle object-fit-cover">
-                            <div>
-                                <h6 class="mb-0">{{ $testimonial->client_name }}</h6>
-                                <span class="small text-muted">{{ $testimonial->company }}</span>
-                            </div>
+        <div id="testimonialCarousel" class="carousel slide reveal-on-scroll" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @foreach($testimonials->chunk(3) as $index => $testimonialGroup)
+                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                        <div class="row g-4">
+                            @foreach($testimonialGroup as $testimonial)
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="testimonial-card h-100 d-flex flex-column">
+                                        <i class="fa-solid fa-quote-left quote-icon mb-3"></i>
+                                        <p class="text-muted small flex-grow-1">{{ $testimonial->review }}</p>
+                                        <div class="star-rating mb-2">
+                                            @for($i = 1; $i <= 5; $i++)
+                                                <i class="fa-{{ $i <= $testimonial->rating ? 'solid' : 'regular' }} fa-star"></i>
+                                            @endfor
+                                        </div>
+                                        <div class="d-flex align-items-center gap-3">
+                                            <img src="{{ $testimonial->photo_url }}" alt="{{ $testimonial->client_name }}" width="48" height="48" class="rounded-circle object-fit-cover">
+                                            <div>
+                                                <h6 class="mb-0">{{ $testimonial->client_name }}</h6>
+                                                <span class="small text-muted">{{ $testimonial->company }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
+            @if($testimonials->count() > 3)
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            @endif
         </div>
     </div>
 </section>
@@ -486,3 +506,63 @@
 </section>
 
 @endsection
+
+@push('styles')
+<style>
+    .cursor {
+        animation: blink 1s infinite;
+    }
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+</style>
+@endpush
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const typedText = document.getElementById('typed-text');
+    if (!typedText) return;
+    
+    const phrases = [
+        '{{ $about->title ?? "Web Developer" }}',
+        'Laravel Expert',
+        'Full Stack Developer',
+        'UI/UX Enthusiast'
+    ];
+    
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typeSpeed = 100;
+    
+    function type() {
+        const currentPhrase = phrases[phraseIndex];
+        
+        if (isDeleting) {
+            typedText.textContent = currentPhrase.substring(0, charIndex - 1);
+            charIndex--;
+            typeSpeed = 50;
+        } else {
+            typedText.textContent = currentPhrase.substring(0, charIndex + 1);
+            charIndex++;
+            typeSpeed = 100;
+        }
+        
+        if (!isDeleting && charIndex === currentPhrase.length) {
+            typeSpeed = 2000;
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            typeSpeed = 500;
+        }
+        
+        setTimeout(type, typeSpeed);
+    }
+    
+    setTimeout(type, 1000);
+});
+</script>
+@endpush

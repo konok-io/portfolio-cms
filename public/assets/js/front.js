@@ -207,3 +207,34 @@ document.addEventListener('DOMContentLoaded', function() {
         lastScrollTop = scrollTop;
     }, { passive: true });
 });
+
+// Skill Progress Animation on Scroll
+document.addEventListener('DOMContentLoaded', function() {
+    const skillBars = document.querySelectorAll('.skill-progress-bar');
+    
+    const animateSkillBars = () => {
+        skillBars.forEach(bar => {
+            const percentage = bar.getAttribute('data-percentage');
+            if (bar.style.width === '0%' || !bar.style.width) {
+                bar.style.width = percentage + '%';
+            }
+        });
+    };
+    
+    // Use Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateSkillBars();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    
+    const skillsSection = document.getElementById('skills');
+    if (skillsSection) {
+        observer.observe(skillsSection);
+    } else {
+        animateSkillBars();
+    }
+});

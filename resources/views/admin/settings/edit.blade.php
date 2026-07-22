@@ -20,8 +20,20 @@
     <div class="row g-3">
         <div class="col-lg-8">
             <div class="admin-card mb-3" id="contact-section">
-                <div class="card-header-custom">General</div>
+                <div class="card-header-custom d-flex justify-content-between align-items-center">
+                    <span>General</span>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="maintenanceMode" name="maintenance_mode" value="1" {{ old('maintenance_mode', $setting->maintenance_mode ?? false) ? 'checked' : '' }}>
+                        <label class="form-check-label small" for="maintenanceMode">Maintenance Mode</label>
+                    </div>
+                </div>
                 <div class="card-body-custom">
+                    @if($setting->maintenance_mode ?? false)
+                        <div class="alert alert-warning mb-3">
+                            <i class="fa-solid fa-exclamation-triangle me-2"></i>
+                            <strong>Site is in Maintenance Mode!</strong> Only admins can see the site.
+                        </div>
+                    @endif
                     <div class="row g-3">
                         <div class="col-12">
                             <label class="form-label-admin">Website Name <span class="required-star">*</span></label>

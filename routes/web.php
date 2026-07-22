@@ -71,6 +71,12 @@ Route::prefix('blog')->name('blog.')->group(function () {
 
 Route::get('/contact', [\App\Http\Controllers\Front\ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/thank-you', function () {
+    return view('front.thank-you');
+})->name('thank-you');
+Route::get('/coming-soon', function () {
+    return view('front.coming-soon');
+})->name('coming-soon');
 Route::get('/faq', [FrontFaqController::class, 'index'])->name('faq');
 Route::get('/pricing', [FrontPricingController::class, 'index'])->name('pricing');
 Route::get('/privacy', [\App\Http\Controllers\Front\PrivacyPolicyController::class, 'index'])->name('privacy');
