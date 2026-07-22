@@ -251,6 +251,7 @@ a {
   transition: all 0.3s ease;
   padding-top: 0.85rem;
   padding-bottom: 0.85rem;
+  position: relative;
   z-index: 1050;
 }
 .site-navbar .navbar-brand {
