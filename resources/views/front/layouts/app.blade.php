@@ -137,6 +137,21 @@
 
     @include('front.partials.footer')
 
+    {{-- Cookie Consent Banner --}}
+    <div class="cookie-consent" id="cookieConsent">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <p class="mb-2 mb-md-0">We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies. <a href="{{ route('custom-page', 'privacy-policy') }}">Learn more</a></p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <button class="btn btn-light btn-sm me-2" onclick="acceptCookies()">Accept All</button>
+                    <button class="btn btn-outline-light btn-sm" onclick="declineCookies()">Decline</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- WhatsApp Floating Button -->
     @if($about->whatsapp ?? false)
         <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $about->whatsapp) }}" 
@@ -188,6 +203,47 @@ function copyLink() {
         }
     });
 }
+
+// Cookie Consent
+function showCookieConsent() {
+    if (!getCookie('cookie_consent')) {
+        document.getElementById('cookieConsent').classList.add('show');
+    }
+}
+
+function acceptCookies() {
+    setCookie('cookie_consent', 'accepted', 365);
+    document.getElementById('cookieConsent').classList.remove('show');
+}
+
+function declineCookies() {
+    setCookie('cookie_consent', 'declined', 365);
+    document.getElementById('cookieConsent').classList.remove('show');
+}
+
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+// Show cookie consent on page load
+document.addEventListener('DOMContentLoaded', showCookieConsent);
 </script>
 
 <script>
