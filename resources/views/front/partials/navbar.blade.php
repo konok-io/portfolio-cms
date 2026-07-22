@@ -26,24 +26,22 @@
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('blog.*') ? 'active' : '' }}" href="{{ route('blog.index') }}">Blog</a></li>
                 
                 <li class="nav-item">
-                    <div class="search-icon-wrapper" id="searchWrapper">
+                    <div class="search-navbar-container" id="searchContainer">
                         <a class="nav-link search-icon-btn" href="#" onclick="toggleNavbarSearch(); return false;">
                             <i class="fa-solid fa-search"></i>
                         </a>
+                        <div class="search-form-item" id="searchFormItem">
+                            <form action="{{ route('search') }}" method="GET" class="search-navbar-form">
+                                <input type="text" name="q" class="search-navbar-input" placeholder="Search..." autocomplete="off" id="navbarSearchInput">
+                                <button type="submit" class="search-navbar-submit">
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </form>
+                            <button type="button" class="search-navbar-close" onclick="closeNavbarSearch(); return false;">
+                                <i class="fa-solid fa-times"></i>
+                            </button>
+                        </div>
                     </div>
-                </li>
-                
-                {{-- Hidden Search Form (appears when clicked) --}}
-                <li class="nav-item search-form-item" id="searchFormItem">
-                    <form action="{{ route('search') }}" method="GET" class="search-navbar-form" id="searchNavForm">
-                        <input type="text" name="q" class="search-navbar-input" placeholder="Search..." autocomplete="off" id="navbarSearchInput">
-                        <button type="submit" class="search-navbar-submit">
-                            <i class="fa-solid fa-search"></i>
-                        </button>
-                    </form>
-                    <button type="button" class="search-navbar-close" onclick="closeNavbarSearch(); return false;">
-                        <i class="fa-solid fa-times"></i>
-                    </button>
                 </li>
 
                 <li class="nav-item d-flex align-items-center gap-2 ms-lg-2">

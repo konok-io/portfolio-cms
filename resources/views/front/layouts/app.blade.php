@@ -264,16 +264,20 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
   function toggleNavbarSearch() {
     var formItem = document.getElementById('searchFormItem');
     var input = document.getElementById('navbarSearchInput');
-    formItem.classList.add('active');
-    setTimeout(function() {
-      if(input) input.focus();
-    }, 350);
+    if(formItem) {
+      formItem.classList.add('active');
+      setTimeout(function() {
+        if(input) input.focus();
+      }, 350);
+    }
   }
   
   function closeNavbarSearch() {
     var formItem = document.getElementById('searchFormItem');
     var input = document.getElementById('navbarSearchInput');
-    formItem.classList.remove('active');
+    if(formItem) {
+      formItem.classList.remove('active');
+    }
     if(input) input.value = '';
   }
   

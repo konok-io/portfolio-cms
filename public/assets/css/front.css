@@ -1001,12 +1001,11 @@ a [class*="far"] {
 }
 
 /* =========================================================
-   Search Icon - Expand to LEFT (Overlay)
+   Search Icon - Expand to LEFT (Overlay on Menu)
    ========================================================= */
-.search-icon-wrapper {
+.search-navbar-container {
   display: flex;
   align-items: center;
-  justify-content: center;
   position: relative;
 }
 
@@ -1019,8 +1018,6 @@ a [class*="far"] {
   padding: 0 !important;
   transition: all 0.3s ease;
   color: var(--color-text);
-  z-index: 1051;
-  position: relative;
 }
 
 .search-icon-btn:hover {
@@ -1033,13 +1030,15 @@ a [class*="far"] {
 .search-form-item {
   display: none !important;
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 1050;
 }
 
 .search-form-item.active {
-  display: block !important;
+  display: flex !important;
+  align-items: center;
 }
 
 .search-navbar-form {
@@ -1055,11 +1054,11 @@ a [class*="far"] {
 @keyframes searchSlideIn {
   from {
     opacity: 0;
-    transform: translateX(-15px);
+    transform: translateY(-50%) translateX(-20px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(-50%) translateX(0);
   }
 }
 
