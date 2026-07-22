@@ -1001,12 +1001,13 @@ a [class*="far"] {
 }
 
 /* =========================================================
-   Search Icon Expand in Navbar (Expand to LEFT)
+   Search Icon - Expand to LEFT (Overlay)
    ========================================================= */
 .search-icon-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .search-icon-btn {
@@ -1018,6 +1019,8 @@ a [class*="far"] {
   padding: 0 !important;
   transition: all 0.3s ease;
   color: var(--color-text);
+  z-index: 1051;
+  position: relative;
 }
 
 .search-icon-btn:hover {
@@ -1026,15 +1029,17 @@ a [class*="far"] {
   color: var(--color-primary);
 }
 
-/* Search Form - Hidden initially */
+/* Search Form - Hidden initially, shows on LEFT with overlay */
 .search-form-item {
   display: none !important;
-  align-items: center;
-  position: relative;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1050;
 }
 
 .search-form-item.active {
-  display: flex !important;
+  display: block !important;
 }
 
 .search-navbar-form {
@@ -1042,15 +1047,15 @@ a [class*="far"] {
   align-items: center;
   background: white;
   border-radius: 25px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   overflow: hidden;
-  animation: slideInLeft 0.35s ease;
+  animation: searchSlideIn 0.35s ease;
 }
 
-@keyframes slideInLeft {
+@keyframes searchSlideIn {
   from {
     opacity: 0;
-    transform: translateX(20px);
+    transform: translateX(-15px);
   }
   to {
     opacity: 1;
@@ -1061,12 +1066,12 @@ a [class*="far"] {
 .search-navbar-input {
   border: none;
   border-right: 1px solid #e2e8f0;
-  border-radius: 0;
+  border-radius: 25px 0 0 25px;
   padding: 12px 15px;
   font-size: 0.95rem;
   background: white;
   color: #1e293b;
-  width: 220px;
+  width: 240px;
 }
 
 .search-navbar-input:focus {
@@ -1080,7 +1085,7 @@ a [class*="far"] {
 .search-navbar-submit {
   background: var(--color-primary);
   border: none;
-  border-radius: 0;
+  border-radius: 0 25px 25px 0;
   padding: 12px 15px;
   color: white;
   cursor: pointer;
@@ -1098,6 +1103,7 @@ a [class*="far"] {
   color: #94a3b8;
   cursor: pointer;
   transition: color 0.3s ease;
+  margin-left: 5px;
 }
 
 .search-navbar-close:hover {
@@ -1107,7 +1113,7 @@ a [class*="far"] {
 /* Dark mode */
 [data-theme="dark"] .search-navbar-form {
   background: #171433;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 [data-theme="dark"] .search-navbar-input {
