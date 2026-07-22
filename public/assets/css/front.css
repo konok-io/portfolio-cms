@@ -1054,9 +1054,9 @@ a [class*="far"] {
 
 .search-box {
   position: absolute;
-  left: 0;
+  right: 0;
   top: 50%;
-  transform: translateX(-100%) translateY(-50%);
+  transform: translateX(100%) translateY(-50%);
   background: #fff;
   border: 1px solid var(--color-border);
   border-radius: 8px;
