@@ -1049,16 +1049,16 @@ a [class*="far"] {
   transform: translateY(-50%);
   opacity: 0;
   z-index: 2;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
-  width: 40px;
+  width: 0;
   overflow: hidden;
 }
 
 .search-form-item.active {
   opacity: 1;
   pointer-events: auto;
-  width: 260px;
+  width: 280px;
 }
 
 .search-navbar-form {
@@ -1066,9 +1066,14 @@ a [class*="far"] {
   align-items: stretch;
   background: white;
   border-radius: 50px;
-  width: 260px;
-  transition: width 0.35s ease;
+  width: 280px;
   border: 1px solid #e2e8f0;
+  transition: box-shadow 0.3s ease;
+}
+
+.search-navbar-form:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 .search-navbar-input {
@@ -1078,14 +1083,13 @@ a [class*="far"] {
   font-size: 0.95rem;
   background: white;
   color: #1e293b;
-  width: 0;
+  width: 200px;
   opacity: 0;
-  transition: width 0.35s ease 0.05s, opacity 0.3s ease;
+  transition: opacity 0.3s ease 0.2s;
   border-radius: 50px 0 0 50px;
 }
 
 .search-form-item.active .search-navbar-input {
-  width: 180px;
   opacity: 1;
   padding-left: 20px;
 }
