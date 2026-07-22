@@ -1060,6 +1060,7 @@ a [class*="far"] {
   opacity: 1;
   pointer-events: auto;
   width: 260px;
+  padding: 20px;
 }
 
 .search-navbar-form {
