@@ -260,29 +260,23 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
   }
   pcSyncThemeIcon();
   
-  // Navbar Search Toggle
-  function toggleNavbarSearch() {
-    var container = document.getElementById('searchContainer');
-    var formItem = document.getElementById('searchFormItem');
-    var input = document.getElementById('navbarSearchInput');
-    if(formItem && container) {
-      formItem.classList.add('active');
-      container.classList.add('active');
+  // Navbar Search Toggle - Full Width Overlay
+  function openNavbarSearch() {
+    var navbar = document.querySelector('.site-navbar');
+    var input = document.getElementById('navSearchInput');
+    if(navbar) {
+      navbar.classList.add('search-open');
       setTimeout(function() {
         if(input) input.focus();
-      }, 50);
+      }, 350);
     }
   }
   
   function closeNavbarSearch() {
-    var container = document.getElementById('searchContainer');
-    var formItem = document.getElementById('searchFormItem');
-    var input = document.getElementById('navbarSearchInput');
-    if(formItem) {
-      formItem.classList.remove('active');
-    }
-    if(container) {
-      container.classList.remove('active');
+    var navbar = document.querySelector('.site-navbar');
+    var input = document.getElementById('navSearchInput');
+    if(navbar) {
+      navbar.classList.remove('search-open');
     }
     if(input) input.value = '';
   }
@@ -296,15 +290,12 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
   
   // Close search when clicking outside
   document.addEventListener('click', function(e) {
-    var container = document.getElementById('searchContainer');
-    var formItem = document.getElementById('searchFormItem');
-    var input = document.getElementById('navbarSearchInput');
+    var navbar = document.querySelector('.site-navbar');
+    var overlay = document.getElementById('navSearchOverlay');
     
-    if (container && formItem) {
-      if (!container.contains(e.target)) {
-        formItem.classList.remove('active');
-        container.classList.remove('active');
-        if(input) input.value = '';
+    if (navbar && overlay) {
+      if (!overlay.contains(e.target) && navbar.classList.contains('search-open')) {
+        closeNavbarSearch();
       }
     }
   });
