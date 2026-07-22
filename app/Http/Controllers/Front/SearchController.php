@@ -22,7 +22,7 @@ class SearchController extends Controller
         $projects = Project::active()
             ->where(function ($q) use ($query) {
                 $q->where('title', 'like', "%{$query}%")
-                  ->orWhere('short_description', 'like', "%{$query}%");
+                  ->orWhere('description', 'like', "%{$query}%");
             })
             ->limit(5)
             ->get();
@@ -37,8 +37,8 @@ class SearchController extends Controller
 
         $services = Service::active()
             ->where(function ($q) use ($query) {
-                $q->where('title', 'like', "%{$query}%")
-                  ->orWhere('short_description', 'like', "%{$query}%");
+                $q->where('name', 'like', "%{$query}%")
+                  ->orWhere('description', 'like', "%{$query}%");
             })
             ->limit(5)
             ->get();
