@@ -25,9 +25,9 @@
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('faq') ? 'active' : '' }}" href="{{ route('faq') }}">FAQ</a></li>
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('blog.*') ? 'active' : '' }}" href="{{ route('blog.index') }}">Blog</a></li>
                 
-                <li class="nav-item">
+                <li class="nav-item search-nav-item">
                     <div class="search-navbar-container" id="searchContainer">
-                        <a class="nav-link search-icon-btn" href="#" onclick="toggleNavbarSearch(); return false;">
+                        <a class="search-icon-btn" href="#" onclick="toggleNavbarSearch(); return false;">
                             <i class="fa-solid fa-search"></i>
                         </a>
                         <div class="search-form-item" id="searchFormItem">
