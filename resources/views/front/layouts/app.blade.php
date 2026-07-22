@@ -150,7 +150,7 @@
             </div>
             <div class="modal-body text-center">
                 <p class="text-muted">Get notified about new projects and blog posts.</p>
-                <form action="{{ route('newsletter.subscribe') }}" method="POST">
+                <form action="{{ route('subscribe.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter your email" required>
