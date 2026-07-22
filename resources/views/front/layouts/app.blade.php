@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
       formItem.classList.add('active');
       setTimeout(function() {
         if(input) input.focus();
-      }, 350);
+      }, 50);
     }
   }
   
@@ -285,6 +285,20 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       closeNavbarSearch();
+    }
+  });
+  
+  // Close search when clicking outside
+  document.addEventListener('click', function(e) {
+    var container = document.getElementById('searchContainer');
+    var formItem = document.getElementById('searchFormItem');
+    var input = document.getElementById('navbarSearchInput');
+    
+    if (container && formItem) {
+      if (!container.contains(e.target)) {
+        formItem.classList.remove('active');
+        if(input) input.value = '';
+      }
     }
   });
 </script>

@@ -31,15 +31,12 @@
                             <i class="fa-solid fa-search"></i>
                         </a>
                         <div class="search-form-item" id="searchFormItem">
-                            <form action="{{ route('search') }}" method="GET" class="search-navbar-form">
+                            <form action="{{ route('search') }}" method="GET" class="search-navbar-form" id="searchNavForm">
                                 <input type="text" name="q" class="search-navbar-input" placeholder="Search..." autocomplete="off" id="navbarSearchInput">
                                 <button type="submit" class="search-navbar-submit">
-                                    <i class="fa-solid fa-arrow-right"></i>
+                                    <i class="fa-solid fa-search"></i>
                                 </button>
                             </form>
-                            <button type="button" class="search-navbar-close" onclick="closeNavbarSearch(); return false;">
-                                <i class="fa-solid fa-times"></i>
-                            </button>
                         </div>
                     </div>
                 </li>
