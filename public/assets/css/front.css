@@ -1176,5 +1176,5 @@ body.no-header .scroll-progress {
 /* Add spacing when header is shown */
 body.has-header .main-content,
 body.has-header main {
-  padding-top: 70px !important;
+  padding-top: 60px !important;
 }
