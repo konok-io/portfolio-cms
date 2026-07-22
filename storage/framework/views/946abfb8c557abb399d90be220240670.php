@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
+    <title><?php echo $__env->yieldContent('title', 'Dashboard'); ?> | Admin — <?php echo e($siteSetting->site_name ?? 'Portfolio CMS'); ?></title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" id="bs-ltr">
+    <script>
+      (function(){try{
+        var m=document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);var l=m?m[1]:'';
+        var rtl=['ar','ur','fa','he','ps','sd'];
+        if(rtl.indexOf(l)>=0){var ltr=document.getElementById('bs-ltr');if(ltr) ltr.href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.rtl.min.css';}
+      }catch(e){}})();
+    </script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
+
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/admin.css')); ?>">
+
+    <script>
+      // Apply saved theme before render (default: light).
+      (function(){try{var t=localStorage.getItem('pc-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();
+      (function(){
+        try{
+          var m=document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);
+          var l=m?m[1]:'en';
+          var rtl=['ar','ur','fa','he','ps','sd'];
+          var isRtl=rtl.indexOf(l)>=0;
+          document.documentElement.setAttribute('dir',isRtl?'rtl':'ltr');
+          // Apply language-specific font classes
+          var body=document.body;
+          body.classList.remove('TEWGTB-BANGLA','TEWGTB-ARABIC','TEWGTB-URDU','TEWGTB-HINDI','TEWGTB-FILIPINO');
+          if(l==='bn'||l==='bengali')body.classList.add('TEWGTB-BANGLA');
+          else if(l==='ar'||l==='arabic')body.classList.add('TEWGTB-ARABIC');
+          else if(l==='ur'||l==='urdu')body.classList.add('TEWGTB-URDU');
+          else if(l==='hi'||l==='hindi')body.classList.add('TEWGTB-HINDI');
+          else if(l==='tl'||l==='filipino')body.classList.add('TEWGTB-FILIPINO');
+          // RTL: flip collapse icons
+          if(isRtl){
+            var collapseIcon=document.getElementById('sidebarCollapseIcon');
+            var expandIcon=document.getElementById('sidebarExpandIcon');
+            if(collapseIcon){collapseIcon.classList.remove('fa-chevron-left');collapseIcon.classList.add('fa-chevron-right');}
+            if(expandIcon){expandIcon.classList.remove('fa-chevron-right');expandIcon.classList.add('fa-chevron-left');}
+          }
+        }catch(e){}
+      })();
+    </script>
+    <style>
+      /* language switch + theme toggle */
+      .gtranslate-wrap{position:relative}
+      .gt-btn,.theme-toggle-btn{display:inline-flex;align-items:center;gap:7px;font-size:.9rem;font-weight:500;color:#333;background:#fff;border:1px solid #e2e2e8;border-radius:20px;padding:7px 14px;cursor:pointer;transition:border-color .18s,background .18s}
+      .theme-toggle-btn{width:38px;height:38px;justify-content:center;border-radius:50%;padding:0}
+      .gt-btn:hover,.theme-toggle-btn:hover{border-color:#4F2FE8}
+      .lang-menu{position:absolute;top:54px;right:0;z-index:1050;background:#fff;border:1px solid #e2e2e8;border-radius:12px;padding:6px;display:none;box-shadow:0 24px 60px -30px rgba(0,0,0,.3);max-height:360px;overflow:auto;min-width:170px}
+      body.gt-open .lang-menu{display:block}
+      .lang-menu button{display:block;width:100%;text-align:left;background:none;border:0;color:#333;font-size:14.5px;padding:9px 14px;border-radius:8px;cursor:pointer}
+      .lang-menu button:hover{background:#f4f4f9}
+      [data-theme="dark"] .lang-menu{background:#171433;border-color:#2C2860}
+      [data-theme="dark"] .lang-menu button,[data-theme="dark"] .admin-topbar .lang-menu button{color:#fff!important}
+      [data-theme="dark"] .lang-menu button:hover{background:#1E1A44}
+      [data-theme="dark"] .admin-topbar .gt-btn,[data-theme="dark"] .admin-topbar .theme-toggle-btn{color:#fff}
+      .goog-te-banner-frame,.skiptranslate iframe{display:none!important}
+      body{top:0!important}
+      font font{background:transparent!important;box-shadow:none!important}
+      /* Topbar matches sidebar header */
+      .admin-topbar{background:#0F172A;color:#fff;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+      .admin-topbar .text-dark{color:#fff!important}
+      .admin-topbar .gt-btn,.admin-topbar .theme-toggle-btn{background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.2)}
+      .admin-topbar .gt-btn:hover,.admin-topbar .theme-toggle-btn:hover{background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.4)}
+      .admin-topbar .sidebar-toggle-btn{color:#fff}
+      .admin-topbar .lang-menu button{color:#333}
+      .admin-topbar .dropdown-menu{margin-top:8px;top:15px!important}
+      .admin-topbar .gtranslate-wrap{position:relative}
+      /* Page header padding */
+      .admin-page-header{padding:10px;border-radius:8px}
+      /* Card padding */
+      .admin-card{padding:10px}
+      /* dark theme */
+      [data-theme="dark"] body,[data-theme="dark"] .admin-body,[data-theme="dark"] .admin-wrapper,[data-theme="dark"] .admin-main,[data-theme="dark"] .admin-content{background:#0A0A1F!important;color:#EDECFF}
+      [data-theme="dark"] .admin-topbar,[data-theme="dark"] .admin-sidebar,[data-theme="dark"] .card,[data-theme="dark"] .admin-card,[data-theme="dark"] .stat-card,[data-theme="dark"] .dropdown-menu,[data-theme="dark"] .admin-page-header{background:#171433!important;color:#EDECFF!important;border-color:#2C2860!important}
+      [data-theme="dark"] .gt-btn,[data-theme="dark"] .theme-toggle-btn{background:#171433;color:#EDECFF;border-color:#2C2860}
+      [data-theme="dark"] .text-dark,[data-theme="dark"] .text-body,[data-theme="dark"] .stat-value,[data-theme="dark"] h1,[data-theme="dark"] h2,[data-theme="dark"] h3,[data-theme="dark"] h4,[data-theme="dark"] h5{color:#EDECFF!important}
+      [data-theme="dark"] .text-muted,[data-theme="dark"] .stat-label,[data-theme="dark"] .admin-breadcrumb,[data-theme="dark"] .admin-breadcrumb a,[data-theme="dark"] small{color:#9B98C7!important}
+      [data-theme="dark"] .table{color:#EDECFF!important;border-color:#2C2860;--bs-table-bg:#171433;--bs-table-color:#EDECFF;--bs-table-striped-bg:#1B1740;--bs-table-striped-color:#EDECFF;--bs-table-hover-bg:#1E1A44;--bs-table-hover-color:#EDECFF;--bs-table-border-color:#2C2860}
+      [data-theme="dark"] .table thead th{background:#12102E!important;color:#EDECFF!important;border-color:#2C2860}
+      [data-theme="dark"] .table tbody td,[data-theme="dark"] .table tbody th,[data-theme="dark"] .table tbody tr{background:#171433!important;color:#EDECFF!important;border-color:#2C2860}
+      [data-theme="dark"] .table td,[data-theme="dark"] .table th{border-color:#2C2860}
+      [data-theme="dark"] .table-hover tbody tr:hover td{background:#1E1A44!important;color:#EDECFF}
+      [data-theme="dark"] .table-admin thead th{background:#12102E!important;color:#9B98C7!important;border-color:#2C2860!important}
+      [data-theme="dark"] .table-admin td,[data-theme="dark"] .table-admin tr{background:#171433!important;color:#EDECFF!important;border-color:#2C2860!important}
+      [data-theme="dark"] .card-header-custom,[data-theme="dark"] .card-body-custom{background:#171433!important;color:#EDECFF!important;border-color:#2C2860!important}
+      [data-theme="dark"] .rounded-3.bg-light,[data-theme="dark"] .border.bg-light{background:#1E1A44!important;color:#EDECFF!important;border-color:#2C2860!important}
+      [data-theme="dark"] .form-control,[data-theme="dark"] .form-select,[data-theme="dark"] textarea{background:#0A0A1F;color:#EDECFF;border-color:#2C2860}
+      [data-theme="dark"] .form-control::placeholder{color:#6B6790}
+      [data-theme="dark"] .dropdown-item{color:#EDECFF}
+      [data-theme="dark"] .dropdown-item:hover{background:#1E1A44}
+      [data-theme="dark"] .border,[data-theme="dark"] .border-top,[data-theme="dark"] .border-bottom,[data-theme="dark"] hr{border-color:#2C2860!important}
+      [data-theme="dark"] .bg-light,[data-theme="dark"] .bg-white{background:#171433!important}
+      [data-theme="dark"] .btn-light,[data-theme="dark"] .btn-outline-secondary{background:#1E1A44;color:#EDECFF;border-color:#2C2860}
+      [data-theme="dark"] a:not(.btn):not(.nav-link){color:#22D3EE}
+      [data-theme="dark"] .dataTables_wrapper{color:#EDECFF}
+      [data-theme="dark"] table.dataTable,[data-theme="dark"] .dataTable tbody td,[data-theme="dark"] .dataTable thead th{background:#171433!important;color:#EDECFF!important;border-color:#2C2860!important}
+      [data-theme="dark"] .dataTable tbody tr{background:#171433!important}
+      [data-theme="dark"] .dataTables_wrapper .dataTables_length select,[data-theme="dark"] .dataTables_wrapper .dataTables_filter input{background:#0A0A1F;color:#EDECFF;border-color:#2C2860}
+      [data-theme="dark"] .page-link{background:#171433;color:#EDECFF;border-color:#2C2860}
+      [data-theme="dark"] .page-item.disabled .page-link{background:#12102E;color:#6B6790}
+      [data-theme="dark"] .ProseMirror,[data-theme="dark"] .ql-editor,[data-theme="dark"] .editor-content,[data-theme="dark"] [contenteditable]{background:#0A0A1F!important;color:#EDECFF!important}
+      [data-theme="dark"] .ql-toolbar,[data-theme="dark"] .editor-toolbar,[data-theme="dark"] .tox-toolbar{background:#171433!important;border-color:#2C2860!important}
+      [data-theme="dark"] .editor-toolbar button,[data-theme="dark"] .ql-toolbar button,[data-theme="dark"] .ql-toolbar .ql-stroke{color:#EDECFF!important;stroke:#EDECFF!important}
+      [data-theme="dark"] .modal-content,[data-theme="dark"] .offcanvas,[data-theme="dark"] .list-group-item,[data-theme="dark"] .input-group-text,[data-theme="dark"] .accordion-button,[data-theme="dark"] .accordion-body{background:#171433!important;color:#EDECFF!important;border-color:#2C2860!important}
+      [data-theme="dark"] .nav-tabs .nav-link{color:#9B98C7}
+      [data-theme="dark"] .nav-tabs .nav-link.active{background:#171433;color:#EDECFF;border-color:#2C2860}
+      [data-theme="dark"] .badge.bg-light{background:#1E1A44!important;color:#EDECFF!important}
+      [data-theme="dark"] .btn-primary{background:#4F2FE8!important;color:#fff!important;border-color:#4F2FE8!important}
+      [data-theme="dark"] .btn-primary:hover{background:#7C3AED!important;color:#fff!important}
+      [data-theme="dark"] .btn-secondary{background:#3A356E!important;color:#fff!important;border-color:#3A356E!important}
+      [data-theme="dark"] .btn-success{background:#16a34a!important;color:#fff!important;border-color:#16a34a!important}
+      [data-theme="dark"] .btn-danger{background:#dc2626!important;color:#fff!important;border-color:#dc2626!important}
+      [data-theme="dark"] .btn-warning{background:#d97706!important;color:#fff!important;border-color:#d97706!important}
+      [data-theme="dark"] .btn-info{background:#0891B2!important;color:#fff!important;border-color:#0891B2!important}
+      [data-theme="dark"] .btn-light{background:#1E1A44!important;color:#EDECFF!important;border-color:#2C2860!important}
+      [data-theme="dark"] .btn-dark{background:#1E1A44!important;color:#fff!important;border-color:#2C2860!important}
+      [data-theme="dark"] .btn-outline-primary,[data-theme="dark"] .btn-outline-secondary,[data-theme="dark"] .btn-outline-light,[data-theme="dark"] .btn-outline-dark{color:#EDECFF!important;border-color:#4F2FE8!important;background:transparent!important}
+      [data-theme="dark"] .btn-outline-primary:hover,[data-theme="dark"] .btn-outline-secondary:hover,[data-theme="dark"] .btn-outline-light:hover,[data-theme="dark"] .btn-outline-dark:hover{background:#4F2FE8!important;color:#fff!important}
+      [data-theme="dark"] .btn-outline-danger{color:#f87171!important;border-color:#dc2626!important}
+      [data-theme="dark"] .btn-outline-danger:hover{background:#dc2626!important;color:#fff!important}
+      [data-theme="dark"] .btn-link{color:#22D3EE!important}
+      [data-theme="dark"] .btn-close{filter:invert(1) grayscale(100%) brightness(200%)}
+      [data-theme="dark"] .admin-sidebar .nav-link{color:#9B98C7}
+      [data-theme="dark"] .admin-sidebar .nav-link:hover{color:#fff;background:rgba(79,47,232,0.25)}
+      [data-theme="dark"] .admin-sidebar .nav-link.active{color:#fff;background:linear-gradient(135deg,#4F2FE8,#7C3AED)}
+      /* Sidebar collapse styles */
+      .admin-sidebar.collapsed{width:70px!important}
+      .admin-sidebar.collapsed .sidebar-brand span,
+      .admin-sidebar.collapsed .nav-section-title > span,
+      .admin-sidebar.collapsed .nav-link > span,
+      .admin-sidebar.collapsed .badge.ms-auto{display:none!important}
+      .admin-sidebar .sidebar-brand{padding:1rem 0.5rem 1rem 1rem;padding-right:0!important}
+      .admin-sidebar .site-logo-icon{font-size:1.2rem}
+      .admin-sidebar.collapsed .sidebar-brand{justify-content:center;padding:0!important}
+      .admin-sidebar.collapsed .sidebar-brand > div:first-child{display:flex!important;padding-left:10px!important;align-items:center}
+      .admin-sidebar.collapsed .sidebar-brand > div:first-child span{display:none!important}
+      /* RTL: Use padding-right for RTL languages */
+      [dir="rtl"] .admin-sidebar.collapsed .sidebar-brand > div:first-child{padding-left:0!important;padding-right:0.5rem!important}
+      [dir="rtl"] .admin-sidebar.collapsed .sidebar-brand{padding-right:0!important}
+      /* RTL sidebar brand padding when expanded */
+      [dir="rtl"] .admin-sidebar .sidebar-brand{padding-left:0!important;padding-right:1rem!important}
+      .admin-sidebar.collapsed .sidebar-collapse-btn{
+        margin:0;position:static;transform:none;display:flex!important;align-items:center;justify-content:center
+      }
+      .admin-sidebar.collapsed .nav-link i{font-size:1.1rem}
+      .admin-sidebar.collapsed .nav{
+        overflow-y:auto;
+        -ms-overflow-style:none;
+        scrollbar-width:none;
+      }
+      .admin-sidebar.collapsed .nav::-webkit-scrollbar{display:none}
+      
+      /* RTL: Flip collapse/expand icons for RTL languages */
+      [dir="rtl"] #sidebarCollapseIcon,
+      body.TEWGTB-ARABIC #sidebarCollapseIcon,
+      body.TEWGTB-URDU #sidebarCollapseIcon {
+        transform: scaleX(-1);
+      }
+      [dir="rtl"] #sidebarExpandIcon,
+      body.TEWGTB-ARABIC #sidebarExpandIcon,
+      body.TEWGTB-URDU #sidebarExpandIcon {
+        transform: scaleX(-1);
+      }
+      /* Mobile sidebar header */
+      @media (max-width: 991.98px){
+        .admin-sidebar .sidebar-brand{padding:1rem}
+        .admin-sidebar .sidebar-brand > div:first-child{display:flex!important;align-items:center;gap:0.75rem}
+        .admin-sidebar .sidebar-brand .sidebar-collapse-btn{display:flex!important;position:static;transform:none}
+      }
+      .sidebar-collapse-btn{
+        background:transparent;
+        border:1px solid rgba(255,255,255,0.25);
+        cursor:pointer;
+        padding:5px 7px;
+        border-radius:5px;
+        transition:all .25s ease;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        min-width:26px;
+        min-height:26px;
+      }
+      .sidebar-collapse-btn i{color:#fff!important;font-size:11px!important}
+      .sidebar-collapse-btn:hover{
+        background:rgba(79,47,232,0.9);
+        border-color:transparent
+      }
+      .sidebar-collapse-btn:hover i{color:#fff!important}
+      .sidebar-collapse-btn:active{transform:scale(0.95)}
+      [data-theme="dark"] .sidebar-collapse-btn{
+        background:transparent;
+        border-color:rgba(255,255,255,0.2)
+      }
+      [data-theme="dark"] .sidebar-collapse-btn i{color:#fff!important}
+      .admin-sidebar.collapsed ~ .admin-content{margin-left:70px!important}
+      /* RTL support */
+      [dir="rtl"] .admin-sidebar{left:auto;right:0}
+      [dir="rtl"] .admin-sidebar.collapsed{width:70px!important}
+      [dir="rtl"] .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important;margin-right:70px!important}
+      /* Language-specific sidebar collapse */
+      body.TEWGTB-BANGLA .admin-sidebar.collapsed ~ .admin-content{margin-left:70px!important}
+      body.TEWGTB-ARABIC .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important;margin-right:70px!important}
+      body.TEWGTB-URDU .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important;margin-right:70px!important}
+      body.TEWGTB-HINDI .admin-sidebar.collapsed ~ .admin-content{margin-left:70px!important}
+      .admin-sidebar{display:flex;flex-direction:column;min-height:100vh}
+      .admin-sidebar .nav::-webkit-scrollbar{display:none}
+      .admin-sidebar .nav{-ms-overflow-style:none;scrollbar-width:none}
+      .admin-sidebar .sidebar-brand{height:auto;min-height:64px}
+      .admin-sidebar.collapsed .sidebar-brand{height:auto;min-height:64px}
+    </style>
+    <?php echo $__env->yieldPushContent('styles'); ?>
+</head>
+<body class="admin-body"
+      data-flash-success="<?php echo e(session('success')); ?>"
+      data-flash-error="<?php echo e(session('error')); ?>">
+
+<div class="admin-wrapper">
+
+    
+    <aside class="admin-sidebar">
+        <div class="sidebar-brand d-flex align-items-center justify-content-between w-100">
+            <div class="d-flex align-items-center gap-2">
+                <i class="fa-solid fa-circle-nodes site-logo-icon"></i>
+                <span><?php echo e($siteSetting->site_name ?? 'Portfolio CMS'); ?></span>
+            </div>
+            <button type="button" class="sidebar-collapse-btn" onclick="toggleSidebarCollapse()" title="Toggle Sidebar">
+                <i class="fa-solid fa-chevron-left collapse-icon" id="sidebarCollapseIcon"></i>
+                <i class="fa-solid fa-chevron-right btn-icon" id="sidebarExpandIcon" style="display:none"></i>
+            </button>
+        </div>
+
+        <nav class="nav flex-column pb-4">
+            <a href="<?php echo e(route('admin.dashboard')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.dashboard') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-gauge"></i><span>Dashboard</span>
+            </a>
+
+            <div class="nav-section-title"><span>Content</span></div>
+            <a href="<?php echo e(route('admin.about.edit')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.about.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-user"></i><span>About Me</span>
+            </a>
+            <a href="<?php echo e(route('admin.skills.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.skills.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-chart-simple"></i><span>Skills</span>
+            </a>
+            <a href="<?php echo e(route('admin.services.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.services.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-briefcase"></i><span>Services</span>
+            </a>
+            <a href="<?php echo e(route('admin.experience.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.experience.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-building"></i><span>Experience</span>
+            </a>
+            <a href="<?php echo e(route('admin.education.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.education.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-graduation-cap"></i><span>Education</span>
+            </a>
+            <a href="<?php echo e(route('admin.projects.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.projects.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-diagram-project"></i><span>Projects</span>
+            </a>
+            <a href="<?php echo e(route('admin.blog.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.blog.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-newspaper"></i><span>Blog Posts</span>
+            </a>
+            <a href="<?php echo e(route('admin.testimonials.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.testimonials.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-quote-left"></i><span>Testimonials</span>
+            </a>
+            <a href="<?php echo e(route('admin.tags.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.tags.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-tags"></i><span>Tags</span>
+            </a>
+
+            <div class="nav-section-title"><span>Communication</span></div>
+            <?php ($unread = \Illuminate\Support\Facades\Schema::hasTable('contact_messages') ? \App\Models\ContactMessage::unread()->count() : 0); ?>
+            <a href="<?php echo e(route('admin.messages.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.messages.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-envelope"></i><span>Messages</span>
+                <?php if($unread > 0): ?>
+                    <span class="badge bg-danger ms-auto"><?php echo e($unread); ?></span>
+                <?php endif; ?>
+            </a>
+
+            <div class="nav-section-title"><span>Administration</span></div>
+            <a href="<?php echo e(route('admin.users.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.users.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-users"></i><span>Users</span>
+            </a>
+            <a href="<?php echo e(route('admin.roles.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.roles.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-user-shield"></i><span>Roles &amp; Permissions</span>
+            </a>
+            <a href="<?php echo e(route('admin.settings.edit')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.settings.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-gear"></i><span>Site Settings</span>
+            </a>
+            <a href="<?php echo e(route('admin.seo.edit')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.seo.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-magnifying-glass-chart"></i><span>SEO Settings</span>
+            </a>
+            <a href="<?php echo e(route('admin.custom-pages.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.custom-pages.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-file-lines"></i><span>Custom Pages</span>
+            </a>
+            <a href="<?php echo e(route('admin.analytics.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.analytics.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-chart-line"></i><span>Analytics</span>
+            </a>
+            <a href="<?php echo e(route('admin.statistics.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.statistics.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-chart-bar"></i><span>Statistics</span>
+            </a>
+            <a href="<?php echo e(route('admin.faqs.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.faqs.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-question-circle"></i><span>FAQs</span>
+            </a>
+            <a href="<?php echo e(route('admin.pricing.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.pricing.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-tags"></i><span>Pricing</span>
+            </a>
+            <a href="<?php echo e(route('admin.resume.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.resume.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-file-pdf"></i><span>Resume Builder</span>
+            </a>
+            <a href="<?php echo e(route('admin.certifications.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.certifications.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-certificate"></i><span>Certifications</span>
+            </a>
+            <a href="<?php echo e(route('admin.newsletter.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.newsletter.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-envelope-open-text"></i><span>Newsletter</span>
+            </a>
+            <a href="<?php echo e(route('admin.license.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.license.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-shield-halved"></i><span>License</span>
+            </a>
+
+            <div class="nav-section-title"><span>Account</span></div>
+            <a href="<?php echo e(route('admin.profile.edit')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.profile.*') ? 'active' : ''); ?>">
+                <i class="fa-solid fa-id-badge"></i><span>My Profile</span>
+            </a>
+            <a href="<?php echo e(route('home')); ?>" target="_blank" class="nav-link">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i><span>View Website</span>
+            </a>
+            <form action="<?php echo e(route('admin.logout')); ?>" method="POST">
+                <?php echo csrf_field(); ?>
+                <button type="submit" class="nav-link border-0 bg-transparent w-100 text-start">
+                    <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
+                </button>
+            </form>
+        </nav>
+    </aside>
+
+    
+    <div class="admin-content">
+        <header class="admin-topbar">
+            <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="ms-auto d-flex align-items-center gap-3">
+                
+                <div class="gtranslate-wrap">
+                    <button type="button" class="gt-btn" onclick="document.body.classList.toggle('gt-open')">
+                        <i class="fa-solid fa-language"></i>
+                        <i class="fa-solid fa-chevron-down" style="font-size:.7em"></i>
+                    </button>
+                    <div id="google_translate_element" style="display:none"></div>
+                    <div class="lang-menu">
+                        <button type="button" onclick="pickLang('en')">English</button>
+                        <button type="button" onclick="pickLang('ar')">العربية</button>
+                        <button type="button" onclick="pickLang('bn')">বাংলা</button>
+                        <button type="button" onclick="pickLang('ur')">اردو</button>
+                        <button type="button" onclick="pickLang('hi')">हिन्दी</button>
+                        <button type="button" onclick="pickLang('tl')">Filipino</button>
+                    </div>
+                </div>
+
+                
+                <button type="button" class="theme-toggle-btn" onclick="pcToggleTheme()" aria-label="Toggle theme" title="Toggle light/dark">
+                    <i class="fa-solid fa-sun" id="pcSun"></i>
+                    <i class="fa-solid fa-moon" id="pcMoon" style="display:none"></i>
+                </button>
+
+                <a href="<?php echo e(route('admin.messages.index')); ?>" class="text-dark position-relative">
+                    <i class="fa-solid fa-bell fs-5"></i>
+                    <?php if($unread > 0): ?>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:0.6rem;"><?php echo e($unread); ?></span>
+                    <?php endif; ?>
+                </a>
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center gap-2 text-decoration-none text-dark dropdown-toggle" data-bs-toggle="dropdown">
+                        <img src="<?php echo e(auth()->user()->avatar_url); ?>" width="36" height="36" class="rounded-circle object-fit-cover" alt="Avatar">
+                        <span class="d-none d-md-inline small fw-semibold"><?php echo e(auth()->user()->name); ?></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="<?php echo e(route('admin.profile.edit')); ?>"><i class="fa-solid fa-id-badge me-2"></i>My Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form action="<?php echo e(route('admin.logout')); ?>" method="POST">
+                                <?php echo csrf_field(); ?>
+                                <button type="submit" class="dropdown-item"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <main class="admin-main">
+            <?php echo $__env->yieldContent('content'); ?>
+        </main>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.5/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+
+<script src="<?php echo e(asset('assets/js/admin.js')); ?>"></script>
+<script>
+    // Laravel File Manager popup helper
+    function openFileManager(inputId, previewId) {
+        window.addEventListener('message', function handler(e) {
+            if (typeof e.data === 'string' && e.data.startsWith('http')) {
+                var input = document.getElementById(inputId);
+                if (input) input.value = e.data;
+                var preview = previewId ? document.getElementById(previewId) : null;
+                if (preview) preview.src = e.data;
+                window.removeEventListener('message', handler);
+            }
+        });
+        window.open('<?php echo e(url('laravel-filemanager')); ?>?type=Images', 'FileManager', 'width=900,height=600');
+    }
+</script>
+
+<?php echo $__env->yieldPushContent('scripts'); ?>
+
+
+<script>
+  function pcToggleTheme(){
+    var el=document.documentElement, dark=el.getAttribute('data-theme')==='dark';
+    if(dark){el.removeAttribute('data-theme');try{localStorage.setItem('pc-theme','light')}catch(e){}}
+    else{el.setAttribute('data-theme','dark');try{localStorage.setItem('pc-theme','dark')}catch(e){}}
+    pcSyncThemeIcon();
+  }
+  function pcSyncThemeIcon(){
+    var dark=document.documentElement.getAttribute('data-theme')==='dark';
+    var s=document.getElementById('pcSun'), m=document.getElementById('pcMoon');
+    if(s&&m){s.style.display=dark?'none':'inline';m.style.display=dark?'inline':'none';}
+  }
+  pcSyncThemeIcon();
+</script>
+
+
+<script type="text/javascript">
+  function googleTranslateElementInit(){
+    new google.translate.TranslateElement({pageLanguage:'<?php echo e(\App\Models\Setting::getDefaultLanguage()); ?>',includedLanguages:'en,ar,bn,ur,hi,tl,af,sq,am,hy,az,eu,be,bs,ca,ceb,ny,zh-CN,zh-TW,co,hr,cs,da,nl,eo,et,fil,fi,fr,fy,gl,ka,de,el,gu,ht,ha,haw,iw,hmn,hu,is,ig,id,ga,it,ja,jw,kn,kk,km,rw,ko,ku,ky,lo,la,lv,lt,lb,mk,mg,ms,ml,mt,mi,mr,mn,my,ne,no,ps,fa,pl,pt,pa,ro,ru,sm,gd,sr,st,sn,sd,si,sk,sl,so,es,su,sw,sv,tg,ta,tt,te,th,tr,tk,uk,ug,uz,vi,cy,xh,yi,yo,zu',layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:false},'google_translate_element');
+  }
+  function pickLang(lang){
+    document.body.classList.remove('gt-open');
+    var host = location.hostname;
+    var val = '/en/' + lang;
+    document.cookie = 'googtrans=' + val + ';path=/';
+    document.cookie = 'googtrans=' + val + ';path=/;domain=' + host;
+    document.cookie = 'googtrans=' + val + ';path=/;domain=.' + host;
+    if(lang === 'en'){
+      document.cookie = 'googtrans=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+      document.cookie = 'googtrans=;path=/;domain=' + host + ';expires=Thu, 01 Jan 1970 00:00:00 GMT';
+      document.cookie = 'googtrans=;path=/;domain=.' + host + ';expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    }
+    location.reload();
+  }
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function(e) {
+    var gtranslateWrap = document.querySelector('.gtranslate-wrap');
+    if(gtranslateWrap && !gtranslateWrap.contains(e.target)) {
+      document.body.classList.remove('gt-open');
+    }
+  });
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+// Apply language-specific fonts
+(function() {
+  function applyFonts() {
+    var m = document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);
+    var lang = m ? m[1] : '';
+    
+    // Bengali
+    if (lang === 'bn' || lang === 'bengali') {
+      document.body.classList.add('TEWGTB-BANGLA');
+      document.body.classList.remove('TEWGTB-ARABIC');
+    }
+    // Arabic and other RTL languages
+    else if (lang === 'ar' || lang === 'ur' || lang === 'fa' || lang === 'he' || lang === 'ps' || lang === 'sd') {
+      document.body.classList.add('TEWGTB-ARABIC');
+      document.body.classList.remove('TEWGTB-BANGLA');
+    }
+    // English / others
+    else {
+      document.body.classList.remove('TEWGTB-BANGLA');
+      document.body.classList.remove('TEWGTB-ARABIC');
+    }
+  }
+  
+  // Apply on page load
+  applyFonts();
+  
+  // Watch for language changes
+  setInterval(applyFonts, 1000);
+  
+  // Also apply when translation happens
+  var observer = new MutationObserver(applyFonts);
+  observer.observe(document.body, { childList: true, subtree: true });
+})();
+
+// Sidebar collapse functionality
+(function(){
+  var sidebar = document.querySelector('.admin-sidebar');
+  var collapseIcon = document.getElementById('sidebarCollapseIcon');
+  var expandIcon = document.getElementById('sidebarExpandIcon');
+  if(localStorage.getItem('sidebar-collapsed') === 'true' && sidebar) {
+    sidebar.classList.add('collapsed');
+    if(collapseIcon) collapseIcon.style.display = 'none';
+    if(expandIcon) expandIcon.style.display = 'inline';
+  }
+})();
+
+function toggleSidebarCollapse() {
+  var sidebar = document.querySelector('.admin-sidebar');
+  var collapseIcon = document.getElementById('sidebarCollapseIcon');
+  var expandIcon = document.getElementById('sidebarExpandIcon');
+  if(sidebar) {
+    sidebar.classList.toggle('collapsed');
+    if(sidebar.classList.contains('collapsed')) {
+      if(collapseIcon) collapseIcon.style.display = 'none';
+      if(expandIcon) expandIcon.style.display = 'inline';
+      localStorage.setItem('sidebar-collapsed', 'true');
+    } else {
+      if(collapseIcon) collapseIcon.style.display = 'inline';
+      if(expandIcon) expandIcon.style.display = 'none';
+      localStorage.setItem('sidebar-collapsed', 'false');
+    }
+  }
+}
+
+// Function to update collapse icons based on RTL
+function updateCollapseIconsRTL() {
+  var m = document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);
+  var lang = m ? m[1] : '';
+  var rtl = ['ar', 'ur', 'fa', 'he', 'ps', 'sd'];
+  var isRtl = rtl.indexOf(lang) >= 0 || document.documentElement.getAttribute('dir') === 'rtl';
+  
+  var collapseIcon = document.getElementById('sidebarCollapseIcon');
+  var expandIcon = document.getElementById('sidebarExpandIcon');
+  
+  if (collapseIcon) {
+    collapseIcon.style.transform = isRtl ? 'scaleX(-1)' : 'scaleX(1)';
+  }
+  if (expandIcon) {
+    expandIcon.style.transform = isRtl ? 'scaleX(-1)' : 'scaleX(1)';
+  }
+}
+
+// Run on page load
+document.addEventListener('DOMContentLoaded', updateCollapseIconsRTL);
+
+// Run when translation changes
+setInterval(updateCollapseIconsRTL, 1000);
+</script>
+</body>
+</html>
+<?php /**PATH C:\laragon\www\portfolio-cms\resources\views/admin/layouts/app.blade.php ENDPATH**/ ?>
