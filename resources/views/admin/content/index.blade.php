@@ -322,35 +322,44 @@
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    initSortable();
+    // Wait for Bootstrap to be ready
+    setTimeout(initSortable, 100);
 });
 
 function initSortable() {
     var accordion = document.getElementById('sortableAccordion');
-    if (!accordion) return;
+    if (!accordion) {
+        console.log('Accordion not found');
+        return;
+    }
+    
+    // Destroy existing sortable if any
+    if (accordion.dataset.sortableInitialized) {
+        return;
+    }
     
     var sections = accordion.querySelectorAll('.section-item');
+    console.log('Found sections:', sections.length);
     
     // Only enable drag if there are multiple sections
     if (sections.length > 1 && typeof Sortable !== 'undefined') {
-        new Sortable(accordion, {
+        var sortable = new Sortable(accordion, {
             animation: 200,
             handle: '.handle',
             draggable: '.section-item',
             ghostClass: 'sortable-ghost',
             chosenClass: 'sortable-chosen',
             dragClass: 'sortable-drag',
+            forceFallback: true, // Use fallback for better compatibility
             onEnd: function(evt) {
+                console.log('Drag ended');
                 updateSectionsOrder();
             }
         });
+        
+        accordion.dataset.sortableInitialized = 'true';
+        console.log('Sortable initialized successfully');
     }
-    
-    // Make handle cursor grab
-    var handles = accordion.querySelectorAll('.handle');
-    handles.forEach(function(handle) {
-        handle.style.cursor = 'grab';
-    });
 }
 
 function updateSectionsOrder() {
