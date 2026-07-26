@@ -28,8 +28,14 @@
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-8">
-                @if($service->image)
-                    <img src="{{ $service->image }}" alt="{{ $service->name }}" class="img-fluid rounded-4 mb-4 w-100" loading="lazy">
+                @if($service->svg_icon || $service->icon)
+                    <div class="icon-box mb-4" style="width: 80px; height: 80px;">
+                        @if($service->svg_icon)
+                            <span class="svg-icon" style="width: 40px; height: 40px;">{!! $service->svg_icon !!}</span>
+                        @else
+                            <i class="{{ $service->icon }}" style="font-size: 2rem;"></i>
+                        @endif
+                    </div>
                 @endif
                 
                 @if($service->content)
@@ -43,7 +49,7 @@
                 {{-- Features List --}}
                 @if($service->description)
                     <div class="mt-4">
-                        <h4><i class="{{ $service->icon ?? 'fa-solid fa-check' }} text-primary-custom me-2"></i>What I Offer</h4>
+                        <h4><i class="fa-solid fa-check text-primary-custom me-2"></i>What I Offer</h4>
                         <div class="mt-3">
                             @foreach(explode("\n", $service->description) as $point)
                                 @if(trim($point))
@@ -79,7 +85,13 @@
                                 @foreach($relatedServices as $related)
                                     @if($related->slug)
                                         <a href="{{ route('services.show', $related->slug) }}" class="d-flex align-items-center gap-2 text-decoration-none text-dark">
-                                            <i class="{{ $related->icon ?? 'fa-solid fa-chevron-right' }} text-primary-custom"></i>
+                                            @if($related->svg_icon)
+                                                <span class="svg-icon" style="width: 18px; height: 18px; color: var(--color-primary);">{!! $related->svg_icon !!}</span>
+                                            @elseif($related->icon)
+                                                <i class="{{ $related->icon }} text-primary-custom"></i>
+                                            @else
+                                                <i class="fa-solid fa-chevron-right text-primary-custom"></i>
+                                            @endif
                                             <span>{{ $related->name }}</span>
                                         </a>
                                     @endif

@@ -459,6 +459,11 @@ a {
   font-size: 1.4rem;
   margin-bottom: 1.25rem;
 }
+.icon-box .svg-icon,
+.icon-box svg {
+  width: 28px;
+  height: 28px;
+}
 
 .skill-progress {
   height: 8px;

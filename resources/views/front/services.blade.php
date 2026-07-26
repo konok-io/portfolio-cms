@@ -26,7 +26,13 @@
                         <a href="{{ route('services.show', $service->slug ?? Str::slug($service->name)) }}" class="text-decoration-none">
                             <div class="service-card h-100">
                                 <div class="icon-box">
-                                    <i class="{{ $service->icon ?? 'fa-solid fa-gear' }}"></i>
+                                    @if($service->svg_icon)
+                                        <span class="svg-icon">{!! $service->svg_icon !!}</span>
+                                    @elseif($service->icon)
+                                        <i class="{{ $service->icon }}"></i>
+                                    @else
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                                    @endif
                                 </div>
                                 <h5 class="mb-2">{{ $service->name }}</h5>
                                 <p class="text-muted small mb-3">{{ Str::limit($service->description, 100) }}</p>
