@@ -77,10 +77,12 @@
                             <h5 class="card-title mb-3">Other Services</h5>
                             <div class="d-flex flex-column gap-2">
                                 @foreach($relatedServices as $related)
-                                    <a href="{{ route('services.show', $related->slug) }}" class="d-flex align-items-center gap-2 text-decoration-none text-dark">
-                                        <i class="{{ $related->icon ?? 'fa-solid fa-chevron-right' }} text-primary-custom"></i>
-                                        <span>{{ $related->name }}</span>
-                                    </a>
+                                    @if($related->slug)
+                                        <a href="{{ route('services.show', $related->slug) }}" class="d-flex align-items-center gap-2 text-decoration-none text-dark">
+                                            <i class="{{ $related->icon ?? 'fa-solid fa-chevron-right' }} text-primary-custom"></i>
+                                            <span>{{ $related->name }}</span>
+                                        </a>
+                                    @endif
                                 @endforeach
                             </div>
                         </div>
