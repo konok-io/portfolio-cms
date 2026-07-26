@@ -25,10 +25,10 @@ class HomeController extends Controller
         ]);
 
         $skills         = Skill::active()->ordered()->get();
-        $services       = Service::active()->ordered()->get();
+        $services       = Service::active()->ordered()->take(4)->get();
         $experiences    = Experience::ordered()->get();
         $educations     = Education::ordered()->get();
-        $projects       = Project::active()->ordered()->with('category')->take(8)->get();
+        $projects       = Project::active()->ordered()->with('category')->take(4)->get();
         $testimonials   = Testimonial::active()->ordered()->get();
         $blogs          = Blog::published()->with('category')->latest('published_at')->take(3)->get();
         $certifications = Certification::where('is_active', true)->orderBy('sort_order')->get();
