@@ -89,12 +89,9 @@
                         </button>
                         <div id="google_translate_element" style="display:none"></div>
                     <div class="lang-menu" role="listbox" aria-label="Language selection">
-                        <button type="button" onclick="pickLang('en')" role="option" aria-label="English">English</button>
-                        <button type="button" onclick="pickLang('ar')" role="option" aria-label="Arabic">العربية</button>
-                        <button type="button" onclick="pickLang('bn')" role="option" aria-label="Bengali">বাংলা</button>
-                        <button type="button" onclick="pickLang('ur')" role="option" aria-label="Urdu">اردو</button>
-                        <button type="button" onclick="pickLang('hi')" role="option" aria-label="Hindi">हिन्दी</button>
-                        <button type="button" onclick="pickLang('tl')" role="option" aria-label="Filipino">Filipino</button>
+                        <button type="button" onclick="pickLang('en')" role="option" aria-label="English">🇺🇸 English</button>
+                        <button type="button" onclick="pickLang('bn')" role="option" aria-label="Bengali">🇧🇩 বাংলা</button>
+                        <button type="button" onclick="pickLang('ar')" role="option" aria-label="Arabic">🇸🇦 العربية</button>
                     </div>
                     </div>
                     <button type="button" class="theme-toggle-btn" onclick="pcToggleTheme()" aria-label="Toggle theme">
