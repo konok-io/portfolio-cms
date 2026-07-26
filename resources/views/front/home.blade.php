@@ -43,7 +43,8 @@
                             <i class="fa-solid fa-briefcase"></i>
                         </div>
                         <div>
-                            <div class="fw-bold">{{ $experiences->count() }}+ {{ page_content('home', 'hero_badge', app()->getLocale()) }}</div>
+                            <div class="fw-bold">{{ $experiences->count() }}+</div>
+                            <div class="small text-muted">Years Experience</div>
                         </div>
                     </div>
                 </div>
