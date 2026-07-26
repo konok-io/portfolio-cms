@@ -463,10 +463,8 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
     document.body.classList.remove('gt-open');
     // Store in localStorage for persistence
     localStorage.setItem('portfolio_locale', lang);
-    // Also set cookie for server-side
-    document.cookie = 'locale=' + lang + ';path=/;max-age=' + (60*60*24*365);
-    // Reload to apply new language
-    location.reload();
+    // Navigate to language switch route
+    window.location.href = '/language/' + lang;
   }
   // Close dropdown when clicking outside
   document.addEventListener('click', function(e) {

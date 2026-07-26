@@ -12,7 +12,7 @@ class LanguageController extends Controller
      */
     public function switch(string $locale): \Illuminate\Http\RedirectResponse
     {
-        $availableLocales = ['en', 'bn'];
+        $availableLocales = ['en', 'bn', 'ar'];
 
         if (!in_array($locale, $availableLocales)) {
             $locale = 'en';
