@@ -226,18 +226,7 @@ class ContentController extends Controller
             'section_shortcodes' => []
         ];
 
-        // 3. FOOTER - AT THE BOTTOM
-        $pages['footer'] = [
-            'name' => 'Footer',
-            'sections' => [
-                'general' => [
-                    'name' => 'Footer Content',
-                    'fields' => ['tagline', 'quick_links_title', 'contact_title', 'newsletter_title', 'newsletter_text', 'newsletter_placeholder', 'copyright', 'copyright_prefix']
-                ],
-            ]
-        ];
-
-        // 4. CUSTOM PAGES - AFTER FOOTER
+        // 3. CUSTOM PAGES - BEFORE FOOTER
         $customPages = CustomPage::orderBy('sort_order')->get();
         foreach ($customPages as $customPage) {
             $pageKey = 'custom_' . $customPage->id;
@@ -250,6 +239,17 @@ class ContentController extends Controller
                 ]
             ];
         }
+
+        // 4. FOOTER - ALWAYS AT THE BOTTOM
+        $pages['footer'] = [
+            'name' => 'Footer',
+            'sections' => [
+                'general' => [
+                    'name' => 'Footer Content',
+                    'fields' => ['tagline', 'quick_links_title', 'contact_title', 'newsletter_title', 'newsletter_text', 'newsletter_placeholder', 'copyright', 'copyright_prefix']
+                ],
+            ]
+        ];
 
         return $pages;
     }
