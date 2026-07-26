@@ -251,21 +251,22 @@ class ContentController extends Controller
                     ],
                 ]
             ],
-            'custom_pages' => [
-                'name' => 'Custom Pages',
-                'sections' => []
-            ],
         ];
 
-        // Add all custom pages as sections under 'custom_pages'
+        // Add each custom page as a separate tab
         $customPages = CustomPage::orderBy('sort_order')->get();
         foreach ($customPages as $customPage) {
             $pageKey = 'custom_' . $customPage->id;
-            $pages['custom_pages']['sections'][$pageKey] = [
+            $pages[$pageKey] = [
                 'name' => $customPage->title . ($customPage->is_published ? '' : ' (Draft)'),
                 'is_custom' => true,
                 'custom_id' => $customPage->id,
-                'fields' => ['eyebrow', 'title', 'subtitle']
+                'sections' => [
+                    'page' => [
+                        'name' => 'Page Header',
+                        'fields' => ['eyebrow', 'title', 'subtitle']
+                    ],
+                ]
             ];
         }
 
