@@ -78,7 +78,15 @@
                                                                 data-bs-target="#{{ $collapseId }}"
                                                                 style="color: inherit;">
                                                             <strong>{{ $sectionName }}</strong>
-                                                            <span class="badge bg-secondary ms-2">{{ count($sectionFields) }} fields</span>
+                                                            @if(isset($section['is_dynamic']) && $section['is_dynamic'] && isset($section['dynamic_type']))
+                                                                @php
+                                                                    $dynamicType = $section['dynamic_type'];
+                                                                    $itemCount = count($dynamicItems[$dynamicType] ?? []);
+                                                                @endphp
+                                                                <span class="badge bg-primary ms-2">{{ $itemCount }} items</span>
+                                                            @else
+                                                                <span class="badge bg-secondary ms-2">{{ count($sectionFields) }} fields</span>
+                                                            @endif
                                                         </button>
                                                         <i class="fa-solid fa-chevron-down text-muted ms-2 collapse-icon"></i>
                                                     </div>
@@ -100,9 +108,9 @@
                                                                         
                                                                         // For dynamic sections, use the actual link title
                                                                         $fieldLabel = $field;
-                                                                        if (isset($section['is_dynamic']) && $section['is_dynamic']) {
-                                                                            // For footer quick links
-                                                                            if ($activeTab === 'footer' && str_starts_with($field, 'link_')) {
+                                                                        if (isset($section['is_dynamic']) && $section['is_dynamic'] && $activeTab === 'footer') {
+                                                                            // For footer quick links from menu items
+                                                                            if (str_starts_with($field, 'link_')) {
                                                                                 $linkNum = (int) substr($field, 5) - 1;
                                                                                 if (isset($footerLinks[$linkNum])) {
                                                                                     $fieldLabel = $footerLinks[$linkNum]['title'] ?? $field;
@@ -141,7 +149,7 @@
                                                                     <hr class="my-4">
                                                                     <h6 class="text-uppercase text-muted mb-3">
                                                                         <i class="fa-solid fa-list me-1"></i>
-                                                                        {{ ucfirst($dynamicType) }} Items ({{ count($items) }} items)
+                                                                        {{ ucfirst($dynamicType) }} ({{ count($items) }})
                                                                     </h6>
                                                                     
                                                                     <div class="table-responsive">
@@ -149,8 +157,8 @@
                                                                             <thead class="table-light">
                                                                                 <tr>
                                                                                     <th width="50">#</th>
-                                                                                    <th>Item Details</th>
-                                                                                    <th>Translation Status</th>
+                                                                                    <th>Item</th>
+                                                                                    <th>Translation</th>
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>
@@ -191,24 +199,25 @@
                                                                     </div>
                                                                     
                                                                     <div class="alert alert-light border small mt-3">
-                                                                        <i class="fa-solid fa-info-circle me-1"></i>
+                                                                        <i class="fa-solid fa-link me-1"></i>
+                                                                        Edit from Manager: 
                                                                         @if($dynamicType === 'skills')
-                                                                            Edit translations from <a href="{{ route('admin.skills.index') }}">Skills Manager</a>
+                                                                            <a href="{{ route('admin.skills.index') }}">Skills</a>
                                                                         @elseif($dynamicType === 'experience')
-                                                                            Edit translations from <a href="{{ route('admin.experience.index') }}">Experience Manager</a>
+                                                                            <a href="{{ route('admin.experience.index') }}">Experience</a>
                                                                         @elseif($dynamicType === 'education')
-                                                                            Edit translations from <a href="{{ route('admin.education.index') }}">Education Manager</a>
+                                                                            <a href="{{ route('admin.education.index') }}">Education</a>
                                                                         @elseif($dynamicType === 'portfolio')
-                                                                            Edit translations from <a href="{{ route('admin.projects.index') }}">Projects Manager</a>
+                                                                            <a href="{{ route('admin.projects.index') }}">Projects</a>
                                                                         @elseif($dynamicType === 'testimonials')
-                                                                            Edit translations from <a href="{{ route('admin.testimonials.index') }}">Testimonials Manager</a>
+                                                                            <a href="{{ route('admin.testimonials.index') }}">Testimonials</a>
                                                                         @elseif($dynamicType === 'certifications')
-                                                                            Edit translations from <a href="{{ route('admin.certifications.index') }}">Certifications Manager</a>
+                                                                            <a href="{{ route('admin.certifications.index') }}">Certifications</a>
                                                                         @endif
                                                                     </div>
                                                                 @else
-                                                                    <div class="alert alert-warning mt-3">
-                                                                        <i class="fa-solid fa-triangle-exclamation me-1"></i>
+                                                                    <div class="alert alert-info mt-3">
+                                                                        <i class="fa-solid fa-info-circle me-1"></i>
                                                                         No {{ $dynamicType }} found. 
                                                                         @if($dynamicType === 'skills')
                                                                             <a href="{{ route('admin.skills.index') }}">Add Skills</a>
@@ -225,11 +234,6 @@
                                                                         @endif
                                                                     </div>
                                                                 @endif
-                                                            @elseif(empty($sectionFields) && (!isset($section['is_dynamic']) || !$section['is_dynamic']))
-                                                                <div class="text-muted">
-                                                                    <i class="fa-solid fa-database me-1"></i>
-                                                                    This section displays dynamic content from the database.
-                                                                </div>
                                                             @endif
                                                         </div>
                                                     </div>

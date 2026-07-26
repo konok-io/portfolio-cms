@@ -208,6 +208,18 @@ class ContentController extends Controller
     {
         $pages = [];
         
+        // 0. HEADER - Site-wide header content
+        $pages['header'] = [
+            'name' => 'Header',
+            'sections' => [
+                'header' => [
+                    'name' => 'Header Content',
+                    'fields' => ['header_cta_text', 'header_cta_icon'],
+                    'is_dynamic' => false,
+                ],
+            ]
+        ];
+        
         // Get dynamic footer links from menu items
         $footerLinks = $this->getFooterLinks();
         $footerLinkFields = [];
@@ -432,6 +444,12 @@ class ContentController extends Controller
                 'fields' => $footerLinkFields,
                 'is_dynamic' => true,
                 'dynamic_info' => 'Links are automatically pulled from Footer Menu items'
+            ],
+            'contact_info' => [
+                'name' => 'Contact Info',
+                'fields' => ['contact_email_label', 'contact_phone_label', 'contact_address_label'],
+                'is_dynamic' => false,
+                'dynamic_info' => 'Email, Phone, Address values are from Site Settings'
             ]
         ];
         
