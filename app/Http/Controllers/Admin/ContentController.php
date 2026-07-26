@@ -40,7 +40,7 @@ class ContentController extends Controller
         // Group fields - multilingual structure
         $groupedData = [];
         foreach ($data as $key => $value) {
-            if ($key !== 'page' && $key !== '_token') {
+            if ($key !== 'page' && $key !== '_token' && $key !== 'sections_order') {
                 // Check if field has language suffix
                 if (preg_match('/^(.+)_(' . implode('|', $this->getSupportedLocales()) . ')$/', $key, $matches)) {
                     $fieldName = $matches[1];
@@ -58,7 +58,18 @@ class ContentController extends Controller
         // Save to settings
         $setting = Setting::instance();
         $pageContent = $setting->page_content ?? [];
-        $pageContent[$page] = array_merge($pageContent[$page] ?? [], $groupedData);
+        
+        // Get existing sections order if not in current request
+        $existingContent = $pageContent[$page] ?? [];
+        $sectionsOrder = $request->input('sections_order') ?? ($existingContent['_sections_order'] ?? null);
+        
+        $pageContent[$page] = array_merge($existingContent, $groupedData);
+        
+        // Save sections order if changed
+        if ($sectionsOrder) {
+            $pageContent[$page]['_sections_order'] = explode(',', $sectionsOrder);
+        }
+        
         $setting->page_content = $pageContent;
         $setting->save();
 
@@ -66,32 +77,6 @@ class ContentController extends Controller
         PageContent::clearCache();
 
         return redirect()->route('admin.content.index', ['tab' => $page])->with('success', 'Content updated successfully!');
-    }
-
-    /**
-     * Update page sections order (for default pages)
-     */
-    public function updateSectionsOrder(Request $request)
-    {
-        $request->validate([
-            'page' => 'required|string',
-            'sections_order' => 'required|string',
-        ]);
-
-        $page = $request->input('page');
-        $sectionsOrder = explode(',', $request->input('sections_order'));
-
-        // Save sections order
-        $setting = Setting::instance();
-        $pageContent = $setting->page_content ?? [];
-        $pageContent[$page]['_sections_order'] = $sectionsOrder;
-        $setting->page_content = $pageContent;
-        $setting->save();
-
-        // Clear cache
-        PageContent::clearCache();
-
-        return redirect()->route('admin.content.index', ['tab' => $page])->with('success', 'Sections order updated successfully!');
     }
 
     /**
@@ -147,83 +132,152 @@ class ContentController extends Controller
         $pages['home'] = [
             'name' => 'Home Page',
             'page_key' => 'home',
-            'fields' => ['eyebrow', 'button_hire', 'button_cv', 'badge'],
             'section_shortcodes' => [
-                'hero' => 'Hero Section',
-                'why' => 'Why Choose Me',
-                'skills' => 'Skills',
-                'services' => 'Services',
-                'experience' => 'Experience',
-                'education' => 'Education',
-                'portfolio' => 'Portfolio',
-                'testimonials' => 'Testimonials',
-                'certifications' => 'Certifications',
-                'blog' => 'Blog',
-                'contact' => 'Contact',
+                'hero' => [
+                    'name' => 'Hero Section',
+                    'fields' => ['eyebrow', 'button_hire', 'button_cv', 'badge']
+                ],
+                'why' => [
+                    'name' => 'Why Choose Me',
+                    'fields' => ['why_eyebrow', 'why_title', 'why_card1_title', 'why_card1_text', 'why_card2_title', 'why_card2_text', 'why_card3_title', 'why_card3_text']
+                ],
+                'skills' => [
+                    'name' => 'Skills Section',
+                    'fields' => []
+                ],
+                'services' => [
+                    'name' => 'Services Section',
+                    'fields' => ['services_eyebrow', 'services_title', 'services_subtitle', 'services_button']
+                ],
+                'experience' => [
+                    'name' => 'Experience Section',
+                    'fields' => ['experience_eyebrow', 'experience_title']
+                ],
+                'education' => [
+                    'name' => 'Education Section',
+                    'fields' => ['education_eyebrow', 'education_title']
+                ],
+                'portfolio' => [
+                    'name' => 'Portfolio Section',
+                    'fields' => ['portfolio_eyebrow', 'portfolio_title', 'portfolio_subtitle']
+                ],
+                'testimonials' => [
+                    'name' => 'Testimonials Section',
+                    'fields' => ['testimonials_eyebrow', 'testimonials_title']
+                ],
+                'certifications' => [
+                    'name' => 'Certifications Section',
+                    'fields' => ['certifications_eyebrow', 'certifications_title']
+                ],
+                'blog' => [
+                    'name' => 'Blog Section',
+                    'fields' => ['blog_eyebrow', 'blog_title', 'blog_subtitle', 'blog_card_link']
+                ],
+                'contact' => [
+                    'name' => 'Contact Section',
+                    'fields' => ['contact_eyebrow', 'contact_title', 'contact_text', 'contact_label_email', 'contact_label_phone', 'contact_label_location', 'contact_form_name', 'contact_form_email', 'contact_form_phone', 'contact_form_subject', 'contact_form_message', 'contact_form_button']
+                ],
             ]
         ];
 
         $pages['about'] = [
             'name' => 'About Page',
             'page_key' => 'about',
-            'fields' => ['eyebrow', 'title', 'intro_button'],
-            'section_shortcodes' => []
+            'sections' => [
+                'page' => [
+                    'name' => 'Page Content',
+                    'fields' => ['eyebrow', 'title', 'intro_button'],
+                ],
+            ]
         ];
 
         $pages['services'] = [
             'name' => 'Services Page',
             'page_key' => 'services',
-            'fields' => ['eyebrow', 'title', 'subtitle', 'empty_text', 'cta_heading', 'cta_button'],
-            'section_shortcodes' => []
+            'sections' => [
+                'page' => [
+                    'name' => 'Page Content',
+                    'fields' => ['eyebrow', 'title', 'subtitle', 'empty_text', 'cta_heading', 'cta_button'],
+                ],
+            ]
         ];
 
         $pages['portfolio'] = [
             'name' => 'Portfolio Page',
             'page_key' => 'portfolio',
-            'fields' => ['eyebrow', 'title', 'subtitle', 'filter_all', 'filter_label', 'empty_text', 'empty_button', 'card_link', 'card_client'],
-            'section_shortcodes' => []
+            'sections' => [
+                'page' => [
+                    'name' => 'Page Content',
+                    'fields' => ['eyebrow', 'title', 'subtitle', 'filter_all', 'filter_label', 'empty_text', 'empty_button', 'card_link', 'card_client'],
+                ],
+            ]
         ];
 
         $pages['blog'] = [
             'name' => 'Blog Page',
             'page_key' => 'blog',
-            'fields' => ['eyebrow', 'title', 'subtitle', 'filter_label', 'filter_clear', 'empty_text', 'empty_button', 'card_link'],
             'section_shortcodes' => [
-                'page' => 'Page Header',
-                'sidebar' => 'Sidebar',
+                'page' => [
+                    'name' => 'Page Header',
+                    'fields' => ['eyebrow', 'title', 'subtitle']
+                ],
+                'sidebar' => [
+                    'name' => 'Sidebar',
+                    'fields' => ['filter_label', 'filter_clear', 'empty_text', 'empty_button', 'card_link']
+                ],
             ]
         ];
 
         $pages['contact'] = [
             'name' => 'Contact Page',
             'page_key' => 'contact',
-            'fields' => ['eyebrow', 'title', 'subtitle', 'form_name', 'form_email', 'form_phone', 'form_subject', 'form_message', 'form_button', 'info_title', 'info_email', 'info_phone', 'info_address', 'map_placeholder'],
             'section_shortcodes' => [
-                'page' => 'Page Header',
-                'form' => 'Contact Form',
-                'info' => 'Contact Info',
+                'page' => [
+                    'name' => 'Page Header',
+                    'fields' => ['eyebrow', 'title', 'subtitle']
+                ],
+                'form' => [
+                    'name' => 'Contact Form',
+                    'fields' => ['form_name', 'form_email', 'form_phone', 'form_subject', 'form_message', 'form_button']
+                ],
+                'info' => [
+                    'name' => 'Contact Info',
+                    'fields' => ['info_title', 'info_email', 'info_phone', 'info_address', 'map_placeholder']
+                ],
             ]
         ];
 
         $pages['faq'] = [
             'name' => 'FAQ Page',
             'page_key' => 'faq',
-            'fields' => ['eyebrow', 'title', 'subtitle'],
-            'section_shortcodes' => []
+            'sections' => [
+                'page' => [
+                    'name' => 'Page Content',
+                    'fields' => ['eyebrow', 'title', 'subtitle'],
+                ],
+            ]
         ];
 
         $pages['resume'] = [
             'name' => 'Resume Page',
             'page_key' => 'resume',
-            'fields' => ['eyebrow', 'title', 'subtitle'],
-            'section_shortcodes' => []
+            'sections' => [
+                'page' => [
+                    'name' => 'Page Content',
+                    'fields' => ['eyebrow', 'title', 'subtitle'],
+                ],
+            ]
         ];
 
         $pages['pricing'] = [
             'name' => 'Pricing Page',
             'page_key' => 'pricing',
-            'fields' => ['eyebrow', 'title', 'subtitle'],
-            'section_shortcodes' => []
+            'sections' => [
+                'page' => [
+                    'name' => 'Page Content',
+                    'fields' => ['eyebrow', 'title', 'subtitle'],
+                ],
+            ]
         ];
 
         // 3. CUSTOM PAGES - BEFORE FOOTER

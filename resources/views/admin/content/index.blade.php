@@ -30,104 +30,129 @@
                             @php
                                 $currentPage = $pages[$activeTab] ?? null;
                                 $pageContent = $content[$activeTab] ?? [];
-                                $sectionsOrder = $pageContent['_sections_order'] ?? [];
+                                
+                                // Determine sections to display
+                                $sectionsToShow = [];
+                                if ($currentPage) {
+                                    // Check for sections (header, footer, about, etc.)
+                                    if (isset($currentPage['sections'])) {
+                                        $sectionsToShow = $currentPage['sections'];
+                                    }
+                                    // Check for section_shortcodes (home, blog, contact)
+                                    elseif (isset($currentPage['section_shortcodes'])) {
+                                        $sectionsToShow = $currentPage['section_shortcodes'];
+                                    }
+                                }
+                                
+                                // Get saved order or default
+                                $sectionsOrder = $pageContent['_sections_order'] ?? array_keys($sectionsToShow);
                             @endphp
 
-                            @if($currentPage)
-                                {{-- Header Content Form --}}
-                                <form action="{{ route('admin.content.update') }}" method="POST" class="mb-4">
+                            @if($currentPage && !empty($sectionsToShow))
+                                <form action="{{ route('admin.content.update') }}" method="POST" id="content-form">
                                     @csrf
                                     <input type="hidden" name="page" value="{{ $activeTab }}">
                                     
-                                    @if(isset($currentPage['sections']))
-                                    @foreach($currentPage['sections'] as $sectionKey => $section)
-                                        <div class="card mb-3">
-                                            <div class="card-header bg-light">
-                                                <h5 class="mb-0">{{ $section['name'] }}</h5>
-                                            </div>
-                                            <div class="card-body">
-                                                @foreach($section['fields'] as $field)
-                                                    @php
-                                                        $fieldData = $pageContent[$field] ?? [];
-                                                        $enValue = is_array($fieldData) ? ($fieldData['en'] ?? '') : '';
-                                                        $bnValue = is_array($fieldData) ? ($fieldData['bn'] ?? '') : '';
-                                                        $arValue = is_array($fieldData) ? ($fieldData['ar'] ?? '') : '';
-                                                        if (empty($enValue) && !is_array($fieldData)) {
-                                                            $enValue = $fieldData;
-                                                            $bnValue = $fieldData;
-                                                            $arValue = $fieldData;
-                                                        }
-                                                    @endphp
-                                                    <div class="mb-3">
-                                                        <label class="form-label">
-                                                            <strong>{{ ucwords(str_replace('_', ' ', $field)) }}</strong>
-                                                        </label>
-                                                        <div class="input-group mb-2">
-                                                            <span class="input-group-text" style="min-width: 80px;"><span class="fi fi-gb"></span> EN</span>
-                                                            <input type="text" name="{{ $field }}_en" class="form-control" value="{{ $enValue }}" placeholder="English">
-                                                        </div>
-                                                        <div class="input-group mb-2">
-                                                            <span class="input-group-text" style="min-width: 80px;"><span class="fi fi-bd"></span> বাংলা</span>
-                                                            <input type="text" name="{{ $field }}_bn" class="form-control" value="{{ $bnValue }}" placeholder="বাংলা">
-                                                        </div>
-                                                        <div class="input-group">
-                                                            <span class="input-group-text" style="min-width: 80px;"><span class="fi fi-sa"></span> العربية</span>
-                                                            <input type="text" dir="rtl" name="{{ $field }}_ar" class="form-control" value="{{ $arValue }}" placeholder="العربية">
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                            </div>
+                                    {{-- Section Order --}}
+                                    @if(count($sectionsToShow) > 1)
+                                    <div class="alert alert-info d-flex align-items-center mb-3" role="alert">
+                                        <i class="fa-solid fa-info-circle me-2"></i>
+                                        <div>
+                                            <strong>Drag and drop</strong> the sections below to reorder them on the page.
                                         </div>
-                                    @endforeach
+                                    </div>
                                     @endif
                                     
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fa-solid fa-save me-1"></i> Save Changes
-                                    </button>
-                                </form>
-
-                                {{-- Section Order (if available) --}}
-                                @if(!empty($currentPage['section_shortcodes']))
-                                    @php
-                                        $shortcodes = $currentPage['section_shortcodes'];
-                                        $order = !empty($sectionsOrder) ? $sectionsOrder : array_keys($shortcodes);
-                                    @endphp
+                                    <div class="accordion" id="sectionsAccordion">
+                                        @php $sectionIndex = 0; @endphp
+                                        @foreach($sectionsOrder as $sectionKey)
+                                            @if(isset($sectionsToShow[$sectionKey]))
+                                                @php
+                                                    $section = $sectionsToShow[$sectionKey];
+                                                    $sectionName = is_array($section) ? ($section['name'] ?? $sectionKey) : $section;
+                                                    $sectionFields = is_array($section) ? ($section['fields'] ?? []) : [];
+                                                    $sectionIndex++;
+                                                    $collapseId = 'section-' . $sectionIndex;
+                                                @endphp
+                                                
+                                                <div class="accordion-item section-item" data-section="{{ $sectionKey }}">
+                                                    <h2 class="accordion-header">
+                                                        <button class="accordion-button {{ $sectionIndex > 1 ? 'collapsed' : '' }}" 
+                                                                type="button" 
+                                                                data-bs-toggle="collapse" 
+                                                                data-bs-target="#{{ $collapseId }}"
+                                                                aria-expanded="{{ $sectionIndex === 1 ? 'true' : 'false' }}">
+                                                            <i class="fa-solid fa-grip-vertical me-3 text-muted grip-handle"></i>
+                                                            <strong>{{ $sectionName }}</strong>
+                                                            <span class="badge bg-secondary ms-2">{{ count($sectionFields) }} fields</span>
+                                                        </button>
+                                                    </h2>
+                                                    <div id="{{ $collapseId }}" 
+                                                         class="accordion-collapse collapse {{ $sectionIndex === 1 ? 'show' : '' }}" 
+                                                         data-bs-parent="#sectionsAccordion">
+                                                        <div class="accordion-body">
+                                                            @if(!empty($sectionFields))
+                                                                @foreach($sectionFields as $field)
+                                                                    @php
+                                                                        $fieldData = $pageContent[$field] ?? [];
+                                                                        $enValue = is_array($fieldData) ? ($fieldData['en'] ?? '') : '';
+                                                                        $bnValue = is_array($fieldData) ? ($fieldData['bn'] ?? '') : '';
+                                                                        $arValue = is_array($fieldData) ? ($fieldData['ar'] ?? '') : '';
+                                                                        if (empty($enValue) && !is_array($fieldData)) {
+                                                                            $enValue = $fieldData;
+                                                                            $bnValue = $fieldData;
+                                                                            $arValue = $fieldData;
+                                                                        }
+                                                                    @endphp
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">
+                                                                            <strong>{{ ucwords(str_replace('_', ' ', $field)) }}</strong>
+                                                                        </label>
+                                                                        <div class="input-group mb-2">
+                                                                            <span class="input-group-text" style="min-width: 80px;"><span class="fi fi-gb"></span> EN</span>
+                                                                            <input type="text" name="{{ $field }}_en" class="form-control" value="{{ $enValue }}" placeholder="English">
+                                                                        </div>
+                                                                        <div class="input-group mb-2">
+                                                                            <span class="input-group-text" style="min-width: 80px;"><span class="fi fi-bd"></span> বাংলা</span>
+                                                                            <input type="text" name="{{ $field }}_bn" class="form-control" value="{{ $bnValue }}" placeholder="বাংলা">
+                                                                        </div>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-text" style="min-width: 80px;"><span class="fi fi-sa"></span> العربية</span>
+                                                                            <input type="text" dir="rtl" name="{{ $field }}_ar" class="form-control" value="{{ $arValue }}" placeholder="العربية">
+                                                                        </div>
+                                                                    </div>
+                                                                @endforeach
+                                                            @else
+                                                                <div class="text-muted">
+                                                                    <i class="fa-solid fa-info-circle me-1"></i>
+                                                                    This section displays dynamic content from the database.
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    </div>
                                     
-                                    <form action="{{ route('admin.content.updateSectionsOrder') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="page" value="{{ $activeTab }}">
-                                        
-                                        <div class="card">
-                                            <div class="card-header bg-light">
-                                                <h5 class="mb-0">
-                                                    <i class="fa-solid fa-sort me-2"></i>
-                                                    Page Sections Order
-                                                </h5>
-                                                <small class="text-muted">Drag and drop to reorder sections. The order will be reflected on the frontend.</small>
-                                            </div>
-                                            <div class="card-body">
-                                                <ul class="list-group sortable" id="sortable-sections">
-                                                    @foreach($order as $shortcode)
-                                                        @if(isset($shortcodes[$shortcode]))
-                                                            <li class="list-group-item d-flex justify-content-between align-items-center" data-id="{{ $shortcode }}">
-                                                                <span>
-                                                                    <i class="fa-solid fa-grip-vertical me-2 text-muted"></i>
-                                                                    <strong>[{{ $shortcode }}]</strong> - {{ $shortcodes[$shortcode] }}
-                                                                </span>
-                                                            </li>
-                                                        @endif
-                                                    @endforeach
-                                                </ul>
-                                                <input type="hidden" name="sections_order" id="sections_order" value="{{ implode(',', $order) }}">
-                                            </div>
-                                            <div class="card-footer">
-                                                <button type="submit" class="btn btn-success">
-                                                    <i class="fa-solid fa-save me-1"></i> Save Section Order
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                @endif
+                                    <input type="hidden" name="sections_order" id="sections_order" value="{{ implode(',', $sectionsOrder) }}">
+                                    
+                                    <div class="mt-3">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fa-solid fa-save me-1"></i> Save Changes
+                                        </button>
+                                    </div>
+                                </form>
+                            @elseif($currentPage)
+                                <div class="alert alert-warning">
+                                    <i class="fa-solid fa-triangle-exclamation me-2"></i>
+                                    No content sections configured for this page.
+                                </div>
+                            @else
+                                <div class="alert alert-danger">
+                                    <i class="fa-solid fa-circle-xmark me-2"></i>
+                                    Page not found.
+                                </div>
                             @endif
                         </div>
                     </div>
@@ -143,8 +168,39 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 <style>
 .input-group-text { font-size: 0.85rem; }
-.sortable { cursor: move; }
-.sortable li:hover { background-color: #f8f9fa; }
+.accordion-button:not(.collapsed) {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+.section-item {
+    border: 1px solid rgba(0,0,0,0.125);
+    margin-bottom: -1px;
+}
+.section-item:first-child {
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+.section-item:last-child {
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    margin-bottom: 0;
+}
+.grip-handle {
+    cursor: grab;
+}
+.grip-handle:active {
+    cursor: grabbing;
+}
+.sortable-ghost {
+    opacity: 0.4;
+    background-color: #cfe2ff;
+}
+.sortable-chosen {
+    background-color: #e9ecef;
+}
 </style>
 @endsection
 
@@ -152,20 +208,28 @@
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    var el = document.getElementById('sortable-sections');
-    if (el) {
-        new Sortable(el, {
-            animation: 150,
-            ghostClass: 'bg-light',
+    // Initialize Sortable for accordion items
+    var accordion = document.getElementById('sectionsAccordion');
+    if (accordion) {
+        new Sortable(accordion, {
+            animation: 200,
+            handle: '.grip-handle',
+            ghostClass: 'sortable-ghost',
+            chosenClass: 'sortable-chosen',
+            dragClass: 'sortable-drag',
             onEnd: function(evt) {
-                var items = el.children;
-                var order = [];
-                for (var i = 0; i < items.length; i++) {
-                    order.push(items[i].getAttribute('data-id'));
-                }
-                document.getElementById('sections_order').value = order.join(',');
+                updateSectionsOrder();
             }
         });
+    }
+    
+    function updateSectionsOrder() {
+        var items = accordion.querySelectorAll('.section-item');
+        var order = [];
+        for (var i = 0; i < items.length; i++) {
+            order.push(items[i].getAttribute('data-section'));
+        }
+        document.getElementById('sections_order').value = order.join(',');
     }
 });
 </script>
