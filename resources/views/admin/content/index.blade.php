@@ -51,6 +51,7 @@
                                                     @foreach($section['fields'] as $field)
                                                         @php
                                                             $fullKey = $pageKey . '.' . $sectionKey . '.' . $field;
+                                                            $inputName = $pageKey . '.' . $sectionKey . '.' . $field;
                                                             $pageData = $content[$pageKey] ?? [];
                                                             $sectionData = $pageData[$sectionKey] ?? [];
                                                             $value = $sectionData[$field]['default'] ?? $sectionData[$field] ?? '';
@@ -58,7 +59,7 @@
                                                         <div class="col-md-6 mb-3">
                                                             <label class="form-label">{{ ucwords(str_replace('_', ' ', $field)) }}</label>
                                                             <input type="text" 
-                                                                   name="{{ $pageKey }}_{{ $sectionKey }}_{{ $field }}" 
+                                                                   name="{{ $inputName }}" 
                                                                    class="form-control" 
                                                                    value="{{ $value }}"
                                                                    placeholder="Enter {{ $field }}">

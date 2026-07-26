@@ -33,21 +33,41 @@ class ContentController extends Controller
         $page = $request->input('page');
         $data = $request->except(['_token', 'page']);
 
-        // Group by language
+        // Group by language and structure
         $groupedData = [];
         foreach ($data as $key => $value) {
-            $parts = explode('_', $key);
-            $suffix = end($parts);
-            
-            if (in_array($suffix, ['en', 'bn', 'ar'])) {
-                $baseKey = str_replace('_' . $suffix, '', $key);
-                $groupedData[$baseKey][$suffix] = $value;
-                // Set default to English if not already set
-                if (!isset($groupedData[$baseKey]['default'])) {
-                    $groupedData[$baseKey]['default'] = $value;
+            // Check if key contains dots (new format: page.section.field)
+            if (str_contains($key, '.')) {
+                $parts = explode('.', $key);
+                $lastPart = end($parts);
+                $secondLast = $parts[count($parts) - 2];
+                
+                // Check if last part is a language code
+                if (in_array($lastPart, ['en', 'bn', 'ar'])) {
+                    $fieldKey = $secondLast;
+                    $groupedData[$fieldKey] = $groupedData[$fieldKey] ?? [];
+                    $groupedData[$fieldKey][$lastPart] = $value;
+                    if (!isset($groupedData[$fieldKey]['default'])) {
+                        $groupedData[$fieldKey]['default'] = $value;
+                    }
+                } else {
+                    // No language suffix, use entire value
+                    $groupedData[$lastPart] = ['default' => $value, 'en' => $value, 'bn' => $value, 'ar' => $value];
                 }
             } else {
-                $groupedData[$key] = ['default' => $value, 'en' => $value, 'bn' => $value, 'ar' => $value];
+                // Old underscore format (keep for compatibility)
+                $parts = explode('_', $key);
+                $suffix = end($parts);
+                
+                if (in_array($suffix, ['en', 'bn', 'ar'])) {
+                    $baseKey = str_replace('_' . $suffix, '', $key);
+                    $groupedData[$baseKey][$suffix] = $value;
+                    if (!isset($groupedData[$baseKey]['default'])) {
+                        $groupedData[$baseKey]['default'] = $value;
+                    }
+                } else {
+                    $groupedData[$key] = ['default' => $value, 'en' => $value, 'bn' => $value, 'ar' => $value];
+                }
             }
         }
 
