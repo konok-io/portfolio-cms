@@ -15,6 +15,7 @@ class Skill extends Model
         'name',
         'percentage',
         'icon',
+        'category',
         'sort_order',
         'is_active',
     ];

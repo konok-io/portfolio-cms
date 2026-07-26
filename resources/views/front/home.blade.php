@@ -112,22 +112,150 @@
 <section id="skills" class="section-padding section-tint">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
-            <span class="section-eyebrow">My Skills</span>
-            <h2 class="section-title mb-2">Technologies I work with</h2>
-            <p class="section-subtitle mx-auto">A snapshot of the tools and languages I use to bring projects to life.</p>
+            <span class="section-eyebrow">{{ __('common.my_skills') }}</span>
+            <h2 class="section-title mb-2">{{ __('common.technologies') }}</h2>
+            <p class="section-subtitle mx-auto">{{ __('common.skill_subtitle') }}</p>
         </div>
-        <div class="row g-4">
+        
+        <style>
+            .tech-stack-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+            
+            .tech-card {
+                background: #fff;
+                border: 1px solid rgba(103, 232, 249, 0.15);
+                border-radius: 16px;
+                padding: 25px;
+                text-align: center;
+                transition: all 0.3s;
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .tech-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: linear-gradient(90deg, #67e8f9, #818cf8, #c084fc);
+                opacity: 0;
+                transition: opacity 0.3s;
+            }
+            
+            .tech-card:hover {
+                transform: translateY(-8px);
+                border-color: #67e8f9;
+                box-shadow: 0 15px 40px rgba(103, 232, 249, 0.15);
+            }
+            
+            .tech-card:hover::before {
+                opacity: 1;
+            }
+            
+            .tech-icon {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+                color: #4F2FE8;
+                transition: transform 0.3s;
+            }
+            
+            .tech-card:hover .tech-icon {
+                transform: scale(1.15);
+            }
+            
+            .tech-name {
+                color: #1a1a2e;
+                font-weight: 600;
+                margin-bottom: 8px;
+                font-size: 1.05rem;
+            }
+            
+            .tech-level {
+                color: #6b7280;
+                font-size: 0.85rem;
+                margin-bottom: 12px;
+            }
+            
+            .tech-percentage {
+                background: linear-gradient(90deg, #67e8f9, #818cf8);
+                color: #fff;
+                padding: 4px 12px;
+                border-radius: 20px;
+                font-size: 0.75rem;
+                font-weight: 600;
+                display: inline-block;
+                margin-bottom: 12px;
+            }
+            
+            .tech-tags {
+                display: flex;
+                gap: 8px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .tech-tag {
+                background: rgba(129, 140, 248, 0.15);
+                color: #4F2FE8;
+                padding: 4px 12px;
+                border-radius: 20px;
+                font-size: 0.7rem;
+                font-weight: 500;
+            }
+            
+            /* Dark Theme */
+            [data-theme="dark"] .tech-card {
+                background: rgba(26, 26, 62, 0.8);
+                border-color: rgba(103, 232, 249, 0.15);
+            }
+            
+            [data-theme="dark"] .tech-name {
+                color: #fff;
+            }
+            
+            [data-theme="dark"] .tech-level {
+                color: #a8a4c8;
+            }
+            
+            [data-theme="dark"] .tech-card:hover {
+                background: rgba(103, 232, 249, 0.1);
+                box-shadow: 0 15px 40px rgba(103, 232, 249, 0.2);
+            }
+            
+            [data-theme="dark"] .tech-tag {
+                background: rgba(129, 140, 248, 0.2);
+                color: #c084fc;
+            }
+            
+            [data-theme="dark"] .tech-icon {
+                color: #67e8f9;
+            }
+        </style>
+        
+        <div class="tech-stack-grid">
             @foreach($skills as $skill)
-                <div class="col-md-6 reveal-on-scroll">
-                    <div class="d-flex justify-content-between mb-2">
-                        <span class="fw-semibold">
-                            @if($skill->icon)<i class="{{ $skill->icon }} me-2 text-primary-custom"></i>@endif
-                            {{ $skill->name }}
-                        </span>
-                        <span class="text-muted small">{{ $skill->percentage }}%</span>
+                <div class="tech-card reveal-on-scroll">
+                    <div class="tech-icon">
+                        @if($skill->icon)
+                            <i class="{{ $skill->icon }}"></i>
+                        @else
+                            <i class="fa-solid fa-code"></i>
+                        @endif
                     </div>
-                    <div class="skill-progress">
-                        <div class="skill-progress-bar" data-percentage="{{ $skill->percentage }}"></div>
+                    <div class="tech-name">{{ $skill->name }}</div>
+                    <div class="tech-level">{{ $skill->category ?? 'Technical' }}</div>
+                    <div class="tech-percentage">{{ $skill->percentage }}%</div>
+                    <div class="tech-tags">
+                        @php
+                            $levelText = $skill->percentage >= 90 ? 'Expert' : ($skill->percentage >= 75 ? 'Advanced' : ($skill->percentage >= 50 ? 'Intermediate' : 'Beginner'));
+                        @endphp
+                        <span class="tech-tag">{{ $levelText }}</span>
+                        <span class="tech-tag">{{ $skill->category ?? 'Technical' }}</span>
                     </div>
                 </div>
             @endforeach

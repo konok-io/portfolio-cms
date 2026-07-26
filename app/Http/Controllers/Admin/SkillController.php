@@ -26,12 +26,14 @@ class SkillController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'percentage' => ['required', 'integer', 'min:0', 'max:100'],
             'icon' => ['nullable', 'string', 'max:100'],
+            'category' => ['nullable', 'string', 'max:100'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'is_active' => ['nullable', 'boolean'],
         ]);
 
         $validated['is_active'] = $request->boolean('is_active');
         $validated['sort_order'] = $validated['sort_order'] ?? 0;
+        $validated['category'] = $validated['category'] ?? 'Technical';
 
         Skill::create($validated);
 
@@ -49,12 +51,14 @@ class SkillController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'percentage' => ['required', 'integer', 'min:0', 'max:100'],
             'icon' => ['nullable', 'string', 'max:100'],
+            'category' => ['nullable', 'string', 'max:100'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'is_active' => ['nullable', 'boolean'],
         ]);
 
         $validated['is_active'] = $request->boolean('is_active');
         $validated['sort_order'] = $validated['sort_order'] ?? 0;
+        $validated['category'] = $validated['category'] ?? 'Technical';
 
         $skill->update($validated);
 
