@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('services', function (Blueprint $table) {
-            $table->string('svg_icon')->nullable()->after('icon');
+            $table->text('svg_icon')->nullable()->after('icon');
         });
     }
 
