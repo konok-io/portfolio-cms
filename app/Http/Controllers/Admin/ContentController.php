@@ -251,22 +251,21 @@ class ContentController extends Controller
                     ],
                 ]
             ],
+            'custom_pages' => [
+                'name' => 'Custom Pages',
+                'sections' => []
+            ],
         ];
 
-        // Add custom pages dynamically from database (all pages, not just published)
+        // Add all custom pages as sections under 'custom_pages'
         $customPages = CustomPage::orderBy('sort_order')->get();
         foreach ($customPages as $customPage) {
             $pageKey = 'custom_' . $customPage->id;
-            $pages[$pageKey] = [
+            $pages['custom_pages']['sections'][$pageKey] = [
                 'name' => $customPage->title . ($customPage->is_published ? '' : ' (Draft)'),
                 'is_custom' => true,
                 'custom_id' => $customPage->id,
-                'sections' => [
-                    'page' => [
-                        'name' => 'Page Header',
-                        'fields' => ['eyebrow', 'title', 'subtitle']
-                    ],
-                ]
+                'fields' => ['eyebrow', 'title', 'subtitle']
             ];
         }
 
