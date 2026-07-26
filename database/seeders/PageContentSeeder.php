@@ -121,6 +121,8 @@ class PageContentSeeder extends Seeder
                 'page_eyebrow' => 'What I Offer',
                 'page_title' => 'Services',
                 'page_subtitle' => 'End-to-end web development services to help your idea reach production.',
+                'page_button' => 'Learn More',
+                'view_all' => 'View All Services',
                 'empty_text' => 'No services have been added yet.',
                 'cta_heading' => 'Have a project in mind?',
                 'cta_button' => 'Get a Quote',
