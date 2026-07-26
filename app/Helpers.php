@@ -3,6 +3,17 @@
 use App\Models\GeneralSetting;
 use App\Models\Translation;
 use App\Models\Setting;
+use App\Models\PageContent;
+
+if (!function_exists('page_content')) {
+    /**
+     * Get page content for a specific page and key
+     */
+    function page_content(string $page, string $key, ?string $locale = null): ?string
+    {
+        return PageContent::get($page, $key, $locale);
+    }
+}
 
 if (!function_exists('settings')) {
     function settings(string $key, $default = null)

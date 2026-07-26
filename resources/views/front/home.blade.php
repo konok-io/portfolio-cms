@@ -12,7 +12,7 @@
     <div class="container">
         <div class="row align-items-center gy-5">
             <div class="col-lg-7 order-2 order-lg-1">
-                <span class="hero-eyebrow"><i class="fa-solid fa-circle-check"></i> {{ PageContent::get('home', 'hero_eyebrow', app()->getLocale()) }}</span>
+                <span class="hero-eyebrow"><i class="fa-solid fa-circle-check"></i> {{ page_content('home', 'hero_eyebrow', app()->getLocale()) }}</span>
                 <h1 class="hero-title">
                     Hi, I'm {{ $about->name ?? 'Your Name' }} —<br>
                     <span class="text-primary-custom">
@@ -24,11 +24,11 @@
                 </p>
                 <div class="d-flex flex-wrap gap-3" style="position: relative; z-index: 1;">
                     <a href="{{ route('contact') }}" class="btn btn-primary-custom">
-                        <i class="fa-solid fa-paper-plane me-2"></i>{{ PageContent::get('home', 'hero_button_hire', app()->getLocale()) }}
+                        <i class="fa-solid fa-paper-plane me-2"></i>{{ page_content('home', 'hero_button_hire', app()->getLocale()) }}
                     </a>
                     @if($about->cv_url ?? false)
                         <a href="{{ $about->cv_url }}" class="btn btn-outline-custom" download>
-                            <i class="fa-solid fa-download me-2"></i>{{ PageContent::get('home', 'hero_button_cv', app()->getLocale()) }}
+                            <i class="fa-solid fa-download me-2"></i>{{ page_content('home', 'hero_button_cv', app()->getLocale()) }}
                         </a>
                     @endif
                 </div>
@@ -44,7 +44,7 @@
                         </div>
                         <div>
                             <div class="fw-bold">{{ $experiences->count() }}+</div>
-                            <div class="small text-muted">{{ PageContent::get('home', 'hero_badge', app()->getLocale()) }}</div>
+                            <div class="small text-muted">{{ page_content('home', 'hero_badge', app()->getLocale()) }}</div>
                         </div>
                     </div>
                 </div>
@@ -59,8 +59,8 @@
 <section id="about" class="section-padding">
     <div class="container">
         <div class="text-center mb-5">
-            <span class="section-eyebrow">{{ PageContent::get('home', 'why_eyebrow', app()->getLocale()) }}</span>
-            <h2 class="section-title">{{ PageContent::get('home', 'why_title', app()->getLocale()) }}</h2>
+            <span class="section-eyebrow">{{ page_content('home', 'why_eyebrow', app()->getLocale()) }}</span>
+            <h2 class="section-title">{{ page_content('home', 'why_title', app()->getLocale()) }}</h2>
         </div>
         <div class="row g-4">
             <div class="col-md-4">
@@ -69,8 +69,8 @@
                         <div class="icon-box mx-auto mb-3" style="width:60px;height:60px;">
                             <i class="fa-solid fa-code"></i>
                         </div>
-                        <h5 class="card-title mb-2">{{ PageContent::get('home', 'why_card1_title', app()->getLocale()) }}</h5>
-                        <p class="card-text text-muted small">{{ PageContent::get('home', 'why_card1_text', app()->getLocale()) }}</p>
+                        <h5 class="card-title mb-2">{{ page_content('home', 'why_card1_title', app()->getLocale()) }}</h5>
+                        <p class="card-text text-muted small">{{ page_content('home', 'why_card1_text', app()->getLocale()) }}</p>
                     </div>
                 </div>
             </div>
@@ -80,8 +80,8 @@
                         <div class="icon-box mx-auto mb-3" style="width:60px;height:60px;">
                             <i class="fa-solid fa-clock"></i>
                         </div>
-                        <h5 class="card-title mb-2">{{ PageContent::get('home', 'why_card2_title', app()->getLocale()) }}</h5>
-                        <p class="card-text text-muted small">{{ PageContent::get('home', 'why_card2_text', app()->getLocale()) }}</p>
+                        <h5 class="card-title mb-2">{{ page_content('home', 'why_card2_title', app()->getLocale()) }}</h5>
+                        <p class="card-text text-muted small">{{ page_content('home', 'why_card2_text', app()->getLocale()) }}</p>
                     </div>
                 </div>
             </div>
@@ -91,8 +91,8 @@
                         <div class="icon-box mx-auto mb-3" style="width:60px;height:60px;">
                             <i class="fa-solid fa-headset"></i>
                         </div>
-                        <h5 class="card-title mb-2">{{ PageContent::get('home', 'why_card3_title', app()->getLocale()) }}</h5>
-                        <p class="card-text text-muted small">{{ PageContent::get('home', 'why_card3_text', app()->getLocale()) }}</p>
+                        <h5 class="card-title mb-2">{{ page_content('home', 'why_card3_title', app()->getLocale()) }}</h5>
+                        <p class="card-text text-muted small">{{ page_content('home', 'why_card3_text', app()->getLocale()) }}</p>
                     </div>
                 </div>
             </div>
@@ -143,9 +143,9 @@
 <section id="services" class="section-padding section-tint">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
-            <span class="section-eyebrow">{{ PageContent::get('home', 'services_eyebrow', app()->getLocale()) }}</span>
-            <h2 class="section-title">{{ PageContent::get('home', 'services_title', app()->getLocale()) }}</h2>
-            <p class="section-subtitle mx-auto">{{ PageContent::get('home', 'services_subtitle', app()->getLocale()) }}</p>
+            <span class="section-eyebrow">{{ page_content('home', 'services_eyebrow', app()->getLocale()) }}</span>
+            <h2 class="section-title">{{ page_content('home', 'services_title', app()->getLocale()) }}</h2>
+            <p class="section-subtitle mx-auto">{{ page_content('home', 'services_subtitle', app()->getLocale()) }}</p>
         </div>
         <div class="row g-4">
             @foreach($services as $service)
@@ -373,8 +373,8 @@
 <section id="blog" class="section-padding section-tint">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
-            <span class="section-eyebrow">{{ PageContent::get('home', 'blog_eyebrow', app()->getLocale()) }}</span>
-            <h2 class="section-title">{{ PageContent::get('home', 'blog_title', app()->getLocale()) }}</h2>
+            <span class="section-eyebrow">{{ page_content('home', 'blog_eyebrow', app()->getLocale()) }}</span>
+            <h2 class="section-title">{{ page_content('home', 'blog_title', app()->getLocale()) }}</h2>
         </div>
         <div class="row g-4">
             @foreach($blogs as $blog)
@@ -390,7 +390,7 @@
                             <h6 class="mt-1 mb-2"><a href="{{ route('blog.show', $blog->slug) }}" class="text-decoration-none text-dark">{{ $blog->title }}</a></h6>
                             <p class="text-muted small">{{ $blog->short_description }}</p>
                             <a href="{{ route('blog.show', $blog->slug) }}" class="small text-primary-custom fw-semibold">
-                                {{ PageContent::get('home', 'blog_card_link', app()->getLocale()) }} <i class="fa-solid fa-arrow-right ms-1"></i>
+                                {{ page_content('home', 'blog_card_link', app()->getLocale()) }} <i class="fa-solid fa-arrow-right ms-1"></i>
                             </a>
                         </div>
                     </div>
@@ -398,7 +398,7 @@
             @endforeach
         </div>
         <div class="text-center mt-5">
-            <a href="{{ route('blog.index') }}" class="btn btn-outline-custom">{{ PageContent::get('home', 'blog_button', app()->getLocale()) }}</a>
+            <a href="{{ route('blog.index') }}" class="btn btn-outline-custom">{{ page_content('home', 'blog_button', app()->getLocale()) }}</a>
         </div>
     </div>
 </section>
@@ -411,16 +411,16 @@
     <div class="container">
         <div class="row g-5">
             <div class="col-lg-5 reveal-on-scroll">
-                <span class="section-eyebrow">{{ PageContent::get('home', 'contact_eyebrow', app()->getLocale()) }}</span>
-                <h2 class="section-title mb-4">{{ PageContent::get('home', 'contact_title', app()->getLocale()) }}</h2>
-                <p class="text-muted mb-4">{{ PageContent::get('home', 'contact_text', app()->getLocale()) }}</p>
+                <span class="section-eyebrow">{{ page_content('home', 'contact_eyebrow', app()->getLocale()) }}</span>
+                <h2 class="section-title mb-4">{{ page_content('home', 'contact_title', app()->getLocale()) }}</h2>
+                <p class="text-muted mb-4">{{ page_content('home', 'contact_text', app()->getLocale()) }}</p>
 
                 <div class="d-flex flex-column gap-3">
                     @if($about->email ?? false)
                         <div class="d-flex align-items-center gap-3">
                             <div class="icon-box mb-0" style="width:48px;height:48px;"><i class="fa-solid fa-envelope"></i></div>
                             <div>
-                                <div class="small text-muted">{{ PageContent::get('home', 'contact_label_email', app()->getLocale()) }}</div>
+                                <div class="small text-muted">{{ page_content('home', 'contact_label_email', app()->getLocale()) }}</div>
                                 <div class="fw-semibold">{{ $about->email }}</div>
                             </div>
                         </div>
@@ -429,7 +429,7 @@
                         <div class="d-flex align-items-center gap-3">
                             <div class="icon-box mb-0" style="width:48px;height:48px;"><i class="fa-solid fa-phone"></i></div>
                             <div>
-                                <div class="small text-muted">{{ PageContent::get('home', 'contact_label_phone', app()->getLocale()) }}</div>
+                                <div class="small text-muted">{{ page_content('home', 'contact_label_phone', app()->getLocale()) }}</div>
                                 <div class="fw-semibold">{{ $about->phone }}</div>
                             </div>
                         </div>
@@ -438,7 +438,7 @@
                         <div class="d-flex align-items-center gap-3">
                             <div class="icon-box mb-0" style="width:48px;height:48px;"><i class="fa-solid fa-location-dot"></i></div>
                             <div>
-                                <div class="small text-muted">{{ PageContent::get('home', 'contact_label_location', app()->getLocale()) }}</div>
+                                <div class="small text-muted">{{ page_content('home', 'contact_label_location', app()->getLocale()) }}</div>
                                 <div class="fw-semibold">{{ $about->address }}</div>
                             </div>
                         </div>
@@ -451,28 +451,28 @@
                         @csrf
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label class="form-label small fw-semibold">{{ PageContent::get('home', 'contact_form_name', app()->getLocale()) }}</label>
+                                <label class="form-label small fw-semibold">{{ page_content('home', 'contact_form_name', app()->getLocale()) }}</label>
                                 <input type="text" name="name" class="form-control" required>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label small fw-semibold">{{ PageContent::get('home', 'contact_form_email', app()->getLocale()) }}</label>
+                                <label class="form-label small fw-semibold">{{ page_content('home', 'contact_form_email', app()->getLocale()) }}</label>
                                 <input type="email" name="email" class="form-control" required>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label small fw-semibold">{{ PageContent::get('home', 'contact_form_phone', app()->getLocale()) }}</label>
+                                <label class="form-label small fw-semibold">{{ page_content('home', 'contact_form_phone', app()->getLocale()) }}</label>
                                 <input type="text" name="phone" class="form-control">
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label small fw-semibold">{{ PageContent::get('home', 'contact_form_subject', app()->getLocale()) }}</label>
+                                <label class="form-label small fw-semibold">{{ page_content('home', 'contact_form_subject', app()->getLocale()) }}</label>
                                 <input type="text" name="subject" class="form-control">
                             </div>
                             <div class="col-12">
-                                <label class="form-label small fw-semibold">{{ PageContent::get('home', 'contact_form_message', app()->getLocale()) }}</label>
+                                <label class="form-label small fw-semibold">{{ page_content('home', 'contact_form_message', app()->getLocale()) }}</label>
                                 <textarea name="message" rows="5" class="form-control" required></textarea>
                             </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary-custom w-100">
-                                    <i class="fa-solid fa-paper-plane me-2"></i>{{ PageContent::get('home', 'contact_form_button', app()->getLocale()) }}
+                                    <i class="fa-solid fa-paper-plane me-2"></i>{{ page_content('home', 'contact_form_button', app()->getLocale()) }}
                                 </button>
                             </div>
                         </div>
