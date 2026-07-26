@@ -43,21 +43,58 @@
                                                 <div class="row">
                                                     @foreach($section['fields'] as $field)
                                                         @php
-                                                            // Get value from flat structure
-                                                            $fieldData = $currentContent[$field] ?? null;
-                                                            if (is_array($fieldData)) {
-                                                                $value = $fieldData['default'] ?? $fieldData['en'] ?? '';
-                                                            } else {
-                                                                $value = $fieldData ?? '';
+                                                            $fieldData = $currentContent[$field] ?? [];
+                                                            $enValue = is_array($fieldData) ? ($fieldData['en'] ?? '') : '';
+                                                            $bnValue = is_array($fieldData) ? ($fieldData['bn'] ?? '') : '';
+                                                            $arValue = is_array($fieldData) ? ($fieldData['ar'] ?? '') : '';
+                                                            // Fallback to default if not localized
+                                                            if (empty($enValue) && !is_array($fieldData)) {
+                                                                $enValue = $fieldData;
+                                                                $bnValue = $fieldData;
+                                                                $arValue = $fieldData;
                                                             }
                                                         @endphp
-                                                        <div class="col-md-6 mb-3">
-                                                            <label class="form-label">{{ ucwords(str_replace('_', ' ', $field)) }}</label>
-                                                            <input type="text" 
-                                                                   name="{{ $field }}" 
-                                                                   class="form-control" 
-                                                                   value="{{ $value }}"
-                                                                   placeholder="Enter {{ $field }}">
+                                                        <div class="col-md-12 mb-3">
+                                                            <label class="form-label">
+                                                                <strong>{{ ucwords(str_replace('_', ' ', $field)) }}</strong>
+                                                            </label>
+                                                            
+                                                            <!-- English Input -->
+                                                            <div class="input-group mb-2">
+                                                                <span class="input-group-text" style="min-width: 80px;">
+                                                                    <span class="fi fi-gb"></span> English
+                                                                </span>
+                                                                <input type="text" 
+                                                                       name="{{ $field }}_en" 
+                                                                       class="form-control" 
+                                                                       value="{{ $enValue }}"
+                                                                       placeholder="English">
+                                                            </div>
+                                                            
+                                                            <!-- Bengali Input -->
+                                                            <div class="input-group mb-2">
+                                                                <span class="input-group-text" style="min-width: 80px;">
+                                                                    <span class="fi fi-bd"></span> বাংলা
+                                                                </span>
+                                                                <input type="text" 
+                                                                       name="{{ $field }}_bn" 
+                                                                       class="form-control" 
+                                                                       value="{{ $bnValue }}"
+                                                                       placeholder="বাংলা">
+                                                            </div>
+                                                            
+                                                            <!-- Arabic Input -->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="min-width: 80px;">
+                                                                    <span class="fi fi-sa"></span> العربية
+                                                                </span>
+                                                                <input type="text" 
+                                                                       dir="rtl"
+                                                                       name="{{ $field }}_ar" 
+                                                                       class="form-control" 
+                                                                       value="{{ $arValue }}"
+                                                                       placeholder="العربية">
+                                                            </div>
                                                         </div>
                                                     @endforeach
                                                 </div>
@@ -84,4 +121,13 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('css')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"/>
+<style>
+.input-group-text {
+    font-size: 0.85rem;
+}
+</style>
 @endsection

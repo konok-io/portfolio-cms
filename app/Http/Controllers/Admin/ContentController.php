@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\CustomPage;
 use App\Models\PageContent;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -35,21 +36,30 @@ class ContentController extends Controller
 
         $page = $request->input('page');
         $data = $request->except(['_token', 'page']);
+        
+        // Get all pages config including custom pages
+        $allPages = $this->getPages();
+        $currentPageConfig = $allPages[$page] ?? null;
 
-        // Group fields - flat structure
+        // Group fields - multilingual structure
         $groupedData = [];
         foreach ($data as $key => $value) {
             if ($key !== 'page' && $key !== '_token') {
-                $groupedData[$key] = [
-                    'default' => $value,
-                    'en' => $value,
-                    'bn' => $value,
-                    'ar' => $value,
-                ];
+                // Check if field has language suffix
+                if (preg_match('/^(.+)_(' . implode('|', $this->getSupportedLocales()) . ')$/', $key, $matches)) {
+                    $fieldName = $matches[1];
+                    $locale = $matches[2];
+                    $groupedData[$fieldName][$locale] = $value;
+                } else {
+                    // No suffix - use as default for all locales
+                    foreach ($this->getSupportedLocales() as $locale) {
+                        $groupedData[$key][$locale] = $value;
+                    }
+                }
             }
         }
 
-        // Save to settings - flat structure
+        // Save to settings
         $setting = Setting::instance();
         $pageContent = $setting->page_content ?? [];
         $pageContent[$page] = array_merge($pageContent[$page] ?? [], $groupedData);
@@ -69,9 +79,6 @@ class ContentController extends Controller
     {
         $page = $request->query('page', 'home');
         
-        // Get default content for the page
-        $defaultContent = PageContent::getDefaultContent();
-        
         // Remove page from settings
         $setting = Setting::instance();
         $pageContent = $setting->page_content ?? [];
@@ -89,11 +96,19 @@ class ContentController extends Controller
     }
 
     /**
-     * Get pages configuration
+     * Get supported locales
+     */
+    private function getSupportedLocales(): array
+    {
+        return ['en', 'bn', 'ar'];
+    }
+
+    /**
+     * Get pages configuration including custom pages
      */
     private function getPages(): array
     {
-        return [
+        $pages = [
             'home' => [
                 'name' => 'Home Page',
                 'sections' => [
@@ -209,6 +224,34 @@ class ContentController extends Controller
                     ],
                 ]
             ],
+            'custom' => [
+                'name' => 'Custom Pages',
+                'sections' => [
+                    'header' => [
+                        'name' => 'Custom Page Header',
+                        'fields' => ['eyebrow', 'title', 'subtitle']
+                    ],
+                ]
+            ],
         ];
+
+        // Add custom pages dynamically from database
+        $customPages = CustomPage::where('is_published', true)->get();
+        foreach ($customPages as $customPage) {
+            $pageKey = 'custom_' . $customPage->id;
+            $pages[$pageKey] = [
+                'name' => $customPage->title,
+                'is_custom' => true,
+                'custom_id' => $customPage->id,
+                'sections' => [
+                    'page' => [
+                        'name' => 'Page Header',
+                        'fields' => ['eyebrow', 'title', 'subtitle']
+                    ],
+                ]
+            ];
+        }
+
+        return $pages;
     }
 }
