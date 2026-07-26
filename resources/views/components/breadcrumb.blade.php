@@ -1,5 +1,5 @@
 {{-- Breadcrumb Component --}}
-{{-- Usage: <x-front-breadcrumb :items="$breadcrumbs" /> --}}
+{{-- Usage: <x-breadcrumb :items="$breadcrumbs" /> --}}
 
 @props([
     'items' => [],

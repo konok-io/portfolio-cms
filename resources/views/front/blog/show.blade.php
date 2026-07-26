@@ -16,7 +16,7 @@
 <section class="section-padding" style="padding-top: 8rem;">
     <div class="container">
         {{-- Breadcrumb --}}
-        <x-front-breadcrumb :items="$breadcrumbs" />
+        <x-breadcrumb :items="$breadcrumbs" />
 
         <div class="row g-5">
             <div class="col-lg-8">

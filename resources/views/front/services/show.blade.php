@@ -18,7 +18,7 @@
         <div class="text-center">
             <span class="section-eyebrow">Services</span>
             <h1 class="section-title">{{ $service->name }}</h1>
-            <x-front-breadcrumb :items="$breadcrumbs" class="d-flex justify-content-center mt-3" />
+            <x-breadcrumb :items="$breadcrumbs" class="d-flex justify-content-center mt-3" />
         </div>
     </div>
 </section>
