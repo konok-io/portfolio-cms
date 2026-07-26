@@ -172,7 +172,7 @@
         
         {{-- View All Services Button --}}
         <div class="text-center mt-5 reveal-on-scroll">
-            <a href="{{ route('services.index') }}" class="btn btn-primary-custom">
+            <a href="{{ route('services') }}" class="btn btn-primary-custom">
                 {{ page_content('services', 'view_all', app()->getLocale()) }} <i class="fa-solid fa-arrow-right ms-2"></i>
             </a>
         </div>
