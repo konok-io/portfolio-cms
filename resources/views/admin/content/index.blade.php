@@ -301,154 +301,24 @@
 
 @section('css')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"/>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.css"/>
 <style>
 .input-group-text { font-size: 0.85rem; }
 .badge-sm { font-size: 0.65rem; padding: 0.2em 0.4em; }
-.handle { cursor: grab; }
-.handle:active { cursor: grabbing; }
-.section-header { cursor: grab !important; user-select: none; }
-.section-header:active { cursor: grabbing !important; }
-.section-item.dragging { pointer-events: none; }
-.handle { cursor: grab; }
+.handle { color: #6c757d; }
 .collapse-icon { transition: transform 0.3s; }
 .section-item:has(.accordion-collapse.show) .collapse-icon { transform: rotate(180deg); }
-.drag-placeholder { transition: all 0.2s; }
 </style>
 @endsection
 
 @section('js')
 <script>
-// Simple Drag and Drop - No external library needed
+// All sections are expanded by default
 document.addEventListener('DOMContentLoaded', function() {
-    initSimpleDragDrop();
-});
-
-function initSimpleDragDrop() {
-    var container = document.getElementById('sortableAccordion');
-    if (!container) return;
-    
-    var sections = container.querySelectorAll('.section-item');
-    if (sections.length < 2) return;
-    
-    var draggedItem = null;
-    var placeholder = null;
-    
-    // Create placeholder
-    function createPlaceholder(height) {
-        var div = document.createElement('div');
-        div.className = 'drag-placeholder';
-        div.style.height = height + 'px';
-        div.style.marginBottom = '8px';
-        div.style.border = '2px dashed #0d6efd';
-        div.style.borderRadius = '8px';
-        div.style.background = '#f8f9fa';
-        return div;
-    }
-    
-    sections.forEach(function(section) {
-        var header = section.querySelector('.section-header');
-        if (!header) return;
-        
-        header.style.cursor = 'grab';
-        
-        header.addEventListener('mousedown', function(e) {
-            // Don't start drag if clicking on button
-            if (e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
-            if (e.target.tagName === 'A' || e.target.closest('a')) return;
-            
-            e.preventDefault();
-            draggedItem = section;
-            
-            section.classList.add('dragging');
-            var rect = section.getBoundingClientRect();
-            section.style.width = rect.width + 'px';
-            section.style.position = 'fixed';
-            section.style.left = rect.left + 'px';
-            section.style.top = rect.top + 'px';
-            section.style.zIndex = '9999';
-            section.style.opacity = '0.9';
-            section.style.transform = 'rotate(2deg)';
-            section.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
-            
-            placeholder = createPlaceholder(rect.height);
-            container.insertBefore(placeholder, section);
-            
-            document.addEventListener('mousemove', onMouseMove);
-            document.addEventListener('mouseup', onMouseUp);
-        });
+    // Open all accordions by default
+    var accordions = document.querySelectorAll('.accordion-collapse');
+    accordions.forEach(function(acc) {
+        acc.classList.add('show');
     });
-    
-    function onMouseMove(e) {
-        if (!draggedItem) return;
-        
-        draggedItem.style.left = e.clientX - (draggedItem.offsetWidth / 2) + 'px';
-        draggedItem.style.top = (e.clientY - 30) + 'px';
-        
-        // Find where to place the placeholder
-        var items = Array.from(container.querySelectorAll('.section-item:not(.dragging)'));
-        var nextItem = null;
-        
-        items.forEach(function(item) {
-            var rect = item.getBoundingClientRect();
-            var mid = rect.top + rect.height / 2;
-            if (e.clientY < mid) {
-                if (!nextItem || rect.top < nextItem.getBoundingClientRect().top) {
-                    nextItem = item;
-                }
-            }
-        });
-        
-        if (placeholder) {
-            if (nextItem) {
-                container.insertBefore(placeholder, nextItem);
-            } else {
-                container.appendChild(placeholder);
-            }
-        }
-    }
-    
-    function onMouseUp(e) {
-        if (!draggedItem) return;
-        
-        document.removeEventListener('mousemove', onMouseMove);
-        document.removeEventListener('mouseup', onMouseUp);
-        
-        // Reset dragged item styles
-        draggedItem.classList.remove('dragging');
-        draggedItem.style.width = '';
-        draggedItem.style.position = '';
-        draggedItem.style.left = '';
-        draggedItem.style.top = '';
-        draggedItem.style.zIndex = '';
-        draggedItem.style.opacity = '';
-        draggedItem.style.transform = '';
-        draggedItem.style.boxShadow = '';
-        
-        // Move dragged item to placeholder position
-        if (placeholder && placeholder.parentNode === container) {
-            container.insertBefore(draggedItem, placeholder);
-            container.removeChild(placeholder);
-        }
-        
-        draggedItem = null;
-        placeholder = null;
-        
-        // Update order
-        updateSectionsOrder();
-    }
-}
-
-function updateSectionsOrder() {
-    var accordion = document.getElementById('sortableAccordion');
-    if (!accordion) return;
-    
-    var items = accordion.querySelectorAll('.section-item');
-    var order = [];
-    for (var i = 0; i < items.length; i++) {
-        order.push(items[i].getAttribute('data-section'));
-    }
-    document.getElementById('sections_order').value = order.join(',');
-}
+});
 </script>
 @endsection
