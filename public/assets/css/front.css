@@ -1387,7 +1387,7 @@ body.no-header .scroll-progress {
 /* Add spacing when header is shown */
 body.has-header .main-content,
 body.has-header main {
-  padding-top: 60px !important;
+  /* padding-top: 60px !important; */
 }
 
 /* Honeypot - Hidden from users, visible to bots */
