@@ -39,6 +39,7 @@
                                     @csrf
                                     <input type="hidden" name="page" value="{{ $activeTab }}">
                                     
+                                    @if(isset($currentPage['sections']))
                                     @foreach($currentPage['sections'] as $sectionKey => $section)
                                         <div class="card mb-3">
                                             <div class="card-header bg-light">
@@ -78,6 +79,7 @@
                                             </div>
                                         </div>
                                     @endforeach
+                                    @endif
                                     
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa-solid fa-save me-1"></i> Save Changes
