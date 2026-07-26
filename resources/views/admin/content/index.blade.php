@@ -49,14 +49,20 @@
                                             <div class="card-body">
                                                 <div class="row">
                                                     @foreach($section['fields'] as $field)
+                                                        @php
+                                                            $fullKey = $pageKey . '.' . $sectionKey . '.' . $field;
+                                                            $pageData = $content[$pageKey] ?? [];
+                                                            $sectionData = $pageData[$sectionKey] ?? [];
+                                                            $value = $sectionData[$field]['default'] ?? $sectionData[$field] ?? '';
+                                                        @endphp
                                                         <div class="col-md-6 mb-3">
                                                             <label class="form-label">{{ ucwords(str_replace('_', ' ', $field)) }}</label>
                                                             <input type="text" 
                                                                    name="{{ $pageKey }}_{{ $sectionKey }}_{{ $field }}" 
                                                                    class="form-control" 
-                                                                   value="{{ $content->where('key', $pageKey . '.' . $sectionKey . '.' . $field)->first()?->content ?? '' }}"
+                                                                   value="{{ $value }}"
                                                                    placeholder="Enter {{ $field }}">
-                                                            <small class="text-muted">Key: {{ $pageKey }}.{{ $sectionKey }}.{{ $field }}</small>
+                                                            <small class="text-muted">Key: {{ $fullKey }}</small>
                                                         </div>
                                                     @endforeach
                                                 </div>
