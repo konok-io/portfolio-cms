@@ -199,7 +199,7 @@ class ContentController extends Controller
                 'sections' => [
                     'general' => [
                         'name' => 'Footer Content',
-                        'fields' => ['tagline', 'quick_links_title', 'newsletter_title', 'newsletter_text', 'newsletter_placeholder', 'copyright']
+                        'fields' => ['tagline', 'quick_links_title', 'contact_title', 'newsletter_title', 'newsletter_text', 'newsletter_placeholder', 'copyright', 'copyright_prefix']
                     ],
                 ]
             ],
