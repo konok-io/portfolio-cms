@@ -20,11 +20,12 @@ class ContentController extends Controller
         $content = PageContent::all();
         $pages = $this->getDynamicPages();
         $footerLinks = $this->getFooterLinks();
+        $dynamicItems = $this->getDynamicItems();
         
         // Get active tab from query parameter or default to first page
         $activeTab = request('tab', array_key_first($pages));
         
-        return view('admin.content.index', compact('setting', 'content', 'pages', 'activeTab', 'footerLinks'));
+        return view('admin.content.index', compact('setting', 'content', 'pages', 'activeTab', 'footerLinks', 'dynamicItems'));
     }
 
     /**
@@ -155,6 +156,50 @@ class ContentController extends Controller
         
         return $links;
     }
+    
+    /**
+     * Get dynamic items from database for content settings
+     */
+    private function getDynamicItems(): array
+    {
+        $items = [];
+        
+        try {
+            // Skills
+            if (class_exists('App\Models\Skill')) {
+                $items['skills'] = \App\Models\Skill::orderBy('sort_order')->get(['id', 'name', 'percentage'])->toArray();
+            }
+            
+            // Experience
+            if (class_exists('App\Models\Experience')) {
+                $items['experience'] = \App\Models\Experience::orderBy('start_date', 'desc')->get(['id', 'job_title', 'company'])->toArray();
+            }
+            
+            // Education
+            if (class_exists('App\Models\Education')) {
+                $items['education'] = \App\Models\Education::orderBy('start_date', 'desc')->get(['id', 'degree', 'institution'])->toArray();
+            }
+            
+            // Portfolio/Projects
+            if (class_exists('App\Models\Project')) {
+                $items['portfolio'] = \App\Models\Project::where('is_published', true)->orderBy('sort_order')->get(['id', 'title', 'category'])->toArray();
+            }
+            
+            // Testimonials
+            if (class_exists('App\Models\Testimonial')) {
+                $items['testimonials'] = \App\Models\Testimonial::where('is_published', true)->orderBy('sort_order')->get(['id', 'name', 'company'])->toArray();
+            }
+            
+            // Certifications
+            if (class_exists('App\Models\Certification')) {
+                $items['certifications'] = \App\Models\Certification::orderBy('sort_order')->get(['id', 'name', 'issuer'])->toArray();
+            }
+        } catch (\Throwable $e) {
+            // Return empty arrays if database not ready
+        }
+        
+        return $items;
+    }
 
     /**
      * Get dynamic pages configuration based on database content
@@ -193,7 +238,10 @@ class ContentController extends Controller
                 ],
                 'skills' => [
                     'name' => 'Skills Section',
-                    'fields' => []
+                    'fields' => ['skills_eyebrow', 'skills_title'],
+                    'is_dynamic' => true,
+                    'dynamic_type' => 'skills',
+                    'dynamic_info' => 'Skills are pulled from Skills Manager'
                 ],
                 'services' => [
                     'name' => 'Services Section',
@@ -201,23 +249,38 @@ class ContentController extends Controller
                 ],
                 'experience' => [
                     'name' => 'Experience Section',
-                    'fields' => []
+                    'fields' => ['experience_eyebrow', 'experience_title'],
+                    'is_dynamic' => true,
+                    'dynamic_type' => 'experience',
+                    'dynamic_info' => 'Experience items are pulled from Resume/Experience Manager'
                 ],
                 'education' => [
                     'name' => 'Education Section',
-                    'fields' => []
+                    'fields' => ['education_eyebrow', 'education_title'],
+                    'is_dynamic' => true,
+                    'dynamic_type' => 'education',
+                    'dynamic_info' => 'Education items are pulled from Resume/Education Manager'
                 ],
                 'portfolio' => [
                     'name' => 'Portfolio Section',
-                    'fields' => []
+                    'fields' => ['portfolio_eyebrow', 'portfolio_title', 'portfolio_subtitle'],
+                    'is_dynamic' => true,
+                    'dynamic_type' => 'portfolio',
+                    'dynamic_info' => 'Projects are pulled from Projects Manager'
                 ],
                 'testimonials' => [
                     'name' => 'Testimonials Section',
-                    'fields' => []
+                    'fields' => ['testimonials_eyebrow', 'testimonials_title'],
+                    'is_dynamic' => true,
+                    'dynamic_type' => 'testimonials',
+                    'dynamic_info' => 'Testimonials are pulled from Testimonials Manager'
                 ],
                 'certifications' => [
                     'name' => 'Certifications Section',
-                    'fields' => []
+                    'fields' => ['certifications_eyebrow', 'certifications_title'],
+                    'is_dynamic' => true,
+                    'dynamic_type' => 'certifications',
+                    'dynamic_info' => 'Certifications are pulled from Certifications Manager'
                 ],
                 'blog' => [
                     'name' => 'Blog Section',

@@ -101,7 +101,7 @@
                                                                         // For dynamic sections, use the actual link title
                                                                         $fieldLabel = $field;
                                                                         if (isset($section['is_dynamic']) && $section['is_dynamic']) {
-                                                                            // For footer quick links, get the actual link name
+                                                                            // For footer quick links
                                                                             if ($activeTab === 'footer' && str_starts_with($field, 'link_')) {
                                                                                 $linkNum = (int) substr($field, 5) - 1;
                                                                                 if (isset($footerLinks[$linkNum])) {
@@ -128,13 +128,104 @@
                                                                         </div>
                                                                     </div>
                                                                 @endforeach
-                                                                @if(isset($section['is_dynamic']) && $section['is_dynamic'])
-                                                                    <div class="alert alert-light border small mt-2">
+                                                            @endif
+                                                            
+                                                            {{-- Dynamic Items List --}}
+                                                            @if(isset($section['is_dynamic']) && $section['is_dynamic'] && isset($section['dynamic_type']))
+                                                                @php
+                                                                    $dynamicType = $section['dynamic_type'];
+                                                                    $items = $dynamicItems[$dynamicType] ?? [];
+                                                                @endphp
+                                                                
+                                                                @if(!empty($items))
+                                                                    <hr class="my-4">
+                                                                    <h6 class="text-uppercase text-muted mb-3">
+                                                                        <i class="fa-solid fa-list me-1"></i>
+                                                                        {{ ucfirst($dynamicType) }} Items ({{ count($items) }} items)
+                                                                    </h6>
+                                                                    
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-sm table-bordered">
+                                                                            <thead class="table-light">
+                                                                                <tr>
+                                                                                    <th width="50">#</th>
+                                                                                    <th>Item Details</th>
+                                                                                    <th>Translation Status</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                @foreach($items as $itemIndex => $item)
+                                                                                    <tr>
+                                                                                        <td class="text-center">{{ $itemIndex + 1 }}</td>
+                                                                                        <td>
+                                                                                            @php
+                                                                                                $itemName = $item['name'] ?? $item['title'] ?? $item['job_title'] ?? $item['degree'] ?? 'Item ' . ($itemIndex + 1);
+                                                                                                $itemSubtitle = '';
+                                                                                                if (isset($item['company'])) $itemSubtitle = $item['company'];
+                                                                                                if (isset($item['institution'])) $itemSubtitle = $item['institution'];
+                                                                                                if (isset($item['issuer'])) $itemSubtitle = $item['issuer'];
+                                                                                                if (isset($item['category'])) $itemSubtitle = $item['category'];
+                                                                                                if (isset($item['percentage'])) $itemSubtitle = $item['percentage'] . '%';
+                                                                                            @endphp
+                                                                                            <strong>{{ $itemName }}</strong>
+                                                                                            @if($itemSubtitle)
+                                                                                                <br><small class="text-muted">{{ $itemSubtitle }}</small>
+                                                                                            @endif
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @php
+                                                                                                $itemContentKey = $dynamicType . '_item_' . $item['id'];
+                                                                                                $itemContent = $pageContent[$itemContentKey] ?? [];
+                                                                                                $hasEn = !empty($itemContent['en'] ?? '');
+                                                                                                $hasBn = !empty($itemContent['bn'] ?? '');
+                                                                                                $hasAr = !empty($itemContent['ar'] ?? '');
+                                                                                            @endphp
+                                                                                            <span class="badge bg-{{ $hasEn ? 'success' : 'secondary' }}">EN</span>
+                                                                                            <span class="badge bg-{{ $hasBn ? 'success' : 'secondary' }}">BN</span>
+                                                                                            <span class="badge bg-{{ $hasAr ? 'success' : 'secondary' }}">AR</span>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                @endforeach
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                    
+                                                                    <div class="alert alert-light border small mt-3">
                                                                         <i class="fa-solid fa-info-circle me-1"></i>
-                                                                        These links are automatically pulled from your Footer Menu items. Add or remove links from the Menu Manager.
+                                                                        @if($dynamicType === 'skills')
+                                                                            Edit translations from <a href="{{ route('admin.skills.index') }}">Skills Manager</a>
+                                                                        @elseif($dynamicType === 'experience')
+                                                                            Edit translations from <a href="{{ route('admin.experience.index') }}">Experience Manager</a>
+                                                                        @elseif($dynamicType === 'education')
+                                                                            Edit translations from <a href="{{ route('admin.education.index') }}">Education Manager</a>
+                                                                        @elseif($dynamicType === 'portfolio')
+                                                                            Edit translations from <a href="{{ route('admin.projects.index') }}">Projects Manager</a>
+                                                                        @elseif($dynamicType === 'testimonials')
+                                                                            Edit translations from <a href="{{ route('admin.testimonials.index') }}">Testimonials Manager</a>
+                                                                        @elseif($dynamicType === 'certifications')
+                                                                            Edit translations from <a href="{{ route('admin.certifications.index') }}">Certifications Manager</a>
+                                                                        @endif
+                                                                    </div>
+                                                                @else
+                                                                    <div class="alert alert-warning mt-3">
+                                                                        <i class="fa-solid fa-triangle-exclamation me-1"></i>
+                                                                        No {{ $dynamicType }} found. 
+                                                                        @if($dynamicType === 'skills')
+                                                                            <a href="{{ route('admin.skills.index') }}">Add Skills</a>
+                                                                        @elseif($dynamicType === 'experience')
+                                                                            <a href="{{ route('admin.experience.index') }}">Add Experience</a>
+                                                                        @elseif($dynamicType === 'education')
+                                                                            <a href="{{ route('admin.education.index') }}">Add Education</a>
+                                                                        @elseif($dynamicType === 'portfolio')
+                                                                            <a href="{{ route('admin.projects.index') }}">Add Projects</a>
+                                                                        @elseif($dynamicType === 'testimonials')
+                                                                            <a href="{{ route('admin.testimonials.index') }}">Add Testimonials</a>
+                                                                        @elseif($dynamicType === 'certifications')
+                                                                            <a href="{{ route('admin.certifications.index') }}">Add Certifications</a>
+                                                                        @endif
                                                                     </div>
                                                                 @endif
-                                                            @else
+                                                            @elseif(empty($sectionFields) && (!isset($section['is_dynamic']) || !$section['is_dynamic']))
                                                                 <div class="text-muted">
                                                                     <i class="fa-solid fa-database me-1"></i>
                                                                     This section displays dynamic content from the database.
