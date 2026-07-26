@@ -91,7 +91,7 @@ class ContentController extends Controller
         // Clear cache
         PageContent::clearCache();
 
-        return redirect()->route('admin.content.index', ['tab' => 'default_pages'])->with('success', 'Sections order updated successfully!');
+        return redirect()->route('admin.content.index', ['tab' => $page])->with('success', 'Sections order updated successfully!');
     }
 
     /**
@@ -143,85 +143,87 @@ class ContentController extends Controller
             ]
         ];
 
-        // 2. DEFAULT PAGES - Page-specific content (can reorder sections)
-        $pages['default_pages'] = [
-            'name' => 'Default Pages',
-            'is_default_pages' => true,
-            'sections' => [
-                'home' => [
-                    'name' => 'Home Page',
-                    'page_key' => 'home',
-                    'fields' => ['eyebrow', 'button_hire', 'button_cv', 'badge'],
-                    'section_shortcodes' => [
-                        'hero' => 'Hero Section',
-                        'why' => 'Why Choose Me',
-                        'skills' => 'Skills',
-                        'services' => 'Services',
-                        'experience' => 'Experience',
-                        'education' => 'Education',
-                        'portfolio' => 'Portfolio',
-                        'testimonials' => 'Testimonials',
-                        'certifications' => 'Certifications',
-                        'blog' => 'Blog',
-                        'contact' => 'Contact',
-                    ]
-                ],
-                'about' => [
-                    'name' => 'About Page',
-                    'page_key' => 'about',
-                    'fields' => ['eyebrow', 'title', 'intro_button'],
-                    'section_shortcodes' => []
-                ],
-                'services' => [
-                    'name' => 'Services Page',
-                    'page_key' => 'services',
-                    'fields' => ['eyebrow', 'title', 'subtitle', 'empty_text', 'cta_heading', 'cta_button'],
-                    'section_shortcodes' => []
-                ],
-                'portfolio' => [
-                    'name' => 'Portfolio Page',
-                    'page_key' => 'portfolio',
-                    'fields' => ['eyebrow', 'title', 'subtitle', 'filter_all', 'filter_label', 'empty_text', 'empty_button', 'card_link', 'card_client'],
-                    'section_shortcodes' => []
-                ],
-                'blog' => [
-                    'name' => 'Blog Page',
-                    'page_key' => 'blog',
-                    'fields' => ['eyebrow', 'title', 'subtitle', 'filter_label', 'filter_clear', 'empty_text', 'empty_button', 'card_link'],
-                    'section_shortcodes' => [
-                        'page' => 'Page Header',
-                        'sidebar' => 'Sidebar',
-                    ]
-                ],
-                'contact' => [
-                    'name' => 'Contact Page',
-                    'page_key' => 'contact',
-                    'fields' => ['eyebrow', 'title', 'subtitle', 'form_name', 'form_email', 'form_phone', 'form_subject', 'form_message', 'form_button', 'info_title', 'info_email', 'info_phone', 'info_address', 'map_placeholder'],
-                    'section_shortcodes' => [
-                        'page' => 'Page Header',
-                        'form' => 'Contact Form',
-                        'info' => 'Contact Info',
-                    ]
-                ],
-                'faq' => [
-                    'name' => 'FAQ Page',
-                    'page_key' => 'faq',
-                    'fields' => ['eyebrow', 'title', 'subtitle'],
-                    'section_shortcodes' => []
-                ],
-                'resume' => [
-                    'name' => 'Resume Page',
-                    'page_key' => 'resume',
-                    'fields' => ['eyebrow', 'title', 'subtitle'],
-                    'section_shortcodes' => []
-                ],
-                'pricing' => [
-                    'name' => 'Pricing Page',
-                    'page_key' => 'pricing',
-                    'fields' => ['eyebrow', 'title', 'subtitle'],
-                    'section_shortcodes' => []
-                ],
+        // 2. PAGE-SPECIFIC CONTENT
+        $pages['home'] = [
+            'name' => 'Home Page',
+            'page_key' => 'home',
+            'fields' => ['eyebrow', 'button_hire', 'button_cv', 'badge'],
+            'section_shortcodes' => [
+                'hero' => 'Hero Section',
+                'why' => 'Why Choose Me',
+                'skills' => 'Skills',
+                'services' => 'Services',
+                'experience' => 'Experience',
+                'education' => 'Education',
+                'portfolio' => 'Portfolio',
+                'testimonials' => 'Testimonials',
+                'certifications' => 'Certifications',
+                'blog' => 'Blog',
+                'contact' => 'Contact',
             ]
+        ];
+
+        $pages['about'] = [
+            'name' => 'About Page',
+            'page_key' => 'about',
+            'fields' => ['eyebrow', 'title', 'intro_button'],
+            'section_shortcodes' => []
+        ];
+
+        $pages['services'] = [
+            'name' => 'Services Page',
+            'page_key' => 'services',
+            'fields' => ['eyebrow', 'title', 'subtitle', 'empty_text', 'cta_heading', 'cta_button'],
+            'section_shortcodes' => []
+        ];
+
+        $pages['portfolio'] = [
+            'name' => 'Portfolio Page',
+            'page_key' => 'portfolio',
+            'fields' => ['eyebrow', 'title', 'subtitle', 'filter_all', 'filter_label', 'empty_text', 'empty_button', 'card_link', 'card_client'],
+            'section_shortcodes' => []
+        ];
+
+        $pages['blog'] = [
+            'name' => 'Blog Page',
+            'page_key' => 'blog',
+            'fields' => ['eyebrow', 'title', 'subtitle', 'filter_label', 'filter_clear', 'empty_text', 'empty_button', 'card_link'],
+            'section_shortcodes' => [
+                'page' => 'Page Header',
+                'sidebar' => 'Sidebar',
+            ]
+        ];
+
+        $pages['contact'] = [
+            'name' => 'Contact Page',
+            'page_key' => 'contact',
+            'fields' => ['eyebrow', 'title', 'subtitle', 'form_name', 'form_email', 'form_phone', 'form_subject', 'form_message', 'form_button', 'info_title', 'info_email', 'info_phone', 'info_address', 'map_placeholder'],
+            'section_shortcodes' => [
+                'page' => 'Page Header',
+                'form' => 'Contact Form',
+                'info' => 'Contact Info',
+            ]
+        ];
+
+        $pages['faq'] = [
+            'name' => 'FAQ Page',
+            'page_key' => 'faq',
+            'fields' => ['eyebrow', 'title', 'subtitle'],
+            'section_shortcodes' => []
+        ];
+
+        $pages['resume'] = [
+            'name' => 'Resume Page',
+            'page_key' => 'resume',
+            'fields' => ['eyebrow', 'title', 'subtitle'],
+            'section_shortcodes' => []
+        ];
+
+        $pages['pricing'] = [
+            'name' => 'Pricing Page',
+            'page_key' => 'pricing',
+            'fields' => ['eyebrow', 'title', 'subtitle'],
+            'section_shortcodes' => []
         ];
 
         // 3. FOOTER - AT THE BOTTOM
