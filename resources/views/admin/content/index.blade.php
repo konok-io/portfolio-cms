@@ -31,15 +31,10 @@
                                 $currentPage = $pages[$activeTab] ?? null;
                                 $pageContent = $content[$activeTab] ?? [];
                                 
-                                // Determine sections to display
+                                // Determine sections to display (use 'sections' key)
                                 $sectionsToShow = [];
-                                if ($currentPage) {
-                                    if (isset($currentPage['sections'])) {
-                                        $sectionsToShow = $currentPage['sections'];
-                                    }
-                                    elseif (isset($currentPage['section_shortcodes'])) {
-                                        $sectionsToShow = $currentPage['section_shortcodes'];
-                                    }
+                                if ($currentPage && isset($currentPage['sections'])) {
+                                    $sectionsToShow = $currentPage['sections'];
                                 }
                                 
                                 // Get saved order or default

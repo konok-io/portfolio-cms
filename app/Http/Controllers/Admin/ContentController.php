@@ -132,7 +132,7 @@ class ContentController extends Controller
         $pages['home'] = [
             'name' => 'Home Page',
             'page_key' => 'home',
-            'section_shortcodes' => [
+            'sections' => [
                 'hero' => [
                     'name' => 'Hero Section',
                     'fields' => ['eyebrow', 'button_hire', 'button_cv', 'badge']
