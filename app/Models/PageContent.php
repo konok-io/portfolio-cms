@@ -19,7 +19,7 @@ class PageContent
 
         $setting = Setting::instance();
         self::$content = $setting->page_content ?? self::getDefaultContent();
-        
+
         return self::$content;
     }
 
@@ -30,20 +30,47 @@ class PageContent
     {
         $content = self::all();
         $locale = $locale ?? app()->getLocale() ?? 'en';
-        
+
         $pageContent = $content[$page] ?? [];
-        
-        // Try locale-specific key first
+
+        // Handle dot notation keys (section.field)
+        if (str_contains($key, '.')) {
+            $parts = explode('.', $key);
+            $sectionKey = $parts[0];
+            $fieldKey = $parts[1] ?? '';
+
+            $sectionData = $pageContent[$sectionKey] ?? [];
+
+            // Try to get nested value
+            if (is_array($sectionData) && isset($sectionData[$fieldKey])) {
+                $fieldValue = $sectionData[$fieldKey];
+
+                // Check if it's a localized array
+                if (is_array($fieldValue)) {
+                    return $fieldValue[$locale] ?? $fieldValue['default'] ?? $fieldValue['en'] ?? null;
+                }
+
+                return $fieldValue;
+            }
+
+            // Fallback: try flat key format (section_field)
+            $flatKey = $sectionKey . '_' . $fieldKey;
+            if (isset($pageContent[$flatKey])) {
+                return $pageContent[$flatKey];
+            }
+        }
+
+        // Try locale-specific key first (old format: key_locale)
         $localeKey = "{$key}_{$locale}";
         if (isset($pageContent[$localeKey])) {
             return $pageContent[$localeKey];
         }
-        
-        // Try default key
+
+        // Try default key (old format)
         if (isset($pageContent[$key])) {
             return $pageContent[$key];
         }
-        
+
         // Return null (will fallback to hardcoded text)
         return null;
     }
@@ -55,18 +82,18 @@ class PageContent
     {
         $setting = Setting::instance();
         $content = $setting->page_content ?? [];
-        
+
         // Store with locale suffixes
         foreach ($values as $locale => $value) {
             $content[$page]["{$key}_{$locale}"] = $value;
         }
-        
+
         // Also set default
         $content[$page][$key] = $values['default'] ?? $values['en'] ?? '';
-        
+
         $setting->page_content = $content;
         $setting->save();
-        
+
         // Clear cache
         self::$content = null;
         Cache::forget('settings');
@@ -91,7 +118,7 @@ class PageContent
         $content[$page] = $values;
         $setting->page_content = $content;
         $setting->save();
-        
+
         // Clear cache
         self::$content = null;
         Cache::forget('settings');
@@ -118,7 +145,7 @@ class PageContent
                 'hero_eyebrow_en' => 'Available for new projects',
                 'hero_eyebrow_bn' => 'নতুন প্রজেক্টের জন্য উপলব্ধ',
                 'hero_eyebrow_ar' => 'متاح لمشاريع جديدة',
-                
+
                 // Contact Section
                 'contact_eyebrow' => 'Get In Touch',
                 'contact_title' => "Let's build something great together",
