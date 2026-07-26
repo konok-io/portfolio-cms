@@ -138,9 +138,13 @@ class ContentController extends Controller
                 'why_card2_text' => 'Well-structured, maintainable code that follows best practices.',
                 'why_card3_title' => 'Fast Delivery',
                 'why_card3_text' => 'Quick turnaround without compromising quality.',
+                'skills_eyebrow' => 'Skills',
+                'skills_title' => 'My Expertise',
                 'services_eyebrow' => 'Services',
                 'services_title' => 'What I Do',
                 'services_subtitle' => 'Professional services tailored to your needs',
+                'view_all' => 'View All',
+                'page_button' => 'Learn More',
                 'blog_eyebrow' => 'Blog',
                 'blog_title' => 'Latest Articles',
                 'blog_button' => 'View All Posts',
@@ -202,9 +206,13 @@ class ContentController extends Controller
                 'why_card2_text' => 'ভালো অনুশীলন অনুসরণকারী ভালো-কাঠামোগত, রক্ষণাবেক্ষণযোগ্য কোড।',
                 'why_card3_title' => 'দ্রুত ডেলিভারি',
                 'why_card3_text' => 'গুণমানের সাথে আপোষ না করে দ্রুত টার্নঅ্যারাউন্ড।',
+                'skills_eyebrow' => 'দক্ষতা',
+                'skills_title' => 'আমার দক্ষতা',
                 'services_eyebrow' => 'সেবাসমূহ',
                 'services_title' => 'আমি যা করি',
                 'services_subtitle' => 'আপনার প্রয়োজন অনুযায়ী পেশাদার সেবা',
+                'view_all' => 'সব দেখুন',
+                'page_button' => 'আরও জানুন',
                 'blog_eyebrow' => 'ব্লগ',
                 'blog_title' => 'সাম্প্রতিক লেখা',
                 'blog_button' => 'সব পোস্ট দেখুন',
@@ -272,9 +280,13 @@ class ContentController extends Controller
                 'why_card2_text' => 'كود جيد التنظيم وقابل للصيانة يتبع أفضل الممارسات.',
                 'why_card3_title' => 'توصيل سريع',
                 'why_card3_text' => 'دورة سريعة دون المساومة على الجودة.',
+                'skills_eyebrow' => 'المهارات',
+                'skills_title' => 'خبراتي',
                 'services_eyebrow' => 'الخدمات',
                 'services_title' => 'ما أفعله',
                 'services_subtitle' => 'خدمات احترافية مصممة لاحتياجاتك',
+                'view_all' => 'عرض الكل',
+                'page_button' => 'اعرف المزيد',
                 'blog_eyebrow' => 'المدونة',
                 'blog_title' => 'أحدث المقالات',
                 'blog_button' => 'عرض جميع المنشورات',
@@ -442,6 +454,11 @@ class ContentController extends Controller
                 $items['skills'] = \App\Models\Skill::orderBy('sort_order')->get(['id', 'name', 'percentage'])->toArray();
             }
             
+            // Services
+            if (class_exists('App\Models\Service')) {
+                $items['services'] = \App\Models\Service::where('is_active', true)->orderBy('sort_order')->get(['id', 'name', 'slug'])->toArray();
+            }
+            
             // Experience
             if (class_exists('App\Models\Experience')) {
                 $items['experience'] = \App\Models\Experience::orderBy('start_date', 'desc')->get(['id', 'job_title', 'company'])->toArray();
@@ -543,7 +560,10 @@ class ContentController extends Controller
                 ],
                 'services' => [
                     'name' => 'Services Section',
-                    'fields' => ['services_eyebrow', 'services_title', 'services_subtitle']
+                    'fields' => ['services_eyebrow', 'services_title', 'services_subtitle', 'view_all', 'page_button'],
+                    'is_dynamic' => true,
+                    'dynamic_type' => 'services',
+                    'dynamic_info' => 'Services are pulled from Services Manager'
                 ],
                 'experience' => [
                     'name' => 'Experience Section',
@@ -561,7 +581,7 @@ class ContentController extends Controller
                 ],
                 'portfolio' => [
                     'name' => 'Portfolio Section',
-                    'fields' => ['portfolio_eyebrow', 'portfolio_title', 'portfolio_subtitle'],
+                    'fields' => ['portfolio_eyebrow', 'portfolio_title', 'portfolio_subtitle', 'filter_all', 'filter_label'],
                     'is_dynamic' => true,
                     'dynamic_type' => 'portfolio',
                     'dynamic_info' => 'Projects are pulled from Projects Manager'
