@@ -31,7 +31,7 @@
                                 $currentPage = $pages[$activeTab] ?? null;
                                 $pageContent = $content[$activeTab] ?? [];
                                 
-                                // Determine sections to display (use 'sections' key)
+                                // Determine sections to display
                                 $sectionsToShow = [];
                                 if ($currentPage && isset($currentPage['sections'])) {
                                     $sectionsToShow = $currentPage['sections'];
@@ -43,53 +43,21 @@
                             @endphp
 
                             @if($currentPage && !empty($sectionsToShow))
+                                @if($hasMultipleSections)
+                                <div class="alert alert-info d-flex align-items-center mb-3" role="alert">
+                                    <i class="fa-solid fa-arrows-up-down-left-right me-2"></i>
+                                    <div>
+                                        <strong>Drag the grip icon (⋮⋮)</strong> to reorder sections. Click section headers to expand/collapse and edit content.
+                                    </div>
+                                </div>
+                                @endif
+                                
                                 <form action="{{ route('admin.content.update') }}" method="POST" id="content-form">
                                     @csrf
                                     <input type="hidden" name="page" value="{{ $activeTab }}">
                                     
-                                    {{-- Drag Drop Instructions --}}
-                                    @if($hasMultipleSections)
-                                    <div class="alert alert-info d-flex align-items-center mb-3" role="alert">
-                                        <i class="fa-solid fa-arrows-up-down-left-right me-2"></i>
-                                        <div>
-                                            <strong>Drag the grip icon</strong> to reorder sections. Click section headers to expand/collapse.
-                                        </div>
-                                    </div>
-                                    
-                                    {{-- Draggable Section List --}}
-                                    <div class="card mb-3">
-                                        <div class="card-header bg-light">
-                                            <h5 class="mb-0">
-                                                <i class="fa-solid fa-sort me-2"></i>
-                                                Section Order (Drag to Reorder)
-                                            </h5>
-                                        </div>
-                                        <div class="card-body p-0">
-                                            <ul class="list-group sortable-sections" id="sortable-sections" style="margin: 0;">
-                                                @foreach($sectionsOrder as $sectionKey)
-                                                    @if(isset($sectionsToShow[$sectionKey]))
-                                                        @php
-                                                            $section = $sectionsToShow[$sectionKey];
-                                                            $sectionName = is_array($section) ? ($section['name'] ?? $sectionKey) : $section;
-                                                            $sectionFields = is_array($section) ? ($section['fields'] ?? []) : [];
-                                                        @endphp
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center section-drag-item" data-section="{{ $sectionKey }}">
-                                                            <span>
-                                                                <i class="fa-solid fa-grip-vertical me-2 text-muted"></i>
-                                                                <strong>{{ $sectionName }}</strong>
-                                                                <small class="text-muted ms-2">({{ count($sectionFields) }} fields)</small>
-                                                            </span>
-                                                        </li>
-                                                    @endif
-                                                @endforeach
-                                            </ul>
-                                            <input type="hidden" name="sections_order" id="sections_order" value="{{ implode(',', $sectionsOrder) }}">
-                                        </div>
-                                    </div>
-                                    @endif
-                                    
-                                    {{-- Section Content Cards --}}
-                                    <div class="{{ $hasMultipleSections ? 'accordion' : '' }}" id="{{ $hasMultipleSections ? 'sectionsAccordion' : 'singleSection' }}">
+                                    {{-- Sortable Sections List --}}
+                                    <div class="sortable-accordion" id="sortableAccordion">
                                         @php $sectionIndex = 0; @endphp
                                         @foreach($sectionsOrder as $sectionKey)
                                             @if(isset($sectionsToShow[$sectionKey]))
@@ -101,28 +69,22 @@
                                                     $collapseId = 'section-' . $sectionIndex;
                                                 @endphp
                                                 
-                                                <div class="section-item {{ $hasMultipleSections ? 'accordion-item' : '' }}" data-section="{{ $sectionKey }}">
-                                                    @if($hasMultipleSections)
-                                                    <h2 class="accordion-header">
-                                                        <button class="accordion-button {{ $sectionIndex > 1 ? 'collapsed' : '' }}" 
+                                                <div class="accordion-item section-item mb-2" data-section="{{ $sectionKey }}" style="border-radius: 8px; overflow: hidden; border: 1px solid #dee2e6;">
+                                                    <div class="section-header d-flex align-items-center bg-light p-3" style="cursor: grab;">
+                                                        <i class="fa-solid fa-grip-vertical me-3 text-muted handle" style="cursor: grab;"></i>
+                                                        <button class="btn btn-link text-decoration-none flex-grow-1 text-start p-0" 
                                                                 type="button" 
                                                                 data-bs-toggle="collapse" 
                                                                 data-bs-target="#{{ $collapseId }}"
-                                                                aria-expanded="{{ $sectionIndex === 1 ? 'true' : 'false' }}">
+                                                                style="color: inherit;">
                                                             <strong>{{ $sectionName }}</strong>
                                                             <span class="badge bg-secondary ms-2">{{ count($sectionFields) }} fields</span>
                                                         </button>
-                                                    </h2>
+                                                        <i class="fa-solid fa-chevron-down text-muted ms-2 collapse-icon"></i>
+                                                    </div>
                                                     <div id="{{ $collapseId }}" 
-                                                         class="accordion-collapse collapse {{ $sectionIndex === 1 ? 'show' : '' }}" 
-                                                         data-bs-parent="#sectionsAccordion">
-                                                    @else
-                                                    <h5 class="mb-3">
-                                                        <i class="fa-solid fa-edit me-2 text-primary"></i>
-                                                        {{ $sectionName }}
-                                                    </h5>
-                                                    @endif
-                                                        <div class="card-body">
+                                                         class="accordion-collapse collapse {{ $sectionIndex === 1 ? 'show' : '' }}">
+                                                        <div class="card-body bg-white">
                                                             @if(!empty($sectionFields))
                                                                 @foreach($sectionFields as $field)
                                                                     @php
@@ -161,13 +123,13 @@
                                                                 </div>
                                                             @endif
                                                         </div>
-                                                    @if($hasMultipleSections)
                                                     </div>
-                                                    @endif
                                                 </div>
                                             @endif
                                         @endforeach
                                     </div>
+                                    
+                                    <input type="hidden" name="sections_order" id="sections_order" value="{{ implode(',', $sectionsOrder) }}">
                                     
                                     <div class="mt-3">
                                         <button type="submit" class="btn btn-primary">
@@ -197,52 +159,17 @@
 
 @section('css')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.css"/>
 <style>
 .input-group-text { font-size: 0.85rem; }
-.accordion-button:not(.collapsed) {
-    background-color: #f8f9fa;
-    color: #212529;
-}
-.accordion-button:focus {
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-}
-.section-item {
-    border: 1px solid rgba(0,0,0,0.125);
-    margin-bottom: -1px;
-}
-.section-item:first-child {
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
-}
-.section-item:last-child {
-    border-bottom-left-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
-    margin-bottom: 0;
-}
-.sortable-sections {
-    max-height: 300px;
-    overflow-y: auto;
-}
-.section-drag-item {
-    transition: background-color 0.2s;
-    cursor: grab;
-}
-.section-drag-item:hover {
-    background-color: #f8f9fa;
-}
-.sortable-ghost {
-    opacity: 0.5;
-    background-color: #cfe2ff !important;
-}
-.sortable-chosen {
-    background-color: #e9ecef !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-.badge-sm {
-    font-size: 0.65rem;
-    padding: 0.2em 0.4em;
-}
+.badge-sm { font-size: 0.65rem; padding: 0.2em 0.4em; }
+.handle { cursor: grab; }
+.handle:active { cursor: grabbing; }
+.section-item.sortable-ghost { opacity: 0.4; background: #cfe2ff; }
+.section-item.sortable-chosen { background: #e9ecef; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+.collapse-icon { transition: transform 0.3s; }
+.accordion-collapse.show ~ .section-header .collapse-icon,
+.section-item:has(.accordion-collapse.show) .collapse-icon { transform: rotate(180deg); }
 </style>
 @endsection
 
@@ -250,45 +177,27 @@
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Sortable for the section list
-    var el = document.getElementById('sortable-sections');
-    var accordion = document.getElementById('sectionsAccordion');
+    var accordion = document.getElementById('sortableAccordion');
     
-    if (el) {
-        new Sortable(el, {
+    if (accordion && accordion.querySelectorAll('.section-item').length > 1) {
+        new Sortable(accordion, {
             animation: 200,
+            handle: '.handle',
             ghostClass: 'sortable-ghost',
             chosenClass: 'sortable-chosen',
-            handle: '.fa-grip-vertical',
             onEnd: function(evt) {
                 updateSectionsOrder();
-                reorderAccordion();
             }
         });
     }
     
     function updateSectionsOrder() {
-        var items = el.querySelectorAll('.section-drag-item');
+        var items = accordion.querySelectorAll('.section-item');
         var order = [];
         for (var i = 0; i < items.length; i++) {
             order.push(items[i].getAttribute('data-section'));
         }
         document.getElementById('sections_order').value = order.join(',');
-    }
-    
-    function reorderAccordion() {
-        if (!accordion) return;
-        var items = el.querySelectorAll('.section-drag-item');
-        var accordionItems = accordion.querySelectorAll('.section-item');
-        
-        items.forEach(function(item) {
-            var sectionKey = item.getAttribute('data-section');
-            accordionItems.forEach(function(accordionItem) {
-                if (accordionItem.getAttribute('data-section') === sectionKey) {
-                    accordion.appendChild(accordionItem);
-                }
-            });
-        });
     }
 });
 </script>
