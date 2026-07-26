@@ -139,7 +139,7 @@
             
             .tech-card {
                 background: #fff;
-                border: 1px solid rgba(79, 47, 232, 0.1);
+                border: 1px solid rgba(37, 99, 235, 0.1);
                 border-radius: 16px;
                 padding: 25px 15px;
                 text-align: center;
@@ -155,15 +155,15 @@
                 left: 0;
                 right: 0;
                 height: 3px;
-                background: linear-gradient(90deg, #4F2FE8, #8B5CF6);
+                background: linear-gradient(90deg, #2563EB, #3B82F6);
                 opacity: 0;
                 transition: opacity 0.3s;
             }
             
             .tech-card:hover {
                 transform: translateY(-8px);
-                border-color: #4F2FE8;
-                box-shadow: 0 15px 40px rgba(79, 47, 232, 0.15);
+                border-color: #2563EB;
+                box-shadow: 0 15px 40px rgba(37, 99, 235, 0.15);
             }
             
             .tech-card:hover::before {
@@ -173,7 +173,7 @@
             .tech-icon {
                 font-size: 2.5rem;
                 margin-bottom: 15px;
-                color: #4F2FE8;
+                color: #2563EB;
                 transition: transform 0.3s;
             }
             
@@ -184,12 +184,18 @@
             .tech-name {
                 color: #1a1a2e;
                 font-weight: 600;
-                margin-bottom: 8px;
+                margin-bottom: 5px;
                 font-size: 1rem;
             }
             
+            .tech-category {
+                color: #6b7280;
+                font-size: 0.8rem;
+                margin-bottom: 10px;
+            }
+            
             .tech-percentage {
-                background: #4F2FE8;
+                background: #2563EB;
                 color: #fff;
                 padding: 4px 12px;
                 border-radius: 20px;
@@ -206,6 +212,10 @@
             
             [data-theme="dark"] .tech-name {
                 color: #fff;
+            }
+            
+            [data-theme="dark"] .tech-category {
+                color: #a8a4c8;
             }
             
             [data-theme="dark"] .tech-card:hover {
@@ -238,6 +248,7 @@
                         @endif
                     </div>
                     <div class="tech-name">{{ $skill->name }}</div>
+                    <div class="tech-category">{{ $skill->category ?? 'Technical' }}</div>
                     <div class="tech-percentage">{{ $skill->percentage }}%</div>
                 </div>
             @endforeach
