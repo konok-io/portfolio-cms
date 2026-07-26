@@ -117,18 +117,7 @@ class ContentController extends Controller
     {
         $pages = [];
 
-        // 1. HEADER - Site-wide header content (AT THE TOP)
-        $pages['header'] = [
-            'name' => 'Header',
-            'sections' => [
-                'general' => [
-                    'name' => 'Header Content',
-                    'fields' => ['logo_text', 'tagline']
-                ],
-            ]
-        ];
-
-        // 2. PAGE-SPECIFIC CONTENT
+        // 1. HOME PAGE - All sections with full content
         $pages['home'] = [
             'name' => 'Home Page',
             'page_key' => 'home',
@@ -180,6 +169,7 @@ class ContentController extends Controller
             ]
         ];
 
+        // 2. ABOUT PAGE
         $pages['about'] = [
             'name' => 'About Page',
             'page_key' => 'about',
@@ -191,6 +181,7 @@ class ContentController extends Controller
             ]
         ];
 
+        // 3. SERVICES PAGE
         $pages['services'] = [
             'name' => 'Services Page',
             'page_key' => 'services',
@@ -205,33 +196,44 @@ class ContentController extends Controller
                 ],
                 'cta' => [
                     'name' => 'Call to Action',
-                    'fields' => ['cta_heading', 'cta_button', 'view_all'],
+                    'fields' => ['cta_heading', 'cta_button', 'page_button', 'view_all'],
                 ],
             ]
         ];
 
+        // 4. PORTFOLIO PAGE
         $pages['portfolio'] = [
             'name' => 'Portfolio Page',
             'page_key' => 'portfolio',
             'sections' => [
                 'page' => [
                     'name' => 'Page Header',
-                    'fields' => [],
+                    'fields' => ['page_eyebrow', 'page_title', 'page_subtitle'],
+                ],
+                'filters' => [
+                    'name' => 'Filter Labels',
+                    'fields' => ['filter_all', 'filter_label'],
                 ],
             ]
         ];
 
+        // 5. BLOG PAGE
         $pages['blog'] = [
             'name' => 'Blog Page',
             'page_key' => 'blog',
             'sections' => [
                 'page' => [
                     'name' => 'Page Header',
-                    'fields' => [],
+                    'fields' => ['page_eyebrow', 'page_title', 'page_subtitle'],
+                ],
+                'sidebar' => [
+                    'name' => 'Sidebar',
+                    'fields' => ['sidebar_search', 'sidebar_search_placeholder', 'sidebar_categories', 'sidebar_all_categories', 'sidebar_tags', 'sidebar_view_categories', 'filter_label', 'filter_clear', 'empty_text', 'empty_button'],
                 ],
             ]
         ];
 
+        // 6. CONTACT PAGE
         $pages['contact'] = [
             'name' => 'Contact Page',
             'page_key' => 'contact',
@@ -241,45 +243,13 @@ class ContentController extends Controller
                     'fields' => ['page_eyebrow', 'page_title', 'page_subtitle'],
                 ],
                 'form' => [
-                    'name' => 'Contact Form',
+                    'name' => 'Contact Form Labels',
                     'fields' => ['form_phone', 'form_subject', 'form_message', 'form_button'],
                 ],
             ]
         ];
 
-        $pages['faq'] = [
-            'name' => 'FAQ Page',
-            'page_key' => 'faq',
-            'sections' => [
-                'page' => [
-                    'name' => 'Page Header',
-                    'fields' => [],
-                ],
-            ]
-        ];
-
-        $pages['resume'] = [
-            'name' => 'Resume Page',
-            'page_key' => 'resume',
-            'sections' => [
-                'page' => [
-                    'name' => 'Page Header',
-                    'fields' => [],
-                ],
-            ]
-        ];
-
-        $pages['pricing'] = [
-            'name' => 'Pricing Page',
-            'page_key' => 'pricing',
-            'sections' => [
-                'page' => [
-                    'name' => 'Page Header',
-                    'fields' => [],
-                ],
-            ]
-        ];
-
+        // 7. SEARCH PAGE
         $pages['search'] = [
             'name' => 'Search Page',
             'page_key' => 'search',
@@ -291,25 +261,47 @@ class ContentController extends Controller
             ]
         ];
 
-        // 3. CUSTOM PAGES - BEFORE FOOTER
-        $customPages = CustomPage::orderBy('sort_order')->get();
-        foreach ($customPages as $customPage) {
-            $pageKey = 'custom_' . $customPage->id;
-            $pages[$pageKey] = [
-                'name' => $customPage->title . ($customPage->is_published ? '' : ' (Draft)'),
-                'is_custom' => true,
-                'custom_id' => $customPage->id,
-                'sections' => [
-                    'page' => ['name' => 'Page Header', 'fields' => ['eyebrow', 'title', 'subtitle']],
-                ]
-            ];
-        }
+        // 8. FAQ PAGE
+        $pages['faq'] = [
+            'name' => 'FAQ Page',
+            'page_key' => 'faq',
+            'sections' => [
+                'page' => [
+                    'name' => 'Page Header',
+                    'fields' => [],
+                ],
+            ]
+        ];
 
-        // 4. FOOTER - ALWAYS AT THE BOTTOM
+        // 9. RESUME PAGE
+        $pages['resume'] = [
+            'name' => 'Resume Page',
+            'page_key' => 'resume',
+            'sections' => [
+                'page' => [
+                    'name' => 'Page Header',
+                    'fields' => [],
+                ],
+            ]
+        ];
+
+        // 10. PRICING PAGE
+        $pages['pricing'] = [
+            'name' => 'Pricing Page',
+            'page_key' => 'pricing',
+            'sections' => [
+                'page' => [
+                    'name' => 'Page Header',
+                    'fields' => [],
+                ],
+            ]
+        ];
+
+        // 11. FOOTER - ALWAYS AT THE BOTTOM
         $pages['footer'] = [
             'name' => 'Footer',
             'sections' => [
-                'general' => [
+                'footer' => [
                     'name' => 'Footer Content',
                     'fields' => ['tagline', 'quick_links_title', 'contact_title', 'newsletter_title', 'newsletter_text', 'newsletter_placeholder', 'copyright', 'copyright_prefix']
                 ],
