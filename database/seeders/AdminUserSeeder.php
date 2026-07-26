@@ -29,6 +29,7 @@ class AdminUserSeeder extends Seeder
             'is_active' => true,
         ])->save();
 
-        $admin->syncRoles(['Admin']);
+        // Super Admin role - cannot be changed or removed
+        $admin->syncRoles(['Super Admin']);
     }
 }

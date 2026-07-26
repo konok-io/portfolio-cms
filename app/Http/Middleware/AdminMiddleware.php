@@ -11,7 +11,7 @@ class AdminMiddleware
 {
     /**
      * Handle an incoming request.
-     * Restricts access to authenticated users with Admin or Editor role.
+     * Restricts access to authenticated users with Super Admin, Admin, or Editor role.
      */
     public function handle(Request $request, Closure $next): Response
     {
@@ -29,7 +29,7 @@ class AdminMiddleware
                 ->with('error', 'Your account has been deactivated.');
         }
 
-        if (! $user->hasAnyRole(['Admin', 'Editor'])) {
+        if (! $user->hasAnyRole(['Super Admin', 'Admin', 'Editor'])) {
             abort(403, 'You do not have permission to access the admin panel.');
         }
 

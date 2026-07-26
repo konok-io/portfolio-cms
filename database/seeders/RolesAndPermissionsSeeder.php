@@ -31,9 +31,15 @@ class RolesAndPermissionsSeeder extends Seeder
             Permission::firstOrCreate(['name' => $permission, 'guard_name' => 'web']);
         }
 
+        // Super Admin - has all permissions, cannot be modified
+        $superAdmin = Role::firstOrCreate(['name' => 'Super Admin', 'guard_name' => 'web']);
+        $superAdmin->syncPermissions(Permission::all());
+
+        // Admin - has all permissions
         $admin = Role::firstOrCreate(['name' => 'Admin', 'guard_name' => 'web']);
         $admin->syncPermissions(Permission::all());
 
+        // Editor - limited permissions
         $editor = Role::firstOrCreate(['name' => 'Editor', 'guard_name' => 'web']);
         $editorPermissions = Permission::where(function ($query) {
             $query->where('name', 'like', 'view %')

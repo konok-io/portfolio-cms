@@ -85,13 +85,24 @@ class UserController extends Controller
     {
         $this->protectSuperAdmin($user);
 
-        $validated = $request->validate([
+        $superAdminEmail = config('app.super_admin_email', 'admin@konok.io');
+        
+        // If this is the super admin, only allow certain fields to be updated
+        $isSuperAdmin = $user->email === $superAdminEmail;
+        
+        $rules = [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
-            'role' => ['required', 'exists:roles,name'],
             'is_active' => ['nullable', 'boolean'],
-        ]);
+        ];
+        
+        // Super Admin cannot have their role changed
+        if (!$isSuperAdmin) {
+            $rules['role'] = ['required', 'exists:roles,name'];
+        }
+
+        $validated = $request->validate($rules);
 
         $data = [
             'name' => $validated['name'],
@@ -104,7 +115,11 @@ class UserController extends Controller
         }
 
         $user->update($data);
-        $user->syncRoles([$validated['role']]);
+        
+        // Only sync roles if not super admin
+        if (!$isSuperAdmin && isset($validated['role'])) {
+            $user->syncRoles([$validated['role']]);
+        }
 
         return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
     }

@@ -43,7 +43,7 @@ class LoginController extends Controller
             ]);
         }
 
-        if (! $user->hasAnyRole(['Admin', 'Editor'])) {
+        if (! $user->hasAnyRole(['Super Admin', 'Admin', 'Editor'])) {
             Auth::logout();
 
             throw ValidationException::withMessages([
