@@ -143,33 +143,47 @@ class AppServiceProvider extends ServiceProvider
     protected function getFooterLinks(): array
     {
         try {
+            // Get footer menu items from database
+            if (Schema::hasTable('menu_items')) {
+                $footerMenuItems = MenuItem::active()
+                    ->where('menu_type', 'footer')
+                    ->orderBy('order')
+                    ->get();
+                
+                if ($footerMenuItems->isNotEmpty()) {
+                    $footerLinks = $footerMenuItems->map(function ($item) {
+                        return ['title' => $item->name, 'url' => $item->link];
+                    })->toArray();
+                    
+                    // Split into two columns
+                    $col1 = [];
+                    $col2 = [];
+                    foreach ($footerLinks as $index => $link) {
+                        if ($index % 2 === 0) {
+                            $col1[] = $link;
+                        } else {
+                            $col2[] = $link;
+                        }
+                    }
+                    return ['col1' => $col1, 'col2' => $col2];
+                }
+            }
+            
+            // Fallback to custom pages if no menu items
             if (!Schema::hasTable('custom_pages')) {
                 return ['col1' => [], 'col2' => []];
             }
             
             $footerPages = CustomPage::getFooterPages();
             
-            $staticLinks = [
-                ['title' => 'About', 'url' => '/#about'],
-                ['title' => 'Services', 'url' => '/#services'],
-                ['title' => 'Portfolio', 'url' => '/portfolio'],
-                ['title' => 'Resume', 'url' => '/resume'],
-                ['title' => 'Blog', 'url' => '/blog'],
-                ['title' => 'FAQ', 'url' => '/faq'],
-                ['title' => 'Pricing', 'url' => '/pricing'],
-                ['title' => 'Login', 'url' => route('admin.login')],
-            ];
-            
             $customLinks = $footerPages->map(function ($page) {
                 return ['title' => $page->title, 'url' => '/' . $page->slug];
             })->toArray();
             
-            $allLinks = array_merge($staticLinks, $customLinks);
-            
             $col1 = [];
             $col2 = [];
             
-            foreach ($allLinks as $index => $link) {
+            foreach ($customLinks as $index => $link) {
                 if ($index % 2 === 0) {
                     $col1[] = $link;
                 } else {
@@ -189,12 +203,13 @@ class AppServiceProvider extends ServiceProvider
             if (!Schema::hasTable('menu_items')) {
                 return collect([]);
             }
-            // Get hierarchical menu items (top level with children)
+            // Get header menu items only (top level with children)
             return MenuItem::active()
+                ->where('menu_type', 'header')
                 ->whereNull('parent_id')
                 ->orderBy('order')
                 ->with(['children' => function ($query) {
-                    $query->active()->orderBy('sort_order');
+                    $query->active()->where('menu_type', 'header')->orderBy('sort_order');
                 }])
                 ->get();
         } catch (\Throwable $e) {
