@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\About;
 use App\Models\Service;
+use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
@@ -20,16 +21,18 @@ class ServiceController extends Controller
         return view('front.services', compact('about', 'services'));
     }
     
-    public function show($slug)
+    public function show(Request $request, $slug)
     {
         $about = About::first() ?? new About([
             'name'  => 'Your Name',
             'title' => 'Web Developer',
         ]);
         
-        $service = Service::where('slug', $slug)
-            ->active()
-            ->firstOrFail();
+        $service = Service::where('slug', $slug)->first();
+        
+        if (!$service) {
+            abort(404);
+        }
             
         $relatedServices = Service::active()
             ->ordered()
