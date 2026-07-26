@@ -33,30 +33,23 @@ class PageContent
 
         $pageContent = $content[$page] ?? [];
 
-        // Handle dot notation keys (section.field)
-        if (str_contains($key, '.')) {
-            $parts = explode('.', $key);
-            $sectionKey = $parts[0];
-            $fieldKey = $parts[1] ?? '';
-
-            $sectionData = $pageContent[$sectionKey] ?? [];
-
-            // Try to get nested value
-            if (is_array($sectionData) && isset($sectionData[$fieldKey])) {
-                $fieldValue = $sectionData[$fieldKey];
-
-                // Check if it's a localized array
-                if (is_array($fieldValue)) {
-                    return $fieldValue[$locale] ?? $fieldValue['default'] ?? $fieldValue['en'] ?? null;
-                }
-
-                return $fieldValue;
+        // Check if page content is nested (with sections like general, hero, etc.)
+        if (isset($pageContent[$key])) {
+            $value = $pageContent[$key];
+            if (is_array($value)) {
+                return $value[$locale] ?? $value['default'] ?? $value['en'] ?? null;
             }
+            return $value;
+        }
 
-            // Fallback: try flat key format (section_field)
-            $flatKey = $sectionKey . '_' . $fieldKey;
-            if (isset($pageContent[$flatKey])) {
-                return $pageContent[$flatKey];
+        // Try to find in nested sections (new format: page -> section -> field)
+        foreach ($pageContent as $sectionKey => $sectionData) {
+            if (is_array($sectionData) && isset($sectionData[$key])) {
+                $value = $sectionData[$key];
+                if (is_array($value)) {
+                    return $value[$locale] ?? $value['default'] ?? $value['en'] ?? null;
+                }
+                return $value;
             }
         }
 
