@@ -224,6 +224,33 @@ class ContentController extends Controller
                     ],
                 ]
             ],
+            'faq' => [
+                'name' => 'FAQ Page',
+                'sections' => [
+                    'page' => [
+                        'name' => 'Page Header',
+                        'fields' => ['eyebrow', 'title', 'subtitle']
+                    ],
+                ]
+            ],
+            'resume' => [
+                'name' => 'Resume Page',
+                'sections' => [
+                    'page' => [
+                        'name' => 'Page Header',
+                        'fields' => ['eyebrow', 'title', 'subtitle']
+                    ],
+                ]
+            ],
+            'pricing' => [
+                'name' => 'Pricing Page',
+                'sections' => [
+                    'page' => [
+                        'name' => 'Page Header',
+                        'fields' => ['eyebrow', 'title', 'subtitle']
+                    ],
+                ]
+            ],
         ];
 
         // Add custom pages dynamically from database (all pages, not just published)
