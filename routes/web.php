@@ -281,6 +281,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     // Content Settings
     Route::get('/content', [\App\Http\Controllers\Admin\ContentController::class, 'index'])->name('content.index');
     Route::post('/content', [\App\Http\Controllers\Admin\ContentController::class, 'update'])->name('content.update');
+    Route::post('/content/sections-order', [\App\Http\Controllers\Admin\ContentController::class, 'updateSectionsOrder'])->name('content.updateSectionsOrder');
     Route::get('/content/reset', [\App\Http\Controllers\Admin\ContentController::class, 'reset'])->name('content.reset');
 
     // Users & Roles
