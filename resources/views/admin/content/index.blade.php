@@ -310,10 +310,10 @@
 .section-item.sortable-ghost { opacity: 0.4; background: #cfe2ff; }
 .section-item.sortable-chosen { background: #e9ecef; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
 .section-item.sortable-drag { background: #fff; box-shadow: 0 8px 16px rgba(0,0,0,0.2); opacity: 1; }
+.section-header { cursor: grab !important; user-select: none; }
+.section-header:active { cursor: grabbing !important; }
 .handle { cursor: grab; }
-.handle:active { cursor: grabbing; }
 .collapse-icon { transition: transform 0.3s; }
-.accordion-collapse.show ~ .section-header .collapse-icon,
 .section-item:has(.accordion-collapse.show) .collapse-icon { transform: rotate(180deg); }
 </style>
 @endsection
@@ -322,44 +322,51 @@
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Wait for Bootstrap to be ready
-    setTimeout(initSortable, 100);
+    initSortable();
 });
 
 function initSortable() {
     var accordion = document.getElementById('sortableAccordion');
-    if (!accordion) {
-        console.log('Accordion not found');
-        return;
-    }
-    
-    // Destroy existing sortable if any
-    if (accordion.dataset.sortableInitialized) {
-        return;
-    }
+    if (!accordion) return;
     
     var sections = accordion.querySelectorAll('.section-item');
-    console.log('Found sections:', sections.length);
+    if (sections.length < 2) return;
     
-    // Only enable drag if there are multiple sections
-    if (sections.length > 1 && typeof Sortable !== 'undefined') {
-        var sortable = new Sortable(accordion, {
-            animation: 200,
-            handle: '.handle',
-            draggable: '.section-item',
-            ghostClass: 'sortable-ghost',
-            chosenClass: 'sortable-chosen',
-            dragClass: 'sortable-drag',
-            forceFallback: true, // Use fallback for better compatibility
-            onEnd: function(evt) {
-                console.log('Drag ended');
-                updateSectionsOrder();
-            }
-        });
-        
-        accordion.dataset.sortableInitialized = 'true';
-        console.log('Sortable initialized successfully');
-    }
+    // Make the whole section header draggable (not just the handle)
+    // This prevents Bootstrap accordion click from interfering
+    new Sortable(accordion, {
+        animation: 200,
+        draggable: '.section-item',
+        handle: '.section-header',
+        ghostClass: 'sortable-ghost',
+        chosenClass: 'sortable-chosen',
+        dragClass: 'sortable-drag',
+        forceFallback: true,
+        onEnd: function(evt) {
+            updateSectionsOrder();
+        }
+    });
+    
+    // Prevent accordion toggle when clicking on drag area
+    sections.forEach(function(section) {
+        var header = section.querySelector('.section-header');
+        if (header) {
+            header.addEventListener('mousedown', function(e) {
+                // Allow drag
+                section.dataset.dragging = 'false';
+            });
+            
+            header.addEventListener('mousemove', function(e) {
+                section.dataset.dragging = 'true';
+            });
+            
+            header.addEventListener('mouseup', function(e) {
+                setTimeout(function() {
+                    section.dataset.dragging = 'false';
+                }, 100);
+            });
+        }
+    });
 }
 
 function updateSectionsOrder() {
