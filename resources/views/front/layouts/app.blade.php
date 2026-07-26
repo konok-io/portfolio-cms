@@ -97,11 +97,12 @@
     </script>
     <script>(function(){try{var m=document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);var l=m?m[1]:'en';var rtl=['ar','ur','fa','he','ps','sd'];if(rtl.indexOf(l)>=0){document.documentElement.setAttribute('dir','rtl');}else{document.documentElement.setAttribute('dir','ltr');}}catch(e){}})();</script>
     <style>
-      .gtranslate-wrap{position:relative}
+      .gtranslate-wrap{position:relative;z-index:1051}
+      .site-navbar{overflow:visible!important}
       .gt-btn,.theme-toggle-btn{display:inline-flex;align-items:center;gap:7px;font-size:.9rem;font-weight:500;color:inherit;background:transparent;border:1px solid rgba(125,125,150,.3);border-radius:20px;padding:6px 13px;cursor:pointer}
       .theme-toggle-btn{width:38px;height:38px;justify-content:center;border-radius:50%;padding:0}
       .gt-btn:hover,.theme-toggle-btn:hover{border-color:#4F2FE8}
-      .lang-menu{position:absolute;top:60px;right:0;z-index:1050;background:#fff;border:1px solid #e2e2e8;border-radius:12px;padding:6px;display:none;box-shadow:0 24px 60px -30px rgba(0,0,0,.3);max-height:360px;overflow:auto;min-width:170px}
+      .lang-menu{position:absolute;top:100%;right:0;z-index:1052;background:#fff;border:1px solid #e2e2e8;border-radius:12px;padding:6px;display:none;box-shadow:0 24px 60px -30px rgba(0,0,0,.3);max-height:360px;overflow:auto;min-width:170px}
       body.gt-open .lang-menu{display:block !important}
       .lang-menu button{display:block;width:100%;text-align:left;background:none;border:0;color:#333;font-size:14.5px;padding:9px 14px;border-radius:8px;cursor:pointer}
       .lang-menu button:hover{background:#f4f4f9}
