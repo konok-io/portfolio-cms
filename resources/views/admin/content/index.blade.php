@@ -1,47 +1,40 @@
 @extends('admin.layouts.app')
 @section('title', 'Content Settings')
-@section('css')
-<link href="https://cdn.jsdelivr.net/npm/tabulator-tables@5/dist/css/tabulator.min.css" rel="stylesheet">
-@endsection
 @section('content')
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Content Settings</h3>
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h3 class="card-title mb-0">Content Settings</h3>
+                    @if(session('success'))
+                        <span class="badge bg-success">{{ session('success') }}</span>
+                    @endif
                 </div>
                 <div class="card-body">
-                    @if(session('success'))
-                        <div class="alert alert-success alert-dismissible fade show">
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                            {{ session('success') }}
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="list-group">
+                                @foreach($pages as $pageKey => $page)
+                                    <a href="{{ route('admin.content.index', ['tab' => $pageKey]) }}" 
+                                       class="list-group-item list-group-item-action {{ $activeTab === $pageKey ? 'active' : '' }}">
+                                        {{ $page['name'] }}
+                                    </a>
+                                @endforeach
+                            </div>
                         </div>
-                    @endif
-                    
-                    <ul class="nav nav-tabs mb-4" id="pageTabs" role="tablist">
-                        @foreach($pages as $pageKey => $page)
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link {{ $activeTab === $pageKey ? 'active' : '' }}" 
-                                        id="{{ $pageKey }}-tab" 
-                                        data-bs-toggle="tab" 
-                                        data-bs-target="#{{ $pageKey }}" 
-                                        type="button" 
-                                        role="tab">
-                                    {{ $page['name'] }}
-                                </button>
-                            </li>
-                        @endforeach
-                    </ul>
-                    
-                    <form action="{{ route('admin.content.update') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="page" id="selectedPage" value="{{ array_key_first($pages) }}">
-                        
-                        <div class="tab-content" id="pageTabsContent">
-                            @foreach($pages as $pageKey => $page)
-                                <div class="tab-pane fade {{ $activeTab === $pageKey ? 'show active' : '' }}" id="{{ $pageKey }}" role="tabpanel">
-                                    @foreach($page['sections'] as $sectionKey => $section)
+                        <div class="col-md-9">
+                            @php
+                                $currentPage = $pages[$activeTab] ?? null;
+                                $currentContent = $content[$activeTab] ?? [];
+                            @endphp
+                            
+                            @if($currentPage)
+                                <form action="{{ route('admin.content.update') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="page" value="{{ $activeTab }}">
+                                    
+                                    @foreach($currentPage['sections'] as $sectionKey => $section)
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 <h5 class="mb-0">{{ $section['name'] }}</h5>
@@ -50,12 +43,9 @@
                                                 <div class="row">
                                                     @foreach($section['fields'] as $field)
                                                         @php
-                                                            $fullKey = $pageKey . '.' . $sectionKey . '.' . $field;
-                                                            $inputName = $pageKey . '.' . $sectionKey . '.' . $field;
-                                                            $pageData = $content[$pageKey] ?? [];
-                                                            $sectionData = $pageData[$sectionKey] ?? [];
+                                                            $inputName = $field;
+                                                            $sectionData = $currentContent[$sectionKey] ?? [];
                                                             $fieldData = $sectionData[$field] ?? null;
-                                                            // Handle both localized array and plain value
                                                             if (is_array($fieldData)) {
                                                                 $value = $fieldData['default'] ?? $fieldData['en'] ?? '';
                                                             } else {
@@ -69,72 +59,31 @@
                                                                    class="form-control" 
                                                                    value="{{ $value }}"
                                                                    placeholder="Enter {{ $field }}">
-                                                            <small class="text-muted">Key: {{ $fullKey }}</small>
+                                                            <small class="text-muted">Key: {{ $activeTab }}.{{ $sectionKey }}.{{ $field }}</small>
                                                         </div>
                                                     @endforeach
                                                 </div>
                                             </div>
                                         </div>
                                     @endforeach
-                                </div>
-                            @endforeach
+                                    
+                                    <div class="mt-3">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fa-solid fa-save me-1"></i> Save Changes
+                                        </button>
+                                        <a href="{{ route('admin.content.reset') }}?page={{ $activeTab }}"
+                                           class="btn btn-outline-secondary ms-2"
+                                           onclick="return confirm('Are you sure you want to reset this page to default?')">
+                                            <i class="fa-solid fa-rotate me-1"></i> Reset to Default
+                                        </a>
+                                    </div>
+                                </form>
+                            @endif
                         </div>
-                        
-                        <div class="mt-3">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fa-solid fa-save me-1"></i> Save Changes
-                            </button>
-                            <a href="{{ route("admin.content.reset") }}?page={{ array_key_first($pages) }}" 
-                               class="btn btn-outline-secondary ms-2"
-                               onclick="return confirm('Are you sure you want to reset this page to default?')">
-                                <i class="fa-solid fa-rotate me-1"></i> Reset to Default
-                            </a>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
-@section('js')
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form');
-    const tabs = document.querySelectorAll('button[data-bs-toggle="tab"]');
-    
-    tabs.forEach(tab => {
-        tab.addEventListener('shown.bs.tab', function(e) {
-            const page = e.target.getAttribute('data-bs-target').replace('#', '');
-            const url = new URL(window.location);
-            url.searchParams.set('tab', page);
-            history.pushState({}, '', url);
-            document.getElementById('selectedPage').value = page;
-            const resetLink = document.querySelector('a[href*="content/reset"]');
-            if (resetLink) {
-                resetLink.href = '{{ route("admin.content.reset") }}?page=' + page;
-            }
-        });
-    });
-    
-    if (form) {
-        form.addEventListener('submit', function() {
-            const activeTab = document.querySelector('.nav-link.active');
-            if (activeTab) {
-                const page = activeTab.getAttribute('data-bs-target').replace('#', '');
-                document.getElementById('selectedPage').value = page;
-            }
-        });
-    }
-    
-    const activeTab = document.querySelector('.nav-link.active');
-    if (activeTab) {
-        const resetLink = document.querySelector('a[href*="content/reset"]');
-        if (resetLink) {
-            const page = activeTab.getAttribute('data-bs-target').replace('#', '');
-            resetLink.href = '{{ route("admin.content.reset") }}?page=' + page;
-        }
-    }
-});
-</script>
 @endsection

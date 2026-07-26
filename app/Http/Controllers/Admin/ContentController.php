@@ -36,45 +36,29 @@ class ContentController extends Controller
         $page = $request->input('page');
         $data = $request->except(['_token', 'page']);
 
-        // Group by language and structure
+        // Group fields - just field name as key with localized values
         $groupedData = [];
         foreach ($data as $key => $value) {
-            // Check if key contains dots (new format: page.section.field)
-            if (str_contains($key, '.')) {
-                $parts = explode('.', $key);
-                $lastPart = end($parts);
-                $secondLast = $parts[count($parts) - 2];
-                
-                // Check if last part is a language code
-                if (in_array($lastPart, ['en', 'bn', 'ar'])) {
-                    $sectionKey = $secondLast;
-                    $fieldKey = $parts[count($parts) - 3] ?? $secondLast;
-                    $groupedData[$sectionKey] = $groupedData[$sectionKey] ?? [];
-                    $groupedData[$sectionKey][$fieldKey] = $groupedData[$sectionKey][$fieldKey] ?? [];
-                    $groupedData[$sectionKey][$fieldKey][$lastPart] = $value;
-                    if (!isset($groupedData[$sectionKey][$fieldKey]['default'])) {
-                        $groupedData[$sectionKey][$fieldKey]['default'] = $value;
-                    }
-                } else {
-                    // No language suffix, use entire value - include section key
-                    $sectionKey = $secondLast;
-                    $fieldKey = $lastPart;
-                    $groupedData[$sectionKey] = $groupedData[$sectionKey] ?? [];
-                    $groupedData[$sectionKey][$fieldKey] = ['default' => $value, 'en' => $value, 'bn' => $value, 'ar' => $value];
-                }
-            } else {
-                // Old underscore format (keep for compatibility)
-                $parts = explode('_', $key);
-                $suffix = end($parts);
-                
-                if (in_array($suffix, ['en', 'bn', 'ar'])) {
-                    $baseKey = str_replace('_' . $suffix, '', $key);
-                    $groupedData[$baseKey][$suffix] = $value;
-                    if (!isset($groupedData[$baseKey]['default'])) {
-                        $groupedData[$baseKey]['default'] = $value;
-                    }
-                } else {
-                    $groupedData[$key] = ['default' => $value, 'en' => $value, 'bn' => $value, 'ar' => $value];
+            if ($key !== 'page') {
+                $groupedData[$key] = [
+                    'default' => $value,
+                    'en' => $value,
+                    'bn' => $value,
+                    'ar' => $value,
+                ];
+            }
+        }
+
+        // Get sections for current page to organize data
+        $pages = $this->getPages();
+        $currentPageConfig = $pages[$page] ?? [];
+        
+        // Organize data by section
+        $organizedData = [];
+        foreach ($currentPageConfig['sections'] ?? [] as $sectionKey => $section) {
+            foreach ($section['fields'] ?? [] as $field) {
+                if (isset($groupedData[$field])) {
+                    $organizedData[$sectionKey][$field] = $groupedData[$field];
                 }
             }
         }
@@ -82,7 +66,7 @@ class ContentController extends Controller
         // Save to settings
         $setting = Setting::instance();
         $pageContent = $setting->page_content ?? [];
-        $pageContent[$page] = array_merge($pageContent[$page] ?? [], $groupedData);
+        $pageContent[$page] = array_merge($pageContent[$page] ?? [], $organizedData);
         $setting->page_content = $pageContent;
         $setting->save();
 
