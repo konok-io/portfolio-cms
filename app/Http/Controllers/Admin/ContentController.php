@@ -130,6 +130,11 @@ class ContentController extends Controller
                 'hero_button_hire' => 'Hire Me',
                 'hero_button_cv' => 'Download CV',
                 'hero_badge' => '5+ Years Experience',
+                'typing_text_1' => 'Web Developer',
+                'typing_text_2' => 'Laravel Expert',
+                'typing_text_3' => 'Full Stack Developer',
+                'typing_text_4' => 'UI/UX Enthusiast',
+                'typing_text_5' => 'Problem Solver',
                 'why_eyebrow' => 'Why Choose Me',
                 'why_title' => 'Why Choose Me For Your Next Project?',
                 'why_card1_title' => 'Modern Design',
@@ -198,6 +203,11 @@ class ContentController extends Controller
                 'hero_button_hire' => 'আমাকে ভাড়া করুন',
                 'hero_button_cv' => 'সিভি ডাউনলোড করুন',
                 'hero_badge' => '৫+ বছরের অভিজ্ঞতা',
+                'typing_text_1' => 'ওয়েব ডেভেলপার',
+                'typing_text_2' => 'লারাভেল বিশেষজ্ঞ',
+                'typing_text_3' => 'ফুল স্ট্যাক ডেভেলপার',
+                'typing_text_4' => 'ইউআই/ইউএক্স উৎসাহী',
+                'typing_text_5' => 'সমস্যা সমাধানকারী',
                 'why_eyebrow' => 'কেন আমাকে বেছে নেবেন',
                 'why_title' => 'আপনার পরবর্তী প্রজেক্টের জন্য কেন আমাকে বেছে নেবেন?',
                 'why_card1_title' => 'আধুনিক ডিজাইন',
@@ -272,6 +282,11 @@ class ContentController extends Controller
                 'hero_button_hire' => 'وظفني',
                 'hero_button_cv' => 'تحميل السيرة الذاتية',
                 'hero_badge' => '5+ سنوات خبرة',
+                'typing_text_1' => 'مطور الويب',
+                'typing_text_2' => 'خبير لارافيل',
+                'typing_text_3' => 'مطور_full stack',
+                'typing_text_4' => 'مهتم بالتصميم',
+                'typing_text_5' => 'حل المشكلات',
                 'why_eyebrow' => 'لماذا تختارني',
                 'why_title' => 'لماذا تختارني لمشروعك القادم؟',
                 'why_card1_title' => 'تصميم حديث',
@@ -545,7 +560,7 @@ class ContentController extends Controller
             'sections' => [
                 'hero' => [
                     'name' => 'Hero Section',
-                    'fields' => ['hero_eyebrow', 'hero_button_hire', 'hero_button_cv', 'hero_badge']
+                    'fields' => ['hero_eyebrow', 'hero_button_hire', 'hero_button_cv', 'hero_badge', 'typing_text_1', 'typing_text_2', 'typing_text_3', 'typing_text_4', 'typing_text_5']
                 ],
                 'why' => [
                     'name' => 'Why Choose Me',

@@ -529,11 +529,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!typedText) return;
     
     const phrases = [
-        '{{ $about->title ?? "Web Developer" }}',
-        'Laravel Expert',
-        'Full Stack Developer',
-        'UI/UX Enthusiast'
-    ];
+        @foreach(range(1, 6) as $i)
+        '{{ page_content('home', 'typing_text_' . $i, app()->getLocale()) ?: '' }}',
+        @endforeach
+    ].filter(text => text.trim() !== '');
     
     let phraseIndex = 0;
     let charIndex = 0;
