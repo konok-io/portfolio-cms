@@ -1435,3 +1435,31 @@ body.has-header main {
     border-color: var(--primary-color, #2563EB);
     transform: scale(1.2);
 }
+
+/* Custom Carousel Indicators - Pill Style */
+.custom-carousel-indicators {
+    position: relative;
+    margin-top: 2rem;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.custom-carousel-indicators button {
+    width: 30px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: #dee2e6;
+    border: none;
+    opacity: 1;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.custom-carousel-indicators button:hover {
+    background-color: #adb5bd;
+}
+
+.custom-carousel-indicators button.active {
+    background-color: var(--primary-color, #2563EB);
+    width: 45px;
+}
