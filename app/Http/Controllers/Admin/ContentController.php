@@ -184,9 +184,29 @@ class ContentController extends Controller
             'name' => 'About Page',
             'page_key' => 'about',
             'sections' => [
-                'page' => [
-                    'name' => 'Page Content',
-                    'fields' => ['eyebrow', 'title', 'intro_button'],
+                'header' => [
+                    'name' => 'Page Header',
+                    'fields' => ['eyebrow', 'title', 'subtitle', 'intro_button'],
+                ],
+                'skills' => [
+                    'name' => 'Skills Section',
+                    'fields' => ['skills_eyebrow', 'skills_title', 'skills_subtitle'],
+                ],
+                'experience' => [
+                    'name' => 'Experience Section',
+                    'fields' => ['experience_eyebrow', 'experience_title', 'experience_subtitle'],
+                ],
+                'education' => [
+                    'name' => 'Education Section',
+                    'fields' => ['education_eyebrow', 'education_title', 'education_subtitle'],
+                ],
+                'certifications' => [
+                    'name' => 'Certifications Section',
+                    'fields' => ['certifications_eyebrow', 'certifications_title', 'certifications_subtitle'],
+                ],
+                'cta' => [
+                    'name' => 'Call to Action',
+                    'fields' => ['cta_title', 'cta_text', 'cta_button'],
                 ],
             ]
         ];
@@ -195,9 +215,13 @@ class ContentController extends Controller
             'name' => 'Services Page',
             'page_key' => 'services',
             'sections' => [
-                'page' => [
-                    'name' => 'Page Content',
-                    'fields' => ['eyebrow', 'title', 'subtitle', 'empty_text', 'cta_heading', 'cta_button'],
+                'header' => [
+                    'name' => 'Page Header',
+                    'fields' => ['eyebrow', 'title', 'subtitle'],
+                ],
+                'cta' => [
+                    'name' => 'Call to Action',
+                    'fields' => ['cta_heading', 'cta_text', 'cta_button'],
                 ],
             ]
         ];
@@ -206,9 +230,21 @@ class ContentController extends Controller
             'name' => 'Portfolio Page',
             'page_key' => 'portfolio',
             'sections' => [
-                'page' => [
-                    'name' => 'Page Content',
-                    'fields' => ['eyebrow', 'title', 'subtitle', 'filter_all', 'filter_label', 'empty_text', 'empty_button', 'card_link', 'card_client'],
+                'header' => [
+                    'name' => 'Page Header',
+                    'fields' => ['eyebrow', 'title', 'subtitle'],
+                ],
+                'filters' => [
+                    'name' => 'Filter Labels',
+                    'fields' => ['filter_all', 'filter_label'],
+                ],
+                'empty_state' => [
+                    'name' => 'Empty State',
+                    'fields' => ['empty_text', 'empty_button'],
+                ],
+                'card_labels' => [
+                    'name' => 'Card Labels',
+                    'fields' => ['card_link', 'card_client'],
                 ],
             ]
         ];
@@ -216,14 +252,18 @@ class ContentController extends Controller
         $pages['blog'] = [
             'name' => 'Blog Page',
             'page_key' => 'blog',
-            'section_shortcodes' => [
-                'page' => [
+            'sections' => [
+                'header' => [
                     'name' => 'Page Header',
-                    'fields' => ['eyebrow', 'title', 'subtitle']
+                    'fields' => ['eyebrow', 'title', 'subtitle'],
                 ],
                 'sidebar' => [
                     'name' => 'Sidebar',
-                    'fields' => ['filter_label', 'filter_clear', 'empty_text', 'empty_button', 'card_link']
+                    'fields' => ['filter_label', 'filter_clear'],
+                ],
+                'empty_state' => [
+                    'name' => 'Empty State',
+                    'fields' => ['empty_text', 'empty_button', 'card_link'],
                 ],
             ]
         ];
@@ -231,18 +271,22 @@ class ContentController extends Controller
         $pages['contact'] = [
             'name' => 'Contact Page',
             'page_key' => 'contact',
-            'section_shortcodes' => [
-                'page' => [
+            'sections' => [
+                'header' => [
                     'name' => 'Page Header',
-                    'fields' => ['eyebrow', 'title', 'subtitle']
+                    'fields' => ['eyebrow', 'title', 'subtitle'],
                 ],
                 'form' => [
-                    'name' => 'Contact Form',
-                    'fields' => ['form_name', 'form_email', 'form_phone', 'form_subject', 'form_message', 'form_button']
+                    'name' => 'Contact Form Labels',
+                    'fields' => ['form_name', 'form_email', 'form_phone', 'form_subject', 'form_message', 'form_button'],
                 ],
                 'info' => [
-                    'name' => 'Contact Info',
-                    'fields' => ['info_title', 'info_email', 'info_phone', 'info_address', 'map_placeholder']
+                    'name' => 'Contact Info Labels',
+                    'fields' => ['info_title', 'info_email', 'info_phone', 'info_address'],
+                ],
+                'map' => [
+                    'name' => 'Map',
+                    'fields' => ['map_placeholder'],
                 ],
             ]
         ];
@@ -251,8 +295,8 @@ class ContentController extends Controller
             'name' => 'FAQ Page',
             'page_key' => 'faq',
             'sections' => [
-                'page' => [
-                    'name' => 'Page Content',
+                'header' => [
+                    'name' => 'Page Header',
                     'fields' => ['eyebrow', 'title', 'subtitle'],
                 ],
             ]
@@ -262,8 +306,8 @@ class ContentController extends Controller
             'name' => 'Resume Page',
             'page_key' => 'resume',
             'sections' => [
-                'page' => [
-                    'name' => 'Page Content',
+                'header' => [
+                    'name' => 'Page Header',
                     'fields' => ['eyebrow', 'title', 'subtitle'],
                 ],
             ]
@@ -273,8 +317,8 @@ class ContentController extends Controller
             'name' => 'Pricing Page',
             'page_key' => 'pricing',
             'sections' => [
-                'page' => [
-                    'name' => 'Page Content',
+                'header' => [
+                    'name' => 'Page Header',
                     'fields' => ['eyebrow', 'title', 'subtitle'],
                 ],
             ]

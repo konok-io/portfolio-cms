@@ -6,7 +6,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h3 class="card-title mb-0">Content Settings</h3>
+                    <h3 class="card-title mb-0">Content Settings - {{ $pages[$activeTab]['name'] ?? 'Unknown' }}</h3>
                     @if(session('success'))
                         <span class="badge bg-success">{{ session('success') }}</span>
                     @endif
@@ -17,10 +17,10 @@
                             <div class="list-group">
                                 @foreach($pages as $pageKey => $page)
                                     <a href="{{ route('admin.content.index', ['tab' => $pageKey]) }}"
-                                       class="list-group-item list-group-item-action {{ $activeTab === $pageKey ? 'active' : '' }}">
-                                        {{ $page['name'] }}
+                                       class="list-group-item list-group-item-action d-flex justify-content-between align-items-center {{ $activeTab === $pageKey ? 'active' : '' }}">
+                                        <span>{{ $page['name'] }}</span>
                                         @if(isset($page['is_custom']))
-                                            <span class="badge bg-primary float-end">Custom</span>
+                                            <span class="badge bg-primary badge-sm">Custom</span>
                                         @endif
                                     </a>
                                 @endforeach
@@ -44,6 +44,7 @@
                                 
                                 // Get saved order or default
                                 $sectionsOrder = $pageContent['_sections_order'] ?? array_keys($sectionsToShow);
+                                $hasMultipleSections = count($sectionsToShow) > 1;
                             @endphp
 
                             @if($currentPage && !empty($sectionsToShow))
@@ -52,7 +53,7 @@
                                     <input type="hidden" name="page" value="{{ $activeTab }}">
                                     
                                     {{-- Drag Drop Instructions --}}
-                                    @if(count($sectionsToShow) > 1)
+                                    @if($hasMultipleSections)
                                     <div class="alert alert-info d-flex align-items-center mb-3" role="alert">
                                         <i class="fa-solid fa-arrows-up-down-left-right me-2"></i>
                                         <div>
@@ -92,8 +93,8 @@
                                     </div>
                                     @endif
                                     
-                                    {{-- Expandable Section Content Cards --}}
-                                    <div class="accordion" id="sectionsAccordion">
+                                    {{-- Section Content Cards --}}
+                                    <div class="{{ $hasMultipleSections ? 'accordion' : '' }}" id="{{ $hasMultipleSections ? 'sectionsAccordion' : 'singleSection' }}">
                                         @php $sectionIndex = 0; @endphp
                                         @foreach($sectionsOrder as $sectionKey)
                                             @if(isset($sectionsToShow[$sectionKey]))
@@ -105,7 +106,8 @@
                                                     $collapseId = 'section-' . $sectionIndex;
                                                 @endphp
                                                 
-                                                <div class="accordion-item section-item" data-section="{{ $sectionKey }}">
+                                                <div class="section-item {{ $hasMultipleSections ? 'accordion-item' : '' }}" data-section="{{ $sectionKey }}">
+                                                    @if($hasMultipleSections)
                                                     <h2 class="accordion-header">
                                                         <button class="accordion-button {{ $sectionIndex > 1 ? 'collapsed' : '' }}" 
                                                                 type="button" 
@@ -119,7 +121,13 @@
                                                     <div id="{{ $collapseId }}" 
                                                          class="accordion-collapse collapse {{ $sectionIndex === 1 ? 'show' : '' }}" 
                                                          data-bs-parent="#sectionsAccordion">
-                                                        <div class="accordion-body">
+                                                    @else
+                                                    <h5 class="mb-3">
+                                                        <i class="fa-solid fa-edit me-2 text-primary"></i>
+                                                        {{ $sectionName }}
+                                                    </h5>
+                                                    @endif
+                                                        <div class="card-body">
                                                             @if(!empty($sectionFields))
                                                                 @foreach($sectionFields as $field)
                                                                     @php
@@ -158,7 +166,9 @@
                                                                 </div>
                                                             @endif
                                                         </div>
+                                                    @if($hasMultipleSections)
                                                     </div>
+                                                    @endif
                                                 </div>
                                             @endif
                                         @endforeach
@@ -234,6 +244,10 @@
     background-color: #e9ecef !important;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
+.badge-sm {
+    font-size: 0.65rem;
+    padding: 0.2em 0.4em;
+}
 </style>
 @endsection
 
@@ -253,7 +267,6 @@ document.addEventListener('DOMContentLoaded', function() {
             handle: '.fa-grip-vertical',
             onEnd: function(evt) {
                 updateSectionsOrder();
-                // Also reorder the accordion items to match
                 reorderAccordion();
             }
         });
