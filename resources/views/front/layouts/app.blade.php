@@ -95,7 +95,7 @@
       } catch(e) {}
     })();
     </script>
-    <script>(function(){try{var m=document.cookie.match(/googtrans=\/[^\/]+\/([a-z-]+)/);var l=m?m[1]:'en';var rtl=['ar','ur','fa','he','ps','sd'];if(rtl.indexOf(l)>=0){document.documentElement.setAttribute('dir','rtl');}else{document.documentElement.setAttribute('dir','ltr');}}catch(e){}})();</script>
+    <script>(function(){try{var rtl=['ar','ur','fa','he','ps','sd'];var l=localStorage.getItem('portfolio_locale')||'en';if(rtl.indexOf(l)>=0){document.documentElement.setAttribute('dir','rtl');}else{document.documentElement.setAttribute('dir','ltr');}}catch(e){}})();</script>
     <style>
       .gtranslate-wrap{position:relative;z-index:1051}
       .site-navbar{overflow:visible!important}
