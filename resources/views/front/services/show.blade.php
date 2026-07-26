@@ -5,7 +5,7 @@
 
 @php
     $breadcrumbs = [
-        ['title' => 'Services', 'url' => route('services.index')],
+        ['title' => 'Services', 'url' => route('services')],
         ['title' => $service->name, 'url' => null, 'active' => true]
     ];
 @endphp
