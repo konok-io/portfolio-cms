@@ -111,12 +111,10 @@
 @if($skills->isNotEmpty())
 <section id="skills" class="section-padding section-tint">
     <div class="container">
-        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
-            <div class="text-center text-lg-start reveal-on-scroll">
-                <span class="section-eyebrow">My Skills</span>
-                <h2 class="section-title mb-2">Technologies I work with</h2>
-                <p class="section-subtitle mx-auto mx-lg-0">A snapshot of the tools and languages I use to bring projects to life.</p>
-            </div>
+        <div class="text-center mb-5 reveal-on-scroll">
+            <span class="section-eyebrow">My Skills</span>
+            <h2 class="section-title mb-2">Technologies I work with</h2>
+            <p class="section-subtitle mx-auto">A snapshot of the tools and languages I use to bring projects to life.</p>
         </div>
         <div class="row g-4">
             @foreach($skills as $skill)
