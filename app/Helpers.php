@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\GeneralSetting;
 use App\Models\Translation;
 use App\Models\Setting;
 use App\Models\PageContent;
@@ -16,9 +15,13 @@ if (!function_exists('page_content')) {
 }
 
 if (!function_exists('settings')) {
+    /**
+     * Get setting value by key (alias for Setting::instance())
+     */
     function settings(string $key, $default = null)
     {
-        return GeneralSetting::getSetting($key, $default);
+        $setting = Setting::instance();
+        return $setting->{$key} ?? $default;
     }
 }
 
