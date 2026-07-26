@@ -86,7 +86,7 @@
                                                          class="accordion-collapse collapse {{ $sectionIndex === 1 ? 'show' : '' }}">
                                                         <div class="card-body bg-white">
                                                             @if(!empty($sectionFields))
-                                                                @foreach($sectionFields as $field)
+                                                                @foreach($sectionFields as $fieldIndex => $field)
                                                                     @php
                                                                         $fieldData = $pageContent[$field] ?? [];
                                                                         $enValue = is_array($fieldData) ? ($fieldData['en'] ?? '') : '';
@@ -97,10 +97,22 @@
                                                                             $bnValue = $fieldData;
                                                                             $arValue = $fieldData;
                                                                         }
+                                                                        
+                                                                        // For dynamic sections, use the actual link title
+                                                                        $fieldLabel = $field;
+                                                                        if (isset($section['is_dynamic']) && $section['is_dynamic']) {
+                                                                            // For footer quick links, get the actual link name
+                                                                            if ($activeTab === 'footer' && str_starts_with($field, 'link_')) {
+                                                                                $linkNum = (int) substr($field, 5) - 1;
+                                                                                if (isset($footerLinks[$linkNum])) {
+                                                                                    $fieldLabel = $footerLinks[$linkNum]['title'] ?? $field;
+                                                                                }
+                                                                            }
+                                                                        }
                                                                     @endphp
                                                                     <div class="mb-3">
                                                                         <label class="form-label">
-                                                                            <strong>{{ ucwords(str_replace('_', ' ', $field)) }}</strong>
+                                                                            <strong>{{ ucwords(str_replace('_', ' ', $fieldLabel)) }}</strong>
                                                                         </label>
                                                                         <div class="input-group mb-2">
                                                                             <span class="input-group-text" style="min-width: 80px;"><span class="fi fi-gb"></span> EN</span>
@@ -116,6 +128,12 @@
                                                                         </div>
                                                                     </div>
                                                                 @endforeach
+                                                                @if(isset($section['is_dynamic']) && $section['is_dynamic'])
+                                                                    <div class="alert alert-light border small mt-2">
+                                                                        <i class="fa-solid fa-info-circle me-1"></i>
+                                                                        These links are automatically pulled from your Footer Menu items. Add or remove links from the Menu Manager.
+                                                                    </div>
+                                                                @endif
                                                             @else
                                                                 <div class="text-muted">
                                                                     <i class="fa-solid fa-database me-1"></i>

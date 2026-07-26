@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\CustomPage;
+use App\Models\MenuItem;
 use App\Models\PageContent;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -17,12 +18,13 @@ class ContentController extends Controller
     {
         $setting = Setting::instance();
         $content = PageContent::all();
-        $pages = $this->getPages();
+        $pages = $this->getDynamicPages();
+        $footerLinks = $this->getFooterLinks();
         
         // Get active tab from query parameter or default to first page
         $activeTab = request('tab', array_key_first($pages));
         
-        return view('admin.content.index', compact('setting', 'content', 'pages', 'activeTab'));
+        return view('admin.content.index', compact('setting', 'content', 'pages', 'activeTab', 'footerLinks'));
     }
 
     /**
@@ -111,11 +113,70 @@ class ContentController extends Controller
     }
 
     /**
-     * Get pages configuration
+     * Get footer links from menu items or custom pages
      */
-    private function getPages(): array
+    private function getFooterLinks(): array
+    {
+        $links = [];
+        
+        try {
+            // Get from menu items first
+            if (class_exists('App\Models\MenuItem')) {
+                $menuItems = MenuItem::active()
+                    ->where('menu_type', 'footer')
+                    ->orderBy('order')
+                    ->get();
+                    
+                if ($menuItems->isNotEmpty()) {
+                    foreach ($menuItems as $item) {
+                        $links[] = [
+                            'title' => $item->name,
+                            'url' => $item->link,
+                            'type' => 'menu'
+                        ];
+                    }
+                }
+            }
+            
+            // Fallback to custom pages if no menu items
+            if (empty($links)) {
+                $customPages = CustomPage::getFooterPages()->get();
+                foreach ($customPages as $page) {
+                    $links[] = [
+                        'title' => $page->title,
+                        'url' => '/' . $page->slug,
+                        'type' => 'custom'
+                    ];
+                }
+            }
+        } catch (\Throwable $e) {
+            // Return empty if database not ready
+        }
+        
+        return $links;
+    }
+
+    /**
+     * Get dynamic pages configuration based on database content
+     */
+    private function getDynamicPages(): array
     {
         $pages = [];
+        
+        // Get dynamic footer links from menu items
+        $footerLinks = $this->getFooterLinks();
+        $footerLinkFields = [];
+        foreach ($footerLinks as $index => $link) {
+            $fieldKey = 'link_' . ($index + 1);
+            $footerLinkFields[] = $fieldKey;
+        }
+        
+        // Also include any custom page links for footer
+        $customPages = CustomPage::getFooterPages()->get();
+        foreach ($customPages as $cpIndex => $page) {
+            $fieldKey = 'custom_link_' . ($cpIndex + 1);
+            $footerLinkFields[] = $fieldKey;
+        }
 
         // 1. HOME PAGE - All sections with full content
         $pages['home'] = [
@@ -297,15 +358,23 @@ class ContentController extends Controller
             ]
         ];
 
-        // 11. FOOTER - ALWAYS AT THE BOTTOM
+        // 11. FOOTER - Dynamic content with links from database
+        $footerSections = [
+            'footer' => [
+                'name' => 'Footer Content',
+                'fields' => ['tagline', 'quick_links_title', 'contact_title', 'newsletter_title', 'newsletter_text', 'newsletter_placeholder', 'copyright', 'copyright_prefix']
+            ],
+            'quick_links' => [
+                'name' => 'Quick Links',
+                'fields' => $footerLinkFields,
+                'is_dynamic' => true,
+                'dynamic_info' => 'Links are automatically pulled from Footer Menu items'
+            ]
+        ];
+        
         $pages['footer'] = [
             'name' => 'Footer',
-            'sections' => [
-                'footer' => [
-                    'name' => 'Footer Content',
-                    'fields' => ['tagline', 'quick_links_title', 'contact_title', 'newsletter_title', 'newsletter_text', 'newsletter_placeholder', 'copyright', 'copyright_prefix']
-                ],
-            ]
+            'sections' => $footerSections
         ];
 
         return $pages;
