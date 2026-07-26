@@ -289,13 +289,18 @@
                 <span class="section-eyebrow">Client Feedback</span>
                 <h2 class="section-title mb-0">What clients say about working with me</h2>
             </div>
+            @if($testimonials->count() > 3)
+            <a href="{{ route('testimonials') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">
+                View All Feedback <i class="fa-solid fa-arrow-right ms-2"></i>
+            </a>
+            @endif
         </div>
-        <div id="testimonialCarousel" class="carousel slide reveal-on-scroll" data-bs-ride="carousel">
+        <div id="testimonialCarousel" class="carousel slide reveal-on-scroll" data-bs-ride="carousel" data-bs-interval="5000">
             <div class="carousel-inner">
                 @foreach($testimonials->chunk(3) as $index => $testimonialGroup)
                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                         <div class="row g-4">
-                                                            @foreach($testimonialGroup as $testimonial)
+                            @foreach($testimonialGroup as $testimonial)
                                 <div class="col-md-6 col-lg-4">
                                     <div class="testimonial-card h-100 d-flex flex-column">
                                         <i class="fa-solid fa-quote-left quote-icon mb-3"></i>
@@ -333,6 +338,11 @@
                     <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
+                <div class="carousel-indicators">
+                    @foreach($testimonials->chunk(3) as $index => $group)
+                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
+                    @endforeach
+                </div>
             @endif
         </div>
     </div>

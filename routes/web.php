@@ -138,6 +138,7 @@ Route::get('/coming-soon', function () {
 })->name('coming-soon');
 Route::get('/faq', [FrontFaqController::class, 'index'])->name('faq');
 Route::get('/pricing', [FrontPricingController::class, 'index'])->name('pricing');
+Route::get('/testimonials', [App\Http\Controllers\Front\TestimonialController::class, 'index'])->name('testimonials');
 Route::get('/privacy', function () { return view('front.privacy'); })->name('privacy');
 
 // Cookie Consent

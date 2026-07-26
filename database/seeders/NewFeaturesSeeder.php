@@ -78,6 +78,12 @@ class NewFeaturesSeeder extends Seeder
         $certs = [
             ['name' => 'Laravel Developer Certification', 'issuer' => 'Laravel', 'issue_date' => '2024-01-15', 'description' => 'Certified Laravel Developer'],
             ['name' => 'Full Stack Developer', 'issuer' => 'Meta', 'issue_date' => '2023-06-20', 'description' => 'Meta Full Stack Developer Certificate'],
+            ['name' => 'AWS Certified Developer', 'issuer' => 'Amazon Web Services', 'issue_date' => '2023-09-10', 'description' => 'AWS Cloud Developer Associate'],
+            ['name' => 'Google UX Design Certificate', 'issuer' => 'Google', 'issue_date' => '2023-03-15', 'description' => 'Professional UX Design Certificate'],
+            ['name' => 'Scrum Master Certification', 'issuer' => 'Scrum Alliance', 'issue_date' => '2022-11-20', 'description' => 'Certified ScrumMaster (CSM)'],
+            ['name' => 'React Developer Certificate', 'issuer' => 'Meta', 'issue_date' => '2023-08-05', 'description' => 'Meta React Developer Certificate'],
+            ['name' => 'Docker Container Specialist', 'issuer' => 'Docker Inc.', 'issue_date' => '2024-02-28', 'description' => 'Docker Certified Associate'],
+            ['name' => 'PHP 8 Certified Developer', 'issuer' => 'Zend Technologies', 'issue_date' => '2023-05-12', 'description' => 'Zend PHP 8 Certification'],
         ];
 
         foreach ($certs as $cert) {
