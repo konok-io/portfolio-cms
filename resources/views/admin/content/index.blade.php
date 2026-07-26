@@ -84,7 +84,7 @@
                             <button type="submit" class="btn btn-primary">
                                 <i class="fa-solid fa-save me-1"></i> Save Changes
                             </button>
-                            <a href="{{ route('admin.content.reset') }}?page={{ array_key_first($pages) }}" 
+                            <a href="{{ route("admin.content.reset") }}?page={{ array_key_first($pages) }}" 
                                class="btn btn-outline-secondary ms-2"
                                onclick="return confirm('Are you sure you want to reset this page to default?')">
                                 <i class="fa-solid fa-rotate me-1"></i> Reset to Default
@@ -97,32 +97,42 @@
     </div>
 </div>
 @endsection
-
 @section('js')
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Update hidden input when tab changes
+    const form = document.querySelector('form');
     const tabs = document.querySelectorAll('button[data-bs-toggle="tab"]');
+    
     tabs.forEach(tab => {
         tab.addEventListener('shown.bs.tab', function(e) {
             const page = e.target.getAttribute('data-bs-target').replace('#', '');
+            const url = new URL(window.location);
+            url.searchParams.set('tab', page);
+            history.pushState({}, '', url);
             document.getElementById('selectedPage').value = page;
-            
-            // Update reset link
             const resetLink = document.querySelector('a[href*="content/reset"]');
             if (resetLink) {
-                resetLink.href = '{{ route('admin.content.reset') }}?page=' + page;
+                resetLink.href = '{{ route("admin.content.reset") }}?page=' + page;
             }
         });
     });
     
-    // Update reset link with current tab on page load
+    if (form) {
+        form.addEventListener('submit', function() {
+            const activeTab = document.querySelector('.nav-link.active');
+            if (activeTab) {
+                const page = activeTab.getAttribute('data-bs-target').replace('#', '');
+                document.getElementById('selectedPage').value = page;
+            }
+        });
+    }
+    
     const activeTab = document.querySelector('.nav-link.active');
     if (activeTab) {
         const resetLink = document.querySelector('a[href*="content/reset"]');
         if (resetLink) {
             const page = activeTab.getAttribute('data-bs-target').replace('#', '');
-            resetLink.href = '{{ route('admin.content.reset') }}?page=' + page;
+            resetLink.href = '{{ route("admin.content.reset") }}?page=' + page;
         }
     }
 });
