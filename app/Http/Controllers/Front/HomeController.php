@@ -35,7 +35,7 @@ class HomeController extends Controller
 
         // Skills section titles from page_content
         $locale = app()->getLocale();
-        $skillsSectionTitle = page_content('home', 'skills_section_title', $locale) ?: 'My Skills';
+        $skillsSectionTitle = page_content('home', 'skills_eyebrow', $locale) ?: 'My Skills';
         $skillsTitle = page_content('home', 'skills_title', $locale) ?: 'Technologies I Work With';
         $skillsSubtitle = page_content('home', 'skills_subtitle', $locale) ?: 'A snapshot of the tools and languages I use to bring projects to life.';
 

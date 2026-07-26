@@ -130,9 +130,6 @@ class ContentController extends Controller
                 'hero_button_hire' => 'Hire Me',
                 'hero_button_cv' => 'Download CV',
                 'hero_badge' => 'Years Experience',
-                'skills_section_title' => 'My Skills',
-                'skills_title' => 'Technologies I Work With',
-                'skills_subtitle' => 'A snapshot of the tools and languages I use to bring projects to life.',
                 'typing_text_1' => 'Web Developer',
                 'typing_text_2' => 'Laravel Expert',
                 'typing_text_3' => 'Full Stack Developer',
@@ -147,7 +144,8 @@ class ContentController extends Controller
                 'why_card3_title' => 'Fast Delivery',
                 'why_card3_text' => 'Quick turnaround without compromising quality.',
                 'skills_eyebrow' => 'Skills',
-                'skills_title' => 'My Expertise',
+                'skills_title' => 'Technologies I Work With',
+                'skills_subtitle' => 'A snapshot of the tools and languages I use to bring projects to life.',
                 'services_eyebrow' => 'Services',
                 'services_title' => 'What I Do',
                 'services_subtitle' => 'Professional services tailored to your needs',
@@ -206,9 +204,6 @@ class ContentController extends Controller
                 'hero_button_hire' => 'আমাকে ভাড়া করুন',
                 'hero_button_cv' => 'সিভি ডাউনলোড করুন',
                 'hero_badge' => 'বছরের অভিজ্ঞতা',
-                'skills_section_title' => 'আমার দক্ষতা',
-                'skills_title' => 'আমি যে প্রযুক্তিগুলো ব্যবহার করি',
-                'skills_subtitle' => 'আমি প্রজেক্ট বাস্তবায়নে যে টুলস এবং ভাষাগুলো ব্যবহার করি।',
                 'typing_text_1' => 'ওয়েব ডেভেলপার',
                 'typing_text_2' => 'লারাভেল বিশেষজ্ঞ',
                 'typing_text_3' => 'ফুল স্ট্যাক ডেভেলপার',
@@ -223,7 +218,8 @@ class ContentController extends Controller
                 'why_card3_title' => 'দ্রুত ডেলিভারি',
                 'why_card3_text' => 'গুণমানের সাথে আপোষ না করে দ্রুত টার্নঅ্যারাউন্ড।',
                 'skills_eyebrow' => 'দক্ষতা',
-                'skills_title' => 'আমার দক্ষতা',
+                'skills_title' => 'আমি যে প্রযুক্তিগুলো ব্যবহার করি',
+                'skills_subtitle' => 'আমি প্রজেক্ট বাস্তবায়নে যে টুলস এবং ভাষাগুলো ব্যবহার করি।',
                 'services_eyebrow' => 'সেবাসমূহ',
                 'services_title' => 'আমি যা করি',
                 'services_subtitle' => 'আপনার প্রয়োজন অনুযায়ী পেশাদার সেবা',
@@ -288,9 +284,6 @@ class ContentController extends Controller
                 'hero_button_hire' => 'وظفني',
                 'hero_button_cv' => 'تحميل السيرة الذاتية',
                 'hero_badge' => 'سنوات خبرة',
-                'skills_section_title' => 'مهاراتي',
-                'skills_title' => 'التقنيات التي أعمل بها',
-                'skills_subtitle' => 'نظرة سريعة على الأدوات واللغات التي أستخدمها لتنفيذ المشاريع.',
                 'typing_text_1' => 'مطور الويب',
                 'typing_text_2' => 'خبير لارافيل',
                 'typing_text_3' => 'مطور_full stack',
@@ -305,7 +298,8 @@ class ContentController extends Controller
                 'why_card3_title' => 'توصيل سريع',
                 'why_card3_text' => 'دورة سريعة دون المساومة على الجودة.',
                 'skills_eyebrow' => 'المهارات',
-                'skills_title' => 'خبراتي',
+                'skills_title' => 'التقنيات التي أعمل بها',
+                'skills_subtitle' => 'نظرة سريعة على الأدوات واللغات التي أستخدمها لتنفيذ المشاريع.',
                 'services_eyebrow' => 'الخدمات',
                 'services_title' => 'ما أفعله',
                 'services_subtitle' => 'خدمات احترافية مصممة لاحتياجاتك',
@@ -569,7 +563,7 @@ class ContentController extends Controller
             'sections' => [
                 'hero' => [
                     'name' => 'Hero Section',
-                    'fields' => ['hero_eyebrow', 'hero_button_hire', 'hero_button_cv', 'hero_badge', 'skills_section_title', 'skills_title', 'skills_subtitle', 'typing_text_1', 'typing_text_2', 'typing_text_3', 'typing_text_4', 'typing_text_5']
+                    'fields' => ['hero_eyebrow', 'hero_button_hire', 'hero_button_cv', 'hero_badge', 'typing_text_1', 'typing_text_2', 'typing_text_3', 'typing_text_4', 'typing_text_5']
                 ],
                 'why' => [
                     'name' => 'Why Choose Me',
@@ -577,7 +571,7 @@ class ContentController extends Controller
                 ],
                 'skills' => [
                     'name' => 'Skills Section',
-                    'fields' => ['skills_eyebrow', 'skills_title'],
+                    'fields' => ['skills_eyebrow', 'skills_title', 'skills_subtitle'],
                     'is_dynamic' => true,
                     'dynamic_type' => 'skills',
                     'dynamic_info' => 'Skills are pulled from Skills Manager'
