@@ -29,8 +29,13 @@ class MenuBuilderController extends Controller
         ]);
 
         $validated['is_active'] = $request->boolean('is_active');
-        $validated['order'] = $validated['order'] ?? MenuItem::max('order') + 1;
+        $validated['order'] = $validated['order'] ?? (MenuItem::max('order') ?? 0) + 1;
         $validated['menu_type'] = $validated['menu_type'] ?? 'header';
+        
+        // Ensure url is not null when route is provided
+        if (!empty($validated['route'])) {
+            $validated['url'] = null;
+        }
 
         MenuItem::create($validated);
 
@@ -51,6 +56,11 @@ class MenuBuilderController extends Controller
         ]);
 
         $validated['is_active'] = $request->boolean('is_active');
+        
+        // Ensure url is not null when route is provided
+        if (!empty($validated['route'])) {
+            $validated['url'] = null;
+        }
 
         $menuItem->update($validated);
 
