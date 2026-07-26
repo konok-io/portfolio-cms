@@ -309,6 +309,9 @@
 .handle:active { cursor: grabbing; }
 .section-item.sortable-ghost { opacity: 0.4; background: #cfe2ff; }
 .section-item.sortable-chosen { background: #e9ecef; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+.section-item.sortable-drag { background: #fff; box-shadow: 0 8px 16px rgba(0,0,0,0.2); opacity: 1; }
+.handle { cursor: grab; }
+.handle:active { cursor: grabbing; }
 .collapse-icon { transition: transform 0.3s; }
 .accordion-collapse.show ~ .section-header .collapse-icon,
 .section-item:has(.accordion-collapse.show) .collapse-icon { transform: rotate(180deg); }
@@ -319,28 +322,47 @@
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    initSortable();
+});
+
+function initSortable() {
     var accordion = document.getElementById('sortableAccordion');
+    if (!accordion) return;
     
-    if (accordion && accordion.querySelectorAll('.section-item').length > 1) {
+    var sections = accordion.querySelectorAll('.section-item');
+    
+    // Only enable drag if there are multiple sections
+    if (sections.length > 1 && typeof Sortable !== 'undefined') {
         new Sortable(accordion, {
             animation: 200,
             handle: '.handle',
+            draggable: '.section-item',
             ghostClass: 'sortable-ghost',
             chosenClass: 'sortable-chosen',
+            dragClass: 'sortable-drag',
             onEnd: function(evt) {
                 updateSectionsOrder();
             }
         });
     }
     
-    function updateSectionsOrder() {
-        var items = accordion.querySelectorAll('.section-item');
-        var order = [];
-        for (var i = 0; i < items.length; i++) {
-            order.push(items[i].getAttribute('data-section'));
-        }
-        document.getElementById('sections_order').value = order.join(',');
+    // Make handle cursor grab
+    var handles = accordion.querySelectorAll('.handle');
+    handles.forEach(function(handle) {
+        handle.style.cursor = 'grab';
+    });
+}
+
+function updateSectionsOrder() {
+    var accordion = document.getElementById('sortableAccordion');
+    if (!accordion) return;
+    
+    var items = accordion.querySelectorAll('.section-item');
+    var order = [];
+    for (var i = 0; i < items.length; i++) {
+        order.push(items[i].getAttribute('data-section'));
     }
-});
+    document.getElementById('sections_order').value = order.join(',');
+}
 </script>
 @endsection
