@@ -111,10 +111,12 @@
 @if($skills->isNotEmpty())
 <section id="skills" class="section-padding section-tint">
     <div class="container">
-        <div class="text-center mb-5 reveal-on-scroll">
-            <span class="section-eyebrow">My Skills</span>
-            <h2 class="section-title">Technologies I work with</h2>
-            <p class="section-subtitle mx-auto">A snapshot of the tools and languages I use to bring projects to life.</p>
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
+            <div class="text-center text-lg-start reveal-on-scroll">
+                <span class="section-eyebrow">My Skills</span>
+                <h2 class="section-title mb-2">Technologies I work with</h2>
+                <p class="section-subtitle mx-auto mx-lg-0">A snapshot of the tools and languages I use to bring projects to life.</p>
+            </div>
         </div>
         <div class="row g-4">
             @foreach($skills as $skill)
@@ -142,10 +144,15 @@
 @if($services->isNotEmpty())
 <section id="services" class="section-padding section-alt">
     <div class="container">
-        <div class="text-center mb-5 reveal-on-scroll">
-            <span class="section-eyebrow">{{ page_content('home', 'services_eyebrow', app()->getLocale()) }}</span>
-            <h2 class="section-title">{{ page_content('home', 'services_title', app()->getLocale()) }}</h2>
-            <p class="section-subtitle mx-auto">{{ page_content('home', 'services_subtitle', app()->getLocale()) }}</p>
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
+            <div class="text-center text-lg-start reveal-on-scroll">
+                <span class="section-eyebrow">{{ page_content('home', 'services_eyebrow', app()->getLocale()) }}</span>
+                <h2 class="section-title mb-2">{{ page_content('home', 'services_title', app()->getLocale()) }}</h2>
+                <p class="section-subtitle mx-auto mx-lg-0">{{ page_content('home', 'services_subtitle', app()->getLocale()) }}</p>
+            </div>
+            <a href="{{ route('services') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">
+                {{ page_content('services', 'view_all', app()->getLocale()) }} <i class="fa-solid fa-arrow-right ms-2"></i>
+            </a>
         </div>
         <div class="row g-4">
             @foreach($services as $service)
@@ -168,13 +175,6 @@
                     </div>
                 </div>
             @endforeach
-        </div>
-        
-        {{-- View All Services Button --}}
-        <div class="text-center mt-5 reveal-on-scroll">
-            <a href="{{ route('services') }}" class="btn btn-outline-custom">
-                {{ page_content('services', 'view_all', app()->getLocale()) }} <i class="fa-solid fa-arrow-right ms-2"></i>
-            </a>
         </div>
     </div>
 </section>
@@ -248,10 +248,13 @@
 @if($projects->isNotEmpty())
 <section id="portfolio" class="section-padding section-alt">
     <div class="container">
-        <div class="text-center mb-5 reveal-on-scroll">
-            <span class="section-eyebrow">Recent Work</span>
-            <h2 class="section-title">Selected Projects</h2>
-            <p class="section-subtitle mx-auto">A few of the projects I've recently designed and built.</p>
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
+            <div class="text-center text-lg-start reveal-on-scroll">
+                <span class="section-eyebrow">Recent Work</span>
+                <h2 class="section-title mb-2">Selected Projects</h2>
+                <p class="section-subtitle mx-auto mx-lg-0">A few of the projects I've recently designed and built.</p>
+            </div>
+            <a href="{{ route('projects.index') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">View All Projects</a>
         </div>
         <div class="row g-4">
             @foreach($projects as $project)
@@ -273,9 +276,6 @@
                 </div>
             @endforeach
         </div>
-        <div class="text-center mt-5">
-            <a href="{{ route('projects.index') }}" class="btn btn-outline-custom">View All Projects</a>
-        </div>
     </div>
 </section>
 @endif
@@ -286,9 +286,11 @@
 @if($testimonials->isNotEmpty())
 <section id="testimonials" class="section-padding section-tint">
     <div class="container">
-        <div class="text-center mb-5 reveal-on-scroll">
-            <span class="section-eyebrow">Client Feedback</span>
-            <h2 class="section-title">What clients say about working with me</h2>
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
+            <div class="text-center text-lg-start reveal-on-scroll">
+                <span class="section-eyebrow">Client Feedback</span>
+                <h2 class="section-title mb-0">What clients say about working with me</h2>
+            </div>
         </div>
         <div id="testimonialCarousel" class="carousel slide reveal-on-scroll" data-bs-ride="carousel">
             <div class="carousel-inner">
@@ -345,10 +347,12 @@
 @if($certifications->isNotEmpty())
 <section id="certifications" class="section-padding section-tint">
     <div class="container">
-        <div class="text-center mb-5 reveal-on-scroll">
-            <span class="section-eyebrow">Credentials</span>
-            <h2 class="section-title">Certifications & Badges</h2>
-            <p class="text-muted">Professional certifications and achievements</p>
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
+            <div class="text-center text-lg-start reveal-on-scroll">
+                <span class="section-eyebrow">Credentials</span>
+                <h2 class="section-title mb-2">Certifications & Badges</h2>
+                <p class="text-muted mx-auto mx-lg-0 mb-0">Professional certifications and achievements</p>
+            </div>
         </div>
         <div class="row g-4">
             @foreach($certifications as $cert)
@@ -388,9 +392,12 @@
 @if($blogs->isNotEmpty())
 <section id="blog" class="section-padding section-tint">
     <div class="container">
-        <div class="text-center mb-5 reveal-on-scroll">
-            <span class="section-eyebrow">{{ page_content('home', 'blog_eyebrow', app()->getLocale()) }}</span>
-            <h2 class="section-title">{{ page_content('home', 'blog_title', app()->getLocale()) }}</h2>
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
+            <div class="text-center text-lg-start reveal-on-scroll">
+                <span class="section-eyebrow">{{ page_content('home', 'blog_eyebrow', app()->getLocale()) }}</span>
+                <h2 class="section-title mb-0">{{ page_content('home', 'blog_title', app()->getLocale()) }}</h2>
+            </div>
+            <a href="{{ route('blog.index') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">{{ page_content('home', 'blog_button', app()->getLocale()) }}</a>
         </div>
         <div class="row g-4">
             @foreach($blogs as $blog)
@@ -412,9 +419,6 @@
                     </div>
                 </div>
             @endforeach
-        </div>
-        <div class="text-center mt-5">
-            <a href="{{ route('blog.index') }}" class="btn btn-outline-custom">{{ page_content('home', 'blog_button', app()->getLocale()) }}</a>
         </div>
     </div>
 </section>
