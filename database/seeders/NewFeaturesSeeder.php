@@ -87,7 +87,7 @@ class NewFeaturesSeeder extends Seeder
         ];
 
         foreach ($certs as $cert) {
-            Certification::firstOrCreate(['name' => $cert['name']], $cert);
+            Certification::updateOrCreate(['name' => $cert['name']], $cert);
         }
 
         // Tags

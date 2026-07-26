@@ -361,9 +361,14 @@
                 <h2 class="section-title mb-2">Certifications & Badges</h2>
                 <p class="text-muted mx-auto mx-lg-0 mb-0">Professional certifications and achievements</p>
             </div>
+            @if($certifications->count() > 4)
+            <a href="{{ route('certifications') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">
+                View All <i class="fa-solid fa-arrow-right ms-2"></i>
+            </a>
+            @endif
         </div>
         <div class="row g-4">
-            @foreach($certifications as $cert)
+            @foreach($certifications->take(4) as $cert)
                 <div class="col-md-6 col-lg-3 reveal-on-scroll">
                     <div class="certification-card h-100 text-center p-4">
                         @if($cert->badge_image)

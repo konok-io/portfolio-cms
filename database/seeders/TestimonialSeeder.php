@@ -9,10 +9,6 @@ class TestimonialSeeder extends Seeder
 {
     public function run(): void
     {
-        if (Testimonial::count() > 0) {
-            return;
-        }
-
         $testimonials = [
             [
                 'client_name' => 'Sarah Johnson',
@@ -89,14 +85,16 @@ class TestimonialSeeder extends Seeder
         ];
 
         foreach ($testimonials as $index => $testimonial) {
-            Testimonial::create([
-                'client_name' => $testimonial['client_name'],
-                'company' => $testimonial['company'],
-                'rating' => $testimonial['rating'],
-                'review' => $testimonial['review'],
-                'is_active' => true,
-                'sort_order' => $index,
-            ]);
+            Testimonial::updateOrCreate(
+                ['client_name' => $testimonial['client_name']],
+                [
+                    'company' => $testimonial['company'],
+                    'rating' => $testimonial['rating'],
+                    'review' => $testimonial['review'],
+                    'is_active' => true,
+                    'sort_order' => $index,
+                ]
+            );
         }
     }
 }
