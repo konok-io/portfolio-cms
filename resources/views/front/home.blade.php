@@ -150,15 +150,31 @@
         <div class="row g-4">
             @foreach($services as $service)
                 <div class="col-md-6 col-lg-4 reveal-on-scroll">
-                    <div class="service-card">
+                    <div class="service-card h-100">
                         <div class="icon-box">
-                            <i class="{{ $service->icon ?? 'fa-solid fa-gear' }}"></i>
+                            @if($service->svg_icon)
+                                <span class="svg-icon">{!! $service->svg_icon !!}</span>
+                            @elseif($service->icon)
+                                <i class="{{ $service->icon }}"></i>
+                            @else
+                                <i class="fa-solid fa-gear"></i>
+                            @endif
                         </div>
                         <h5 class="mb-2">{{ $service->name }}</h5>
-                        <p class="text-muted small mb-0">{{ $service->description }}</p>
+                        <p class="text-muted small mb-3">{{ Str::limit($service->description, 100) }}</p>
+                        <a href="{{ route('services.show', $service->slug ?? Str::slug($service->name)) }}" class="btn btn-sm btn-outline-custom">
+                            {{ page_content('services', 'page_button', app()->getLocale()) }} <i class="fa-solid fa-arrow-right ms-1"></i>
+                        </a>
                     </div>
                 </div>
             @endforeach
+        </div>
+        
+        {{-- View All Services Button --}}
+        <div class="text-center mt-5 reveal-on-scroll">
+            <a href="{{ route('services.index') }}" class="btn btn-primary-custom">
+                {{ page_content('services', 'view_all', app()->getLocale()) }} <i class="fa-solid fa-arrow-right ms-2"></i>
+            </a>
         </div>
     </div>
 </section>
