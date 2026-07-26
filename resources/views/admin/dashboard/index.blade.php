@@ -160,6 +160,14 @@
                             <i class="fa-solid fa-envelope me-1"></i> View Messages
                         </a>
                     </div>
+                    <div class="col-md-2 col-6">
+                        <form action="{{ route('admin.seed-demo') }}" method="POST" onsubmit="return confirm('This will seed demo data. Continue?');">
+                            @csrf
+                            <button type="submit" class="btn btn-success btn-sm w-100">
+                                <i class="fa-solid fa-database me-1"></i> Seed Demo Data
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

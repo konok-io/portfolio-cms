@@ -12,6 +12,7 @@ use App\Models\Service;
 use App\Models\Skill;
 use App\Models\Testimonial;
 use App\Models\Visitor;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -103,6 +104,17 @@ class DashboardController extends Controller
             'topPages',
             'license'
         ));
+    }
+
+    /**
+     * Seed demo data for the portfolio CMS.
+     */
+    public function seedDemo()
+    {
+        // Run the demo data seeder
+        Artisan::call('db:demo');
+        
+        return redirect()->back()->with('success', 'Demo data seeded successfully!');
     }
 
     /**
