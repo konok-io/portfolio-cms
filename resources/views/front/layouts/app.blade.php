@@ -260,7 +260,7 @@
         </script>
     @endforeach
 </head>
-<body>
+<body class="has-header">
     <!-- Skip to main content link for keyboard users -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
