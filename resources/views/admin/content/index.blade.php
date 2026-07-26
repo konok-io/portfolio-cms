@@ -227,7 +227,7 @@
                                                                         <i class="fa-solid fa-link me-1"></i>
                                                                         Edit from Manager: 
                                                                         @if($dynamicType === 'nav_menu')
-                                                                            <a href="{{ route('admin.menus.index') }}">Menu Manager</a>
+                                                                            <a href="{{ route('menu-builder.index') }}">Menu Manager</a>
                                                                         @elseif($dynamicType === 'skills')
                                                                             <a href="{{ route('admin.skills.index') }}">Skills</a>
                                                                         @elseif($dynamicType === 'experience')
@@ -247,7 +247,7 @@
                                                                         <i class="fa-solid fa-info-circle me-1"></i>
                                                                         No {{ $dynamicType }} found. 
                                                                         @if($dynamicType === 'nav_menu')
-                                                                            <a href="{{ route('admin.menus.index') }}">Add Menu Items</a>
+                                                                            <a href="{{ route('menu-builder.index') }}">Add Menu Items</a>
                                                                         @elseif($dynamicType === 'skills')
                                                                             <a href="{{ route('admin.skills.index') }}">Add Skills</a>
                                                                         @elseif($dynamicType === 'experience')
