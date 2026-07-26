@@ -6,6 +6,7 @@ use App\Helpers\TranslationHelper;
 use App\Models\About;
 use App\Models\CustomPage;
 use App\Models\MenuItem;
+use App\Models\PageContent;
 use App\Models\Setting;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
@@ -48,6 +49,11 @@ class AppServiceProvider extends ServiceProvider
             // Share about data for SEO structured data
             if (! $view->offsetExists('about')) {
                 $view->with('about', $this->getAbout());
+            }
+
+            // Share PageContent class for blade templates
+            if (! $view->offsetExists('PageContent')) {
+                $view->with('PageContent', PageContent::class);
             }
         });
         
