@@ -44,15 +44,20 @@ class ContentController extends Controller
                 
                 // Check if last part is a language code
                 if (in_array($lastPart, ['en', 'bn', 'ar'])) {
-                    $fieldKey = $secondLast;
-                    $groupedData[$fieldKey] = $groupedData[$fieldKey] ?? [];
-                    $groupedData[$fieldKey][$lastPart] = $value;
-                    if (!isset($groupedData[$fieldKey]['default'])) {
-                        $groupedData[$fieldKey]['default'] = $value;
+                    $sectionKey = $secondLast;
+                    $fieldKey = $parts[count($parts) - 3] ?? $secondLast;
+                    $groupedData[$sectionKey] = $groupedData[$sectionKey] ?? [];
+                    $groupedData[$sectionKey][$fieldKey] = $groupedData[$sectionKey][$fieldKey] ?? [];
+                    $groupedData[$sectionKey][$fieldKey][$lastPart] = $value;
+                    if (!isset($groupedData[$sectionKey][$fieldKey]['default'])) {
+                        $groupedData[$sectionKey][$fieldKey]['default'] = $value;
                     }
                 } else {
-                    // No language suffix, use entire value
-                    $groupedData[$lastPart] = ['default' => $value, 'en' => $value, 'bn' => $value, 'ar' => $value];
+                    // No language suffix, use entire value - include section key
+                    $sectionKey = $secondLast;
+                    $fieldKey = $lastPart;
+                    $groupedData[$sectionKey] = $groupedData[$sectionKey] ?? [];
+                    $groupedData[$sectionKey][$fieldKey] = ['default' => $value, 'en' => $value, 'bn' => $value, 'ar' => $value];
                 }
             } else {
                 // Old underscore format (keep for compatibility)
@@ -81,7 +86,7 @@ class ContentController extends Controller
         // Clear cache
         PageContent::clearCache();
 
-        return redirect()->back()->with('success', 'Content updated successfully!');
+        return redirect()->to(url()->current() . '#' . $page)->with('success', 'Content updated successfully!');
     }
 
     /**

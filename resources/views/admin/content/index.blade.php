@@ -113,6 +113,26 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    
+    // Activate tab from URL hash
+    const hash = window.location.hash;
+    if (hash) {
+        const tabTrigger = document.querySelector('button[data-bs-target="' + hash + '"]');
+        if (tabTrigger) {
+            const tab = new bootstrap.Tab(tabTrigger);
+            tab.show();
+        }
+    }
+    
+    // Update reset link with current tab on page load
+    const activeTab = document.querySelector('.nav-link.active');
+    if (activeTab) {
+        const resetLink = document.querySelector('a[href*="content/reset"]');
+        if (resetLink) {
+            const page = activeTab.getAttribute('data-bs-target').replace('#', '');
+            resetLink.href = '{{ route('admin.content.reset') }}?page=' + page;
+        }
+    }
 });
 </script>
 @endsection
