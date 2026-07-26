@@ -21,7 +21,7 @@ class ServiceController extends Controller
         return view('front.services', compact('about', 'services'));
     }
     
-    public function show(Request $request, $slug)
+    public function show($slug)
     {
         $about = About::first() ?? new About([
             'name'  => 'Your Name',

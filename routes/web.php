@@ -68,7 +68,7 @@ Route::get('/about', [\App\Http\Controllers\Front\AboutController::class, 'index
 Route::get('/portfolio.pdf', [\App\Http\Controllers\Front\PortfolioExportController::class, 'export'])->name('portfolio.pdf');
 Route::get('/portfolio-preview', [\App\Http\Controllers\Front\PortfolioExportController::class, 'preview'])->name('portfolio.preview');
 Route::get('/services', [\App\Http\Controllers\Front\ServiceController::class, 'index'])->name('services');
-Route::get('/services/{service:slug}', [\App\Http\Controllers\Front\ServiceController::class, 'show'])->name('services.show');
+Route::get('/services/{slug}', [\App\Http\Controllers\Front\ServiceController::class, 'show'])->name('services.show');
 Route::get('/quote', [App\Http\Controllers\Front\ServiceRequestController::class, 'create'])->name('quote');
 Route::post('/quote', [App\Http\Controllers\Front\ServiceRequestController::class, 'store'])->name('quote.store')->middleware('throttle:3,60');
 
