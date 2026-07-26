@@ -248,16 +248,25 @@
                 <i class="fa-solid fa-gauge"></i><span>Dashboard</span>
             </a>
 
+            @php($showContent = auth()->user()->canany(['view about', 'edit about']) || auth()->user()->canany(['view skills', 'create skills', 'edit skills', 'delete skills']) || auth()->user()->canany(['view services', 'create services', 'edit services', 'delete services']) || auth()->user()->canany(['view experience', 'create experience', 'edit experience', 'delete experience']) || auth()->user()->canany(['view education', 'create education', 'edit education', 'delete education']) || auth()->user()->canany(['view projects', 'create projects', 'edit projects', 'delete projects']) || auth()->user()->canany(['view blog', 'create blog', 'edit blog', 'delete blog']) || auth()->user()->canany(['view testimonials', 'create testimonials', 'edit testimonials', 'delete testimonials']))
+            @if($showContent)
             <div class="nav-section-title"><span>Content</span></div>
+            @canany(['view about', 'edit about'])
             <a href="{{ route('admin.about.edit') }}" class="nav-link {{ request()->routeIs('admin.about.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-user"></i><span>About Me</span>
             </a>
+            @endcanany
+            @canany(['view skills', 'create skills', 'edit skills', 'delete skills'])
             <a href="{{ route('admin.skills.index') }}" class="nav-link {{ request()->routeIs('admin.skills.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-chart-simple"></i><span>Skills</span>
             </a>
+            @endcanany
+            @canany(['view services', 'create services', 'edit services', 'delete services'])
             <a href="{{ route('admin.services.index') }}" class="nav-link {{ request()->routeIs('admin.services.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-briefcase"></i><span>Services</span>
             </a>
+            @endcanany
+            @canany(['view services', 'create services', 'edit services', 'delete services'])
             @php($pendingRequests = \App\Models\ServiceRequest::where('status', 'pending')->count())
             <a href="{{ route('admin.service-requests.index') }}" class="nav-link {{ request()->routeIs('admin.service-requests.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-file-invoice-dollar"></i><span>Quote Requests</span>
@@ -265,29 +274,48 @@
                     <span class="badge bg-warning ms-auto">{{ $pendingRequests }}</span>
                 @endif
             </a>
+            @endcanany
+            @canany(['view experience', 'create experience', 'edit experience', 'delete experience'])
             <a href="{{ route('admin.experience.index') }}" class="nav-link {{ request()->routeIs('admin.experience.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-building"></i><span>Experience</span>
             </a>
+            @endcanany
+            @canany(['view education', 'create education', 'edit education', 'delete education'])
             <a href="{{ route('admin.education.index') }}" class="nav-link {{ request()->routeIs('admin.education.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-graduation-cap"></i><span>Education</span>
             </a>
+            @endcanany
+            @canany(['view projects', 'create projects', 'edit projects', 'delete projects'])
             <a href="{{ route('admin.projects.index') }}" class="nav-link {{ request()->routeIs('admin.projects.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-diagram-project"></i><span>Projects</span>
             </a>
+            @endcanany
+            @canany(['view blog', 'create blog', 'edit blog', 'delete blog'])
             <a href="{{ route('admin.blog.index') }}" class="nav-link {{ request()->routeIs('admin.blog.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-newspaper"></i><span>Blog Posts</span>
             </a>
+            @endcanany
+            @canany(['view blog', 'create blog', 'edit blog', 'delete blog'])
             <a href="{{ route('admin.comments.index') }}" class="nav-link {{ request()->routeIs('admin.comments.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-comments"></i><span>Comments</span>
             </a>
+            @endcanany
+            @canany(['view testimonials', 'create testimonials', 'edit testimonials', 'delete testimonials'])
             <a href="{{ route('admin.testimonials.index') }}" class="nav-link {{ request()->routeIs('admin.testimonials.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-quote-left"></i><span>Testimonials</span>
             </a>
+            @endcanany
+            @canany(['view blog', 'create blog', 'edit blog', 'delete blog'])
             <a href="{{ route('admin.tags.index') }}" class="nav-link {{ request()->routeIs('admin.tags.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-tags"></i><span>Tags</span>
             </a>
+            @endcanany
+            @endif
 
+            @php($showComm = auth()->user()->canany(['view messages', 'create messages', 'edit messages', 'delete messages']) || auth()->user()->canany(['view projects', 'create projects', 'edit projects', 'delete projects']))
+            @if($showComm)
             <div class="nav-section-title"><span>Communication</span></div>
+            @canany(['view messages', 'create messages', 'edit messages', 'delete messages'])
             @php($unread = \Illuminate\Support\Facades\Schema::hasTable('contact_messages') ? \App\Models\ContactMessage::unread()->count() : 0)
             <a href="{{ route('admin.messages.index') }}" class="nav-link {{ request()->routeIs('admin.messages.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-envelope"></i><span>Messages</span>
@@ -295,62 +323,103 @@
                     <span class="badge bg-danger ms-auto">{{ $unread }}</span>
                 @endif
             </a>
+            @endcanany
+            @canany(['view projects', 'create projects', 'edit projects', 'delete projects'])
             <a href="{{ route('admin.client-portals.index') }}" class="nav-link {{ request()->routeIs('admin.client-portals.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-user-shield"></i><span>Client Portals</span>
             </a>
+            @endcanany
+            @endif
 
+            @php($showAdmin = auth()->user()->canany(['view users', 'create users', 'edit users', 'delete users']) || auth()->user()->canany(['view roles', 'create roles', 'edit roles', 'delete roles']) || auth()->user()->canany(['view settings', 'edit settings']) || auth()->user()->canany(['view seo', 'edit seo']))
+            @if($showAdmin)
             <div class="nav-section-title"><span>Administration</span></div>
+            @canany(['view users', 'create users', 'edit users', 'delete users'])
             <a href="{{ route('admin.users.index') }}" class="nav-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-users"></i><span>Users</span>
             </a>
+            @endcanany
+            @canany(['view roles', 'create roles', 'edit roles', 'delete roles'])
             <a href="{{ route('admin.roles.index') }}" class="nav-link {{ request()->routeIs('admin.roles.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-user-shield"></i><span>Roles &amp; Permissions</span>
             </a>
+            @endcanany
+            @canany(['view settings', 'edit settings'])
             <a href="{{ route('admin.settings.edit') }}" class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-gear"></i><span>Site Settings</span>
             </a>
+            @endcanany
+            @canany(['view settings', 'edit settings'])
             <a href="{{ route('admin.media.index') }}" class="nav-link {{ request()->routeIs('admin.media.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-images"></i><span>Media Library</span>
             </a>
+            @endcanany
+            @canany(['view settings', 'edit settings'])
             <a href="{{ route('admin.menu-builder.index') }}" class="nav-link {{ request()->routeIs('admin.menu-builder.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-list"></i><span>Menu Builder</span>
             </a>
+            @endcanany
+            @canany(['view settings', 'edit settings'])
             <a href="{{ route('admin.backup.index') }}" class="nav-link {{ request()->routeIs('backup.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-database"></i><span>Backup</span>
             </a>
+            @endcanany
+            @canany(['view seo', 'edit seo'])
             <a href="{{ route('admin.seo.edit') }}" class="nav-link {{ request()->routeIs('admin.seo.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-magnifying-glass-chart"></i><span>SEO Settings</span>
             </a>
+            @endcanany
+            @canany(['view settings', 'edit settings'])
             <a href="{{ route('admin.content.index') }}" class="nav-link {{ request()->routeIs('admin.content.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-language"></i><span>Content Settings</span>
             </a>
+            @endcanany
+            @canany(['view settings', 'edit settings'])
             <a href="{{ route('admin.custom-pages.index') }}" class="nav-link {{ request()->routeIs('admin.custom-pages.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-file-lines"></i><span>Custom Pages</span>
             </a>
+            @endcanany
+            @canany(['view settings', 'edit settings'])
             <a href="{{ route('admin.analytics.index') }}" class="nav-link {{ request()->routeIs('admin.analytics.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-chart-line"></i><span>Analytics</span>
             </a>
+            @endcanany
+            @canany(['view settings', 'edit settings'])
             <a href="{{ route('admin.statistics.index') }}" class="nav-link {{ request()->routeIs('admin.statistics.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-chart-bar"></i><span>Statistics</span>
             </a>
+            @endcanany
+            @canany(['view settings', 'edit settings'])
             <a href="{{ route('admin.faqs.index') }}" class="nav-link {{ request()->routeIs('admin.faqs.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-question-circle"></i><span>FAQs</span>
             </a>
+            @endcanany
+            @canany(['view settings', 'edit settings'])
             <a href="{{ route('admin.pricing.index') }}" class="nav-link {{ request()->routeIs('admin.pricing.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-tags"></i><span>Pricing</span>
             </a>
+            @endcanany
+            @canany(['view settings', 'edit settings'])
             <a href="{{ route('admin.resume.index') }}" class="nav-link {{ request()->routeIs('admin.resume.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-file-pdf"></i><span>Resume Builder</span>
             </a>
+            @endcanany
+            @canany(['view settings', 'edit settings'])
             <a href="{{ route('admin.certifications.index') }}" class="nav-link {{ request()->routeIs('admin.certifications.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-certificate"></i><span>Certifications</span>
             </a>
+            @endcanany
+            @canany(['view settings', 'edit settings'])
             <a href="{{ route('admin.newsletter.index') }}" class="nav-link {{ request()->routeIs('admin.newsletter.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-envelope-open-text"></i><span>Newsletter</span>
             </a>
+            @endcanany
+            @endif
+            @canany(['view settings', 'edit settings'])
             <a href="{{ route('admin.license.index') }}" class="nav-link {{ request()->routeIs('admin.license.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-shield-halved"></i><span>License</span>
             </a>
+            @endcanany
 
             <div class="nav-section-title"><span>Account</span></div>
             <a href="{{ route('admin.profile.edit') }}" class="nav-link {{ request()->routeIs('admin.profile.*') ? 'active' : '' }}">
