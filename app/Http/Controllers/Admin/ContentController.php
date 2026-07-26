@@ -20,13 +20,14 @@ class ContentController extends Controller
         $content = PageContent::all();
         $pages = $this->getDynamicPages();
         $footerLinks = $this->getFooterLinks();
+        $headerNavLinks = $this->getHeaderNavLinks();
         $dynamicItems = $this->getDynamicItems();
         $defaultValues = $this->getDefaultValues();
         
         // Get active tab from query parameter or default to first page
         $activeTab = request('tab', array_key_first($pages));
         
-        return view('admin.content.index', compact('setting', 'content', 'pages', 'activeTab', 'footerLinks', 'dynamicItems', 'defaultValues'));
+        return view('admin.content.index', compact('setting', 'content', 'pages', 'activeTab', 'footerLinks', 'headerNavLinks', 'dynamicItems', 'defaultValues'));
     }
 
     /**
@@ -121,6 +122,10 @@ class ContentController extends Controller
     {
         return [
             'en' => [
+                'site_name' => 'Portfolio CMS',
+                'site_tagline' => 'Professional Web Solutions',
+                'header_cta_text' => 'Contact Me',
+                'header_cta_icon' => 'fa-paper-plane',
                 'hero_eyebrow' => 'Available for new projects',
                 'hero_button_hire' => 'Hire Me',
                 'hero_button_cv' => 'Download CV',
@@ -181,6 +186,10 @@ class ContentController extends Controller
                 'empty_services' => 'View Services',
             ],
             'bn' => [
+                'site_name' => 'পোর্টফোলিও সিএমএস',
+                'site_tagline' => 'পেশাদার ওয়েব সমাধান',
+                'header_cta_text' => 'যোগাযোগ করুন',
+                'header_cta_icon' => 'fa-paper-plane',
                 'hero_eyebrow' => 'নতুন প্রজেক্টের জন্য উপলব্ধ',
                 'hero_button_hire' => 'আমাকে ভাড়া করুন',
                 'hero_button_cv' => 'সিভি ডাউনলোড করুন',
@@ -239,8 +248,18 @@ class ContentController extends Controller
                 'empty_projects' => 'প্রজেক্ট দেখুন',
                 'empty_blogs' => 'ব্লগ দেখুন',
                 'empty_services' => 'সেবা দেখুন',
+                'nav_link_1' => 'হোম',
+                'nav_link_2' => 'আমার সম্পর্কে',
+                'nav_link_3' => 'সেবাসমূহ',
+                'nav_link_4' => 'পোর্টফোলিও',
+                'nav_link_5' => 'ব্লগ',
+                'nav_link_6' => 'যোগাযোগ',
             ],
             'ar' => [
+                'site_name' => 'محفظة CMS',
+                'site_tagline' => 'حلول الويب المهنية',
+                'header_cta_text' => 'تواصل معي',
+                'header_cta_icon' => 'fa-paper-plane',
                 'hero_eyebrow' => 'متاح لمشاريع جديدة',
                 'hero_button_hire' => 'وظفني',
                 'hero_button_cv' => 'تحميل السيرة الذاتية',
@@ -299,6 +318,12 @@ class ContentController extends Controller
                 'empty_projects' => 'تصفح المشاريع',
                 'empty_blogs' => 'تصفح المدونة',
                 'empty_services' => 'عرض الخدمات',
+                'nav_link_1' => 'Home',
+                'nav_link_2' => 'About',
+                'nav_link_3' => 'Services',
+                'nav_link_4' => 'Portfolio',
+                'nav_link_5' => 'Blog',
+                'nav_link_6' => 'Contact',
             ],
         ];
         
@@ -356,6 +381,55 @@ class ContentController extends Controller
     }
     
     /**
+     * Get header navigation links from menu items
+     */
+    private function getHeaderNavLinks(): array
+    {
+        $links = [];
+        
+        try {
+            if (class_exists('App\Models\MenuItem')) {
+                $menuItems = MenuItem::active()
+                    ->where('menu_type', 'header')
+                    ->orderBy('order')
+                    ->get();
+                    
+                foreach ($menuItems as $item) {
+                    $links[] = [
+                        'title' => $item->name,
+                        'url' => $item->link,
+                        'type' => 'menu'
+                    ];
+                }
+            }
+            
+            // Fallback to default nav items if no menu items
+            if (empty($links)) {
+                $links = [
+                    ['title' => 'Home', 'url' => '/', 'type' => 'default'],
+                    ['title' => 'About', 'url' => '/about', 'type' => 'default'],
+                    ['title' => 'Services', 'url' => '/services', 'type' => 'default'],
+                    ['title' => 'Portfolio', 'url' => '/portfolio', 'type' => 'default'],
+                    ['title' => 'Blog', 'url' => '/blog', 'type' => 'default'],
+                    ['title' => 'Contact', 'url' => '/contact', 'type' => 'default'],
+                ];
+            }
+        } catch (\Throwable $e) {
+            // Return default nav items
+            $links = [
+                ['title' => 'Home', 'url' => '/', 'type' => 'default'],
+                ['title' => 'About', 'url' => '/about', 'type' => 'default'],
+                ['title' => 'Services', 'url' => '/services', 'type' => 'default'],
+                ['title' => 'Portfolio', 'url' => '/portfolio', 'type' => 'default'],
+                ['title' => 'Blog', 'url' => '/blog', 'type' => 'default'],
+                ['title' => 'Contact', 'url' => '/contact', 'type' => 'default'],
+            ];
+        }
+        
+        return $links;
+    }
+    
+    /**
      * Get dynamic items from database for content settings
      */
     private function getDynamicItems(): array
@@ -407,13 +481,27 @@ class ContentController extends Controller
         $pages = [];
         
         // 0. HEADER - Site-wide header content
+        $headerNavLinks = $this->getHeaderNavLinks();
+        $headerNavFields = [];
+        foreach ($headerNavLinks as $index => $link) {
+            $fieldKey = 'nav_link_' . ($index + 1);
+            $headerNavFields[] = $fieldKey;
+        }
+        
         $pages['header'] = [
             'name' => 'Header',
             'sections' => [
                 'header' => [
-                    'name' => 'Header Content',
-                    'fields' => ['header_cta_text', 'header_cta_icon'],
+                    'name' => 'Site Identity',
+                    'fields' => ['site_name', 'site_tagline', 'header_cta_text', 'header_cta_icon'],
                     'is_dynamic' => false,
+                ],
+                'nav_menu' => [
+                    'name' => 'Navigation Menu',
+                    'fields' => $headerNavFields,
+                    'is_dynamic' => true,
+                    'dynamic_type' => 'nav_menu',
+                    'dynamic_info' => 'Menu items are pulled from Menu Manager'
                 ],
             ]
         ];

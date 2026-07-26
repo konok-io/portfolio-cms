@@ -115,11 +115,19 @@
                                                                         $arValue = $arValue ?: $defaultAr;
                                                                         
                                                                         // For dynamic sections, use the actual link title
-                                                                        if (isset($section['is_dynamic']) && $section['is_dynamic'] && $activeTab === 'footer') {
-                                                                            if (str_starts_with($field, 'link_')) {
+                                                                        if (isset($section['is_dynamic']) && $section['is_dynamic']) {
+                                                                            // Footer quick links
+                                                                            if ($activeTab === 'footer' && str_starts_with($field, 'link_')) {
                                                                                 $linkNum = (int) substr($field, 5) - 1;
                                                                                 if (isset($footerLinks[$linkNum])) {
                                                                                     $fieldLabel = $footerLinks[$linkNum]['title'] ?? $fieldLabel;
+                                                                                }
+                                                                            }
+                                                                            // Header nav menu links
+                                                                            if ($activeTab === 'header' && str_starts_with($field, 'nav_link_')) {
+                                                                                $linkNum = (int) substr($field, 9) - 1;
+                                                                                if (isset($headerNavLinks[$linkNum])) {
+                                                                                    $fieldLabel = $headerNavLinks[$linkNum]['title'] ?? $fieldLabel;
                                                                                 }
                                                                             }
                                                                         }
@@ -149,13 +157,18 @@
                                                                 @php
                                                                     $dynamicType = $section['dynamic_type'];
                                                                     $items = $dynamicItems[$dynamicType] ?? [];
+                                                                    
+                                                                    // For nav_menu, use headerNavLinks
+                                                                    if ($dynamicType === 'nav_menu') {
+                                                                        $items = $headerNavLinks;
+                                                                    }
                                                                 @endphp
                                                                 
                                                                 @if(!empty($items))
                                                                     <hr class="my-4">
                                                                     <h6 class="text-uppercase text-muted mb-3">
                                                                         <i class="fa-solid fa-list me-1"></i>
-                                                                        {{ ucfirst($dynamicType) }} ({{ count($items) }})
+                                                                        {{ $dynamicType === 'nav_menu' ? 'Navigation Menu Items' : ucfirst($dynamicType) }} ({{ count($items) }})
                                                                     </h6>
                                                                     
                                                                     <div class="table-responsive">
@@ -173,13 +186,18 @@
                                                                                         <td class="text-center">{{ $itemIndex + 1 }}</td>
                                                                                         <td>
                                                                                             @php
-                                                                                                $itemName = $item['name'] ?? $item['title'] ?? $item['job_title'] ?? $item['degree'] ?? 'Item ' . ($itemIndex + 1);
-                                                                                                $itemSubtitle = '';
-                                                                                                if (isset($item['company'])) $itemSubtitle = $item['company'];
-                                                                                                if (isset($item['institution'])) $itemSubtitle = $item['institution'];
-                                                                                                if (isset($item['issuer'])) $itemSubtitle = $item['issuer'];
-                                                                                                if (isset($item['category'])) $itemSubtitle = $item['category'];
-                                                                                                if (isset($item['percentage'])) $itemSubtitle = $item['percentage'] . '%';
+                                                                                                if ($dynamicType === 'nav_menu') {
+                                                                                                    $itemName = $item['title'] ?? 'Menu Item ' . ($itemIndex + 1);
+                                                                                                    $itemSubtitle = $item['url'] ?? '';
+                                                                                                } else {
+                                                                                                    $itemName = $item['name'] ?? $item['title'] ?? $item['job_title'] ?? $item['degree'] ?? 'Item ' . ($itemIndex + 1);
+                                                                                                    $itemSubtitle = '';
+                                                                                                    if (isset($item['company'])) $itemSubtitle = $item['company'];
+                                                                                                    if (isset($item['institution'])) $itemSubtitle = $item['institution'];
+                                                                                                    if (isset($item['issuer'])) $itemSubtitle = $item['issuer'];
+                                                                                                    if (isset($item['category'])) $itemSubtitle = $item['category'];
+                                                                                                    if (isset($item['percentage'])) $itemSubtitle = $item['percentage'] . '%';
+                                                                                                }
                                                                                             @endphp
                                                                                             <strong>{{ $itemName }}</strong>
                                                                                             @if($itemSubtitle)
@@ -188,7 +206,8 @@
                                                                                         </td>
                                                                                         <td>
                                                                                             @php
-                                                                                                $itemContentKey = $dynamicType . '_item_' . $item['id'];
+                                                                                                $itemId = $item['id'] ?? $itemIndex;
+                                                                                                $itemContentKey = $dynamicType . '_item_' . $itemId;
                                                                                                 $itemContent = $pageContent[$itemContentKey] ?? [];
                                                                                                 $hasEn = !empty($itemContent['en'] ?? '');
                                                                                                 $hasBn = !empty($itemContent['bn'] ?? '');
@@ -207,7 +226,9 @@
                                                                     <div class="alert alert-light border small mt-3">
                                                                         <i class="fa-solid fa-link me-1"></i>
                                                                         Edit from Manager: 
-                                                                        @if($dynamicType === 'skills')
+                                                                        @if($dynamicType === 'nav_menu')
+                                                                            <a href="{{ route('admin.menus.index') }}">Menu Manager</a>
+                                                                        @elseif($dynamicType === 'skills')
                                                                             <a href="{{ route('admin.skills.index') }}">Skills</a>
                                                                         @elseif($dynamicType === 'experience')
                                                                             <a href="{{ route('admin.experience.index') }}">Experience</a>
@@ -225,7 +246,9 @@
                                                                     <div class="alert alert-info mt-3">
                                                                         <i class="fa-solid fa-info-circle me-1"></i>
                                                                         No {{ $dynamicType }} found. 
-                                                                        @if($dynamicType === 'skills')
+                                                                        @if($dynamicType === 'nav_menu')
+                                                                            <a href="{{ route('admin.menus.index') }}">Add Menu Items</a>
+                                                                        @elseif($dynamicType === 'skills')
                                                                             <a href="{{ route('admin.skills.index') }}">Add Skills</a>
                                                                         @elseif($dynamicType === 'experience')
                                                                             <a href="{{ route('admin.experience.index') }}">Add Experience</a>
