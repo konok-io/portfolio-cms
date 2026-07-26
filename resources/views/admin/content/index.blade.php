@@ -43,9 +43,8 @@
                                                 <div class="row">
                                                     @foreach($section['fields'] as $field)
                                                         @php
-                                                            $inputName = $field;
-                                                            $sectionData = $currentContent[$sectionKey] ?? [];
-                                                            $fieldData = $sectionData[$field] ?? null;
+                                                            // Get value from flat structure
+                                                            $fieldData = $currentContent[$field] ?? null;
                                                             if (is_array($fieldData)) {
                                                                 $value = $fieldData['default'] ?? $fieldData['en'] ?? '';
                                                             } else {
@@ -55,11 +54,10 @@
                                                         <div class="col-md-6 mb-3">
                                                             <label class="form-label">{{ ucwords(str_replace('_', ' ', $field)) }}</label>
                                                             <input type="text" 
-                                                                   name="{{ $inputName }}" 
+                                                                   name="{{ $field }}" 
                                                                    class="form-control" 
                                                                    value="{{ $value }}"
                                                                    placeholder="Enter {{ $field }}">
-                                                            <small class="text-muted">Key: {{ $activeTab }}.{{ $sectionKey }}.{{ $field }}</small>
                                                         </div>
                                                     @endforeach
                                                 </div>

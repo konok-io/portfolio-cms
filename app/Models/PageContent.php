@@ -31,9 +31,14 @@ class PageContent
         $content = self::all();
         $locale = $locale ?? app()->getLocale() ?? 'en';
 
-        $pageContent = $content[$page] ?? [];
-
-        // Direct key match at page level
+        // Check if page exists
+        if (!isset($content[$page])) {
+            return null;
+        }
+        
+        $pageContent = $content[$page];
+        
+        // If key exists directly at page level
         if (isset($pageContent[$key])) {
             $value = $pageContent[$key];
             if (is_array($value)) {
@@ -41,102 +46,27 @@ class PageContent
             }
             return $value;
         }
-
-        // Search in nested sections for the key
-        foreach ($pageContent as $sectionKey => $sectionData) {
-            if (is_array($sectionData)) {
-                // Check direct match in section
-                if (isset($sectionData[$key])) {
-                    $value = $sectionData[$key];
-                    if (is_array($value)) {
-                        return $value[$locale] ?? $value['default'] ?? $value['en'] ?? null;
-                    }
-                    return $value;
+        
+        // Search in nested sections (section.field format)
+        foreach ($pageContent as $sectionData) {
+            if (is_array($sectionData) && isset($sectionData[$key])) {
+                $value = $sectionData[$key];
+                if (is_array($value)) {
+                    return $value[$locale] ?? $value['default'] ?? $value['en'] ?? null;
                 }
-                
-                // Search nested values (section -> field format)
-                foreach ($sectionData as $fieldKey => $fieldValue) {
-                    if (is_array($fieldValue)) {
-                        // Check if this field matches our key
-                        if ($fieldKey === $key) {
-                            return $fieldValue[$locale] ?? $fieldValue['default'] ?? $fieldValue['en'] ?? null;
-                        }
-                        
-                        // Also check if there's a flattened key like hero_eyebrow in hero.eyebrow
-                        $flattenedKey = $sectionKey . '_' . $fieldKey;
-                        if ($flattenedKey === $key) {
-                            if (is_array($fieldValue)) {
-                                return $fieldValue[$locale] ?? $fieldValue['default'] ?? $fieldValue['en'] ?? null;
-                            }
-                            return $fieldValue;
-                        }
-                    }
-                }
+                return $value;
             }
         }
+        
+        // Debug: log what keys are available
+        \Log::debug("PageContent: Key not found", [
+            'page' => $page,
+            'key' => $key,
+            'locale' => $locale,
+            'available_keys' => array_keys($pageContent)
+        ]);
 
-        // Try locale-specific key first (old format: key_locale)
-        $localeKey = "{$key}_{$locale}";
-        if (isset($pageContent[$localeKey])) {
-            return $pageContent[$localeKey];
-        }
-
-        // Try default key (old format)
-        if (isset($pageContent[$key])) {
-            return $pageContent[$key];
-        }
-
-        // Return null (will fallback to hardcoded text)
         return null;
-    }
-
-    /**
-     * Set content for a specific page and key
-     */
-    public static function set(string $page, string $key, array $values): void
-    {
-        $setting = Setting::instance();
-        $content = $setting->page_content ?? [];
-
-        // Store with locale suffixes
-        foreach ($values as $locale => $value) {
-            $content[$page]["{$key}_{$locale}"] = $value;
-        }
-
-        // Also set default
-        $content[$page][$key] = $values['default'] ?? $values['en'] ?? '';
-
-        $setting->page_content = $content;
-        $setting->save();
-
-        // Clear cache
-        self::$content = null;
-        Cache::forget('settings');
-    }
-
-    /**
-     * Get all content for a page
-     */
-    public static function getPage(string $page): array
-    {
-        $content = self::all();
-        return $content[$page] ?? [];
-    }
-
-    /**
-     * Set all content for a page
-     */
-    public static function setPage(string $page, array $values): void
-    {
-        $setting = Setting::instance();
-        $content = $setting->page_content ?? [];
-        $content[$page] = $values;
-        $setting->page_content = $content;
-        $setting->save();
-
-        // Clear cache
-        self::$content = null;
-        Cache::forget('settings');
     }
 
     /**
@@ -154,41 +84,9 @@ class PageContent
     public static function getDefaultContent(): array
     {
         return [
-            'home' => [
-                // Hero Section
-                'hero_eyebrow' => 'Available for new projects',
-                'hero_eyebrow_en' => 'Available for new projects',
-                'hero_eyebrow_bn' => 'নতুন প্রজেক্টের জন্য উপলব্ধ',
-                'hero_eyebrow_ar' => 'متاح لمشاريع جديدة',
-
-                // Contact Section
-                'contact_eyebrow' => 'Get In Touch',
-                'contact_title' => "Let's build something great together",
-                'contact_text' => 'Have a project in mind? Fill out the form and I\'ll get back to you shortly.',
-            ],
             'footer' => [
                 'tagline' => 'Building thoughtful, modern web experiences — from idea to launch.',
-                'copyright' => 'All rights reserved.',
-            ],
-            'contact' => [
-                'title' => "Let's Work Together",
-                'subtitle' => 'Have a project in mind? Fill out the form below and I\'ll get back to you within 24 hours.',
-            ],
-            'blog' => [
-                'title' => 'Latest Articles & Insights',
-                'subtitle' => 'Thoughts on web development, Laravel, and building better software.',
-            ],
-            'portfolio' => [
-                'title' => 'All Projects',
-                'subtitle' => 'Browse through a complete collection of my recent work.',
-            ],
-            'services' => [
-                'title' => 'Services',
-                'subtitle' => 'End-to-end web development services to help your idea reach production.',
-            ],
-            'about' => [
-                'title' => 'About Me',
-                'subtitle' => 'Get to know me better',
+                'copyright_prefix' => 'Built with Laravel',
             ],
         ];
     }

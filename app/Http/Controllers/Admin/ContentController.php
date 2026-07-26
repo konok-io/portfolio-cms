@@ -36,10 +36,10 @@ class ContentController extends Controller
         $page = $request->input('page');
         $data = $request->except(['_token', 'page']);
 
-        // Group fields - just field name as key with localized values
+        // Group fields - flat structure
         $groupedData = [];
         foreach ($data as $key => $value) {
-            if ($key !== 'page') {
+            if ($key !== 'page' && $key !== '_token') {
                 $groupedData[$key] = [
                     'default' => $value,
                     'en' => $value,
@@ -49,24 +49,10 @@ class ContentController extends Controller
             }
         }
 
-        // Get sections for current page to organize data
-        $pages = $this->getPages();
-        $currentPageConfig = $pages[$page] ?? [];
-        
-        // Organize data by section
-        $organizedData = [];
-        foreach ($currentPageConfig['sections'] ?? [] as $sectionKey => $section) {
-            foreach ($section['fields'] ?? [] as $field) {
-                if (isset($groupedData[$field])) {
-                    $organizedData[$sectionKey][$field] = $groupedData[$field];
-                }
-            }
-        }
-
-        // Save to settings
+        // Save to settings - flat structure
         $setting = Setting::instance();
         $pageContent = $setting->page_content ?? [];
-        $pageContent[$page] = array_merge($pageContent[$page] ?? [], $organizedData);
+        $pageContent[$page] = array_merge($pageContent[$page] ?? [], $groupedData);
         $setting->page_content = $pageContent;
         $setting->save();
 
@@ -81,21 +67,29 @@ class ContentController extends Controller
      */
     public function reset(Request $request)
     {
-        $page = $request->input('page');
+        $page = $request->query('page', 'home');
         
+        // Get default content for the page
+        $defaultContent = PageContent::getDefaultContent();
+        
+        // Remove page from settings
         $setting = Setting::instance();
         $pageContent = $setting->page_content ?? [];
-        unset($pageContent[$page]);
-        $setting->page_content = $pageContent;
-        $setting->save();
+        
+        if (isset($pageContent[$page])) {
+            unset($pageContent[$page]);
+            $setting->page_content = $pageContent;
+            $setting->save();
+        }
 
+        // Clear cache
         PageContent::clearCache();
 
-        return redirect()->back()->with('success', 'Content reset to default!');
+        return redirect()->route('admin.content.index', ['tab' => $page])->with('success', 'Content reset to default!');
     }
 
     /**
-     * Get list of all pages with their sections
+     * Get pages configuration
      */
     private function getPages(): array
     {
