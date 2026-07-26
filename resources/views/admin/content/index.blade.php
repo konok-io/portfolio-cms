@@ -307,66 +307,136 @@
 .badge-sm { font-size: 0.65rem; padding: 0.2em 0.4em; }
 .handle { cursor: grab; }
 .handle:active { cursor: grabbing; }
-.section-item.sortable-ghost { opacity: 0.4; background: #cfe2ff; }
-.section-item.sortable-chosen { background: #e9ecef; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-.section-item.sortable-drag { background: #fff; box-shadow: 0 8px 16px rgba(0,0,0,0.2); opacity: 1; }
 .section-header { cursor: grab !important; user-select: none; }
 .section-header:active { cursor: grabbing !important; }
+.section-item.dragging { pointer-events: none; }
 .handle { cursor: grab; }
 .collapse-icon { transition: transform 0.3s; }
 .section-item:has(.accordion-collapse.show) .collapse-icon { transform: rotate(180deg); }
+.drag-placeholder { transition: all 0.2s; }
 </style>
 @endsection
 
 @section('js')
-<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 <script>
+// Simple Drag and Drop - No external library needed
 document.addEventListener('DOMContentLoaded', function() {
-    initSortable();
+    initSimpleDragDrop();
 });
 
-function initSortable() {
-    var accordion = document.getElementById('sortableAccordion');
-    if (!accordion) return;
+function initSimpleDragDrop() {
+    var container = document.getElementById('sortableAccordion');
+    if (!container) return;
     
-    var sections = accordion.querySelectorAll('.section-item');
+    var sections = container.querySelectorAll('.section-item');
     if (sections.length < 2) return;
     
-    // Make the whole section header draggable (not just the handle)
-    // This prevents Bootstrap accordion click from interfering
-    new Sortable(accordion, {
-        animation: 200,
-        draggable: '.section-item',
-        handle: '.section-header',
-        ghostClass: 'sortable-ghost',
-        chosenClass: 'sortable-chosen',
-        dragClass: 'sortable-drag',
-        forceFallback: true,
-        onEnd: function(evt) {
-            updateSectionsOrder();
-        }
-    });
+    var draggedItem = null;
+    var placeholder = null;
     
-    // Prevent accordion toggle when clicking on drag area
+    // Create placeholder
+    function createPlaceholder(height) {
+        var div = document.createElement('div');
+        div.className = 'drag-placeholder';
+        div.style.height = height + 'px';
+        div.style.marginBottom = '8px';
+        div.style.border = '2px dashed #0d6efd';
+        div.style.borderRadius = '8px';
+        div.style.background = '#f8f9fa';
+        return div;
+    }
+    
     sections.forEach(function(section) {
         var header = section.querySelector('.section-header');
-        if (header) {
-            header.addEventListener('mousedown', function(e) {
-                // Allow drag
-                section.dataset.dragging = 'false';
-            });
+        if (!header) return;
+        
+        header.style.cursor = 'grab';
+        
+        header.addEventListener('mousedown', function(e) {
+            // Don't start drag if clicking on button
+            if (e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
+            if (e.target.tagName === 'A' || e.target.closest('a')) return;
             
-            header.addEventListener('mousemove', function(e) {
-                section.dataset.dragging = 'true';
-            });
+            e.preventDefault();
+            draggedItem = section;
             
-            header.addEventListener('mouseup', function(e) {
-                setTimeout(function() {
-                    section.dataset.dragging = 'false';
-                }, 100);
-            });
-        }
+            section.classList.add('dragging');
+            var rect = section.getBoundingClientRect();
+            section.style.width = rect.width + 'px';
+            section.style.position = 'fixed';
+            section.style.left = rect.left + 'px';
+            section.style.top = rect.top + 'px';
+            section.style.zIndex = '9999';
+            section.style.opacity = '0.9';
+            section.style.transform = 'rotate(2deg)';
+            section.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
+            
+            placeholder = createPlaceholder(rect.height);
+            container.insertBefore(placeholder, section);
+            
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        });
     });
+    
+    function onMouseMove(e) {
+        if (!draggedItem) return;
+        
+        draggedItem.style.left = e.clientX - (draggedItem.offsetWidth / 2) + 'px';
+        draggedItem.style.top = (e.clientY - 30) + 'px';
+        
+        // Find where to place the placeholder
+        var items = Array.from(container.querySelectorAll('.section-item:not(.dragging)'));
+        var nextItem = null;
+        
+        items.forEach(function(item) {
+            var rect = item.getBoundingClientRect();
+            var mid = rect.top + rect.height / 2;
+            if (e.clientY < mid) {
+                if (!nextItem || rect.top < nextItem.getBoundingClientRect().top) {
+                    nextItem = item;
+                }
+            }
+        });
+        
+        if (placeholder) {
+            if (nextItem) {
+                container.insertBefore(placeholder, nextItem);
+            } else {
+                container.appendChild(placeholder);
+            }
+        }
+    }
+    
+    function onMouseUp(e) {
+        if (!draggedItem) return;
+        
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
+        
+        // Reset dragged item styles
+        draggedItem.classList.remove('dragging');
+        draggedItem.style.width = '';
+        draggedItem.style.position = '';
+        draggedItem.style.left = '';
+        draggedItem.style.top = '';
+        draggedItem.style.zIndex = '';
+        draggedItem.style.opacity = '';
+        draggedItem.style.transform = '';
+        draggedItem.style.boxShadow = '';
+        
+        // Move dragged item to placeholder position
+        if (placeholder && placeholder.parentNode === container) {
+            container.insertBefore(draggedItem, placeholder);
+            container.removeChild(placeholder);
+        }
+        
+        draggedItem = null;
+        placeholder = null;
+        
+        // Update order
+        updateSectionsOrder();
+    }
 }
 
 function updateSectionsOrder() {
