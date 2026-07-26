@@ -33,6 +33,12 @@ class HomeController extends Controller
         $blogs          = Blog::published()->with('category')->latest('published_at')->take(3)->get();
         $certifications = Certification::where('is_active', true)->orderBy('sort_order')->get();
 
+        // Skills section titles from page_content
+        $locale = app()->getLocale();
+        $skillsSectionTitle = page_content('home', 'skills_section_title', $locale) ?: 'My Skills';
+        $skillsTitle = page_content('home', 'skills_title', $locale) ?: 'Technologies I Work With';
+        $skillsSubtitle = page_content('home', 'skills_subtitle', $locale) ?: 'A snapshot of the tools and languages I use to bring projects to life.';
+
         return view('front.home', compact(
             'about',
             'skills',
@@ -42,7 +48,10 @@ class HomeController extends Controller
             'projects',
             'testimonials',
             'blogs',
-            'certifications'
+            'certifications',
+            'skillsSectionTitle',
+            'skillsTitle',
+            'skillsSubtitle'
         ));
     }
 }

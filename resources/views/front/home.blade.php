@@ -112,23 +112,36 @@
 <section id="skills" class="section-padding section-tint">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
-            <span class="section-eyebrow">{{ __('common.my_skills') }}</span>
-            <h2 class="section-title mb-2">{{ __('common.technologies') }}</h2>
-            <p class="section-subtitle mx-auto">{{ __('common.skill_subtitle') }}</p>
+            <span class="section-eyebrow">{{ $skillsSectionTitle }}</span>
+            <h2 class="section-title mb-2">{{ $skillsTitle }}</h2>
+            <p class="section-subtitle mx-auto">{{ $skillsSubtitle }}</p>
         </div>
         
         <style>
             .tech-stack-grid {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                grid-template-columns: repeat(5, 1fr);
                 gap: 20px;
+            }
+            
+            @media (max-width: 1200px) {
+                .tech-stack-grid { grid-template-columns: repeat(4, 1fr); }
+            }
+            @media (max-width: 992px) {
+                .tech-stack-grid { grid-template-columns: repeat(3, 1fr); }
+            }
+            @media (max-width: 768px) {
+                .tech-stack-grid { grid-template-columns: repeat(2, 1fr); }
+            }
+            @media (max-width: 576px) {
+                .tech-stack-grid { grid-template-columns: 1fr; }
             }
             
             .tech-card {
                 background: #fff;
-                border: 1px solid rgba(103, 232, 249, 0.15);
+                border: 1px solid rgba(79, 47, 232, 0.1);
                 border-radius: 16px;
-                padding: 25px;
+                padding: 25px 15px;
                 text-align: center;
                 transition: all 0.3s;
                 position: relative;
@@ -142,15 +155,15 @@
                 left: 0;
                 right: 0;
                 height: 3px;
-                background: linear-gradient(90deg, #67e8f9, #818cf8, #c084fc);
+                background: linear-gradient(90deg, #4F2FE8, #8B5CF6);
                 opacity: 0;
                 transition: opacity 0.3s;
             }
             
             .tech-card:hover {
                 transform: translateY(-8px);
-                border-color: #67e8f9;
-                box-shadow: 0 15px 40px rgba(103, 232, 249, 0.15);
+                border-color: #4F2FE8;
+                box-shadow: 0 15px 40px rgba(79, 47, 232, 0.15);
             }
             
             .tech-card:hover::before {
@@ -172,45 +185,22 @@
                 color: #1a1a2e;
                 font-weight: 600;
                 margin-bottom: 8px;
-                font-size: 1.05rem;
-            }
-            
-            .tech-level {
-                color: #6b7280;
-                font-size: 0.85rem;
-                margin-bottom: 12px;
+                font-size: 1rem;
             }
             
             .tech-percentage {
-                background: linear-gradient(90deg, #67e8f9, #818cf8);
+                background: #4F2FE8;
                 color: #fff;
                 padding: 4px 12px;
                 border-radius: 20px;
                 font-size: 0.75rem;
                 font-weight: 600;
                 display: inline-block;
-                margin-bottom: 12px;
-            }
-            
-            .tech-tags {
-                display: flex;
-                gap: 8px;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-            
-            .tech-tag {
-                background: rgba(129, 140, 248, 0.15);
-                color: #4F2FE8;
-                padding: 4px 12px;
-                border-radius: 20px;
-                font-size: 0.7rem;
-                font-weight: 500;
             }
             
             /* Dark Theme */
             [data-theme="dark"] .tech-card {
-                background: rgba(26, 26, 62, 0.8);
+                background: #171433;
                 border-color: rgba(103, 232, 249, 0.15);
             }
             
@@ -218,27 +208,27 @@
                 color: #fff;
             }
             
-            [data-theme="dark"] .tech-level {
-                color: #a8a4c8;
-            }
-            
             [data-theme="dark"] .tech-card:hover {
-                background: rgba(103, 232, 249, 0.1);
-                box-shadow: 0 15px 40px rgba(103, 232, 249, 0.2);
+                border-color: #67E8F9;
+                box-shadow: 0 15px 40px rgba(103, 232, 249, 0.15);
             }
             
-            [data-theme="dark"] .tech-tag {
-                background: rgba(129, 140, 248, 0.2);
-                color: #c084fc;
+            [data-theme="dark"] .tech-card::before {
+                background: linear-gradient(90deg, #67E8F9, #67E8F9);
             }
             
             [data-theme="dark"] .tech-icon {
-                color: #67e8f9;
+                color: #67E8F9;
+            }
+            
+            [data-theme="dark"] .tech-percentage {
+                background: #67E8F9;
+                color: #0A0A1F;
             }
         </style>
         
         <div class="tech-stack-grid">
-            @foreach($skills as $skill)
+            @foreach($skills->take(5) as $skill)
                 <div class="tech-card reveal-on-scroll">
                     <div class="tech-icon">
                         @if($skill->icon)
@@ -248,15 +238,7 @@
                         @endif
                     </div>
                     <div class="tech-name">{{ $skill->name }}</div>
-                    <div class="tech-level">{{ $skill->category ?? 'Technical' }}</div>
                     <div class="tech-percentage">{{ $skill->percentage }}%</div>
-                    <div class="tech-tags">
-                        @php
-                            $levelText = $skill->percentage >= 90 ? 'Expert' : ($skill->percentage >= 75 ? 'Advanced' : ($skill->percentage >= 50 ? 'Intermediate' : 'Beginner'));
-                        @endphp
-                        <span class="tech-tag">{{ $levelText }}</span>
-                        <span class="tech-tag">{{ $skill->category ?? 'Technical' }}</span>
-                    </div>
                 </div>
             @endforeach
         </div>
