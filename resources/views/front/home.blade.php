@@ -58,9 +58,14 @@
      ========================================================= --}}
 <section id="about" class="section-padding section-alt">
     <div class="container">
-        <div class="text-center mb-5">
-            <span class="section-eyebrow">{{ page_content('home', 'why_eyebrow', app()->getLocale()) }}</span>
-            <h2 class="section-title">{{ page_content('home', 'why_title', app()->getLocale()) }}</h2>
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
+            <div class="text-center text-lg-start">
+                <span class="section-eyebrow">{{ page_content('home', 'why_eyebrow', app()->getLocale()) }}</span>
+                <h2 class="section-title mb-0">{{ page_content('home', 'why_title', app()->getLocale()) }}</h2>
+            </div>
+            <a href="{{ route('about') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">
+                <i class="fa-solid fa-user me-2"></i>Learn More About Me
+            </a>
         </div>
         <div class="row g-4">
             <div class="col-md-4">
@@ -96,11 +101,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="text-center mt-5 reveal-on-scroll">
-            <a href="{{ route('about') }}" class="btn btn-outline-custom">
-                <i class="fa-solid fa-user me-2"></i>Learn More About Me
-            </a>
         </div>
     </div>
 </section>
