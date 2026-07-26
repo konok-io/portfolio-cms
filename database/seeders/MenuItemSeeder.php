@@ -10,17 +10,17 @@ class MenuItemSeeder extends Seeder
     public function run(): void
     {
         $items = [
-            ['title' => 'Home', 'route' => 'home', 'url' => '/', 'icon' => 'fa-solid fa-home', 'position' => 1],
-            ['title' => 'About', 'route' => 'about', 'url' => '/about', 'icon' => 'fa-solid fa-user', 'position' => 2],
-            ['title' => 'Services', 'route' => 'services', 'url' => '/services', 'icon' => 'fa-solid fa-briefcase', 'position' => 3],
-            ['title' => 'Portfolio', 'route' => 'projects.index', 'url' => '/portfolio', 'icon' => 'fa-solid fa-folder-open', 'position' => 4],
-            ['title' => 'Blog', 'route' => 'blog.index', 'url' => '/blog', 'icon' => 'fa-solid fa-blog', 'position' => 5],
-            ['title' => 'Contact', 'route' => 'contact', 'url' => '/contact', 'icon' => 'fa-solid fa-envelope', 'position' => 6],
+            ['name' => 'Home', 'route' => 'home', 'url' => '/', 'icon' => 'fa-solid fa-home', 'order' => 1, 'menu_type' => 'header', 'is_active' => true],
+            ['name' => 'About', 'route' => 'about', 'url' => '/about', 'icon' => 'fa-solid fa-user', 'order' => 2, 'menu_type' => 'header', 'is_active' => true],
+            ['name' => 'Services', 'route' => 'services', 'url' => '/services', 'icon' => 'fa-solid fa-briefcase', 'order' => 3, 'menu_type' => 'header', 'is_active' => true],
+            ['name' => 'Portfolio', 'route' => 'projects.index', 'url' => '/portfolio', 'icon' => 'fa-solid fa-folder-open', 'order' => 4, 'menu_type' => 'header', 'is_active' => true],
+            ['name' => 'Blog', 'route' => 'blog.index', 'url' => '/blog', 'icon' => 'fa-solid fa-blog', 'order' => 5, 'menu_type' => 'header', 'is_active' => true],
+            ['name' => 'Contact', 'route' => 'contact', 'url' => '/contact', 'icon' => 'fa-solid fa-envelope', 'order' => 6, 'menu_type' => 'header', 'is_active' => true],
         ];
 
         foreach ($items as $item) {
             MenuItem::firstOrCreate(
-                ['title' => $item['title']],
+                ['name' => $item['name']],
                 $item
             );
         }

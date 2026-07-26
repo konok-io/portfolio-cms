@@ -19,16 +19,18 @@ class MenuBuilderController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'url' => 'nullable|string|max:255',
             'route' => 'nullable|string|max:255',
             'icon' => 'nullable|string|max:255',
-            'position' => 'nullable|integer|min:0',
+            'order' => 'nullable|integer|min:0',
             'target' => 'nullable|in:_self,_blank',
+            'menu_type' => 'nullable|string|max:50',
         ]);
 
         $validated['is_active'] = $request->boolean('is_active');
-        $validated['position'] = $validated['position'] ?? MenuItem::max('position') + 1;
+        $validated['order'] = $validated['order'] ?? MenuItem::max('order') + 1;
+        $validated['menu_type'] = $validated['menu_type'] ?? 'header';
 
         MenuItem::create($validated);
 
@@ -39,12 +41,13 @@ class MenuBuilderController extends Controller
     public function update(Request $request, MenuItem $menuItem)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'url' => 'nullable|string|max:255',
             'route' => 'nullable|string|max:255',
             'icon' => 'nullable|string|max:255',
-            'position' => 'nullable|integer|min:0',
+            'order' => 'nullable|integer|min:0',
             'target' => 'nullable|in:_self,_blank',
+            'menu_type' => 'nullable|string|max:50',
         ]);
 
         $validated['is_active'] = $request->boolean('is_active');
@@ -65,10 +68,10 @@ class MenuBuilderController extends Controller
 
     public function reorder(Request $request)
     {
-        $positions = $request->input('position', []);
+        $orders = $request->input('order', []);
         
-        foreach ($positions as $index => $id) {
-            MenuItem::where('id', $id)->update(['position' => $index]);
+        foreach ($orders as $index => $id) {
+            MenuItem::where('id', $id)->update(['order' => $index]);
         }
 
         return response()->json(['success' => true]);

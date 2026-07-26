@@ -29,6 +29,7 @@
                                         <th>Name</th>
                                         <th>Route</th>
                                         <th>Icon</th>
+                                        <th>Type</th>
                                         <th>Status</th>
                                         <th width="120">Actions</th>
                                     </tr>
@@ -36,10 +37,11 @@
                                 <tbody>
                                     @foreach($menuItems as $item)
                                         <tr class="{{ !$item->is_active ? 'text-muted opacity-50' : '' }}">
-                                            <td>{{ $item->position }}</td>
-                                            <td><strong>{{ $item->title }}</strong></td>
+                                            <td>{{ $item->order }}</td>
+                                            <td><strong>{{ $item->name }}</strong></td>
                                             <td><code class="small">{{ $item->route ?? $item->url ?? '-' }}</code></td>
                                             <td>@if($item->icon)<i class="{{ $item->icon }}"></i>@else-@endif</td>
+                                            <td><span class="badge bg-secondary">{{ $item->menu_type ?? 'header' }}</span></td>
                                             <td>
                                                 <form action="{{ route('admin.menu-builder.toggle', $item) }}" method="POST" class="d-inline">
                                                     @csrf
@@ -70,7 +72,7 @@
                                                         <div class="modal-body">
                                                             <div class="mb-3">
                                                                 <label class="form-label">Name *</label>
-                                                                <input type="text" name="name" class="form-control" value="{{ $item->title }}" required>
+                                                                <input type="text" name="name" class="form-control" value="{{ $item->name }}" required>
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label class="form-label">Route</label>
@@ -92,12 +94,23 @@
                                                                 </div>
                                                                 <div class="col-6 mb-3">
                                                                     <label class="form-label">Order</label>
-                                                                    <input type="number" name="order" class="form-control" value="{{ $item->position }}" min="0">
+                                                                    <input type="number" name="order" class="form-control" value="{{ $item->order }}" min="0">
                                                                 </div>
                                                             </div>
-                                                            <div class="form-check">
-                                                                <input type="checkbox" name="is_active" value="1" class="form-check-input" id="editActive{{ $item->id }}" {{ $item->is_active ? 'checked' : '' }}>
-                                                                <label class="form-check-label" for="editActive{{ $item->id }}">Active</label>
+                                                            <div class="row">
+                                                                <div class="col-6 mb-3">
+                                                                    <label class="form-label">Menu Type</label>
+                                                                    <select name="menu_type" class="form-select">
+                                                                        <option value="header" {{ ($item->menu_type ?? 'header') == 'header' ? 'selected' : '' }}>Header</option>
+                                                                        <option value="footer" {{ $item->menu_type == 'footer' ? 'selected' : '' }}>Footer</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-6 mb-3 d-flex align-items-end">
+                                                                    <div class="form-check">
+                                                                        <input type="checkbox" name="is_active" value="1" class="form-check-input" id="editActive{{ $item->id }}" {{ $item->is_active ? 'checked' : '' }}>
+                                                                        <label class="form-check-label" for="editActive{{ $item->id }}">Active</label>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
@@ -153,12 +166,23 @@
                         </div>
                         <div class="col-6 mb-3">
                             <label class="form-label">Order</label>
-                            <input type="number" name="order" class="form-control" value="{{ $menuItems->count() }}" min="0">
+                            <input type="number" name="order" class="form-control" value="{{ $menuItems->count() + 1 }}" min="0">
                         </div>
                     </div>
-                    <div class="form-check">
-                        <input type="checkbox" name="is_active" value="1" class="form-check-input" id="isActive" checked>
-                        <label class="form-check-label" for="isActive">Active</label>
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            <label class="form-label">Menu Type</label>
+                            <select name="menu_type" class="form-select">
+                                <option value="header">Header</option>
+                                <option value="footer">Footer</option>
+                            </select>
+                        </div>
+                        <div class="col-6 mb-3 d-flex align-items-end">
+                            <div class="form-check">
+                                <input type="checkbox" name="is_active" value="1" class="form-check-input" id="isActive" checked>
+                                <label class="form-check-label" for="isActive">Active</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
