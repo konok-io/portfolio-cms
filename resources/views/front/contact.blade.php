@@ -202,11 +202,11 @@ document.addEventListener('DOMContentLoaded', function() {
 @push('styles')
 <style>
 .contact-page-section {
-    background: linear-gradient(180deg, #ffffff 0%, #f0f7ff 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #f5f5fa 100%);
     min-height: 100vh;
 }
 [data-theme="dark"] .contact-page-section {
-    background: linear-gradient(180deg, #0A0A1F 0%, #12102E 100%);
+    background: linear-gradient(180deg, #0A0A1F 0%, #161630 100%);
 }
 .contact-form-card,
 .contact-info-card {

@@ -56,7 +56,7 @@
 {{-- =========================================================
      2. WHY CHOOSE ME
      ========================================================= --}}
-<section id="about" class="section-padding">
+<section id="about" class="section-padding section-alt">
     <div class="container">
         <div class="text-center mb-5">
             <span class="section-eyebrow">{{ page_content('home', 'why_eyebrow', app()->getLocale()) }}</span>
@@ -109,7 +109,7 @@
      3. SKILLS
      ========================================================= --}}
 @if($skills->isNotEmpty())
-<section id="skills" class="section-padding section-alt">
+<section id="skills" class="section-padding">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
             <span class="section-eyebrow">My Skills</span>
@@ -140,7 +140,7 @@
      4. SERVICES
      ========================================================= --}}
 @if($services->isNotEmpty())
-<section id="services" class="section-padding section-tint">
+<section id="services" class="section-padding">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
             <span class="section-eyebrow">{{ page_content('home', 'services_eyebrow', app()->getLocale()) }}</span>
@@ -168,7 +168,7 @@
      5. EXPERIENCE
      ========================================================= --}}
 @if($experiences->isNotEmpty())
-<section id="experience" class="section-padding section-alt">
+<section id="experience" class="section-padding section-tint">
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-4 reveal-on-scroll">
@@ -199,7 +199,7 @@
      6. EDUCATION
      ========================================================= --}}
 @if($educations->isNotEmpty())
-<section id="education" class="section-padding section-accent-tint">
+<section id="education" class="section-padding section-alt">
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-4 reveal-on-scroll">
@@ -230,7 +230,7 @@
      7. PORTFOLIO PROJECTS
      ========================================================= --}}
 @if($projects->isNotEmpty())
-<section id="portfolio" class="section-padding section-dark-tint">
+<section id="portfolio" class="section-padding">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
             <span class="section-eyebrow">Recent Work</span>
@@ -268,7 +268,7 @@
      8. TESTIMONIALS
      ========================================================= --}}
 @if($testimonials->isNotEmpty())
-<section id="testimonials" class="section-padding">
+<section id="testimonials" class="section-padding section-tint">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
             <span class="section-eyebrow">Client Feedback</span>
@@ -327,7 +327,7 @@
      8.5 CERTIFICATIONS & BADGES
      ========================================================= --}}
 @if($certifications->isNotEmpty())
-<section id="certifications" class="section-padding section-alt">
+<section id="certifications" class="section-padding">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
             <span class="section-eyebrow">Credentials</span>
@@ -370,7 +370,7 @@
      9. BLOG POSTS
      ========================================================= --}}
 @if($blogs->isNotEmpty())
-<section id="blog" class="section-padding section-tint">
+<section id="blog" class="section-padding section-alt">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
             <span class="section-eyebrow">{{ page_content('home', 'blog_eyebrow', app()->getLocale()) }}</span>
@@ -407,7 +407,7 @@
 {{-- =========================================================
      10. CONTACT FORM
      ========================================================= --}}
-<section id="contact" class="section-padding">
+<section id="contact" class="section-padding section-tint">
     <div class="container">
         <div class="row g-5">
             <div class="col-lg-5 reveal-on-scroll">

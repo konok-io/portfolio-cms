@@ -216,16 +216,16 @@ a {
    Section Alternating Backgrounds (Light Mode)
    ========================================================= */
 .section-alt {
-  background-color: #f0f2f8;
+  background-color: #f5f5fa;
 }
 .section-tint {
-  background-color: #eff6ff;
+  background-color: #f0f7ff;
 }
 .section-accent-tint {
-  background-color: #fff7ed;
+  background-color: #fff8f0;
 }
 .section-dark-tint {
-  background-color: #f8fafc;
+  background-color: #f8f9fc;
 }
 
 /* =========================================================

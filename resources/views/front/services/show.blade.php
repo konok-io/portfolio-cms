@@ -24,7 +24,7 @@
 </section>
 
 {{-- Service Detail --}}
-<section class="section-padding">
+<section class="section-padding section-tint">
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-8">
