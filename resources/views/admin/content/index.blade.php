@@ -54,7 +54,13 @@
                                                             $inputName = $pageKey . '.' . $sectionKey . '.' . $field;
                                                             $pageData = $content[$pageKey] ?? [];
                                                             $sectionData = $pageData[$sectionKey] ?? [];
-                                                            $value = $sectionData[$field]['default'] ?? $sectionData[$field] ?? '';
+                                                            $fieldData = $sectionData[$field] ?? null;
+                                                            // Handle both localized array and plain value
+                                                            if (is_array($fieldData)) {
+                                                                $value = $fieldData['default'] ?? $fieldData['en'] ?? '';
+                                                            } else {
+                                                                $value = $fieldData ?? '';
+                                                            }
                                                         @endphp
                                                         <div class="col-md-6 mb-3">
                                                             <label class="form-label">{{ ucwords(str_replace('_', ' ', $field)) }}</label>
@@ -107,10 +113,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (resetLink) {
                 resetLink.href = '{{ route('admin.content.reset') }}?page=' + page;
             }
-            
-            // Store active tab in session via AJAX
-            fetch('{{ route("admin.content.index") }}?tab=' + page)
-                .then(response => response.text());
         });
     });
     

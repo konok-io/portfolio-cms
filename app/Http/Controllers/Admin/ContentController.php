@@ -18,13 +18,8 @@ class ContentController extends Controller
         $content = PageContent::all();
         $pages = $this->getPages();
         
-        // Check for tab in query string (from AJAX) or session
-        if (request()->has('tab')) {
-            session(['content_active_tab' => request('tab')]);
-        }
-        
-        // Get active tab from session or default to first page
-        $activeTab = session('content_active_tab', array_key_first($pages));
+        // Get active tab from query parameter or default to first page
+        $activeTab = request('tab', array_key_first($pages));
         
         return view('admin.content.index', compact('setting', 'content', 'pages', 'activeTab'));
     }
@@ -94,10 +89,7 @@ class ContentController extends Controller
         // Clear cache
         PageContent::clearCache();
 
-        // Store active tab in session
-        session(['content_active_tab' => $page]);
-
-        return redirect()->route('admin.content.index')->with('success', 'Content updated successfully!');
+        return redirect()->route('admin.content.index', ['tab' => $page])->with('success', 'Content updated successfully!');
     }
 
     /**
