@@ -33,7 +33,7 @@ class PageContent
 
         $pageContent = $content[$page] ?? [];
 
-        // Check if page content is nested (with sections like general, hero, etc.)
+        // Direct key match at page level
         if (isset($pageContent[$key])) {
             $value = $pageContent[$key];
             if (is_array($value)) {
@@ -42,14 +42,36 @@ class PageContent
             return $value;
         }
 
-        // Try to find in nested sections (new format: page -> section -> field)
+        // Search in nested sections for the key
         foreach ($pageContent as $sectionKey => $sectionData) {
-            if (is_array($sectionData) && isset($sectionData[$key])) {
-                $value = $sectionData[$key];
-                if (is_array($value)) {
-                    return $value[$locale] ?? $value['default'] ?? $value['en'] ?? null;
+            if (is_array($sectionData)) {
+                // Check direct match in section
+                if (isset($sectionData[$key])) {
+                    $value = $sectionData[$key];
+                    if (is_array($value)) {
+                        return $value[$locale] ?? $value['default'] ?? $value['en'] ?? null;
+                    }
+                    return $value;
                 }
-                return $value;
+                
+                // Search nested values (section -> field format)
+                foreach ($sectionData as $fieldKey => $fieldValue) {
+                    if (is_array($fieldValue)) {
+                        // Check if this field matches our key
+                        if ($fieldKey === $key) {
+                            return $fieldValue[$locale] ?? $fieldValue['default'] ?? $fieldValue['en'] ?? null;
+                        }
+                        
+                        // Also check if there's a flattened key like hero_eyebrow in hero.eyebrow
+                        $flattenedKey = $sectionKey . '_' . $fieldKey;
+                        if ($flattenedKey === $key) {
+                            if (is_array($fieldValue)) {
+                                return $fieldValue[$locale] ?? $fieldValue['default'] ?? $fieldValue['en'] ?? null;
+                            }
+                            return $fieldValue;
+                        }
+                    }
+                }
             }
         }
 
