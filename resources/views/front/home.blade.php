@@ -58,52 +58,168 @@
      ========================================================= --}}
 <section id="about" class="section-padding section-alt">
     <div class="container">
-        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
-            <div class="text-center text-lg-start">
-                <span class="section-eyebrow">{{ page_content('home', 'why_eyebrow', app()->getLocale()) }}</span>
-                <h2 class="section-title mb-0">{{ page_content('home', 'why_title', app()->getLocale()) }}</h2>
+        <div class="text-center mb-5">
+            <span class="section-eyebrow">{{ page_content('home', 'why_eyebrow', app()->getLocale()) }}</span>
+            <h2 class="section-title">{{ page_content('home', 'why_title', app()->getLocale()) }}</h2>
+        </div>
+        
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-4 col-md-6">
+                <div class="why-card reveal-on-scroll">
+                    <span class="why-card-number">01</span>
+                    <div class="why-card-icon">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3>{{ page_content('home', 'why_card1_title', app()->getLocale()) }}</h3>
+                    <p>{{ page_content('home', 'why_card1_text', app()->getLocale()) }}</p>
+                </div>
             </div>
-            <a href="{{ route('about') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">
+            <div class="col-lg-4 col-md-6">
+                <div class="why-card reveal-on-scroll">
+                    <span class="why-card-number">02</span>
+                    <div class="why-card-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <h3>{{ page_content('home', 'why_card2_title', app()->getLocale()) }}</h3>
+                    <p>{{ page_content('home', 'why_card2_text', app()->getLocale()) }}</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="why-card reveal-on-scroll">
+                    <span class="why-card-number">03</span>
+                    <div class="why-card-icon">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h3>{{ page_content('home', 'why_card3_title', app()->getLocale()) }}</h3>
+                    <p>{{ page_content('home', 'why_card3_text', app()->getLocale()) }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href="{{ route('about') }}" class="btn btn-outline-custom reveal-on-scroll">
                 <i class="fa-solid fa-user me-2"></i>Learn More About Me
             </a>
         </div>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm reveal-on-scroll">
-                    <div class="card-body text-center p-4">
-                        <div class="icon-box mx-auto mb-3" style="width:60px;height:60px;">
-                            <i class="fa-solid fa-code"></i>
-                        </div>
-                        <h5 class="card-title mb-2">{{ page_content('home', 'why_card1_title', app()->getLocale()) }}</h5>
-                        <p class="card-text text-muted small">{{ page_content('home', 'why_card1_text', app()->getLocale()) }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm reveal-on-scroll">
-                    <div class="card-body text-center p-4">
-                        <div class="icon-box mx-auto mb-3" style="width:60px;height:60px;">
-                            <i class="fa-solid fa-clock"></i>
-                        </div>
-                        <h5 class="card-title mb-2">{{ page_content('home', 'why_card2_title', app()->getLocale()) }}</h5>
-                        <p class="card-text text-muted small">{{ page_content('home', 'why_card2_text', app()->getLocale()) }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm reveal-on-scroll">
-                    <div class="card-body text-center p-4">
-                        <div class="icon-box mx-auto mb-3" style="width:60px;height:60px;">
-                            <i class="fa-solid fa-headset"></i>
-                        </div>
-                        <h5 class="card-title mb-2">{{ page_content('home', 'why_card3_title', app()->getLocale()) }}</h5>
-                        <p class="card-text text-muted small">{{ page_content('home', 'why_card3_text', app()->getLocale()) }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
+
+<style>
+    .why-card {
+        background: var(--bg-white);
+        border-radius: 20px;
+        padding: 35px 30px;
+        border: 1px solid var(--border);
+        transition: all 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+    }
+
+    .why-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: 0;
+    }
+
+    .why-card::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary), var(--primary-light));
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+
+    .why-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
+        border-color: transparent;
+    }
+
+    .why-card:hover::before {
+        opacity: 1;
+    }
+
+    .why-card:hover::after {
+        transform: scaleX(1);
+    }
+
+    .why-card-number {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--primary-glow);
+        line-height: 1;
+        transition: all 0.3s ease;
+        z-index: 1;
+    }
+
+    .why-card:hover .why-card-number {
+        color: rgba(255,255,255,0.15);
+    }
+
+    .why-card-icon {
+        width: 65px;
+        height: 65px;
+        background: var(--primary-glow);
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary);
+        font-size: 1.5rem;
+        margin-bottom: 18px;
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 1;
+    }
+
+    .why-card:hover .why-card-icon {
+        background: rgba(255,255,255,0.2);
+        color: #fff;
+        transform: scale(1.1) rotate(-5deg);
+    }
+
+    .why-card h3 {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 10px;
+        transition: color 0.3s ease;
+        position: relative;
+        z-index: 1;
+    }
+
+    .why-card:hover h3 {
+        color: #fff;
+    }
+
+    .why-card p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: var(--text-body);
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 1;
+        margin: 0;
+    }
+
+    .why-card:hover p {
+        color: rgba(255,255,255,0.9);
+    }
+</style>
 
 {{-- =========================================================
      3. SKILLS

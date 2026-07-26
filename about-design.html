@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Section - Website Matched Design</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563EB;
+            --primary-dark: #1d4ed8;
+            --primary-light: #60a5fa;
+            --primary-glow: rgba(37, 99, 235, 0.1);
+            --text-dark: #1a1a2e;
+            --text-body: #4b5563;
+            --text-muted: #9ca3af;
+            --bg-white: #ffffff;
+            --bg-light: #f8fafc;
+            --border: #e2e8f0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
+            color: var(--text-dark);
+            line-height: 1.6;
+            background: var(--bg-light);
+        }
+
+        .about-section { max-width: 1200px; margin: 0 auto; padding: 100px 20px; }
+
+        /* ===== SECTION HEADER ===== */
+        .section-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            padding: 8px 16px;
+            background: var(--primary-glow);
+            border-radius: 50px;
+        }
+
+        .section-title {
+            color: var(--text-dark);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            color: var(--text-body);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== INTRO CARD ===== */
+        .intro-card {
+            background: var(--bg-white);
+            border-radius: 24px;
+            padding: 60px;
+            margin-bottom: 80px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+            border: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .intro-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            padding: 4px;
+        }
+
+        .intro-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            width: fit-content;
+        }
+
+        .intro-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .intro-title span { color: var(--primary); }
+
+        .intro-desc {
+            color: var(--text-body);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .intro-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .intro-tag {
+            background: var(--primary-glow);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* ===== STATS GRID ===== */
+        .stats-section {
+            margin-bottom: 80px;
+        }
+
+        .stats-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .stat-card {
+            background: var(--bg-white);
+            border-radius: 20px;
+            padding: 40px 25px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(37, 99, 235, 0.12);
+            border-color: var(--primary);
+        }
+
+        .stat-card:hover::before { transform: scaleX(1); }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-glow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary);
+            font-size: 1.4rem;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover .stat-icon {
+            background: var(--primary);
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ===== PHILOSOPHY ===== */
+        .philosophy-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .philosophy-image {
+            position: relative;
+        }
+
+        .philosophy-img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+        }
+
+        .philosophy-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--primary);
+            color: #fff;
+            padding: 25px 35px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(37, 99, 235, 0.3);
+        }
+
+        .philosophy-badge .num {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .philosophy-badge .txt {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        .philosophy-content .label {
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .philosophy-content h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .philosophy-content h2 span { color: var(--primary); }
+
+        .philosophy-content > p {
+            color: var(--text-body);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .philo-list { display: flex; flex-direction: column; gap: 16px; }
+
+        .philo-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px;
+            background: var(--bg-white);
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .philo-item:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.08);
+            transform: translateX(8px);
+        }
+
+        .philo-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .philo-text h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .philo-text p {
+            font-size: 0.9rem;
+            color: var(--text-body);
+            margin: 0;
+        }
+
+        /* ===== SERVICES GRID ===== */
+        .services-section { margin-bottom: 80px; }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--bg-white);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(37, 99, 235, 0.1);
+            border-color: transparent;
+        }
+
+        .service-card:hover::before { transform: scaleX(1); }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--primary-glow);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover .service-icon {
+            background: var(--primary);
+            color: #fff;
+            transform: rotate(-5deg) scale(1.05);
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: var(--text-body);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .service-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .service-tag {
+            background: var(--bg-light);
+            color: var(--text-body);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover .service-tag {
+            background: var(--primary-glow);
+            color: var(--primary);
+        }
+
+        /* ===== CTA ===== */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 24px;
+            padding: 80px 60px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 500px;
+            margin: 0 auto 35px;
+            position: relative;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            position: relative;
+        }
+
+        .cta-btn {
+            padding: 16px 36px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-btn-primary {
+            background: #fff;
+            color: var(--primary);
+        }
+
+        .cta-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .cta-btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.4);
+        }
+
+        .cta-btn-outline:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: #fff;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .intro-card { grid-template-columns: 1fr; text-align: center; }
+            .intro-image { margin: 0 auto; }
+            .intro-badge { margin: 20px auto 0; }
+            .intro-tags { justify-content: center; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .philosophy-section { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 576px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .intro-card { padding: 40px 25px; }
+            .cta-section { padding: 60px 30px; }
+            .cta-buttons { flex-direction: column; }
+            .section-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="about-section">
+    <!-- Intro Card -->
+    <div class="intro-card">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop" alt="Profile" class="intro-image">
+        <div>
+            <div class="intro-badge">
+                <i class="fas fa-check-circle"></i>
+                Available for Projects
+            </div>
+            <h1 class="intro-title">
+                Building digital experiences with <span>purpose</span>
+            </h1>
+            <p class="intro-desc">
+                Transforming complex ideas into elegant, user-centric solutions. 
+                Every project is an opportunity to create something meaningful. 
+                I specialize in modern web development, UI/UX design, and building scalable applications.
+            </p>
+            <div class="intro-tags">
+                <span class="intro-tag">Laravel</span>
+                <span class="intro-tag">React</span>
+                <span class="intro-tag">Vue.js</span>
+                <span class="intro-tag">Full Stack</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats-section">
+        <div class="stats-header">
+            <span class="section-eyebrow"><i class="fas fa-chart-line"></i> Track Record</span>
+            <h2 class="section-title">Results That Speak</h2>
+            <p class="section-subtitle">Every number represents a commitment fulfilled and a client satisfied.</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-rocket"></i></div>
+                <div class="stat-number">150+</div>
+                <div class="stat-label">Projects</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-smile"></i></div>
+                <div class="stat-number">80+</div>
+                <div class="stat-label">Clients</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+                <div class="stat-number">7+</div>
+                <div class="stat-label">Years Exp</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+                <div class="stat-number">25+</div>
+                <div class="stat-label">Awards</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Philosophy Section -->
+    <div class="philosophy-section">
+        <div class="philosophy-image">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=500&fit=crop" alt="Team work" class="philosophy-img">
+            <div class="philosophy-badge">
+                <div class="num">100%</div>
+                <div class="txt">Success Rate</div>
+            </div>
+        </div>
+
+        <div class="philosophy-content">
+            <div class="label">Core Philosophy</div>
+            <h2>Code is craft, <span>craftsmanship matters</span></h2>
+            <p>
+                I don't just write code—I engineer experiences. Every line is purposeful, 
+                every component is considered, and every project receives my full dedication to excellence.
+            </p>
+
+            <div class="philo-list">
+                <div class="philo-item">
+                    <div class="philo-icon"><i class="fas fa-gem"></i></div>
+                    <div class="philo-text">
+                        <h4>Quality Over Quantity</h4>
+                        <p>One exceptional product beats ten mediocre ones.</p>
+                    </div>
+                </div>
+                <div class="philo-item">
+                    <div class="philo-icon"><i class="fas fa-handshake"></i></div>
+                    <div class="philo-text">
+                        <h4>Partnership Mindset</h4>
+                        <p>Your success is my success.</p>
+                    </div>
+                </div>
+                <div class="philo-item">
+                    <div class="philo-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="philo-text">
+                        <h4>Results-Driven</h4>
+                        <p>Building for outcomes, not just aesthetics.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="services-section">
+        <div class="services-header">
+            <span class="section-eyebrow"><i class="fas fa-cog"></i> Expertise</span>
+            <h2 class="section-title">What I Do Best</h2>
+            <p class="section-subtitle">Specialized solutions tailored to your unique needs</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-code"></i></div>
+                <h3>Web Development</h3>
+                <p>Building robust, scalable applications with modern frameworks. From concept to deployment, I deliver solutions that perform.</p>
+                <div class="service-tags">
+                    <span class="service-tag">Laravel</span>
+                    <span class="service-tag">React</span>
+                    <span class="service-tag">Vue.js</span>
+                    <span class="service-tag">Node.js</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-palette"></i></div>
+                <h3>UI/UX Design</h3>
+                <p>Creating intuitive interfaces that users love. Bridging aesthetics with usability for memorable experiences.</p>
+                <div class="service-tags">
+                    <span class="service-tag">Figma</span>
+                    <span class="service-tag">Tailwind</span>
+                    <span class="service-tag">Responsive</span>
+                    <span class="service-tag">Motion</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-server"></i></div>
+                <h3>API Development</h3>
+                <p>Building robust RESTful and GraphQL APIs that power modern applications and integrations.</p>
+                <div class="service-tags">
+                    <span class="service-tag">REST</span>
+                    <span class="service-tag">GraphQL</span>
+                    <span class="service-tag">JWT</span>
+                    <span class="service-tag">Postman</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-headset"></i></div>
+                <h3>Consulting</h3>
+                <p>Technical guidance to help you make informed decisions about technology and digital strategy.</p>
+                <div class="service-tags">
+                    <span class="service-tag">Strategy</span>
+                    <span class="service-tag">Audit</span>
+                    <span class="service-tag">Mentoring</span>
+                    <span class="service-tag">Review</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+        <h2>Let's Build Something Great</h2>
+        <p>Have a project in mind? I'd love to hear about it. Let's discuss how we can work together.</p>
+        <div class="cta-buttons">
+            <a href="#" class="cta-btn cta-btn-primary">
+                <i class="fas fa-paper-plane"></i>
+                Get In Touch
+            </a>
+            <a href="#" class="cta-btn cta-btn-outline">
+                <i class="fas fa-download"></i>
+                Download CV
+            </a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
