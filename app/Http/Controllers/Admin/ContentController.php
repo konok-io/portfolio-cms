@@ -139,9 +139,9 @@ class ContentController extends Controller
                 }
             }
             
-            // Fallback to custom pages if no menu items
+            // Fallback to custom pages if no menu items (getFooterPages already returns Collection with ->get())
             if (empty($links)) {
-                $customPages = CustomPage::getFooterPages()->get();
+                $customPages = CustomPage::getFooterPages();
                 foreach ($customPages as $page) {
                     $links[] = [
                         'title' => $page->title,
@@ -216,8 +216,8 @@ class ContentController extends Controller
             $footerLinkFields[] = $fieldKey;
         }
         
-        // Also include any custom page links for footer
-        $customPages = CustomPage::getFooterPages()->get();
+        // Also include any custom page links for footer (getFooterPages already returns Collection)
+        $customPages = CustomPage::getFooterPages();
         foreach ($customPages as $cpIndex => $page) {
             $fieldKey = 'custom_link_' . ($cpIndex + 1);
             $footerLinkFields[] = $fieldKey;
