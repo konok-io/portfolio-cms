@@ -520,33 +520,35 @@
         50% { opacity: 0; }
     }
     
-    /* Modern Testimonial Dots */
+    /* Modern Testimonial Dots - Compact */
     .custom-carousel-indicators {
         position: relative;
-        margin-top: 1.5rem;
+        margin-top: 1rem;
         margin-bottom: 0;
         justify-content: center;
-        gap: 6px;
+        gap: 4px;
     }
     .custom-carousel-indicators button {
-        width: 8px !important;
-        height: 8px !important;
+        width: 6px !important;
+        height: 6px !important;
         border-radius: 50% !important;
         border: none !important;
         background: #dee2e6 !important;
         opacity: 1 !important;
         transition: all 0.3s ease !important;
         padding: 0 !important;
-        margin: 0 3px !important;
+        margin: 0 2px !important;
+        min-width: 6px !important;
+        min-height: 6px !important;
     }
     .custom-carousel-indicators button:hover {
         background: #adb5bd !important;
-        transform: scale(1.2) !important;
+        transform: scale(1.3) !important;
     }
     .custom-carousel-indicators button.active {
         background: var(--bs-primary) !important;
-        width: 24px !important;
-        border-radius: 4px !important;
+        width: 18px !important;
+        border-radius: 3px !important;
     }
 </style>
 @endpush
