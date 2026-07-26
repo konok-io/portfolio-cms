@@ -100,39 +100,45 @@
                                                                         $enValue = is_array($fieldData) ? ($fieldData['en'] ?? '') : '';
                                                                         $bnValue = is_array($fieldData) ? ($fieldData['bn'] ?? '') : '';
                                                                         $arValue = is_array($fieldData) ? ($fieldData['ar'] ?? '') : '';
-                                                                        if (empty($enValue) && !is_array($fieldData)) {
-                                                                            $enValue = $fieldData;
-                                                                            $bnValue = $fieldData;
-                                                                            $arValue = $fieldData;
-                                                                        }
+                                                                        
+                                                                        // Default placeholder values based on field name
+                                                                        $fieldLabel = ucwords(str_replace('_', ' ', $field));
+                                                                        
+                                                                        // Get default values from controller
+                                                                        $defaultEn = $defaultValues['en'][$field] ?? ucwords(str_replace('_', ' ', $field));
+                                                                        $defaultBn = $defaultValues['bn'][$field] ?? $defaultEn;
+                                                                        $defaultAr = $defaultValues['ar'][$field] ?? $defaultEn;
+                                                                        
+                                                                        // Use saved value or default
+                                                                        $enValue = $enValue ?: $defaultEn;
+                                                                        $bnValue = $bnValue ?: $defaultBn;
+                                                                        $arValue = $arValue ?: $defaultAr;
                                                                         
                                                                         // For dynamic sections, use the actual link title
-                                                                        $fieldLabel = $field;
                                                                         if (isset($section['is_dynamic']) && $section['is_dynamic'] && $activeTab === 'footer') {
-                                                                            // For footer quick links from menu items
                                                                             if (str_starts_with($field, 'link_')) {
                                                                                 $linkNum = (int) substr($field, 5) - 1;
                                                                                 if (isset($footerLinks[$linkNum])) {
-                                                                                    $fieldLabel = $footerLinks[$linkNum]['title'] ?? $field;
+                                                                                    $fieldLabel = $footerLinks[$linkNum]['title'] ?? $fieldLabel;
                                                                                 }
                                                                             }
                                                                         }
                                                                     @endphp
                                                                     <div class="mb-3">
                                                                         <label class="form-label">
-                                                                            <strong>{{ ucwords(str_replace('_', ' ', $fieldLabel)) }}</strong>
+                                                                            <strong>{{ $fieldLabel }}</strong>
                                                                         </label>
                                                                         <div class="input-group mb-2">
                                                                             <span class="input-group-text" style="min-width: 80px;"><span class="fi fi-gb"></span> EN</span>
-                                                                            <input type="text" name="{{ $field }}_en" class="form-control" value="{{ $enValue }}" placeholder="English">
+                                                                            <input type="text" name="{{ $field }}_en" class="form-control" value="{{ $enValue }}">
                                                                         </div>
                                                                         <div class="input-group mb-2">
                                                                             <span class="input-group-text" style="min-width: 80px;"><span class="fi fi-bd"></span> বাংলা</span>
-                                                                            <input type="text" name="{{ $field }}_bn" class="form-control" value="{{ $bnValue }}" placeholder="বাংলা">
+                                                                            <input type="text" name="{{ $field }}_bn" class="form-control" value="{{ $bnValue }}">
                                                                         </div>
                                                                         <div class="input-group">
                                                                             <span class="input-group-text" style="min-width: 80px;"><span class="fi fi-sa"></span> العربية</span>
-                                                                            <input type="text" dir="rtl" name="{{ $field }}_ar" class="form-control" value="{{ $arValue }}" placeholder="العربية">
+                                                                            <input type="text" dir="rtl" name="{{ $field }}_ar" class="form-control" value="{{ $arValue }}">
                                                                         </div>
                                                                     </div>
                                                                 @endforeach
