@@ -22,7 +22,7 @@
                     <ul class="nav nav-tabs mb-4" id="pageTabs" role="tablist">
                         @foreach($pages as $pageKey => $page)
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link {{ $loop->first ? 'active' : '' }}" 
+                                <button class="nav-link {{ $activeTab === $pageKey ? 'active' : '' }}" 
                                         id="{{ $pageKey }}-tab" 
                                         data-bs-toggle="tab" 
                                         data-bs-target="#{{ $pageKey }}" 
@@ -40,7 +40,7 @@
                         
                         <div class="tab-content" id="pageTabsContent">
                             @foreach($pages as $pageKey => $page)
-                                <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="{{ $pageKey }}" role="tabpanel">
+                                <div class="tab-pane fade {{ $activeTab === $pageKey ? 'show active' : '' }}" id="{{ $pageKey }}" role="tabpanel">
                                     @foreach($page['sections'] as $sectionKey => $section)
                                         <div class="card mb-3">
                                             <div class="card-header">
@@ -99,30 +99,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const tabs = document.querySelectorAll('button[data-bs-toggle="tab"]');
     tabs.forEach(tab => {
         tab.addEventListener('shown.bs.tab', function(e) {
-            document.getElementById('selectedPage').value = e.target.getAttribute('data-bs-target').replace('#', '');
-        });
-    });
-    
-    // Update reset link when tab changes
-    tabs.forEach(tab => {
-        tab.addEventListener('shown.bs.tab', function(e) {
+            const page = e.target.getAttribute('data-bs-target').replace('#', '');
+            document.getElementById('selectedPage').value = page;
+            
+            // Update reset link
             const resetLink = document.querySelector('a[href*="content/reset"]');
             if (resetLink) {
-                const page = e.target.getAttribute('data-bs-target').replace('#', '');
                 resetLink.href = '{{ route('admin.content.reset') }}?page=' + page;
             }
+            
+            // Store active tab in session via AJAX
+            fetch('{{ route("admin.content.index") }}?tab=' + page)
+                .then(response => response.text());
         });
     });
-    
-    // Activate tab from URL hash
-    const hash = window.location.hash;
-    if (hash) {
-        const tabTrigger = document.querySelector('button[data-bs-target="' + hash + '"]');
-        if (tabTrigger) {
-            const tab = new bootstrap.Tab(tabTrigger);
-            tab.show();
-        }
-    }
     
     // Update reset link with current tab on page load
     const activeTab = document.querySelector('.nav-link.active');
