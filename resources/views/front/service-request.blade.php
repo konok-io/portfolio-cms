@@ -131,10 +131,10 @@
                 <div class="row g-3">
                     @foreach($services->take(3) as $srv)
                         <div class="col-md-4">
-                            <a href="{{ route('services.show', $srv->slug) }}" class="text-decoration-none">
+                            <a href="{{ route('services.show', $srv->slug ?? Str::slug($srv->name)) }}" class="text-decoration-none">
                                 <div class="p-4 rounded-4 border h-100 service-preview-card">
-                                    <h6><i class="fa-solid fa-check-circle text-success me-2"></i>{{ $srv->title }}</h6>
-                                    <p class="text-muted small mb-0">{{ Str::limit(strip_tags($srv->short_description ?: $srv->content), 80) }}</p>
+                                    <h6><i class="fa-solid fa-check-circle text-success me-2"></i>{{ $srv->title ?? $srv->name }}</h6>
+                                    <p class="text-muted small mb-0">{{ Str::limit(strip_tags($srv->short_description ?: $srv->description ?: ''), 80) }}</p>
                                 </div>
                             </a>
                         </div>
