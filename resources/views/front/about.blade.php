@@ -31,7 +31,7 @@
                 <div class="text-muted mb-4" style="text-align: justify; text-align-last: left; white-space: pre-wrap;">{!! $about->description ?? 'I am a dedicated developer focused on building reliable, user-friendly software.' !!}</div>
 
                 <div class="row g-3 mb-4">
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="d-flex flex-column gap-2">
                             @if($about->email ?? false)
                                 <div class="d-flex align-items-center gap-2">
@@ -47,7 +47,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="d-flex flex-column gap-2">
                             @if($about->phone ?? false)
                                 <div class="d-flex align-items-center gap-2">
@@ -60,6 +60,31 @@
                                     <i class="fa-brands fa-whatsapp text-primary-custom"></i>
                                     <span class="small">{{ $about->whatsapp }}</span>
                                 </div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="d-flex align-items-center gap-2 flex-wrap h-100" style="justify-content: flex-end;">
+                            @if($about->linkedin ?? false)
+                                <a href="{{ $about->linkedin }}" target="_blank" class="btn btn-sm btn-outline-custom d-flex align-items-center justify-content-center" style="width:36px;height:36px;padding:0;"><i class="fa-brands fa-linkedin-in"></i></a>
+                            @endif
+                            @if($about->github ?? false)
+                                <a href="{{ $about->github }}" target="_blank" class="btn btn-sm btn-outline-custom d-flex align-items-center justify-content-center" style="width:36px;height:36px;padding:0;"><i class="fa-brands fa-github"></i></a>
+                            @endif
+                            @if($about->facebook ?? false)
+                                <a href="{{ $about->facebook }}" target="_blank" class="btn btn-sm btn-outline-custom d-flex align-items-center justify-content-center" style="width:36px;height:36px;padding:0;"><i class="fa-brands fa-facebook-f"></i></a>
+                            @endif
+                            @if($about->twitter ?? false)
+                                <a href="{{ $about->twitter }}" target="_blank" class="btn btn-sm btn-outline-custom d-flex align-items-center justify-content-center" style="width:36px;height:36px;padding:0;"><i class="fa-brands fa-x-twitter"></i></a>
+                            @endif
+                            @if($about->instagram ?? false)
+                                <a href="{{ $about->instagram }}" target="_blank" class="btn btn-sm btn-outline-custom d-flex align-items-center justify-content-center" style="width:36px;height:36px;padding:0;"><i class="fa-brands fa-instagram"></i></a>
+                            @endif
+                            @if($about->cv_url ?? false)
+                                <a href="{{ $about->cv_url }}" target="_blank" class="btn btn-sm btn-danger d-flex align-items-center justify-content-center gap-1" style="height:36px;padding:0 8px;white-space:nowrap;">
+                                    <i class="fa-solid fa-file-lines"></i>
+                                    <span style="font-size:11px;">CV</span>
+                                </a>
                             @endif
                         </div>
                     </div>
