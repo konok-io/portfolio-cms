@@ -521,11 +521,9 @@
             .test-glass-card {
                 background: #ffffff;
                 border-radius: 16px;
-                padding: 32px;
+                padding: 24px;
                 height: 100%;
                 transition: all 0.3s;
-                max-width: 700px;
-                margin: 0 auto;
             }
             
             .test-glass-card:hover {
@@ -537,35 +535,35 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                margin-bottom: 20px;
+                margin-bottom: 16px;
             }
             
             .test-glass-quote-line {
                 display: flex;
                 align-items: center;
-                gap: 12px;
+                gap: 10px;
             }
             
             .test-glass-quote {
                 color: var(--color-primary, #2563EB);
-                font-size: 2.5rem;
+                font-size: 2rem;
                 line-height: 1;
             }
             
             .test-glass-stars {
                 color: #fbbf24;
-                font-size: 0.9rem;
+                font-size: 0.8rem;
             }
             
             .test-glass-author {
                 display: flex;
                 align-items: center;
-                gap: 12px;
+                gap: 10px;
             }
             
             .test-glass-avatar {
-                width: 50px;
-                height: 50px;
+                width: 44px;
+                height: 44px;
                 background: var(--color-primary, #2563EB);
                 border-radius: 50%;
                 display: flex;
@@ -573,7 +571,7 @@
                 justify-content: center;
                 color: #fff;
                 font-weight: 700;
-                font-size: 1.1rem;
+                font-size: 1rem;
                 overflow: hidden;
                 flex-shrink: 0;
             }
@@ -590,33 +588,20 @@
             }
             
             .test-glass-name {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
                 font-weight: 700;
                 color: #1e293b;
             }
             
             .test-glass-role {
-                font-size: 0.75rem;
+                font-size: 0.7rem;
                 color: #64748b;
             }
             
             .test-glass-text {
-                font-size: 1rem;
+                font-size: 0.9rem;
                 color: #475569;
-                line-height: 1.8;
-            }
-            
-            /* Carousel - 1 item at a time */
-            .test-glass-section .carousel-inner .carousel-item {
-                display: flex !important;
-            }
-            
-            .test-glass-section .carousel-inner .active {
-                display: flex !important;
-            }
-            
-            .test-glass-section .carousel-inner .carousel-item > div {
-                width: 100%;
+                line-height: 1.7;
             }
             
             /* Carousel styles */
@@ -658,40 +643,46 @@
         
         <div id="testimonialCarousel" class="test-glass-section carousel slide reveal-on-scroll" data-bs-ride="carousel" data-bs-interval="5000">
             <div class="carousel-inner">
-                @foreach($testimonials as $index => $testimonial)
+                @foreach($testimonials->chunk(3) as $index => $testimonialGroup)
                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                        <div class="test-glass-card">
-                            <div class="test-glass-header">
-                                <div class="test-glass-quote-line">
-                                    <div class="test-glass-quote"><i class="fas fa-quote-left"></i></div>
-                                    <div class="test-glass-stars">
-                                        @for($i = 1; $i <= 5; $i++)
-                                            <i class="fas fa-star"></i>
-                                        @endfor
+                        <div class="row g-4">
+                            @foreach($testimonialGroup as $testimonial)
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="test-glass-card">
+                                        <div class="test-glass-header">
+                                            <div class="test-glass-quote-line">
+                                                <div class="test-glass-quote"><i class="fas fa-quote-left"></i></div>
+                                                <div class="test-glass-stars">
+                                                    @for($i = 1; $i <= 5; $i++)
+                                                        <i class="fas fa-star"></i>
+                                                    @endfor
+                                                </div>
+                                            </div>
+                                            <div class="test-glass-author">
+                                                <div class="test-glass-avatar">
+                                                    @if($testimonial->photo_url)
+                                                        <img src="{{ $testimonial->photo_url }}" alt="{{ $testimonial->client_name }}">
+                                                    @else
+                                                        {{ substr($testimonial->client_name, 0, 1) }}
+                                                    @endif
+                                                </div>
+                                                <div class="test-glass-author-info">
+                                                    <span class="test-glass-name">{{ $testimonial->client_name }}</span>
+                                                    <span class="test-glass-role">{{ $testimonial->company }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="test-glass-text">{{ $testimonial->review }}</p>
                                     </div>
                                 </div>
-                                <div class="test-glass-author">
-                                    <div class="test-glass-avatar">
-                                        @if($testimonial->photo_url)
-                                            <img src="{{ $testimonial->photo_url }}" alt="{{ $testimonial->client_name }}">
-                                        @else
-                                            {{ substr($testimonial->client_name, 0, 1) }}
-                                        @endif
-                                    </div>
-                                    <div class="test-glass-author-info">
-                                        <span class="test-glass-name">{{ $testimonial->client_name }}</span>
-                                        <span class="test-glass-role">{{ $testimonial->company }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="test-glass-text">{{ $testimonial->review }}</p>
+                            @endforeach
                         </div>
                     </div>
                 @endforeach
             </div>
-            @if($testimonials->count() > 1)
+            @if($testimonials->count() > 3)
                 <div class="carousel-indicators">
-                    @foreach($testimonials as $index => $t)
+                    @foreach($testimonials->chunk(3) as $index => $group)
                         <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
                     @endforeach
                 </div>
