@@ -451,8 +451,7 @@
             <div class="col-lg-8">
                 <div class="timeline">
                     @foreach($experiences as $index => $experience)
-                        <div class="timeline-item reveal-on-scroll">
-                            <div class="timeline-number">{{ str_pad($experiences->count() - $index, 2, '0', STR_PAD_LEFT) }}</div>
+                        <div class="timeline-item reveal-on-scroll" data-number="{{ str_pad($experiences->count() - $index, 2, '0', STR_PAD_LEFT) }}">
                             <div class="d-flex justify-content-between flex-wrap gap-2">
                                 <h5 class="mb-1">{{ $experience->designation }}</h5>
                                 <span class="badge bg-primary-custom">{{ $experience->duration }}</span>
