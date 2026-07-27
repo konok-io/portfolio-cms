@@ -1606,85 +1606,71 @@
 <section id="contact" class="py-5 section-1">
     <div class="container">
         
-        {{-- Design 6: Centered Content - Compact Two Column --}}
+        {{-- Design 6: Centered Content - Vertical Layout (Content Top, Form Bottom) --}}
         <style>
-            .contact-compact-section {
+            .contact-vertical-section {
                 background: #ffffff;
                 border-radius: 20px;
                 overflow: hidden;
                 box-shadow: 0 4px 20px rgba(0,0,0,0.06);
             }
             
-            .contact-compact-left {
+            .contact-vertical-top {
                 background: linear-gradient(135deg, var(--color-primary, #2563EB), var(--color-primary-dark, #1d4ed8));
-                padding: 32px 40px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
+                padding: 32px;
                 text-align: center;
                 color: #fff;
             }
             
-            .contact-compact-title {
+            .contact-vertical-title {
                 font-size: 1.5rem;
                 font-weight: 700;
                 margin-bottom: 8px;
             }
             
-            .contact-compact-subtitle {
+            .contact-vertical-subtitle {
                 font-size: 0.9rem;
                 opacity: 0.9;
-                margin-bottom: 24px;
+                margin-bottom: 20px;
             }
             
-            .contact-compact-info {
+            .contact-vertical-info {
                 display: flex;
                 justify-content: center;
-                gap: 24px;
+                gap: 20px;
                 flex-wrap: wrap;
             }
             
-            .contact-compact-info-item {
+            .contact-vertical-info-item {
                 display: flex;
                 align-items: center;
-                gap: 8px;
-                font-size: 0.85rem;
+                gap: 6px;
+                font-size: 0.8rem;
             }
             
-            .contact-compact-info-icon {
-                width: 36px;
-                height: 36px;
+            .contact-vertical-info-icon {
+                width: 32px;
+                height: 32px;
                 background: rgba(255,255,255,0.2);
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                font-size: 0.8rem;
+                font-size: 0.75rem;
             }
             
-            .contact-compact-right {
-                padding: 32px 40px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
+            .contact-vertical-bottom {
+                padding: 28px 32px;
             }
             
-            .contact-compact-form-grid {
+            .contact-vertical-form-grid {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 12px;
                 margin-bottom: 12px;
             }
             
-            .contact-compact-form-group {
-                margin-bottom: 12px;
-            }
-            
-            .contact-compact-form-group.full-width {
-                grid-column: 1 / -1;
-            }
-            
-            .contact-compact-input {
+            .contact-vertical-input {
                 width: 100%;
                 padding: 10px 14px;
                 border: 1px solid #e2e8f0;
@@ -1693,13 +1679,13 @@
                 transition: all 0.3s;
             }
             
-            .contact-compact-input:focus {
+            .contact-vertical-input:focus {
                 outline: none;
                 border-color: var(--color-primary, #2563EB);
                 box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
             }
             
-            .contact-compact-textarea {
+            .contact-vertical-textarea {
                 width: 100%;
                 padding: 10px 14px;
                 border: 1px solid #e2e8f0;
@@ -1710,16 +1696,16 @@
                 transition: all 0.3s;
             }
             
-            .contact-compact-textarea:focus {
+            .contact-vertical-textarea:focus {
                 outline: none;
                 border-color: var(--color-primary, #2563EB);
                 box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
             }
             
-            .contact-compact-btn {
+            .contact-vertical-btn {
                 background: var(--color-primary, #2563EB);
                 color: #fff;
-                padding: 10px 20px;
+                padding: 10px 24px;
                 border-radius: 8px;
                 border: none;
                 font-weight: 600;
@@ -1731,91 +1717,77 @@
                 gap: 8px;
             }
             
-            .contact-compact-btn:hover {
+            .contact-vertical-btn:hover {
                 background: var(--color-primary-dark, #1d4ed8);
-                transform: translateY(-1px);
             }
             
-            @media (max-width: 768px) {
-                .contact-compact-section {
-                    flex-direction: column;
-                }
-                .contact-compact-form-grid {
+            @media (max-width: 576px) {
+                .contact-vertical-form-grid {
                     grid-template-columns: 1fr;
                 }
-                .contact-compact-left,
-                .contact-compact-right {
-                    padding: 24px;
+                .contact-vertical-info {
+                    flex-direction: column;
+                    gap: 12px;
                 }
             }
             
-            [data-theme="dark"] .contact-compact-section {
+            [data-theme="dark"] .contact-vertical-section {
                 background: #1e293b;
             }
-            [data-theme="dark"] .contact-compact-input,
-            [data-theme="dark"] .contact-compact-textarea {
+            [data-theme="dark"] .contact-vertical-input,
+            [data-theme="dark"] .contact-vertical-textarea {
                 background: #0f172a;
                 border-color: #334155;
                 color: #f1f5f9;
             }
-            [data-theme="dark"] .contact-compact-input::placeholder,
-            [data-theme="dark"] .contact-compact-textarea::placeholder {
+            [data-theme="dark"] .contact-vertical-input::placeholder,
+            [data-theme="dark"] .contact-vertical-textarea::placeholder {
                 color: #64748b;
             }
         </style>
         
-        <div class="contact-compact-section d-flex reveal-on-scroll">
-            <div class="contact-compact-left">
-                <h3 class="contact-compact-title">{{ page_content('home', 'contact_title', app()->getLocale()) }}</h3>
-                <p class="contact-compact-subtitle">{{ page_content('home', 'contact_text', app()->getLocale()) }}</p>
-                <div class="contact-compact-info">
+        <div class="contact-vertical-section reveal-on-scroll">
+            <div class="contact-vertical-top">
+                <h3 class="contact-vertical-title">{{ page_content('home', 'contact_title', app()->getLocale()) }}</h3>
+                <p class="contact-vertical-subtitle">{{ page_content('home', 'contact_text', app()->getLocale()) }}</p>
+                <div class="contact-vertical-info">
                     @if($about->email ?? false)
-                        <div class="contact-compact-info-item">
-                            <div class="contact-compact-info-icon">
+                        <div class="contact-vertical-info-item">
+                            <div class="contact-vertical-info-icon">
                                 <i class="fas fa-envelope"></i>
                             </div>
                             <span>{{ Str::limit($about->email, 25) }}</span>
                         </div>
                     @endif
                     @if($about->phone ?? false)
-                        <div class="contact-compact-info-item">
-                            <div class="contact-compact-info-icon">
+                        <div class="contact-vertical-info-item">
+                            <div class="contact-vertical-info-icon">
                                 <i class="fas fa-phone"></i>
                             </div>
                             <span>{{ $about->phone }}</span>
                         </div>
                     @endif
                     @if($about->address ?? false)
-                        <div class="contact-compact-info-item">
-                            <div class="contact-compact-info-icon">
+                        <div class="contact-vertical-info-item">
+                            <div class="contact-vertical-info-icon">
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
-                            <span>{{ Str::limit($about->address, 20) }}</span>
+                            <span>{{ Str::limit($about->address, 18) }}</span>
                         </div>
                     @endif
                 </div>
             </div>
-            <div class="contact-compact-right">
+            <div class="contact-vertical-bottom">
                 <form id="contactForm" action="{{ route('contact.store') }}" method="POST">
                     @csrf
-                    <div class="contact-compact-form-grid">
-                        <div class="contact-compact-form-group">
-                            <input type="text" name="name" class="contact-compact-input" placeholder="{{ page_content('home', 'contact_form_name', app()->getLocale()) }}" required>
-                        </div>
-                        <div class="contact-compact-form-group">
-                            <input type="email" name="email" class="contact-compact-input" placeholder="{{ page_content('home', 'contact_form_email', app()->getLocale()) }}" required>
-                        </div>
-                        <div class="contact-compact-form-group">
-                            <input type="text" name="phone" class="contact-compact-input" placeholder="{{ page_content('home', 'contact_form_phone', app()->getLocale()) }}">
-                        </div>
-                        <div class="contact-compact-form-group">
-                            <input type="text" name="subject" class="contact-compact-input" placeholder="{{ page_content('home', 'contact_form_subject', app()->getLocale()) }}">
-                        </div>
+                    <div class="contact-vertical-form-grid">
+                        <input type="text" name="name" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_name', app()->getLocale()) }}" required>
+                        <input type="email" name="email" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_email', app()->getLocale()) }}" required>
+                        <input type="text" name="phone" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_phone', app()->getLocale()) }}">
+                        <input type="text" name="subject" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_subject', app()->getLocale()) }}">
                     </div>
-                    <div class="contact-compact-form-group full-width">
-                        <textarea name="message" class="contact-compact-textarea" placeholder="{{ page_content('home', 'contact_form_message', app()->getLocale()) }}" required></textarea>
-                    </div>
-                    <button type="submit" class="contact-compact-btn">
+                    <textarea name="message" class="contact-vertical-textarea" placeholder="{{ page_content('home', 'contact_form_message', app()->getLocale()) }}" required></textarea>
+                    <button type="submit" class="contact-vertical-btn mt-3">
                         <i class="fas fa-paper-plane"></i>
                         {{ page_content('home', 'contact_form_button', app()->getLocale()) }}
                     </button>
