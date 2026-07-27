@@ -594,11 +594,9 @@
             }
             
             .cred-horizontal-grid {
-                display: flex;
-                flex-direction: column;
-                gap: 12px;
-                max-width: 600px;
-                margin: 0 auto;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
             }
             
             .cred-horizontal-card {
@@ -614,7 +612,7 @@
             
             .cred-horizontal-card:hover {
                 background: rgba(255, 255, 255, 0.18);
-                transform: translateX(4px);
+                transform: translateY(-2px);
             }
             
             .cred-horizontal-icon {
@@ -660,12 +658,18 @@
                 text-overflow: ellipsis;
             }
             
+            @media (max-width: 992px) {
+                .cred-horizontal-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+            
             @media (max-width: 576px) {
+                .cred-horizontal-grid {
+                    grid-template-columns: 1fr;
+                }
                 .cred-horizontal-section {
                     padding: 28px 20px;
-                }
-                .cred-horizontal-grid {
-                    max-width: 100%;
                 }
             }
             
