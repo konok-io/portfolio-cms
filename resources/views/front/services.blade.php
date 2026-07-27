@@ -20,20 +20,19 @@
 <section class="section-padding">
     <div class="container">
         @if($services->isNotEmpty())
-            <div class="row g-4">
-                @foreach($services as $service)
-                    <div class="col-md-6 col-lg-4 reveal-on-scroll">
-                        <a href="{{ route('services.show', $service->slug ?? Str::slug($service->name)) }}" class="text-decoration-none">
-                            <div class="service-card h-100">
-                                <div class="icon-box">
-                                    <i class="{{ $service->icon ?? 'fa-solid fa-gear' }}"></i>
-                                </div>
-                                <h5 class="mb-2">{{ $service->name }}</h5>
-                                <p class="text-muted small mb-3">{{ Str::limit($service->description, 100) }}</p>
-                                <span class="btn btn-sm btn-outline-custom mt-auto">{{ PageContent::get('services', 'page_button', app()->getLocale()) }} <i class="fa-solid fa-arrow-right ms-1"></i></span>
+            <div class="services-grid">
+                @foreach($services as $index => $service)
+                    <a href="{{ route('services.show', $service->slug ?? Str::slug($service->name)) }}" class="text-decoration-none">
+                        <div class="service-card h-100">
+                            <span class="service-number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                            <div class="icon-box">
+                                <i class="{{ $service->icon ?? 'fa-solid fa-gear' }}"></i>
                             </div>
-                        </a>
-                    </div>
+                            <h5 class="mb-2">{{ $service->name }}</h5>
+                            <p class="text-muted small mb-3">{{ Str::limit($service->description, 100) }}</p>
+                            <span class="btn-view">{{ PageContent::get('services', 'page_button', app()->getLocale()) }} <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </a>
                 @endforeach
             </div>
         @else
