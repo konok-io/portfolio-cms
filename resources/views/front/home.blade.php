@@ -101,7 +101,7 @@
         --why-text-dark: #1a1a2e;
         --why-text-body: #4b5563;
         --why-bg-white: #ffffff;
-        --why-border: #e2e8f0;
+        --why-border: #d1d5db;
     }
 
     .why-h-card {
