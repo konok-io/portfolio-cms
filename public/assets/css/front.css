@@ -228,6 +228,32 @@ a {
   background-color: #f8f9fc;
 }
 
+/* Additional unique section colors */
+.section-green-tint {
+  background-color: #f0fdf4;
+}
+.section-purple-tint {
+  background-color: #faf5ff;
+}
+.section-rose-tint {
+  background-color: #fff1f2;
+}
+.section-amber-tint {
+  background-color: #fffbeb;
+}
+.section-cyan-tint {
+  background-color: #ecfeff;
+}
+.section-indigo-tint {
+  background-color: #eef2ff;
+}
+.section-emerald-tint {
+  background-color: #ecfdf5;
+}
+.section-slate-tint {
+  background-color: #f8fafc;
+}
+
 /* Light sections border override */
 .section-alt .service-card,
 .section-tint .service-card {
