@@ -23,8 +23,8 @@ class BreadcrumbHelper
         'blog.categories' => ['title' => 'Categories', 'parent' => 'blog.index'],
         
         // Services
-        'services.index' => ['title' => 'Services', 'parent' => 'home'],
-        'services.show' => ['title' => 'Service Details', 'parent' => 'services.index'],
+        'services' => ['title' => 'Services', 'parent' => 'home'],
+        'services.show' => ['title' => 'Service Details', 'parent' => 'services'],
         
         // Pages
         'about' => ['title' => 'About', 'parent' => 'home'],
