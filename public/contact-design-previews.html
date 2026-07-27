@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Section - 10 Design Previews</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #0f172a; color: #fff; padding: 40px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        h1 { text-align: center; font-size: 2.5rem; margin-bottom: 10px; background: linear-gradient(135deg, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        p.subtitle { text-align: center; color: #94a3b8; margin-bottom: 50px; }
+        
+        .preview-section { margin-bottom: 80px; background: #1e293b; border-radius: 24px; padding: 40px; border: 1px solid #334155; }
+        .preview-title { font-size: 1.5rem; margin-bottom: 30px; color: #f1f5f9; display: flex; align-items: center; gap: 10px; }
+        .preview-title span { background: #3b82f6; color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem; }
+        
+        /* Contact Section Base */
+        .contact-section { background: #fff; border-radius: 20px; overflow: hidden; min-height: 500px; display: flex; }
+        .contact-left, .contact-right { flex: 1; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+        .contact-left { background: linear-gradient(135deg, #1e40af, #3b82f6); color: #fff; }
+        
+        /* Design 1: Classic Split */
+        .design1 .contact-left { background: linear-gradient(135deg, #1e40af, #3b82f6); }
+        .design1 .contact-right { background: #fff; color: #333; }
+        .design1 h2 { font-size: 2rem; margin-bottom: 16px; }
+        .design1 .subtitle { opacity: 0.9; margin-bottom: 24px; }
+        .design1 .form-group { margin-bottom: 16px; }
+        .design1 input, .design1 textarea { width: 100%; padding: 12px 16px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.95rem; }
+        .design1 textarea { height: 120px; resize: none; }
+        .design1 .btn { background: #3b82f6; color: #fff; padding: 12px 24px; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; width: 100%; }
+        .design1 .info-item { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .design1 .info-icon { width: 40px; height: 40px; background: rgba(255,255,255,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+        
+        /* Design 2: Minimal Modern */
+        .design2 .contact-section { background: #f8fafc; border-radius: 24px; }
+        .design2 .contact-left { background: #0f172a; padding: 48px; }
+        .design2 .contact-right { background: #fff; padding: 48px; }
+        .design2 h2 { font-size: 1.75rem; margin-bottom: 12px; }
+        .design2 .subtitle { font-size: 0.9rem; opacity: 0.7; margin-bottom: 32px; }
+        .design2 .form-group { margin-bottom: 20px; }
+        .design2 input, .design2 textarea { width: 100%; padding: 14px 0; border: none; border-bottom: 2px solid #e2e8f0; background: transparent; font-size: 1rem; outline: none; transition: border-color 0.3s; }
+        .design2 input:focus, .design2 textarea:focus { border-color: #3b82f6; }
+        .design2 textarea { height: 100px; resize: none; }
+        .design2 .btn { background: #0f172a; color: #fff; padding: 14px 32px; border-radius: 50px; border: none; font-weight: 600; cursor: pointer; margin-top: 16px; }
+        .design2 .info-item { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+        .design2 .info-icon { width: 48px; height: 48px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+        .design2 .social-links { display: flex; gap: 12px; margin-top: 32px; }
+        .design2 .social-links a { width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; transition: all 0.3s; }
+        .design2 .social-links a:hover { background: #fff; color: #0f172a; }
+        
+        /* Design 3: Bold Color Block */
+        .design3 .contact-section { background: #fff; border-radius: 0; }
+        .design3 .contact-left { background: #dc2626; padding: 48px 40px; }
+        .design3 .contact-right { background: #fff; padding: 48px 40px; }
+        .design3 h2 { font-size: 2.25rem; margin-bottom: 16px; font-weight: 800; }
+        .design3 .subtitle { opacity: 0.9; margin-bottom: 32px; font-size: 1.05rem; }
+        .design3 .form-group { margin-bottom: 20px; }
+        .design3 input, .design3 textarea { width: 100%; padding: 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 1rem; transition: border-color 0.3s; }
+        .design3 input:focus, .design3 textarea:focus { border-color: #dc2626; outline: none; }
+        .design3 textarea { height: 130px; resize: none; }
+        .design3 .btn { background: #dc2626; color: #fff; padding: 16px 32px; border-radius: 12px; border: none; font-weight: 700; cursor: pointer; font-size: 1rem; }
+        .design3 .info-item { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+        .design3 .info-icon { width: 52px; height: 52px; background: rgba(255,255,255,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        
+        /* Design 4: Gradient Background */
+        .design4 .contact-section { background: #fff; }
+        .design4 .contact-left { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 48px; }
+        .design4 .contact-right { background: #fff; padding: 48px; }
+        .design4 h2 { font-size: 2rem; margin-bottom: 16px; }
+        .design4 .subtitle { opacity: 0.9; margin-bottom: 32px; }
+        .design4 .form-group { margin-bottom: 20px; }
+        .design4 input, .design4 textarea { width: 100%; padding: 14px 18px; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 0.95rem; }
+        .design4 textarea { height: 120px; resize: none; }
+        .design4 .btn { background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; padding: 14px 28px; border-radius: 10px; border: none; font-weight: 600; cursor: pointer; width: 100%; }
+        .design4 .info-item { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+        .design4 .info-icon { width: 44px; height: 44px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        
+        /* Design 5: Compact Cards */
+        .design5 .contact-section { background: #f1f5f9; border-radius: 16px; min-height: 400px; }
+        .design5 .contact-left { background: #1e293b; padding: 32px; }
+        .design5 .contact-right { background: #fff; padding: 32px; }
+        .design5 h2 { font-size: 1.5rem; margin-bottom: 12px; }
+        .design5 .subtitle { font-size: 0.85rem; opacity: 0.7; margin-bottom: 24px; }
+        .design5 .form-group { margin-bottom: 14px; }
+        .design5 input, .design5 textarea { width: 100%; padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.9rem; }
+        .design5 textarea { height: 90px; resize: none; }
+        .design5 .btn { background: #3b82f6; color: #fff; padding: 10px 20px; border-radius: 6px; border: none; font-weight: 600; cursor: pointer; width: 100%; font-size: 0.9rem; }
+        .design5 .info-item { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; font-size: 0.9rem; }
+        .design5 .info-icon { width: 36px; height: 36px; background: rgba(255,255,255,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; }
+        
+        /* Design 6: Centered Content */
+        .design6 .contact-section { background: #fff; border-radius: 24px; flex-direction: column; }
+        .design6 .contact-left { background: linear-gradient(135deg, #0ea5e9, #06b6d4); text-align: center; padding: 40px; min-height: auto; }
+        .design6 .contact-right { padding: 40px; }
+        .design6 h2 { font-size: 1.75rem; margin-bottom: 12px; text-align: center; }
+        .design6 .subtitle { opacity: 0.9; margin-bottom: 24px; text-align: center; }
+        .design6 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .design6 .form-group { margin-bottom: 16px; }
+        .design6 input, .design6 textarea { width: 100%; padding: 12px 16px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.95rem; }
+        .design6 textarea { height: 100px; resize: none; }
+        .design6 .btn { background: #0ea5e9; color: #fff; padding: 12px 24px; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; }
+        .design6 .info-row { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+        .design6 .info-item { display: flex; align-items: center; gap: 8px; }
+        .design6 .info-icon { width: 36px; height: 36px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        
+        /* Design 7: Dark Mode */
+        .design7 .contact-section { background: #1e293b; border-radius: 20px; border: 1px solid #334155; }
+        .design7 .contact-left { background: #0f172a; padding: 40px; }
+        .design7 .contact-right { background: #1e293b; padding: 40px; }
+        .design7 h2 { font-size: 1.75rem; margin-bottom: 12px; }
+        .design7 .subtitle { opacity: 0.6; margin-bottom: 28px; font-size: 0.9rem; }
+        .design7 .form-group { margin-bottom: 16px; }
+        .design7 input, .design7 textarea { width: 100%; padding: 14px 16px; border: 1px solid #334155; border-radius: 10px; font-size: 0.95rem; background: #0f172a; color: #fff; }
+        .design7 textarea { height: 110px; resize: none; }
+        .design7 .btn { background: #3b82f6; color: #fff; padding: 14px 28px; border-radius: 10px; border: none; font-weight: 600; cursor: pointer; width: 100%; }
+        .design7 .info-item { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; color: #94a3b8; }
+        .design7 .info-icon { width: 44px; height: 44px; background: #334155; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #3b82f6; }
+        
+        /* Design 8: Image Left */
+        .design8 .contact-section { background: #fff; border-radius: 24px; overflow: hidden; }
+        .design8 .contact-left { background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%233b82f6"/></svg>') center/cover; padding: 48px; position: relative; }
+        .design8 .contact-left::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(59,130,246,0.95), rgba(30,64,175,0.95)); }
+        .design8 .contact-left > * { position: relative; z-index: 1; }
+        .design8 .contact-right { background: #fff; padding: 48px; }
+        .design8 h2 { font-size: 2rem; margin-bottom: 16px; }
+        .design8 .subtitle { opacity: 0.9; margin-bottom: 28px; }
+        .design8 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .design8 .form-group { margin-bottom: 18px; }
+        .design8 input, .design8 textarea { width: 100%; padding: 14px 18px; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 0.95rem; }
+        .design8 textarea { height: 120px; resize: none; }
+        .design8 .btn { background: #3b82f6; color: #fff; padding: 14px 28px; border-radius: 10px; border: none; font-weight: 600; cursor: pointer; }
+        .design8 .info-item { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+        .design8 .info-icon { width: 48px; height: 48px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        
+        /* Design 9: Minimalist */
+        .design9 .contact-section { background: #fff; border-radius: 24px; min-height: 420px; }
+        .design9 .contact-left { background: #f8fafc; padding: 40px; }
+        .design9 .contact-right { background: #fff; padding: 40px; }
+        .design9 h2 { font-size: 1.5rem; margin-bottom: 8px; font-weight: 700; }
+        .design9 .subtitle { font-size: 0.85rem; color: #64748b; margin-bottom: 24px; }
+        .design9 .form-group { margin-bottom: 14px; }
+        .design9 input, .design9 textarea { width: 100%; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.9rem; background: #f8fafc; }
+        .design9 textarea { height: 100px; resize: none; }
+        .design9 .btn { background: #0f172a; color: #fff; padding: 12px 24px; border-radius: 6px; border: none; font-weight: 600; cursor: pointer; font-size: 0.9rem; }
+        .design9 .info-item { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; font-size: 0.9rem; }
+        .design9 .info-icon { width: 38px; height: 38px; background: #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #64748b; font-size: 0.85rem; }
+        
+        /* Design 10: Modern Glass */
+        .design10 .contact-section { background: #fff; border-radius: 24px; overflow: hidden; }
+        .design10 .contact-left { background: linear-gradient(135deg, #1e40af, #7c3aed); padding: 48px; }
+        .design10 .contact-right { background: #fff; padding: 48px; }
+        .design10 h2 { font-size: 2rem; margin-bottom: 16px; }
+        .design10 .subtitle { opacity: 0.9; margin-bottom: 32px; }
+        .design10 .form-group { margin-bottom: 20px; }
+        .design10 input, .design10 textarea { width: 100%; padding: 16px 20px; border: 2px solid transparent; border-radius: 14px; font-size: 1rem; background: rgba(255,255,255,0.1); color: #fff; }
+        .design10 .contact-right input, .design10 .contact-right textarea { background: #f8fafc; color: #333; border-color: #e2e8f0; }
+        .design10 textarea { height: 130px; resize: none; }
+        .design10 .btn { background: #fff; color: #7c3aed; padding: 16px 32px; border-radius: 14px; border: none; font-weight: 700; cursor: pointer; font-size: 1rem; }
+        .design10 .info-item { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+        .design10 .info-icon { width: 50px; height: 50px; background: rgba(255,255,255,0.2); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .contact-section { flex-direction: column; }
+            .design6 .form-grid { grid-template-columns: 1fr; }
+            .design8 .form-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
+            .preview-section { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contact Section</h1>
+        <p class="subtitle">10 Unique Design Concepts - Equal Height Columns, Minimal Height</p>
+
+        <!-- Design 1 -->
+        <div class="preview-section design1">
+            <h2 class="preview-title"><i class="fas fa-layer-group"></i> Design 1: Classic Split</h2>
+            <div class="contact-section">
+                <div class="contact-left">
+                    <h2>Get In Touch</h2>
+                    <p class="subtitle">Have a project in mind? Let's work together!</p>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                        <span>hello@example.com</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-phone"></i></div>
+                        <span>+880 1234 567890</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <span>Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <div class="form-group"><input type="text" placeholder="Your Name"></div>
+                    <div class="form-group"><input type="email" placeholder="Your Email"></div>
+                    <div class="form-group"><input type="text" placeholder="Subject"></div>
+                    <div class="form-group"><textarea placeholder="Your Message"></textarea></div>
+                    <button class="btn">Send Message</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design 2 -->
+        <div class="preview-section design2">
+            <h2 class="preview-title"><i class="fas fa-minus-circle"></i> Design 2: Minimal Modern</h2>
+            <div class="contact-section">
+                <div class="contact-left">
+                    <h2>Get In Touch</h2>
+                    <p class="subtitle">Feel free to reach out</p>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                        <span>hello@example.com</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-phone"></i></div>
+                        <span>+880 1234 567890</span>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <div class="form-group"><input type="text" placeholder="Your Name"></div>
+                    <div class="form-group"><input type="email" placeholder="Your Email"></div>
+                    <div class="form-group"><textarea placeholder="Your Message"></textarea></div>
+                    <button class="btn">Send Message</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design 3 -->
+        <div class="preview-section design3">
+            <h2 class="preview-title"><i class="fas fa-square"></i> Design 3: Bold Red</h2>
+            <div class="contact-section">
+                <div class="contact-left">
+                    <h2>Let's Talk</h2>
+                    <p class="subtitle">Have a project in mind? Let's work together!</p>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                        <span>hello@example.com</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-phone"></i></div>
+                        <span>+880 1234 567890</span>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <div class="form-group"><input type="text" placeholder="Your Name"></div>
+                    <div class="form-group"><input type="email" placeholder="Your Email"></div>
+                    <div class="form-group"><textarea placeholder="Your Message"></textarea></div>
+                    <button class="btn">Send Message</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design 4 -->
+        <div class="preview-section design4">
+            <h2 class="preview-title"><i class="fas fa-palette"></i> Design 4: Purple Gradient</h2>
+            <div class="contact-section">
+                <div class="contact-left">
+                    <h2>Get In Touch</h2>
+                    <p class="subtitle">Have a project in mind?</p>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                        <span>hello@example.com</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-phone"></i></div>
+                        <span>+880 1234 567890</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <span>Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <div class="form-group"><input type="text" placeholder="Your Name"></div>
+                    <div class="form-group"><input type="email" placeholder="Your Email"></div>
+                    <div class="form-group"><input type="text" placeholder="Subject"></div>
+                    <div class="form-group"><textarea placeholder="Your Message"></textarea></div>
+                    <button class="btn">Send Message</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design 5 -->
+        <div class="preview-section design5">
+            <h2 class="preview-title"><i class="fas fa-th"></i> Design 5: Compact</h2>
+            <div class="contact-section">
+                <div class="contact-left">
+                    <h2>Contact Us</h2>
+                    <p class="subtitle">Get in touch</p>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                        <span>hello@example.com</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-phone"></i></div>
+                        <span>+880 1234 567890</span>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <div class="form-group"><input type="text" placeholder="Name"></div>
+                    <div class="form-group"><input type="email" placeholder="Email"></div>
+                    <div class="form-group"><textarea placeholder="Message"></textarea></div>
+                    <button class="btn">Send</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design 6 -->
+        <div class="preview-section design6">
+            <h2 class="preview-title"><i class="fas fa-grip-lines"></i> Design 6: Centered Content</h2>
+            <div class="contact-section">
+                <div class="contact-left">
+                    <h2>Get In Touch</h2>
+                    <p class="subtitle">Let's create something amazing</p>
+                    <div class="info-row">
+                        <div class="info-item">
+                            <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                            <span>Email</span>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon"><i class="fas fa-phone"></i></div>
+                            <span>Phone</span>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <span>Location</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <div class="form-grid">
+                        <div class="form-group"><input type="text" placeholder="Name"></div>
+                        <div class="form-group"><input type="email" placeholder="Email"></div>
+                    </div>
+                    <div class="form-group"><input type="text" placeholder="Subject"></div>
+                    <div class="form-group"><textarea placeholder="Message"></textarea></div>
+                    <button class="btn">Send Message</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design 7 -->
+        <div class="preview-section design7">
+            <h2 class="preview-title"><i class="fas fa-moon"></i> Design 7: Dark Mode</h2>
+            <div class="contact-section">
+                <div class="contact-left">
+                    <h2>Get In Touch</h2>
+                    <p class="subtitle">Have a project in mind?</p>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                        <span>hello@example.com</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-phone"></i></div>
+                        <span>+880 1234 567890</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <span>Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <div class="form-group"><input type="text" placeholder="Your Name"></div>
+                    <div class="form-group"><input type="email" placeholder="Your Email"></div>
+                    <div class="form-group"><input type="text" placeholder="Subject"></div>
+                    <div class="form-group"><textarea placeholder="Your Message"></textarea></div>
+                    <button class="btn">Send Message</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design 8 -->
+        <div class="preview-section design8">
+            <h2 class="preview-title"><i class="fas fa-image"></i> Design 8: Image Background</h2>
+            <div class="contact-section">
+                <div class="contact-left">
+                    <h2>Get In Touch</h2>
+                    <p class="subtitle">Let's work together</p>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                        <span>hello@example.com</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-phone"></i></div>
+                        <span>+880 1234 567890</span>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <div class="form-grid">
+                        <div class="form-group"><input type="text" placeholder="Name"></div>
+                        <div class="form-group"><input type="email" placeholder="Email"></div>
+                    </div>
+                    <div class="form-group"><input type="text" placeholder="Subject"></div>
+                    <div class="form-group"><textarea placeholder="Message"></textarea></div>
+                    <button class="btn">Send Message</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design 9 -->
+        <div class="preview-section design9">
+            <h2 class="preview-title"><i class="fas fa-bars"></i> Design 9: Minimalist</h2>
+            <div class="contact-section">
+                <div class="contact-left">
+                    <h2>Contact</h2>
+                    <p class="subtitle">Get in touch</p>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                        <span>hello@example.com</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-phone"></i></div>
+                        <span>+880 1234 567890</span>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <div class="form-group"><input type="text" placeholder="Name"></div>
+                    <div class="form-group"><input type="email" placeholder="Email"></div>
+                    <div class="form-group"><textarea placeholder="Message"></textarea></div>
+                    <button class="btn">Send Message</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design 10 -->
+        <div class="preview-section design10">
+            <h2 class="preview-title"><i class="fas fa-cube"></i> Design 10: Modern Glass</h2>
+            <div class="contact-section">
+                <div class="contact-left">
+                    <h2>Get In Touch</h2>
+                    <p class="subtitle">Have a project in mind?</p>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                        <span>hello@example.com</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-phone"></i></div>
+                        <span>+880 1234 567890</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <span>Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <div class="form-group"><input type="text" placeholder="Your Name"></div>
+                    <div class="form-group"><input type="email" placeholder="Your Email"></div>
+                    <div class="form-group"><input type="text" placeholder="Subject"></div>
+                    <div class="form-group"><textarea placeholder="Your Message"></textarea></div>
+                    <button class="btn">Send Message</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
