@@ -653,45 +653,564 @@
      11. PRICING PLANS
      ========================================================= --}}
 @if($pricingPlans->isNotEmpty())
-<section id="pricing" class="section-padding section-tint">
-    <div class="container">
-        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
-            <div class="text-center text-lg-start reveal-on-scroll">
-                <span class="section-eyebrow">Services</span>
-                <h2 class="section-title mb-2">Pricing Plans</h2>
-                <p class="section-subtitle mx-auto mx-lg-0">Transparent pricing for your projects. Choose a plan that fits your needs.</p>
-            </div>
-            <a href="{{ route('pricing') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">View All Plans</a>
+<section id="pricing" class="pricing-section">
+    <div class="pricing-bg">
+        <div class="pricing-bg-circle pricing-bg-circle-1"></div>
+        <div class="pricing-bg-circle pricing-bg-circle-2"></div>
+        <div class="pricing-bg-grid"></div>
+    </div>
+    <div class="container position-relative">
+        <div class="text-center mb-5 reveal-on-scroll">
+            <span class="section-eyebrow">Services</span>
+            <h2 class="section-title mb-2">Pricing Plans</h2>
+            <p class="section-subtitle mx-auto">Transparent pricing for your projects. Choose a plan that fits your needs.</p>
         </div>
-        <div class="row g-4 justify-content-center">
-            @foreach($pricingPlans as $plan)
-                <div class="col-lg-4 col-md-6 reveal-on-scroll">
-                    <div class="pricing-card {{ $plan->is_highlighted ? 'highlighted' : '' }}">
-                        @if($plan->badge)
-                            <div class="pricing-badge">{{ $plan->badge }}</div>
-                        @endif
-                        <h3 class="pricing-name">{{ $plan->name }}</h3>
-                        <p class="pricing-description">{{ $plan->description }}</p>
-                        <div class="pricing-price">
-                            <span class="currency">{{ $plan->formatPrice($plan->monthly_price) }}</span>
-                            <span class="period">/month</span>
+        
+        {{-- Toggle: Monthly / Yearly --}}
+        <div class="pricing-toggle text-center mb-5 reveal-on-scroll">
+            <span class="toggle-label monthly active">Monthly</span>
+            <label class="toggle-switch">
+                <input type="checkbox" id="pricingToggle">
+                <span class="toggle-slider"></span>
+            </label>
+            <span class="toggle-label yearly">Yearly <span class="save-badge">Save 20%</span></span>
+        </div>
+        
+        <div class="pricing-grid">
+            @foreach($pricingPlans as $index => $plan)
+            <div class="pricing-wrapper reveal-on-scroll" style="animation-delay: {{ $index * 0.15 }}s">
+                <div class="pricing-card-modern {{ $plan->is_highlighted ? 'featured' : '' }}">
+                    @if($plan->badge)
+                    <div class="pricing-card-badge">
+                        <span>{{ $plan->badge }}</span>
+                    </div>
+                    @endif
+                    
+                    <div class="pricing-card-header">
+                        <div class="pricing-icon">
+                            @if($plan->is_highlighted)
+                            <i class="fa-solid fa-crown"></i>
+                            @else
+                            <i class="fa-solid fa-box"></i>
+                            @endif
                         </div>
-                        <ul class="pricing-features">
+                        <h3 class="pricing-plan-name">{{ $plan->name }}</h3>
+                        <p class="pricing-plan-desc">{{ $plan->description }}</p>
+                    </div>
+                    
+                    <div class="pricing-card-price">
+                        <div class="price-wrapper">
+                            <span class="price-currency">$</span>
+                            <span class="price-amount" data-monthly="{{ $plan->monthly_price }}" data-yearly="{{ round($plan->monthly_price * 0.8 * 12) }}">
+                                {{ $plan->monthly_price }}
+                            </span>
+                        </div>
+                        <span class="price-period" id="pricePeriod-{{ $plan->id }}">/month</span>
+                    </div>
+                    
+                    <div class="pricing-card-features">
+                        <ul class="features-list">
                             @foreach($plan->getFeaturesArray() as $feature)
-                                <li><i class="fa-solid fa-check"></i> {{ $feature }}</li>
+                            <li>
+                                <i class="fa-solid fa-check"></i>
+                                <span>{{ $feature }}</span>
+                            </li>
                             @endforeach
                         </ul>
+                    </div>
+                    
+                    <div class="pricing-card-action">
                         @if($plan->button_url)
-                            <a href="{{ $plan->button_url }}" class="btn {{ $plan->is_highlighted ? 'btn-primary-custom' : 'btn-outline-custom' }} w-100">
-                                {{ $plan->button_text ?: 'Get Started' }}
-                            </a>
+                        <a href="{{ $plan->button_url }}" class="btn {{ $plan->is_highlighted ? 'btn-primary-modern' : 'btn-outline-modern' }}">
+                            {{ $plan->button_text ?: 'Get Started' }}
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
                         @endif
                     </div>
+                    
+                    {{-- Decorative corner elements --}}
+                    <div class="corner corner-tl"></div>
+                    <div class="corner corner-br"></div>
                 </div>
+            </div>
             @endforeach
+        </div>
+        
+        <div class="text-center mt-5 reveal-on-scroll">
+            <a href="{{ route('pricing') }}" class="btn btn-outline-modern view-all-btn">
+                View All Plans
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
         </div>
     </div>
 </section>
+
+<style>
+    /* ===== PRICING SECTION - MODERN DESIGN ===== */
+    .pricing-section {
+        position: relative;
+        padding: 100px 0;
+        overflow: hidden;
+        background: linear-gradient(180deg, var(--section-alt-bg, #f8fafc) 0%, var(--bg-color, #ffffff) 100%);
+    }
+    
+    /* Background Effects */
+    .pricing-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+    }
+    .pricing-bg-circle {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.15;
+    }
+    .pricing-bg-circle-1 {
+        width: 500px;
+        height: 500px;
+        background: linear-gradient(135deg, #4f46e5, #06b6d4);
+        top: -200px;
+        right: -100px;
+        animation: float 8s ease-in-out infinite;
+    }
+    .pricing-bg-circle-2 {
+        width: 400px;
+        height: 400px;
+        background: linear-gradient(135deg, #8b5cf6, #ec4899);
+        bottom: -150px;
+        left: -100px;
+        animation: float 10s ease-in-out infinite reverse;
+    }
+    @keyframes float {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-30px) rotate(5deg); }
+    }
+    .pricing-bg-grid {
+        position: absolute;
+        inset: 0;
+        background-image: 
+            linear-gradient(rgba(79, 70, 229, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(79, 70, 229, 0.03) 1px, transparent 1px);
+        background-size: 60px 60px;
+    }
+    
+    /* Toggle Switch */
+    .pricing-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+    }
+    .toggle-label {
+        font-weight: 600;
+        color: #6b7280;
+        transition: color 0.3s;
+    }
+    .toggle-label.active {
+        color: var(--text-color, #1f2937);
+    }
+    .save-badge {
+        background: linear-gradient(135deg, #10b981, #059669);
+        color: white;
+        padding: 2px 8px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        margin-left: 8px;
+    }
+    .toggle-switch {
+        position: relative;
+        width: 56px;
+        height: 28px;
+    }
+    .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        inset: 0;
+        background: #e5e7eb;
+        border-radius: 28px;
+        transition: 0.4s;
+    }
+    .toggle-slider::before {
+        content: '';
+        position: absolute;
+        height: 22px;
+        width: 22px;
+        left: 3px;
+        bottom: 3px;
+        background: white;
+        border-radius: 50%;
+        transition: 0.4s;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .toggle-switch input:checked + .toggle-slider {
+        background: linear-gradient(135deg, #4f46e5, #06b6d4);
+    }
+    .toggle-switch input:checked + .toggle-slider::before {
+        transform: translateX(28px);
+    }
+    
+    /* Pricing Grid */
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    /* Pricing Card */
+    .pricing-wrapper {
+        perspective: 1000px;
+    }
+    .pricing-card-modern {
+        position: relative;
+        background: var(--card-bg, #ffffff);
+        border-radius: 24px;
+        padding: 40px 32px;
+        border: 1px solid var(--border-color, #e5e7eb);
+        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        overflow: hidden;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .pricing-card-modern:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 30px 60px rgba(79, 70, 229, 0.15);
+        border-color: transparent;
+    }
+    .pricing-card-modern.featured {
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #06b6d4 100%);
+        border: none;
+        color: white;
+        transform: scale(1.02);
+    }
+    .pricing-card-modern.featured:hover {
+        transform: scale(1.02) translateY(-10px);
+        box-shadow: 0 40px 80px rgba(79, 70, 229, 0.3);
+    }
+    
+    /* Card Badge */
+    .pricing-card-badge {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    .pricing-card-badge span {
+        background: linear-gradient(135deg, #fbbf24, #f59e0b);
+        color: #1f2937;
+        padding: 6px 16px;
+        border-radius: 30px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    /* Card Header */
+    .pricing-card-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .pricing-icon {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(6, 182, 212, 0.1));
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 1.8rem;
+        color: #4f46e5;
+        transition: all 0.3s;
+    }
+    .featured .pricing-icon {
+        background: rgba(255,255,255,0.2);
+        color: white;
+    }
+    .pricing-card-modern:hover .pricing-icon {
+        transform: scale(1.1) rotate(5deg);
+    }
+    .pricing-plan-name {
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 8px;
+        color: var(--text-color, #1f2937);
+    }
+    .featured .pricing-plan-name {
+        color: white;
+    }
+    .pricing-plan-desc {
+        font-size: 0.9rem;
+        color: #6b7280;
+        line-height: 1.5;
+    }
+    .featured .pricing-plan-desc {
+        color: rgba(255,255,255,0.8);
+    }
+    
+    /* Price */
+    .pricing-card-price {
+        text-align: center;
+        margin-bottom: 30px;
+        padding: 24px 0;
+        border-top: 1px solid var(--border-color, #e5e7eb);
+        border-bottom: 1px solid var(--border-color, #e5e7eb);
+    }
+    .featured .pricing-card-price {
+        border-color: rgba(255,255,255,0.2);
+    }
+    .price-wrapper {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 4px;
+    }
+    .price-currency {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-top: 8px;
+        color: #4f46e5;
+    }
+    .featured .price-currency {
+        color: white;
+    }
+    .price-amount {
+        font-size: 4rem;
+        font-weight: 900;
+        line-height: 1;
+        color: #4f46e5;
+        transition: all 0.3s;
+    }
+    .featured .price-amount {
+        color: white;
+    }
+    .price-period {
+        font-size: 1rem;
+        color: #6b7280;
+        align-self: flex-end;
+        margin-bottom: 10px;
+    }
+    .featured .price-period {
+        color: rgba(255,255,255,0.7);
+    }
+    
+    /* Features */
+    .pricing-card-features {
+        flex-grow: 1;
+        margin-bottom: 30px;
+    }
+    .features-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .features-list li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 0;
+        font-size: 0.95rem;
+        color: var(--text-muted, #6b7280);
+        border-bottom: 1px dashed var(--border-color, #e5e7eb);
+    }
+    .featured .features-list li {
+        border-color: rgba(255,255,255,0.1);
+        color: rgba(255,255,255,0.9);
+    }
+    .features-list li:last-child {
+        border-bottom: none;
+    }
+    .features-list li i {
+        width: 24px;
+        height: 24px;
+        background: linear-gradient(135deg, #10b981, #059669);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        flex-shrink: 0;
+    }
+    .featured .features-list li i {
+        background: rgba(255,255,255,0.2);
+    }
+    
+    /* Buttons */
+    .btn-primary-modern {
+        background: linear-gradient(135deg, #4f46e5, #06b6d4);
+        color: white;
+        border: none;
+        padding: 16px 32px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: all 0.3s;
+        text-decoration: none;
+    }
+    .btn-primary-modern:hover {
+        background: linear-gradient(135deg, #4338ca, #0891b2);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
+        color: white;
+    }
+    .btn-primary-modern i {
+        transition: transform 0.3s;
+    }
+    .btn-primary-modern:hover i {
+        transform: translateX(5px);
+    }
+    
+    .btn-outline-modern {
+        background: transparent;
+        color: #4f46e5;
+        border: 2px solid #4f46e5;
+        padding: 14px 32px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: all 0.3s;
+        text-decoration: none;
+    }
+    .btn-outline-modern:hover {
+        background: linear-gradient(135deg, #4f46e5, #06b6d4);
+        color: white;
+        border-color: transparent;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(79, 70, 229, 0.3);
+    }
+    .btn-outline-modern:hover i {
+        transform: translateX(5px);
+    }
+    .btn-outline-modern i {
+        transition: transform 0.3s;
+    }
+    
+    .view-all-btn {
+        display: inline-flex;
+        width: auto;
+        padding: 14px 32px;
+    }
+    
+    /* Decorative Corners */
+    .corner {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+    .pricing-card-modern:hover .corner {
+        opacity: 1;
+    }
+    .corner-tl {
+        top: 0;
+        left: 0;
+        border-top: 3px solid #4f46e5;
+        border-left: 3px solid #4f46e5;
+        border-radius: 24px 0 0 0;
+    }
+    .corner-br {
+        bottom: 0;
+        right: 0;
+        border-bottom: 3px solid #06b6d4;
+        border-right: 3px solid #06b6d4;
+        border-radius: 0 0 24px 0;
+    }
+    .featured .corner {
+        border-color: rgba(255,255,255,0.3);
+    }
+    
+    /* Dark Mode */
+    [data-theme="dark"] .pricing-section {
+        background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 100%);
+    }
+    [data-theme="dark"] .pricing-card-modern {
+        background: #1e293b;
+        border-color: #334155;
+    }
+    [data-theme="dark"] .pricing-plan-name,
+    [data-theme="dark"] .price-currency,
+    [data-theme="dark"] .price-amount,
+    [data-theme="dark"] .btn-outline-modern {
+        color: white;
+    }
+    [data-theme="dark"] .pricing-plan-desc,
+    [data-theme="dark"] .price-period,
+    [data-theme="dark"] .features-list li {
+        color: #94a3b8;
+    }
+    [data-theme="dark"] .pricing-card-price {
+        border-color: #334155;
+    }
+    [data-theme="dark"] .features-list li {
+        border-color: #334155;
+    }
+    [data-theme="dark"] .pricing-icon {
+        background: rgba(99, 102, 241, 0.2);
+        color: #818cf8;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .pricing-card-modern.featured {
+            transform: scale(1);
+        }
+        .pricing-card-modern.featured:hover {
+            transform: translateY(-10px);
+        }
+        .price-amount {
+            font-size: 3rem;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggle = document.getElementById('pricingToggle');
+        if (toggle) {
+            toggle.addEventListener('change', function() {
+                const isYearly = this.checked;
+                const amountElements = document.querySelectorAll('.price-amount');
+                const periodElements = document.querySelectorAll('[class^="price-period"]');
+                
+                amountElements.forEach(el => {
+                    const monthly = el.dataset.monthly;
+                    const yearly = el.dataset.yearly;
+                    el.textContent = isYearly ? yearly : monthly;
+                });
+                
+                // Update period labels
+                document.querySelectorAll('.price-period').forEach(el => {
+                    el.textContent = isYearly ? '/year' : '/month';
+                });
+                
+                // Toggle active class
+                document.querySelectorAll('.toggle-label').forEach(el => {
+                    el.classList.toggle('active', (isYearly && el.classList.contains('yearly')) || (!isYearly && el.classList.contains('monthly')));
+                });
+            });
+        }
+    });
+</script>
 @endif
 
 {{-- =========================================================
@@ -886,83 +1405,6 @@
         border-radius: 3px !important;
     }
     
-    /* Pricing Card Styles */
-    .pricing-card {
-        background: #fff;
-        border: 1px solid #e5e7eb;
-        border-radius: 16px;
-        padding: 32px 24px;
-        text-align: center;
-        transition: all 0.3s ease;
-        position: relative;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-    .pricing-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    }
-    .pricing-card.highlighted {
-        border-color: var(--color-primary);
-        border-width: 2px;
-        background: linear-gradient(135deg, rgba(79, 47, 232, 0.03), rgba(34, 211, 238, 0.03));
-    }
-    .pricing-badge {
-        position: absolute;
-        top: -12px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: var(--color-primary);
-        color: #fff;
-        padding: 4px 16px;
-        border-radius: 20px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        text-transform: uppercase;
-    }
-    .pricing-name {
-        font-size: 1.25rem;
-        font-weight: 700;
-        margin-bottom: 8px;
-    }
-    .pricing-description {
-        color: #6b7280;
-        font-size: 0.875rem;
-        margin-bottom: 16px;
-    }
-    .pricing-price {
-        margin-bottom: 20px;
-    }
-    .pricing-price .currency {
-        font-size: 2.5rem;
-        font-weight: 800;
-        color: var(--color-primary);
-    }
-    .pricing-price .period {
-        color: #6b7280;
-        font-size: 0.875rem;
-    }
-    .pricing-features {
-        list-style: none;
-        padding: 0;
-        margin: 0 0 24px 0;
-        flex-grow: 1;
-        text-align: left;
-    }
-    .pricing-features li {
-        padding: 8px 0;
-        border-bottom: 1px solid #f3f4f6;
-        font-size: 0.875rem;
-    }
-    .pricing-features li:last-child {
-        border-bottom: none;
-    }
-    .pricing-features li i {
-        color: #10b981;
-        margin-right: 8px;
-    }
-    
     /* Resume Preview Box */
     .resume-preview-box {
         transition: all 0.3s ease;
@@ -970,24 +1412,6 @@
     .resume-preview-box:hover {
         transform: scale(1.05);
         box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
-    }
-    
-    [data-theme="dark"] .pricing-card {
-        background: #171433;
-        border-color: #3D3A70;
-    }
-    [data-theme="dark"] .pricing-card.highlighted {
-        background: linear-gradient(135deg, rgba(139, 123, 244, 0.1), rgba(34, 211, 238, 0.1));
-    }
-    [data-theme="dark"] .pricing-description,
-    [data-theme="dark"] .pricing-price .period {
-        color: #9CA3AF;
-    }
-    [data-theme="dark"] .pricing-features li {
-        border-bottom-color: #2C2860;
-    }
-    [data-theme="dark"] .resume-preview-box {
-        background: #171433 !important;
     }
 </style>
 @endpush
