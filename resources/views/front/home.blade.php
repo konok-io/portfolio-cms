@@ -224,10 +224,15 @@
 @if($skills->isNotEmpty())
 <section id="skills" class="section-padding section-tint">
     <div class="container">
-        <div class="text-center mb-5 reveal-on-scroll">
-            <span class="section-eyebrow">{{ $skillsSectionTitle }}</span>
-            <h2 class="section-title mb-2">{{ $skillsTitle }}</h2>
-            <p class="section-subtitle mx-auto">{{ $skillsSubtitle }}</p>
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
+            <div class="text-center text-lg-start reveal-on-scroll">
+                <span class="section-eyebrow">{{ $skillsSectionTitle }}</span>
+                <h2 class="section-title mb-2">{{ $skillsTitle }}</h2>
+                <p class="section-subtitle mx-auto mx-lg-0">{{ $skillsSubtitle }}</p>
+            </div>
+            <a href="{{ route('about') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">
+                <i class="fa-solid fa-eye me-2"></i>{{ __('View All Skills') }}
+            </a>
         </div>
         
         <style>
