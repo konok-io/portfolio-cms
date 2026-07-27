@@ -538,10 +538,21 @@
                 margin-bottom: 16px;
             }
             
+            .test-glass-quote-section {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+            
             .test-glass-quote {
                 color: var(--color-primary, #2563EB);
                 font-size: 2.5rem;
                 line-height: 1;
+            }
+            
+            .test-glass-stars {
+                color: #fbbf24;
+                font-size: 0.8rem;
             }
             
             .test-glass-author {
@@ -639,7 +650,14 @@
                                 <div class="col-md-6 col-lg-4">
                                     <div class="test-glass-card">
                                         <div class="test-glass-header">
-                                            <div class="test-glass-quote"><i class="fas fa-quote-left"></i></div>
+                                            <div class="test-glass-quote-section">
+                                                <div class="test-glass-quote"><i class="fas fa-quote-left"></i></div>
+                                                <div class="test-glass-stars">
+                                                    @for($i = 1; $i <= 5; $i++)
+                                                        <i class="fas fa-star"></i>
+                                                    @endfor
+                                                </div>
+                                            </div>
                                             <div class="test-glass-author">
                                                 <div class="test-glass-avatar">
                                                     @if($testimonial->photo_url)
