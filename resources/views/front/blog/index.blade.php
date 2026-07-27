@@ -5,7 +5,7 @@
 
 @section('content')
 
-<section class="section-padding section-alt">
+<section class="section-padding section-emerald-tint">
     <div class="container">
         <div class="text-center mb-5">
             <span class="section-eyebrow">{{ page_content('blog', 'page_eyebrow', app()->getLocale()) }}</span>

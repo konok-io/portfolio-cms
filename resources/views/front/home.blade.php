@@ -1426,7 +1426,7 @@
 {{-- =========================================================
      14. CONTACT
      ========================================================= --}}
-<section id="contact" class="section-padding section-slate-tint">
+<section id="contact" class="section-padding section-emerald-tint">
     <div class="container">
         <div class="row g-5">
             <div class="col-lg-5 reveal-on-scroll">
