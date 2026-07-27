@@ -545,7 +545,7 @@
             }
             
             .test-glass-quote {
-                color: #333;
+                color: #2563eb;
                 font-size: 2rem;
                 line-height: 1;
             }
@@ -564,7 +564,7 @@
             .test-glass-avatar {
                 width: 44px;
                 height: 44px;
-                background: #333;
+                background: #2563eb;
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
@@ -606,7 +606,7 @@
             
             /* Carousel styles */
             .test-glass-section {
-                background: linear-gradient(135deg, #555555, #4a4a4a);
+                background: rgba(37, 99, 235, 0.15);
                 border-radius: 20px;
                 padding: 50px 40px 60px;
                 position: relative;
