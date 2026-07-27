@@ -216,6 +216,24 @@
     .why-h-card:hover .card-number {
         color: rgba(255,255,255,0.15);
     }
+
+    /* Dark Mode - Why Choose Me Cards */
+    [data-theme="dark"] .why-h-card {
+        background: #1f1f3a;
+        border-color: #2d2d52;
+    }
+
+    [data-theme="dark"] .why-h-card h3 {
+        color: #e5e7eb;
+    }
+
+    [data-theme="dark"] .why-h-card p {
+        color: #9ca3af;
+    }
+
+    [data-theme="dark"] .why-h-card .card-number {
+        color: rgba(37, 99, 235, 0.15);
+    }
 </style>
 
 {{-- =========================================================
