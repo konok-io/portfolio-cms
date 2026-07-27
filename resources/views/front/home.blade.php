@@ -394,40 +394,9 @@
 @endif
 
 {{-- =========================================================
-     4. WHAT I DO - SERVICES (Design 8)
+     SERVICES SECTION (included from partial)
      ========================================================= --}}
 @include('front.partials.what-i-do')
-
-{{-- =========================================================
-     5. EXPERIENCE
-     ========================================================= --}}
-@if($experiences->isNotEmpty())
-<section id="experience" class="section-padding section-tint">
-    <div class="container">
-        <div class="row gy-5">
-            <div class="col-lg-4 reveal-on-scroll">
-                <span class="section-eyebrow">Career Path</span>
-                <h2 class="section-title">Work Experience</h2>
-                <p class="section-subtitle">Roles and companies that have shaped how I build software today.</p>
-            </div>
-            <div class="col-lg-8">
-                <div class="timeline">
-                    @foreach($experiences as $experience)
-                        <div class="timeline-item reveal-on-scroll">
-                            <div class="d-flex justify-content-between flex-wrap gap-2">
-                                <h5 class="mb-1">{{ $experience->designation }}</h5>
-                                <span class="badge bg-primary-custom">{{ $experience->duration }}</span>
-                            </div>
-                            <p class="text-primary-custom fw-semibold small mb-2">{{ $experience->company_name }}</p>
-                            <p class="text-muted small mb-0">{{ $experience->description }}</p>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-@endif
 
 {{-- =========================================================
      4. PORTFOLIO PROJECTS
@@ -462,6 +431,37 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
+{{-- =========================================================
+     5. EXPERIENCE
+     ========================================================= --}}
+@if($experiences->isNotEmpty())
+<section id="experience" class="section-padding section-tint">
+    <div class="container">
+        <div class="row gy-5">
+            <div class="col-lg-4 reveal-on-scroll">
+                <span class="section-eyebrow">Career Path</span>
+                <h2 class="section-title">Work Experience</h2>
+                <p class="section-subtitle">Roles and companies that have shaped how I build software today.</p>
+            </div>
+            <div class="col-lg-8">
+                <div class="timeline">
+                    @foreach($experiences as $experience)
+                        <div class="timeline-item reveal-on-scroll">
+                            <div class="d-flex justify-content-between flex-wrap gap-2">
+                                <h5 class="mb-1">{{ $experience->designation }}</h5>
+                                <span class="badge bg-primary-custom">{{ $experience->duration }}</span>
+                            </div>
+                            <p class="text-primary-custom fw-semibold small mb-2">{{ $experience->company_name }}</p>
+                            <p class="text-muted small mb-0">{{ $experience->description }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 </section>
