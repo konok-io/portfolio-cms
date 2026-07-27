@@ -254,6 +254,26 @@ a {
   background-color: #f8fafc;
 }
 
+/* More distinct colors */
+.section-teal-tint {
+  background-color: #f0fdfa;
+}
+.section-lime-tint {
+  background-color: #f7fee7;
+}
+.section-orange-tint {
+  background-color: #fff7ed;
+}
+.section-pink-tint {
+  background-color: #fdf2f8;
+}
+.section-violet-tint {
+  background-color: #f5f3ff;
+}
+.section-sky-tint {
+  background-color: #f0f9ff;
+}
+
 /* Light sections border override */
 .section-alt .service-card,
 .section-tint .service-card {
