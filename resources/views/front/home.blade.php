@@ -1107,41 +1107,301 @@
 @endif
 
 {{-- =========================================================
-     12. FAQ SECTION
+     12. FAQ SECTION (Design 8: Split Layout Pro)
      ========================================================= --}}
 @if($faqs->isNotEmpty())
-<section id="faq" class="section-padding section-alt">
+<section id="faq" class="faq-split-section">
     <div class="container">
-        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
-            <div class="text-center text-lg-start reveal-on-scroll">
-                <span class="section-eyebrow">Support</span>
-                <h2 class="section-title mb-2">Frequently Asked Questions</h2>
-                <p class="section-subtitle mx-auto mx-lg-0">Quick answers to common questions about my services.</p>
+        <div class="row g-4">
+            {{-- Left Side - Support Card --}}
+            <div class="col-lg-5">
+                <div class="faq-split-card reveal-on-scroll">
+                    <span class="faq-split-badge">Support</span>
+                    <h2 class="faq-split-title">Frequently Asked Questions</h2>
+                    <p class="faq-split-desc">Quick answers to common questions about my services. Can't find what you need?</p>
+                    
+                    <div class="faq-split-contact">
+                        <a href="mailto:{{ $settings['contact_email'] ?? 'contact@example.com' }}" class="faq-contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="{{ $settings['whatsapp_url'] ?? '#' }}" class="faq-contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="{{ route('contact') }}" class="faq-contact-icon">
+                            <i class="fas fa-comments"></i>
+                        </a>
+                    </div>
+                    
+                    <a href="{{ route('faq') }}" class="faq-split-btn">
+                        View All FAQs
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
-            <a href="{{ route('faq') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">View All FAQs</a>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="accordion" id="faqAccordion">
+            
+            {{-- Right Side - FAQ List --}}
+            <div class="col-lg-7">
+                <div class="faq-split-list reveal-on-scroll">
                     @foreach($faqs as $index => $faq)
-                        <div class="accordion-item reveal-on-scroll">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button {{ $index > 0 ? 'collapsed' : '' }}" type="button" data-bs-toggle="collapse" data-bs-target="#faq-{{ $faq->id }}">
-                                    {{ $faq->question }}
-                                </button>
-                            </h3>
-                            <div id="faq-{{ $faq->id }}" class="accordion-collapse collapse {{ $index === 0 ? 'show' : '' }}" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
-                                    {!! $faq->answer !!}
-                                </div>
+                    <div class="faq-split-item {{ $index === 0 ? 'active' : '' }}" data-faq-id="{{ $faq->id }}">
+                        <div class="faq-split-question">
+                            <div class="faq-split-icon">
+                                <i class="fas {{ $index === 0 ? 'fa-minus' : 'fa-plus' }}"></i>
                             </div>
+                            <span>{{ $faq->question }}</span>
                         </div>
+                        <div class="faq-split-answer">
+                            {!! $faq->answer !!}
+                        </div>
+                    </div>
                     @endforeach
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+    /* ===== FAQ SPLIT SECTION ===== */
+    .faq-split-section {
+        padding: 80px 0;
+        background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    }
+    
+    .faq-split-card {
+        background: white;
+        border-radius: 20px;
+        padding: 35px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        position: sticky;
+        top: 100px;
+    }
+    
+    .faq-split-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        color: white;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 15px;
+    }
+    
+    .faq-split-title {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: var(--text-color, #0f172a);
+        margin-bottom: 12px;
+        line-height: 1.3;
+    }
+    
+    .faq-split-desc {
+        font-size: 0.95rem;
+        color: #64748b;
+        margin-bottom: 25px;
+        line-height: 1.6;
+    }
+    
+    .faq-split-contact {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 25px;
+    }
+    
+    .faq-contact-icon {
+        width: 44px;
+        height: 44px;
+        background: #dcfce7;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #22c55e;
+        font-size: 1.1rem;
+        transition: all 0.3s;
+        text-decoration: none;
+    }
+    
+    .faq-contact-icon:hover {
+        background: #22c55e;
+        color: white;
+        transform: translateY(-3px);
+    }
+    
+    .faq-split-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        padding: 14px 24px;
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        color: white;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+    
+    .faq-split-btn:hover {
+        box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
+        color: white;
+        transform: translateY(-2px);
+    }
+    
+    .faq-split-btn i {
+        transition: transform 0.3s;
+    }
+    
+    .faq-split-btn:hover i {
+        transform: translateX(5px);
+    }
+    
+    /* FAQ List */
+    .faq-split-list {
+        background: white;
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    
+    .faq-split-item {
+        border-bottom: 1px solid #e5e7eb;
+        padding: 18px 0;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .faq-split-item:last-child {
+        border-bottom: none;
+    }
+    
+    .faq-split-item.active {
+        border-bottom: 2px solid #22c55e;
+    }
+    
+    .faq-split-question {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .faq-split-icon {
+        width: 36px;
+        height: 36px;
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 0.7rem;
+        flex-shrink: 0;
+        transition: all 0.3s;
+    }
+    
+    .faq-split-item:not(.active) .faq-split-icon {
+        background: #f0fdf4;
+        color: #22c55e;
+    }
+    
+    .faq-split-question span {
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: var(--text-color, #0f172a);
+        flex-grow: 1;
+    }
+    
+    .faq-split-answer {
+        padding-left: 51px;
+        padding-top: 12px;
+        display: none;
+    }
+    
+    .faq-split-item.active .faq-split-answer {
+        display: block;
+    }
+    
+    .faq-split-answer p {
+        font-size: 0.9rem;
+        color: #64748b;
+        margin: 0;
+        line-height: 1.6;
+    }
+    
+    .faq-split-answer a {
+        color: #22c55e;
+        text-decoration: none;
+    }
+    
+    .faq-split-answer a:hover {
+        text-decoration: underline;
+    }
+    
+    /* Hover Effect */
+    .faq-split-item:hover .faq-split-question span {
+        color: #22c55e;
+    }
+    
+    /* Dark Mode */
+    [data-theme="dark"] .faq-split-section {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    }
+    
+    [data-theme="dark"] .faq-split-card,
+    [data-theme="dark"] .faq-split-list {
+        background: #1e293b;
+    }
+    
+    [data-theme="dark"] .faq-split-title,
+    [data-theme="dark"] .faq-split-question span {
+        color: white;
+    }
+    
+    [data-theme="dark"] .faq-split-desc,
+    [data-theme="dark"] .faq-split-answer p {
+        color: #94a3b8;
+    }
+    
+    [data-theme="dark"] .faq-split-item {
+        border-color: #334155;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+        .faq-split-card {
+            position: static;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const faqItems = document.querySelectorAll('.faq-split-item');
+        
+        faqItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const isActive = this.classList.contains('active');
+                
+                // Close all
+                faqItems.forEach(i => {
+                    i.classList.remove('active');
+                    i.querySelector('.faq-split-icon i').className = 'fas fa-plus';
+                });
+                
+                // Open clicked (if it wasn't already open)
+                if (!isActive) {
+                    this.classList.add('active');
+                    this.querySelector('.faq-split-icon i').className = 'fas fa-minus';
+                }
+            });
+        });
+    });
+</script>
 @endif
 
 {{-- =========================================================
