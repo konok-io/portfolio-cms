@@ -22,23 +22,23 @@
         @if($services->isNotEmpty())
             <div class="services-grid">
                 @foreach($services as $index => $service)
-                    <div class="service-card-new reveal-on-scroll">
-                        <span class="service-card-number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                    <div class="service-card reveal-on-scroll">
+                        <span class="service-number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
                         
-                        <div class="service-icon-col">
-                            <div class="service-icon-new">
+                        <div class="card-left">
+                            <div class="icon-box">
                                 @if($service->svg_icon)
                                     {!! $service->svg_icon !!}
                                 @else
                                     <i class="{{ $service->icon ?? 'fa-solid fa-gear' }}"></i>
                                 @endif
                             </div>
-                            <a href="{{ route('services.show', $service->slug ?? Str::slug($service->name)) }}" class="service-btn">
+                            <a href="{{ route('services.show', $service->slug ?? Str::slug($service->name)) }}" class="btn-view">
                                 {{ page_content('services', 'page_button', app()->getLocale()) }} <i class="fa-solid fa-arrow-right"></i>
                             </a>
                         </div>
                         
-                        <div class="service-content">
+                        <div class="card-right">
                             <h3>{{ $service->name }}</h3>
                             <p>{{ Str::limit($service->description, 120) }}</p>
                         </div>
@@ -69,7 +69,7 @@
         gap: 24px;
     }
     
-    .service-card-new {
+    .service-card {
         background: var(--bg-white);
         border: 1px solid var(--border);
         border-radius: 20px;
@@ -82,13 +82,13 @@
         transition: all 0.4s ease;
     }
     
-    .service-card-new:hover {
+    .service-card:hover {
         transform: translateY(-8px);
         box-shadow: 0 20px 50px rgba(0,0,0,0.08);
         border-color: var(--primary);
     }
     
-    .service-card-number {
+    .service-number {
         position: absolute;
         top: 15px;
         right: 20px;
@@ -99,11 +99,11 @@
         transition: all 0.3s ease;
     }
     
-    .service-card-new:hover .service-card-number {
+    .service-card:hover .service-number {
         color: rgba(37, 99, 235, 0.1);
     }
     
-    .service-icon-col {
+    .card-left {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -111,7 +111,7 @@
         flex-shrink: 0;
     }
     
-    .service-icon-new {
+    .icon-box {
         width: 64px;
         height: 64px;
         background: rgba(37, 99, 235, 0.08);
@@ -124,16 +124,12 @@
         transition: all 0.35s ease;
     }
     
-    .service-card-new:hover .service-icon-new {
+    .service-card:hover .icon-box {
         background: var(--primary);
         color: #fff;
     }
     
-    .service-card-new:hover .service-icon-new svg {
-        fill: #fff;
-    }
-    
-    .service-btn {
+    .btn-view {
         display: inline-flex;
         align-items: center;
         gap: 6px;
@@ -147,31 +143,31 @@
         text-decoration: none;
     }
     
-    .service-btn:hover {
+    .btn-view:hover {
         background: var(--primary);
         color: #fff;
     }
     
-    .service-btn i {
+    .btn-view i {
         transition: transform 0.3s ease;
     }
     
-    .service-btn:hover i {
+    .btn-view:hover i {
         transform: translateX(3px);
     }
     
-    .service-content {
+    .card-right {
         flex: 1;
     }
     
-    .service-content h3 {
+    .card-right h3 {
         font-size: 1.15rem;
         font-weight: 700;
         color: var(--text-dark);
         margin-bottom: 10px;
     }
     
-    .service-content p {
+    .card-right p {
         color: var(--text-body);
         font-size: 0.95rem;
         line-height: 1.7;
@@ -188,7 +184,7 @@
         .services-grid {
             grid-template-columns: 1fr;
         }
-        .service-card-new {
+        .service-card {
             flex-direction: column;
             align-items: center;
             text-align: center;
