@@ -611,7 +611,8 @@ a {
 /* Cards in blue sections (Skills, Portfolio, Education, Certifications, Pricing, Resume CTA) - White background */
 .section-2 .project-card,
 .section-2 .blog-card,
-.section-2 .testimonial-card {
+.section-2 .testimonial-card,
+.section-2 .certification-card {
   background: #ffffff;
   border-color: #d1d5db;
 }
