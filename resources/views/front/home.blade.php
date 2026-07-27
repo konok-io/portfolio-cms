@@ -519,22 +519,20 @@
         {{-- Glass Card Styles --}}
         <style>
             .test-glass-card {
-                background: rgba(255, 255, 255, 0.1);
-                backdrop-filter: blur(10px);
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                border-radius: 20px;
+                background: #ffffff;
+                border-radius: 16px;
                 padding: 28px;
                 height: 100%;
                 transition: all 0.3s;
             }
             
             .test-glass-card:hover {
-                background: rgba(255, 255, 255, 0.15);
                 transform: translateY(-5px);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             }
             
             .test-glass-quote {
-                color: rgba(255, 255, 255, 0.3);
+                color: var(--color-primary, #2563EB);
                 font-size: 2.5rem;
                 margin-bottom: 12px;
                 line-height: 1;
@@ -542,7 +540,7 @@
             
             .test-glass-text {
                 font-size: 0.9rem;
-                color: rgba(255, 255, 255, 0.9);
+                color: #475569;
                 line-height: 1.7;
                 margin-bottom: 16px;
                 flex-grow: 1;
@@ -563,7 +561,7 @@
             .test-glass-avatar {
                 width: 44px;
                 height: 44px;
-                background: rgba(255, 255, 255, 0.2);
+                background: var(--color-primary, #2563EB);
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
@@ -584,12 +582,12 @@
             .test-glass-name {
                 font-size: 0.9rem;
                 font-weight: 700;
-                color: #fff;
+                color: #1e293b;
             }
             
             .test-glass-role {
                 font-size: 0.75rem;
-                color: rgba(255, 255, 255, 0.7);
+                color: #64748b;
             }
             
             /* Carousel styles */
@@ -626,19 +624,6 @@
                 .test-glass-section {
                     padding: 30px 20px;
                 }
-            }
-            
-            [data-theme="dark"] .test-glass-card {
-                background: rgba(255, 255, 255, 0.05);
-            }
-            [data-theme="dark"] .test-glass-card:hover {
-                background: rgba(255, 255, 255, 0.08);
-            }
-            [data-theme="dark"] .test-glass-text {
-                color: #cbd5e1;
-            }
-            [data-theme="dark"] .test-glass-avatar {
-                background: rgba(59, 130, 246, 0.3);
             }
         </style>
         
