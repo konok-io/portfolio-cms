@@ -655,7 +655,7 @@
 @if($pricingPlans->isNotEmpty())
 <section id="pricing" class="pricing-split-section">
     <div class="container">
-        <div class="pricing-split-row">
+        <div class="pricing-split-row" style="align-items: flex-start;">
             {{-- Left Side: Text Content --}}
             <div class="pricing-split-left reveal-on-scroll">
                 <h2 class="pricing-split-title">{{ $settings['pricing_title'] ?? 'Simple, Fair Pricing' }}</h2>
