@@ -892,17 +892,23 @@ a {
   padding-bottom: 2.5rem;
 }
 .timeline-item:last-child { padding-bottom: 0; }
-.timeline-item::before {
-  content: "";
+.timeline-number {
   position: absolute;
   left: -2.45rem;
-  top: 4px;
-  width: 14px;
-  height: 14px;
+  top: -2px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background: var(--color-primary);
   border: 3px solid #fff;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #fff;
+  z-index: 1;
 }
 
 /* =========================================================
