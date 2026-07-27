@@ -1047,7 +1047,7 @@ a [class*="far"] {
 
 .cert-icon i {
   font-size: 2rem;
-  color: var(--primary);
+  color: var(--color-primary);
 }
 
 .cert-badge {
@@ -1489,7 +1489,7 @@ body.has-header main {
 .service-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-    border-color: var(--primary);
+    border-color: var(--color-primary);
 }
 
 .service-number {
@@ -1523,13 +1523,13 @@ body.has-header main {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--primary);
+    color: var(--color-primary);
     font-size: 1.5rem;
     transition: all 0.35s ease;
 }
 
 .service-card:hover .icon-box {
-    background: var(--primary);
+    background: var(--color-primary);
     color: #fff;
 }
 
@@ -1539,7 +1539,7 @@ body.has-header main {
     gap: 6px;
     padding: 8px 16px;
     background: rgba(37, 99, 235, 0.08);
-    color: var(--primary);
+    color: var(--color-primary);
     border-radius: 50px;
     font-weight: 600;
     font-size: 0.8rem;
@@ -1548,7 +1548,7 @@ body.has-header main {
 }
 
 .service-card:hover .btn-view {
-    background: var(--primary);
+    background: var(--color-primary);
     color: #fff;
 }
 
