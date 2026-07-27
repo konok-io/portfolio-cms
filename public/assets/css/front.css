@@ -1475,7 +1475,7 @@ body.has-header main {
 
 .service-card {
     background: var(--bg-white);
-    border: 1px solid #1a1a2e;
+    border: 1px solid #d1d5db;
     border-radius: 20px;
     padding: 28px;
     display: flex;
