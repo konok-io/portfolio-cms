@@ -1158,7 +1158,7 @@
     /* ===== FAQ SPLIT SECTION ===== */
     .faq-split-section {
         padding: 50px 0;
-        background: var(--section-alt-bg, #f8fafc);
+        background: var(--section-cyan-tint, #ecfeff);
     }
     
     .faq-split-row {
@@ -1329,7 +1329,7 @@
     
     /* Dark Mode */
     [data-theme="dark"] .faq-split-section {
-        background: #0f172a;
+        background: #164e63;
     }
     
     [data-theme="dark"] .faq-split-list {
