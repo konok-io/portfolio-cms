@@ -3,7 +3,7 @@
 @section('seo_title', 'Blog Categories')
 
 @section('content')
-<section class="section-padding section-3">
+<section class="section-padding section-1">
     <div class="container">
         {{-- Breadcrumb --}}
         <nav aria-label="breadcrumb" class="mb-4">

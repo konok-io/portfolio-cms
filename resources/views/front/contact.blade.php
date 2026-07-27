@@ -3,7 +3,7 @@
 @section('meta_description', page_content('contact', 'page_subtitle', app()->getLocale()))
 
 @section('content')
-<section class="contact-page-section">
+<section class="contact-page-section section-padding section-1">
     <div class="container py-5">
         {{-- Breadcrumb --}}
         <nav aria-label="breadcrumb" class="mb-4">
@@ -14,9 +14,9 @@
         </nav>
 
         <div class="text-center mb-5">
-            <span class="section-eyebrow">{{ page_content('contact', 'page_eyebrow', app()->getLocale()) }}</span>
-            <h1 class="section-title">{{ page_content('contact', 'page_title', app()->getLocale()) }}</h1>
-            <p class="section-subtitle mx-auto">{{ page_content('contact', 'page_subtitle', app()->getLocale()) }}</p>
+            <span class="section-1eyebrow">{{ page_content('contact', 'page_eyebrow', app()->getLocale()) }}</span>
+            <h1 class="section-1title">{{ page_content('contact', 'page_title', app()->getLocale()) }}</h1>
+            <p class="section-1subtitle mx-auto">{{ page_content('contact', 'page_subtitle', app()->getLocale()) }}</p>
         </div>
 
         <div class="row g-5">

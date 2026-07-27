@@ -6,7 +6,7 @@
 @section('content')
 
 {{-- Page header --}}
-<section class="section-padding section-11">
+<section class="section-padding section-1">
     <div class="container">
         <div class="text-center">
             <span class="section-eyebrow">{{ page_content('about', 'page_eyebrow', app()->getLocale()) }}</span>
@@ -17,7 +17,7 @@
 </section>
 
 {{-- Intro: photo + bio --}}
-<section class="section-padding section-12">
+<section class="section-padding section-2">
     <div class="container">
         <div class="row gy-5 align-items-stretch" style="--img-col: 30%; --text-col: 70%;">
             <div class="reveal-on-scroll d-flex align-items-stretch" style="width: var(--img-col); flex: 0 0 var(--img-col);">
@@ -100,7 +100,7 @@
 
 {{-- Skills --}}
 @if($skills->isNotEmpty())
-<section class="section-padding">
+<section class="section-padding section-1">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
             <span class="section-eyebrow">My Skills</span>
@@ -129,7 +129,7 @@
 
 {{-- Experience --}}
 @if($experiences->isNotEmpty())
-<section class="exp-section section-padding section-1">
+<section class="exp-section section-padding section-2">
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-4 reveal-on-scroll">
@@ -351,7 +351,7 @@
 
 {{-- Education --}}
 @if($educations->isNotEmpty())
-<section class="section-padding section-2">
+<section class="section-padding section-1">
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-4 reveal-on-scroll">

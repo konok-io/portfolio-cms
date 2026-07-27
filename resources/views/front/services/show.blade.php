@@ -13,7 +13,7 @@
 @section('content')
 
 {{-- Page Header --}}
-<section class="section-padding section-10">
+<section class="section-padding section-1">
     <div class="container">
         <div class="text-center">
             <span class="section-eyebrow">Services</span>
@@ -24,7 +24,7 @@
 </section>
 
 {{-- Service Detail --}}
-<section class="section-padding section-1">
+<section class="section-padding section-2">
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-8">
