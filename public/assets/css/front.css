@@ -1547,7 +1547,7 @@ body.has-header main {
     text-decoration: none;
 }
 
-.service-card:hover .btn-view {
+.btn-view:hover {
     background: var(--color-primary);
     color: #fff;
 }
