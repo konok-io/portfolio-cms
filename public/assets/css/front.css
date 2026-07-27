@@ -354,10 +354,10 @@ a {
   font-size: 0.9rem;
 }
 
-/* Active state - blue bg, white text */
+/* Active state - light blue bg, blue text */
 .pill-nav .nav-link.active {
-  color: #fff;
-  background: var(--color-primary);
+  color: var(--color-primary);
+  background: rgba(37, 99, 235, 0.15);
   font-weight: 700;
 }
 
@@ -727,10 +727,10 @@ a {
     color: #a8a4c8;
 }
 
-/* Dark mode active - blue bg, white text */
+/* Dark mode active - light blue bg, blue text */
 [data-theme="dark"] .pill-nav .nav-link.active {
-    color: #fff;
-    background: #2563EB;
+    color: #60a5fa;
+    background: rgba(37, 99, 235, 0.2);
 }
 
 /* Dark mode hover - light blue bg, blue text */
