@@ -329,13 +329,14 @@ a {
 .pill-nav-wrapper {
   display: flex;
   justify-content: center;
+  flex: 1;
 }
 
 .pill-nav {
-  border: 1px solid rgba(0, 212, 170, 0.15);
+  border: 1px solid rgba(37, 99, 235, 0.15);
   border-radius: 50px;
   padding: 5px;
-  background: rgba(0, 212, 170, 0.03);
+  background: rgba(37, 99, 235, 0.03);
   gap: 2px;
 }
 
@@ -355,8 +356,8 @@ a {
 
 .pill-nav .nav-link.active,
 .pill-nav .nav-link:hover {
-  color: #0a0a0f;
-  background: #00d4aa;
+  color: #fff;
+  background: var(--color-primary);
 }
 
 .pill-nav .nav-link.active {
@@ -380,13 +381,16 @@ a {
 }
 
 .pill-nav .dropdown-item:hover {
-  background: rgba(0, 212, 170, 0.1);
-  color: #00d4aa;
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--color-primary);
 }
 
-/* Nav Actions */
+/* Nav Actions - Right Side */
 .nav-actions {
-  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
 .site-navbar .nav-link {
@@ -400,11 +404,12 @@ a {
   color: var(--color-primary);
 }
 
-/* Theme toggle & buttons */
+/* Theme toggle, Language & Search buttons */
 .site-navbar .theme-toggle-btn,
-.site-navbar .gt-btn {
-  background: rgba(0, 212, 170, 0.1);
-  border: 1px solid rgba(0, 212, 170, 0.2);
+.site-navbar .gt-btn,
+.site-navbar .search-btn {
+  background: transparent;
+  border: 1px solid rgba(37, 99, 235, 0.2);
   color: var(--color-secondary);
   border-radius: 50%;
   width: 40px;
@@ -416,37 +421,19 @@ a {
 }
 
 .site-navbar .theme-toggle-btn:hover,
-.site-navbar .gt-btn:hover {
-  background: #00d4aa;
-  border-color: #00d4aa;
+.site-navbar .gt-btn:hover,
+.site-navbar .search-btn:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
   color: #fff;
   transform: scale(1.05);
-}
-
-/* Search button */
-.site-navbar .search-btn {
-  background: rgba(0, 212, 170, 0.1);
-  border: 1px solid rgba(0, 212, 170, 0.2);
-  color: var(--color-secondary);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.site-navbar .search-btn:hover {
-  background: #00d4aa;
-  border-color: #00d4aa;
-  color: #fff;
 }
 
 /* Mobile Responsive */
 @media (max-width: 991px) {
   .pill-nav-wrapper {
     margin: 15px 0;
+    flex: unset;
   }
   
   .pill-nav {
@@ -455,7 +442,6 @@ a {
   }
   
   .nav-actions {
-    margin-left: 0;
     margin-top: 15px;
     justify-content: center;
   }
@@ -730,18 +716,18 @@ a {
 }
 
 [data-theme="dark"] .pill-nav {
-    border-color: rgba(0, 212, 170, 0.2);
-    background: rgba(0, 212, 170, 0.05);
+    border-color: rgba(37, 99, 235, 0.3);
+    background: rgba(37, 99, 235, 0.05);
 }
 
 [data-theme="dark"] .pill-nav .nav-link {
-    color: #94a3b8;
+    color: #a8a4c8;
 }
 
 [data-theme="dark"] .pill-nav .nav-link.active,
 [data-theme="dark"] .pill-nav .nav-link:hover {
-    color: #0a0a0f;
-    background: #00d4aa;
+    color: #fff;
+    background: #2563EB;
 }
 
 [data-theme="dark"] .pill-nav .dropdown-menu {
@@ -754,24 +740,23 @@ a {
 }
 
 [data-theme="dark"] .pill-nav .dropdown-item:hover {
-    background: rgba(0, 212, 170, 0.1);
-    color: #00d4aa;
+    background: rgba(37, 99, 235, 0.15);
+    color: #60a5fa;
 }
 
 [data-theme="dark"] .site-navbar .theme-toggle-btn,
 [data-theme="dark"] .site-navbar .gt-btn,
 [data-theme="dark"] .site-navbar .search-btn {
-    background: rgba(0, 212, 170, 0.1);
-    border-color: rgba(0, 212, 170, 0.2);
-    color: #94a3b8;
+    border-color: rgba(37, 99, 235, 0.3);
+    color: #a8a4c8;
 }
 
 [data-theme="dark"] .site-navbar .theme-toggle-btn:hover,
 [data-theme="dark"] .site-navbar .gt-btn:hover,
 [data-theme="dark"] .site-navbar .search-btn:hover {
-    background: #00d4aa;
-    border-color: #00d4aa;
-    color: #0a0a0f;
+    background: #2563EB;
+    border-color: #2563EB;
+    color: #fff;
 }
 
 .navbar .dropdown-toggle::after {
