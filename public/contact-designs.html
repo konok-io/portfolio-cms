@@ -1,0 +1,2785 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কন্টাক্ট সেকশন ডিজাইন কালেকশন - ২০টি প্রফেশনাল ডিজাইন</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans Bengali', sans-serif;
+            background: #0f0f23;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        
+        .design-card {
+            background: linear-gradient(145deg, #1a1a2e, #161625);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .design-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+        
+        .design-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .design-number {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .design-preview {
+            padding: 40px;
+            min-height: 500px;
+        }
+        
+        /* ===== DESIGN 1: Glass Morphism ===== */
+        .design1-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d1f47 100%);
+            border-radius: 24px;
+            padding: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .design1-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+        }
+        
+        .design1-form-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+        }
+        
+        .design1-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px 20px;
+            color: #fff;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        
+        .design1-input:focus {
+            outline: none;
+            border-color: #a855f7;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .design1-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .design1-btn {
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            border: none;
+            border-radius: 12px;
+            padding: 16px 40px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .design1-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
+        }
+        
+        .design1-info-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 40px;
+        }
+        
+        .design1-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        /* ===== DESIGN 2: Gradient Mesh ===== */
+        .design2-section {
+            position: relative;
+            padding: 60px;
+            border-radius: 24px;
+            background: #0a0a1a;
+            overflow: hidden;
+        }
+        
+        .design2-mesh {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.2) 0%, transparent 60%);
+            z-index: 0;
+        }
+        
+        .design2-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .design2-form-container {
+            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 50px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .design2-input {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 18px 24px;
+            color: #fff;
+            width: 100%;
+            font-size: 16px;
+        }
+        
+        .design2-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+        }
+        
+        .design2-btn {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border: none;
+            border-radius: 14px;
+            padding: 18px 50px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 18px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .design2-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .design2-btn:hover::before {
+            left: 100%;
+        }
+        
+        .design2-info-circle {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+            border: 2px solid rgba(59, 130, 246, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+        
+        /* ===== DESIGN 3: Cyberpunk ===== */
+        .design3-section {
+            background: #050510;
+            border-radius: 24px;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .design3-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00f0ff, #b000ff, #00f0ff);
+            animation: borderGlow 3s linear infinite;
+        }
+        
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        
+        .design3-grid-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+        }
+        
+        .design3-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .design3-input {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #00f0ff;
+            border-radius: 8px;
+            padding: 18px 24px;
+            color: #00f0ff;
+            width: 100%;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+        }
+        
+        .design3-input:focus {
+            outline: none;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+        }
+        
+        .design3-input::placeholder {
+            color: rgba(0, 240, 255, 0.5);
+        }
+        
+        .design3-btn {
+            background: transparent;
+            border: 2px solid #b000ff;
+            border-radius: 8px;
+            padding: 18px 50px;
+            color: #b000ff;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .design3-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #b000ff;
+            transition: left 0.3s;
+            z-index: -1;
+        }
+        
+        .design3-btn:hover::before {
+            left: 0;
+        }
+        
+        .design3-btn:hover {
+            color: #fff;
+        }
+        
+        .design3-glow-icon {
+            width: 100px;
+            height: 100px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 2px solid #00f0ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #00f0ff;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.4); }
+            50% { box-shadow: 0 0 0 20px rgba(0, 240, 255, 0); }
+        }
+        
+        /* ===== DESIGN 4: Elegant Minimal ===== */
+        .design4-section {
+            background: linear-gradient(135deg, #fafafa, #f0f0f0);
+            border-radius: 24px;
+            padding: 60px;
+            position: relative;
+        }
+        
+        .design4-input {
+            background: #fff;
+            border: 2px solid #e5e5e5;
+            border-radius: 16px;
+            padding: 20px 24px;
+            color: #1a1a1a;
+            width: 100%;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .design4-input:focus {
+            outline: none;
+            border-color: #1a1a1a;
+        }
+        
+        .design4-btn {
+            background: #1a1a1a;
+            border: none;
+            border-radius: 16px;
+            padding: 20px 50px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .design4-btn:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+        
+        .design4-line {
+            width: 60px;
+            height: 4px;
+            background: #1a1a1a;
+            border-radius: 2px;
+        }
+        
+        .design4-dot {
+            width: 12px;
+            height: 12px;
+            background: #1a1a1a;
+            border-radius: 50%;
+        }
+        
+        /* ===== DESIGN 5: Neon Glow ===== */
+        .design5-section {
+            background: #0d0d0d;
+            border-radius: 24px;
+            padding: 60px;
+            position: relative;
+        }
+        
+        .design5-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.5;
+        }
+        
+        .design5-glow-1 {
+            background: #ff006e;
+            top: -100px;
+            left: -100px;
+        }
+        
+        .design5-glow-2 {
+            background: #3a86ff;
+            bottom: -100px;
+            right: -100px;
+        }
+        
+        .design5-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .design5-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px 24px;
+            color: #fff;
+            width: 100%;
+        }
+        
+        .design5-input:focus {
+            outline: none;
+            border-color: #ff006e;
+            box-shadow: 0 0 30px rgba(255, 0, 110, 0.2);
+        }
+        
+        .design5-btn {
+            background: linear-gradient(135deg, #ff006e, #8338ec);
+            border: none;
+            border-radius: 12px;
+            padding: 20px 50px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .design5-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+        
+        .design5-icon-box {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 0, 110, 0.1);
+            border: 1px solid rgba(255, 0, 110, 0.5);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #ff006e;
+        }
+        
+        /* ===== DESIGN 6: Split Screen ===== */
+        .design6-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-radius: 24px;
+            overflow: hidden;
+            min-height: 500px;
+        }
+        
+        .design6-left {
+            background: linear-gradient(180deg, #1e1e2e, #2d1f3d);
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .design6-right {
+            background: #fff;
+            padding: 60px;
+        }
+        
+        .design6-input {
+            background: #f5f5f5;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 18px 24px;
+            color: #1a1a1a;
+            width: 100%;
+        }
+        
+        .design6-input:focus {
+            outline: none;
+            border-color: #1e1e2e;
+            background: #fff;
+        }
+        
+        .design6-btn {
+            background: #1e1e2e;
+            border: none;
+            border-radius: 12px;
+            padding: 18px 40px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .design6-social {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .design6-social:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        /* ===== DESIGN 7: Card Stack ===== */
+        .design7-section {
+            background: #f8fafc;
+            border-radius: 24px;
+            padding: 60px;
+        }
+        
+        .design7-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+        
+        .design7-card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            right: 20px;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .design7-input {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px 20px;
+            color: #1a1a1a;
+            width: 100%;
+        }
+        
+        .design7-input:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+        
+        .design7-btn {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border: none;
+            border-radius: 12px;
+            padding: 16px 40px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .design7-info-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: #f8fafc;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .design7-info-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+        
+        /* ===== DESIGN 8: Floating Shapes ===== */
+        .design8-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 24px;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .design8-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: floatShape 6s ease-in-out infinite;
+        }
+        
+        .design8-shape-1 {
+            width: 200px;
+            height: 200px;
+            top: -100px;
+            right: -50px;
+            animation-delay: 0s;
+        }
+        
+        .design8-shape-2 {
+            width: 150px;
+            height: 150px;
+            bottom: -50px;
+            left: -50px;
+            animation-delay: 2s;
+        }
+        
+        .design8-shape-3 {
+            width: 100px;
+            height: 100px;
+            top: 50%;
+            left: 10%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes floatShape {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+        
+        .design8-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .design8-form-bg {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+        }
+        
+        .design8-input {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 12px;
+            padding: 18px 24px;
+            color: #1a1a1a;
+            width: 100%;
+        }
+        
+        .design8-input:focus {
+            outline: none;
+            background: #fff;
+        }
+        
+        .design8-btn {
+            background: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 18px 50px;
+            color: #764ba2;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .design8-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* ===== DESIGN 9: Timeline Style ===== */
+        .design9-section {
+            background: #0a0a0a;
+            border-radius: 24px;
+            padding: 60px;
+        }
+        
+        .design9-timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+        
+        .design9-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #f59e0b, #ef4444, #8b5cf6);
+        }
+        
+        .design9-timeline-item {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .design9-timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 28px;
+            width: 16px;
+            height: 16px;
+            background: #f59e0b;
+            border-radius: 50%;
+            border: 3px solid #0a0a0a;
+        }
+        
+        .design9-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 16px 20px;
+            color: #fff;
+            width: 100%;
+        }
+        
+        .design9-input:focus {
+            outline: none;
+            border-color: #f59e0b;
+        }
+        
+        .design9-btn {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            border: none;
+            border-radius: 10px;
+            padding: 16px 40px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        /* ===== DESIGN 10: 3D Card Effect ===== */
+        .design10-section {
+            background: #f0f4f8;
+            border-radius: 24px;
+            padding: 60px;
+            perspective: 1000px;
+        }
+        
+        .design10-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 50px;
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(0, 0, 0, 0.05);
+            transform: rotateX(5deg);
+            transition: transform 0.5s;
+        }
+        
+        .design10-card:hover {
+            transform: rotateX(0deg);
+        }
+        
+        .design10-input {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 18px 24px;
+            color: #1a1a1a;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        
+        .design10-input:focus {
+            outline: none;
+            border-color: #0ea5e9;
+            box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+        }
+        
+        .design10-btn {
+            background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+            border: none;
+            border-radius: 14px;
+            padding: 18px 50px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .design10-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(14, 165, 233, 0.4);
+        }
+        
+        .design10-info-card {
+            background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+            border-radius: 20px;
+            padding: 40px;
+            color: #fff;
+        }
+        
+        .design10-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        /* ===== DESIGN 11: Brutalist ===== */
+        .design11-section {
+            background: #fff;
+            border-radius: 24px;
+            padding: 60px;
+            border: 4px solid #000;
+        }
+        
+        .design11-input {
+            background: #fff;
+            border: 3px solid #000;
+            border-radius: 0;
+            padding: 20px 24px;
+            color: #000;
+            width: 100%;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        .design11-input:focus {
+            outline: none;
+            border-color: #ff0000;
+        }
+        
+        .design11-btn {
+            background: #000;
+            border: 3px solid #000;
+            border-radius: 0;
+            padding: 20px 50px;
+            color: #fff;
+            font-weight: 800;
+            font-size: 18px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .design11-btn:hover {
+            background: #ff0000;
+            border-color: #ff0000;
+        }
+        
+        .design11-block {
+            background: #000;
+            color: #fff;
+            padding: 30px;
+            font-weight: 800;
+            font-size: 48px;
+        }
+        
+        /* ===== DESIGN 12: Soft Gradient ===== */
+        .design12-section {
+            background: linear-gradient(135deg, #fee2e2, #fef3c7, #dbeafe);
+            border-radius: 24px;
+            padding: 60px;
+        }
+        
+        .design12-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .design12-input {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            padding: 18px 24px;
+            color: #1a1a1a;
+            width: 100%;
+        }
+        
+        .design12-input:focus {
+            outline: none;
+            border-color: #f43f5e;
+        }
+        
+        .design12-btn {
+            background: linear-gradient(135deg, #f43f5e, #e11d48);
+            border: none;
+            border-radius: 16px;
+            padding: 18px 50px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .design12-circle {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #f43f5e, #fb923c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #fff;
+        }
+        
+        /* ===== DESIGN 13: Dark Elegant ===== */
+        .design13-section {
+            background: linear-gradient(135deg, #0c0c1d, #1a1a2e);
+            border-radius: 24px;
+            padding: 60px;
+        }
+        
+        .design13-border {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 50px;
+        }
+        
+        .design13-input {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 18px 24px;
+            color: #fff;
+            width: 100%;
+        }
+        
+        .design13-input:focus {
+            outline: none;
+            border-color: #fbbf24;
+        }
+        
+        .design13-btn {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            border: none;
+            border-radius: 10px;
+            padding: 18px 50px;
+            color: #0c0c1d;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        
+        .design13-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #0c0c1d;
+        }
+        
+        /* ===== DESIGN 14: Orbital ===== */
+        .design14-section {
+            background: #0a0a0a;
+            border-radius: 24px;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .design14-orbit {
+            position: absolute;
+            border: 1px dashed rgba(139, 92, 246, 0.3);
+            border-radius: 50%;
+        }
+        
+        .design14-orbit-1 {
+            width: 400px;
+            height: 400px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .design14-orbit-2 {
+            width: 500px;
+            height: 500px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: rotateOrbit 20s linear infinite;
+        }
+        
+        .design14-orbit-3 {
+            width: 600px;
+            height: 600px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: rotateOrbit 30s linear infinite reverse;
+        }
+        
+        @keyframes rotateOrbit {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .design14-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            z-index: 1;
+        }
+        
+        .design14-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .design14-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            padding: 18px 24px;
+            color: #fff;
+            width: 100%;
+        }
+        
+        .design14-input:focus {
+            outline: none;
+            border-color: #8b5cf6;
+        }
+        
+        .design14-btn {
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            border: none;
+            border-radius: 12px;
+            padding: 18px 50px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        /* ===== DESIGN 15: Tech Grid ===== */
+        .design15-section {
+            background: #0f172a;
+            border-radius: 24px;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .design15-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(56, 189, 248, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(56, 189, 248, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        
+        .design15-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .design15-hexagon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+        
+        .design15-input {
+            background: rgba(56, 189, 248, 0.05);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 8px;
+            padding: 18px 24px;
+            color: #fff;
+            width: 100%;
+        }
+        
+        .design15-input:focus {
+            outline: none;
+            border-color: #38bdf8;
+        }
+        
+        .design15-btn {
+            background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+            border: none;
+            border-radius: 8px;
+            padding: 18px 50px;
+            color: #0f172a;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        
+        /* ===== DESIGN 16: Organic Shape ===== */
+        .design16-section {
+            background: linear-gradient(135deg, #134e5e, #71b280);
+            border-radius: 24px;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .design16-blob {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+        
+        .design16-blob-1 {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            right: -50px;
+        }
+        
+        .design16-blob-2 {
+            width: 200px;
+            height: 200px;
+            bottom: -50px;
+            left: 20%;
+        }
+        
+        .design16-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .design16-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            padding: 50px;
+        }
+        
+        .design16-input {
+            background: #f0fdf4;
+            border: 2px solid #bbf7d0;
+            border-radius: 14px;
+            padding: 18px 24px;
+            color: #1a1a1a;
+            width: 100%;
+        }
+        
+        .design16-input:focus {
+            outline: none;
+            border-color: #71b280;
+        }
+        
+        .design16-btn {
+            background: linear-gradient(135deg, #134e5e, #71b280);
+            border: none;
+            border-radius: 14px;
+            padding: 18px 50px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .design16-icon-circle {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #134e5e, #71b280);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: #fff;
+        }
+        
+        /* ===== DESIGN 17: Double Border ===== */
+        .design17-section {
+            background: #1a1a2e;
+            border-radius: 24px;
+            padding: 60px;
+        }
+        
+        .design17-inner-border {
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 50px;
+        }
+        
+        .design17-input {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0;
+            padding: 18px 0;
+            color: #fff;
+            width: 100%;
+        }
+        
+        .design17-input:focus {
+            outline: none;
+            border-bottom-color: #f472b6;
+        }
+        
+        .design17-btn {
+            background: transparent;
+            border: 2px solid #f472b6;
+            border-radius: 50px;
+            padding: 18px 50px;
+            color: #f472b6;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .design17-btn:hover {
+            background: #f472b6;
+            color: #1a1a2e;
+        }
+        
+        .design17-accent {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #f472b6, #a78bfa);
+            border-radius: 2px;
+        }
+        
+        /* ===== DESIGN 18: Glass Split ===== */
+        .design18-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            border-radius: 24px;
+            overflow: hidden;
+            min-height: 500px;
+        }
+        
+        .design18-left {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(139, 92, 246, 0.8));
+            backdrop-filter: blur(20px);
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .design18-right {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 60px;
+        }
+        
+        .design18-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 18px 24px;
+            color: #fff;
+            width: 100%;
+        }
+        
+        .design18-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .design18-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .design18-btn {
+            background: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 18px 50px;
+            color: #764ba2;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        
+        /* ===== DESIGN 19: Layered Cards ===== */
+        .design19-section {
+            background: #f8fafc;
+            border-radius: 24px;
+            padding: 60px;
+            position: relative;
+        }
+        
+        .design19-layer {
+            position: absolute;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+        
+        .design19-layer-1 {
+            width: calc(100% - 40px);
+            height: calc(100% - 40px);
+            top: 20px;
+            left: 20px;
+            z-index: 1;
+        }
+        
+        .design19-layer-2 {
+            width: calc(100% - 80px);
+            height: calc(100% - 80px);
+            top: 40px;
+            left: 40px;
+            z-index: 2;
+            background: linear-gradient(135deg, #f43f5e, #fb923c);
+        }
+        
+        .design19-content {
+            position: relative;
+            z-index: 3;
+            padding: 50px;
+        }
+        
+        .design19-input {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 18px 24px;
+            color: #1a1a1a;
+            width: 100%;
+        }
+        
+        .design19-input:focus {
+            outline: none;
+            border-color: #f43f5e;
+        }
+        
+        .design19-btn {
+            background: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 18px 50px;
+            color: #f43f5e;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        
+        /* ===== DESIGN 20: Animated Border ===== */
+        .design20-section {
+            background: #0a0a1a;
+            border-radius: 24px;
+            padding: 60px;
+            position: relative;
+        }
+        
+        .design20-border-anim {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 24px;
+            padding: 3px;
+            background: linear-gradient(90deg, #00f0ff, #00ff88, #00f0ff);
+            background-size: 200% 100%;
+            animation: borderFlow 3s linear infinite;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+        
+        @keyframes borderFlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        
+        .design20-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .design20-input {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 12px;
+            padding: 18px 24px;
+            color: #fff;
+            width: 100%;
+        }
+        
+        .design20-input:focus {
+            outline: none;
+            border-color: #00f0ff;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+        }
+        
+        .design20-btn {
+            background: transparent;
+            border: 2px solid #00ff88;
+            border-radius: 12px;
+            padding: 18px 50px;
+            color: #00ff88;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .design20-btn:hover {
+            background: #00ff88;
+            color: #0a0a1a;
+        }
+        
+        .design20-icon-glow {
+            width: 100px;
+            height: 100px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 2px solid #00f0ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #00f0ff;
+            animation: iconPulse 2s infinite;
+        }
+        
+        @keyframes iconPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.4); }
+            50% { box-shadow: 0 0 0 30px rgba(0, 240, 255, 0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .design-preview {
+                padding: 20px;
+            }
+            
+            .design6-container,
+            .design18-container {
+                grid-template-columns: 1fr;
+            }
+            
+            [class*="design"]:section {
+                padding: 30px;
+            }
+        }
+        
+        .header-section {
+            background: linear-gradient(135deg, #1a1a2e, #2d1f47);
+            padding: 80px 40px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header-section h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header-section p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .nav-dots {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .nav-dot:hover,
+        .nav-dot.active {
+            background: #667eea;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Dots -->
+    <div class="nav-dots">
+        <div class="nav-dot active" onclick="scrollToDesign(1)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(2)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(3)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(4)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(5)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(6)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(7)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(8)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(9)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(10)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(11)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(12)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(13)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(14)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(15)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(16)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(17)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(18)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(19)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(20)"></div>
+    </div>
+    
+    <div class="header-section">
+        <h1>কন্টাক্ট সেকশন ডিজাইন কালেকশন</h1>
+        <p>২০টি ইউনিক ও প্রফেশনাল কন্টাক্ট সেকশন ডিজাইন - আপনার পছন্দের ডিজাইন সিলেক্ট করুন</p>
+    </div>
+    
+    <div class="container px-4">
+        
+        <!-- DESIGN 1: Glass Morphism -->
+        <div class="design-card" id="design1">
+            <div class="design-header">
+                <h3>DESIGN 1: Glass Morphism</h3>
+                <span class="design-number">01 / 20</span>
+            </div>
+            <div class="design-preview">
+                <div class="design1-section">
+                    <div class="row g-4">
+                        <div class="col-lg-6">
+                            <div class="design1-info-card mb-4">
+                                <h2 class="mb-4" style="font-size: 36px; font-weight: 700;">যোগাযোগ করুন</h2>
+                                <p class="mb-4" style="color: rgba(255,255,255,0.7);">আপনার যেকোনো প্রশ্ন বা প্রয়োজনে আমাদের সাথে যোগাযোগ করুন। আমরা সবসময় আপনার সেবায় প্রস্তুত।</p>
+                                <div class="d-flex align-items-center gap-3 mb-4">
+                                    <div class="design1-icon"><i class="fa-solid fa-envelope"></i></div>
+                                    <div>
+                                        <small style="color: rgba(255,255,255,0.5);">ইমেইল</small>
+                                        <div style="font-weight: 600;">hello@example.com</div>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center gap-3 mb-4">
+                                    <div class="design1-icon"><i class="fa-solid fa-phone"></i></div>
+                                    <div>
+                                        <small style="color: rgba(255,255,255,0.5);">ফোন</small>
+                                        <div style="font-weight: 600;">+880 1234 567890</div>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="design1-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                    <div>
+                                        <small style="color: rgba(255,255,255,0.5);">ঠিকানা</small>
+                                        <div style="font-weight: 600;">ঢাকা, বাংলাদেশ</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="design1-form-card">
+                                <h4 class="mb-4">মেসেজ পাঠান</h4>
+                                <div class="mb-3">
+                                    <input type="text" class="design1-input" placeholder="আপনার নাম">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="email" class="design1-input" placeholder="ইমেইল ঠিকানা">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="design1-input" placeholder="সাবজেক্ট">
+                                </div>
+                                <div class="mb-4">
+                                    <textarea class="design1-input" rows="4" placeholder="আপনার মেসেজ লিখুন"></textarea>
+                                </div>
+                                <button class="design1-btn w-100">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                    মেসেজ পাঠান
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 2: Gradient Mesh -->
+        <div class="design-card" id="design2">
+            <div class="design-header" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6);">
+                <h3>DESIGN 2: Gradient Mesh</h3>
+                <span class="design-number">02 / 20</span>
+            </div>
+            <div class="design-preview">
+                <div class="design2-section">
+                    <div class="design2-mesh"></div>
+                    <div class="design2-content">
+                        <div class="text-center mb-5">
+                            <h2 style="font-size: 42px; font-weight: 800; margin-bottom: 16px;">যোগাযোগ করুন</h2>
+                            <p style="color: rgba(255,255,255,0.7); max-width: 500px; margin: 0 auto;">আপনার প্রশ্ন বা পরামর্শের জন্য নিচের ফর্মটি পূরণ করুন</p>
+                        </div>
+                        <div class="row g-4">
+                            <div class="col-lg-8 mx-auto">
+                                <div class="design2-form-container">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <input type="text" class="design2-input" placeholder="আপনার নাম">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="email" class="design2-input" placeholder="ইমেইল">
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="text" class="design2-input" placeholder="সাবজেক্ট">
+                                        </div>
+                                        <div class="col-12">
+                                            <textarea class="design2-input" rows="4" placeholder="আপনার মেসেজ"></textarea>
+                                        </div>
+                                        <div class="col-12 text-center">
+                                            <button class="design2-btn">
+                                                <i class="fa-solid fa-paper-plane me-2"></i>
+                                                মেসেজ পাঠান
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-4 mt-5">
+                            <div class="col-md-4 text-center">
+                                <div class="design2-info-circle mx-auto mb-3">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <h5>ইমেইল</h5>
+                                <p style="color: rgba(255,255,255,0.6);">hello@example.com</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <div class="design2-info-circle mx-auto mb-3">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <h5>ফোন</h5>
+                                <p style="color: rgba(255,255,255,0.6);">+880 1234 567890</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <div class="design2-info-circle mx-auto mb-3">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <h5>ঠিকানা</h5>
+                                <p style="color: rgba(255,255,255,0.6);">ঢাকা, বাংলাদেশ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 3: Cyberpunk -->
+        <div class="design-card" id="design3">
+            <div class="design-header" style="background: linear-gradient(135deg, #00f0ff, #b000ff);">
+                <h3>DESIGN 3: Cyberpunk</h3>
+                <span class="design-number">03 / 20</span>
+            </div>
+            <div class="design-preview">
+                <div class="design3-section">
+                    <div class="design3-grid-lines"></div>
+                    <div class="design3-content">
+                        <div class="row align-items-center g-5">
+                            <div class="col-lg-5 text-center">
+                                <div class="design3-glow-icon mx-auto mb-4">
+                                    <i class="fa-solid fa-headset"></i>
+                                </div>
+                                <h2 style="font-size: 36px; font-weight: 800; text-transform: uppercase; letter-spacing: 5px; color: #00f0ff;">যোগাযোগ</h2>
+                                <p style="color: rgba(255,255,255,0.6); margin-top: 16px;">24/7 সাপোর্ট উপলব্ধ</p>
+                            </div>
+                            <div class="col-lg-7">
+                                <div style="background: rgba(0,0,0,0.3); border-radius: 16px; padding: 40px;">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <input type="text" class="design3-input" placeholder="নাম">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="email" class="design3-input" placeholder="ইমেইল">
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="text" class="design3-input" placeholder="সাবজেক্ট">
+                                        </div>
+                                        <div class="col-12">
+                                            <textarea class="design3-input" rows="4" placeholder="মেসেজ"></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="design3-btn w-100">
+                                                <i class="fa-solid fa-rocket me-2"></i>
+                                                সেন্ড মেসেজ
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 4: Elegant Minimal -->
+        <div class="design-card" id="design4">
+            <div class="design-header" style="background: linear-gradient(135deg, #1a1a1a, #333);">
+                <h3>DESIGN 4: Elegant Minimal</h3>
+                <span class="design-number">04 / 20</span>
+            </div>
+            <div class="design-preview">
+                <div class="design4-section">
+                    <div class="row g-5">
+                        <div class="col-lg-5">
+                            <div class="design4-line mb-4"></div>
+                            <h2 style="font-size: 48px; font-weight: 300; color: #1a1a1a; margin-bottom: 24px;">যোগাযোগ<br>করুন</h2>
+                            <p style="color: #666; margin-bottom: 40px;">আপনার যেকোনো প্রশ্ন বা পরামর্শের জন্য আমাদের সাথে যোগাযোগ করুন।</p>
+                            
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <div class="design4-dot"></div>
+                                <span style="color: #1a1a1a; font-weight: 500;">hello@example.com</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <div class="design4-dot"></div>
+                                <span style="color: #1a1a1a; font-weight: 500;">+880 1234 567890</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="design4-dot"></div>
+                                <span style="color: #1a1a1a; font-weight: 500;">ঢাকা, বাংলাদেশ</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div style="background: #fff; border-radius: 20px; padding: 50px; box-shadow: 0 20px 60px rgba(0,0,0,0.08);">
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <input type="text" class="design4-input" placeholder="আপনার নাম">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="email" class="design4-input" placeholder="ইমেইল">
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" class="design4-input" placeholder="সাবজেক্ট">
+                                    </div>
+                                    <div class="col-12">
+                                        <textarea class="design4-input" rows="5" placeholder="মেসেজ"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="design4-btn">
+                                            <i class="fa-solid fa-arrow-right me-2"></i>
+                                            পাঠান
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 5: Neon Glow -->
+        <div class="design-card" id="design5">
+            <div class="design-header" style="background: linear-gradient(135deg, #ff006e, #3a86ff);">
+                <h3>DESIGN 5: Neon Glow</h3>
+                <span class="design-number">05 / 20</span>
+            </div>
+            <div class="design-preview">
+                <div class="design5-section">
+                    <div class="design5-glow design5-glow-1"></div>
+                    <div class="design5-glow design5-glow-2"></div>
+                    <div class="design5-content">
+                        <div class="text-center mb-5">
+                            <h2 style="font-size: 48px; font-weight: 800; margin-bottom: 16px; background: linear-gradient(135deg, #ff006e, #3a86ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">যোগাযোগ করুন</h2>
+                            <p style="color: rgba(255,255,255,0.7);">আমাদের সাথে যোগাযোগ করতে নিচের ফর্ম ব্যবহার করুন</p>
+                        </div>
+                        <div class="row g-4">
+                            <div class="col-lg-7 mx-auto">
+                                <div style="background: rgba(255,255,255,0.05); border-radius: 20px; padding: 50px; border: 1px solid rgba(255,255,255,0.1);">
+                                    <div class="row g-4">
+                                        <div class="col-md-6">
+                                            <input type="text" class="design5-input" placeholder="নাম">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="email" class="design5-input" placeholder="ইমেইল">
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="text" class="design5-input" placeholder="ফোন">
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="text" class="design5-input" placeholder="সাবজেক্ট">
+                                        </div>
+                                        <div class="col-12">
+                                            <textarea class="design5-input" rows="4" placeholder="মেসেজ"></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="design5-btn w-100">
+                                                <i class="fa-solid fa-paper-plane me-2"></i>
+                                                মেসেজ পাঠান
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-4 mt-5">
+                            <div class="col-md-4 text-center">
+                                <div class="design5-icon-box mx-auto mb-3">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <h5 style="color: #fff;">ইমেইল</h5>
+                                <p style="color: rgba(255,255,255,0.6);">hello@example.com</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <div class="design5-icon-box mx-auto mb-3">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <h5 style="color: #fff;">ফোন</h5>
+                                <p style="color: rgba(255,255,255,0.6);">+880 1234 567890</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <div class="design5-icon-box mx-auto mb-3">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <h5 style="color: #fff;">ঠিকানা</h5>
+                                <p style="color: rgba(255,255,255,0.6);">ঢাকা, বাংলাদেশ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 6: Split Screen -->
+        <div class="design-card" id="design6">
+            <div class="design-header" style="background: linear-gradient(135deg, #1e1e2e, #3d2c5e);">
+                <h3>DESIGN 6: Split Screen</h3>
+                <span class="design-number">06 / 20</span>
+            </div>
+            <div class="design-preview">
+                <div class="design6-container">
+                    <div class="design6-left">
+                        <span style="color: rgba(255,255,255,0.5); font-size: 14px; text-transform: uppercase; letter-spacing: 3px;">যোগাযোগ</span>
+                        <h2 style="font-size: 42px; font-weight: 700; margin: 20px 0;">আমাদের সাথে<br>কথা বলুন</h2>
+                        <p style="color: rgba(255,255,255,0.6); margin-bottom: 40px;">আপনার যেকোনো প্রশ্ন বা পরামর্শের জন্য আমরা এখানে আছি।</p>
+                        
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <i class="fa-solid fa-envelope" style="color: #a78bfa;"></i>
+                                <span>hello@example.com</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <i class="fa-solid fa-phone" style="color: #a78bfa;"></i>
+                                <span>+880 1234 567890</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <i class="fa-solid fa-location-dot" style="color: #a78bfa;"></i>
+                                <span>ঢাকা, বাংলাদেশ</span>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex gap-3">
+                            <a href="#" class="design6-social"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="design6-social"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="design6-social"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" class="design6-social"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="design6-right">
+                        <h3 style="color: #1a1a1a; font-size: 28px; margin-bottom: 30px;">মেসেজ পাঠান</h3>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" class="design6-input" placeholder="নাম">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="design6-input" placeholder="ইমেইল">
+                            </div>
+                            <div class="col-12">
+                                <input type="text" class="design6-input" placeholder="সাবজেক্ট">
+                            </div>
+                            <div class="col-12">
+                                <textarea class="design6-input" rows="5" placeholder="মেসেজ"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="design6-btn w-100">
+                                    <i class="fa-solid fa-paper-plane me-2"></i>
+                                    পাঠান
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 7: Card Stack -->
+        <div class="design-card" id="design7">
+            <div class="design-header" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">
+                <h3>DESIGN 7: Card Stack</h3>
+                <span class="design-number">07 / 20</span>
+            </div>
+            <div class="design-preview">
+                <div class="design7-section">
+                    <div class="row g-5">
+                        <div class="col-lg-5">
+                            <div class="design7-info-item">
+                                <div class="design7-info-icon">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h5 style="margin-bottom: 4px;">ইমেইল</h5>
+                                    <p style="color: #666; margin: 0;">hello@example.com</p>
+                                </div>
+                            </div>
+                            <div class="design7-info-item">
+                                <div class="design7-info-icon">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h5 style="margin-bottom: 4px;">ফোন</h5>
+                                    <p style="color: #666; margin: 0;">+880 1234 567890</p>
+                                </div>
+                            </div>
+                            <div class="design7-info-item">
+                                <div class="design7-info-icon">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h5 style="margin-bottom: 4px;">ঠিকানা</h5>
+                                    <p style="color: #666; margin: 0;">ঢাকা, বাংলাদেশ</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="design7-card">
+                                <h3 style="margin-bottom: 30px; color: #1a1a1a;">মেসেজ পাঠান</h3>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <input type="text" class="design7-input" placeholder="নাম">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="email" class="design7-input" placeholder="ইমেইল">
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" class="design7-input" placeholder="সাবজেক্ট">
+                                    </div>
+                                    <div class="col-12">
+                                        <textarea class="design7-input" rows="4" placeholder="মেসেজ"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="design7-btn w-100">
+                                            <i class="fa-solid fa-paper-plane me-2"></i>
+                                            পাঠান
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 8: Floating Shapes -->
+        <div class="design-card" id="design8">
+            <div class="design-header" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                <h3>DESIGN 8: Floating Shapes</h3>
+                <span class="design-number">08 / 20</span>
+            </div>
+            <div class="design-preview">
+                <div class="design8-section">
+                    <div class="design8-shape design8-shape-1"></div>
+                    <div class="design8-shape design8-shape-2"></div>
+                    <div class="design8-shape design8-shape-3"></div>
+                    <div class="design8-content">
+                        <div class="text-center mb-5">
+                            <h2 style="font-size: 42px; font-weight: 700; color: #fff; margin-bottom: 16px;">যোগাযোগ করুন</h2>
+                            <p style="color: rgba(255,255,255,0.8);">আপনার প্রশ্নের উত্তর দিতে আমরা প্রস্তুত</p>
+                        </div>
+                        <div class="row g-4">
+                            <div class="col-lg-8 mx-auto">
+                                <div class="design8-form-bg">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <input type="text" class="design8-input" placeholder="নাম">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="email" class="design8-input" placeholder="ইমেইল">
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="text" class="design8-input" placeholder="ফোন">
+                                        </div>
+                                        <div class="col-12">
+                                            <textarea class="design8-input" rows="4" placeholder="মেসেজ"></textarea>
+                                        </div>
+                                        <div class="col-12 text-center">
+                                            <button class="design8-btn">
+                                                <i class="fa-solid fa-paper-plane me-2"></i>
+                                                পাঠান
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 9: Timeline Style -->
+        <div class="design-card" id="design9">
+            <div class="design-header" style="background: linear-gradient(135deg, #f59e0b, #ef4444, #8b5cf6);">
+                <h3>DESIGN 9: Timeline Style</h3>
+                <span class="design-number">09 / 20</span>
+            </div>
+            <div class="design-preview">
+                <div class="design9-section">
+                    <div class="row g-5">
+                        <div class="col-lg-5">
+                            <h2 style="font-size: 36px; font-weight: 700; margin-bottom: 30px;">যোগাযোগ<br>করুন</h2>
+                            <div class="design9-timeline">
+                                <div class="design9-timeline-item">
+                                    <h5 style="color: #f59e0b;">ইমেইল</h5>
+                                    <p style="color: rgba(255,255,255,0.6);">hello@example.com</p>
+                                </div>
+                                <div class="design9-timeline-item">
+                                    <h5 style="color: #ef4444;">ফোন</h5>
+                                    <p style="color: rgba(255,255,255,0.6);">+880 1234 567890</p>
+                                </div>
+                                <div class="design9-timeline-item">
+                                    <h5 style="color: #8b5cf6;">ঠিকানা</h5>
+                                    <p style="color: rgba(255,255,255,0.6);">ঢাকা, বাংলাদেশ</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div style="background: rgba(255,255,255,0.03); border-radius: 16px; padding: 40px;">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <input type="text" class="design9-input" placeholder="নাম">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="email" class="design9-input" placeholder="ইমেইল">
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" class="design9-input" placeholder="সাবজেক্ট">
+                                    </div>
+                                    <div class="col-12">
+                                        <textarea class="design9-input" rows="4" placeholder="মেসেজ"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="design9-btn w-100">
+                                            <i class="fa-solid fa-paper-plane me-2"></i>
+                                            পাঠান
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 10: 3D Card Effect -->
+        <div class="design-card" id="design10">
+            <div class="design-header" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);">
+                <h3>DESIGN 10: 3D Card Effect</h3>
+                <span class="design-number">10 / 20</span>
+            </div>
+            <div class="design-preview">
+                <div class="design10-section">
+                    <div class="row g-5">
+                        <div class="col-lg-5">
+                            <div class="design10-info-card mb-4">
+                                <div class="design10-icon mb-4">
+                                    <i class="fa-solid fa-headset"></i>
+                                </div>
+                                <h3 style="font-size: 28px; margin-bottom: 16px;">যোগাযোগ করুন</h3>
+                                <p style="opacity: 0.8; margin-bottom: 30px;">আপনার যেকোনো প্রশ্ন বা প্রয়োজনে আমাদের সাথে যোগাযোগ করুন।</p>
+                                
+                                <div class="mb-3">
+                                    <i class="fa-solid fa-envelope me-2"></i>
+                                    hello@example.com
+                                </div>
+                                <div class="mb-3">
+                                    <i class="fa-solid fa-phone me-2"></i>
+                                    +880 1234 567890
+                                </div>
+                                <div>
+                                    <i class="fa-solid fa-location-dot me-2"></i>
+                                    ঢাকা, বাংলাদেশ
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="design10-card">
+                                <h3 style="margin-bottom: 30px; color: #1a1a1a;">মেসেজ পাঠান</h3>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <input type="text" class="design10-input" placeholder="নাম">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="email" class="design10-input" placeholder="ইমেইল">
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" class="design10-input" placeholder="সাবজেক্ট">
+                                    </div>
+                                    <div class="col-12">
+                                        <textarea class="design10-input" rows="4" placeholder="মেসেজ"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="design10-btn w-100">
+                                            <i class="fa-solid fa-paper-plane me-2"></i>
+                                            পাঠান
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 11: Brutalist -->
+        <div class="design-card" id="design11">
+            <div class="design-header" style="background: #000;">
+                <h3>DESIGN 11: Brutalist</h3>
+                <span class="design-number">11 / 20</span>
+            </div>
+            <div class="design-preview">
+                <div class="design11-section">
+                    <div class="row g-5">
+                        <div class="col-lg-4">
+                            <div class="design11-block mb-4">01</div>
+                            <h2 style="font-size: 42px; font-weight: 900; color: #000; margin-bottom: 20px;">যোগাযোগ<br>করুন</h2>
+                            <div style="margin-top: 30px;">
+                                <p style="font-weight: 700; color: #000;">hello@example.com</p>
+                                <p style="font-weight: 700; color: #000;">+880 1234 567890</p>
+                                <p style="font-weight: 700; color: #000;">ঢাকা, বাংলাদেশ</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <input type="text" class="design11-input" placeholder="নাম">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="design11-input" placeholder="ইমেইল">
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="design11-input" placeholder="সাবজেক্ট">
+                                </div>
+                                <div class="col-12">
+                                    <textarea class="design11-input" rows="6" placeholder="মেসেজ"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button class="design11-btn w-100">
+                                        <i class="fa-solid fa-arrow-right me-2"></i>
+                                        পাঠান
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 12: Soft Gradient -->
+        <div class="design-card" id="design12">
+            <div class="design-header" style="background: linear-gradient(135deg, #f43f5e, #fb923c);">
+                <h3>DESIGN 12: Soft Gradient</h3>
+                <span class="design-number">12 / 20</span>
+            </div>
+            <div class="design-preview">
+                <div class="design12-section">
+                    <div class="text-center mb-5">
+                        <div class="design12-circle mx-auto mb-4">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <h2 style="font-size: 42px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px;">যোগাযোগ করুন</h2>
+                        <p style="color: #666;">আপনার মেসেজের জন্য ধন্যবাদ</p>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="design12-card">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <input type="text" class="design12-input" placeholder="নাম">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="email" class="design12-input" placeholder="ইমেইল">
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" class="design12-input" placeholder="সাবজেক্ট">
+                                    </div>
+                                    <div class="col-12">
+                                        <textarea class="design12-input" rows="4" placeholder="মেসেজ"></textarea>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <button class="design12-btn">
+                                            <i class="fa-solid fa-paper-plane me-2"></i>
+                                            পাঠান
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 13: Dark Elegant -->
+        <div class="design-card" id="design13">
+            <div class="design-header" style="background: linear-gradient(135deg, #fbbf24, #f59e0b);">
+                <h3>DESIGN 13: Dark Elegant</h3>
+                <span class="design-number">13 / 20</span>
+            </div>
+            <div class="design-preview">
+                <div class="design13-section">
+                    <div class="design13-border">
+                        <div class="row g-5">
+                            <div class="col-lg-5">
+                                <div class="text-center mb-4">
+                                    <div class="design13-icon mx-auto mb-4">
+                                        <i class="fa-solid fa-paper-plane"></i>
+                                    </div>
+                                    <h2 style="font-size: 36px; font-weight: 700; margin-bottom: 20px;">যোগাযোগ করুন</h2>
+                                    <p style="color: rgba(255,255,255,0.6);">আপনার যেকোনো প্রশ্ন বা পরামর্শের জন্য আমাদের সাথে যোগাযোগ করুন।</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <input type="text" class="design13-input" placeholder="নাম">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="email" class="design13-input" placeholder="ইমেইল">
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" class="design13-input" placeholder="সাবজেক্ট">
+                                    </div>
+                                    <div class="col-12">
+                                        <textarea class="design13-input" rows="4" placeholder="মেসেজ"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="design13-btn w-100">
+                                            <i class="fa-solid fa-paper-plane me-2"></i>
+                                            পাঠান
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 14: Orbital -->
+        <div class="design-card" id="design14">
+            <div class="design-header" style="background: linear-gradient(135deg, #8b5cf6, #a855f7);">
+                <h3>DESIGN 14: Orbital</h3>
+                <span class="design-number">14 / 20</span>
+            </div>
+            <div class="design-preview">
+                <div class="design14-section">
+                    <div class="design14-orbit design14-orbit-1"></div>
+                    <div class="design14-orbit design14-orbit-2"></div>
+                    <div class="design14-orbit design14-orbit-3"></div>
+                    <div class="design14-center">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <div class="design14-content">
+                        <div class="text-center mb-5 pt-5">
+                            <h2 style="font-size: 42px; font-weight: 700; margin-bottom: 16px;">যোগাযোগ করুন</h2>
+                            <p style="color: rgba(255,255,255,0.7);">আমাদের সাথে যোগাযোগ করতে নিচের ফর্ম পূরণ করুন</p>
+                        </div>
+                        <div class="row g-4">
+                            <div class="col-lg-8 mx-auto">
+                                <div style="background: rgba(255,255,255,0.05); border-radius: 16px; padding: 40px;">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <input type="text" class="design14-input" placeholder="নাম">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="email" class="design14-input" placeholder="ইমেইল">
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="text" class="design14-input" placeholder="সাবজেক্ট">
+                                        </div>
+                                        <div class="col-12">
+                                            <textarea class="design14-input" rows="4" placeholder="মেসেজ"></textarea>
+                                        </div>
+                                        <div class="col-12 text-center">
+                                            <button class="design14-btn">
+                                                <i class="fa-solid fa-paper-plane me-2"></i>
+                                                পাঠান
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 15: Tech Grid -->
+        <div class="design-card" id="design15">
+            <div class="design-header" style="background: linear-gradient(135deg, #38bdf8, #0ea5e9);">
+                <h3>DESIGN 15: Tech Grid</h3>
+                <span class="design-number">15 / 20</span>
+            </div>
+            <div class="design-preview">
+                <div class="design15-section">
+                    <div class="design15-grid"></div>
+                    <div class="design15-content">
+                        <div class="row g-5">
+                            <div class="col-lg-5">
+                                <div class="d-flex align-items-center gap-4 mb-4">
+                                    <div class="design15-hexagon">
+                                        <i class="fa-solid fa-headset" style="color: #0f172a;"></i>
+                                    </div>
+                                    <div>
+                                        <h2 style="font-size: 36px; font-weight: 700; margin: 0;">যোগাযোগ</h2>
+                                    </div>
+                                </div>
+                                <p style="color: rgba(255,255,255,0.7); margin-bottom: 30px;">আপনার যেকোনো প্রশ্ন বা পরামর্শের জন্য আমাদের সাথে যোগাযোগ করুন।</p>
+                                <div style="background: rgba(56, 189, 248, 0.1); border-radius: 12px; padding: 20px;">
+                                    <p style="color: #38bdf8; margin: 0;"><i class="fa-solid fa-envelope me-2"></i>hello@example.com</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div style="background: rgba(255,255,255,0.05); border-radius: 16px; padding: 40px;">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <input type="text" class="design15-input" placeholder="নাম">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="email" class="design15-input" placeholder="ইমেইল">
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="text" class="design15-input" placeholder="সাবজেক্ট">
+                                        </div>
+                                        <div class="col-12">
+                                            <textarea class="design15-input" rows="4" placeholder="মেসেজ"></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="design15-btn w-100">
+                                                <i class="fa-solid fa-paper-plane me-2"></i>
+                                                পাঠান
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 16: Organic Shape -->
+        <div class="design-card" id="design16">
+            <div class="design-header" style="background: linear-gradient(135deg, #134e5e, #71b280);">
+                <h3>DESIGN 16: Organic Shape</h3>
+                <span class="design-number">16 / 20</span>
+            </div>
+            <div class="design-preview">
+                <div class="design16-section">
+                    <div class="design16-blob design16-blob-1"></div>
+                    <div class="design16-blob design16-blob-2"></div>
+                    <div class="design16-content">
+                        <div class="row g-5">
+                            <div class="col-lg-6">
+                                <div class="design16-card">
+                                    <h3 style="margin-bottom: 30px; color: #1a1a1a;">মেসেজ পাঠান</h3>
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <input type="text" class="design16-input" placeholder="নাম">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="email" class="design16-input" placeholder="ইমেইল">
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="text" class="design16-input" placeholder="সাবজেক্ট">
+                                        </div>
+                                        <div class="col-12">
+                                            <textarea class="design16-input" rows="4" placeholder="মেসেজ"></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="design16-btn w-100">
+                                                <i class="fa-solid fa-paper-plane me-2"></i>
+                                                পাঠান
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 d-flex align-items-center">
+                                <div>
+                                    <h2 style="font-size: 42px; font-weight: 700; color: #fff; margin-bottom: 20px;">যোগাযোগ করুন</h2>
+                                    <p style="color: rgba(255,255,255,0.8); margin-bottom: 30px;">আপনার যেকোনো প্রশ্ন বা পরামর্শের জন্য আমরা এখানে আছি।</p>
+                                    <div class="d-flex align-items-center gap-3 mb-3">
+                                        <div class="design16-icon-circle">
+                                            <i class="fa-solid fa-envelope"></i>
+                                        </div>
+                                        <div style="color: #fff;">
+                                            <small style="opacity: 0.7;">ইমেইল</small>
+                                            <p style="margin: 0; font-weight: 600;">hello@example.com</p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-3 mb-3">
+                                        <div class="design16-icon-circle">
+                                            <i class="fa-solid fa-phone"></i>
+                                        </div>
+                                        <div style="color: #fff;">
+                                            <small style="opacity: 0.7;">ফোন</small>
+                                            <p style="margin: 0; font-weight: 600;">+880 1234 567890</p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="design16-icon-circle">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                        </div>
+                                        <div style="color: #fff;">
+                                            <small style="opacity: 0.7;">ঠিকানা</small>
+                                            <p style="margin: 0; font-weight: 600;">ঢাকা, বাংলাদেশ</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 17: Double Border -->
+        <div class="design-card" id="design17">
+            <div class="design-header" style="background: linear-gradient(135deg, #f472b6, #a78bfa);">
+                <h3>DESIGN 17: Double Border</h3>
+                <span class="design-number">17 / 20</span>
+            </div>
+            <div class="design-preview">
+                <div class="design17-section">
+                    <div class="row g-5">
+                        <div class="col-lg-5">
+                            <span style="color: #f472b6; font-size: 14px; text-transform: uppercase; letter-spacing: 3px;">যোগাযোগ করুন</span>
+                            <h2 style="font-size: 42px; font-weight: 700; margin: 20px 0;">আমাদের সাথে<br>কথা বলুন</h2>
+                            <div class="design17-accent mb-4"></div>
+                            <p style="color: rgba(255,255,255,0.6); margin-bottom: 30px;">আপনার যেকোনো প্রশ্ন বা পরামর্শের জন্য আমরা সবসময় প্রস্তুত।</p>
+                            
+                            <div class="mb-4">
+                                <p style="color: #f472b6; margin-bottom: 5px;"><i class="fa-solid fa-envelope me-2"></i>ইমেইল</p>
+                                <p style="font-weight: 600;">hello@example.com</p>
+                            </div>
+                            <div class="mb-4">
+                                <p style="color: #a78bfa; margin-bottom: 5px;"><i class="fa-solid fa-phone me-2"></i>ফোন</p>
+                                <p style="font-weight: 600;">+880 1234 567890</p>
+                            </div>
+                            <div>
+                                <p style="color: #f472b6; margin-bottom: 5px;"><i class="fa-solid fa-location-dot me-2"></i>ঠিকানা</p>
+                                <p style="font-weight: 600;">ঢাকা, বাংলাদেশ</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="design17-inner-border">
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <input type="text" class="design17-input" placeholder="নাম">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="email" class="design17-input" placeholder="ইমেইল">
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" class="design17-input" placeholder="ফোন">
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" class="design17-input" placeholder="সাবজেক্ট">
+                                    </div>
+                                    <div class="col-12">
+                                        <textarea class="design17-input" rows="4" placeholder="মেসেজ"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="design17-btn">
+                                            <i class="fa-solid fa-paper-plane me-2"></i>
+                                            পাঠান
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 18: Glass Split -->
+        <div class="design-card" id="design18">
+            <div class="design-header" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6);">
+                <h3>DESIGN 18: Glass Split</h3>
+                <span class="design-number">18 / 20</span>
+            </div>
+            <div class="design-preview">
+                <div class="design18-container">
+                    <div class="design18-left">
+                        <h2 style="font-size: 36px; font-weight: 700; margin-bottom: 24px;">যোগাযোগ করুন</h2>
+                        <p style="margin-bottom: 40px; opacity: 0.9;">আপনার যেকোনো প্রশ্ন বা পরামর্শের জন্য আমাদের সাথে যোগাযোগ করুন।</p>
+                        
+                        <div class="mb-4">
+                            <p style="opacity: 0.7; font-size: 14px; margin-bottom: 8px;">ইমেইল</p>
+                            <p style="font-weight: 600;">hello@example.com</p>
+                        </div>
+                        <div class="mb-4">
+                            <p style="opacity: 0.7; font-size: 14px; margin-bottom: 8px;">ফোন</p>
+                            <p style="font-weight: 600;">+880 1234 567890</p>
+                        </div>
+                        <div>
+                            <p style="opacity: 0.7; font-size: 14px; margin-bottom: 8px;">ঠিকানা</p>
+                            <p style="font-weight: 600;">ঢাকা, বাংলাদেশ</p>
+                        </div>
+                    </div>
+                    <div class="design18-right">
+                        <h3 style="font-size: 24px; margin-bottom: 30px;">মেসেজ পাঠান</h3>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" class="design18-input" placeholder="নাম">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="design18-input" placeholder="ইমেইল">
+                            </div>
+                            <div class="col-12">
+                                <input type="text" class="design18-input" placeholder="সাবজেক্ট">
+                            </div>
+                            <div class="col-12">
+                                <textarea class="design18-input" rows="4" placeholder="মেসেজ" style="resize: none;"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="design18-btn w-100">
+                                    <i class="fa-solid fa-paper-plane me-2"></i>
+                                    পাঠান
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 19: Layered Cards -->
+        <div class="design-card" id="design19">
+            <div class="design-header" style="background: linear-gradient(135deg, #f43f5e, #fb923c);">
+                <h3>DESIGN 19: Layered Cards</h3>
+                <span class="design-number">19 / 20</span>
+            </div>
+            <div class="design-preview">
+                <div class="design19-section">
+                    <div class="design19-layer design19-layer-1"></div>
+                    <div class="design19-layer design19-layer-2"></div>
+                    <div class="design19-content">
+                        <div class="row g-5">
+                            <div class="col-lg-5">
+                                <h2 style="font-size: 36px; font-weight: 700; color: #fff; margin-bottom: 20px;">যোগাযোগ করুন</h2>
+                                <p style="color: rgba(255,255,255,0.8); margin-bottom: 30px;">আপনার যেকোনো প্রশ্ন বা পরামর্শের জন্য আমাদের সাথে যোগাযোগ করুন।</p>
+                                
+                                <div class="d-flex align-items-center gap-3 mb-3">
+                                    <i class="fa-solid fa-envelope" style="color: #fff; font-size: 20px;"></i>
+                                    <span style="color: #fff;">hello@example.com</span>
+                                </div>
+                                <div class="d-flex align-items-center gap-3 mb-3">
+                                    <i class="fa-solid fa-phone" style="color: #fff; font-size: 20px;"></i>
+                                    <span style="color: #fff;">+880 1234 567890</span>
+                                </div>
+                                <div class="d-flex align-items-center gap-3">
+                                    <i class="fa-solid fa-location-dot" style="color: #fff; font-size: 20px;"></i>
+                                    <span style="color: #fff;">ঢাকা, বাংলাদেশ</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div style="background: rgba(255,255,255,0.95); border-radius: 16px; padding: 40px;">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <input type="text" class="design19-input" placeholder="নাম">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="email" class="design19-input" placeholder="ইমেইল">
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="text" class="design19-input" placeholder="সাবজেক্ট">
+                                        </div>
+                                        <div class="col-12">
+                                            <textarea class="design19-input" rows="4" placeholder="মেসেজ"></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="design19-btn w-100">
+                                                <i class="fa-solid fa-paper-plane me-2"></i>
+                                                পাঠান
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 20: Animated Border -->
+        <div class="design-card" id="design20">
+            <div class="design-header" style="background: linear-gradient(135deg, #00f0ff, #00ff88);">
+                <h3>DESIGN 20: Animated Border</h3>
+                <span class="design-number">20 / 20</span>
+            </div>
+            <div class="design-preview">
+                <div class="design20-section">
+                    <div class="design20-border-anim"></div>
+                    <div class="design20-content">
+                        <div class="row g-5">
+                            <div class="col-lg-5 text-center">
+                                <div class="design20-icon-glow mx-auto mb-4">
+                                    <i class="fa-solid fa-headset"></i>
+                                </div>
+                                <h2 style="font-size: 36px; font-weight: 700; margin-bottom: 16px;">যোগাযোগ করুন</h2>
+                                <p style="color: rgba(255,255,255,0.7);">আপনার যেকোনো প্রশ্ন বা পরামর্শের জন্য আমরা এখানে আছি</p>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <input type="text" class="design20-input" placeholder="নাম">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="email" class="design20-input" placeholder="ইমেইল">
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" class="design20-input" placeholder="সাবজেক্ট">
+                                    </div>
+                                    <div class="col-12">
+                                        <textarea class="design20-input" rows="4" placeholder="মেসেজ"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="design20-btn w-100">
+                                            <i class="fa-solid fa-paper-plane me-2"></i>
+                                            পাঠান
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-4 mt-5">
+                            <div class="col-md-4 text-center">
+                                <i class="fa-solid fa-envelope" style="font-size: 24px; color: #00f0ff; margin-bottom: 10px; display: block;"></i>
+                                <p style="margin: 0; color: rgba(255,255,255,0.8);">hello@example.com</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <i class="fa-solid fa-phone" style="font-size: 24px; color: #00ff88; margin-bottom: 10px; display: block;"></i>
+                                <p style="margin: 0; color: rgba(255,255,255,0.8);">+880 1234 567890</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <i class="fa-solid fa-location-dot" style="font-size: 24px; color: #00f0ff; margin-bottom: 10px; display: block;"></i>
+                                <p style="margin: 0; color: rgba(255,255,255,0.8);">ঢাকা, বাংলাদেশ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div style="text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #1a1a2e, #2d1f47);">
+        <h3 style="font-size: 28px; margin-bottom: 20px;">আপনার পছন্দের ডিজাইন সিলেক্ট করুন!</h3>
+        <p style="color: rgba(255,255,255,0.7); margin-bottom: 30px;">যেকোনো ডিজাইনের নম্বর আমাকে জানান, আমি সাইটে ডাইনামিকভাবে এপ্লাই করে দিবো</p>
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+            <button onclick="scrollToTop()" style="background: linear-gradient(135deg, #667eea, #764ba2); border: none; padding: 16px 40px; border-radius: 50px; color: #fff; font-weight: 600; cursor: pointer;">
+                <i class="fa-solid fa-arrow-up me-2"></i>
+                উপরে যান
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        function scrollToDesign(num) {
+            const design = document.getElementById('design' + num);
+            if (design) {
+                design.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+        
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Update active dot on scroll
+        window.addEventListener('scroll', function() {
+            const cards = document.querySelectorAll('.design-card');
+            const dots = document.querySelectorAll('.nav-dot');
+            
+            cards.forEach((card, index) => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                    dots.forEach(d => d.classList.remove('active'));
+                    if (dots[index]) {
+                        dots[index].classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
