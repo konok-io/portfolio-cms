@@ -1613,6 +1613,7 @@
                 border-radius: 20px;
                 overflow: hidden;
                 box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+                border: 1px solid #d1d5db;
             }
             
             .contact-vertical-top {
