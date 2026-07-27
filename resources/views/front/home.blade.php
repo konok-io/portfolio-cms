@@ -504,44 +504,27 @@
 @if($testimonials->isNotEmpty())
 <section id="testimonials" class="section-padding section-1">
     <div class="container">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
+            <div class="text-center text-lg-start reveal-on-scroll">
+                <span class="section-eyebrow">Client Feedback</span>
+                <h2 class="section-title mb-0">What clients say about working with me</h2>
+            </div>
+            @if($testimonials->count() > 3)
+            <a href="{{ route('testimonials') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">
+                View All Feedback <i class="fa-solid fa-arrow-right ms-2"></i>
+            </a>
+            @endif
+        </div>
         
-        {{-- Design 10: Modern Glass Testimonials --}}
+        {{-- Glass Card Styles --}}
         <style>
-            .test-glass-section {
-                background: linear-gradient(135deg, var(--color-primary, #2563EB), var(--color-primary-dark, #1d4ed8));
-                border-radius: 20px;
-                padding: 50px 40px;
-            }
-            
-            .test-glass-header {
-                text-align: center;
-                margin-bottom: 40px;
-            }
-            
-            .test-glass-header h2 {
-                font-size: 1.75rem;
-                font-weight: 700;
-                color: #fff;
-                margin-bottom: 8px;
-            }
-            
-            .test-glass-header p {
-                color: rgba(255, 255, 255, 0.8);
-                font-size: 0.95rem;
-            }
-            
-            .test-glass-grid {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 24px;
-            }
-            
             .test-glass-card {
                 background: rgba(255, 255, 255, 0.1);
                 backdrop-filter: blur(10px);
                 border: 1px solid rgba(255, 255, 255, 0.2);
                 border-radius: 20px;
                 padding: 28px;
+                height: 100%;
                 transition: all 0.3s;
             }
             
@@ -552,22 +535,23 @@
             
             .test-glass-quote {
                 color: rgba(255, 255, 255, 0.3);
-                font-size: 3rem;
-                margin-bottom: 8px;
+                font-size: 2.5rem;
+                margin-bottom: 12px;
                 line-height: 1;
             }
             
             .test-glass-text {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
                 color: rgba(255, 255, 255, 0.9);
                 line-height: 1.7;
-                margin-bottom: 20px;
+                margin-bottom: 16px;
+                flex-grow: 1;
             }
             
             .test-glass-stars {
                 color: #fbbf24;
-                font-size: 0.85rem;
-                margin-bottom: 16px;
+                font-size: 0.8rem;
+                margin-bottom: 14px;
             }
             
             .test-glass-author {
@@ -577,8 +561,8 @@
             }
             
             .test-glass-avatar {
-                width: 48px;
-                height: 48px;
+                width: 44px;
+                height: 44px;
                 background: rgba(255, 255, 255, 0.2);
                 border-radius: 50%;
                 display: flex;
@@ -586,7 +570,7 @@
                 justify-content: center;
                 color: #fff;
                 font-weight: 700;
-                font-size: 1rem;
+                font-size: 0.9rem;
                 flex-shrink: 0;
                 overflow: hidden;
             }
@@ -598,35 +582,52 @@
             }
             
             .test-glass-name {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
                 font-weight: 700;
                 color: #fff;
             }
             
             .test-glass-role {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
                 color: rgba(255, 255, 255, 0.7);
             }
             
+            /* Carousel styles */
+            .test-glass-section {
+                background: linear-gradient(135deg, var(--color-primary, #2563EB), var(--color-primary-dark, #1d4ed8));
+                border-radius: 20px;
+                padding: 50px 40px;
+            }
+            
+            .test-glass-section .carousel-indicators {
+                bottom: -30px;
+            }
+            
+            .test-glass-section .carousel-indicators button {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: rgba(255, 255, 255, 0.5);
+                border: none;
+                margin: 0 4px;
+            }
+            
+            .test-glass-section .carousel-indicators button.active {
+                background-color: #fff;
+            }
+            
             @media (max-width: 992px) {
-                .test-glass-grid {
-                    grid-template-columns: repeat(2, 1fr);
+                .test-glass-section {
+                    padding: 40px 30px;
                 }
             }
             
             @media (max-width: 576px) {
-                .test-glass-grid {
-                    grid-template-columns: 1fr;
-                }
                 .test-glass-section {
-                    padding: 32px 20px;
+                    padding: 30px 20px;
                 }
             }
             
-            [data-theme="dark"] .test-glass-section {
-                background: linear-gradient(135deg, #1e293b, #0f172a);
-                border: 1px solid #334155;
-            }
             [data-theme="dark"] .test-glass-card {
                 background: rgba(255, 255, 255, 0.05);
             }
@@ -641,39 +642,49 @@
             }
         </style>
         
-        <div class="test-glass-section reveal-on-scroll">
-            <div class="test-glass-header">
-                <h2>Client Feedback</h2>
-                <p>What clients say about working with me</p>
-            </div>
-            <div class="test-glass-grid">
-                @foreach($testimonials->take(3) as $testimonial)
-                    <div class="test-glass-card">
-                        <div class="test-glass-quote"><i class="fas fa-quote-left"></i></div>
-                        <p class="test-glass-text">{{ $testimonial->review }}</p>
-                        <div class="test-glass-stars">
-                            @for($i = 1; $i <= 5; $i++)
-                                <i class="fas fa-star"></i>
-                            @endfor
-                        </div>
-                        <div class="test-glass-author">
-                            <div class="test-glass-avatar">
-                                @if($testimonial->photo_url)
-                                    <img src="{{ $testimonial->photo_url }}" alt="{{ $testimonial->client_name }}">
-                                @else
-                                    {{ substr($testimonial->client_name, 0, 1) }}
-                                @endif
-                            </div>
-                            <div>
-                                <div class="test-glass-name">{{ $testimonial->client_name }}</div>
-                                <div class="test-glass-role">{{ $testimonial->company }}</div>
-                            </div>
+        <div id="testimonialCarousel" class="test-glass-section carousel slide reveal-on-scroll" data-bs-ride="carousel" data-bs-interval="5000">
+            <div class="carousel-inner">
+                @foreach($testimonials->chunk(3) as $index => $testimonialGroup)
+                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                        <div class="row g-4">
+                            @foreach($testimonialGroup as $testimonial)
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="test-glass-card">
+                                        <div class="test-glass-quote"><i class="fas fa-quote-left"></i></div>
+                                        <p class="test-glass-text">{{ $testimonial->review }}</p>
+                                        <div class="test-glass-stars">
+                                            @for($i = 1; $i <= 5; $i++)
+                                                <i class="fas fa-star"></i>
+                                            @endfor
+                                        </div>
+                                        <div class="test-glass-author">
+                                            <div class="test-glass-avatar">
+                                                @if($testimonial->photo_url)
+                                                    <img src="{{ $testimonial->photo_url }}" alt="{{ $testimonial->client_name }}">
+                                                @else
+                                                    {{ substr($testimonial->client_name, 0, 1) }}
+                                                @endif
+                                            </div>
+                                            <div>
+                                                <div class="test-glass-name">{{ $testimonial->client_name }}</div>
+                                                <div class="test-glass-role">{{ $testimonial->company }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 @endforeach
             </div>
+            @if($testimonials->count() > 3)
+                <div class="carousel-indicators">
+                    @foreach($testimonials->chunk(3) as $index => $group)
+                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
+                    @endforeach
+                </div>
+            @endif
         </div>
-        
     </div>
 </section>
 @endif
