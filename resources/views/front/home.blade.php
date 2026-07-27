@@ -394,12 +394,12 @@
 @endif
 
 {{-- =========================================================
-     SERVICES SECTION (included from partial)
+     4. SERVICES (What I Do)
      ========================================================= --}}
 @include('front.partials.what-i-do')
 
 {{-- =========================================================
-     4. PORTFOLIO PROJECTS
+     5. PORTFOLIO PROJECTS
      ========================================================= --}}
 @if($projects->isNotEmpty())
 <section id="portfolio" class="section-padding section-alt">
@@ -437,7 +437,7 @@
 @endif
 
 {{-- =========================================================
-     5. EXPERIENCE
+     6. EXPERIENCE
      ========================================================= --}}
 @if($experiences->isNotEmpty())
 <section id="experience" class="section-padding section-tint">
@@ -468,7 +468,7 @@
 @endif
 
 {{-- =========================================================
-     6. EDUCATION
+     7. EDUCATION
      ========================================================= --}}
 @if($educations->isNotEmpty())
 <section id="education" class="section-padding section-tint">
@@ -499,7 +499,7 @@
 @endif
 
 {{-- =========================================================
-     7. TESTIMONIALS
+     8. TESTIMONIALS
      ========================================================= --}}
 @if($testimonials->isNotEmpty())
 <section id="testimonials" class="section-padding section-tint">
@@ -562,7 +562,7 @@
 @endif
 
 {{-- =========================================================
-     8. CERTIFICATIONS & BADGES
+     9. CERTIFICATIONS & BADGES
      ========================================================= --}}
 @if($certifications->isNotEmpty())
 <section id="certifications" class="section-padding section-tint">
@@ -612,7 +612,7 @@
 @endif
 
 {{-- =========================================================
-     9. BLOG POSTS
+     10. BLOG POSTS
      ========================================================= --}}
 @if($blogs->isNotEmpty())
 <section id="blog" class="section-padding section-tint">
@@ -650,7 +650,7 @@
 @endif
 
 {{-- =========================================================
-     10. PRICING PLANS
+     11. PRICING PLANS
      ========================================================= --}}
 @if($pricingPlans->isNotEmpty())
 <section id="pricing" class="section-padding section-tint">
@@ -695,7 +695,7 @@
 @endif
 
 {{-- =========================================================
-     11. FAQ SECTION
+     12. FAQ SECTION
      ========================================================= --}}
 @if($faqs->isNotEmpty())
 <section id="faq" class="section-padding section-alt">
@@ -733,7 +733,7 @@
 @endif
 
 {{-- =========================================================
-     12. RESUME CTA
+     13. RESUME CTA
      ========================================================= --}}
 <section id="resume-cta" class="section-padding section-tint">
     <div class="container">
@@ -765,7 +765,7 @@
 </section>
 
 {{-- =========================================================
-     13. CONTACT
+     14. CONTACT
      ========================================================= --}}
 <section id="contact" class="section-padding section-alt">
     <div class="container">
