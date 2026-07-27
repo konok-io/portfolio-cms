@@ -577,20 +577,46 @@
             }
             
             .cred-horizontal-header {
-                text-align: center;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
                 margin-bottom: 32px;
+                flex-wrap: wrap;
+                gap: 16px;
             }
             
-            .cred-horizontal-header h2 {
-                font-size: 1.75rem;
+            .cred-horizontal-header-left h2 {
+                font-size: 1.5rem;
                 font-weight: 700;
                 color: #fff;
-                margin-bottom: 8px;
+                margin-bottom: 4px;
             }
             
-            .cred-horizontal-header p {
+            .cred-horizontal-header-left p {
                 color: rgba(255, 255, 255, 0.8);
-                font-size: 0.95rem;
+                font-size: 0.9rem;
+            }
+            
+            .cred-horizontal-header-right {
+                flex-shrink: 0;
+            }
+            
+            .cred-horizontal-header-right a {
+                background: rgba(255, 255, 255, 0.15);
+                color: #fff;
+                padding: 8px 20px;
+                border-radius: 8px;
+                font-weight: 600;
+                font-size: 0.85rem;
+                text-decoration: none;
+                transition: all 0.3s;
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+            }
+            
+            .cred-horizontal-header-right a:hover {
+                background: rgba(255, 255, 255, 0.25);
             }
             
             .cred-horizontal-grid {
@@ -692,8 +718,17 @@
         
         <div class="cred-horizontal-section reveal-on-scroll">
             <div class="cred-horizontal-header">
-                <h2>Certifications & Badges</h2>
-                <p>Professional certifications and achievements</p>
+                <div class="cred-horizontal-header-left">
+                    <h2>Certifications & Badges</h2>
+                    <p>Professional certifications and achievements</p>
+                </div>
+                @if($certifications->count() > 4)
+                <div class="cred-horizontal-header-right">
+                    <a href="{{ route('certifications') }}">
+                        View All <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+                @endif
             </div>
             <div class="cred-horizontal-grid">
                 @foreach($certifications->take(4) as $cert)
@@ -720,13 +755,6 @@
                     @endif
                 @endforeach
             </div>
-            @if($certifications->count() > 4)
-                <div class="text-center mt-4">
-                    <a href="{{ route('certifications') }}" class="btn" style="background: rgba(255,255,255,0.15); color: #fff; padding: 8px 20px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: all 0.3s;">
-                        View All <i class="fa-solid fa-arrow-right ms-2"></i>
-                    </a>
-                </div>
-            @endif
         </div>
         
     </div>
