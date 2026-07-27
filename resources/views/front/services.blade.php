@@ -6,7 +6,7 @@
 @section('content')
 
 {{-- Page header --}}
-<section class="section-padding section-blue-100">
+<section class="section-padding section-12">
     <div class="container">
         <div class="text-center">
             <span class="section-eyebrow">{{ page_content('services', 'page_eyebrow', app()->getLocale()) }}</span>
@@ -17,7 +17,7 @@
 </section>
 
 {{-- Services grid --}}
-<section class="section-padding section-blue-50-alt">
+<section class="section-padding section-1">
     <div class="container">
         @if($services->isNotEmpty())
             <div class="services-grid">

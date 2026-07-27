@@ -228,40 +228,19 @@ a {
   background-color: #f8f9fc;
 }
 
-/* Additional unique section colors - Blue theme variations */
-.section-blue-50 {
-  background-color: #eff6ff;
-}
-.section-blue-100 {
-  background-color: #dbeafe;
-}
-.section-blue-200 {
-  background-color: #bfdbfe;
-}
-.section-blue-300 {
-  background-color: #93c5fd;
-}
-.section-blue-400 {
-  background-color: #60a5fa;
-}
-.section-blue-50-alt {
-  background-color: #f0f9ff;
-}
-.section-blue-100-alt {
-  background-color: #e0f2fe;
-}
-.section-blue-200-alt {
-  background-color: #bae6fd;
-}
-.section-blue-300-alt {
-  background-color: #7dd3fc;
-}
-.section-blue-pale {
-  background-color: #f8fafc;
-}
-.section-blue-warm {
-  background-color: #f1f5f9;
-}
+/* Section Colors - Alternating White and Blue */
+.section-1 { background-color: #ffffff; }
+.section-2 { background-color: #eff6ff; }
+.section-3 { background-color: #ffffff; }
+.section-4 { background-color: #dbeafe; }
+.section-5 { background-color: #ffffff; }
+.section-6 { background-color: #bfdbfe; }
+.section-7 { background-color: #ffffff; }
+.section-8 { background-color: #e0f2fe; }
+.section-9 { background-color: #ffffff; }
+.section-10 { background-color: #f0f9ff; }
+.section-11 { background-color: #ffffff; }
+.section-12 { background-color: #bae6fd; }
 
 /* Light sections border override */
 .section-alt .service-card,

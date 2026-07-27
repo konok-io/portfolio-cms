@@ -2,7 +2,7 @@
      X. WHAT I DO - Services Section (Design 8 - New)
      ========================================================= --}}
 @if($services->isNotEmpty())
-<section id="services" class="section-padding section-blue-100-alt">
+<section id="services" class="section-padding section-7">
     <div class="container">
         <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
             <div class="text-center text-lg-start reveal-on-scroll">

@@ -13,7 +13,7 @@
 @section('content')
 
 {{-- Page Header --}}
-<section class="section-padding section-blue-pale">
+<section class="section-padding section-10">
     <div class="container">
         <div class="text-center">
             <span class="section-eyebrow">Services</span>
@@ -24,7 +24,7 @@
 </section>
 
 {{-- Service Detail --}}
-<section class="section-padding section-blue-warm">
+<section class="section-padding section-1">
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-8">
@@ -106,7 +106,7 @@
 </section>
 
 {{-- CTA Section --}}
-<section class="section-padding section-blue-warm">
+<section class="section-padding section-1">
     <div class="container">
         <div class="text-center">
             <h2 class="section-title">Ready to get started?</h2>
