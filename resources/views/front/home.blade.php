@@ -506,7 +506,7 @@
             .edu-hz-icon {
                 width: 50px;
                 height: 50px;
-                background: linear-gradient(135deg, var(--color-secondary, #7c3aed), var(--color-primary, #2563EB));
+                background: var(--color-primary, #2563EB);
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
