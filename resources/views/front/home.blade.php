@@ -608,35 +608,39 @@
             .test-glass-section {
                 background: linear-gradient(135deg, var(--color-primary, #2563EB), var(--color-primary-dark, #1d4ed8));
                 border-radius: 20px;
-                padding: 50px 40px;
+                padding: 50px 40px 60px;
+                position: relative;
             }
             
             .test-glass-section .carousel-indicators {
-                bottom: -30px;
+                bottom: 10px;
+                margin-bottom: 0;
             }
             
             .test-glass-section .carousel-indicators button {
-                width: 10px;
-                height: 10px;
+                width: 12px;
+                height: 12px;
                 border-radius: 50%;
-                background-color: rgba(255, 255, 255, 0.5);
-                border: none;
-                margin: 0 4px;
+                background-color: rgba(255, 255, 255, 0.4);
+                border: 2px solid rgba(255, 255, 255, 0.6);
+                margin: 0 5px;
+                opacity: 1;
             }
             
             .test-glass-section .carousel-indicators button.active {
                 background-color: #fff;
+                border-color: #fff;
             }
             
             @media (max-width: 992px) {
                 .test-glass-section {
-                    padding: 40px 30px;
+                    padding: 40px 30px 50px;
                 }
             }
             
             @media (max-width: 576px) {
                 .test-glass-section {
-                    padding: 30px 20px;
+                    padding: 30px 20px 45px;
                 }
             }
         </style>
