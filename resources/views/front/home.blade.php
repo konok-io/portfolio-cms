@@ -656,12 +656,17 @@
                 flex-shrink: 0;
                 position: relative;
                 overflow: hidden;
+                background: #e2e8f0;
             }
             
             .blog-horizontal-img img {
+                position: absolute;
+                top: 0;
+                left: 0;
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
+                object-position: center;
                 transition: transform 0.4s ease;
             }
             
