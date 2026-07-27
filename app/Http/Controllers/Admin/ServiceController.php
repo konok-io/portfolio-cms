@@ -66,12 +66,6 @@ class ServiceController extends Controller
             $validated['slug'] = \Illuminate\Support\Str::slug($request->name);
         }
         
-        $service->update($validated);
-            'description' => ['nullable', 'string'],
-            'sort_order' => ['nullable', 'integer', 'min:0'],
-            'is_active' => ['nullable', 'boolean'],
-        ]);
-
         $validated['is_active'] = $request->boolean('is_active');
         $validated['sort_order'] = $validated['sort_order'] ?? 0;
 
