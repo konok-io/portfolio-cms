@@ -10,126 +10,159 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', system-ui, sans-serif;
-            background: #f0fdfa;
+            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
             min-height: 100vh;
-            padding: 60px 20px;
+            padding: 40px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .pricing-section {
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 900px;
+            width: 100%;
         }
         .left-content {
-            padding-right: 50px;
+            padding-right: 30px;
+        }
+        .eyebrow {
+            display: inline-block;
+            background: linear-gradient(135deg, #14b8a6, #0d9488);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
         }
         .section-title {
             color: #0f172a;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
             font-weight: 800;
-            font-size: 2.5rem;
+            font-size: 2rem;
+            line-height: 1.2;
         }
         .section-desc {
             color: #64748b;
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
         }
         .billing-toggle {
             background: white;
-            border-radius: 16px;
-            padding: 20px 25px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border-radius: 50px;
+            padding: 8px;
             display: inline-flex;
             align-items: center;
-            gap: 20px;
+            gap: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
         }
         .billing-option {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 50px;
+            transition: all 0.3s;
         }
         .billing-option input {
-            width: 18px;
-            height: 18px;
-            accent-color: #14b8a6;
+            display: none;
         }
         .billing-label {
             font-weight: 600;
-            color: #475569;
+            font-size: 0.85rem;
+            color: #64748b;
+            transition: all 0.3s;
+        }
+        .billing-option.active {
+            background: linear-gradient(135deg, #14b8a6, #0d9488);
+        }
+        .billing-option.active .billing-label {
+            color: white;
         }
         .save-badge {
             background: #d1fae5;
             color: #059669;
-            padding: 3px 10px;
+            padding: 2px 8px;
             border-radius: 10px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
+        }
+        .billing-option.active .save-badge {
+            background: rgba(255,255,255,0.3);
+            color: white;
         }
         .pricing-card {
             background: white;
-            border: 2px solid #e2e8f0;
-            border-radius: 20px;
-            padding: 35px 30px;
+            border-radius: 16px;
+            padding: 24px;
             height: 100%;
             transition: all 0.3s;
+            border: 1px solid transparent;
         }
         .pricing-card:hover {
-            border-color: #14b8a6;
-            box-shadow: 0 10px 40px rgba(20, 184, 166, 0.1);
+            border-color: #e2e8f0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
         }
         .pricing-card.featured {
             background: linear-gradient(135deg, #14b8a6, #0d9488);
-            border: none;
             color: white;
             position: relative;
-            box-shadow: 0 25px 60px rgba(20, 184, 166, 0.3);
+            box-shadow: 0 20px 40px rgba(20, 184, 166, 0.25);
+            transform: scale(1.02);
+        }
+        .pricing-card.featured:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 50px rgba(20, 184, 166, 0.35);
         }
         .icon-box {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             background: #ccfbf1;
-            border-radius: 14px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             color: #0d9488;
-            font-size: 1.3rem;
+            font-size: 1rem;
         }
         .featured .icon-box {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.25);
             color: white;
         }
         .plan-name {
-            font-size: 1.25rem;
+            font-size: 1rem;
             font-weight: 700;
             color: #0f172a;
-            margin-bottom: 5px;
+            margin-bottom: 2px;
         }
         .featured .plan-name {
             color: white;
         }
         .plan-desc {
             color: #64748b;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
         }
         .featured .plan-desc {
             color: rgba(255,255,255,0.8);
         }
         .price {
-            font-size: 3rem;
+            font-size: 2rem;
             font-weight: 900;
             color: #0f172a;
             line-height: 1;
-            margin-bottom: 5px;
+            margin-bottom: 2px;
         }
         .featured .price {
             color: white;
         }
         .price-period {
             color: #64748b;
-            font-size: 0.9rem;
+            font-size: 0.75rem;
         }
         .featured .price-period {
             color: rgba(255,255,255,0.8);
@@ -137,25 +170,28 @@
         .features {
             list-style: none;
             padding: 0;
-            margin: 25px 0 30px;
+            margin: 15px 0 20px;
         }
         .features li {
-            padding: 10px 0;
-            color: #64748b;
-            font-size: 0.9rem;
+            padding: 6px 0;
+            color: #475569;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         .featured .features li {
-            color: rgba(255,255,255,0.9);
+            color: rgba(255,255,255,0.95);
         }
         .btn-select {
-            background: white;
-            border: 2px solid #14b8a6;
+            background: #f0fdfa;
+            border: 1px solid #14b8a6;
             color: #14b8a6;
-            padding: 14px;
-            border-radius: 12px;
+            padding: 10px 16px;
+            border-radius: 10px;
             width: 100%;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.85rem;
             transition: all 0.3s;
         }
         .btn-select:hover {
@@ -168,31 +204,32 @@
             color: #14b8a6;
         }
         .featured .btn-select:hover {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
         }
         .badge-best {
             position: absolute;
-            top: -14px;
-            right: 25px;
+            top: -10px;
+            right: 20px;
             background: #fbbf24;
             color: #92400e;
-            padding: 5px 16px;
+            padding: 4px 12px;
             border-radius: 20px;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 700;
         }
     </style>
 </head>
 <body>
     <section class="pricing-section">
-        <div class="row align-items-center">
+        <div class="row align-items-center g-4">
             <!-- Left Side -->
-            <div class="col-lg-5 mb-5 mb-lg-0">
+            <div class="col-lg-5">
                 <div class="left-content">
-                    <h1 class="section-title">Simple, fair pricing</h1>
-                    <p class="section-desc">Choose the plan that's right for you. All plans include a 14-day free trial.</p>
+                    <span class="eyebrow">Pricing</span>
+                    <h2 class="section-title">Simple, fair pricing</h2>
+                    <p class="section-desc">Choose the plan that fits your needs. 14-day free trial included.</p>
                     <div class="billing-toggle">
-                        <label class="billing-option">
+                        <label class="billing-option active">
                             <input type="radio" name="billing" checked>
                             <span class="billing-label">Monthly</span>
                         </label>
@@ -207,27 +244,28 @@
             
             <!-- Right Side - Pricing Cards -->
             <div class="col-lg-7">
-                <div class="row g-4">
+                <div class="row g-3">
                     <!-- Personal -->
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div class="pricing-card">
                             <div class="icon-box">
                                 <i class="fas fa-user"></i>
                             </div>
                             <h3 class="plan-name">Personal</h3>
                             <p class="plan-desc">For individuals</p>
-                            <div class="price">$9<span style="font-size: 1rem; color: #64748b;">/mo</span></div>
+                            <div class="price">$9<span style="font-size: 0.75rem; color: #64748b;">/mo</span></div>
+                            <span class="price-period">per month</span>
                             <ul class="features">
-                                <li><i class="fas fa-check text-teal-500 me-2"></i> 5 Projects</li>
-                                <li><i class="fas fa-check text-teal-500 me-2"></i> Email Support</li>
-                                <li><i class="fas fa-check text-teal-500 me-2"></i> 5GB Storage</li>
+                                <li><i class="fas fa-check text-teal-500"></i> 5 Projects</li>
+                                <li><i class="fas fa-check text-teal-500"></i> Email Support</li>
+                                <li><i class="fas fa-check text-teal-500"></i> 5GB Storage</li>
                             </ul>
                             <button class="btn-select">Start Trial</button>
                         </div>
                     </div>
                     
                     <!-- Team -->
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div class="pricing-card featured">
                             <span class="badge-best">BEST</span>
                             <div class="icon-box">
@@ -235,11 +273,12 @@
                             </div>
                             <h3 class="plan-name">Team</h3>
                             <p class="plan-desc">For teams</p>
-                            <div class="price">$29<span style="font-size: 1rem; opacity: 0.8;">/mo</span></div>
+                            <div class="price">$29<span style="font-size: 0.75rem; opacity: 0.8;">/mo</span></div>
+                            <span class="price-period">per month</span>
                             <ul class="features">
-                                <li><i class="fas fa-check me-2"></i> Unlimited Projects</li>
-                                <li><i class="fas fa-check me-2"></i> Priority Support</li>
-                                <li><i class="fas fa-check me-2"></i> 100GB Storage</li>
+                                <li><i class="fas fa-check"></i> Unlimited Projects</li>
+                                <li><i class="fas fa-check"></i> Priority Support</li>
+                                <li><i class="fas fa-check"></i> 100GB Storage</li>
                             </ul>
                             <button class="btn-select">Start Trial</button>
                         </div>
@@ -248,5 +287,15 @@
             </div>
         </div>
     </section>
+
+    <script>
+        document.querySelectorAll('.billing-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.billing-option').forEach(o => o.classList.remove('active'));
+                this.classList.add('active');
+                this.querySelector('input').checked = true;
+            });
+        });
+    </script>
 </body>
 </html>
