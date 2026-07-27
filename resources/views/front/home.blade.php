@@ -105,10 +105,10 @@
     }
 
     .why-h-card {
-        background: var(--why-bg-white);
+        background: #eff6ff;
         border-radius: 20px;
         padding: 30px 25px;
-        border: 1px solid var(--why-border);
+        border: 1px solid #dbeafe;
         transition: all 0.4s ease;
         display: flex;
         flex-direction: column;
@@ -769,7 +769,7 @@
     /* Toggle */
     .pricing-split-toggle {
         display: inline-flex;
-        background: var(--card-bg, white);
+        background: #ffffff;
         border-radius: 50px;
         padding: 6px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.08);
@@ -831,7 +831,7 @@
     
     /* Card */
     .pricing-split-card {
-        background: var(--card-bg, white);
+        background: #ffffff;
         border-radius: 16px;
         padding: 20px;
         padding-bottom: 16px;
@@ -1242,10 +1242,10 @@
     
     /* FAQ List */
     .faq-split-list {
-        background: var(--card-bg, white);
+        background: #eff6ff;
         border-radius: 16px;
         padding: 20px;
-        border: 1px solid #d1d5db;
+        border: 1px solid #dbeafe;
         box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
     
