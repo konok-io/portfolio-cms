@@ -396,6 +396,12 @@ a {
   flex-shrink: 0;
 }
 
+/* Navbar collapse show state for search */
+.navbar-collapse.show {
+  display: flex !important;
+  align-items: center;
+}
+
 .site-navbar .nav-link {
   font-weight: 600;
   color: var(--color-secondary);

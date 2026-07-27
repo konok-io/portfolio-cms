@@ -421,12 +421,17 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
     var searchBox = document.getElementById('searchBox');
     var searchIconWrap = document.querySelector('.search-icon-wrap');
     var searchInput = searchBox ? searchBox.querySelector('.search-input') : null;
+    var mainNav = document.getElementById('mainNav');
     
     if (searchBtn && searchBox && searchIconWrap) {
       searchBtn.addEventListener('click', function(e) {
         e.preventDefault();
         searchIconWrap.classList.add('active');
         searchBox.classList.add('active');
+        // Show navbar menu on PC
+        if (mainNav && window.innerWidth >= 992) {
+          mainNav.classList.add('show');
+        }
         if (searchInput) {
           setTimeout(function() {
             searchInput.focus();
