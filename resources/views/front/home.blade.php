@@ -1112,10 +1112,10 @@
 @if($faqs->isNotEmpty())
 <section id="faq" class="faq-split-section">
     <div class="container">
-        <div class="row g-4">
+        <div class="row g-4 faq-split-row">
             {{-- Left Side - Support Card --}}
             <div class="col-lg-5">
-                <div class="faq-split-card reveal-on-scroll">
+                <div class="faq-split-card reveal-on-scroll h-100">
                     <span class="faq-split-badge">Support</span>
                     <h2 class="faq-split-title">Frequently Asked Questions</h2>
                     <p class="faq-split-desc">Quick answers to common questions about my services. Can't find what you need?</p>
@@ -1141,7 +1141,7 @@
             
             {{-- Right Side - FAQ List --}}
             <div class="col-lg-7">
-                <div class="faq-split-list reveal-on-scroll">
+                <div class="faq-split-list reveal-on-scroll h-100">
                     @foreach($faqs as $index => $faq)
                     <div class="faq-split-item {{ $index === 0 ? 'active' : '' }}" data-faq-id="{{ $faq->id }}">
                         <div class="faq-split-question">
@@ -1165,21 +1165,26 @@
     /* ===== FAQ SPLIT SECTION ===== */
     .faq-split-section {
         padding: 80px 0;
-        background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        background: linear-gradient(180deg, var(--section-alt-bg, #f8fafc) 0%, var(--bg-color, #ffffff) 100%);
+    }
+    
+    .faq-split-row {
+        align-items: stretch;
     }
     
     .faq-split-card {
-        background: white;
+        background: var(--card-bg, white);
         border-radius: 20px;
         padding: 35px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-        position: sticky;
-        top: 100px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        border: 1px solid rgba(0,0,0,0.08);
+        display: flex;
+        flex-direction: column;
     }
     
     .faq-split-badge {
         display: inline-block;
-        background: linear-gradient(135deg, #22c55e, #16a34a);
+        background: linear-gradient(135deg, var(--color-primary, #4f46e5), var(--color-secondary, #06b6d4));
         color: white;
         padding: 6px 14px;
         border-radius: 20px;
@@ -1214,19 +1219,19 @@
     .faq-contact-icon {
         width: 44px;
         height: 44px;
-        background: #dcfce7;
+        background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(6, 182, 212, 0.1));
         border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #22c55e;
+        color: var(--color-primary, #4f46e5);
         font-size: 1.1rem;
         transition: all 0.3s;
         text-decoration: none;
     }
     
     .faq-contact-icon:hover {
-        background: #22c55e;
+        background: linear-gradient(135deg, var(--color-primary, #4f46e5), var(--color-secondary, #06b6d4));
         color: white;
         transform: translateY(-3px);
     }
@@ -1238,17 +1243,18 @@
         gap: 8px;
         width: 100%;
         padding: 14px 24px;
-        background: linear-gradient(135deg, #22c55e, #16a34a);
+        background: linear-gradient(135deg, var(--color-primary, #4f46e5), var(--color-secondary, #06b6d4));
         color: white;
         border-radius: 12px;
         font-weight: 600;
         font-size: 0.95rem;
         text-decoration: none;
         transition: all 0.3s;
+        margin-top: auto;
     }
     
     .faq-split-btn:hover {
-        box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
+        box-shadow: 0 10px 30px rgba(79, 70, 229, 0.3);
         color: white;
         transform: translateY(-2px);
     }
@@ -1263,14 +1269,15 @@
     
     /* FAQ List */
     .faq-split-list {
-        background: white;
+        background: var(--card-bg, white);
         border-radius: 20px;
         padding: 25px;
         box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        border: 1px solid rgba(0,0,0,0.08);
     }
     
     .faq-split-item {
-        border-bottom: 1px solid #e5e7eb;
+        border-bottom: 1px solid var(--border-color, #e5e7eb);
         padding: 18px 0;
         cursor: pointer;
         transition: all 0.3s;
@@ -1281,7 +1288,7 @@
     }
     
     .faq-split-item.active {
-        border-bottom: 2px solid #22c55e;
+        border-bottom: 2px solid var(--color-primary, #4f46e5);
     }
     
     .faq-split-question {
@@ -1293,7 +1300,7 @@
     .faq-split-icon {
         width: 36px;
         height: 36px;
-        background: linear-gradient(135deg, #22c55e, #16a34a);
+        background: linear-gradient(135deg, var(--color-primary, #4f46e5), var(--color-secondary, #06b6d4));
         border-radius: 10px;
         display: flex;
         align-items: center;
@@ -1305,8 +1312,8 @@
     }
     
     .faq-split-item:not(.active) .faq-split-icon {
-        background: #f0fdf4;
-        color: #22c55e;
+        background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(6, 182, 212, 0.1));
+        color: var(--color-primary, #4f46e5);
     }
     
     .faq-split-question span {
@@ -1334,7 +1341,7 @@
     }
     
     .faq-split-answer a {
-        color: #22c55e;
+        color: var(--color-primary, #4f46e5);
         text-decoration: none;
     }
     
@@ -1344,17 +1351,18 @@
     
     /* Hover Effect */
     .faq-split-item:hover .faq-split-question span {
-        color: #22c55e;
+        color: var(--color-primary, #4f46e5);
     }
     
     /* Dark Mode */
     [data-theme="dark"] .faq-split-section {
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
     }
     
     [data-theme="dark"] .faq-split-card,
     [data-theme="dark"] .faq-split-list {
         background: #1e293b;
+        border-color: #334155;
     }
     
     [data-theme="dark"] .faq-split-title,
@@ -1369,6 +1377,16 @@
     
     [data-theme="dark"] .faq-split-item {
         border-color: #334155;
+    }
+    
+    [data-theme="dark"] .faq-contact-icon {
+        background: rgba(99, 102, 241, 0.2);
+        color: #818cf8;
+    }
+    
+    [data-theme="dark"] .faq-contact-icon:hover {
+        background: #6366f1;
+        color: white;
     }
     
     /* Responsive */
