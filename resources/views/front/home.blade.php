@@ -257,7 +257,7 @@
             
             .tech-card {
                 background: #fff;
-                border: 1px solid rgba(37, 99, 235, 0.1);
+                border: 1px solid #d1d5db;
                 border-radius: 16px;
                 padding: 25px 15px;
                 text-align: center;
