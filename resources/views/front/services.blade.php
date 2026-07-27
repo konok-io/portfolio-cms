@@ -28,11 +28,9 @@
                         <div class="service-icon-col">
                             <div class="service-icon-new">
                                 @if($service->svg_icon)
-                                    <span class="svg-icon">{!! $service->svg_icon !!}</span>
-                                @elseif($service->icon)
-                                    <i class="{{ $service->icon }}"></i>
+                                    {!! $service->svg_icon !!}
                                 @else
-                                    <i class="fa-solid fa-gear"></i>
+                                    <i class="{{ $service->icon ?? 'fa-solid fa-gear' }}"></i>
                                 @endif
                             </div>
                             <a href="{{ route('services.show', $service->slug ?? Str::slug($service->name)) }}" class="service-btn">
@@ -129,6 +127,10 @@
     .service-card-new:hover .service-icon-new {
         background: var(--primary);
         color: #fff;
+    }
+    
+    .service-card-new:hover .service-icon-new svg {
+        fill: #fff;
     }
     
     .service-btn {

@@ -25,7 +25,11 @@
                 
                 <div class="what-i-do-icon-col">
                     <div class="what-i-do-icon">
-                        <i class="{{ $service->icon ?? 'fa-solid fa-gear' }}"></i>
+                        @if($service->svg_icon)
+                            {!! $service->svg_icon !!}
+                        @else
+                            <i class="{{ $service->icon ?? 'fa-solid fa-gear' }}"></i>
+                        @endif
                     </div>
                     <a href="{{ route('services.show', $service->slug ?? '#') }}" class="what-i-do-btn">
                         {{ __('View') }} <i class="fa-solid fa-arrow-right"></i>
@@ -34,7 +38,7 @@
                 
                 <div class="what-i-do-content">
                     <h3>{{ $service->name }}</h3>
-                    <p>{{ Str::limit($service->short_description ?? $service->description, 120) }}</p>
+                    <p>{{ Str::limit($service->description, 120) }}</p>
                 </div>
             </div>
             @endforeach
@@ -107,6 +111,10 @@
     .what-i-do-card:hover .what-i-do-icon {
         background: var(--primary);
         color: #fff;
+    }
+    
+    .what-i-do-card:hover .what-i-do-icon svg {
+        fill: #fff;
     }
     
     .what-i-do-btn {
