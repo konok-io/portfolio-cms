@@ -8,7 +8,7 @@
 {{-- Page header --}}
 <section class="section-padding section-1">
     <div class="container">
-        <div class="text-center">
+        <div class="text-center mb-5">
             <span class="section-eyebrow">{{ page_content('about', 'page_eyebrow', app()->getLocale()) }}</span>
             <h1 class="section-title">{{ page_content('about', 'page_title', app()->getLocale()) }}</h1>
             <p class="section-subtitle mx-auto">{{ $about->short_intro ?? 'A little about who I am and what I do.' }}</p>

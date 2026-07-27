@@ -7,7 +7,7 @@
 <!-- Page Header -->
 <section class="page-header section-padding section-1">
     <div class="container">
-        <div class="row align-items-center">
+        <div class="row align-items-center mb-5">
             <div class="col-12 text-center">
                 <h1 class="display-4 fw-bold mb-3">{{ $pageContent['title'][app()->getLocale()] ?? $pageContent['title']['en'] ?? __('frequently_asked_questions') }}</h1>
                 @if($pageContent['subtitle'][app()->getLocale()] ?? $pageContent['subtitle']['en'])
