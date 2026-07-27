@@ -1789,10 +1789,12 @@
                         <input type="text" name="subject" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_subject', app()->getLocale()) }}">
                     </div>
                     <textarea name="message" class="contact-vertical-textarea" placeholder="{{ page_content('home', 'contact_form_message', app()->getLocale()) }}" required></textarea>
-                    <button type="submit" class="contact-vertical-btn mt-3">
-                        <i class="fas fa-paper-plane"></i>
-                        {{ page_content('home', 'contact_form_button', app()->getLocale()) }}
-                    </button>
+                    <div class="text-center mt-3">
+                        <button type="submit" class="contact-vertical-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            {{ page_content('home', 'contact_form_button', app()->getLocale()) }}
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
