@@ -524,8 +524,6 @@
                 padding: 24px;
                 height: 100%;
                 transition: all 0.3s;
-                display: flex;
-                gap: 20px;
             }
             
             .test-glass-card:hover {
@@ -533,38 +531,28 @@
                 box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             }
             
-            .test-glass-left-col {
-                flex: 1;
+            .test-glass-header {
                 display: flex;
-                flex-direction: column;
+                align-items: flex-start;
+                justify-content: space-between;
+                margin-bottom: 16px;
             }
             
-            .test-glass-quote-icon {
+            .test-glass-quote {
                 color: var(--color-primary, #2563EB);
                 font-size: 2.5rem;
                 line-height: 1;
-                margin-bottom: 12px;
             }
             
-            .test-glass-text {
-                font-size: 0.9rem;
-                color: #475569;
-                line-height: 1.7;
-                flex: 1;
-            }
-            
-            .test-glass-right-col {
+            .test-glass-author {
                 display: flex;
-                flex-direction: column;
                 align-items: center;
-                justify-content: center;
-                gap: 8px;
-                min-width: 80px;
+                gap: 10px;
             }
             
             .test-glass-avatar {
-                width: 56px;
-                height: 56px;
+                width: 44px;
+                height: 44px;
                 background: var(--color-primary, #2563EB);
                 border-radius: 50%;
                 display: flex;
@@ -572,8 +560,9 @@
                 justify-content: center;
                 color: #fff;
                 font-weight: 700;
-                font-size: 1.2rem;
+                font-size: 1rem;
                 overflow: hidden;
+                flex-shrink: 0;
             }
             
             .test-glass-avatar img {
@@ -582,17 +571,26 @@
                 object-fit: cover;
             }
             
+            .test-glass-author-info {
+                display: flex;
+                flex-direction: column;
+            }
+            
             .test-glass-name {
                 font-size: 0.85rem;
                 font-weight: 700;
                 color: #1e293b;
-                text-align: center;
             }
             
             .test-glass-role {
                 font-size: 0.7rem;
                 color: #64748b;
-                text-align: center;
+            }
+            
+            .test-glass-text {
+                font-size: 0.9rem;
+                color: #475569;
+                line-height: 1.7;
             }
             
             /* Carousel styles */
@@ -640,21 +638,23 @@
                             @foreach($testimonialGroup as $testimonial)
                                 <div class="col-md-6 col-lg-4">
                                     <div class="test-glass-card">
-                                        <div class="test-glass-left-col">
-                                            <div class="test-glass-quote-icon"><i class="fas fa-quote-left"></i></div>
-                                            <p class="test-glass-text">{{ $testimonial->review }}</p>
-                                        </div>
-                                        <div class="test-glass-right-col">
-                                            <div class="test-glass-avatar">
-                                                @if($testimonial->photo_url)
-                                                    <img src="{{ $testimonial->photo_url }}" alt="{{ $testimonial->client_name }}">
-                                                @else
-                                                    {{ substr($testimonial->client_name, 0, 1) }}
-                                                @endif
+                                        <div class="test-glass-header">
+                                            <div class="test-glass-quote"><i class="fas fa-quote-left"></i></div>
+                                            <div class="test-glass-author">
+                                                <div class="test-glass-avatar">
+                                                    @if($testimonial->photo_url)
+                                                        <img src="{{ $testimonial->photo_url }}" alt="{{ $testimonial->client_name }}">
+                                                    @else
+                                                        {{ substr($testimonial->client_name, 0, 1) }}
+                                                    @endif
+                                                </div>
+                                                <div class="test-glass-author-info">
+                                                    <span class="test-glass-name">{{ $testimonial->client_name }}</span>
+                                                    <span class="test-glass-role">{{ $testimonial->company }}</span>
+                                                </div>
                                             </div>
-                                            <div class="test-glass-name">{{ $testimonial->client_name }}</div>
-                                            <div class="test-glass-role">{{ $testimonial->company }}</div>
                                         </div>
+                                        <p class="test-glass-text">{{ $testimonial->review }}</p>
                                     </div>
                                 </div>
                             @endforeach
