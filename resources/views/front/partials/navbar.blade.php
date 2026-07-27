@@ -90,7 +90,7 @@
                 </div>
                 <div class="gtranslate-wrap">
                     <button type="button" class="gt-btn" onclick="document.body.classList.toggle('gt-open')" aria-label="Select language" aria-expanded="false" aria-haspopup="listbox">
-                        <i class="fa-solid fa-language"></i><i class="fa-solid fa-chevron-down" style="font-size:.7em"></i>
+                        <i class="fa-solid fa-language"></i>
                     </button>
                     <div id="google_translate_element" style="display:none"></div>
                     <div class="lang-menu" role="listbox" aria-label="Language selection">
