@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design 3: 3D Hover Cards</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 60px 20px;
+        }
+        .pricing-section {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            color: white;
+            margin-bottom: 10px;
+            font-weight: 800;
+            font-size: 2.5rem;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+        .pricing-card {
+            background: #0f3460;
+            border-radius: 24px;
+            padding: 45px 35px;
+            text-align: center;
+            color: white;
+            border: 1px solid #16213e;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            perspective: 1000px;
+        }
+        .pricing-card:hover {
+            transform: translateY(-20px) rotateX(5deg);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+        .pricing-card.featured {
+            background: linear-gradient(135deg, #f43f5e, #ec4899);
+            border: none;
+            transform: scale(1.05);
+        }
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-20px);
+            box-shadow: 0 40px 80px rgba(244, 63, 94, 0.5);
+        }
+        .icon-box {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 1.8rem;
+            transition: all 0.3s;
+        }
+        .pricing-card:hover .icon-box {
+            transform: scale(1.1) rotate(10deg);
+        }
+        .featured .icon-box {
+            background: rgba(255,255,255,0.25);
+        }
+        .icon-box.orange {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .price {
+            font-size: 3rem;
+            font-weight: 900;
+            margin: 20px 0 5px;
+        }
+        .price-period {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+        .features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .features li {
+            padding: 12px 0;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.85);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .features li:last-child {
+            border-bottom: none;
+        }
+        .btn-pricing {
+            background: transparent;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 14px 35px;
+            border-radius: 30px;
+            width: 100%;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .btn-pricing:hover {
+            background: #667eea;
+            color: white;
+        }
+        .featured .btn-pricing {
+            background: white;
+            border-color: white;
+            color: #f43f5e;
+        }
+        .featured .btn-pricing:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .btn-pricing.orange {
+            border-color: #f59e0b;
+            color: #f59e0b;
+        }
+        .btn-pricing.orange:hover {
+            background: #f59e0b;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <section class="pricing-section">
+        <h1 class="section-title">Choose Your Plan</h1>
+        <p class="section-subtitle">All plans include a 14-day free trial</p>
+        
+        <div class="row g-4 justify-content-center">
+            <!-- Starter -->
+            <div class="col-lg-3 col-md-5">
+                <div class="pricing-card">
+                    <div class="icon-box">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="plan-name">Starter</h3>
+                    <div class="price">$12</div>
+                    <div class="price-period">per month</div>
+                    <ul class="features">
+                        <li><i class="fas fa-check me-2 text-success"></i> 10 Projects</li>
+                        <li><i class="fas fa-check me-2 text-success"></i> Email Support</li>
+                        <li><i class="fas fa-check me-2 text-success"></i> 5GB Storage</li>
+                        <li><i class="fas fa-check me-2 text-success"></i> Basic Analytics</li>
+                    </ul>
+                    <button class="btn-pricing">Choose Plan</button>
+                </div>
+            </div>
+            
+            <!-- Professional -->
+            <div class="col-lg-3 col-md-5">
+                <div class="pricing-card featured">
+                    <span style="background: white; color: #f43f5e; padding: 5px 16px; border-radius: 20px; font-size: 0.7rem; font-weight: 700;">MOST POPULAR</span>
+                    <div class="icon-box">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3 class="plan-name">Professional</h3>
+                    <div class="price">$39</div>
+                    <div class="price-period">per month</div>
+                    <ul class="features">
+                        <li><i class="fas fa-check me-2"></i> Unlimited Projects</li>
+                        <li><i class="fas fa-check me-2"></i> 24/7 Priority Support</li>
+                        <li><i class="fas fa-check me-2"></i> 100GB Storage</li>
+                        <li><i class="fas fa-check me-2"></i> Advanced Analytics</li>
+                    </ul>
+                    <button class="btn-pricing">Choose Plan</button>
+                </div>
+            </div>
+            
+            <!-- Enterprise -->
+            <div class="col-lg-3 col-md-5">
+                <div class="pricing-card">
+                    <div class="icon-box orange">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3 class="plan-name">Enterprise</h3>
+                    <div class="price">$99</div>
+                    <div class="price-period">per month</div>
+                    <ul class="features">
+                        <li><i class="fas fa-check me-2 text-warning"></i> Everything Unlimited</li>
+                        <li><i class="fas fa-check me-2 text-warning"></i> Dedicated Manager</li>
+                        <li><i class="fas fa-check me-2 text-warning"></i> Unlimited Storage</li>
+                        <li><i class="fas fa-check me-2 text-warning"></i> Custom Solutions</li>
+                    </ul>
+                    <button class="btn-pricing orange">Contact Us</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
