@@ -1626,12 +1626,14 @@
                 font-size: 1.5rem;
                 font-weight: 700;
                 margin-bottom: 8px;
+                color: #ffffff;
             }
             
             .contact-vertical-subtitle {
                 font-size: 0.9rem;
                 opacity: 0.9;
                 margin-bottom: 20px;
+                color: rgba(255, 255, 255, 0.9);
             }
             
             .contact-vertical-info {
