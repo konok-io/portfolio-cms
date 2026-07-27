@@ -836,7 +836,8 @@
         padding: 20px;
         position: relative;
         transition: all 0.3s;
-        border: 1px solid var(--border-color, #e5e7eb);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
     
     .pricing-split-card:hover {
