@@ -88,11 +88,22 @@
 
 <style>
     /* Design 2: Premium Gradient Cards */
+    :root {
+        --why-primary: #2563EB;
+        --why-primary-dark: #1d4ed8;
+        --why-primary-light: #60a5fa;
+        --why-primary-glow: rgba(37, 99, 235, 0.1);
+        --why-text-dark: #1a1a2e;
+        --why-text-body: #4b5563;
+        --why-bg-white: #ffffff;
+        --why-border: #e2e8f0;
+    }
+
     .why-h-card {
-        background: var(--bg-white);
+        background: var(--why-bg-white);
         border-radius: 20px;
         padding: 30px 25px;
-        border: 1px solid var(--border);
+        border: 1px solid var(--why-border);
         transition: all 0.4s ease;
         display: flex;
         flex-direction: column;
@@ -107,7 +118,7 @@
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        background: linear-gradient(135deg, var(--why-primary), var(--why-primary-dark));
         opacity: 0;
         transition: opacity 0.4s ease;
         z-index: 0;
@@ -118,7 +129,7 @@
         position: absolute;
         top: 0; left: 0; right: 0;
         height: 3px;
-        background: linear-gradient(90deg, var(--primary), var(--primary-light));
+        background: linear-gradient(90deg, var(--why-primary), var(--why-primary-light));
         transform: scaleX(0);
         transition: transform 0.3s ease;
     }
@@ -140,12 +151,12 @@
     .why-h-icon {
         width: 65px;
         height: 65px;
-        background: var(--primary-glow);
+        background: var(--why-primary-glow);
         border-radius: 18px;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--primary);
+        color: var(--why-primary);
         font-size: 1.5rem;
         margin-bottom: 18px;
         transition: all 0.3s ease;
@@ -166,7 +177,7 @@
         transition: color 0.3s ease;
         position: relative;
         z-index: 1;
-        color: var(--text-dark);
+        color: var(--why-text-dark);
     }
 
     .why-h-card:hover h3 { color: #fff; }
@@ -174,7 +185,7 @@
     .why-h-card p {
         font-size: 0.9rem;
         line-height: 1.6;
-        color: var(--text-body);
+        color: var(--why-text-body);
         transition: all 0.3s ease;
         position: relative;
         z-index: 1;
@@ -191,7 +202,7 @@
         right: 20px;
         font-size: 3rem;
         font-weight: 800;
-        color: var(--primary-glow);
+        color: var(--why-primary-glow);
         line-height: 1;
         transition: all 0.3s ease;
         z-index: 1;
