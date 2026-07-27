@@ -1114,7 +1114,7 @@
     <div class="container">
         <div class="row g-4 faq-split-row">
             {{-- Left Side - Info Card --}}
-            <div class="col-lg-3">
+            <div class="col-lg-4">
                 <div class="faq-split-card reveal-on-scroll h-100">
                     <div class="faq-card-icon">
                         <i class="fas fa-question"></i>
@@ -1133,7 +1133,7 @@
             </div>
             
             {{-- Right Side - FAQ List --}}
-            <div class="col-lg-9">
+            <div class="col-lg-8">
                 <div class="faq-split-list reveal-on-scroll h-100">
                     @foreach($faqs as $index => $faq)
                     <div class="faq-split-item {{ $index === 0 ? 'active' : '' }}" data-faq-id="{{ $faq->id }}">
