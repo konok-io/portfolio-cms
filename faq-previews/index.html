@@ -386,39 +386,79 @@
             </div>
         </div>
 
-        <!-- Design 8: Split Layout -->
+        <!-- Design 8: Split Layout Pro -->
         <div class="design-card" id="design8">
             <div class="design-header d-flex justify-content-between align-items-center" style="background: linear-gradient(135deg, #22c55e, #16a34a);">
-                <h2 class="design-title">Design 8: Split Layout</h2>
+                <h2 class="design-title">Design 8: Split Layout Pro</h2>
                 <span class="design-number">Option 8</span>
             </div>
             <div class="design-preview">
-                <section style="background: white; padding: 40px 20px;">
+                <section style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); padding: 50px 20px;">
                     <div class="container">
-                        <div class="row">
-                            <div class="col-lg-4 mb-3 mb-lg-0">
-                                <h5 class="fw-bold mb-1">FAQ</h5>
-                                <p class="text-muted small mb-2">Find answers to common questions.</p>
-                                <button class="btn btn-success btn-sm rounded-pill px-3">Contact</button>
+                        <div class="row g-4">
+                            <!-- Left Side - Sticky Card -->
+                            <div class="col-lg-5">
+                                <div style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.08);">
+                                    <span style="background: #22c55e; color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase;">Support</span>
+                                    <h3 class="fw-bold mt-3 mb-2" style="font-size: 1.4rem;">Frequently Asked Questions</h3>
+                                    <p class="text-muted mb-4 small">Quick answers to common questions. Can't find what you need?</p>
+                                    <div class="d-flex gap-2 mb-3">
+                                        <div style="width: 36px; height: 36px; background: #dcfce7; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-envelope text-success"></i>
+                                        </div>
+                                        <div style="width: 36px; height: 36px; background: #dcfce7; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fab fa-whatsapp text-success"></i>
+                                        </div>
+                                        <div style="width: 36px; height: 36px; background: #dcfce7; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-comments text-success"></i>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-success w-100 rounded-3 py-2">Contact Support</button>
+                                </div>
                             </div>
-                            <div class="col-lg-8">
-                                <div class="bg-light p-2 rounded-3 mb-1">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span class="fw-semibold small">What services?</span>
-                                        <i class="fas fa-chevron-up text-success small"></i>
+                            <!-- Right Side - FAQ List -->
+                            <div class="col-lg-7">
+                                <div style="background: white; border-radius: 20px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+                                    <!-- Open FAQ -->
+                                    <div class="pb-2" style="border-bottom: 2px solid #22c55e;">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #22c55e, #16a34a); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                                    <i class="fas fa-laptop-code text-white" style="font-size: 0.75rem;"></i>
+                                                </div>
+                                                <span class="fw-semibold small">What services do you offer?</span>
+                                            </div>
+                                            <i class="fas fa-minus text-success" style="font-size: 0.75rem;"></i>
+                                        </div>
+                                        <p class="text-muted mb-0 small ps-5 mt-2">We offer web development, mobile apps, UI/UX design, and digital marketing tailored to your needs.</p>
                                     </div>
-                                    <p class="text-muted mb-0 small mt-1">Web, mobile, UI/UX, marketing.</p>
-                                </div>
-                                <div class="bg-light p-2 rounded-3 mb-1">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span class="fw-semibold small">Timeline?</span>
-                                        <i class="fas fa-chevron-down text-muted small"></i>
+                                    <!-- Closed FAQs -->
+                                    <div class="d-flex justify-content-between align-items-center py-3" style="border-bottom: 1px solid #e5e7eb;">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div style="width: 32px; height: 32px; background: #f0fdf4; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                                <i class="fas fa-clock text-success" style="font-size: 0.75rem;"></i>
+                                            </div>
+                                            <span class="fw-semibold small">How long does a project take?</span>
+                                        </div>
+                                        <i class="fas fa-plus text-muted" style="font-size: 0.75rem;"></i>
                                     </div>
-                                </div>
-                                <div class="bg-light p-2 rounded-3">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span class="fw-semibold small">Pricing?</span>
-                                        <i class="fas fa-chevron-down text-muted small"></i>
+                                    <div class="d-flex justify-content-between align-items-center py-3" style="border-bottom: 1px solid #e5e7eb;">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div style="width: 32px; height: 32px; background: #f0fdf4; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                                <i class="fas fa-tag text-success" style="font-size: 0.75rem;"></i>
+                                            </div>
+                                            <span class="fw-semibold small">What is your pricing?</span>
+                                        </div>
+                                        <i class="fas fa-plus text-muted" style="font-size: 0.75rem;"></i>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center py-3">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div style="width: 32px; height: 32px; background: #f0fdf4; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                                <i class="fas fa-headset text-success" style="font-size: 0.75rem;"></i>
+                                            </div>
+                                            <span class="fw-semibold small">Do you offer support?</span>
+                                        </div>
+                                        <i class="fas fa-plus text-muted" style="font-size: 0.75rem;"></i>
                                     </div>
                                 </div>
                             </div>
