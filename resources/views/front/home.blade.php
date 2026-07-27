@@ -525,7 +525,7 @@
                 height: 100%;
                 transition: all 0.3s;
                 display: flex;
-                flex-direction: column;
+                gap: 20px;
             }
             
             .test-glass-card:hover {
@@ -533,54 +533,38 @@
                 box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             }
             
-            .test-glass-content {
+            .test-glass-left-col {
                 flex: 1;
                 display: flex;
-                gap: 16px;
-                margin-bottom: 16px;
+                flex-direction: column;
             }
             
-            .test-glass-left {
-                flex: 1;
-            }
-            
-            .test-glass-quote {
+            .test-glass-quote-icon {
                 color: var(--color-primary, #2563EB);
-                font-size: 2rem;
-                margin-bottom: 8px;
+                font-size: 2.5rem;
                 line-height: 1;
+                margin-bottom: 12px;
             }
             
             .test-glass-text {
                 font-size: 0.9rem;
                 color: #475569;
                 line-height: 1.7;
+                flex: 1;
             }
             
-            .test-glass-right {
+            .test-glass-right-col {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                gap: 12px;
-            }
-            
-            .test-glass-stars {
-                color: #fbbf24;
-                font-size: 0.75rem;
-            }
-            
-            .test-glass-author {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
                 gap: 8px;
-                text-align: center;
+                min-width: 80px;
             }
             
             .test-glass-avatar {
-                width: 50px;
-                height: 50px;
+                width: 56px;
+                height: 56px;
                 background: var(--color-primary, #2563EB);
                 border-radius: 50%;
                 display: flex;
@@ -588,7 +572,7 @@
                 justify-content: center;
                 color: #fff;
                 font-weight: 700;
-                font-size: 1.1rem;
+                font-size: 1.2rem;
                 overflow: hidden;
             }
             
@@ -602,11 +586,13 @@
                 font-size: 0.85rem;
                 font-weight: 700;
                 color: #1e293b;
+                text-align: center;
             }
             
             .test-glass-role {
                 font-size: 0.7rem;
                 color: #64748b;
+                text-align: center;
             }
             
             /* Carousel styles */
@@ -654,29 +640,20 @@
                             @foreach($testimonialGroup as $testimonial)
                                 <div class="col-md-6 col-lg-4">
                                     <div class="test-glass-card">
-                                        <div class="test-glass-content">
-                                            <div class="test-glass-left">
-                                                <div class="test-glass-quote"><i class="fas fa-quote-left"></i></div>
-                                                <p class="test-glass-text">{{ $testimonial->review }}</p>
+                                        <div class="test-glass-left-col">
+                                            <div class="test-glass-quote-icon"><i class="fas fa-quote-left"></i></div>
+                                            <p class="test-glass-text">{{ $testimonial->review }}</p>
+                                        </div>
+                                        <div class="test-glass-right-col">
+                                            <div class="test-glass-avatar">
+                                                @if($testimonial->photo_url)
+                                                    <img src="{{ $testimonial->photo_url }}" alt="{{ $testimonial->client_name }}">
+                                                @else
+                                                    {{ substr($testimonial->client_name, 0, 1) }}
+                                                @endif
                                             </div>
-                                            <div class="test-glass-right">
-                                                <div class="test-glass-stars">
-                                                    @for($i = 1; $i <= 5; $i++)
-                                                        <i class="fas fa-star"></i>
-                                                    @endfor
-                                                </div>
-                                                <div class="test-glass-author">
-                                                    <div class="test-glass-avatar">
-                                                        @if($testimonial->photo_url)
-                                                            <img src="{{ $testimonial->photo_url }}" alt="{{ $testimonial->client_name }}">
-                                                        @else
-                                                            {{ substr($testimonial->client_name, 0, 1) }}
-                                                        @endif
-                                                    </div>
-                                                    <div class="test-glass-name">{{ $testimonial->client_name }}</div>
-                                                    <div class="test-glass-role">{{ $testimonial->company }}</div>
-                                                </div>
-                                            </div>
+                                            <div class="test-glass-name">{{ $testimonial->client_name }}</div>
+                                            <div class="test-glass-role">{{ $testimonial->company }}</div>
                                         </div>
                                     </div>
                                 </div>
