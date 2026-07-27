@@ -1603,79 +1603,226 @@
 {{-- =========================================================
      14. CONTACT
      ========================================================= --}}
-<section id="contact" class="section-padding section-1">
+<section id="contact" class="py-5 section-1">
     <div class="container">
-        <div class="row g-5">
-            <div class="col-lg-5 reveal-on-scroll">
-                <span class="section-eyebrow">{{ page_content('home', 'contact_eyebrow', app()->getLocale()) }}</span>
-                <h2 class="section-title mb-4">{{ page_content('home', 'contact_title', app()->getLocale()) }}</h2>
-                <p class="text-muted mb-4">{{ page_content('home', 'contact_text', app()->getLocale()) }}</p>
-
-                <div class="d-flex flex-column gap-3">
+        
+        {{-- Design 6: Centered Content - Compact Two Column --}}
+        <style>
+            .contact-compact-section {
+                background: #ffffff;
+                border-radius: 20px;
+                overflow: hidden;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            }
+            
+            .contact-compact-left {
+                background: linear-gradient(135deg, var(--color-primary, #2563EB), var(--color-primary-dark, #1d4ed8));
+                padding: 32px 40px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                color: #fff;
+            }
+            
+            .contact-compact-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                margin-bottom: 8px;
+            }
+            
+            .contact-compact-subtitle {
+                font-size: 0.9rem;
+                opacity: 0.9;
+                margin-bottom: 24px;
+            }
+            
+            .contact-compact-info {
+                display: flex;
+                justify-content: center;
+                gap: 24px;
+                flex-wrap: wrap;
+            }
+            
+            .contact-compact-info-item {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 0.85rem;
+            }
+            
+            .contact-compact-info-icon {
+                width: 36px;
+                height: 36px;
+                background: rgba(255,255,255,0.2);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.8rem;
+            }
+            
+            .contact-compact-right {
+                padding: 32px 40px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            
+            .contact-compact-form-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+                margin-bottom: 12px;
+            }
+            
+            .contact-compact-form-group {
+                margin-bottom: 12px;
+            }
+            
+            .contact-compact-form-group.full-width {
+                grid-column: 1 / -1;
+            }
+            
+            .contact-compact-input {
+                width: 100%;
+                padding: 10px 14px;
+                border: 1px solid #e2e8f0;
+                border-radius: 8px;
+                font-size: 0.9rem;
+                transition: all 0.3s;
+            }
+            
+            .contact-compact-input:focus {
+                outline: none;
+                border-color: var(--color-primary, #2563EB);
+                box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            }
+            
+            .contact-compact-textarea {
+                width: 100%;
+                padding: 10px 14px;
+                border: 1px solid #e2e8f0;
+                border-radius: 8px;
+                font-size: 0.9rem;
+                resize: none;
+                height: 80px;
+                transition: all 0.3s;
+            }
+            
+            .contact-compact-textarea:focus {
+                outline: none;
+                border-color: var(--color-primary, #2563EB);
+                box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            }
+            
+            .contact-compact-btn {
+                background: var(--color-primary, #2563EB);
+                color: #fff;
+                padding: 10px 20px;
+                border-radius: 8px;
+                border: none;
+                font-weight: 600;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: all 0.3s;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .contact-compact-btn:hover {
+                background: var(--color-primary-dark, #1d4ed8);
+                transform: translateY(-1px);
+            }
+            
+            @media (max-width: 768px) {
+                .contact-compact-section {
+                    flex-direction: column;
+                }
+                .contact-compact-form-grid {
+                    grid-template-columns: 1fr;
+                }
+                .contact-compact-left,
+                .contact-compact-right {
+                    padding: 24px;
+                }
+            }
+            
+            [data-theme="dark"] .contact-compact-section {
+                background: #1e293b;
+            }
+            [data-theme="dark"] .contact-compact-input,
+            [data-theme="dark"] .contact-compact-textarea {
+                background: #0f172a;
+                border-color: #334155;
+                color: #f1f5f9;
+            }
+            [data-theme="dark"] .contact-compact-input::placeholder,
+            [data-theme="dark"] .contact-compact-textarea::placeholder {
+                color: #64748b;
+            }
+        </style>
+        
+        <div class="contact-compact-section d-flex reveal-on-scroll">
+            <div class="contact-compact-left">
+                <h3 class="contact-compact-title">{{ page_content('home', 'contact_title', app()->getLocale()) }}</h3>
+                <p class="contact-compact-subtitle">{{ page_content('home', 'contact_text', app()->getLocale()) }}</p>
+                <div class="contact-compact-info">
                     @if($about->email ?? false)
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="icon-box mb-0" style="width:48px;height:48px;"><i class="fa-solid fa-envelope"></i></div>
-                            <div>
-                                <div class="small text-muted">{{ page_content('home', 'contact_label_email', app()->getLocale()) }}</div>
-                                <div class="fw-semibold">{{ $about->email }}</div>
+                        <div class="contact-compact-info-item">
+                            <div class="contact-compact-info-icon">
+                                <i class="fas fa-envelope"></i>
                             </div>
+                            <span>{{ Str::limit($about->email, 25) }}</span>
                         </div>
                     @endif
                     @if($about->phone ?? false)
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="icon-box mb-0" style="width:48px;height:48px;"><i class="fa-solid fa-phone"></i></div>
-                            <div>
-                                <div class="small text-muted">{{ page_content('home', 'contact_label_phone', app()->getLocale()) }}</div>
-                                <div class="fw-semibold">{{ $about->phone }}</div>
+                        <div class="contact-compact-info-item">
+                            <div class="contact-compact-info-icon">
+                                <i class="fas fa-phone"></i>
                             </div>
+                            <span>{{ $about->phone }}</span>
                         </div>
                     @endif
                     @if($about->address ?? false)
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="icon-box mb-0" style="width:48px;height:48px;"><i class="fa-solid fa-location-dot"></i></div>
-                            <div>
-                                <div class="small text-muted">{{ page_content('home', 'contact_label_location', app()->getLocale()) }}</div>
-                                <div class="fw-semibold">{{ $about->address }}</div>
+                        <div class="contact-compact-info-item">
+                            <div class="contact-compact-info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
                             </div>
+                            <span>{{ Str::limit($about->address, 20) }}</span>
                         </div>
                     @endif
                 </div>
             </div>
-            <div class="col-lg-7 reveal-on-scroll">
-                <div class="p-4 p-md-5 rounded-4 shadow-sm border">
-                    <form id="contactForm" action="{{ route('contact.store') }}" method="POST">
-                        @csrf
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label class="form-label small fw-semibold">{{ page_content('home', 'contact_form_name', app()->getLocale()) }}</label>
-                                <input type="text" name="name" class="form-control" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label small fw-semibold">{{ page_content('home', 'contact_form_email', app()->getLocale()) }}</label>
-                                <input type="email" name="email" class="form-control" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label small fw-semibold">{{ page_content('home', 'contact_form_phone', app()->getLocale()) }}</label>
-                                <input type="text" name="phone" class="form-control">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label small fw-semibold">{{ page_content('home', 'contact_form_subject', app()->getLocale()) }}</label>
-                                <input type="text" name="subject" class="form-control">
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label small fw-semibold">{{ page_content('home', 'contact_form_message', app()->getLocale()) }}</label>
-                                <textarea name="message" rows="5" class="form-control" required></textarea>
-                            </div>
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-primary-custom w-100">
-                                    <i class="fa-solid fa-paper-plane me-2"></i>{{ page_content('home', 'contact_form_button', app()->getLocale()) }}
-                                </button>
-                            </div>
+            <div class="contact-compact-right">
+                <form id="contactForm" action="{{ route('contact.store') }}" method="POST">
+                    @csrf
+                    <div class="contact-compact-form-grid">
+                        <div class="contact-compact-form-group">
+                            <input type="text" name="name" class="contact-compact-input" placeholder="{{ page_content('home', 'contact_form_name', app()->getLocale()) }}" required>
                         </div>
-                    </form>
-                </div>
+                        <div class="contact-compact-form-group">
+                            <input type="email" name="email" class="contact-compact-input" placeholder="{{ page_content('home', 'contact_form_email', app()->getLocale()) }}" required>
+                        </div>
+                        <div class="contact-compact-form-group">
+                            <input type="text" name="phone" class="contact-compact-input" placeholder="{{ page_content('home', 'contact_form_phone', app()->getLocale()) }}">
+                        </div>
+                        <div class="contact-compact-form-group">
+                            <input type="text" name="subject" class="contact-compact-input" placeholder="{{ page_content('home', 'contact_form_subject', app()->getLocale()) }}">
+                        </div>
+                    </div>
+                    <div class="contact-compact-form-group full-width">
+                        <textarea name="message" class="contact-compact-textarea" placeholder="{{ page_content('home', 'contact_form_message', app()->getLocale()) }}" required></textarea>
+                    </div>
+                    <button type="submit" class="contact-compact-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        {{ page_content('home', 'contact_form_button', app()->getLocale()) }}
+                    </button>
+                </form>
             </div>
         </div>
+        
     </div>
 </section>
 
