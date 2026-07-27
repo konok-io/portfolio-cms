@@ -1115,41 +1115,19 @@
         <div class="row g-4 faq-split-row">
             {{-- Left Side - Info Card --}}
             <div class="col-lg-5">
-                <div class="faq-split-card reveal-on-scroll h-100 d-flex flex-column">
-                    <div class="faq-split-header">
-                        <div class="faq-split-icon-large">
-                            <i class="fas fa-question"></i>
-                        </div>
-                        <h2 class="faq-split-title">Frequently Asked Questions</h2>
-                        <p class="faq-split-desc">Get instant answers to the most common questions about my services, pricing, and process.</p>
+                <div class="faq-split-card reveal-on-scroll h-100">
+                    <div class="faq-card-icon">
+                        <i class="fas fa-question"></i>
                     </div>
+                    <h3 class="faq-card-title">Frequently Asked Questions</h3>
+                    <p class="faq-card-desc">Quick answers to common questions about my services.</p>
                     
-                    <div class="faq-split-stats">
-                        <div class="faq-stat-item">
-                            <span class="faq-stat-number">{{ $faqs->count() }}+</span>
-                            <span class="faq-stat-label">Questions</span>
-                        </div>
-                        <div class="faq-stat-item">
-                            <span class="faq-stat-number">24h</span>
-                            <span class="faq-stat-label">Response</span>
-                        </div>
-                        <div class="faq-stat-item">
-                            <span class="faq-stat-number">100%</span>
-                            <span class="faq-stat-label">Satisfaction</span>
-                        </div>
-                    </div>
+                    <div class="faq-card-divider"></div>
                     
-                    <div class="faq-split-contact">
-                        <p class="faq-contact-label">Still have questions?</p>
-                        <a href="mailto:{{ $settings['contact_email'] ?? 'contact@example.com' }}" class="faq-contact-link">
-                            <i class="fas fa-envelope me-2"></i>
-                            {{ $settings['contact_email'] ?? 'contact@example.com' }}
-                        </a>
-                    </div>
-                    
-                    <a href="{{ route('faq') }}" class="faq-split-btn">
-                        View All FAQs
-                        <i class="fas fa-arrow-right"></i>
+                    <p class="faq-card-contact-label">Need more help?</p>
+                    <a href="mailto:{{ $settings['contact_email'] ?? 'contact@example.com' }}" class="faq-card-email">
+                        <i class="fas fa-envelope me-2"></i>
+                        {{ $settings['contact_email'] ?? 'contact@example.com' }}
                     </a>
                 </div>
             </div>
@@ -1179,174 +1157,101 @@
 <style>
     /* ===== FAQ SPLIT SECTION ===== */
     .faq-split-section {
-        padding: 80px 0;
-        background: linear-gradient(180deg, var(--section-alt-bg, #f8fafc) 0%, var(--bg-color, #ffffff) 100%);
+        padding: 50px 0;
+        background: var(--section-alt-bg, #f8fafc);
     }
     
     .faq-split-row {
         align-items: stretch;
     }
     
-    /* Left Card - Professional Design */
+    /* Left Card - Simple Blue */
     .faq-split-card {
-        background: linear-gradient(145deg, var(--color-primary, #4f46e5), var(--color-secondary, #06b6d4));
-        border-radius: 24px;
-        padding: 40px;
-        box-shadow: 0 25px 60px rgba(79, 70, 229, 0.25);
+        background: #2563eb;
+        border-radius: 16px;
+        padding: 30px;
+        height: 100%;
         display: flex;
         flex-direction: column;
         color: white;
-        position: relative;
-        overflow: hidden;
     }
     
-    .faq-split-card::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        right: -50%;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-        pointer-events: none;
-    }
-    
-    .faq-split-header {
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    
-    .faq-split-icon-large {
-        width: 80px;
-        height: 80px;
-        background: rgba(255,255,255,0.15);
-        border-radius: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 20px;
-        font-size: 2rem;
-        backdrop-filter: blur(10px);
-    }
-    
-    .faq-split-title {
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: white;
-        margin-bottom: 10px;
-        line-height: 1.3;
-    }
-    
-    .faq-split-desc {
-        font-size: 0.9rem;
-        color: rgba(255,255,255,0.8);
-        line-height: 1.6;
-    }
-    
-    /* Stats Section */
-    .faq-split-stats {
-        display: flex;
-        justify-content: space-around;
-        padding: 25px 0;
-        border-top: 1px solid rgba(255,255,255,0.2);
-        border-bottom: 1px solid rgba(255,255,255,0.2);
-        margin: 20px 0;
-    }
-    
-    .faq-stat-item {
-        text-align: center;
-    }
-    
-    .faq-stat-number {
-        display: block;
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: white;
-    }
-    
-    .faq-stat-label {
-        font-size: 0.75rem;
-        color: rgba(255,255,255,0.7);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-    
-    /* Contact Section */
-    .faq-split-contact {
-        margin-bottom: 25px;
-        margin-top: auto;
-    }
-    
-    .faq-contact-label {
-        font-size: 0.85rem;
-        color: rgba(255,255,255,0.8);
-        margin-bottom: 10px;
-        text-align: center;
-    }
-    
-    .faq-contact-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 12px 20px;
+    .faq-card-icon {
+        width: 50px;
+        height: 50px;
         background: rgba(255,255,255,0.15);
         border-radius: 12px;
-        color: white;
-        text-decoration: none;
-        font-size: 0.9rem;
-        transition: all 0.3s;
-        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        margin-bottom: 15px;
     }
     
-    .faq-contact-link:hover {
+    .faq-card-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 8px;
+    }
+    
+    .faq-card-desc {
+        font-size: 0.9rem;
+        color: rgba(255,255,255,0.8);
+        margin-bottom: 20px;
+        line-height: 1.5;
+    }
+    
+    .faq-card-divider {
+        height: 1px;
+        background: rgba(255,255,255,0.2);
+        margin: 15px 0;
+    }
+    
+    .faq-card-contact-label {
+        font-size: 0.85rem;
+        color: rgba(255,255,255,0.8);
+        margin-bottom: 8px;
+    }
+    
+    .faq-card-email {
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        background: rgba(255,255,255,0.15);
+        border-radius: 8px;
+        color: white;
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: all 0.3s;
+    }
+    
+    .faq-card-email:hover {
         background: rgba(255,255,255,0.25);
         color: white;
-        transform: translateY(-2px);
     }
     
-    /* Button */
-    .faq-split-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        padding: 14px 24px;
-        background: white;
-        color: var(--color-primary, #4f46e5);
-        border-radius: 12px;
-        font-weight: 700;
-        font-size: 0.95rem;
-        text-decoration: none;
-        transition: all 0.3s;
-    }
-    
-    .faq-split-btn:hover {
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        transform: translateY(-3px);
-        color: var(--color-primary, #4f46e5);
-    }
-    
-    .faq-split-btn i {
-        transition: transform 0.3s;
-        font-size: 0.85rem;
-    }
-    
-    .faq-split-btn:hover i {
-        transform: translateX(5px);
+    /* Right Card - FAQ List */
+    .faq-split-list {
+        background: var(--card-bg, white);
+        border-radius: 16px;
+        padding: 25px;
+        border: 1px solid #d1d5db;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
     
     /* FAQ List */
     .faq-split-list {
         background: var(--card-bg, white);
-        border-radius: 20px;
-        padding: 25px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-        border: 1px solid rgba(0,0,0,0.08);
+        border-radius: 16px;
+        padding: 20px;
+        border: 1px solid #d1d5db;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
     
     .faq-split-item {
-        border-bottom: 1px solid var(--border-color, #e5e7eb);
-        padding: 18px 0;
+        border-bottom: 1px solid #e5e7eb;
+        padding: 14px 0;
         cursor: pointer;
         transition: all 0.3s;
     }
@@ -1356,44 +1261,44 @@
     }
     
     .faq-split-item.active {
-        border-bottom: 2px solid var(--color-primary, #4f46e5);
+        border-bottom: 2px solid #2563eb;
     }
     
     .faq-split-question {
         display: flex;
         align-items: center;
-        gap: 15px;
+        gap: 12px;
     }
     
     .faq-split-icon {
-        width: 36px;
-        height: 36px;
-        background: linear-gradient(135deg, var(--color-primary, #4f46e5), var(--color-secondary, #06b6d4));
-        border-radius: 10px;
+        width: 30px;
+        height: 30px;
+        background: #2563eb;
+        border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
         color: white;
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         flex-shrink: 0;
         transition: all 0.3s;
     }
     
     .faq-split-item:not(.active) .faq-split-icon {
-        background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(6, 182, 212, 0.1));
-        color: var(--color-primary, #4f46e5);
+        background: #f1f5f9;
+        color: #2563eb;
     }
     
     .faq-split-question span {
         font-weight: 600;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         color: var(--text-color, #0f172a);
         flex-grow: 1;
     }
     
     .faq-split-answer {
-        padding-left: 51px;
-        padding-top: 12px;
+        padding-left: 42px;
+        padding-top: 8px;
         display: none;
     }
     
@@ -1402,14 +1307,14 @@
     }
     
     .faq-split-answer p {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         color: #64748b;
         margin: 0;
-        line-height: 1.6;
+        line-height: 1.5;
     }
     
     .faq-split-answer a {
-        color: var(--color-primary, #4f46e5);
+        color: #2563eb;
         text-decoration: none;
     }
     
@@ -1419,17 +1324,21 @@
     
     /* Hover Effect */
     .faq-split-item:hover .faq-split-question span {
-        color: var(--color-primary, #4f46e5);
+        color: #2563eb;
     }
     
     /* Dark Mode */
     [data-theme="dark"] .faq-split-section {
-        background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+        background: #0f172a;
     }
     
     [data-theme="dark"] .faq-split-list {
         background: #1e293b;
         border-color: #334155;
+    }
+    
+    [data-theme="dark"] .faq-split-card {
+        background: #1e40af;
     }
     
     [data-theme="dark"] .faq-split-question span {
@@ -1442,6 +1351,11 @@
     
     [data-theme="dark"] .faq-split-item {
         border-color: #334155;
+    }
+    
+    [data-theme="dark"] .faq-split-item:not(.active) .faq-split-icon {
+        background: #334155;
+        color: #60a5fa;
     }
     
     /* Responsive */
