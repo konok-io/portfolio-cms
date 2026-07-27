@@ -685,14 +685,6 @@
                         <span class="pricing-split-badge">{{ $plan->badge }}</span>
                         @endif
                         
-                        <div class="pricing-split-icon">
-                            @if($plan->is_highlighted)
-                            <i class="fa-solid fa-fire"></i>
-                            @else
-                            <i class="fa-solid fa-box"></i>
-                            @endif
-                        </div>
-                        
                         <h3 class="pricing-split-plan-name">{{ $plan->name }}</h3>
                         <p class="pricing-split-plan-desc">{{ $plan->description }}</p>
                         
@@ -842,7 +834,7 @@
     .pricing-split-card {
         background: var(--card-bg, white);
         border-radius: 16px;
-        padding: 24px;
+        padding: 20px;
         position: relative;
         transition: all 0.3s;
         border: 1px solid var(--border-color, #e5e7eb);
@@ -878,34 +870,11 @@
         font-weight: 700;
     }
     
-    .pricing-split-icon {
-        width: 40px;
-        height: 40px;
-        background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(6, 182, 212, 0.1));
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 15px;
-        color: var(--color-primary, #4f46e5);
-        font-size: 1rem;
-        transition: transform 0.3s;
-    }
-    
-    .pricing-split-card:hover .pricing-split-icon {
-        transform: scale(1.1);
-    }
-    
-    .pricing-split-card.featured .pricing-split-icon {
-        background: rgba(255,255,255,0.25);
-        color: white;
-    }
-    
     .pricing-split-plan-name {
-        font-size: 1rem;
+        font-size: 0.95rem;
         font-weight: 700;
         color: var(--text-color, #0f172a);
-        margin-bottom: 2px;
+        margin-bottom: 4px;
     }
     
     .pricing-split-card.featured .pricing-split-plan-name {
@@ -913,9 +882,10 @@
     }
     
     .pricing-split-plan-desc {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         color: #64748b;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
+        line-height: 1.4;
     }
     
     .pricing-split-card.featured .pricing-split-plan-desc {
@@ -925,8 +895,8 @@
     .pricing-split-price {
         display: flex;
         align-items: baseline;
-        margin-bottom: 15px;
-        padding-bottom: 15px;
+        margin-bottom: 12px;
+        padding-bottom: 12px;
         border-bottom: 1px solid var(--border-color, #e5e7eb);
     }
     
@@ -935,11 +905,11 @@
     }
     
     .pricing-split-currency {
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-weight: 700;
         color: var(--color-primary, #4f46e5);
         align-self: flex-start;
-        margin-top: 5px;
+        margin-top: 4px;
     }
     
     .pricing-split-card.featured .pricing-split-currency {
@@ -947,7 +917,7 @@
     }
     
     .pricing-split-amount {
-        font-size: 2rem;
+        font-size: 1.75rem;
         font-weight: 900;
         color: var(--text-color, #0f172a);
         line-height: 1;
@@ -958,7 +928,7 @@
     }
     
     .pricing-split-period {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         color: #64748b;
         margin-left: 2px;
     }
@@ -970,15 +940,15 @@
     .pricing-split-features {
         list-style: none;
         padding: 0;
-        margin: 0 0 20px 0;
+        margin: 0 0 15px 0;
     }
     
     .pricing-split-features li {
         display: flex;
         align-items: center;
         gap: 8px;
-        padding: 6px 0;
-        font-size: 0.8rem;
+        padding: 5px 0;
+        font-size: 0.75rem;
         color: #475569;
     }
     
@@ -987,15 +957,15 @@
     }
     
     .pricing-split-features li i {
-        width: 18px;
-        height: 18px;
+        width: 16px;
+        height: 16px;
         background: linear-gradient(135deg, #10b981, #059669);
         color: white;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 0.6rem;
+        font-size: 0.55rem;
         flex-shrink: 0;
     }
     
@@ -1009,10 +979,10 @@
         background: var(--section-alt-bg, #f8fafc);
         border: 1px solid var(--color-primary, #4f46e5);
         color: var(--color-primary, #4f46e5);
-        padding: 10px 16px;
-        border-radius: 10px;
+        padding: 8px 14px;
+        border-radius: 8px;
         font-weight: 600;
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         text-align: center;
         text-decoration: none;
         transition: all 0.3s;
@@ -1029,10 +999,10 @@
         background: white;
         border: none;
         color: var(--color-primary, #4f46e5);
-        padding: 10px 16px;
-        border-radius: 10px;
+        padding: 8px 14px;
+        border-radius: 8px;
         font-weight: 600;
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         text-align: center;
         text-decoration: none;
         transition: all 0.3s;
