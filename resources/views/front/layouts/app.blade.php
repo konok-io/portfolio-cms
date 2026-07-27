@@ -422,15 +422,19 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
     var searchIconWrap = document.querySelector('.search-icon-wrap');
     var searchInput = searchBox ? searchBox.querySelector('.search-input') : null;
     var mainNav = document.getElementById('mainNav');
+    var pillNavWrapper = document.querySelector('.pill-nav-wrapper');
     
     if (searchBtn && searchBox && searchIconWrap) {
       searchBtn.addEventListener('click', function(e) {
         e.preventDefault();
         searchIconWrap.classList.add('active');
         searchBox.classList.add('active');
-        // Show navbar menu on PC
+        // Show navbar menu on PC and hide pill nav
         if (mainNav && window.innerWidth >= 992) {
           mainNav.classList.add('show');
+          if (pillNavWrapper) {
+            pillNavWrapper.style.visibility = 'hidden';
+          }
         }
         if (searchInput) {
           setTimeout(function() {
@@ -444,6 +448,9 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
       if (e.key === 'Escape' && searchIconWrap && searchIconWrap.classList.contains('active')) {
         searchIconWrap.classList.remove('active');
         searchBox.classList.remove('active');
+        if (pillNavWrapper) {
+          pillNavWrapper.style.visibility = '';
+        }
         if (searchInput) searchInput.value = '';
       }
     });
@@ -454,6 +461,9 @@ document.addEventListener('DOMContentLoaded', showCookieConsent);
         if (!searchIconWrap.contains(e.target)) {
           searchIconWrap.classList.remove('active');
           searchBox.classList.remove('active');
+          if (pillNavWrapper) {
+            pillNavWrapper.style.visibility = '';
+          }
           if (searchInput) searchInput.value = '';
         }
       }
