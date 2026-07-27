@@ -82,6 +82,7 @@ Route::prefix('portfolio')->name('projects.')->group(function () {
 Route::prefix('blog')->name('blog.')->group(function () {
     Route::get('/', [BlogController::class, 'index'])->name('index');
     Route::get('/categories', [BlogCategoryController::class, 'index'])->name('categories');
+    Route::get('/card-preview', function() { return view('front.blog.blog-card-preview'); })->name('card-preview');
     Route::get('/categories/{category:slug}', [BlogCategoryController::class, 'show'])->name('category');
     Route::get('/{blog:slug}', [BlogController::class, 'show'])->name('show');
     Route::post('/{blog:slug}/comments', [CommentController::class, 'store'])->name('comments.store')->middleware('throttle:5,60');
