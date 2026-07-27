@@ -684,7 +684,6 @@
                                                 </div>
                                             </div>
                                             <div class="test-glass-quote-stars">
-                                                <div class="test-glass-quote"><i class="fas fa-quote-left"></i></div>
                                                 <div class="test-glass-stars">
                                                     @for($i = 1; $i <= 5; $i++)
                                                         <i class="fas fa-star"></i>
