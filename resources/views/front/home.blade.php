@@ -538,23 +538,6 @@
                 margin-bottom: 16px;
             }
             
-            .test-glass-quote-line {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-            
-            .test-glass-quote {
-                color: #2563eb;
-                font-size: 2rem;
-                line-height: 1;
-            }
-            
-            .test-glass-stars {
-                color: #f59e0b;
-                font-size: 0.8rem;
-            }
-            
             .test-glass-author {
                 display: flex;
                 align-items: center;
@@ -598,10 +581,43 @@
                 color: #64748b;
             }
             
+            .test-glass-quote-stars {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 4px;
+            }
+            
+            .test-glass-quote {
+                color: #2563eb;
+                font-size: 1.8rem;
+                line-height: 1;
+            }
+            
+            .test-glass-stars {
+                color: #f59e0b;
+                font-size: 0.75rem;
+            }
+            
+            .test-glass-content {
+                display: flex;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            
+            .test-glass-content .test-glass-quote-icon {
+                color: #2563eb;
+                font-size: 1.5rem;
+                line-height: 1;
+                flex-shrink: 0;
+                margin-top: 2px;
+            }
+            
             .test-glass-text {
                 font-size: 0.9rem;
                 color: #475569;
                 line-height: 1.7;
+                flex: 1;
             }
             
             /* Carousel styles */
@@ -621,15 +637,15 @@
                 width: 12px;
                 height: 12px;
                 border-radius: 50%;
-                background-color: rgba(255, 255, 255, 0.4);
-                border: 2px solid rgba(255, 255, 255, 0.6);
+                background-color: rgba(37, 99, 235, 0.3);
+                border: 2px solid rgba(37, 99, 235, 0.5);
                 margin: 0 5px;
                 opacity: 1;
             }
             
             .test-glass-section .carousel-indicators button.active {
-                background-color: #fff;
-                border-color: #fff;
+                background-color: #2563eb;
+                border-color: #2563eb;
             }
             
             @media (max-width: 992px) {
@@ -654,14 +670,6 @@
                                 <div class="col-md-6 col-lg-4">
                                     <div class="test-glass-card">
                                         <div class="test-glass-header">
-                                            <div class="test-glass-quote-line">
-                                                <div class="test-glass-quote"><i class="fas fa-quote-left"></i></div>
-                                                <div class="test-glass-stars">
-                                                    @for($i = 1; $i <= 5; $i++)
-                                                        <i class="fas fa-star"></i>
-                                                    @endfor
-                                                </div>
-                                            </div>
                                             <div class="test-glass-author">
                                                 <div class="test-glass-avatar">
                                                     @if($testimonial->photo_url)
@@ -675,8 +683,19 @@
                                                     <span class="test-glass-role">{{ $testimonial->company }}</span>
                                                 </div>
                                             </div>
+                                            <div class="test-glass-quote-stars">
+                                                <div class="test-glass-quote"><i class="fas fa-quote-left"></i></div>
+                                                <div class="test-glass-stars">
+                                                    @for($i = 1; $i <= 5; $i++)
+                                                        <i class="fas fa-star"></i>
+                                                    @endfor
+                                                </div>
+                                            </div>
                                         </div>
-                                        <p class="test-glass-text">{{ $testimonial->review }}</p>
+                                        <div class="test-glass-content">
+                                            <div class="test-glass-quote-icon"><i class="fas fa-quote-left"></i></div>
+                                            <p class="test-glass-text">{{ $testimonial->review }}</p>
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach
