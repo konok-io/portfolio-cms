@@ -54,7 +54,7 @@
 </section>
 
 {{-- =========================================================
-     2. WHY CHOOSE ME
+     2. WHY CHOOSE ME - Design 2: Premium Gradient Cards
      ========================================================= --}}
 @if($whyChooseMe->isNotEmpty())
 <section id="about" class="section-padding section-alt">
@@ -71,9 +71,9 @@
         <div class="row g-4 justify-content-center">
             @foreach($whyChooseMe as $index => $item)
             <div class="col-lg-4 col-md-6">
-                <div class="why-card reveal-on-scroll">
-                    <span class="why-card-number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
-                    <div class="why-card-icon">
+                <div class="why-h-card reveal-on-scroll">
+                    <span class="card-number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                    <div class="why-h-icon">
                         <i class="{{ $item->icon }}"></i>
                     </div>
                     <h3>{{ $item->title }}</h3>
@@ -82,21 +82,16 @@
             </div>
             @endforeach
         </div>
-        
-        <div class="text-center mt-5">
-            <a href="{{ route('about') }}" class="btn btn-outline-custom reveal-on-scroll">
-                <i class="fa-solid fa-user me-2"></i>{{ __('Learn More About Me') }}
-            </a>
-        </div>
     </div>
 </section>
 @endif
 
 <style>
-    .why-card {
+    /* Design 2: Premium Gradient Cards */
+    .why-h-card {
         background: var(--bg-white);
         border-radius: 20px;
-        padding: 35px 30px;
+        padding: 30px 25px;
         border: 1px solid var(--border);
         transition: all 0.4s ease;
         display: flex;
@@ -108,7 +103,7 @@
         height: 100%;
     }
 
-    .why-card::before {
+    .why-h-card::before {
         content: '';
         position: absolute;
         inset: 0;
@@ -118,7 +113,7 @@
         z-index: 0;
     }
 
-    .why-card::after {
+    .why-h-card::after {
         content: '';
         position: absolute;
         top: 0; left: 0; right: 0;
@@ -128,37 +123,21 @@
         transition: transform 0.3s ease;
     }
 
-    .why-card:hover {
+    .why-h-card:hover {
         transform: translateY(-8px);
         box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
         border-color: transparent;
     }
 
-    .why-card:hover::before {
+    .why-h-card:hover::before {
         opacity: 1;
     }
 
-    .why-card:hover::after {
+    .why-h-card:hover::after {
         transform: scaleX(1);
     }
 
-    .why-card-number {
-        position: absolute;
-        top: 15px;
-        right: 20px;
-        font-size: 3rem;
-        font-weight: 800;
-        color: var(--primary-glow);
-        line-height: 1;
-        transition: all 0.3s ease;
-        z-index: 1;
-    }
-
-    .why-card:hover .why-card-number {
-        color: rgba(255,255,255,0.15);
-    }
-
-    .why-card-icon {
+    .why-h-icon {
         width: 65px;
         height: 65px;
         background: var(--primary-glow);
@@ -174,27 +153,25 @@
         z-index: 1;
     }
 
-    .why-card:hover .why-card-icon {
+    .why-h-card:hover .why-h-icon {
         background: rgba(255,255,255,0.2);
         color: #fff;
         transform: scale(1.1) rotate(-5deg);
     }
 
-    .why-card h3 {
+    .why-h-card h3 {
         font-size: 1.15rem;
         font-weight: 700;
-        color: var(--text-dark);
         margin-bottom: 10px;
         transition: color 0.3s ease;
         position: relative;
         z-index: 1;
+        color: var(--text-dark);
     }
 
-    .why-card:hover h3 {
-        color: #fff;
-    }
+    .why-h-card:hover h3 { color: #fff; }
 
-    .why-card p {
+    .why-h-card p {
         font-size: 0.9rem;
         line-height: 1.6;
         color: var(--text-body);
@@ -204,8 +181,24 @@
         margin: 0;
     }
 
-    .why-card:hover p {
+    .why-h-card:hover p { 
         color: rgba(255,255,255,0.9);
+    }
+
+    .card-number {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--primary-glow);
+        line-height: 1;
+        transition: all 0.3s ease;
+        z-index: 1;
+    }
+
+    .why-h-card:hover .card-number {
+        color: rgba(255,255,255,0.15);
     }
 </style>
 
