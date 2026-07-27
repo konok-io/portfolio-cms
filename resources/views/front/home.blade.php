@@ -1396,27 +1396,27 @@
      ========================================================= --}}
 <section id="resume-cta" class="section-padding section-tint">
     <div class="container">
-        <div class="row align-items-center g-5">
+        <div class="row align-items-stretch g-4">
             <div class="col-lg-7 reveal-on-scroll">
-                <span class="section-eyebrow">My Resume</span>
-                <h2 class="section-title mb-3">Want to see my full profile?</h2>
-                <p class="text-muted mb-4">Get a comprehensive overview of my skills, experience, education, and certifications. Download or preview my resume in multiple professional templates.</p>
-                <div class="d-flex flex-wrap gap-3">
-                    <a href="{{ route('resume') }}" class="btn btn-primary-custom">
-                        <i class="fa-solid fa-eye me-2"></i>View Resume
-                    </a>
-                    <a href="{{ route('resume.preview') }}" target="_blank" class="btn btn-outline-custom">
-                        <i class="fa-solid fa-file-pdf me-2"></i>Preview PDF
-                    </a>
+                <div class="h-100 d-flex flex-column justify-content-center">
+                    <span class="section-eyebrow">My Resume</span>
+                    <h2 class="section-title mb-3">Want to see my full profile?</h2>
+                    <p class="text-muted mb-4">Get a comprehensive overview of my skills, experience, education, and certifications. Download or preview my resume in multiple professional templates.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="{{ route('resume') }}" class="btn btn-primary-custom">
+                            <i class="fa-solid fa-eye me-2"></i>View Resume
+                        </a>
+                        <a href="{{ route('resume.preview') }}" target="_blank" class="btn btn-outline-custom">
+                            <i class="fa-solid fa-file-pdf me-2"></i>Preview PDF
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-5 reveal-on-scroll">
-                <div class="text-center">
-                    <div class="resume-preview-box p-4 bg-white rounded-4 shadow-sm">
-                        <i class="fa-solid fa-file-lines text-primary-custom" style="font-size: 4rem;"></i>
-                        <h5 class="mt-3 mb-2">Professional Resume</h5>
-                        <p class="text-muted small mb-0">Multiple templates available</p>
-                    </div>
+                <div class="resume-preview-box h-100 p-4 bg-white rounded-4 shadow-sm d-flex flex-column align-items-center justify-content-center text-center">
+                    <i class="fa-solid fa-file-lines text-primary-custom" style="font-size: 4rem;"></i>
+                    <h5 class="mt-3 mb-2">Professional Resume</h5>
+                    <p class="text-muted small mb-0">Multiple templates available</p>
                 </div>
             </div>
         </div>
