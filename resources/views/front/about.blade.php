@@ -225,6 +225,29 @@
         gap: 30px;
         align-items: flex-start;
         transition: all 0.3s ease;
+        position: relative;
+    }
+    
+    /* Exp Card Border-Radius Shape Decoration */
+    .exp-card::before {
+        content: '';
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        right: -3px;
+        bottom: -3px;
+        background: linear-gradient(135deg, 
+            rgba(37, 99, 235, 0.2) 0%, 
+            rgba(249, 115, 22, 0.15) 50%, 
+            rgba(37, 99, 235, 0.2) 100%);
+        border-radius: 23px;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+    
+    .exp-card:hover::before {
+        opacity: 1;
     }
     
     .exp-card:hover {

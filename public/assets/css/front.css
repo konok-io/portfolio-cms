@@ -598,6 +598,112 @@ a {
   border: 1px solid #d1d5db;
   border-radius: var(--radius-md);
   transition: all 0.25s ease;
+  position: relative;
+}
+
+/* Card Border-Radius Shape Decoration - Light Opacity */
+.skill-card::before,
+.service-card::before,
+.project-card::before,
+.blog-card::before,
+.testimonial-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, 
+    rgba(37, 99, 235, 0.15) 0%, 
+    rgba(79, 47, 232, 0.1) 50%, 
+    rgba(34, 211, 238, 0.15) 100%);
+  border-radius: calc(var(--radius-md) + 2px);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.skill-card::after,
+.service-card::after,
+.project-card::after,
+.blog-card::after,
+.testimonial-card::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(79, 47, 232, 0.15));
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.skill-card:hover::before,
+.service-card:hover::before,
+.project-card:hover::before,
+.blog-card:hover::before,
+.testimonial-card:hover::before {
+  opacity: 1;
+}
+
+.skill-card:hover::after,
+.service-card:hover::after,
+.project-card:hover::after,
+.blog-card:hover::after,
+.testimonial-card:hover::after {
+  opacity: 1;
+  transform: scale(1.5);
+}
+
+/* Corner decoration shapes for cards */
+.skill-card .card-shape-corner,
+.service-card .card-shape-corner,
+.project-card .card-shape-corner,
+.blog-card .card-shape-corner,
+.testimonial-card .card-shape-corner {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.skill-card .card-shape-corner.top-right,
+.service-card .card-shape-corner.top-right,
+.project-card .card-shape-corner.top-right,
+.blog-card .card-shape-corner.top-right,
+.testimonial-card .card-shape-corner.top-right {
+  top: -10px;
+  right: -10px;
+}
+
+.skill-card .card-shape-corner.bottom-left,
+.service-card .card-shape-corner.bottom-left,
+.project-card .card-shape-corner.bottom-left,
+.blog-card .card-shape-corner.bottom-left,
+.testimonial-card .card-shape-corner.bottom-left {
+  bottom: -10px;
+  left: -10px;
+  background: radial-gradient(circle, rgba(79, 47, 232, 0.1) 0%, transparent 70%);
+}
+
+/* Animated border pulse effect on hover */
+@keyframes cardBorderPulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.2); }
+  70% { box-shadow: 0 0 0 12px rgba(37, 99, 235, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+}
+
+.skill-card:hover,
+.service-card:hover,
+.project-card:hover,
+.blog-card:hover,
+.testimonial-card:hover {
+  animation: cardBorderPulse 0.8s ease-out;
 }
 
 /* Cards in white sections (About, What I Do, Experience, Testimonials, Blog, FAQ, Contact) - Blue background */
@@ -1268,6 +1374,47 @@ a [class*="far"] {
   border-radius: 16px;
   border: 1px solid #d1d5db;
   transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Certification Card Border-Radius Shape Decoration */
+.certification-card::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(135deg, 
+    rgba(79, 47, 232, 0.2) 0%, 
+    rgba(37, 99, 235, 0.15) 50%, 
+    rgba(34, 211, 238, 0.2) 100%);
+  border-radius: 19px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.certification-card::after {
+  content: '';
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, rgba(79, 47, 232, 0.25) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.certification-card:hover::before {
+  opacity: 1;
+}
+
+.certification-card:hover::after {
+  opacity: 1;
 }
 
 /* Certification cards in blue sections (Certifications is section-2) - Already white by default */
@@ -1277,6 +1424,13 @@ a [class*="far"] {
   transform: translateY(-5px);
   box-shadow: 0 20px 40px rgba(79, 47, 232, 0.12);
   border-color: rgba(79, 47, 232, 0.3);
+  animation: certCardPulse 0.8s ease-out;
+}
+
+@keyframes certCardPulse {
+  0% { box-shadow: 0 0 0 0 rgba(79, 47, 232, 0.25); }
+  70% { box-shadow: 0 0 0 14px rgba(79, 47, 232, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(79, 47, 232, 0); }
 }
 
 .cert-icon {
@@ -1377,6 +1531,29 @@ a [class*="far"] {
 /* Related Projects/Posts */
 .related-card {
   transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Related Card Border-Radius Shape Decoration */
+.related-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, 
+    rgba(37, 99, 235, 0.15) 0%, 
+    rgba(79, 47, 232, 0.1) 50%, 
+    rgba(34, 211, 238, 0.15) 100%);
+  border-radius: calc(var(--radius-md) + 2px);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.related-card:hover::before {
+  opacity: 1;
 }
 
 .related-card:hover {

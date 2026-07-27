@@ -115,10 +115,11 @@
         align-items: center;
         text-align: center;
         position: relative;
-        overflow: hidden;
+        overflow: visible;
         height: 100%;
     }
 
+    /* Why H Card Border-Radius Shape Decoration */
     .why-h-card::before {
         content: '';
         position: absolute;
@@ -127,16 +128,25 @@
         opacity: 0;
         transition: opacity 0.4s ease;
         z-index: 0;
+        border-radius: 20px;
     }
 
+    /* Outer glow shape for why-h-card */
     .why-h-card::after {
         content: '';
         position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, var(--why-primary), var(--why-primary-light));
-        transform: scaleX(0);
-        transition: transform 0.3s ease;
+        top: -3px;
+        left: -3px;
+        right: -3px;
+        bottom: -3px;
+        background: linear-gradient(135deg, 
+            rgba(37, 99, 235, 0.25) 0%, 
+            rgba(96, 165, 250, 0.15) 50%, 
+            rgba(37, 99, 235, 0.25) 100%);
+        border-radius: 23px;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.4s ease;
     }
 
     .why-h-card:hover {
@@ -150,7 +160,7 @@
     }
 
     .why-h-card:hover::after {
-        transform: scaleX(1);
+        opacity: 1;
     }
 
     .why-h-icon {
@@ -281,7 +291,7 @@
                 text-align: center;
                 transition: all 0.3s;
                 position: relative;
-                overflow: hidden;
+                overflow: visible;
             }
             
             .tech-card::before {
@@ -296,6 +306,24 @@
                 transition: opacity 0.3s;
             }
             
+            /* Tech Card Border-Radius Shape Decoration */
+            .tech-card::after {
+                content: '';
+                position: absolute;
+                top: -3px;
+                left: -3px;
+                right: -3px;
+                bottom: -3px;
+                background: linear-gradient(135deg, 
+                    rgba(37, 99, 235, 0.18) 0%, 
+                    rgba(59, 130, 246, 0.12) 50%, 
+                    rgba(37, 99, 235, 0.18) 100%);
+                border-radius: 19px;
+                z-index: -1;
+                opacity: 0;
+                transition: opacity 0.4s ease;
+            }
+            
             .tech-card:hover {
                 transform: translateY(-8px);
                 border-color: #2563EB;
@@ -303,6 +331,10 @@
             }
             
             .tech-card:hover::before {
+                opacity: 1;
+            }
+            
+            .tech-card:hover::after {
                 opacity: 1;
             }
             
@@ -841,6 +873,28 @@
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
     
+    /* Pricing Card Border-Radius Shape Decoration */
+    .pricing-split-card::before {
+        content: '';
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        right: -3px;
+        bottom: -3px;
+        background: linear-gradient(135deg, 
+            rgba(79, 70, 229, 0.2) 0%, 
+            rgba(6, 182, 212, 0.15) 50%, 
+            rgba(37, 99, 235, 0.2) 100%);
+        border-radius: 19px;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+    
+    .pricing-split-card:hover::before {
+        opacity: 1;
+    }
+    
     .pricing-split-card:hover {
         border-color: var(--color-primary, #4f46e5);
         box-shadow: 0 10px 30px rgba(0,0,0,0.06);
@@ -852,6 +906,13 @@
         border: none;
         box-shadow: 0 20px 40px rgba(79, 70, 229, 0.25);
         transform: scale(1.02);
+    }
+    
+    .pricing-split-card.featured::before {
+        background: linear-gradient(135deg, 
+            rgba(255, 255, 255, 0.3) 0%, 
+            rgba(255, 255, 255, 0.15) 50%, 
+            rgba(255, 255, 255, 0.3) 100%);
     }
     
     .pricing-split-card.featured:hover {
@@ -1174,6 +1235,29 @@
         display: flex;
         flex-direction: column;
         color: white;
+        position: relative;
+    }
+    
+    /* FAQ Card Border-Radius Shape Decoration */
+    .faq-split-card::before {
+        content: '';
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        right: -3px;
+        bottom: -3px;
+        background: linear-gradient(135deg, 
+            rgba(255, 255, 255, 0.25) 0%, 
+            rgba(255, 255, 255, 0.1) 50%, 
+            rgba(255, 255, 255, 0.25) 100%);
+        border-radius: 19px;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+    
+    .faq-split-card:hover::before {
+        opacity: 1;
     }
     
     .faq-card-icon {
