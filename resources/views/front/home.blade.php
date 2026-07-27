@@ -1675,7 +1675,7 @@
             .contact-vertical-input {
                 width: 100%;
                 padding: 10px 14px;
-                border: 1px solid #e2e8f0;
+                border: 1px solid #d1d5db;
                 border-radius: 8px;
                 font-size: 0.9rem;
                 transition: all 0.3s;
@@ -1690,7 +1690,7 @@
             .contact-vertical-textarea {
                 width: 100%;
                 padding: 10px 14px;
-                border: 1px solid #e2e8f0;
+                border: 1px solid #d1d5db;
                 border-radius: 8px;
                 font-size: 0.9rem;
                 resize: none;
