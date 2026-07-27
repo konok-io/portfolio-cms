@@ -224,33 +224,37 @@
         display: flex;
         gap: 30px;
         align-items: flex-start;
-        transition: all 0.3s ease;
+        transition: none;
         position: relative;
     }
     
-    /* Exp Card Border-Radius Shape Decoration */
+    /* Exp Card Corner Blue Gradient Circles - Always Visible */
     .exp-card::before {
         content: '';
         position: absolute;
-        inset: -6px;
-        background: linear-gradient(135deg, #2563EB, #06b6d4, #2563EB);
-        border-radius: 26px;
-        z-index: -1;
-        opacity: 0;
-        transition: all 0.4s ease;
-        filter: blur(0px);
+        top: -12px;
+        left: -12px;
+        width: 50px;
+        height: 50px;
+        background: radial-gradient(circle, #2563EB 0%, #06b6d4 50%, transparent 70%);
+        border-radius: 50%;
+        z-index: 0;
+        opacity: 0.4;
+        pointer-events: none;
     }
     
-    .exp-card:hover::before {
-        opacity: 0.7;
-        transform: scale(1.05);
-        filter: blur(2px);
-    }
-    
-    .exp-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
-        border-color: #2563EB;
+    .exp-card::after {
+        content: '';
+        position: absolute;
+        bottom: -12px;
+        right: -12px;
+        width: 50px;
+        height: 50px;
+        background: radial-gradient(circle, #06b6d4 0%, #2563EB 50%, transparent 70%);
+        border-radius: 50%;
+        z-index: 0;
+        opacity: 0.4;
+        pointer-events: none;
     }
     
     .exp-card-left {

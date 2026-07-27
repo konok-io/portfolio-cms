@@ -448,30 +448,36 @@ body.admin-login-wrap {
   border: 1px solid #e2e8f0;
   border-radius: var(--admin-radius);
   position: relative;
+  transition: none;
 }
 
-/* Admin Card Border-Radius Shape Decoration */
+/* Admin Card Corner Blue Gradient Circles - Always Visible */
 .admin-card::before {
   content: '';
   position: absolute;
-  inset: -6px;
-  background: linear-gradient(135deg, #2563EB, #06b6d4, #2563EB);
-  border-radius: calc(var(--admin-radius) + 6px);
-  z-index: -1;
-  opacity: 0;
-  transition: all 0.4s ease;
-  filter: blur(0px);
+  top: -12px;
+  left: -12px;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, #2563EB 0%, #06b6d4 50%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+  opacity: 0.4;
+  pointer-events: none;
 }
 
-.admin-card:hover::before {
-  opacity: 0.7;
-  transform: scale(1.05);
-  filter: blur(2px);
-}
-
-.admin-card:hover {
-  border-color: #2563EB;
-  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15);
+.admin-card::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  right: -12px;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, #06b6d4 0%, #2563EB 50%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+  opacity: 0.4;
+  pointer-events: none;
 }
 
 .admin-card .card-header-custom {
@@ -493,33 +499,37 @@ body.admin-login-wrap {
   align-items: center;
   gap: 1rem;
   height: 100%;
-  transition: all 0.2s ease;
+  transition: none;
   position: relative;
 }
 
-/* Stat Card Border-Radius Shape Decoration */
+/* Stat Card Corner Blue Gradient Circles - Always Visible */
 .stat-card::before {
   content: '';
   position: absolute;
-  inset: -6px;
-  background: linear-gradient(135deg, #2563EB, #06b6d4, #2563EB);
-  border-radius: calc(var(--admin-radius) + 6px);
-  z-index: -1;
-  opacity: 0;
-  transition: all 0.4s ease;
-  filter: blur(0px);
+  top: -12px;
+  left: -12px;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, #2563EB 0%, #06b6d4 50%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+  opacity: 0.4;
+  pointer-events: none;
 }
 
-.stat-card:hover::before {
-  opacity: 0.7;
-  transform: scale(1.05);
-  filter: blur(2px);
-}
-
-.stat-card:hover {
-  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15);
-  transform: translateY(-3px);
-  border-color: #2563EB;
+.stat-card::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  right: -12px;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, #06b6d4 0%, #2563EB 50%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+  opacity: 0.4;
+  pointer-events: none;
 }
 .stat-card .stat-icon {
   width: 52px;
