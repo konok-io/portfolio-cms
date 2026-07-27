@@ -834,9 +834,10 @@
         background: var(--card-bg, white);
         border-radius: 16px;
         padding: 20px;
+        padding-bottom: 16px;
         position: relative;
         transition: all 0.3s;
-        border: 1px solid rgba(0, 0, 0, 0.08);
+        border: 1px solid #d1d5db;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
     
