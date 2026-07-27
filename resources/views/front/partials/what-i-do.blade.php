@@ -91,7 +91,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 14px;
+        gap: 10px;
         flex-shrink: 0;
     }
     
@@ -127,7 +127,7 @@
         text-decoration: none;
     }
     
-    .btn-view:hover {
+    .service-card:hover .btn-view {
         background: var(--primary);
         color: #fff;
     }
