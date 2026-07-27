@@ -228,6 +228,18 @@ a {
   background-color: #f8f9fc;
 }
 
+/* Light sections border override */
+.section-alt .service-card,
+.section-tint .service-card {
+    border-color: #d1d5db;
+}
+
+/* Update global border color for light backgrounds */
+.section-alt,
+.section-tint {
+    --color-border: #d1d5db;
+}
+
 /* =========================================================
    Buttons
    ========================================================= */
