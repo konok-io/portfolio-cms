@@ -449,38 +449,7 @@
 @endif
 
 {{-- =========================================================
-     6. EDUCATION
-     ========================================================= --}}
-@if($educations->isNotEmpty())
-<section id="education" class="section-padding section-tint">
-    <div class="container">
-        <div class="row gy-5">
-            <div class="col-lg-4 reveal-on-scroll">
-                <span class="section-eyebrow">Academic Background</span>
-                <h2 class="section-title">Education</h2>
-                <p class="section-subtitle">My academic foundation in computer science and technology.</p>
-            </div>
-            <div class="col-lg-8">
-                <div class="timeline">
-                    @foreach($educations as $education)
-                        <div class="timeline-item reveal-on-scroll">
-                            <div class="d-flex justify-content-between flex-wrap gap-2">
-                                <h5 class="mb-1">{{ $education->degree }}</h5>
-                                <span class="badge bg-secondary-custom">{{ $education->duration }}</span>
-                            </div>
-                            <p class="text-primary-custom fw-semibold small mb-2">{{ $education->institute_name }}</p>
-                            <p class="text-muted small mb-0">{{ $education->description }}</p>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-@endif
-
-{{-- =========================================================
-     7. PORTFOLIO PROJECTS
+     6. PORTFOLIO PROJECTS
      ========================================================= --}}
 @if($projects->isNotEmpty())
 <section id="portfolio" class="section-padding section-alt">
@@ -512,6 +481,37 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
+{{-- =========================================================
+     7. EDUCATION
+     ========================================================= --}}
+@if($educations->isNotEmpty())
+<section id="education" class="section-padding section-tint">
+    <div class="container">
+        <div class="row gy-5">
+            <div class="col-lg-4 reveal-on-scroll">
+                <span class="section-eyebrow">Academic Background</span>
+                <h2 class="section-title">Education</h2>
+                <p class="section-subtitle">My academic foundation in computer science and technology.</p>
+            </div>
+            <div class="col-lg-8">
+                <div class="timeline">
+                    @foreach($educations as $education)
+                        <div class="timeline-item reveal-on-scroll">
+                            <div class="d-flex justify-content-between flex-wrap gap-2">
+                                <h5 class="mb-1">{{ $education->degree }}</h5>
+                                <span class="badge bg-secondary-custom">{{ $education->duration }}</span>
+                            </div>
+                            <p class="text-primary-custom fw-semibold small mb-2">{{ $education->institute_name }}</p>
+                            <p class="text-muted small mb-0">{{ $education->description }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 </section>
