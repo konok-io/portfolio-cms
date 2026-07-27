@@ -658,7 +658,6 @@
         <div class="pricing-split-row">
             {{-- Left Side: Text Content --}}
             <div class="pricing-split-left reveal-on-scroll">
-                <span class="pricing-split-eyebrow">Services</span>
                 <h2 class="pricing-split-title">{{ $settings['pricing_title'] ?? 'Simple, Fair Pricing' }}</h2>
                 <p class="pricing-split-desc">{{ $settings['pricing_subtitle'] ?? 'Choose the plan that fits your needs. 14-day free trial included.' }}</p>
                 
