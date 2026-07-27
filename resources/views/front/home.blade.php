@@ -627,6 +627,14 @@
         
         <style>
             /* Blog Horizontal Card Styles */
+            .blog-horizontal-list {
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+                max-width: 900px;
+                margin: 0 auto;
+            }
+            
             .blog-horizontal-card {
                 display: flex;
                 background: #ffffff;
@@ -634,7 +642,6 @@
                 overflow: hidden;
                 transition: all 0.3s ease;
                 border: 1px solid #e2e8f0;
-                margin-bottom: 24px;
             }
             
             .blog-horizontal-card:hover {
@@ -643,8 +650,8 @@
             }
             
             .blog-horizontal-img {
-                width: 280px;
-                min-height: 200px;
+                width: 320px;
+                min-height: 220px;
                 flex-shrink: 0;
                 position: relative;
                 overflow: hidden;
@@ -662,7 +669,7 @@
             }
             
             .blog-horizontal-content {
-                padding: 24px;
+                padding: 28px 32px;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -682,7 +689,7 @@
             }
             
             .blog-horizontal-title {
-                font-size: 1.15rem;
+                font-size: 1.2rem;
                 font-weight: 700;
                 color: var(--color-secondary, #0F172A);
                 margin-bottom: 10px;
@@ -741,7 +748,10 @@
                 }
                 .blog-horizontal-img {
                     width: 100%;
-                    min-height: 180px;
+                    min-height: 200px;
+                }
+                .blog-horizontal-list {
+                    max-width: 100%;
                 }
             }
             
@@ -761,40 +771,38 @@
             }
         </style>
         
-        <div class="row">
+        <div class="blog-horizontal-list">
             @foreach($blogs as $blog)
-                <div class="col-lg-12 reveal-on-scroll">
-                    <a href="{{ route('blog.show', $blog->slug) }}" class="text-decoration-none">
-                        <div class="blog-horizontal-card">
-                            <div class="blog-horizontal-img">
-                                <img src="{{ $blog->featured_image_url ?? 'https://placehold.co/600x400/2563EB/ffffff?text=' . urlencode($blog->title) }}" 
-                                     alt="{{ $blog->alt_text ?? $blog->title }}" 
-                                     loading="lazy">
-                            </div>
-                            <div class="blog-horizontal-content">
-                                @if($blog->category)
-                                    <span class="blog-horizontal-badge">{{ $blog->category->name }}</span>
-                                @endif
-                                <h3 class="blog-horizontal-title">{{ $blog->title }}</h3>
-                                <p class="blog-horizontal-excerpt">{{ $blog->short_description }}</p>
-                                <div class="blog-horizontal-meta">
-                                    <span>
-                                        <i class="far fa-calendar-alt"></i>
-                                        {{ $blog->published_at ? $blog->published_at->format('M d, Y') : $blog->created_at->format('M d, Y') }}
-                                    </span>
-                                    <span>
-                                        <i class="far fa-eye"></i>
-                                        {{ $blog->views ?? 0 }} views
-                                    </span>
-                                </div>
-                                <span class="blog-horizontal-link">
-                                    {{ page_content('home', 'blog_card_link', app()->getLocale()) }}
-                                    <i class="fas fa-arrow-right"></i>
+                <a href="{{ route('blog.show', $blog->slug) }}" class="text-decoration-none reveal-on-scroll">
+                    <div class="blog-horizontal-card">
+                        <div class="blog-horizontal-img">
+                            <img src="{{ $blog->featured_image_url ?? 'https://placehold.co/600x400/2563EB/ffffff?text=' . urlencode($blog->title) }}" 
+                                 alt="{{ $blog->alt_text ?? $blog->title }}" 
+                                 loading="lazy">
+                        </div>
+                        <div class="blog-horizontal-content">
+                            @if($blog->category)
+                                <span class="blog-horizontal-badge">{{ $blog->category->name }}</span>
+                            @endif
+                            <h3 class="blog-horizontal-title">{{ $blog->title }}</h3>
+                            <p class="blog-horizontal-excerpt">{{ $blog->short_description }}</p>
+                            <div class="blog-horizontal-meta">
+                                <span>
+                                    <i class="far fa-calendar-alt"></i>
+                                    {{ $blog->published_at ? $blog->published_at->format('M d, Y') : $blog->created_at->format('M d, Y') }}
+                                </span>
+                                <span>
+                                    <i class="far fa-eye"></i>
+                                    {{ $blog->views ?? 0 }} views
                                 </span>
                             </div>
+                            <span class="blog-horizontal-link">
+                                {{ page_content('home', 'blog_card_link', app()->getLocale()) }}
+                                <i class="fas fa-arrow-right"></i>
+                            </span>
                         </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
             @endforeach
         </div>
     </div>
