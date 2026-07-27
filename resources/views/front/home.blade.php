@@ -376,46 +376,9 @@
 @endif
 
 {{-- =========================================================
-     4. SERVICES
+     4. WHAT I DO - SERVICES (Design 8)
      ========================================================= --}}
-@if($services->isNotEmpty())
-<section id="services" class="section-padding section-alt">
-    <div class="container">
-        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
-            <div class="text-center text-lg-start reveal-on-scroll">
-                <span class="section-eyebrow">{{ page_content('home', 'services_eyebrow', app()->getLocale()) }}</span>
-                <h2 class="section-title mb-2">{{ page_content('home', 'services_title', app()->getLocale()) }}</h2>
-                <p class="section-subtitle mx-auto mx-lg-0">{{ page_content('home', 'services_subtitle', app()->getLocale()) }}</p>
-            </div>
-            <a href="{{ route('services') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">
-                {{ page_content('services', 'view_all', app()->getLocale()) }} <i class="fa-solid fa-arrow-right ms-2"></i>
-            </a>
-        </div>
-        <div class="row g-4">
-            @foreach($services as $service)
-                <div class="col-md-6 col-lg-4 reveal-on-scroll">
-                    <div class="service-card h-100">
-                        <div class="icon-box">
-                            @if($service->svg_icon)
-                                <span class="svg-icon">{!! $service->svg_icon !!}</span>
-                            @elseif($service->icon)
-                                <i class="{{ $service->icon }}"></i>
-                            @else
-                                <i class="fa-solid fa-gear"></i>
-                            @endif
-                        </div>
-                        <h5 class="mb-2">{{ $service->name }}</h5>
-                        <p class="text-muted small mb-3">{{ Str::limit($service->description, 100) }}</p>
-                        <a href="{{ route('services.show', $service->slug ?? Str::slug($service->name)) }}" class="btn btn-sm btn-outline-custom">
-                            {{ page_content('services', 'page_button', app()->getLocale()) }} <i class="fa-solid fa-arrow-right ms-1"></i>
-                        </a>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-@endif
+@include('front.partials.what-i-do')
 
 {{-- =========================================================
      5. EXPERIENCE

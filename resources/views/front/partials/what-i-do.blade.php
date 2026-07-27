@@ -1,6 +1,7 @@
 {{-- =========================================================
-     X. WHAT I DO - Services Section
+     X. WHAT I DO - Services Section (Design 8)
      ========================================================= --}}
+@if($services->isNotEmpty())
 <section id="services" class="section-padding section-alt">
     <div class="container">
         <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
@@ -12,18 +13,26 @@
                 <h2 class="section-title mb-2">{{ __('Professional services tailored to your needs') }}</h2>
                 <p class="section-subtitle mx-auto mx-lg-0">{{ __('I offer a wide range of services to help you achieve your goals.') }}</p>
             </div>
-            <a href="{{ route('services') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">
-                <i class="fa-solid fa-arrow-right me-2"></i>{{ __('View All') }}
+            <a href="{{ route('services.index') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">
+                {{ __('View All') }} <i class="fa-solid fa-arrow-right ms-2"></i>
             </a>
         </div>
 
-        <div class="row g-4">
-            @foreach($services as $service)
-            <div class="col-lg-4 col-md-6">
-                <div class="service-card reveal-on-scroll">
-                    <div class="service-icon">
+        <div class="what-i-do-grid">
+            @foreach($services as $index => $service)
+            <div class="what-i-do-card reveal-on-scroll">
+                <span class="what-i-do-number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                
+                <div class="what-i-do-icon-col">
+                    <div class="what-i-do-icon">
                         <i class="{{ $service->icon ?? 'fa-solid fa-gear' }}"></i>
                     </div>
+                    <a href="{{ route('services.show', $service->slug ?? '#') }}" class="what-i-do-btn">
+                        {{ __('View') }} <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="what-i-do-content">
                     <h3>{{ $service->name }}</h3>
                     <p>{{ Str::limit($service->short_description ?? $service->description, 120) }}</p>
                 </div>
@@ -34,99 +43,133 @@
 </section>
 
 <style>
-    .service-card {
+    .what-i-do-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+    
+    .what-i-do-card {
         background: var(--bg-white);
-        border-radius: 20px;
-        padding: 40px 30px;
-        text-align: center;
+        border-radius: 16px;
+        padding: 30px;
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
         border: 1px solid var(--border);
-        transition: all 0.4s ease;
+        transition: all 0.3s ease;
         position: relative;
-        overflow: hidden;
-        height: 100%;
     }
-
-    .service-card::before {
-        content: '';
+    
+    .what-i-do-card:hover {
+        border-color: var(--primary);
+        box-shadow: 0 10px 30px rgba(37, 99, 235, 0.1);
+        transform: translateY(-5px);
+    }
+    
+    .what-i-do-number {
         position: absolute;
-        inset: 0;
-        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        z-index: 0;
+        top: 15px;
+        right: 20px;
+        font-size: 3rem;
+        font-weight: 900;
+        color: var(--primary-glow);
+        line-height: 1;
+        transition: all 0.3s ease;
     }
-
-    .service-card::after {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, var(--primary), var(--primary-light));
-        transform: scaleX(0);
-        transition: transform 0.3s ease;
+    
+    .what-i-do-card:hover .what-i-do-number {
+        color: rgba(37, 99, 235, 0.15);
     }
-
-    .service-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 25px 60px rgba(37, 99, 235, 0.15);
-        border-color: transparent;
+    
+    .what-i-do-icon-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
     }
-
-    .service-card:hover::before {
-        opacity: 1;
-    }
-
-    .service-card:hover::after {
-        transform: scaleX(1);
-    }
-
-    .service-icon {
-        width: 80px;
-        height: 80px;
+    
+    .what-i-do-icon {
+        width: 60px;
+        height: 60px;
         background: var(--primary-glow);
-        border-radius: 50%;
+        border-radius: 14px;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 auto 25px;
         color: var(--primary);
-        font-size: 1.8rem;
-        transition: all 0.3s;
-        position: relative;
-        z-index: 1;
+        font-size: 1.4rem;
+        transition: all 0.3s ease;
     }
-
-    .service-card:hover .service-icon {
-        background: rgba(255,255,255,0.2);
+    
+    .what-i-do-card:hover .what-i-do-icon {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
         color: #fff;
-        transform: scale(1.1);
     }
-
-    .service-card h3 {
-        font-size: 1.3rem;
+    
+    .what-i-do-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 6px 12px;
+        background: transparent;
+        color: var(--primary);
+        border: 1px solid var(--primary);
+        border-radius: 15px;
+        text-decoration: none;
+        font-size: 0.75rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+    
+    .what-i-do-btn:hover {
+        background: var(--primary);
+        color: #fff;
+    }
+    
+    .what-i-do-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .what-i-do-content h3 {
+        font-size: 1.1rem;
         font-weight: 700;
+        margin-bottom: 8px;
         color: var(--text-dark);
-        margin-bottom: 15px;
-        position: relative;
-        z-index: 1;
-        transition: color 0.3s;
     }
-
-    .service-card:hover h3 {
-        color: #fff;
-    }
-
-    .service-card p {
+    
+    .what-i-do-content p {
         color: var(--text-body);
-        font-size: 0.95rem;
-        line-height: 1.7;
-        position: relative;
-        z-index: 1;
-        transition: color 0.3s;
+        font-size: 0.9rem;
+        line-height: 1.6;
         margin: 0;
     }
-
-    .service-card:hover p {
-        color: rgba(255,255,255,0.9);
+    
+    @media (max-width: 992px) {
+        .what-i-do-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .what-i-do-grid {
+            grid-template-columns: 1fr;
+        }
+        .what-i-do-card {
+            flex-direction: column;
+            text-align: center;
+        }
+        .what-i-do-icon-col {
+            width: 100%;
+        }
+        .what-i-do-btn {
+            width: fit-content;
+        }
     }
 </style>
+@endif
