@@ -13,7 +13,7 @@
 
 @section('content')
 
-<section class="section-padding section-cyan-tint">
+<section class="section-padding section-blue-300">
     <div class="container">
         {{-- Breadcrumb --}}
         <x-breadcrumb :items="$breadcrumbs" />

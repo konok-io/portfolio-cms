@@ -57,7 +57,7 @@
      2. WHY CHOOSE ME (About)
      ========================================================= --}}
 @if($whyChooseMe->isNotEmpty())
-<section id="about" class="section-padding section-sky-tint">
+<section id="about" class="section-padding section-blue-50">
     <div class="container">
         <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
             <div class="text-center text-lg-start reveal-on-scroll">
@@ -240,7 +240,7 @@
      3. SKILLS
      ========================================================= --}}
 @if($skills->isNotEmpty())
-<section id="skills" class="section-padding section-violet-tint">
+<section id="skills" class="section-padding section-blue-100">
     <div class="container">
         <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
             <div class="text-center text-lg-start reveal-on-scroll">
@@ -402,7 +402,7 @@
      5. PORTFOLIO PROJECTS
      ========================================================= --}}
 @if($projects->isNotEmpty())
-<section id="portfolio" class="section-padding section-lime-tint">
+<section id="portfolio" class="section-padding section-blue-200">
     <div class="container">
         <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
             <div class="text-center text-lg-start reveal-on-scroll">
@@ -440,7 +440,7 @@
      6. EXPERIENCE
      ========================================================= --}}
 @if($experiences->isNotEmpty())
-<section id="experience" class="section-padding section-orange-tint">
+<section id="experience" class="section-padding section-blue-50-alt">
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-4 reveal-on-scroll">
@@ -471,7 +471,7 @@
      7. EDUCATION
      ========================================================= --}}
 @if($educations->isNotEmpty())
-<section id="education" class="section-padding section-teal-tint">
+<section id="education" class="section-padding section-blue-100-alt">
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-4 reveal-on-scroll">
@@ -502,7 +502,7 @@
      8. TESTIMONIALS
      ========================================================= --}}
 @if($testimonials->isNotEmpty())
-<section id="testimonials" class="section-padding section-pink-tint">
+<section id="testimonials" class="section-padding section-blue-200-alt">
     <div class="container">
         <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
             <div class="text-center text-lg-start reveal-on-scroll">
@@ -565,7 +565,7 @@
      9. CERTIFICATIONS & BADGES
      ========================================================= --}}
 @if($certifications->isNotEmpty())
-<section id="certifications" class="section-padding section-indigo-tint">
+<section id="certifications" class="section-padding section-blue-300">
     <div class="container">
         <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
             <div class="text-center text-lg-start reveal-on-scroll">
@@ -615,7 +615,7 @@
      10. BLOG POSTS
      ========================================================= --}}
 @if($blogs->isNotEmpty())
-<section id="blog" class="section-padding section-emerald-tint">
+<section id="blog" class="section-padding section-blue-pale">
     <div class="container">
         <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
             <div class="text-center text-lg-start reveal-on-scroll">
@@ -1158,7 +1158,7 @@
     /* ===== FAQ SPLIT SECTION ===== */
     .faq-split-section {
         padding: 50px 0;
-        background: var(--section-amber-tint, #fffbeb);
+        background: #e0f2fe;
     }
     
     .faq-split-row {
@@ -1329,7 +1329,7 @@
     
     /* Dark Mode */
     [data-theme="dark"] .faq-split-section {
-        background: #78350f;
+        background: #0c4a6e;
     }
     
     [data-theme="dark"] .faq-split-list {
@@ -1394,7 +1394,7 @@
 {{-- =========================================================
      13. RESUME CTA
      ========================================================= --}}
-<section id="resume-cta" class="section-padding section-cyan-tint">
+<section id="resume-cta" class="section-padding section-blue-300-alt">
     <div class="container">
         <div class="row align-items-stretch g-4">
             <div class="col-lg-7 reveal-on-scroll">
@@ -1426,7 +1426,7 @@
 {{-- =========================================================
      14. CONTACT
      ========================================================= --}}
-<section id="contact" class="section-padding section-green-tint">
+<section id="contact" class="section-padding section-blue-warm">
     <div class="container">
         <div class="row g-5">
             <div class="col-lg-5 reveal-on-scroll">

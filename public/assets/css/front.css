@@ -228,50 +228,39 @@ a {
   background-color: #f8f9fc;
 }
 
-/* Additional unique section colors */
-.section-green-tint {
-  background-color: #f0fdf4;
+/* Additional unique section colors - Blue theme variations */
+.section-blue-50 {
+  background-color: #eff6ff;
 }
-.section-purple-tint {
-  background-color: #faf5ff;
+.section-blue-100 {
+  background-color: #dbeafe;
 }
-.section-rose-tint {
-  background-color: #fff1f2;
+.section-blue-200 {
+  background-color: #bfdbfe;
 }
-.section-amber-tint {
-  background-color: #fffbeb;
+.section-blue-300 {
+  background-color: #93c5fd;
 }
-.section-cyan-tint {
-  background-color: #ecfeff;
+.section-blue-400 {
+  background-color: #60a5fa;
 }
-.section-indigo-tint {
-  background-color: #eef2ff;
+.section-blue-50-alt {
+  background-color: #f0f9ff;
 }
-.section-emerald-tint {
-  background-color: #ecfdf5;
+.section-blue-100-alt {
+  background-color: #e0f2fe;
 }
-.section-slate-tint {
+.section-blue-200-alt {
+  background-color: #bae6fd;
+}
+.section-blue-300-alt {
+  background-color: #7dd3fc;
+}
+.section-blue-pale {
   background-color: #f8fafc;
 }
-
-/* More distinct colors */
-.section-teal-tint {
-  background-color: #f0fdfa;
-}
-.section-lime-tint {
-  background-color: #f7fee7;
-}
-.section-orange-tint {
-  background-color: #fff7ed;
-}
-.section-pink-tint {
-  background-color: #fdf2f8;
-}
-.section-violet-tint {
-  background-color: #f5f3ff;
-}
-.section-sky-tint {
-  background-color: #f0f9ff;
+.section-blue-warm {
+  background-color: #f1f5f9;
 }
 
 /* Light sections border override */

@@ -6,7 +6,7 @@
 @section('content')
 
 {{-- Page header --}}
-<section class="section-padding section-rose-tint">
+<section class="section-padding section-blue-100">
     <div class="container">
         <div class="text-center">
             <span class="section-eyebrow">{{ page_content('about', 'page_eyebrow', app()->getLocale()) }}</span>
@@ -17,7 +17,7 @@
 </section>
 
 {{-- Intro: photo + bio --}}
-<section class="section-padding section-sky-tint">
+<section class="section-padding section-blue-50-alt">
     <div class="container">
         <div class="row gy-5 align-items-stretch" style="--img-col: 30%; --text-col: 70%;">
             <div class="reveal-on-scroll d-flex align-items-stretch" style="width: var(--img-col); flex: 0 0 var(--img-col);">
@@ -129,7 +129,7 @@
 
 {{-- Experience --}}
 @if($experiences->isNotEmpty())
-<section class="exp-section section-padding section-lime-tint">
+<section class="exp-section section-padding section-blue-200">
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-4 reveal-on-scroll">
@@ -351,7 +351,7 @@
 
 {{-- Education --}}
 @if($educations->isNotEmpty())
-<section class="section-padding section-teal-tint">
+<section class="section-padding section-blue-300-alt">
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-4 reveal-on-scroll">
