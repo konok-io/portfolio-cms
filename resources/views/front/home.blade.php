@@ -606,7 +606,7 @@
             
             /* Carousel styles */
             .test-glass-section {
-                background: linear-gradient(135deg, #3a3a3a, #2d2d2d);
+                background: linear-gradient(135deg, #555555, #4a4a4a);
                 border-radius: 20px;
                 padding: 50px 40px 60px;
                 position: relative;
