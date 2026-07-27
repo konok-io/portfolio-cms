@@ -626,33 +626,31 @@
         </div>
         
         <style>
-            /* Blog Card Grid Styles */
-            .blog-card-grid {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
+            /* Blog Horizontal Card Styles */
+            .blog-horizontal-list {
+                display: flex;
+                flex-direction: column;
                 gap: 24px;
             }
             
             .blog-horizontal-card {
                 display: flex;
-                flex-direction: column;
                 background: #ffffff;
                 border-radius: 16px;
                 overflow: hidden;
                 transition: all 0.3s ease;
                 border: 1px solid #e2e8f0;
-                height: 100%;
             }
             
             .blog-horizontal-card:hover {
                 box-shadow: 0 15px 35px rgba(37, 99, 235, 0.12);
                 border-color: var(--color-primary, #2563EB);
-                transform: translateY(-5px);
             }
             
             .blog-horizontal-img {
-                width: 100%;
-                height: 180px;
+                width: 50%;
+                min-height: 280px;
+                flex-shrink: 0;
                 position: relative;
                 overflow: hidden;
             }
@@ -669,35 +667,32 @@
             }
             
             .blog-horizontal-content {
-                padding: 20px;
+                width: 50%;
+                padding: 32px;
                 display: flex;
                 flex-direction: column;
-                flex: 1;
+                justify-content: center;
             }
             
             .blog-horizontal-badge {
                 display: inline-block;
                 background: var(--color-primary, #2563EB);
                 color: #fff;
-                padding: 4px 10px;
+                padding: 6px 14px;
                 border-radius: 20px;
-                font-size: 0.65rem;
+                font-size: 0.75rem;
                 font-weight: 600;
-                margin-bottom: 10px;
+                margin-bottom: 16px;
                 width: fit-content;
             }
             
             .blog-horizontal-title {
-                font-size: 1rem;
+                font-size: 1.3rem;
                 font-weight: 700;
                 color: var(--color-secondary, #0F172A);
-                margin-bottom: 8px;
+                margin-bottom: 12px;
                 line-height: 1.4;
                 transition: color 0.3s ease;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
             }
             
             .blog-horizontal-card:hover .blog-horizontal-title {
@@ -706,28 +701,23 @@
             
             .blog-horizontal-excerpt {
                 color: #64748b;
-                font-size: 0.85rem;
-                line-height: 1.5;
-                margin-bottom: 16px;
-                flex: 1;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
+                font-size: 0.95rem;
+                line-height: 1.7;
+                margin-bottom: 20px;
             }
             
             .blog-horizontal-meta {
                 display: flex;
-                justify-content: space-between;
-                font-size: 0.75rem;
+                gap: 24px;
+                font-size: 0.85rem;
                 color: #94a3b8;
-                margin-bottom: 12px;
+                margin-bottom: 16px;
             }
             
             .blog-horizontal-meta span {
                 display: flex;
                 align-items: center;
-                gap: 4px;
+                gap: 8px;
             }
             
             .blog-horizontal-meta i {
@@ -737,28 +727,29 @@
             .blog-horizontal-link {
                 display: inline-flex;
                 align-items: center;
-                gap: 6px;
+                gap: 8px;
                 color: var(--color-primary, #2563EB);
                 font-weight: 600;
-                font-size: 0.85rem;
+                font-size: 0.95rem;
                 text-decoration: none;
                 transition: gap 0.3s ease;
             }
             
             .blog-horizontal-link:hover {
-                gap: 10px;
+                gap: 14px;
                 color: var(--color-primary-dark, #1d4ed8);
             }
             
-            @media (max-width: 992px) {
-                .blog-card-grid {
-                    grid-template-columns: repeat(2, 1fr);
+            @media (max-width: 768px) {
+                .blog-horizontal-card {
+                    flex-direction: column;
                 }
-            }
-            
-            @media (max-width: 576px) {
-                .blog-card-grid {
-                    grid-template-columns: 1fr;
+                .blog-horizontal-img,
+                .blog-horizontal-content {
+                    width: 100%;
+                }
+                .blog-horizontal-img {
+                    min-height: 200px;
                 }
             }
             
@@ -778,7 +769,7 @@
             }
         </style>
         
-        <div class="blog-card-grid">
+        <div class="blog-horizontal-list">
             @foreach($blogs as $blog)
                 <a href="{{ route('blog.show', $blog->slug) }}" class="text-decoration-none reveal-on-scroll">
                     <div class="blog-horizontal-card">
@@ -800,7 +791,7 @@
                                 </span>
                                 <span>
                                     <i class="far fa-eye"></i>
-                                    {{ $blog->views ?? 0 }}
+                                    {{ $blog->views ?? 0 }} views
                                 </span>
                             </div>
                             <span class="blog-horizontal-link">
