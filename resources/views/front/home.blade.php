@@ -626,30 +626,33 @@
         </div>
         
         <style>
-            /* Blog Horizontal Card Styles */
-            .blog-horizontal-list {
-                display: flex;
-                flex-direction: column;
+            /* Blog Horizontal Row Styles */
+            .blog-horizontal-row {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
                 gap: 24px;
             }
             
             .blog-horizontal-card {
                 display: flex;
+                flex-direction: row;
                 background: #ffffff;
                 border-radius: 16px;
                 overflow: hidden;
                 transition: all 0.3s ease;
                 border: 1px solid #e2e8f0;
+                min-height: 220px;
             }
             
             .blog-horizontal-card:hover {
                 box-shadow: 0 15px 35px rgba(37, 99, 235, 0.12);
                 border-color: var(--color-primary, #2563EB);
+                transform: translateY(-5px);
             }
             
             .blog-horizontal-img {
-                width: 50%;
-                min-height: 280px;
+                width: 40%;
+                min-width: 140px;
                 flex-shrink: 0;
                 position: relative;
                 overflow: hidden;
@@ -667,8 +670,8 @@
             }
             
             .blog-horizontal-content {
-                width: 50%;
-                padding: 32px;
+                width: 60%;
+                padding: 16px 20px;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -678,21 +681,25 @@
                 display: inline-block;
                 background: var(--color-primary, #2563EB);
                 color: #fff;
-                padding: 6px 14px;
+                padding: 3px 10px;
                 border-radius: 20px;
-                font-size: 0.75rem;
+                font-size: 0.65rem;
                 font-weight: 600;
-                margin-bottom: 16px;
+                margin-bottom: 8px;
                 width: fit-content;
             }
             
             .blog-horizontal-title {
-                font-size: 1.3rem;
+                font-size: 0.95rem;
                 font-weight: 700;
                 color: var(--color-secondary, #0F172A);
-                margin-bottom: 12px;
-                line-height: 1.4;
+                margin-bottom: 6px;
+                line-height: 1.3;
                 transition: color 0.3s ease;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
             }
             
             .blog-horizontal-card:hover .blog-horizontal-title {
@@ -701,55 +708,64 @@
             
             .blog-horizontal-excerpt {
                 color: #64748b;
-                font-size: 0.95rem;
-                line-height: 1.7;
-                margin-bottom: 20px;
+                font-size: 0.8rem;
+                line-height: 1.5;
+                margin-bottom: 10px;
+                flex: 1;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
             }
             
             .blog-horizontal-meta {
                 display: flex;
-                gap: 24px;
-                font-size: 0.85rem;
+                justify-content: space-between;
+                font-size: 0.7rem;
                 color: #94a3b8;
-                margin-bottom: 16px;
             }
             
             .blog-horizontal-meta span {
                 display: flex;
                 align-items: center;
-                gap: 8px;
+                gap: 4px;
             }
             
             .blog-horizontal-meta i {
                 color: var(--color-primary, #2563EB);
+                font-size: 0.65rem;
             }
             
             .blog-horizontal-link {
                 display: inline-flex;
                 align-items: center;
-                gap: 8px;
+                gap: 4px;
                 color: var(--color-primary, #2563EB);
                 font-weight: 600;
-                font-size: 0.95rem;
+                font-size: 0.75rem;
                 text-decoration: none;
+                margin-top: 8px;
                 transition: gap 0.3s ease;
             }
             
             .blog-horizontal-link:hover {
-                gap: 14px;
+                gap: 8px;
                 color: var(--color-primary-dark, #1d4ed8);
             }
             
-            @media (max-width: 768px) {
+            @media (max-width: 992px) {
+                .blog-horizontal-row {
+                    grid-template-columns: 1fr;
+                }
                 .blog-horizontal-card {
                     flex-direction: column;
                 }
-                .blog-horizontal-img,
+                .blog-horizontal-img {
+                    width: 100%;
+                    height: 180px;
+                }
                 .blog-horizontal-content {
                     width: 100%;
-                }
-                .blog-horizontal-img {
-                    min-height: 200px;
                 }
             }
             
@@ -769,7 +785,7 @@
             }
         </style>
         
-        <div class="blog-horizontal-list">
+        <div class="blog-horizontal-row">
             @foreach($blogs as $blog)
                 <a href="{{ route('blog.show', $blog->slug) }}" class="text-decoration-none reveal-on-scroll">
                     <div class="blog-horizontal-card">
@@ -787,11 +803,11 @@
                             <div class="blog-horizontal-meta">
                                 <span>
                                     <i class="far fa-calendar-alt"></i>
-                                    {{ $blog->published_at ? $blog->published_at->format('M d, Y') : $blog->created_at->format('M d, Y') }}
+                                    {{ $blog->published_at ? $blog->published_at->format('M d') : $blog->created_at->format('M d') }}
                                 </span>
                                 <span>
                                     <i class="far fa-eye"></i>
-                                    {{ $blog->views ?? 0 }} views
+                                    {{ $blog->views ?? 0 }}
                                 </span>
                             </div>
                             <span class="blog-horizontal-link">
