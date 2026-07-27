@@ -650,7 +650,122 @@
 @endif
 
 {{-- =========================================================
-     10. CONTACT FORM
+     10. PRICING PLANS
+     ========================================================= --}}
+@if($pricingPlans->isNotEmpty())
+<section id="pricing" class="section-padding section-tint">
+    <div class="container">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
+            <div class="text-center text-lg-start reveal-on-scroll">
+                <span class="section-eyebrow">Services</span>
+                <h2 class="section-title mb-2">Pricing Plans</h2>
+                <p class="section-subtitle mx-auto mx-lg-0">Transparent pricing for your projects. Choose a plan that fits your needs.</p>
+            </div>
+            <a href="{{ route('pricing') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">View All Plans</a>
+        </div>
+        <div class="row g-4 justify-content-center">
+            @foreach($pricingPlans as $plan)
+                <div class="col-lg-4 col-md-6 reveal-on-scroll">
+                    <div class="pricing-card {{ $plan->is_highlighted ? 'highlighted' : '' }}">
+                        @if($plan->badge)
+                            <div class="pricing-badge">{{ $plan->badge }}</div>
+                        @endif
+                        <h3 class="pricing-name">{{ $plan->name }}</h3>
+                        <p class="pricing-description">{{ $plan->description }}</p>
+                        <div class="pricing-price">
+                            <span class="currency">{{ $plan->formatPrice($plan->monthly_price) }}</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <ul class="pricing-features">
+                            @foreach($plan->getFeaturesArray() as $feature)
+                                <li><i class="fa-solid fa-check"></i> {{ $feature }}</li>
+                            @endforeach
+                        </ul>
+                        @if($plan->button_url)
+                            <a href="{{ $plan->button_url }}" class="btn {{ $plan->is_highlighted ? 'btn-primary-custom' : 'btn-outline-custom' }} w-100">
+                                {{ $plan->button_text ?: 'Get Started' }}
+                            </a>
+                        @endif
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
+{{-- =========================================================
+     11. FAQ SECTION
+     ========================================================= --}}
+@if($faqs->isNotEmpty())
+<section id="faq" class="section-padding section-alt">
+    <div class="container">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
+            <div class="text-center text-lg-start reveal-on-scroll">
+                <span class="section-eyebrow">Support</span>
+                <h2 class="section-title mb-2">Frequently Asked Questions</h2>
+                <p class="section-subtitle mx-auto mx-lg-0">Quick answers to common questions about my services.</p>
+            </div>
+            <a href="{{ route('faq') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">View All FAQs</a>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="accordion" id="faqAccordion">
+                    @foreach($faqs as $index => $faq)
+                        <div class="accordion-item reveal-on-scroll">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button {{ $index > 0 ? 'collapsed' : '' }}" type="button" data-bs-toggle="collapse" data-bs-target="#faq-{{ $faq->id }}">
+                                    {{ $faq->question }}
+                                </button>
+                            </h3>
+                            <div id="faq-{{ $faq->id }}" class="accordion-collapse collapse {{ $index === 0 ? 'show' : '' }}" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    {!! $faq->answer !!}
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@endif
+
+{{-- =========================================================
+     12. RESUME CTA SECTION
+     ========================================================= --}}
+<section id="resume" class="section-padding section-tint">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7 reveal-on-scroll">
+                <span class="section-eyebrow">My Resume</span>
+                <h2 class="section-title mb-3">Want to see my full profile?</h2>
+                <p class="text-muted mb-4">Get a comprehensive overview of my skills, experience, education, and certifications. Download or preview my resume in multiple professional templates.</p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="{{ route('resume') }}" class="btn btn-primary-custom">
+                        <i class="fa-solid fa-eye me-2"></i>View Resume
+                    </a>
+                    <a href="{{ route('resume.preview') }}" target="_blank" class="btn btn-outline-custom">
+                        <i class="fa-solid fa-file-pdf me-2"></i>Preview PDF
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-5 reveal-on-scroll">
+                <div class="text-center">
+                    <div class="resume-preview-box p-4 bg-white rounded-4 shadow-sm">
+                        <i class="fa-solid fa-file-lines text-primary-custom" style="font-size: 4rem;"></i>
+                        <h5 class="mt-3 mb-2">Professional Resume</h5>
+                        <p class="text-muted small mb-0">Multiple templates available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- =========================================================
+     13. CONTACT FORM
      ========================================================= --}}
 <section id="contact" class="section-padding section-alt">
     <div class="container">
@@ -769,6 +884,110 @@
         background: var(--bs-primary) !important;
         width: 18px !important;
         border-radius: 3px !important;
+    }
+    
+    /* Pricing Card Styles */
+    .pricing-card {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 32px 24px;
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .pricing-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    .pricing-card.highlighted {
+        border-color: var(--color-primary);
+        border-width: 2px;
+        background: linear-gradient(135deg, rgba(79, 47, 232, 0.03), rgba(34, 211, 238, 0.03));
+    }
+    .pricing-badge {
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--color-primary);
+        color: #fff;
+        padding: 4px 16px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    .pricing-name {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+    .pricing-description {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin-bottom: 16px;
+    }
+    .pricing-price {
+        margin-bottom: 20px;
+    }
+    .pricing-price .currency {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--color-primary);
+    }
+    .pricing-price .period {
+        color: #6b7280;
+        font-size: 0.875rem;
+    }
+    .pricing-features {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 24px 0;
+        flex-grow: 1;
+        text-align: left;
+    }
+    .pricing-features li {
+        padding: 8px 0;
+        border-bottom: 1px solid #f3f4f6;
+        font-size: 0.875rem;
+    }
+    .pricing-features li:last-child {
+        border-bottom: none;
+    }
+    .pricing-features li i {
+        color: #10b981;
+        margin-right: 8px;
+    }
+    
+    /* Resume Preview Box */
+    .resume-preview-box {
+        transition: all 0.3s ease;
+    }
+    .resume-preview-box:hover {
+        transform: scale(1.05);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+    }
+    
+    [data-theme="dark"] .pricing-card {
+        background: #171433;
+        border-color: #3D3A70;
+    }
+    [data-theme="dark"] .pricing-card.highlighted {
+        background: linear-gradient(135deg, rgba(139, 123, 244, 0.1), rgba(34, 211, 238, 0.1));
+    }
+    [data-theme="dark"] .pricing-description,
+    [data-theme="dark"] .pricing-price .period {
+        color: #9CA3AF;
+    }
+    [data-theme="dark"] .pricing-features li {
+        border-bottom-color: #2C2860;
+    }
+    [data-theme="dark"] .resume-preview-box {
+        background: #171433 !important;
     }
 </style>
 @endpush

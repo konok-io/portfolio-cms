@@ -8,6 +8,8 @@ use App\Models\Blog;
 use App\Models\Certification;
 use App\Models\Education;
 use App\Models\Experience;
+use App\Models\Faq;
+use App\Models\PricingPlan;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\Skill;
@@ -34,6 +36,10 @@ class HomeController extends Controller
         $blogs          = Blog::published()->with('category')->latest('published_at')->take(3)->get();
         $certifications = Certification::where('is_active', true)->orderBy('sort_order')->get();
         $whyChooseMe    = WhyChooseMe::getActive();
+        
+        // FAQ, Pricing, and Resume data for home page sections
+        $faqs           = Faq::getActive()->take(4);
+        $pricingPlans  = PricingPlan::getActive()->take(3);
 
         // Skills section titles from page_content
         $locale = app()->getLocale();
@@ -60,7 +66,9 @@ class HomeController extends Controller
             'skillsSubtitle',
             'whyChooseMe',
             'whyChooseMeTitle',
-            'whyChooseMeSubtitle'
+            'whyChooseMeSubtitle',
+            'faqs',
+            'pricingPlans'
         ));
     }
 }
