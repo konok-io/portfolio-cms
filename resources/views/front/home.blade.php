@@ -442,157 +442,27 @@
 @if($experiences->isNotEmpty())
 <section id="experience" class="section-padding section-1">
     <div class="container">
-        
-        {{-- Design 4: Horizontal Cards Style --}}
-        <style>
-            .exp-hz-section {
-                max-width: 900px;
-                margin: 0 auto;
-            }
-            
-            .exp-hz-header {
-                text-align: center;
-                margin-bottom: 40px;
-            }
-            
-            .exp-hz-header .eyebrow {
-                font-size: 0.75rem;
-                text-transform: uppercase;
-                letter-spacing: 0.1em;
-                color: var(--color-primary, #2563EB);
-                font-weight: 700;
-                margin-bottom: 8px;
-                display: block;
-            }
-            
-            .exp-hz-header h2 {
-                font-size: 2rem;
-                font-weight: 800;
-                color: #1e293b;
-                margin-bottom: 8px;
-                letter-spacing: -0.02em;
-            }
-            
-            .exp-hz-header p {
-                color: #64748b;
-                font-size: 1rem;
-                font-weight: 500;
-            }
-            
-            .exp-hz-list {
-                display: flex;
-                flex-direction: column;
-                gap: 16px;
-            }
-            
-            .exp-hz-card {
-                background: #fff;
-                border-radius: 16px;
-                padding: 20px 24px;
-                border: 1px solid #e2e8f0;
-                display: flex;
-                align-items: center;
-                gap: 20px;
-                transition: all 0.3s;
-            }
-            
-            .exp-hz-card:hover {
-                border-color: var(--color-primary, #2563EB);
-                background: linear-gradient(135deg, rgba(37, 99, 235, 0.02), rgba(124, 58, 237, 0.02));
-            }
-            
-            .exp-hz-icon {
-                width: 50px;
-                height: 50px;
-                background: linear-gradient(135deg, var(--color-primary, #2563EB), #7c3aed);
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: #fff;
-                font-size: 1.1rem;
-                flex-shrink: 0;
-            }
-            
-            .exp-hz-content {
-                flex: 1;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 16px;
-            }
-            
-            .exp-hz-left {
-                flex: 1;
-            }
-            
-            .exp-hz-year {
-                font-size: 0.75rem;
-                color: var(--color-primary, #2563EB);
-                font-weight: 700;
-                margin-bottom: 4px;
-            }
-            
-            .exp-hz-title {
-                font-size: 1rem;
-                font-weight: 700;
-                color: #1e293b;
-                margin-bottom: 4px;
-            }
-            
-            .exp-hz-company {
-                font-size: 0.85rem;
-                color: #64748b;
-            }
-            
-            .exp-hz-desc {
-                font-size: 0.8rem;
-                color: #475569;
-                line-height: 1.5;
-                max-width: 280px;
-                text-align: right;
-            }
-            
-            @media (max-width: 768px) {
-                .exp-hz-card {
-                    flex-direction: column;
-                    text-align: center;
-                }
-                .exp-hz-content {
-                    flex-direction: column;
-                }
-                .exp-hz-desc {
-                    text-align: center;
-                    max-width: 100%;
-                }
-            }
-        </style>
-        
-        <div class="exp-hz-section reveal-on-scroll">
-            <div class="exp-hz-header">
-                <span class="eyebrow">Career Path</span>
-                <h2>Work Experience</h2>
-                <p>Roles and companies that have shaped how I build software today.</p>
+        <div class="row gy-5">
+            <div class="col-lg-4 reveal-on-scroll">
+                <span class="section-eyebrow">Career Path</span>
+                <h2 class="section-title">Work Experience</h2>
+                <p class="section-subtitle">Roles and companies that have shaped how I build software today.</p>
             </div>
-            <div class="exp-hz-list">
-                @foreach($experiences as $experience)
-                    <div class="exp-hz-card">
-                        <div class="exp-hz-icon">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                        <div class="exp-hz-content">
-                            <div class="exp-hz-left">
-                                <div class="exp-hz-year">{{ $experience->duration }}</div>
-                                <div class="exp-hz-title">{{ $experience->designation }}</div>
-                                <div class="exp-hz-company">{{ $experience->company_name }}</div>
+            <div class="col-lg-8">
+                <div class="timeline">
+                    @foreach($experiences as $experience)
+                        <div class="timeline-item reveal-on-scroll">
+                            <div class="d-flex justify-content-between flex-wrap gap-2">
+                                <h5 class="mb-1">{{ $experience->designation }}</h5>
+                                <span class="badge bg-primary-custom">{{ $experience->duration }}</span>
                             </div>
-                            <div class="exp-hz-desc">{{ $experience->description }}</div>
+                            <p class="text-primary-custom fw-semibold small mb-2">{{ $experience->company_name }}</p>
+                            <p class="text-muted small mb-0">{{ $experience->description }}</p>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
-        
     </div>
 </section>
 @endif
@@ -604,40 +474,11 @@
 <section id="education" class="section-padding section-2">
     <div class="container">
         
-        {{-- Design 4: Horizontal Cards Style --}}
+        {{-- Education Horizontal Cards Style --}}
         <style>
             .edu-hz-section {
                 max-width: 900px;
                 margin: 0 auto;
-            }
-            
-            .edu-hz-header {
-                text-align: center;
-                margin-bottom: 40px;
-            }
-            
-            .edu-hz-header .eyebrow {
-                font-size: 0.75rem;
-                text-transform: uppercase;
-                letter-spacing: 0.1em;
-                color: var(--color-secondary, #7c3aed);
-                font-weight: 700;
-                margin-bottom: 8px;
-                display: block;
-            }
-            
-            .edu-hz-header h2 {
-                font-size: 2rem;
-                font-weight: 800;
-                color: #1e293b;
-                margin-bottom: 8px;
-                letter-spacing: -0.02em;
-            }
-            
-            .edu-hz-header p {
-                color: #64748b;
-                font-size: 1rem;
-                font-weight: 500;
             }
             
             .edu-hz-list {
@@ -729,28 +570,30 @@
             }
         </style>
         
-        <div class="edu-hz-section reveal-on-scroll">
-            <div class="edu-hz-header">
-                <span class="eyebrow">Academic Background</span>
-                <h2>Education</h2>
-                <p>My academic foundation in computer science and technology.</p>
+        <div class="row gy-5">
+            <div class="col-lg-4 reveal-on-scroll">
+                <span class="section-eyebrow">Academic Background</span>
+                <h2 class="section-title">Education</h2>
+                <p class="section-subtitle">My academic foundation in computer science and technology.</p>
             </div>
-            <div class="edu-hz-list">
-                @foreach($educations as $education)
-                    <div class="edu-hz-card">
-                        <div class="edu-hz-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="edu-hz-content">
-                            <div class="edu-hz-left">
-                                <div class="edu-hz-year">{{ $education->duration }}</div>
-                                <div class="edu-hz-title">{{ $education->degree }}</div>
-                                <div class="edu-hz-company">{{ $education->institute_name }}</div>
+            <div class="col-lg-8">
+                <div class="edu-hz-list">
+                    @foreach($educations as $education)
+                        <div class="edu-hz-card reveal-on-scroll">
+                            <div class="edu-hz-icon">
+                                <i class="fas fa-graduation-cap"></i>
                             </div>
-                            <div class="edu-hz-desc">{{ $education->description }}</div>
+                            <div class="edu-hz-content">
+                                <div class="edu-hz-left">
+                                    <div class="edu-hz-year">{{ $education->duration }}</div>
+                                    <div class="edu-hz-title">{{ $education->degree }}</div>
+                                    <div class="edu-hz-company">{{ $education->institute_name }}</div>
+                                </div>
+                                <div class="edu-hz-desc">{{ $education->description }}</div>
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
         
