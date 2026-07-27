@@ -219,7 +219,7 @@
         background: var(--card-bg);
         border-radius: 20px;
         padding: 30px 35px;
-        border: 1px solid var(--border-color);
+        border: 2px solid var(--border-color);
         box-shadow: 0 4px 20px rgba(0,0,0,0.04);
         display: flex;
         gap: 30px;
@@ -232,28 +232,34 @@
     .exp-card::before {
         content: '';
         position: absolute;
-        top: -3px;
-        left: -3px;
-        right: -3px;
-        bottom: -3px;
+        inset: -4px;
         background: linear-gradient(135deg, 
-            rgba(37, 99, 235, 0.2) 0%, 
-            rgba(249, 115, 22, 0.15) 50%, 
-            rgba(37, 99, 235, 0.2) 100%);
-        border-radius: 23px;
+            #2563EB 0%, 
+            #4F2FE8 25%,
+            #F97316 50%,
+            #4F2FE8 75%,
+            #2563EB 100%);
+        border-radius: 24px;
         z-index: -1;
-        opacity: 0;
-        transition: opacity 0.4s ease;
+        opacity: 0.5;
+        transition: all 0.4s ease;
+        animation: expGradientShift 3s ease infinite;
     }
     
     .exp-card:hover::before {
         opacity: 1;
+        transform: scale(1.02);
+    }
+    
+    @keyframes expGradientShift {
+        0%, 100% { filter: hue-rotate(0deg); }
+        50% { filter: hue-rotate(15deg); }
     }
     
     .exp-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 20px 40px rgba(37, 99, 235, 0.12);
-        border-color: rgba(37, 99, 235, 0.3);
+        border-color: transparent;
     }
     
     .exp-card-left {
