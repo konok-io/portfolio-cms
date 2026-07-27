@@ -517,6 +517,11 @@ a {
   box-shadow: var(--shadow-lift);
   border: 6px solid #fff;
 }
+
+/* Dark mode - hero image border */
+[data-theme="dark"] .hero-photo-frame img {
+  border-color: #1f1f3a;
+}
 .hero-photo-frame .badge-floating {
   position: absolute;
   bottom: 18px;
