@@ -24,6 +24,35 @@ class PageContent
     }
 
     /**
+     * Get all content for a specific page
+     */
+    public static function getPage(string $page): array
+    {
+        $content = self::all();
+        return $content[$page] ?? self::getDefaultPageContent($page);
+    }
+
+    /**
+     * Get default content for a specific page
+     */
+    private static function getDefaultPageContent(string $page): array
+    {
+        $defaults = [
+            'resume' => [
+                'title' => ['en' => 'My Resume', 'default' => 'My Resume'],
+                'subtitle' => ['en' => 'A comprehensive overview of my skills, experience, and achievements', 'default' => 'A comprehensive overview of my skills, experience, and achievements'],
+                'eyebrow' => ['en' => 'My Resume', 'default' => 'My Resume'],
+            ],
+        ];
+
+        return $defaults[$page] ?? [
+            'title' => ['en' => ucfirst($page), 'default' => ucfirst($page)],
+            'subtitle' => ['en' => '', 'default' => ''],
+            'eyebrow' => ['en' => ucfirst($page), 'default' => ucfirst($page)],
+        ];
+    }
+
+    /**
      * Get content for a specific page and key
      */
     public static function get(string $page, string $key, ?string $locale = null): ?string
