@@ -792,36 +792,34 @@
         
         <div class="blog-horizontal-row">
             @foreach($blogs as $blog)
-                <a href="{{ route('blog.show', $blog->slug) }}" class="text-decoration-none reveal-on-scroll">
-                    <div class="blog-horizontal-card">
-                        <div class="blog-horizontal-img">
-                            <img src="{{ $blog->featured_image_url ?? 'https://placehold.co/600x400/2563EB/ffffff?text=' . urlencode($blog->title) }}" 
-                                 alt="{{ $blog->alt_text ?? $blog->title }}" 
-                                 loading="lazy">
-                        </div>
-                        <div class="blog-horizontal-content">
-                            @if($blog->category)
-                                <span class="blog-horizontal-badge">{{ $blog->category->name }}</span>
-                            @endif
-                            <h3 class="blog-horizontal-title">{{ $blog->title }}</h3>
-                            <p class="blog-horizontal-excerpt">{{ $blog->short_description }}</p>
-                            <div class="blog-horizontal-meta">
-                                <span>
-                                    <i class="far fa-calendar-alt"></i>
-                                    {{ $blog->published_at ? $blog->published_at->format('M d') : $blog->created_at->format('M d') }}
-                                </span>
-                                <span>
-                                    <i class="far fa-eye"></i>
-                                    {{ $blog->views ?? 0 }}
-                                </span>
-                            </div>
-                            <span class="blog-horizontal-link">
-                                {{ page_content('home', 'blog_card_link', app()->getLocale()) }}
-                                <i class="fas fa-arrow-right"></i>
+                <div class="blog-horizontal-card reveal-on-scroll">
+                    <div class="blog-horizontal-img">
+                        <img src="{{ $blog->featured_image_url ?? 'https://placehold.co/600x400/2563EB/ffffff?text=' . urlencode($blog->title) }}" 
+                             alt="{{ $blog->alt_text ?? $blog->title }}" 
+                             loading="lazy">
+                    </div>
+                    <div class="blog-horizontal-content">
+                        @if($blog->category)
+                            <span class="blog-horizontal-badge">{{ $blog->category->name }}</span>
+                        @endif
+                        <h3 class="blog-horizontal-title">{{ $blog->title }}</h3>
+                        <p class="blog-horizontal-excerpt">{{ $blog->short_description }}</p>
+                        <div class="blog-horizontal-meta">
+                            <span>
+                                <i class="far fa-calendar-alt"></i>
+                                {{ $blog->published_at ? $blog->published_at->format('M d') : $blog->created_at->format('M d') }}
+                            </span>
+                            <span>
+                                <i class="far fa-eye"></i>
+                                {{ $blog->views ?? 0 }}
                             </span>
                         </div>
+                        <a href="{{ route('blog.show', $blog->slug) }}" class="blog-horizontal-link">
+                            {{ page_content('home', 'blog_card_link', app()->getLocale()) }}
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
-                </a>
+                </div>
             @endforeach
         </div>
     </div>
