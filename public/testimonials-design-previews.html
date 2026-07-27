@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials Section - 10 Design Previews</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #0f172a; color: #fff; padding: 40px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        h1 { text-align: center; font-size: 2.5rem; margin-bottom: 10px; background: linear-gradient(135deg, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        p.subtitle { text-align: center; color: #94a3b8; margin-bottom: 50px; }
+        
+        .preview-section { margin-bottom: 80px; background: #1e293b; border-radius: 24px; padding: 40px; border: 1px solid #334155; }
+        .preview-title { font-size: 1.5rem; margin-bottom: 30px; color: #f1f5f9; display: flex; align-items: center; gap: 10px; }
+        .preview-title span { background: #3b82f6; color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem; }
+        
+        /* Section Styles */
+        .test-section { background: #fff; border-radius: 20px; padding: 60px 40px; }
+        .test-header { text-align: center; margin-bottom: 40px; }
+        .test-header h2 { font-size: 2rem; margin-bottom: 12px; color: #1e293b; }
+        .test-header p { color: #64748b; font-size: 1.1rem; }
+        .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        
+        /* Design 1: Simple Cards */
+        .design1 .test-card { background: #f8fafc; border-radius: 16px; padding: 28px; position: relative; }
+        .design1 .test-card::before { content: '"'; font-size: 4rem; color: #3b82f6; position: absolute; top: 10px; left: 20px; opacity: 0.3; font-family: Georgia, serif; }
+        .design1 .test-text { font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 20px; position: relative; z-index: 1; }
+        .design1 .test-author { display: flex; align-items: center; gap: 12px; }
+        .design1 .test-avatar { width: 48px; height: 48px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 1.1rem; }
+        .design1 .test-name { font-size: 0.95rem; font-weight: 700; color: #1e293b; }
+        .design1 .test-role { font-size: 0.8rem; color: #64748b; }
+        .design1 .test-stars { color: #fbbf24; font-size: 0.85rem; margin-top: 4px; }
+        
+        /* Design 2: Border Cards */
+        .design2 .test-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 28px; transition: all 0.3s; }
+        .design2 .test-card:hover { border-color: #3b82f6; box-shadow: 0 10px 30px rgba(59, 130, 246, 0.1); }
+        .design2 .test-quote { color: #3b82f6; font-size: 2rem; margin-bottom: 16px; }
+        .design2 .test-text { font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 20px; }
+        .design2 .test-author { display: flex; align-items: center; gap: 12px; }
+        .design2 .test-avatar { width: 48px; height: 48px; background: linear-gradient(135deg, #3b82f6, #2563eb); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; }
+        .design2 .test-name { font-size: 0.95rem; font-weight: 700; color: #1e293b; }
+        .design2 .test-role { font-size: 0.8rem; color: #64748b; }
+        
+        /* Design 3: Dark Cards */
+        .design3 .test-section { background: #0f172a; }
+        .design3 .test-header h2 { color: #f1f5f9; }
+        .design3 .test-header p { color: #94a3b8; }
+        .design3 .test-card { background: #1e293b; border-radius: 16px; padding: 28px; border: 1px solid #334155; }
+        .design3 .test-quote { color: #60a5fa; font-size: 1.5rem; margin-bottom: 16px; }
+        .design3 .test-text { font-size: 0.95rem; color: #cbd5e1; line-height: 1.7; margin-bottom: 20px; }
+        .design3 .test-author { display: flex; align-items: center; gap: 12px; }
+        .design3 .test-avatar { width: 48px; height: 48px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; }
+        .design3 .test-name { font-size: 0.95rem; font-weight: 700; color: #f1f5f9; }
+        .design3 .test-role { font-size: 0.8rem; color: #94a3b8; }
+        
+        /* Design 4: Minimal */
+        .design4 .test-card { background: #f8fafc; border-radius: 12px; padding: 24px; text-align: center; }
+        .design4 .test-avatar { width: 64px; height: 64px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 1.3rem; margin: 0 auto 16px; }
+        .design4 .test-text { font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 16px; font-style: italic; }
+        .design4 .test-name { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+        .design4 .test-role { font-size: 0.85rem; color: #64748b; margin-bottom: 12px; }
+        .design4 .test-stars { color: #fbbf24; font-size: 0.9rem; }
+        
+        /* Design 5: Gradient Left Border */
+        .design5 .test-card { background: #fff; border-radius: 16px; padding: 28px; position: relative; overflow: hidden; }
+        .design5 .test-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(180deg, #3b82f6, #06b6d4); }
+        .design5 .test-text { font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 20px; }
+        .design5 .test-author { display: flex; align-items: center; gap: 12px; }
+        .design5 .test-avatar { width: 48px; height: 48px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; }
+        .design5 .test-name { font-size: 0.95rem; font-weight: 700; color: #1e293b; }
+        .design5 .test-role { font-size: 0.8rem; color: #64748b; }
+        .design5 .test-stars { color: #fbbf24; font-size: 0.8rem; margin-top: 4px; }
+        
+        /* Design 6: Large Quote */
+        .design6 .test-card { background: linear-gradient(135deg, #3b82f6, #2563eb); border-radius: 20px; padding: 32px; color: #fff; text-align: center; }
+        .design6 .test-quote-icon { font-size: 3rem; margin-bottom: 16px; opacity: 0.3; }
+        .design6 .test-text { font-size: 1.1rem; line-height: 1.7; margin-bottom: 24px; opacity: 0.95; }
+        .design6 .test-avatar { width: 56px; height: 56px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 1.2rem; margin: 0 auto 12px; }
+        .design6 .test-name { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+        .design6 .test-role { font-size: 0.85rem; opacity: 0.8; }
+        
+        /* Design 7: Horizontal Cards */
+        .design7 .test-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .design7 .test-card { background: #fff; border-radius: 16px; padding: 24px; display: flex; gap: 20px; }
+        .design7 .test-avatar { width: 64px; height: 64px; background: #3b82f6; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 1.4rem; flex-shrink: 0; }
+        .design7 .test-content { flex: 1; }
+        .design7 .test-stars { color: #fbbf24; font-size: 0.8rem; margin-bottom: 8px; }
+        .design7 .test-text { font-size: 0.9rem; color: #475569; line-height: 1.6; margin-bottom: 12px; }
+        .design7 .test-name { font-size: 0.9rem; font-weight: 700; color: #1e293b; }
+        .design7 .test-role { font-size: 0.8rem; color: #64748b; }
+        
+        /* Design 8: Compact Grid */
+        .design8 .test-section { padding: 40px; }
+        .design8 .test-header { margin-bottom: 24px; }
+        .design8 .test-header h2 { font-size: 1.5rem; }
+        .design8 .test-header p { font-size: 0.9rem; }
+        .design8 .test-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .design8 .test-card { background: #f8fafc; border-radius: 12px; padding: 20px; text-align: center; }
+        .design8 .test-avatar { width: 48px; height: 48px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; margin: 0 auto 12px; font-size: 1rem; }
+        .design8 .test-text { font-size: 0.8rem; color: #475569; line-height: 1.5; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .design8 .test-name { font-size: 0.85rem; font-weight: 700; color: #1e293b; }
+        .design8 .test-role { font-size: 0.7rem; color: #64748b; }
+        
+        /* Design 9: Card with Background Image */
+        .design9 .test-card { background: #fff; border-radius: 20px; padding: 0; overflow: hidden; }
+        .design9 .test-card-header { background: linear-gradient(135deg, #3b82f6, #2563eb); padding: 24px; text-align: center; }
+        .design9 .test-quote { color: rgba(255,255,255,0.3); font-size: 4rem; }
+        .design9 .test-card-body { padding: 24px; }
+        .design9 .test-text { font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 20px; }
+        .design9 .test-author { display: flex; align-items: center; gap: 12px; }
+        .design9 .test-avatar { width: 48px; height: 48px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; }
+        .design9 .test-name { font-size: 0.95rem; font-weight: 700; color: #1e293b; }
+        .design9 .test-role { font-size: 0.8rem; color: #64748b; }
+        
+        /* Design 10: Modern Glass */
+        .design10 .test-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 28px; }
+        .design10 .test-section { background: linear-gradient(135deg, #1e40af, #7c3aed); }
+        .design10 .test-quote { color: rgba(255,255,255,0.3); font-size: 3rem; margin-bottom: 8px; }
+        .design10 .test-text { font-size: 1rem; color: rgba(255,255,255,0.9); line-height: 1.7; margin-bottom: 20px; }
+        .design10 .test-author { display: flex; align-items: center; gap: 12px; }
+        .design10 .test-avatar { width: 48px; height: 48px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; }
+        .design10 .test-name { font-size: 0.95rem; font-weight: 700; color: #fff; }
+        .design10 .test-role { font-size: 0.8rem; color: rgba(255,255,255,0.7); }
+        .design10 .test-stars { color: #fbbf24; font-size: 0.8rem; margin-top: 4px; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .test-grid { grid-template-columns: repeat(2, 1fr); }
+            .design8 .test-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 640px) {
+            .test-grid { grid-template-columns: 1fr; }
+            .design7 .test-grid { grid-template-columns: 1fr; }
+            .design8 .test-grid { grid-template-columns: repeat(2, 1fr); }
+            h1 { font-size: 1.8rem; }
+            .preview-section { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Client Feedback / Testimonials</h1>
+        <p class="subtitle">10 Unique Design Concepts</p>
+
+        <!-- Design 1 -->
+        <div class="preview-section design1">
+            <h2 class="preview-title"><i class="fas fa-layer-group"></i> Design 1: Simple Cards</h2>
+            <div class="test-section">
+                <div class="test-header">
+                    <h2>Client Feedback</h2>
+                    <p>What clients say about working with me</p>
+                </div>
+                <div class="test-grid">
+                    <div class="test-card">
+                        <p class="test-text">"Amazing work! Delivered the project on time and exceeded our expectations. Highly recommend for any web development needs."</p>
+                        <div class="test-author">
+                            <div class="test-avatar">JD</div>
+                            <div>
+                                <div class="test-name">John Doe</div>
+                                <div class="test-role">CEO, TechCorp</div>
+                                <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="test-card">
+                        <p class="test-text">"Professional and responsive. The attention to detail was outstanding. Will definitely work together again!"</p>
+                        <div class="test-author">
+                            <div class="test-avatar">SM</div>
+                            <div>
+                                <div class="test-name">Sarah Miller</div>
+                                <div class="test-role">Product Manager</div>
+                                <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="test-card">
+                        <p class="test-text">"Great communication throughout the project. The end result was exactly what we needed."</p>
+                        <div class="test-author">
+                            <div class="test-avatar">MK</div>
+                            <div>
+                                <div class="test-name">Mike King</div>
+                                <div class="test-role">Startup Founder</div>
+                                <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design 2 -->
+        <div class="preview-section design2">
+            <h2 class="preview-title"><i class="fas fa-square"></i> Design 2: Border Cards</h2>
+            <div class="test-section">
+                <div class="test-header">
+                    <h2>Client Feedback</h2>
+                    <p>What clients say about working with me</p>
+                </div>
+                <div class="test-grid">
+                    <div class="test-card">
+                        <div class="test-quote"><i class="fas fa-quote-left"></i></div>
+                        <p class="test-text">"Amazing work! Delivered the project on time and exceeded our expectations."</p>
+                        <div class="test-author">
+                            <div class="test-avatar">JD</div>
+                            <div>
+                                <div class="test-name">John Doe</div>
+                                <div class="test-role">CEO, TechCorp</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="test-card">
+                        <div class="test-quote"><i class="fas fa-quote-left"></i></div>
+                        <p class="test-text">"Professional and responsive. The attention to detail was outstanding."</p>
+                        <div class="test-author">
+                            <div class="test-avatar">SM</div>
+                            <div>
+                                <div class="test-name">Sarah Miller</div>
+                                <div class="test-role">Product Manager</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="test-card">
+                        <div class="test-quote"><i class="fas fa-quote-left"></i></div>
+                        <p class="test-text">"Great communication throughout the project. The end result was exactly what we needed."</p>
+                        <div class="test-author">
+                            <div class="test-avatar">MK</div>
+                            <div>
+                                <div class="test-name">Mike King</div>
+                                <div class="test-role">Startup Founder</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design 3 -->
+        <div class="preview-section design3">
+            <h2 class="preview-title"><i class="fas fa-moon"></i> Design 3: Dark Cards</h2>
+            <div class="test-section">
+                <div class="test-header">
+                    <h2>Client Feedback</h2>
+                    <p>What clients say about working with me</p>
+                </div>
+                <div class="test-grid">
+                    <div class="test-card">
+                        <div class="test-quote"><i class="fas fa-quote-right"></i></div>
+                        <p class="test-text">"Amazing work! Delivered the project on time and exceeded our expectations."</p>
+                        <div class="test-author">
+                            <div class="test-avatar">JD</div>
+                            <div>
+                                <div class="test-name">John Doe</div>
+                                <div class="test-role">CEO, TechCorp</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="test-card">
+                        <div class="test-quote"><i class="fas fa-quote-right"></i></div>
+                        <p class="test-text">"Professional and responsive. The attention to detail was outstanding."</p>
+                        <div class="test-author">
+                            <div class="test-avatar">SM</div>
+                            <div>
+                                <div class="test-name">Sarah Miller</div>
+                                <div class="test-role">Product Manager</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="test-card">
+                        <div class="test-quote"><i class="fas fa-quote-right"></i></div>
+                        <p class="test-text">"Great communication throughout the project. The end result was exactly what we needed."</p>
+                        <div class="test-author">
+                            <div class="test-avatar">MK</div>
+                            <div>
+                                <div class="test-name">Mike King</div>
+                                <div class="test-role">Startup Founder</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design 4 -->
+        <div class="preview-section design4">
+            <h2 class="preview-title"><i class="fas fa-user"></i> Design 4: Minimal Center</h2>
+            <div class="test-section">
+                <div class="test-header">
+                    <h2>Client Feedback</h2>
+                    <p>What clients say about working with me</p>
+                </div>
+                <div class="test-grid">
+                    <div class="test-card">
+                        <div class="test-avatar">JD</div>
+                        <p class="test-text">"Amazing work! Delivered the project on time and exceeded our expectations."</p>
+                        <div class="test-name">John Doe</div>
+                        <div class="test-role">CEO, TechCorp</div>
+                        <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    </div>
+                    <div class="test-card">
+                        <div class="test-avatar">SM</div>
+                        <p class="test-text">"Professional and responsive. The attention to detail was outstanding."</p>
+                        <div class="test-name">Sarah Miller</div>
+                        <div class="test-role">Product Manager</div>
+                        <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    </div>
+                    <div class="test-card">
+                        <div class="test-avatar">MK</div>
+                        <p class="test-text">"Great communication throughout the project. The end result was exactly what we needed."</p>
+                        <div class="test-name">Mike King</div>
+                        <div class="test-role">Startup Founder</div>
+                        <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design 5 -->
+        <div class="preview-section design5">
+            <h2 class="preview-title"><i class="fas fa-minus"></i> Design 5: Gradient Left Border</h2>
+            <div class="test-section">
+                <div class="test-header">
+                    <h2>Client Feedback</h2>
+                    <p>What clients say about working with me</p>
+                </div>
+                <div class="test-grid">
+                    <div class="test-card">
+                        <p class="test-text">"Amazing work! Delivered the project on time and exceeded our expectations."</p>
+                        <div class="test-author">
+                            <div class="test-avatar">JD</div>
+                            <div>
+                                <div class="test-name">John Doe</div>
+                                <div class="test-role">CEO, TechCorp</div>
+                                <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="test-card">
+                        <p class="test-text">"Professional and responsive. The attention to detail was outstanding."</p>
+                        <div class="test-author">
+                            <div class="test-avatar">SM</div>
+                            <div>
+                                <div class="test-name">Sarah Miller</div>
+                                <div class="test-role">Product Manager</div>
+                                <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="test-card">
+                        <p class="test-text">"Great communication throughout the project. The end result was exactly what we needed."</p>
+                        <div class="test-author">
+                            <div class="test-avatar">MK</div>
+                            <div>
+                                <div class="test-name">Mike King</div>
+                                <div class="test-role">Startup Founder</div>
+                                <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design 6 -->
+        <div class="preview-section design6">
+            <h2 class="preview-title"><i class="fas fa-palette"></i> Design 6: Gradient Cards</h2>
+            <div class="test-section">
+                <div class="test-header">
+                    <h2>Client Feedback</h2>
+                    <p>What clients say about working with me</p>
+                </div>
+                <div class="test-grid">
+                    <div class="test-card">
+                        <div class="test-quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p class="test-text">"Amazing work! Delivered the project on time and exceeded our expectations."</p>
+                        <div class="test-avatar">JD</div>
+                        <div class="test-name">John Doe</div>
+                        <div class="test-role">CEO, TechCorp</div>
+                    </div>
+                    <div class="test-card">
+                        <div class="test-quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p class="test-text">"Professional and responsive. The attention to detail was outstanding."</p>
+                        <div class="test-avatar">SM</div>
+                        <div class="test-name">Sarah Miller</div>
+                        <div class="test-role">Product Manager</div>
+                    </div>
+                    <div class="test-card">
+                        <div class="test-quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p class="test-text">"Great communication throughout the project."</p>
+                        <div class="test-avatar">MK</div>
+                        <div class="test-name">Mike King</div>
+                        <div class="test-role">Startup Founder</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design 7 -->
+        <div class="preview-section design7">
+            <h2 class="preview-title"><i class="fas fa-arrows-alt-h"></i> Design 7: Horizontal Cards</h2>
+            <div class="test-section">
+                <div class="test-header">
+                    <h2>Client Feedback</h2>
+                    <p>What clients say about working with me</p>
+                </div>
+                <div class="test-grid">
+                    <div class="test-card">
+                        <div class="test-avatar">JD</div>
+                        <div class="test-content">
+                            <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <p class="test-text">"Amazing work! Delivered the project on time and exceeded our expectations."</p>
+                            <div class="test-name">John Doe</div>
+                            <div class="test-role">CEO, TechCorp</div>
+                        </div>
+                    </div>
+                    <div class="test-card">
+                        <div class="test-avatar">SM</div>
+                        <div class="test-content">
+                            <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <p class="test-text">"Professional and responsive. The attention to detail was outstanding."</p>
+                            <div class="test-name">Sarah Miller</div>
+                            <div class="test-role">Product Manager</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design 8 -->
+        <div class="preview-section design8">
+            <h2 class="preview-title"><i class="fas fa-th"></i> Design 8: Compact Grid</h2>
+            <div class="test-section">
+                <div class="test-header">
+                    <h2>Client Feedback</h2>
+                    <p>What clients say about working with me</p>
+                </div>
+                <div class="test-grid">
+                    <div class="test-card">
+                        <div class="test-avatar">JD</div>
+                        <p class="test-text">"Amazing work! Delivered the project on time and exceeded our expectations."</p>
+                        <div class="test-name">John Doe</div>
+                        <div class="test-role">TechCorp</div>
+                    </div>
+                    <div class="test-card">
+                        <div class="test-avatar">SM</div>
+                        <p class="test-text">"Professional and responsive. The attention to detail was outstanding."</p>
+                        <div class="test-name">Sarah Miller</div>
+                        <div class="test-role">Startup</div>
+                    </div>
+                    <div class="test-card">
+                        <div class="test-avatar">MK</div>
+                        <p class="test-text">"Great communication throughout the project."</p>
+                        <div class="test-name">Mike King</div>
+                        <div class="test-role">Agency</div>
+                    </div>
+                    <div class="test-card">
+                        <div class="test-avatar">EW</div>
+                        <p class="test-text">"Highly recommend for any web development needs."</p>
+                        <div class="test-name">Emma Wilson</div>
+                        <div class="test-role">Freelance</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design 9 -->
+        <div class="preview-section design9">
+            <h2 class="preview-title"><i class="fas fa-image"></i> Design 9: Card with Header</h2>
+            <div class="test-section">
+                <div class="test-header">
+                    <h2>Client Feedback</h2>
+                    <p>What clients say about working with me</p>
+                </div>
+                <div class="test-grid">
+                    <div class="test-card">
+                        <div class="test-card-header">
+                            <div class="test-quote"><i class="fas fa-quote-left"></i></div>
+                        </div>
+                        <div class="test-card-body">
+                            <p class="test-text">"Amazing work! Delivered the project on time and exceeded our expectations."</p>
+                            <div class="test-author">
+                                <div class="test-avatar">JD</div>
+                                <div>
+                                    <div class="test-name">John Doe</div>
+                                    <div class="test-role">CEO, TechCorp</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="test-card">
+                        <div class="test-card-header">
+                            <div class="test-quote"><i class="fas fa-quote-left"></i></div>
+                        </div>
+                        <div class="test-card-body">
+                            <p class="test-text">"Professional and responsive. The attention to detail was outstanding."</p>
+                            <div class="test-author">
+                                <div class="test-avatar">SM</div>
+                                <div>
+                                    <div class="test-name">Sarah Miller</div>
+                                    <div class="test-role">Product Manager</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="test-card">
+                        <div class="test-card-header">
+                            <div class="test-quote"><i class="fas fa-quote-left"></i></div>
+                        </div>
+                        <div class="test-card-body">
+                            <p class="test-text">"Great communication throughout the project."</p>
+                            <div class="test-author">
+                                <div class="test-avatar">MK</div>
+                                <div>
+                                    <div class="test-name">Mike King</div>
+                                    <div class="test-role">Startup Founder</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design 10 -->
+        <div class="preview-section design10">
+            <h2 class="preview-title"><i class="fas fa-cube"></i> Design 10: Modern Glass</h2>
+            <div class="test-section">
+                <div class="test-header">
+                    <h2>Client Feedback</h2>
+                    <p>What clients say about working with me</p>
+                </div>
+                <div class="test-grid">
+                    <div class="test-card">
+                        <div class="test-quote"><i class="fas fa-quote-left"></i></div>
+                        <p class="test-text">"Amazing work! Delivered the project on time and exceeded our expectations."</p>
+                        <div class="test-author">
+                            <div class="test-avatar">JD</div>
+                            <div>
+                                <div class="test-name">John Doe</div>
+                                <div class="test-role">CEO, TechCorp</div>
+                                <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="test-card">
+                        <div class="test-quote"><i class="fas fa-quote-left"></i></div>
+                        <p class="test-text">"Professional and responsive. The attention to detail was outstanding."</p>
+                        <div class="test-author">
+                            <div class="test-avatar">SM</div>
+                            <div>
+                                <div class="test-name">Sarah Miller</div>
+                                <div class="test-role">Product Manager</div>
+                                <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="test-card">
+                        <div class="test-quote"><i class="fas fa-quote-left"></i></div>
+                        <p class="test-text">"Great communication throughout the project."</p>
+                        <div class="test-author">
+                            <div class="test-avatar">MK</div>
+                            <div>
+                                <div class="test-name">Mike King</div>
+                                <div class="test-role">Startup Founder</div>
+                                <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
