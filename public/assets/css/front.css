@@ -301,7 +301,7 @@ a {
 .site-navbar {
   background-color: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid #d1d5db;
   transition: all 0.3s ease;
   padding-top: 0.85rem;
   padding-bottom: 0.85rem;
@@ -442,7 +442,7 @@ a {
 .blog-card,
 .testimonial-card {
   background: #fff;
-  border: 1px solid var(--color-border);
+  border: 1px solid #d1d5db;
   border-radius: var(--radius-md);
   transition: all 0.25s ease;
 }
@@ -656,7 +656,7 @@ a {
 .timeline {
   position: relative;
   padding-left: 2rem;
-  border-left: 2px solid var(--color-border);
+  border-left: 2px solid #d1d5db;
 }
 .timeline-item {
   position: relative;
@@ -732,7 +732,7 @@ a {
 }
 
 .filter-pill {
-  border: 1px solid var(--color-border);
+  border: 1px solid #d1d5db;
   background: #fff;
   color: var(--color-secondary);
   font-weight: 600;
@@ -1290,7 +1290,7 @@ a [class*="far"] {
   top: 50%;
   transform: translateY(-50%);
   background: #fff;
-  border: 1px solid var(--color-border);
+  border: 1px solid #d1d5db;
   border-radius: 8px;
   padding: 0 15px;
   height: 40px;
