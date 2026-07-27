@@ -1288,11 +1288,21 @@ a [class*="far"] {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease;
 }
 
 .cert-icon i {
   font-size: 2rem;
   color: var(--color-primary);
+  transition: all 0.3s ease;
+}
+
+.certification-card:hover .cert-icon {
+  background: linear-gradient(135deg, #4f46e5, #2563eb);
+}
+
+.certification-card:hover .cert-icon i {
+  color: #ffffff;
 }
 
 .cert-badge {
@@ -1312,6 +1322,14 @@ a [class*="far"] {
 
 [data-theme="dark"] .cert-icon i {
   color: #8B7BF0;
+}
+
+[data-theme="dark"] .certification-card:hover .cert-icon {
+  background: linear-gradient(135deg, #4f46e5, #2563eb);
+}
+
+[data-theme="dark"] .certification-card:hover .cert-icon i {
+  color: #ffffff;
 }
 
 /* WhatsApp Floating Button */
