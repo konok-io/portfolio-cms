@@ -612,7 +612,7 @@
 @endif
 
 {{-- =========================================================
-     10. BLOG POSTS
+     10. BLOG POSTS (Design 4: Horizontal Card)
      ========================================================= --}}
 @if($blogs->isNotEmpty())
 <section id="blog" class="section-padding section-1">
@@ -624,24 +624,176 @@
             </div>
             <a href="{{ route('blog.index') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">{{ page_content('home', 'blog_button', app()->getLocale()) }}</a>
         </div>
-        <div class="row g-4">
+        
+        <style>
+            /* Blog Horizontal Card Styles */
+            .blog-horizontal-card {
+                display: flex;
+                background: #ffffff;
+                border-radius: 16px;
+                overflow: hidden;
+                transition: all 0.3s ease;
+                border: 1px solid #e2e8f0;
+                margin-bottom: 24px;
+            }
+            
+            .blog-horizontal-card:hover {
+                box-shadow: 0 15px 35px rgba(37, 99, 235, 0.12);
+                border-color: var(--color-primary, #2563EB);
+            }
+            
+            .blog-horizontal-img {
+                width: 280px;
+                min-height: 200px;
+                flex-shrink: 0;
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .blog-horizontal-img img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.4s ease;
+            }
+            
+            .blog-horizontal-card:hover .blog-horizontal-img img {
+                transform: scale(1.05);
+            }
+            
+            .blog-horizontal-content {
+                padding: 24px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                flex: 1;
+            }
+            
+            .blog-horizontal-badge {
+                display: inline-block;
+                background: var(--color-primary, #2563EB);
+                color: #fff;
+                padding: 4px 12px;
+                border-radius: 20px;
+                font-size: 0.7rem;
+                font-weight: 600;
+                margin-bottom: 12px;
+                width: fit-content;
+            }
+            
+            .blog-horizontal-title {
+                font-size: 1.15rem;
+                font-weight: 700;
+                color: var(--color-secondary, #0F172A);
+                margin-bottom: 10px;
+                line-height: 1.4;
+                transition: color 0.3s ease;
+            }
+            
+            .blog-horizontal-card:hover .blog-horizontal-title {
+                color: var(--color-primary, #2563EB);
+            }
+            
+            .blog-horizontal-excerpt {
+                color: #64748b;
+                font-size: 0.9rem;
+                line-height: 1.6;
+                margin-bottom: 16px;
+            }
+            
+            .blog-horizontal-meta {
+                display: flex;
+                gap: 20px;
+                font-size: 0.8rem;
+                color: #94a3b8;
+            }
+            
+            .blog-horizontal-meta span {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+            
+            .blog-horizontal-meta i {
+                color: var(--color-primary, #2563EB);
+            }
+            
+            .blog-horizontal-link {
+                margin-top: 16px;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                color: var(--color-primary, #2563EB);
+                font-weight: 600;
+                font-size: 0.9rem;
+                text-decoration: none;
+                transition: gap 0.3s ease;
+            }
+            
+            .blog-horizontal-link:hover {
+                gap: 12px;
+                color: var(--color-primary-dark, #1d4ed8);
+            }
+            
+            @media (max-width: 768px) {
+                .blog-horizontal-card {
+                    flex-direction: column;
+                }
+                .blog-horizontal-img {
+                    width: 100%;
+                    min-height: 180px;
+                }
+            }
+            
+            /* Dark mode */
+            [data-theme="dark"] .blog-horizontal-card {
+                background: #1e293b;
+                border-color: #334155;
+            }
+            [data-theme="dark"] .blog-horizontal-title {
+                color: #f1f5f9;
+            }
+            [data-theme="dark"] .blog-horizontal-excerpt {
+                color: #94a3b8;
+            }
+            [data-theme="dark"] .blog-horizontal-meta {
+                color: #64748b;
+            }
+        </style>
+        
+        <div class="row">
             @foreach($blogs as $blog)
-                <div class="col-md-6 col-lg-4 reveal-on-scroll">
-                    <div class="blog-card h-100">
-                        <div class="blog-img-wrap">
-                            <img src="{{ $blog->featured_image_url ?? 'https://placehold.co/600x400/0F172A/ffffff?text=' . urlencode($blog->title) }}" alt="{{ $blog->alt_text ?? $blog->title }}" loading="lazy">
+                <div class="col-lg-12 reveal-on-scroll">
+                    <a href="{{ route('blog.show', $blog->slug) }}" class="text-decoration-none">
+                        <div class="blog-horizontal-card">
+                            <div class="blog-horizontal-img">
+                                <img src="{{ $blog->featured_image_url ?? 'https://placehold.co/600x400/2563EB/ffffff?text=' . urlencode($blog->title) }}" 
+                                     alt="{{ $blog->alt_text ?? $blog->title }}" 
+                                     loading="lazy">
+                            </div>
+                            <div class="blog-horizontal-content">
+                                @if($blog->category)
+                                    <span class="blog-horizontal-badge">{{ $blog->category->name }}</span>
+                                @endif
+                                <h3 class="blog-horizontal-title">{{ $blog->title }}</h3>
+                                <p class="blog-horizontal-excerpt">{{ $blog->short_description }}</p>
+                                <div class="blog-horizontal-meta">
+                                    <span>
+                                        <i class="far fa-calendar-alt"></i>
+                                        {{ $blog->published_at ? $blog->published_at->format('M d, Y') : $blog->created_at->format('M d, Y') }}
+                                    </span>
+                                    <span>
+                                        <i class="far fa-eye"></i>
+                                        {{ $blog->views ?? 0 }} views
+                                    </span>
+                                </div>
+                                <span class="blog-horizontal-link">
+                                    {{ page_content('home', 'blog_card_link', app()->getLocale()) }}
+                                    <i class="fas fa-arrow-right"></i>
+                                </span>
+                            </div>
                         </div>
-                        <div class="p-3">
-                            @if($blog->category)
-                                <span class="small text-accent-custom fw-semibold">{{ $blog->category->name }}</span>
-                            @endif
-                            <h6 class="mt-1 mb-2"><a href="{{ route('blog.show', $blog->slug) }}" class="text-decoration-none text-dark">{{ $blog->title }}</a></h6>
-                            <p class="text-muted small">{{ $blog->short_description }}</p>
-                            <a href="{{ route('blog.show', $blog->slug) }}" class="small text-primary-custom fw-semibold">
-                                {{ page_content('home', 'blog_card_link', app()->getLocale()) }} <i class="fa-solid fa-arrow-right ms-1"></i>
-                            </a>
-                        </div>
-                    </div>
+                    </a>
                 </div>
             @endforeach
         </div>
