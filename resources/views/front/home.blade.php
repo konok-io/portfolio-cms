@@ -56,53 +56,41 @@
 {{-- =========================================================
      2. WHY CHOOSE ME
      ========================================================= --}}
+@if($whyChooseMe->isNotEmpty())
 <section id="about" class="section-padding section-alt">
     <div class="container">
         <div class="text-center mb-5">
-            <span class="section-eyebrow">{{ page_content('home', 'why_eyebrow', app()->getLocale()) }}</span>
-            <h2 class="section-title">{{ page_content('home', 'why_title', app()->getLocale()) }}</h2>
+            <span class="section-eyebrow">
+                <i class="fas fa-star"></i>
+                {{ __('Why Choose Me') }}
+            </span>
+            <h2 class="section-title">{{ $whyChooseMeTitle }}</h2>
+            <p class="section-subtitle mx-auto">{{ $whyChooseMeSubtitle }}</p>
         </div>
         
         <div class="row g-4 justify-content-center">
+            @foreach($whyChooseMe as $index => $item)
             <div class="col-lg-4 col-md-6">
                 <div class="why-card reveal-on-scroll">
-                    <span class="why-card-number">01</span>
+                    <span class="why-card-number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
                     <div class="why-card-icon">
-                        <i class="fa-solid fa-code"></i>
+                        <i class="{{ $item->icon }}"></i>
                     </div>
-                    <h3>{{ page_content('home', 'why_card1_title', app()->getLocale()) }}</h3>
-                    <p>{{ page_content('home', 'why_card1_text', app()->getLocale()) }}</p>
+                    <h3>{{ $item->title }}</h3>
+                    <p>{{ $item->description }}</p>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="why-card reveal-on-scroll">
-                    <span class="why-card-number">02</span>
-                    <div class="why-card-icon">
-                        <i class="fa-solid fa-clock"></i>
-                    </div>
-                    <h3>{{ page_content('home', 'why_card2_title', app()->getLocale()) }}</h3>
-                    <p>{{ page_content('home', 'why_card2_text', app()->getLocale()) }}</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="why-card reveal-on-scroll">
-                    <span class="why-card-number">03</span>
-                    <div class="why-card-icon">
-                        <i class="fa-solid fa-headset"></i>
-                    </div>
-                    <h3>{{ page_content('home', 'why_card3_title', app()->getLocale()) }}</h3>
-                    <p>{{ page_content('home', 'why_card3_text', app()->getLocale()) }}</p>
-                </div>
-            </div>
+            @endforeach
         </div>
         
         <div class="text-center mt-5">
             <a href="{{ route('about') }}" class="btn btn-outline-custom reveal-on-scroll">
-                <i class="fa-solid fa-user me-2"></i>Learn More About Me
+                <i class="fa-solid fa-user me-2"></i>{{ __('Learn More About Me') }}
             </a>
         </div>
     </div>
 </section>
+@endif
 
 <style>
     .why-card {

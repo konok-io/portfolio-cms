@@ -12,6 +12,7 @@ use App\Models\Project;
 use App\Models\Service;
 use App\Models\Skill;
 use App\Models\Testimonial;
+use App\Models\WhyChooseMe;
 
 class HomeController extends Controller
 {
@@ -32,12 +33,17 @@ class HomeController extends Controller
         $testimonials   = Testimonial::active()->ordered()->get();
         $blogs          = Blog::published()->with('category')->latest('published_at')->take(3)->get();
         $certifications = Certification::where('is_active', true)->orderBy('sort_order')->get();
+        $whyChooseMe    = WhyChooseMe::getActive();
 
         // Skills section titles from page_content
         $locale = app()->getLocale();
         $skillsSectionTitle = page_content('home', 'skills_eyebrow', $locale) ?: 'My Skills';
         $skillsTitle = page_content('home', 'skills_title', $locale) ?: 'Technologies I Work With';
         $skillsSubtitle = page_content('home', 'skills_subtitle', $locale) ?: 'A snapshot of the tools and languages I use to bring projects to life.';
+
+        // Why Choose Me section titles
+        $whyChooseMeTitle = page_content('home', 'why_title', $locale) ?: 'Why Choose Me For Your Next Project?';
+        $whyChooseMeSubtitle = page_content('home', 'why_subtitle', $locale) ?: 'Discover what sets me apart and why clients trust me with their projects.';
 
         return view('front.home', compact(
             'about',
@@ -51,7 +57,10 @@ class HomeController extends Controller
             'certifications',
             'skillsSectionTitle',
             'skillsTitle',
-            'skillsSubtitle'
+            'skillsSubtitle',
+            'whyChooseMe',
+            'whyChooseMeTitle',
+            'whyChooseMeSubtitle'
         ));
     }
 }

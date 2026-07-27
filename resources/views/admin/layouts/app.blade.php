@@ -390,6 +390,11 @@
             </a>
             @endcanany
             @canany(['view settings', 'edit settings'])
+            <a href="{{ route('admin.why-choose-me.index') }}" class="nav-link {{ request()->routeIs('admin.why-choose-me.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-star"></i><span>Why Choose Me</span>
+            </a>
+            @endcanany
+            @canany(['view settings', 'edit settings'])
             <a href="{{ route('admin.faqs.index') }}" class="nav-link {{ request()->routeIs('admin.faqs.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-question-circle"></i><span>FAQs</span>
             </a>

@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\StatisticController;
+use App\Http\Controllers\Admin\WhyChooseMeController;
 use App\Http\Controllers\Admin\SubscriberController as AdminSubscriberController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
@@ -309,6 +310,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     
     // Statistics
     Route::resource('statistics', StatisticController::class);
+    
+    // Why Choose Me
+    Route::resource('why-choose-me', WhyChooseMeController::class);
     
     // Certifications
     Route::resource('certifications', CertificationController::class);
