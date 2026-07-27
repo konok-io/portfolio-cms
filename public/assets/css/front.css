@@ -522,6 +522,19 @@ a {
 [data-theme="dark"] .hero-photo-frame img {
   border-color: #1f1f3a;
 }
+
+/* Dark mode - hero section buttons */
+[data-theme="dark"] .hero-section .btn-primary-custom {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+[data-theme="dark"] .hero-section .btn-primary-custom:hover {
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  color: #fff;
+}
 .hero-photo-frame .badge-floating {
   position: absolute;
   bottom: 18px;
