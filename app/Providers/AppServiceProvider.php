@@ -19,7 +19,8 @@ class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        //
+        // Load helper functions
+        require_once base_path('app/Helpers.php');
     }
 
     public function boot(): void
