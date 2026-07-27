@@ -528,7 +528,7 @@
             
             .test-glass-card:hover {
                 transform: translateY(-5px);
-                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
             }
             
             .test-glass-header {
@@ -545,13 +545,13 @@
             }
             
             .test-glass-quote {
-                color: var(--color-primary, #2563EB);
+                color: #333;
                 font-size: 2rem;
                 line-height: 1;
             }
             
             .test-glass-stars {
-                color: #fbbf24;
+                color: #f59e0b;
                 font-size: 0.8rem;
             }
             
@@ -564,7 +564,7 @@
             .test-glass-avatar {
                 width: 44px;
                 height: 44px;
-                background: var(--color-primary, #2563EB);
+                background: #333;
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
@@ -606,7 +606,7 @@
             
             /* Carousel styles */
             .test-glass-section {
-                background: linear-gradient(135deg, #6b9df8, #5a8ef5);
+                background: linear-gradient(135deg, #3a3a3a, #2d2d2d);
                 border-radius: 20px;
                 padding: 50px 40px 60px;
                 position: relative;
