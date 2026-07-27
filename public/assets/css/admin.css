@@ -445,7 +445,7 @@ body.admin-login-wrap {
 /* ---------------- Cards ---------------- */
 .admin-card {
   background: #fff;
-  border: 2px solid var(--admin-border);
+  border: 1px solid #e2e8f0;
   border-radius: var(--admin-radius);
   position: relative;
 }
@@ -454,32 +454,24 @@ body.admin-login-wrap {
 .admin-card::before {
   content: '';
   position: absolute;
-  inset: -4px;
-  background: linear-gradient(135deg, 
-    #2563EB 0%, 
-    #4F2FE8 25%,
-    #06b6d4 50%,
-    #4F2FE8 75%,
-    #2563EB 100%);
-  border-radius: calc(var(--admin-radius) + 4px);
+  inset: -6px;
+  background: linear-gradient(135deg, #2563EB, #06b6d4, #2563EB);
+  border-radius: calc(var(--admin-radius) + 6px);
   z-index: -1;
-  opacity: 0.5;
+  opacity: 0;
   transition: all 0.4s ease;
-  animation: gradientShift 3s ease infinite;
+  filter: blur(0px);
 }
 
 .admin-card:hover::before {
-  opacity: 1;
-  transform: scale(1.02);
+  opacity: 0.7;
+  transform: scale(1.05);
+  filter: blur(2px);
 }
 
 .admin-card:hover {
   border-color: #2563EB;
-}
-
-@keyframes gradientShift {
-  0%, 100% { filter: hue-rotate(0deg); }
-  50% { filter: hue-rotate(15deg); }
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15);
 }
 
 .admin-card .card-header-custom {
@@ -494,7 +486,7 @@ body.admin-login-wrap {
 
 .stat-card {
   background: #fff;
-  border: 2px solid var(--admin-border);
+  border: 1px solid #e2e8f0;
   border-radius: var(--admin-radius);
   padding: 1.4rem;
   display: flex;
@@ -509,27 +501,23 @@ body.admin-login-wrap {
 .stat-card::before {
   content: '';
   position: absolute;
-  inset: -4px;
-  background: linear-gradient(135deg, 
-    #2563EB 0%, 
-    #4F2FE8 25%,
-    #06b6d4 50%,
-    #4F2FE8 75%,
-    #2563EB 100%);
-  border-radius: calc(var(--admin-radius) + 4px);
+  inset: -6px;
+  background: linear-gradient(135deg, #2563EB, #06b6d4, #2563EB);
+  border-radius: calc(var(--admin-radius) + 6px);
   z-index: -1;
-  opacity: 0.4;
+  opacity: 0;
   transition: all 0.4s ease;
-  animation: gradientShift 3s ease infinite;
+  filter: blur(0px);
 }
 
 .stat-card:hover::before {
-  opacity: 1;
-  transform: scale(1.02);
+  opacity: 0.7;
+  transform: scale(1.05);
+  filter: blur(2px);
 }
 
 .stat-card:hover {
-  box-shadow: 0 10px 30px rgba(15,23,42,0.07);
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15);
   transform: translateY(-3px);
   border-color: #2563EB;
 }

@@ -105,10 +105,10 @@
     }
 
     .why-h-card {
-        background: #eff6ff;
+        background: #ffffff;
         border-radius: 20px;
         padding: 30px 25px;
-        border: 2px solid #dbeafe;
+        border: 1px solid #e2e8f0;
         transition: all 0.4s ease;
         display: flex;
         flex-direction: column;
@@ -123,18 +123,13 @@
     .why-h-card::before {
         content: '';
         position: absolute;
-        inset: -4px;
-        background: linear-gradient(135deg, 
-            #2563EB 0%, 
-            #4F2FE8 25%,
-            #06b6d4 50%,
-            #4F2FE8 75%,
-            #2563EB 100%);
-        border-radius: 24px;
+        inset: -6px;
+        background: linear-gradient(135deg, #2563EB, #06b6d4, #2563EB);
+        border-radius: 26px;
         z-index: -1;
-        opacity: 0.6;
+        opacity: 0;
         transition: all 0.4s ease;
-        animation: whyGradientShift 3s ease infinite;
+        filter: blur(0px);
     }
 
     .why-h-card::after {
@@ -148,11 +143,6 @@
         border-radius: 20px;
     }
 
-    @keyframes whyGradientShift {
-        0%, 100% { filter: hue-rotate(0deg); }
-        50% { filter: hue-rotate(15deg); }
-    }
-
     .why-h-card:hover {
         transform: translateY(-8px);
         box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
@@ -160,8 +150,9 @@
     }
 
     .why-h-card:hover::before {
-        opacity: 1;
-        transform: scale(1.02);
+        opacity: 0.7;
+        transform: scale(1.05);
+        filter: blur(2px);
     }
 
     .why-h-card:hover::after {
@@ -289,8 +280,8 @@
             }
             
             .tech-card {
-                background: #fff;
-                border: 2px solid #d1d5db;
+                background: #ffffff;
+                border: 1px solid #e2e8f0;
                 border-radius: 16px;
                 padding: 25px 15px;
                 text-align: center;
@@ -302,18 +293,13 @@
             .tech-card::before {
                 content: '';
                 position: absolute;
-                inset: -4px;
-                background: linear-gradient(135deg, 
-                    #2563EB 0%, 
-                    #4F2FE8 25%,
-                    #06b6d4 50%,
-                    #4F2FE8 75%,
-                    #2563EB 100%);
-                border-radius: 20px;
+                inset: -6px;
+                background: linear-gradient(135deg, #2563EB, #06b6d4, #2563EB);
+                border-radius: 22px;
                 z-index: -1;
-                opacity: 0.5;
+                opacity: 0;
                 transition: all 0.4s ease;
-                animation: techGradientShift 3s ease infinite;
+                filter: blur(0px);
             }
             
             .tech-card::after {
@@ -328,11 +314,6 @@
                 transition: opacity 0.3s;
             }
             
-            @keyframes techGradientShift {
-                0%, 100% { filter: hue-rotate(0deg); }
-                50% { filter: hue-rotate(15deg); }
-            }
-            
             .tech-card:hover {
                 transform: translateY(-8px);
                 border-color: #2563EB;
@@ -340,8 +321,9 @@
             }
             
             .tech-card:hover::before {
-                opacity: 1;
-                transform: scale(1.02);
+                opacity: 0.7;
+                transform: scale(1.05);
+                filter: blur(2px);
             }
             
             .tech-card:hover::after {
@@ -879,7 +861,7 @@
         padding-bottom: 16px;
         position: relative;
         transition: all 0.3s;
-        border: 2px solid #d1d5db;
+        border: 1px solid #e2e8f0;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
     
@@ -887,33 +869,24 @@
     .pricing-split-card::before {
         content: '';
         position: absolute;
-        inset: -4px;
-        background: linear-gradient(135deg, 
-            #4F2FE8 0%, 
-            #2563EB 25%,
-            #06b6d4 50%,
-            #2563EB 75%,
-            #4F2FE8 100%);
-        border-radius: 20px;
+        inset: -6px;
+        background: linear-gradient(135deg, #2563EB, #06b6d4, #2563EB);
+        border-radius: 22px;
         z-index: -1;
-        opacity: 0.5;
+        opacity: 0;
         transition: all 0.4s ease;
-        animation: pricingGradientShift 3s ease infinite;
+        filter: blur(0px);
     }
     
     .pricing-split-card:hover::before {
-        opacity: 1;
-        transform: scale(1.02);
+        opacity: 0.7;
+        transform: scale(1.05);
+        filter: blur(2px);
     }
     
     .pricing-split-card:hover {
         border-color: var(--color-primary, #4f46e5);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-    }
-    
-    @keyframes pricingGradientShift {
-        0%, 100% { filter: hue-rotate(0deg); }
-        50% { filter: hue-rotate(15deg); }
+        box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15);
     }
     
     .pricing-split-card.featured {
@@ -926,14 +899,14 @@
     
     .pricing-split-card.featured::before {
         background: linear-gradient(135deg, 
-            rgba(255, 255, 255, 0.4) 0%, 
+            rgba(255, 255, 255, 0.5) 0%, 
             rgba(255, 255, 255, 0.2) 50%, 
-            rgba(255, 255, 255, 0.4) 100%);
-        opacity: 0.6;
+            rgba(255, 255, 255, 0.5) 100%);
+        opacity: 0;
     }
     
     .pricing-split-card.featured:hover::before {
-        opacity: 1;
+        opacity: 0.8;
     }
     
     .pricing-split-card.featured:hover {
@@ -1257,33 +1230,26 @@
         flex-direction: column;
         color: white;
         position: relative;
-        border: 2px solid rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.1);
     }
     
     /* FAQ Card Border-Radius Shape Decoration */
     .faq-split-card::before {
         content: '';
         position: absolute;
-        inset: -4px;
-        background: linear-gradient(135deg, 
-            rgba(255, 255, 255, 0.5) 0%, 
-            rgba(255, 255, 255, 0.2) 50%, 
-            rgba(255, 255, 255, 0.5) 100%);
-        border-radius: 20px;
+        inset: -6px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.1), rgba(255,255,255,0.4));
+        border-radius: 22px;
         z-index: -1;
-        opacity: 0.4;
-        transition: opacity 0.4s ease;
-        animation: faqGradientShift 3s ease infinite;
+        opacity: 0;
+        transition: all 0.4s ease;
+        filter: blur(0px);
     }
     
     .faq-split-card:hover::before {
         opacity: 1;
-        transform: scale(1.02);
-    }
-    
-    @keyframes faqGradientShift {
-        0%, 100% { filter: hue-rotate(0deg); }
-        50% { filter: hue-rotate(10deg); }
+        transform: scale(1.05);
+        filter: blur(2px);
     }
     
     .faq-card-icon {
