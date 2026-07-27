@@ -1480,7 +1480,7 @@ body.has-header main {
     padding: 28px;
     display: flex;
     align-items: flex-start;
-    gap: 20px;
+    gap: 10px;
     position: relative;
     overflow: hidden;
     transition: all 0.4s ease;
@@ -1511,7 +1511,7 @@ body.has-header main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 0;
     flex-shrink: 0;
 }
 
