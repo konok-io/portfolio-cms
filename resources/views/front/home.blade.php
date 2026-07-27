@@ -6,7 +6,7 @@
 @section('content')
 
 {{-- =========================================================
-     1. HERO SECTION
+     1. HERO
      ========================================================= --}}
 <section id="home" class="hero-section">
     <div class="container">
@@ -54,39 +54,7 @@
 </section>
 
 {{-- =========================================================
-     2. RESUME CTA SECTION
-     ========================================================= --}}
-<section id="resume" class="section-padding section-tint">
-    <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-7 reveal-on-scroll">
-                <span class="section-eyebrow">My Resume</span>
-                <h2 class="section-title mb-3">Want to see my full profile?</h2>
-                <p class="text-muted mb-4">Get a comprehensive overview of my skills, experience, education, and certifications. Download or preview my resume in multiple professional templates.</p>
-                <div class="d-flex flex-wrap gap-3">
-                    <a href="{{ route('resume') }}" class="btn btn-primary-custom">
-                        <i class="fa-solid fa-eye me-2"></i>View Resume
-                    </a>
-                    <a href="{{ route('resume.preview') }}" target="_blank" class="btn btn-outline-custom">
-                        <i class="fa-solid fa-file-pdf me-2"></i>Preview PDF
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-5 reveal-on-scroll">
-                <div class="text-center">
-                    <div class="resume-preview-box p-4 bg-white rounded-4 shadow-sm">
-                        <i class="fa-solid fa-file-lines text-primary-custom" style="font-size: 4rem;"></i>
-                        <h5 class="mt-3 mb-2">Professional Resume</h5>
-                        <p class="text-muted small mb-0">Multiple templates available</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-{{-- =========================================================
-     3. WHY CHOOSE ME - Design 2: Premium Gradient Cards
+     2. WHY CHOOSE ME (About)
      ========================================================= --}}
 @if($whyChooseMe->isNotEmpty())
 <section id="about" class="section-padding section-alt">
@@ -269,7 +237,7 @@
 </style>
 
 {{-- =========================================================
-     4. SKILLS
+     3. SKILLS
      ========================================================= --}}
 @if($skills->isNotEmpty())
 <section id="skills" class="section-padding section-tint">
@@ -462,7 +430,7 @@
 @endif
 
 {{-- =========================================================
-     6. PORTFOLIO PROJECTS
+     4. PORTFOLIO PROJECTS
      ========================================================= --}}
 @if($projects->isNotEmpty())
 <section id="portfolio" class="section-padding section-alt">
@@ -500,7 +468,7 @@
 @endif
 
 {{-- =========================================================
-     7. EDUCATION
+     6. EDUCATION
      ========================================================= --}}
 @if($educations->isNotEmpty())
 <section id="education" class="section-padding section-tint">
@@ -531,7 +499,7 @@
 @endif
 
 {{-- =========================================================
-     8. TESTIMONIALS
+     7. TESTIMONIALS
      ========================================================= --}}
 @if($testimonials->isNotEmpty())
 <section id="testimonials" class="section-padding section-tint">
@@ -594,7 +562,7 @@
 @endif
 
 {{-- =========================================================
-     9. CERTIFICATIONS & BADGES
+     8. CERTIFICATIONS & BADGES
      ========================================================= --}}
 @if($certifications->isNotEmpty())
 <section id="certifications" class="section-padding section-tint">
@@ -644,7 +612,7 @@
 @endif
 
 {{-- =========================================================
-     10. BLOG POSTS
+     9. BLOG POSTS
      ========================================================= --}}
 @if($blogs->isNotEmpty())
 <section id="blog" class="section-padding section-tint">
@@ -682,7 +650,7 @@
 @endif
 
 {{-- =========================================================
-     11. PRICING PLANS
+     10. PRICING PLANS
      ========================================================= --}}
 @if($pricingPlans->isNotEmpty())
 <section id="pricing" class="section-padding section-tint">
@@ -727,7 +695,7 @@
 @endif
 
 {{-- =========================================================
-     12. FAQ SECTION
+     11. FAQ SECTION
      ========================================================= --}}
 @if($faqs->isNotEmpty())
 <section id="faq" class="section-padding section-alt">
@@ -765,7 +733,39 @@
 @endif
 
 {{-- =========================================================
-     13. CONTACT FORM
+     12. RESUME CTA
+     ========================================================= --}}
+<section id="resume-cta" class="section-padding section-tint">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7 reveal-on-scroll">
+                <span class="section-eyebrow">My Resume</span>
+                <h2 class="section-title mb-3">Want to see my full profile?</h2>
+                <p class="text-muted mb-4">Get a comprehensive overview of my skills, experience, education, and certifications. Download or preview my resume in multiple professional templates.</p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="{{ route('resume') }}" class="btn btn-primary-custom">
+                        <i class="fa-solid fa-eye me-2"></i>View Resume
+                    </a>
+                    <a href="{{ route('resume.preview') }}" target="_blank" class="btn btn-outline-custom">
+                        <i class="fa-solid fa-file-pdf me-2"></i>Preview PDF
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-5 reveal-on-scroll">
+                <div class="text-center">
+                    <div class="resume-preview-box p-4 bg-white rounded-4 shadow-sm">
+                        <i class="fa-solid fa-file-lines text-primary-custom" style="font-size: 4rem;"></i>
+                        <h5 class="mt-3 mb-2">Professional Resume</h5>
+                        <p class="text-muted small mb-0">Multiple templates available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- =========================================================
+     13. CONTACT
      ========================================================= --}}
 <section id="contact" class="section-padding section-alt">
     <div class="container">
