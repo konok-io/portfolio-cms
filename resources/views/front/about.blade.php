@@ -219,42 +219,18 @@
         background: var(--card-bg);
         border-radius: 20px;
         padding: 30px 35px;
-        border: 1px solid #e2e8f0;
+        border: 1px solid var(--border-color);
         box-shadow: 0 4px 20px rgba(0,0,0,0.04);
         display: flex;
         gap: 30px;
         align-items: flex-start;
-        transition: none;
-        position: relative;
+        transition: all 0.3s ease;
     }
     
-    /* Exp Card Corner Blue Gradient Circles - Always Visible */
-    .exp-card::before {
-        content: '';
-        position: absolute;
-        top: -12px;
-        left: -12px;
-        width: 50px;
-        height: 50px;
-        background: radial-gradient(circle, #2563EB 0%, #06b6d4 50%, transparent 70%);
-        border-radius: 50%;
-        z-index: 0;
-        opacity: 0.4;
-        pointer-events: none;
-    }
-    
-    .exp-card::after {
-        content: '';
-        position: absolute;
-        bottom: -12px;
-        right: -12px;
-        width: 50px;
-        height: 50px;
-        background: radial-gradient(circle, #06b6d4 0%, #2563EB 50%, transparent 70%);
-        border-radius: 50%;
-        z-index: 0;
-        opacity: 0.4;
-        pointer-events: none;
+    .exp-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.12);
+        border-color: rgba(37, 99, 235, 0.3);
     }
     
     .exp-card-left {

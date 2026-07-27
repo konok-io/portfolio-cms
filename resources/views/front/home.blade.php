@@ -105,47 +105,52 @@
     }
 
     .why-h-card {
-        background: #ffffff;
+        background: #eff6ff;
         border-radius: 20px;
         padding: 30px 25px;
-        border: 1px solid #e2e8f0;
-        transition: none;
+        border: 1px solid #dbeafe;
+        transition: all 0.4s ease;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
         position: relative;
-        overflow: visible;
+        overflow: hidden;
         height: 100%;
     }
 
-    /* Why H Card Corner Blue Gradient Circles - Always Visible */
     .why-h-card::before {
         content: '';
         position: absolute;
-        top: -12px;
-        left: -12px;
-        width: 50px;
-        height: 50px;
-        background: radial-gradient(circle, #2563EB 0%, #06b6d4 50%, transparent 70%);
-        border-radius: 50%;
+        inset: 0;
+        background: linear-gradient(135deg, var(--why-primary), var(--why-primary-dark));
+        opacity: 0;
+        transition: opacity 0.4s ease;
         z-index: 0;
-        opacity: 0.4;
-        pointer-events: none;
     }
 
     .why-h-card::after {
         content: '';
         position: absolute;
-        bottom: -12px;
-        right: -12px;
-        width: 50px;
-        height: 50px;
-        background: radial-gradient(circle, #06b6d4 0%, #2563EB 50%, transparent 70%);
-        border-radius: 50%;
-        z-index: 0;
-        opacity: 0.4;
-        pointer-events: none;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--why-primary), var(--why-primary-light));
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+
+    .why-h-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
+        border-color: transparent;
+    }
+
+    .why-h-card:hover::before {
+        opacity: 1;
+    }
+
+    .why-h-card:hover::after {
+        transform: scaleX(1);
     }
 
     .why-h-icon {
@@ -269,43 +274,36 @@
             }
             
             .tech-card {
-                background: #ffffff;
-                border: 1px solid #e2e8f0;
+                background: #fff;
+                border: 1px solid #d1d5db;
                 border-radius: 16px;
                 padding: 25px 15px;
                 text-align: center;
-                transition: none;
+                transition: all 0.3s;
                 position: relative;
-                overflow: visible;
+                overflow: hidden;
             }
             
-            /* Tech Card Corner Blue Gradient Circles - Always Visible */
             .tech-card::before {
                 content: '';
                 position: absolute;
-                top: -12px;
-                left: -12px;
-                width: 50px;
-                height: 50px;
-                background: radial-gradient(circle, #2563EB 0%, #06b6d4 50%, transparent 70%);
-                border-radius: 50%;
-                z-index: 0;
-                opacity: 0.4;
-                pointer-events: none;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: linear-gradient(90deg, #2563EB, #3B82F6);
+                opacity: 0;
+                transition: opacity 0.3s;
             }
             
-            .tech-card::after {
-                content: '';
-                position: absolute;
-                bottom: -12px;
-                right: -12px;
-                width: 50px;
-                height: 50px;
-                background: radial-gradient(circle, #06b6d4 0%, #2563EB 50%, transparent 70%);
-                border-radius: 50%;
-                z-index: 0;
-                opacity: 0.4;
-                pointer-events: none;
+            .tech-card:hover {
+                transform: translateY(-8px);
+                border-color: #2563EB;
+                box-shadow: 0 15px 40px rgba(37, 99, 235, 0.15);
+            }
+            
+            .tech-card:hover::before {
+                opacity: 1;
             }
             
             .tech-icon {
@@ -838,38 +836,14 @@
         padding: 20px;
         padding-bottom: 16px;
         position: relative;
-        transition: none;
-        border: 1px solid #e2e8f0;
+        transition: all 0.3s;
+        border: 1px solid #d1d5db;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
     
-    /* Pricing Card Corner Blue Gradient Circles - Always Visible */
-    .pricing-split-card::before {
-        content: '';
-        position: absolute;
-        top: -12px;
-        left: -12px;
-        width: 50px;
-        height: 50px;
-        background: radial-gradient(circle, #4f46e5 0%, #06b6d4 50%, transparent 70%);
-        border-radius: 50%;
-        z-index: 0;
-        opacity: 0.4;
-        pointer-events: none;
-    }
-    
-    .pricing-split-card::after {
-        content: '';
-        position: absolute;
-        bottom: -12px;
-        right: -12px;
-        width: 50px;
-        height: 50px;
-        background: radial-gradient(circle, #06b6d4 0%, #4f46e5 50%, transparent 70%);
-        border-radius: 50%;
-        z-index: 0;
-        opacity: 0.4;
-        pointer-events: none;
+    .pricing-split-card:hover {
+        border-color: var(--color-primary, #4f46e5);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
     }
     
     .pricing-split-card.featured {
@@ -878,6 +852,11 @@
         border: none;
         box-shadow: 0 20px 40px rgba(79, 70, 229, 0.25);
         transform: scale(1.02);
+    }
+    
+    .pricing-split-card.featured:hover {
+        transform: scale(1.02);
+        box-shadow: 0 25px 50px rgba(79, 70, 229, 0.35);
     }
     
     .pricing-split-badge {
@@ -1195,38 +1174,6 @@
         display: flex;
         flex-direction: column;
         color: white;
-        position: relative;
-        border: 1px solid rgba(255,255,255,0.1);
-        transition: none;
-    }
-    
-    /* FAQ Card Corner White Gradient Circles - Always Visible */
-    .faq-split-card::before {
-        content: '';
-        position: absolute;
-        top: -12px;
-        left: -12px;
-        width: 50px;
-        height: 50px;
-        background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.2) 50%, transparent 70%);
-        border-radius: 50%;
-        z-index: 0;
-        opacity: 0.5;
-        pointer-events: none;
-    }
-    
-    .faq-split-card::after {
-        content: '';
-        position: absolute;
-        bottom: -12px;
-        right: -12px;
-        width: 50px;
-        height: 50px;
-        background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.6) 50%, transparent 70%);
-        border-radius: 50%;
-        z-index: 0;
-        opacity: 0.5;
-        pointer-events: none;
     }
     
     .faq-card-icon {

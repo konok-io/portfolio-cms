@@ -445,41 +445,9 @@ body.admin-login-wrap {
 /* ---------------- Cards ---------------- */
 .admin-card {
   background: #fff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--admin-border);
   border-radius: var(--admin-radius);
-  position: relative;
-  transition: none;
 }
-
-/* Admin Card Corner Blue Gradient Circles - Always Visible */
-.admin-card::before {
-  content: '';
-  position: absolute;
-  top: -12px;
-  left: -12px;
-  width: 50px;
-  height: 50px;
-  background: radial-gradient(circle, #2563EB 0%, #06b6d4 50%, transparent 70%);
-  border-radius: 50%;
-  z-index: 0;
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-.admin-card::after {
-  content: '';
-  position: absolute;
-  bottom: -12px;
-  right: -12px;
-  width: 50px;
-  height: 50px;
-  background: radial-gradient(circle, #06b6d4 0%, #2563EB 50%, transparent 70%);
-  border-radius: 50%;
-  z-index: 0;
-  opacity: 0.4;
-  pointer-events: none;
-}
-
 .admin-card .card-header-custom {
   padding: 1.1rem 1.4rem;
   border-bottom: 1px solid var(--admin-border);
@@ -492,44 +460,18 @@ body.admin-login-wrap {
 
 .stat-card {
   background: #fff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--admin-border);
   border-radius: var(--admin-radius);
   padding: 1.4rem;
   display: flex;
   align-items: center;
   gap: 1rem;
   height: 100%;
-  transition: none;
-  position: relative;
+  transition: all 0.2s ease;
 }
-
-/* Stat Card Corner Blue Gradient Circles - Always Visible */
-.stat-card::before {
-  content: '';
-  position: absolute;
-  top: -12px;
-  left: -12px;
-  width: 50px;
-  height: 50px;
-  background: radial-gradient(circle, #2563EB 0%, #06b6d4 50%, transparent 70%);
-  border-radius: 50%;
-  z-index: 0;
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-.stat-card::after {
-  content: '';
-  position: absolute;
-  bottom: -12px;
-  right: -12px;
-  width: 50px;
-  height: 50px;
-  background: radial-gradient(circle, #06b6d4 0%, #2563EB 50%, transparent 70%);
-  border-radius: 50%;
-  z-index: 0;
-  opacity: 0.4;
-  pointer-events: none;
+.stat-card:hover {
+  box-shadow: 0 10px 30px rgba(15,23,42,0.07);
+  transform: translateY(-3px);
 }
 .stat-card .stat-icon {
   width: 52px;

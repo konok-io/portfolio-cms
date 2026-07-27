@@ -597,45 +597,6 @@ a {
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: var(--radius-md);
-  transition: none;
-  position: relative;
-}
-
-/* Card Corner Blue Gradient Circles - Always Visible */
-.skill-card::before,
-.service-card::before,
-.project-card::before,
-.blog-card::before,
-.testimonial-card::before {
-  content: '';
-  position: absolute;
-  top: -12px;
-  left: -12px;
-  width: 50px;
-  height: 50px;
-  background: radial-gradient(circle, #2563EB 0%, #06b6d4 50%, transparent 70%);
-  border-radius: 50%;
-  z-index: 0;
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-.skill-card::after,
-.service-card::after,
-.project-card::after,
-.blog-card::after,
-.testimonial-card::after {
-  content: '';
-  position: absolute;
-  bottom: -12px;
-  right: -12px;
-  width: 50px;
-  height: 50px;
-  background: radial-gradient(circle, #06b6d4 0%, #2563EB 50%, transparent 70%);
-  border-radius: 50%;
-  z-index: 0;
-  opacity: 0.4;
-  pointer-events: none;
 }
 
 /* Cards in white sections (About, What I Do, Experience, Testimonials, Blog, FAQ, Contact) - Blue background */
@@ -1305,37 +1266,6 @@ a [class*="far"] {
   background: var(--white);
   border-radius: 16px;
   border: 1px solid #e2e8f0;
-  transition: none;
-  position: relative;
-}
-
-/* Certification Card Corner Blue Gradient Circles - Always Visible */
-.certification-card::before {
-  content: '';
-  position: absolute;
-  top: -12px;
-  left: -12px;
-  width: 50px;
-  height: 50px;
-  background: radial-gradient(circle, #4F2FE8 0%, #06b6d4 50%, transparent 70%);
-  border-radius: 50%;
-  z-index: 0;
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-.certification-card::after {
-  content: '';
-  position: absolute;
-  bottom: -12px;
-  right: -12px;
-  width: 50px;
-  height: 50px;
-  background: radial-gradient(circle, #06b6d4 0%, #4F2FE8 50%, transparent 70%);
-  border-radius: 50%;
-  z-index: 0;
-  opacity: 0.4;
-  pointer-events: none;
 }
 
 .cert-icon {
@@ -1435,38 +1365,7 @@ a [class*="far"] {
 
 /* Related Projects/Posts */
 .related-card {
-  transition: none;
-  position: relative;
   border: 1px solid #e2e8f0;
-}
-
-/* Related Card Corner Blue Gradient Circles - Always Visible */
-.related-card::before {
-  content: '';
-  position: absolute;
-  top: -12px;
-  left: -12px;
-  width: 50px;
-  height: 50px;
-  background: radial-gradient(circle, #2563EB 0%, #06b6d4 50%, transparent 70%);
-  border-radius: 50%;
-  z-index: 0;
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-.related-card::after {
-  content: '';
-  position: absolute;
-  bottom: -12px;
-  right: -12px;
-  width: 50px;
-  height: 50px;
-  background: radial-gradient(circle, #06b6d4 0%, #2563EB 50%, transparent 70%);
-  border-radius: 50%;
-  z-index: 0;
-  opacity: 0.4;
-  pointer-events: none;
 }
 
 /* Social Share Buttons - Professional */
