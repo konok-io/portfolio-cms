@@ -20,25 +20,30 @@
 <section class="section-padding section-tint">
     <div class="container">
         @if($services->isNotEmpty())
-            <div class="row g-4">
-                @foreach($services as $service)
-                    <div class="col-md-6 col-lg-4 reveal-on-scroll">
-                        <a href="{{ route('services.show', $service->slug ?? Str::slug($service->name)) }}" class="text-decoration-none">
-                            <div class="service-card h-100">
-                                <div class="icon-box">
-                                    @if($service->svg_icon)
-                                        <span class="svg-icon">{!! $service->svg_icon !!}</span>
-                                    @elseif($service->icon)
-                                        <i class="{{ $service->icon }}"></i>
-                                    @else
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                                    @endif
-                                </div>
-                                <h5 class="mb-2">{{ $service->name }}</h5>
-                                <p class="text-muted small mb-3">{{ Str::limit($service->description, 100) }}</p>
-                                <span class="btn btn-sm btn-outline-custom mt-auto">{{ page_content('services', 'page_button', app()->getLocale()) }} <i class="fa-solid fa-arrow-right ms-1"></i></span>
+            <div class="services-grid">
+                @foreach($services as $index => $service)
+                    <div class="service-card-new reveal-on-scroll">
+                        <span class="service-card-number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                        
+                        <div class="service-icon-col">
+                            <div class="service-icon-new">
+                                @if($service->svg_icon)
+                                    <span class="svg-icon">{!! $service->svg_icon !!}</span>
+                                @elseif($service->icon)
+                                    <i class="{{ $service->icon }}"></i>
+                                @else
+                                    <i class="fa-solid fa-gear"></i>
+                                @endif
                             </div>
-                        </a>
+                            <a href="{{ route('services.show', $service->slug ?? Str::slug($service->name)) }}" class="service-btn">
+                                {{ page_content('services', 'page_button', app()->getLocale()) }} <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        
+                        <div class="service-content">
+                            <h3>{{ $service->name }}</h3>
+                            <p>{{ Str::limit($service->description, 120) }}</p>
+                        </div>
                     </div>
                 @endforeach
             </div>
@@ -58,5 +63,136 @@
         </div>
     </div>
 </section>
+
+<style>
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+    
+    .service-card-new {
+        background: var(--bg-white);
+        border-radius: 16px;
+        padding: 30px;
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+        border: 1px solid var(--border);
+        transition: all 0.3s ease;
+        position: relative;
+    }
+    
+    .service-card-new:hover {
+        border-color: var(--primary);
+        box-shadow: 0 10px 30px rgba(37, 99, 235, 0.1);
+        transform: translateY(-5px);
+    }
+    
+    .service-card-number {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 3rem;
+        font-weight: 900;
+        color: var(--primary-glow);
+        line-height: 1;
+        transition: all 0.3s ease;
+    }
+    
+    .service-card-new:hover .service-card-number {
+        color: rgba(37, 99, 235, 0.15);
+    }
+    
+    .service-icon-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+    }
+    
+    .service-icon-new {
+        width: 60px;
+        height: 60px;
+        background: var(--primary-glow);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary);
+        font-size: 1.4rem;
+        transition: all 0.3s ease;
+    }
+    
+    .service-card-new:hover .service-icon-new {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: #fff;
+    }
+    
+    .service-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 6px 12px;
+        background: transparent;
+        color: var(--primary);
+        border: 1px solid var(--primary);
+        border-radius: 15px;
+        text-decoration: none;
+        font-size: 0.75rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+    
+    .service-btn:hover {
+        background: var(--primary);
+        color: #fff;
+    }
+    
+    .service-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .service-content h3 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: var(--text-dark);
+    }
+    
+    .service-content p {
+        color: var(--text-body);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin: 0;
+    }
+    
+    @media (max-width: 992px) {
+        .services-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .services-grid {
+            grid-template-columns: 1fr;
+        }
+        .service-card-new {
+            flex-direction: column;
+            text-align: center;
+        }
+        .service-icon-col {
+            width: 100%;
+        }
+        .service-btn {
+            width: fit-content;
+        }
+    }
+</style>
 
 @endsection

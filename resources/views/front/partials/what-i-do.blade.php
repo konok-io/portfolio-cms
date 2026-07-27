@@ -13,7 +13,7 @@
                 <h2 class="section-title mb-2">{{ __('Professional services tailored to your needs') }}</h2>
                 <p class="section-subtitle mx-auto mx-lg-0">{{ __('I offer a wide range of services to help you achieve your goals.') }}</p>
             </div>
-            <a href="{{ route('services.index') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">
+            <a href="{{ route('services') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">
                 {{ __('View All') }} <i class="fa-solid fa-arrow-right ms-2"></i>
             </a>
         </div>
