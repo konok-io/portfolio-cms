@@ -402,6 +402,11 @@ a {
   align-items: center;
 }
 
+/* Hide pill nav when search is active on PC */
+.search-icon-wrap.active .pill-nav-wrapper {
+  display: none;
+}
+
 .site-navbar .nav-link {
   font-weight: 600;
   color: var(--color-secondary);
