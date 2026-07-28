@@ -1986,7 +1986,7 @@
             
             .contact-vertical-top {
                 background: linear-gradient(135deg, var(--color-primary, #2563EB), var(--color-primary-dark, #1d4ed8));
-                padding: 32px;
+                padding: 24px 32px;
                 color: #fff;
             }
             
@@ -2006,26 +2006,27 @@
             
             .contact-vertical-info {
                 display: flex;
-                flex-direction: column;
-                gap: 10px;
+                justify-content: flex-end;
+                gap: 16px;
+                flex-wrap: wrap;
             }
             
             .contact-vertical-info-item {
                 display: flex;
                 align-items: center;
-                gap: 10px;
+                gap: 6px;
                 font-size: 0.85rem;
             }
             
             .contact-vertical-info-icon {
-                width: 36px;
-                height: 36px;
+                width: 28px;
+                height: 28px;
                 background: rgba(255,255,255,0.2);
-                border-radius: 8px;
+                border-radius: 6px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                font-size: 0.85rem;
+                font-size: 0.75rem;
                 flex-shrink: 0;
             }
             
