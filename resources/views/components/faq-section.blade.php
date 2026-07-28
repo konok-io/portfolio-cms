@@ -5,9 +5,8 @@
     <div class="container">
         <div class="row justify-content-center text-center mb-5" data-aos="fade-up">
             <div class="col-lg-8">
-                <span class="eyebrow text-primary mb-3 d-inline-block">{{ __('frequently_asked_questions') }}</span>
-                <h2 class="section-title">{{ __('faq') }}</h2>
-                <p class="lead text-muted">{{ __('Find answers to common questions about my services, process, and working methodology.') }}</p>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="lead text-muted">Find answers to common questions about my services, process, and working methodology.</p>
             </div>
         </div>
         
