@@ -129,39 +129,24 @@
 
 {{-- Experience --}}
 @if($experiences->isNotEmpty())
-<section class="exp-section section-padding section-2">
+<section id="experience" class="section-padding section-1">
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-4 reveal-on-scroll">
-                <div class="exp-header">
-                    <span class="exp-eyebrow">
-                        <i class="fas fa-briefcase"></i>
-                        {{ __('Career Path') }}
-                    </span>
-                    <h2 class="exp-title">{{ __('Work Experience') }}</h2>
-                    <p class="exp-subtitle">Roles and companies that have shaped how I build software today.</p>
-                </div>
+                <span class="section-eyebrow">Career Path</span>
+                <h2 class="section-title">Work Experience</h2>
+                <p class="section-subtitle">Roles and companies that have shaped how I build software today.</p>
             </div>
             <div class="col-lg-8">
-                <div class="exp-timeline">
-                    @foreach($experiences as $index => $experience)
-                        <div class="exp-card reveal-on-scroll">
-                            <div class="exp-card-left">
-                                <div class="exp-year">{{ str_replace('-', '<br>', $experience->duration) }}</div>
+                <div class="timeline">
+                    @foreach($experiences->sortByDesc('duration') as $index => $experience)
+                        <div class="timeline-item reveal-on-scroll" data-number="{{ str_pad($experiences->count() - $loop->iteration + 1, 2, '0', STR_PAD_LEFT) }}">
+                            <div class="d-flex justify-content-between flex-wrap gap-2">
+                                <h5 class="mb-1">{{ $experience->designation }}</h5>
+                                <span class="badge bg-primary-custom">{{ $experience->duration }}</span>
                             </div>
-                            <div class="exp-card-right">
-                                <div class="exp-card-header">
-                                    <h3>{{ $experience->designation }}</h3>
-                                    <span class="exp-duration-badge">{{ $experience->duration }}</span>
-                                </div>
-                                <div class="exp-company">
-                                    <div class="exp-company-icon">
-                                        <i class="fas fa-building"></i>
-                                    </div>
-                                    <span>{{ $experience->company_name }}</span>
-                                </div>
-                                <p>{{ $experience->description }}</p>
-                            </div>
+                            <p class="text-primary-custom fw-semibold small mb-2">{{ $experience->company_name }}</p>
+                            <p class="text-muted small mb-0">{{ $experience->description }}</p>
                         </div>
                     @endforeach
                 </div>
@@ -169,209 +154,130 @@
         </div>
     </div>
 </section>
-
-<style>
-    /* Experience Section - Premium Design */
-    .exp-section {
-        position: relative;
-    }
-    
-    .exp-header {
-        position: sticky;
-        top: 100px;
-    }
-    
-    .exp-eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: rgba(37, 99, 235, 0.1);
-        color: var(--color-primary);
-        padding: 8px 16px;
-        border-radius: 50px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        margin-bottom: 15px;
-    }
-    
-    .exp-title {
-        font-family: var(--font-heading);
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: var(--color-secondary);
-        margin-bottom: 15px;
-        line-height: 1.2;
-    }
-    
-    .exp-subtitle {
-        color: var(--text-muted);
-        font-size: 1.1rem;
-        line-height: 1.6;
-    }
-    
-    .exp-timeline {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-    }
-    
-    .exp-card {
-        background: var(--card-bg);
-        border-radius: 20px;
-        padding: 30px 35px;
-        border: 1px solid var(--border-color);
-        box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-        display: flex;
-        gap: 30px;
-        align-items: flex-start;
-        transition: all 0.3s ease;
-    }
-    
-    .exp-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.12);
-        border-color: rgba(37, 99, 235, 0.3);
-    }
-    
-    .exp-card-left {
-        flex-shrink: 0;
-    }
-    
-    .exp-year {
-        width: 70px;
-        height: 70px;
-        background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-        border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        font-weight: 700;
-        font-size: 0.85rem;
-        text-align: center;
-        line-height: 1.2;
-    }
-    
-    .exp-card-right {
-        flex: 1;
-    }
-    
-    .exp-card-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        margin-bottom: 12px;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-    
-    .exp-card-header h3 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: var(--color-secondary);
-        margin: 0;
-    }
-    
-    .exp-duration-badge {
-        background: var(--bg-tertiary);
-        color: var(--text-secondary);
-        padding: 6px 14px;
-        border-radius: 50px;
-        font-size: 0.8rem;
-        font-weight: 600;
-    }
-    
-    .exp-company {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 10px;
-    }
-    
-    .exp-company-icon {
-        width: 28px;
-        height: 28px;
-        background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .exp-company-icon i {
-        color: #fff;
-        font-size: 0.75rem;
-    }
-    
-    .exp-company span {
-        color: var(--color-primary);
-        font-weight: 600;
-        font-size: 0.95rem;
-    }
-    
-    .exp-card-right p {
-        color: var(--text-muted);
-        font-size: 0.9rem;
-        line-height: 1.6;
-        margin: 0;
-    }
-    
-    /* Dark Mode - Experience */
-    [data-theme="dark"] .exp-eyebrow {
-        background: rgba(37, 99, 235, 0.15);
-        color: var(--color-primary-light);
-    }
-    
-    [data-theme="dark"] .exp-duration-badge {
-        background: rgba(255, 255, 255, 0.1);
-        color: var(--text-muted);
-    }
-    
-    [data-theme="dark"] .exp-card:hover {
-        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
-    }
-    
-    @media (max-width: 768px) {
-        .exp-card {
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .exp-header {
-            position: relative;
-            top: 0;
-        }
-        
-        .exp-title {
-            font-size: 2rem;
-        }
-    }
-</style>
 @endif
 
 {{-- Education --}}
 @if($educations->isNotEmpty())
-<section class="section-padding" style="background-color: var(--color-primary);">
+<section id="education" class="section-padding section-2" style="background-color: var(--color-primary);">
     <div class="container">
-        <div class="row gy-5">
-            <div class="col-lg-4 reveal-on-scroll">
-                <span class="section-eyebrow" style="background: rgba(255,255,255,0.2); color: #fff;">Academic Background</span>
-                <h2 class="section-title" style="color: #fff;">Education</h2>
-                <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">My academic foundation in computer science and technology.</p>
-            </div>
-            <div class="col-lg-8">
-                <div class="timeline" style="border-color: rgba(255,255,255,0.3);">
-                    @foreach($educations as $education)
-                        <div class="timeline-item reveal-on-scroll" style="color: #fff;">
-                            <div class="d-flex justify-content-between flex-wrap gap-2">
-                                <h5 class="mb-1" style="color: #fff;">{{ $education->degree }}</h5>
-                                <span class="badge" style="background: rgba(255,255,255,0.2); color: #fff;">{{ $education->duration }}</span>
-                            </div>
-                            <p class="fw-semibold small mb-2" style="color: rgba(255,255,255,0.9);">{{ $education->institute_name }}</p>
-                            <p class="small mb-0" style="color: rgba(255,255,255,0.7);">{{ $education->description }}</p>
+        <style>
+            #education .section-eyebrow,
+            #education .section-title,
+            #education .section-subtitle {
+                color: #fff;
+            }
+            #education .section-eyebrow {
+                background: rgba(255,255,255,0.2);
+            }
+            .edu-hz-section {
+                max-width: 900px;
+                margin: 0 auto;
+            }
+            
+            .edu-hz-list {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .edu-hz-card {
+                background: #fff;
+                border-radius: 16px;
+                padding: 20px 24px;
+                border: 1px solid #e2e8f0;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                transition: all 0.3s;
+            }
+            
+            .edu-hz-card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+                border-color: var(--color-secondary, #7c3aed);
+            }
+            
+            .edu-hz-icon {
+                width: 50px;
+                height: 50px;
+                background: var(--color-primary, #2563EB);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                font-size: 1.1rem;
+                flex-shrink: 0;
+            }
+            
+            .edu-hz-content {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 16px;
+            }
+            
+            .edu-hz-text {
+                text-align: left;
+            }
+            
+            .edu-hz-degree {
+                font-weight: 600;
+                color: #1e293b;
+                margin-bottom: 2px;
+                font-size: 1rem;
+            }
+            
+            .edu-hz-institution {
+                color: #64748b;
+                font-size: 0.85rem;
+            }
+            
+            .edu-hz-duration {
+                background: rgba(37, 99, 235, 0.1);
+                color: var(--color-primary, #2563EB);
+                padding: 6px 12px;
+                border-radius: 50px;
+                font-size: 0.75rem;
+                font-weight: 600;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+            
+            @media (max-width: 576px) {
+                .edu-hz-content {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 8px;
+                }
+                .edu-hz-card {
+                    flex-direction: column;
+                    text-align: center;
+                    gap: 12px;
+                }
+                .edu-hz-text {
+                    text-align: center;
+                }
+            }
+        </style>
+        
+        <div class="edu-hz-section">
+            <div class="edu-hz-list">
+                @foreach($educations as $education)
+                    <div class="edu-hz-card reveal-on-scroll">
+                        <div class="edu-hz-icon">
+                            <i class="fas fa-graduation-cap"></i>
                         </div>
-                    @endforeach
-                </div>
+                        <div class="edu-hz-content">
+                            <div class="edu-hz-text">
+                                <div class="edu-hz-degree">{{ $education->degree }}</div>
+                                <div class="edu-hz-institution">{{ $education->institution }}</div>
+                            </div>
+                            <span class="edu-hz-duration">{{ $education->duration }}</span>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
