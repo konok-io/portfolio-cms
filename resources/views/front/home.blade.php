@@ -635,7 +635,7 @@
             overflow: hidden;
             height: 100%;
             transition: all 0.3s;
-            border: 1px solid #dbeafe;
+            border: 1px solid #e2e8f0;
             padding: 10px;
         }
         
