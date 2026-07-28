@@ -4,7 +4,7 @@
 @section('meta_description', 'Search results for ' . $query . '. Find projects, blog posts, and services matching your query.')
 
 @section('content')
-<section class="page-title-section section-padding section-1">
+<section class="page-title-section section-padding">
     <div class="container">
         <div class="text-center mb-5">
             <h1 class="section-1title">{{ page_content('search', 'page_title', app()->getLocale()) }}</h1>

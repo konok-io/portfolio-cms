@@ -4,7 +4,7 @@
 @section('meta_description', 'Read our privacy policy to understand how we collect, use, and protect your personal information.')
 
 @section('content')
-<section class="page-title-section section-padding section-1">
+<section class="page-title-section section-padding">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-12 text-center">

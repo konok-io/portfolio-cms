@@ -1,7 +1,7 @@
 @extends('front.layouts.app')
 @section('title', 'Certifications & Badges - ' . ($siteSetting->site_name ?? 'Portfolio'))
 @section('content')
-<section class="page-title-section section-padding section-1 py-5">
+<section class="page-title-section section-padding py-5">
     <div class="container">
         <div class="text-center mb-5">
             <span class="section-eyebrow">Credentials</span>

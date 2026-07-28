@@ -6,7 +6,7 @@
 @section('content')
 
 {{-- Page header --}}
-<section class="page-title-section section-padding section-1">
+<section class="page-title-section section-padding">
     <div class="container">
         <div class="text-center mb-5">
             <span class="section-eyebrow">{{ page_content('about', 'page_eyebrow', app()->getLocale()) }}</span>
@@ -129,7 +129,7 @@
 
 {{-- Experience --}}
 @if($experiences->isNotEmpty())
-<section id="experience" class="section-padding section-1">
+<section id="experience" class="section-padding section-2">
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-4 reveal-on-scroll">

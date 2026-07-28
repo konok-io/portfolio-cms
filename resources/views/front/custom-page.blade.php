@@ -5,7 +5,7 @@
 
 @section('content')
 <!-- Page Header -->
-<section class="page-title-section section-padding section-1">
+<section class="page-title-section section-padding">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-12 text-center">
