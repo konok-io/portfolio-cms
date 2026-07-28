@@ -636,6 +636,7 @@
             height: 100%;
             transition: all 0.3s;
             border: 1px solid #e2e8f0;
+            padding: 10px;
         }
         
         .testimonial-card:hover {
@@ -648,9 +649,10 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 20px;
+            padding: 10px;
             background: #eff6ff;
-            border-bottom: 1px solid #dbeafe;
+            border-radius: 8px;
+            margin-bottom: 10px;
         }
         
         .testimonial-author {
@@ -707,7 +709,6 @@
         }
         
         .testimonial-body {
-            padding: 10px;
             display: flex;
             align-items: flex-start;
             gap: 10px;
