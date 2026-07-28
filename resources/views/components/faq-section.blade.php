@@ -1,15 +1,8 @@
 @props(['faqs' => collect()])
 
 @if($faqs->count() > 0)
-<section class="section bg-light-custom faq-section" id="faq">
+<section class="section section-2 faq-section" id="faq">
     <div class="container">
-        <div class="row justify-content-center text-center mb-5" data-aos="fade-up">
-            <div class="col-lg-8">
-                <h2 class="section-title">Frequently Asked Questions</h2>
-                <p class="lead text-muted">Find answers to common questions about my services, process, and working methodology.</p>
-            </div>
-        </div>
-        
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="accordion faq-accordion" id="faqAccordion">
