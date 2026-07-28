@@ -630,18 +630,18 @@
     {{-- Cards Section - Full Width --}}
     <style>
         .testimonial-card {
-            background: #ffffff;
+            background: #eff6ff;
             border-radius: 16px;
             overflow: hidden;
             height: 100%;
             transition: all 0.3s;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #dbeafe;
             padding: 10px;
         }
         
         .testimonial-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.15);
             border-color: var(--color-primary, #2563EB);
         }
         
@@ -650,8 +650,6 @@
             align-items: center;
             justify-content: space-between;
             padding: 10px;
-            background: #eff6ff;
-            border-radius: 8px;
             margin-bottom: 10px;
         }
         
@@ -709,6 +707,9 @@
         }
         
         .testimonial-body {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 10px;
             display: flex;
             align-items: flex-start;
             gap: 10px;
