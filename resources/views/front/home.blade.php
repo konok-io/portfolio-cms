@@ -105,10 +105,10 @@
     }
 
     .why-h-card {
-        background: #eff6ff;
+        background: #ffffff;
         border-radius: 20px;
         padding: 30px 25px;
-        border: 1px solid #dbeafe;
+        border: 2px solid #e5e7eb;
         transition: all 0.4s ease;
         display: flex;
         flex-direction: column;
@@ -144,8 +144,8 @@
 
     .why-h-card:hover {
         transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
-        border-color: transparent;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        border-color: var(--why-primary);
     }
 
     .why-h-card:hover::before {
@@ -216,16 +216,16 @@
 
     /* Dark Mode - Why Choose Me Cards */
     [data-theme="dark"] .why-h-card {
-        background: #1f1f3a;
-        border-color: #2d2d52;
+        background: #1a1a2e;
+        border-color: #60a5fa;
     }
 
     [data-theme="dark"] .why-h-card::before {
-        background: linear-gradient(135deg, #67E8F9 0%, #67E8F9 100%);
+        background: linear-gradient(135deg, #60a5fa 0%, #60a5fa 100%);
     }
 
     [data-theme="dark"] .why-h-card:hover {
-        box-shadow: 0 20px 40px rgba(103, 232, 249, 0.2);
+        box-shadow: 0 20px 40px rgba(96, 165, 250, 0.3);
     }
 
     [data-theme="dark"] .why-h-card:hover::before {
@@ -233,20 +233,20 @@
     }
 
     [data-theme="dark"] .why-h-card:hover .why-h-icon {
-        background: rgba(103, 232, 249, 0.2);
-        color: #67E8F9;
+        background: rgba(96, 165, 250, 0.2);
+        color: #60a5fa;
     }
 
     [data-theme="dark"] .why-h-card h3 {
-        color: #e5e7eb;
+        color: #f3f4f6;
     }
 
     [data-theme="dark"] .why-h-card p {
-        color: #9ca3af;
+        color: #d1d5db;
     }
 
     [data-theme="dark"] .why-h-card .card-number {
-        color: rgba(103, 232, 249, 0.15);
+        color: rgba(96, 165, 250, 0.2);
     }
 </style>
 
