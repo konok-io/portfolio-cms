@@ -829,7 +829,7 @@
      9. CERTIFICATIONS & BADGES
      ========================================================= --}}
 @if($certifications->isNotEmpty())
-<section id="certifications" class="section-padding section-1">
+<section id="certifications" class="section-padding section-2">
     <div class="container">
         
         {{-- Design 9: Horizontal List Style --}}
