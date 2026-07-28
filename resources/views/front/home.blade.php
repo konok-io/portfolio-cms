@@ -601,6 +601,11 @@
                 <span class="section-eyebrow">Academic Background</span>
                 <h2 class="section-title">Education</h2>
                 <p class="section-subtitle">My academic foundation in computer science and technology.</p>
+                @if($educations->count() > 1)
+                    <a href="{{ route('about') }}#education" class="btn btn-sm btn-outline-light mt-3">
+                        View All Education <i class="fa-solid fa-arrow-right ms-1"></i>
+                    </a>
+                @endif
             </div>
             <div class="col-lg-8">
                 @if($educations->isNotEmpty())
@@ -618,13 +623,6 @@
                             <div class="edu-hz-desc">{{ $latestEducation->description }}</div>
                         </div>
                     </div>
-                    @if($educations->count() > 1)
-                        <div class="text-center mt-3">
-                            <a href="{{ route('about') }}#education" class="btn btn-sm btn-outline-light">
-                                View All Education <i class="fa-solid fa-arrow-right ms-1"></i>
-                            </a>
-                        </div>
-                    @endif
                 @endif
             </div>
         </div>
