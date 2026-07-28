@@ -829,13 +829,13 @@
      9. CERTIFICATIONS & BADGES
      ========================================================= --}}
 @if($certifications->isNotEmpty())
-<section id="certifications" class="section-padding section-2">
+<section id="certifications" class="section-padding section-1">
     <div class="container">
         
         {{-- Design 9: Horizontal List Style --}}
         <style>
             .cred-horizontal-section {
-                background: linear-gradient(135deg, var(--color-primary, #2563EB), var(--color-primary-dark, #1d4ed8));
+                background: #ffffff;
                 border-radius: 20px;
                 padding: 40px;
             }
@@ -852,12 +852,12 @@
             .cred-horizontal-header-left h2 {
                 font-size: 1.5rem;
                 font-weight: 700;
-                color: #fff;
+                color: var(--color-secondary, #1e293b);
                 margin-bottom: 4px;
             }
             
             .cred-horizontal-header-left p {
-                color: rgba(255, 255, 255, 0.8);
+                color: #64748b;
                 font-size: 0.9rem;
             }
             
@@ -866,7 +866,7 @@
             }
             
             .cred-horizontal-header-right a {
-                background: rgba(255, 255, 255, 0.15);
+                background: var(--color-primary, #2563EB);
                 color: #fff;
                 padding: 8px 20px;
                 border-radius: 8px;
@@ -880,7 +880,7 @@
             }
             
             .cred-horizontal-header-right a:hover {
-                background: rgba(255, 255, 255, 0.25);
+                background: var(--color-primary-dark, #1d4ed8);
             }
             
             .cred-horizontal-grid {
@@ -890,7 +890,7 @@
             }
             
             .cred-horizontal-card {
-                background: #ffffff;
+                background: var(--color-primary, #2563EB);
                 border-radius: 12px;
                 padding: 16px 20px;
                 display: flex;
@@ -901,14 +901,14 @@
             }
             
             .cred-horizontal-card:hover {
-                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+                box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
                 transform: translateY(-2px);
             }
             
             .cred-horizontal-icon {
                 width: 44px;
                 height: 44px;
-                background: var(--color-primary, #2563EB);
+                background: rgba(255, 255, 255, 0.2);
                 border-radius: 10px;
                 display: flex;
                 align-items: center;
@@ -933,7 +933,7 @@
             .cred-horizontal-name {
                 font-size: 0.9rem;
                 font-weight: 600;
-                color: #1e293b;
+                color: #ffffff;
                 margin-bottom: 2px;
                 white-space: nowrap;
                 overflow: hidden;
@@ -942,7 +942,7 @@
             
             .cred-horizontal-org {
                 font-size: 0.75rem;
-                color: #64748b;
+                color: rgba(255, 255, 255, 0.8);
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -964,19 +964,16 @@
             }
             
             [data-theme="dark"] .cred-horizontal-section {
-                background: linear-gradient(135deg, #1e293b, #0f172a);
-                border: 1px solid #334155;
+                background: #1e293b;
             }
             [data-theme="dark"] .cred-horizontal-card {
-                background: rgba(255, 255, 255, 0.05);
-                border: 1px solid #334155;
+                background: var(--color-primary, #2563EB);
             }
             [data-theme="dark"] .cred-horizontal-card:hover {
-                background: rgba(255, 255, 255, 0.08);
-                border-color: #3b82f6;
+                box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
             }
             [data-theme="dark"] .cred-horizontal-icon {
-                background: rgba(59, 130, 246, 0.2);
+                background: rgba(255, 255, 255, 0.15);
             }
         </style>
         
