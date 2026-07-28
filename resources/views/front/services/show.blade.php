@@ -27,8 +27,8 @@
 
     <div class="container">
         <div class="text-center mb-0">
-            <span class="section-eyebrow">Services</span>
-            <h1 class="section-title">{{ $service->name }}</h1>
+            <span class="section-eyebrow text-white">Services</span>
+            <h1 class="section-title text-white">{{ $service->name }}</h1>
             <x-breadcrumb :items="$breadcrumbs" class="d-flex justify-content-center mt-3" :darkBg="true" />
         </div>
     </div>
