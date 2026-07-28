@@ -2095,7 +2095,8 @@
             
             .contact-vertical-map-container {
                 width: 100%;
-                height: 280px;
+                height: 100%;
+                min-height: 250px;
                 border-radius: 12px;
                 overflow: hidden;
                 box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -2106,11 +2107,12 @@
             .contact-vertical-map-container #homeContactMap {
                 width: 100%;
                 height: 100%;
+                min-height: 250px;
                 border: none;
             }
             
             .contact-vertical-map-placeholder {
-                height: 280px;
+                min-height: 250px;
             }
             
             @media (max-width: 576px) {
@@ -2122,15 +2124,15 @@
                     gap: 12px;
                 }
                 .contact-vertical-map-container,
-                .contact-vertical-map-placeholder {
-                    height: 200px;
+                .contact-vertical-map-container iframe {
+                    min-height: 200px;
                 }
             }
             
             @media (max-width: 991px) {
                 .contact-vertical-map-container,
-                .contact-vertical-map-placeholder {
-                    height: 200px;
+                .contact-vertical-map-container iframe {
+                    min-height: 200px;
                     margin-top: 20px;
                 }
             }
@@ -2346,8 +2348,11 @@ if (homeCoordMatch) {
             const map = L.map('homeContactMap', {
                 center: [homeLat, homeLon],
                 zoom: 15,
-                zoomControl: true,
-                scrollWheelZoom: true
+                zoomControl: false,
+                dragging: false,
+                scrollWheelZoom: false,
+                doubleClickZoom: false,
+                touchZoom: false
             });
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap contributors'
