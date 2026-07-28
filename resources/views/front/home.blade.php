@@ -1987,7 +1987,6 @@
             .contact-vertical-top {
                 background: linear-gradient(135deg, var(--color-primary, #2563EB), var(--color-primary-dark, #1d4ed8));
                 padding: 32px;
-                text-align: center;
                 color: #fff;
             }
             
@@ -2001,33 +2000,33 @@
             .contact-vertical-subtitle {
                 font-size: 0.9rem;
                 opacity: 0.9;
-                margin-bottom: 20px;
+                margin-bottom: 0;
                 color: rgba(255, 255, 255, 0.9);
             }
             
             .contact-vertical-info {
                 display: flex;
-                justify-content: center;
-                gap: 20px;
-                flex-wrap: wrap;
+                flex-direction: column;
+                gap: 10px;
             }
             
             .contact-vertical-info-item {
                 display: flex;
                 align-items: center;
-                gap: 6px;
-                font-size: 0.8rem;
+                gap: 10px;
+                font-size: 0.85rem;
             }
             
             .contact-vertical-info-icon {
-                width: 32px;
-                height: 32px;
+                width: 36px;
+                height: 36px;
                 background: rgba(255,255,255,0.2);
-                border-radius: 50%;
+                border-radius: 8px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                font-size: 0.75rem;
+                font-size: 0.85rem;
+                flex-shrink: 0;
             }
             
             .contact-vertical-bottom {
@@ -2121,33 +2120,39 @@
         
         <div class="contact-vertical-section reveal-on-scroll">
             <div class="contact-vertical-top">
-                <h3 class="contact-vertical-title">{{ page_content('home', 'contact_title', app()->getLocale()) }}</h3>
-                <p class="contact-vertical-subtitle">{{ page_content('home', 'contact_text', app()->getLocale()) }}</p>
-                <div class="contact-vertical-info">
-                    @if($about->email ?? false)
-                        <div class="contact-vertical-info-item">
-                            <div class="contact-vertical-info-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <span>{{ Str::limit($about->email, 25) }}</span>
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h3 class="contact-vertical-title">{{ page_content('home', 'contact_title', app()->getLocale()) }}</h3>
+                        <p class="contact-vertical-subtitle">{{ page_content('home', 'contact_text', app()->getLocale()) }}</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="contact-vertical-info">
+                            @if($about->email ?? false)
+                                <div class="contact-vertical-info-item">
+                                    <div class="contact-vertical-info-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <span>{{ Str::limit($about->email, 25) }}</span>
+                                </div>
+                            @endif
+                            @if($about->phone ?? false)
+                                <div class="contact-vertical-info-item">
+                                    <div class="contact-vertical-info-icon">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <span>{{ $about->phone }}</span>
+                                </div>
+                            @endif
+                            @if($about->address ?? false)
+                                <div class="contact-vertical-info-item">
+                                    <div class="contact-vertical-info-icon">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <span>{{ Str::limit($about->address, 18) }}</span>
+                                </div>
+                            @endif
                         </div>
-                    @endif
-                    @if($about->phone ?? false)
-                        <div class="contact-vertical-info-item">
-                            <div class="contact-vertical-info-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <span>{{ $about->phone }}</span>
-                        </div>
-                    @endif
-                    @if($about->address ?? false)
-                        <div class="contact-vertical-info-item">
-                            <div class="contact-vertical-info-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <span>{{ Str::limit($about->address, 18) }}</span>
-                        </div>
-                    @endif
+                    </div>
                 </div>
             </div>
             <div class="contact-vertical-bottom">
