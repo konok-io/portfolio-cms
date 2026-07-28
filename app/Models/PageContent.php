@@ -43,6 +43,14 @@ class PageContent
                 'subtitle' => ['en' => 'A comprehensive overview of my skills, experience, and achievements', 'default' => 'A comprehensive overview of my skills, experience, and achievements'],
                 'eyebrow' => ['en' => 'My Resume', 'default' => 'My Resume'],
             ],
+            'faq' => [
+                'title' => ['en' => 'FAQ', 'default' => 'FAQ'],
+                'subtitle' => ['en' => 'Find answers to frequently asked questions', 'default' => 'Find answers to frequently asked questions'],
+            ],
+            'pricing' => [
+                'title' => ['en' => 'Pricing', 'default' => 'Pricing'],
+                'subtitle' => ['en' => 'Transparent pricing for your projects', 'default' => 'Transparent pricing for your projects'],
+            ],
         ];
 
         return $defaults[$page] ?? [
