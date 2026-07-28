@@ -1,0 +1,2399 @@
+@extends('front.layouts.app')
+
+@section('title', ($about->name ?? 'Portfolio') . ' | ' . ($siteSetting->site_name ?? 'Portfolio CMS'))
+@section('meta_description', $about->short_intro ?? 'Professional portfolio website.')
+
+@section('content')
+
+{{-- =========================================================
+     1. HERO
+     ========================================================= --}}
+<section id="home" class="hero-section">
+    <div class="container">
+        <div class="row align-items-center gy-5">
+            <div class="col-lg-7 order-2 order-lg-1">
+                <span class="hero-eyebrow"><i class="fa-solid fa-circle-check"></i> {{ page_content('home', 'hero_eyebrow', app()->getLocale()) }}</span>
+                <h1 class="hero-title">
+                    Hi, I'm {{ $about->name ?? 'Your Name' }} —<br>
+                    <span class="text-primary-custom">
+                        <span id="typed-text"></span><span class="cursor">|</span>
+                    </span>
+                </h1>
+                <p class="lead text-muted mb-4" style="max-width: 560px;">
+                    {{ $about->short_intro ?? 'I design and build modern, high-performing web applications tailored to your business goals.' }}
+                </p>
+                <div class="d-flex flex-wrap gap-3" style="position: relative; z-index: 1;">
+                    <a href="{{ route('contact') }}" class="btn btn-primary-custom">
+                        <i class="fa-solid fa-paper-plane me-2"></i>{{ page_content('home', 'hero_button_hire', app()->getLocale()) }}
+                    </a>
+                    @if($about->cv_url ?? false)
+                        <a href="{{ $about->cv_url }}" class="btn btn-outline-custom" download>
+                            <i class="fa-solid fa-download me-2"></i>{{ page_content('home', 'hero_button_cv', app()->getLocale()) }}
+                        </a>
+                    @endif
+                </div>
+            </div>
+            <div class="col-lg-5 order-1 order-lg-2">
+                <div class="hero-photo-frame">
+                    <img src="{{ $about->hero_photo_url ?? $about->photo_url }}" loading="eager"
+                         alt="{{ $about->name ?? 'Profile photo' }}"
+                         style="object-fit: cover;">
+                    <div class="badge-floating">
+                        <div class="icon-box mb-0" style="width:44px;height:44px;font-size:1.1rem;">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+                        <div>
+                            <div class="fw-bold">{{ $experiences->count() }}+</div>
+                            <div class="small text-muted">Years Experience</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- =========================================================
+     2. WHY CHOOSE ME (About)
+     ========================================================= --}}
+@if($whyChooseMe->isNotEmpty())
+<section id="about" class="section-padding section-1">
+    <div class="container">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
+            <div class="text-center text-lg-start reveal-on-scroll">
+                <span class="section-eyebrow">
+                    <i class="fas fa-star"></i>
+                    {{ __('Why Choose Me') }}
+                </span>
+                <h2 class="section-title mb-2">{{ $whyChooseMeTitle }}</h2>
+                <p class="section-subtitle mx-auto mx-lg-0">{{ $whyChooseMeSubtitle }}</p>
+            </div>
+            <a href="{{ route('about') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">
+                <i class="fa-solid fa-user me-2"></i>{{ __('Learn More About Me') }}
+            </a>
+        </div>
+        
+        <div class="row g-4 justify-content-center">
+            @foreach($whyChooseMe as $index => $item)
+            <div class="col-lg-4 col-md-6">
+                <div class="why-h-card reveal-on-scroll">
+                    <span class="card-number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                    <div class="why-h-icon">
+                        <i class="{{ $item->icon }}"></i>
+                    </div>
+                    <h3>{{ $item->title }}</h3>
+                    <p>{{ $item->description }}</p>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
+<style>
+    /* Design 2: Premium Gradient Cards */
+    :root {
+        --why-primary: #2563EB;
+        --why-primary-dark: #1d4ed8;
+        --why-primary-light: #60a5fa;
+        --why-primary-glow: rgba(37, 99, 235, 0.1);
+        --why-text-dark: #1a1a2e;
+        --why-text-body: #4b5563;
+        --why-bg-white: #ffffff;
+        --why-border: #d1d5db;
+    }
+
+    .why-h-card {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 30px 25px;
+        border: 2px solid #e5e7eb;
+        transition: all 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+    }
+
+    .why-h-card::before {
+        content: '';
+        position: absolute;
+        top: -40px;
+        left: -40px;
+        width: 120px;
+        height: 120px;
+        background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%);
+        border-radius: 50%;
+        opacity: 0.15;
+        transition: all 0.3s;
+    }
+
+    .why-h-card::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--why-primary), var(--why-primary-light));
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+
+    .why-h-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        border-color: var(--why-primary);
+    }
+
+    .why-h-card:hover::before {
+        opacity: 0.25;
+        top: -50px;
+        left: -50px;
+        width: 150px;
+        height: 150px;
+    }
+
+    .why-h-card:hover::after {
+        transform: scaleX(1);
+    }
+
+    .why-h-icon {
+        width: 65px;
+        height: 65px;
+        background: var(--why-primary-glow);
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--why-primary);
+        font-size: 1.5rem;
+        margin-bottom: 18px;
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 1;
+    }
+
+    .why-h-card:hover .why-h-icon {
+        background: #dbeafe;
+        color: var(--why-primary);
+        transform: scale(1.1);
+    }
+
+    .why-h-card h3 {
+        font-size: 1.15rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        transition: color 0.3s ease;
+        position: relative;
+        z-index: 1;
+        color: var(--why-text-dark);
+    }
+
+    .why-h-card p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: var(--why-text-body);
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 1;
+        margin: 0;
+    }
+
+    .card-number {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--why-primary-glow);
+        line-height: 1;
+        transition: all 0.3s ease;
+        z-index: 1;
+    }
+
+    /* Dark Mode - Why Choose Me Cards */
+    [data-theme="dark"] .why-h-card {
+        background: #1a1a2e;
+        border-color: #60a5fa;
+    }
+
+    [data-theme="dark"] .why-h-card::before {
+        background: linear-gradient(135deg, #60a5fa 0%, #60a5fa 100%);
+    }
+
+    [data-theme="dark"] .why-h-card:hover {
+        box-shadow: 0 20px 40px rgba(96, 165, 250, 0.3);
+    }
+
+    [data-theme="dark"] .why-h-card:hover::before {
+        opacity: 0.25;
+    }
+
+    [data-theme="dark"] .why-h-card:hover .why-h-icon {
+        background: rgba(96, 165, 250, 0.2);
+        color: #60a5fa;
+    }
+
+    [data-theme="dark"] .why-h-card h3 {
+        color: #f3f4f6;
+    }
+
+    [data-theme="dark"] .why-h-card p {
+        color: #d1d5db;
+    }
+
+    [data-theme="dark"] .why-h-card .card-number {
+        color: rgba(96, 165, 250, 0.2);
+    }
+</style>
+
+{{-- =========================================================
+     3. SKILLS
+     ========================================================= --}}
+@if($skills->isNotEmpty())
+<section id="skills" class="section-padding section-2">
+    <div class="container">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
+            <div class="text-center text-lg-start reveal-on-scroll">
+                <span class="section-eyebrow">{{ $skillsSectionTitle }}</span>
+                <h2 class="section-title mb-2">{{ $skillsTitle }}</h2>
+                <p class="section-subtitle mx-auto mx-lg-0">{{ $skillsSubtitle }}</p>
+            </div>
+            <a href="{{ route('about') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">View All <i class="fa-solid fa-arrow-right ms-1"></i></a>
+        </div>
+        
+        <style>
+            .tech-stack-grid {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 20px;
+            }
+            
+            @media (max-width: 1200px) {
+                .tech-stack-grid { grid-template-columns: repeat(4, 1fr); }
+            }
+            @media (max-width: 992px) {
+                .tech-stack-grid { grid-template-columns: repeat(3, 1fr); }
+            }
+            @media (max-width: 768px) {
+                .tech-stack-grid { grid-template-columns: repeat(2, 1fr); }
+            }
+            @media (max-width: 576px) {
+                .tech-stack-grid { grid-template-columns: 1fr; }
+            }
+            
+            .tech-card {
+                background: #fff;
+                border: 1px solid #d1d5db;
+                border-radius: 16px;
+                padding: 25px 15px;
+                text-align: center;
+                transition: all 0.3s;
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .tech-card::before {
+                content: '';
+                position: absolute;
+                top: -30px;
+                right: -30px;
+                width: 80px;
+                height: 80px;
+                background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%);
+                border-radius: 50%;
+                opacity: 0.15;
+                transition: all 0.3s;
+            }
+            
+            .tech-card:hover {
+                transform: translateY(-8px);
+                border-color: #2563EB;
+                box-shadow: 0 15px 40px rgba(37, 99, 235, 0.15);
+            }
+            
+            .tech-card:hover::before {
+                opacity: 0.3;
+                top: -40px;
+                right: -40px;
+                width: 100px;
+                height: 100px;
+            }
+            
+            .tech-icon {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+                color: #2563EB;
+                transition: transform 0.3s;
+            }
+            
+            .tech-card:hover .tech-icon {
+                transform: scale(1.15);
+            }
+            
+            .tech-name {
+                color: #1a1a2e;
+                font-weight: 600;
+                margin-bottom: 5px;
+                font-size: 1rem;
+            }
+            
+            .tech-category {
+                color: #6b7280;
+                font-size: 0.8rem;
+                margin-bottom: 10px;
+            }
+            
+            .tech-percentage {
+                background: #2563EB;
+                color: #fff;
+                padding: 4px 12px;
+                border-radius: 20px;
+                font-size: 0.75rem;
+                font-weight: 600;
+                display: inline-block;
+            }
+            
+            /* Dark Theme */
+            [data-theme="dark"] .tech-card {
+                background: #171433;
+                border-color: rgba(103, 232, 249, 0.15);
+            }
+            
+            [data-theme="dark"] .tech-name {
+                color: #fff;
+            }
+            
+            [data-theme="dark"] .tech-category {
+                color: #a8a4c8;
+            }
+            
+            [data-theme="dark"] .tech-card:hover {
+                border-color: #67E8F9;
+                box-shadow: 0 15px 40px rgba(103, 232, 249, 0.15);
+            }
+            
+            [data-theme="dark"] .tech-card::before {
+                background: linear-gradient(135deg, #67E8F9 0%, #67E8F9 100%);
+            }
+            
+            [data-theme="dark"] .tech-icon {
+                color: #67E8F9;
+            }
+            
+            [data-theme="dark"] .tech-percentage {
+                background: #67E8F9;
+                color: #0A0A1F;
+            }
+        </style>
+        
+        <div class="tech-stack-grid">
+            @foreach($skills->take(5) as $skill)
+                <div class="tech-card reveal-on-scroll">
+                    <div class="tech-icon">
+                        @if($skill->icon)
+                            <i class="{{ $skill->icon }}"></i>
+                        @else
+                            <i class="fa-solid fa-code"></i>
+                        @endif
+                    </div>
+                    <div class="tech-name">{{ $skill->name }}</div>
+                    <div class="tech-category">{{ $skill->category ?? 'Technical' }}</div>
+                    <div class="tech-percentage">{{ $skill->percentage }}%</div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
+{{-- =========================================================
+     4. SERVICES (What I Do)
+     ========================================================= --}}
+@include('front.partials.what-i-do')
+
+{{-- =========================================================
+     5. PORTFOLIO PROJECTS
+     ========================================================= --}}
+@if($projects->isNotEmpty())
+<section id="portfolio" class="section-padding section-2">
+    <div class="container">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
+            <div class="text-center text-lg-start reveal-on-scroll">
+                <span class="section-eyebrow">Recent Work</span>
+                <h2 class="section-title mb-2">Selected Projects</h2>
+                <p class="section-subtitle mx-auto mx-lg-0">A few of the projects I've recently designed and built.</p>
+            </div>
+            <a href="{{ route('projects.index') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">View All <i class="fa-solid fa-arrow-right ms-1"></i></a>
+        </div>
+        <div class="row g-4">
+            @foreach($projects as $project)
+                <div class="col-md-6 col-lg-3 reveal-on-scroll">
+                    <div class="project-card">
+                        <div class="project-img-wrap">
+                            @if($project->category)
+                                <span class="project-category-tag">{{ $project->category->name }}</span>
+                            @endif
+                            <img src="{{ $project->featured_image_url ?? 'https://placehold.co/600x450/2563EB/ffffff?text=' . urlencode($project->title) }}" alt="{{ $project->alt_text ?? $project->title }}" loading="lazy" width="600" height="450">
+                        </div>
+                        <div class="p-3">
+                            <h6 class="mb-1">{{ $project->title }}</h6>
+                            <a href="{{ route('projects.show', $project->slug) }}" class="small text-primary-custom fw-semibold">
+                                View Project <i class="fa-solid fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
+{{-- =========================================================
+     6. EXPERIENCE
+     ========================================================= --}}
+@if($experiences->isNotEmpty())
+<section id="experience" class="section-padding section-1">
+    <div class="container">
+        <div class="row gy-5">
+            <div class="col-lg-4 reveal-on-scroll">
+                <span class="section-eyebrow">Career Path</span>
+                <h2 class="section-title">Work Experience</h2>
+                <p class="section-subtitle">Roles and companies that have shaped how I build software today.</p>
+            </div>
+            <div class="col-lg-8">
+                <div class="timeline">
+                    @foreach($experiences->sortByDesc('duration') as $index => $experience)
+                        <div class="timeline-item reveal-on-scroll" data-number="{{ str_pad($experiences->count() - $loop->iteration + 1, 2, '0', STR_PAD_LEFT) }}">
+                            <div class="d-flex justify-content-between flex-wrap gap-2">
+                                <h5 class="mb-1">{{ $experience->designation }}</h5>
+                                <span class="badge bg-primary-custom">{{ $experience->duration }}</span>
+                            </div>
+                            <p class="text-primary-custom fw-semibold small mb-2">{{ $experience->company_name }}</p>
+                            <p class="text-muted small mb-0">{{ $experience->description }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@endif
+
+{{-- =========================================================
+     7. EDUCATION
+     ========================================================= --}}
+@if($educations->isNotEmpty())
+<section id="education" class="section-padding" style="background-color: var(--color-primary);">
+    <div class="container">
+        
+        {{-- Education Horizontal Cards Style --}}
+        <style>
+            #education .section-eyebrow,
+            #education .section-title,
+            #education .section-subtitle {
+                color: #fff;
+            }
+            #education .section-eyebrow {
+                background: rgba(255,255,255,0.2);
+            }
+            .edu-hz-section {
+                max-width: 900px;
+                margin: 0 auto;
+            }
+            
+            .edu-hz-list {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .edu-hz-card {
+                background: #fff;
+                border-radius: 16px;
+                padding: 20px 24px;
+                border: 1px solid #e2e8f0;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                transition: all 0.3s;
+            }
+            
+            .edu-hz-card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+                border-color: var(--color-secondary, #7c3aed);
+            }
+            
+            .edu-hz-icon {
+                width: 50px;
+                height: 50px;
+                background: var(--color-primary, #2563EB);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                font-size: 1.1rem;
+                flex-shrink: 0;
+            }
+            
+            .edu-hz-content {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 16px;
+            }
+            
+            .edu-hz-left {
+                flex: 1;
+            }
+            
+            .edu-hz-year {
+                font-size: 0.75rem;
+                color: var(--color-secondary, #7c3aed);
+                font-weight: 700;
+                margin-bottom: 4px;
+            }
+            
+            .edu-hz-title {
+                font-size: 1rem;
+                font-weight: 700;
+                color: #1e293b;
+                margin-bottom: 4px;
+            }
+            
+            .edu-hz-company {
+                font-size: 0.85rem;
+                color: #64748b;
+            }
+            
+            .edu-hz-desc {
+                font-size: 0.8rem;
+                color: #475569;
+                line-height: 1.5;
+                max-width: 280px;
+                text-align: right;
+            }
+            
+            @media (max-width: 768px) {
+                .edu-hz-card {
+                    flex-direction: column;
+                    text-align: center;
+                }
+                .edu-hz-content {
+                    flex-direction: column;
+                }
+                .edu-hz-desc {
+                    text-align: center;
+                    max-width: 100%;
+                }
+            }
+        </style>
+        
+        <div class="row gy-5">
+            <div class="col-lg-4 reveal-on-scroll">
+                <span class="section-eyebrow">Academic Background</span>
+                <h2 class="section-title">Education</h2>
+                <p class="section-subtitle">My academic foundation in computer science and technology.</p>
+            </div>
+            <div class="col-lg-8">
+                @if($educations->isNotEmpty())
+                    @php $latestEducation = $educations->sortByDesc('duration')->first(); @endphp
+                    <div class="edu-hz-card reveal-on-scroll" style="max-width: 100%;">
+                        <div class="edu-hz-icon" style="width: 60px; height: 60px; font-size: 1.3rem;">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="edu-hz-content">
+                            <div class="edu-hz-left">
+                                <div class="edu-hz-year">{{ $latestEducation->duration }}</div>
+                                <div class="edu-hz-title" style="font-size: 1.15rem;">{{ $latestEducation->degree }}</div>
+                                <div class="edu-hz-company">{{ $latestEducation->institute_name }}</div>
+                            </div>
+                            <div class="edu-hz-desc">{{ $latestEducation->description }}</div>
+                        </div>
+                    </div>
+                    @if($educations->count() > 1)
+                        <div class="text-center mt-3">
+                            <a href="{{ route('about') }}#education" class="btn btn-sm btn-outline-light">
+                                View All Education <i class="fa-solid fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    @endif
+                @endif
+            </div>
+        </div>
+        
+    </div>
+</section>
+@endif
+
+{{-- =========================================================
+     8. TESTIMONIALS
+     ========================================================= --}}
+@if($testimonials->isNotEmpty())
+<section id="testimonials" class="section-padding">
+    
+    {{-- Header Section --}}
+    <div class="container mb-4">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 reveal-on-scroll">
+            <div class="text-center text-lg-start">
+                <span class="section-eyebrow">Client Feedback</span>
+                <h2 class="section-title mb-0">What clients say about working with me</h2>
+            </div>
+            @if($testimonials->count() > 3)
+            <a href="{{ route('testimonials') }}" class="btn btn-outline-custom flex-shrink-0">View All <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            @endif
+        </div>
+    </div>
+    
+    {{-- Cards Section - Full Width --}}
+    <style>
+        .testimonial-card {
+            background: #eff6ff;
+            border-radius: 16px;
+            height: 100%;
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
+            padding: 10px;
+        }
+        
+        .testimonial-card:hover {
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.15);
+            border-color: var(--color-primary, #2563EB);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--color-primary, #2563EB);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .testimonial-author-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .testimonial-name {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        
+        .testimonial-role {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+        
+        .testimonial-rating {
+            display: flex;
+            gap: 2px;
+        }
+        
+        .testimonial-rating i {
+            color: #f59e0b;
+            font-size: 0.85rem;
+        }
+        
+        .testimonial-body {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .testimonial-quote-icon {
+            color: var(--color-primary, #2563EB);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .testimonial-text {
+            font-size: 0.9rem;
+            color: #475569;
+            line-height: 1.7;
+            margin: 0;
+        }
+        
+        /* Carousel styles */
+        .testimonial-wrapper {
+            padding: 0 15px;
+        }
+        
+        .testimonial-wrapper .carousel-indicators {
+            bottom: -25px;
+            margin-bottom: 0;
+        }
+        
+        .testimonial-wrapper .carousel-indicators button {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #d1d5db;
+            border: none;
+            margin: 0 4px;
+            opacity: 1;
+        }
+        
+        .testimonial-wrapper .carousel-indicators button.active {
+            background-color: var(--color-primary, #2563EB);
+        }
+        
+        @media (max-width: 576px) {
+            .testimonial-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+        }
+        
+        [data-theme="dark"] .testimonial-card {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        [data-theme="dark"] .testimonial-card:hover {
+            border-color: var(--color-primary, #2563EB);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.2);
+        }
+        [data-theme="dark"] .testimonial-header {
+            background: rgba(37, 99, 235, 0.15);
+            border-color: #334155;
+        }
+        [data-theme="dark"] .testimonial-name {
+            color: #f1f5f9;
+        }
+        [data-theme="dark"] .testimonial-text {
+            color: #cbd5e1;
+        }
+    </style>
+    
+    <div id="testimonialCarousel" class="carousel slide reveal-on-scroll" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-inner">
+            @foreach($testimonials->chunk(3) as $index => $testimonialGroup)
+                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                    <div class="container">
+                        <div class="row g-4">
+                            @foreach($testimonialGroup as $testimonial)
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="testimonial-card">
+                                        <div class="testimonial-header">
+                                            <div class="testimonial-author">
+                                                <div class="testimonial-avatar">
+                                                    @if($testimonial->photo_url)
+                                                        <img src="{{ $testimonial->photo_url }}" alt="{{ $testimonial->client_name }}" loading="lazy">
+                                                    @else
+                                                        {{ substr($testimonial->client_name, 0, 1) }}
+                                                    @endif
+                                                </div>
+                                                <div class="testimonial-author-info">
+                                                    <span class="testimonial-name">{{ $testimonial->client_name }}</span>
+                                                    <span class="testimonial-role">{{ $testimonial->company }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="testimonial-rating">
+                                                @for($i = 1; $i <= 5; $i++)
+                                                    <i class="fas fa-star"></i>
+                                                @endfor
+                                            </div>
+                                        </div>
+                                        <div class="testimonial-body">
+                                            <i class="fas fa-quote-left testimonial-quote-icon"></i>
+                                            <p class="testimonial-text">{{ $testimonial->review }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        @if($testimonials->count() > 3)
+            <div class="carousel-indicators">
+                @foreach($testimonials->chunk(3) as $index => $group)
+                    <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
+                @endforeach
+            </div>
+        @endif
+    </div>
+</section>
+@endif
+
+{{-- =========================================================
+     9. CERTIFICATIONS & BADGES
+     ========================================================= --}}
+@if($certifications->isNotEmpty())
+<section id="certifications" class="section-padding section-2">
+    
+    {{-- Header Section - Outside container (on section background) --}}
+    <div class="container mb-4">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 reveal-on-scroll">
+            <div class="text-center text-lg-start">
+                <span class="section-eyebrow">Credentials</span>
+                <h2 class="section-title mb-2">Certifications & Badges</h2>
+                <p class="section-subtitle mx-auto mx-lg-0">Professional certifications and achievements</p>
+            </div>
+            @if($certifications->count() > 4)
+            <a href="{{ route('certifications') }}" class="btn btn-outline-custom flex-shrink-0">View All <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            @endif
+        </div>
+    </div>
+    
+    {{-- Cards Section - Inside container --}}
+    <style>
+        .cred-horizontal-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .cred-horizontal-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .cred-horizontal-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            border-color: var(--color-primary, #2563EB);
+        }
+        
+        .cred-horizontal-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--color-primary, #2563EB);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        
+        .cred-horizontal-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 6px;
+        }
+        
+        .cred-horizontal-text {
+            text-align: left;
+            min-width: 0;
+        }
+        
+        .cred-horizontal-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .cred-horizontal-org {
+            font-size: 0.75rem;
+            color: #64748b;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        @media (max-width: 992px) {
+            .cred-horizontal-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .cred-horizontal-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        [data-theme="dark"] .cred-horizontal-card {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        [data-theme="dark"] .cred-horizontal-card:hover {
+            border-color: var(--color-primary, #2563EB);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+        }
+        [data-theme="dark"] .cred-horizontal-name {
+            color: #f1f5f9;
+        }
+        [data-theme="dark"] .cred-horizontal-org {
+            color: #94a3b8;
+        }
+    </style>
+    
+    <div class="container">
+        <div class="cred-horizontal-grid">
+            @foreach($certifications->take(4) as $cert)
+                @if($cert->credential_url)
+                    <a href="{{ $cert->credential_url }}" target="_blank" class="cred-horizontal-card" style="text-decoration: none;">
+                @else
+                    <div class="cred-horizontal-card">
+                @endif
+                    <div class="cred-horizontal-icon">
+                        @if($cert->badge_image)
+                            <img src="{{ asset('storage/' . $cert->badge_image) }}" alt="{{ $cert->name }}" loading="lazy">
+                        @else
+                            <i class="fa-solid fa-certificate"></i>
+                        @endif
+                    </div>
+                    <div class="cred-horizontal-text">
+                        <div class="cred-horizontal-name">{{ $cert->name }}</div>
+                        <div class="cred-horizontal-org">{{ $cert->issuer }}</div>
+                    </div>
+                @if($cert->credential_url)
+                    </a>
+                @else
+                    </div>
+                @endif
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
+{{-- =========================================================
+     10. BLOG POSTS (Design 4: Horizontal Card)
+     ========================================================= --}}
+@if($blogs->isNotEmpty())
+<section id="blog" class="section-padding section-1">
+    <div class="container">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
+            <div class="text-center text-lg-start reveal-on-scroll">
+                <span class="section-eyebrow">{{ page_content('home', 'blog_eyebrow', app()->getLocale()) }}</span>
+                <h2 class="section-title mb-0">{{ page_content('home', 'blog_title', app()->getLocale()) }}</h2>
+            </div>
+            <a href="{{ route('blog.index') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">View All <i class="fa-solid fa-arrow-right ms-1"></i></a>
+        </div>
+        
+        <style>
+            /* Blog Horizontal Row Styles */
+            .blog-horizontal-row {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
+            }
+            
+            .blog-horizontal-card {
+                display: flex;
+                flex-direction: row;
+                background: #ffffff;
+                border-radius: 16px;
+                overflow: hidden;
+                transition: all 0.3s ease;
+                border: 1px solid #e2e8f0;
+                min-height: 220px;
+            }
+            
+            .blog-horizontal-card:hover {
+                box-shadow: 0 15px 35px rgba(37, 99, 235, 0.12);
+                border-color: var(--color-primary, #2563EB);
+                transform: translateY(-5px);
+            }
+            
+            .blog-horizontal-img {
+                width: 40%;
+                min-width: 140px;
+                flex-shrink: 0;
+                position: relative;
+                overflow: hidden;
+                background: #e2e8f0;
+            }
+            
+            .blog-horizontal-img img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                transition: transform 0.4s ease;
+            }
+            
+            .blog-horizontal-card:hover .blog-horizontal-img img {
+                transform: scale(1.05);
+            }
+            
+            .blog-horizontal-content {
+                width: 60%;
+                padding: 16px 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            
+            .blog-horizontal-badge {
+                display: inline-block;
+                background: var(--color-primary, #2563EB);
+                color: #fff;
+                padding: 3px 10px;
+                border-radius: 20px;
+                font-size: 0.65rem;
+                font-weight: 600;
+                margin-bottom: 8px;
+                width: fit-content;
+            }
+            
+            .blog-horizontal-title {
+                font-size: 0.95rem;
+                font-weight: 700;
+                color: var(--color-secondary, #0F172A);
+                margin-bottom: 6px;
+                line-height: 1.3;
+                transition: color 0.3s ease;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            
+            .blog-horizontal-card:hover .blog-horizontal-title {
+                color: var(--color-primary, #2563EB);
+            }
+            
+            .blog-horizontal-excerpt {
+                color: #64748b;
+                font-size: 0.8rem;
+                line-height: 1.5;
+                margin-bottom: 10px;
+                flex: 1;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            
+            .blog-horizontal-meta {
+                display: flex;
+                justify-content: space-between;
+                font-size: 0.7rem;
+                color: #94a3b8;
+            }
+            
+            .blog-horizontal-meta span {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+            }
+            
+            .blog-horizontal-meta i {
+                color: var(--color-primary, #2563EB);
+                font-size: 0.65rem;
+            }
+            
+            .blog-horizontal-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 4px;
+                color: var(--color-primary, #2563EB);
+                font-weight: 600;
+                font-size: 0.75rem;
+                text-decoration: none;
+                margin-top: 8px;
+                transition: gap 0.3s ease;
+            }
+            
+            .blog-horizontal-link:hover {
+                gap: 8px;
+                color: var(--color-primary-dark, #1d4ed8);
+            }
+            
+            @media (max-width: 992px) {
+                .blog-horizontal-row {
+                    grid-template-columns: 1fr;
+                }
+                .blog-horizontal-card {
+                    flex-direction: column;
+                }
+                .blog-horizontal-img {
+                    width: 100%;
+                    height: 180px;
+                }
+                .blog-horizontal-content {
+                    width: 100%;
+                }
+            }
+            
+            /* Dark mode */
+            [data-theme="dark"] .blog-horizontal-card {
+                background: #1e293b;
+                border-color: #334155;
+            }
+            [data-theme="dark"] .blog-horizontal-title {
+                color: #f1f5f9;
+            }
+            [data-theme="dark"] .blog-horizontal-excerpt {
+                color: #94a3b8;
+            }
+            [data-theme="dark"] .blog-horizontal-meta {
+                color: #64748b;
+            }
+        </style>
+        
+        <div class="blog-horizontal-row">
+            @foreach($blogs as $blog)
+                <div class="blog-horizontal-card reveal-on-scroll">
+                    <div class="blog-horizontal-img">
+                        <img src="{{ $blog->featured_image_url ?? 'https://placehold.co/600x400/2563EB/ffffff?text=' . urlencode($blog->title) }}" 
+                             alt="{{ $blog->alt_text ?? $blog->title }}" 
+                             loading="lazy"
+                             width="600" height="400">
+                    </div>
+                    <div class="blog-horizontal-content">
+                        @if($blog->category)
+                            <span class="blog-horizontal-badge">{{ $blog->category->name }}</span>
+                        @endif
+                        <h3 class="blog-horizontal-title">{{ $blog->title }}</h3>
+                        <p class="blog-horizontal-excerpt">{{ $blog->short_description }}</p>
+                        <div class="blog-horizontal-meta">
+                            <span>
+                                <i class="far fa-calendar-alt"></i>
+                                {{ $blog->published_at ? $blog->published_at->format('M d') : $blog->created_at->format('M d') }}
+                            </span>
+                            <span>
+                                <i class="far fa-eye"></i>
+                                {{ $blog->views ?? 0 }}
+                            </span>
+                        </div>
+                        <a href="{{ route('blog.show', $blog->slug) }}" class="blog-horizontal-link">
+                            {{ page_content('home', 'blog_card_link', app()->getLocale()) }}
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
+{{-- =========================================================
+     11. PRICING PLANS (Design 10: Split/Two Column Layout)
+     ========================================================= --}}
+@if($pricingPlans->isNotEmpty())
+<section id="pricing" class="pricing-split-section">
+    <div class="container">
+        <div class="pricing-split-row" style="align-items: flex-start;">
+            {{-- Left Side: Text Content --}}
+            <div class="pricing-split-left reveal-on-scroll">
+                <h2 class="pricing-split-title">{{ $settings['pricing_title'] ?? 'Simple, Fair Pricing' }}</h2>
+                <p class="pricing-split-desc">{{ $settings['pricing_subtitle'] ?? 'Choose the plan that fits your needs. 14-day free trial included.' }}</p>
+                
+                {{-- Monthly/Yearly Toggle --}}
+                <div class="pricing-split-toggle">
+                    <label class="pricing-toggle-option active" onclick="togglePricingPeriod('monthly')">
+                        <input type="radio" name="pricing_period" value="monthly" checked>
+                        <span>Monthly</span>
+                    </label>
+                    <label class="pricing-toggle-option" onclick="togglePricingPeriod('yearly')">
+                        <input type="radio" name="pricing_period" value="yearly">
+                        <span>Yearly</span>
+                        <span class="pricing-save-badge">-20%</span>
+                    </label>
+                </div>
+            </div>
+            
+            {{-- Right Side: Pricing Cards --}}
+            <div class="pricing-split-right">
+                <div class="pricing-split-grid">
+                    @foreach($pricingPlans as $plan)
+                    <div class="pricing-split-card {{ $plan->is_highlighted ? 'featured' : '' }} reveal-on-scroll" style="animation-delay: {{ $loop->index * 0.1 }}s">
+                        @if($plan->badge)
+                        <span class="pricing-split-badge">{{ $plan->badge }}</span>
+                        @endif
+                        
+                        <h3 class="pricing-split-plan-name">{{ $plan->name }}</h3>
+                        <p class="pricing-split-plan-desc">{{ $plan->description }}</p>
+                        
+                        <div class="pricing-split-price">
+                            <span class="pricing-split-currency">{!! $plan->currency === 'BDT' ? '৳' : ($plan->currency === 'USD' ? '$' : $plan->currency) !!}</span>
+                            <span class="pricing-split-amount" 
+                                  data-monthly="{{ (int)$plan->monthly_price }}" 
+                                  data-yearly="{{ (int)($plan->yearly_price ?: $plan->monthly_price * 0.8) }}">
+                                {{ (int)$plan->monthly_price }}
+                            </span>
+                            <span class="pricing-split-period">/{{ __('mo') }}</span>
+                        </div>
+                        
+                        <ul class="pricing-split-features">
+                            @foreach($plan->getFeaturesArray() as $feature)
+                            <li>
+                                <i class="fa-solid fa-check"></i>
+                                <span>{{ $feature }}</span>
+                            </li>
+                            @endforeach
+                        </ul>
+                        
+                        @if($plan->button_url)
+                        <a href="{{ $plan->button_url }}" class="pricing-split-btn {{ $plan->is_highlighted ? 'btn-primary-split' : 'btn-outline-split' }}">
+                            {{ $plan->button_text ?: __('Get Started') }}
+                        </a>
+                        @endif
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* ===== PRICING SPLIT SECTION (Design 10) ===== */
+    .pricing-split-section {
+        padding: 80px 0;
+        background: #eff6ff;
+    }
+    
+    .pricing-split-row {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+    }
+    
+    /* Left Side */
+    .pricing-split-left {
+        flex: 0 0 35%;
+        max-width: 380px;
+    }
+    
+    .pricing-split-eyebrow {
+        display: inline-block;
+        background: var(--color-primary, #2563EB);
+        color: white;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+    }
+    
+    .pricing-split-title {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--text-color, #0f172a);
+        margin-bottom: 12px;
+        line-height: 1.2;
+    }
+    
+    .pricing-split-desc {
+        font-size: 0.95rem;
+        color: #64748b;
+        margin-bottom: 25px;
+        line-height: 1.6;
+    }
+    
+    /* Toggle */
+    .pricing-split-toggle {
+        display: inline-flex;
+        background: #ffffff;
+        border-radius: 50px;
+        padding: 6px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+    
+    .pricing-toggle-option {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        padding: 10px 18px;
+        border-radius: 50px;
+        transition: all 0.3s;
+    }
+    
+    .pricing-toggle-option input {
+        display: none;
+    }
+    
+    .pricing-toggle-option span:first-of-type {
+        font-weight: 600;
+        font-size: 0.85rem;
+        color: #64748b;
+        transition: color 0.3s;
+    }
+    
+    .pricing-toggle-option.active {
+        background: var(--color-primary, #2563EB);
+    }
+    
+    .pricing-toggle-option.active span:first-of-type {
+        color: white;
+    }
+    
+    .pricing-save-badge {
+        background: #d1fae5;
+        color: #059669;
+        padding: 2px 8px;
+        border-radius: 10px;
+        font-size: 0.7rem;
+        font-weight: 700;
+    }
+    
+    .pricing-toggle-option.active .pricing-save-badge {
+        background: rgba(255,255,255,0.3);
+        color: white;
+    }
+    
+    /* Right Side */
+    .pricing-split-right {
+        flex: 1;
+    }
+    
+    .pricing-split-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+    }
+    
+    /* Card */
+    .pricing-split-card {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 20px;
+        padding-bottom: 16px;
+        position: relative;
+        transition: all 0.3s;
+        border: 1px solid #d1d5db;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+    
+    .pricing-split-card:hover {
+        border-color: var(--color-primary, #2563EB);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+    
+    .pricing-split-card.featured {
+        background: var(--color-primary, #2563EB);
+        color: white;
+        border: none;
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.25);
+        transform: scale(1.02);
+    }
+    
+    .pricing-split-card.featured:hover {
+        transform: scale(1.02);
+        box-shadow: 0 25px 50px rgba(37, 99, 235, 0.35);
+    }
+    
+    .pricing-split-badge {
+        position: absolute;
+        top: -10px;
+        right: 20px;
+        background: #fbbf24;
+        color: #92400e;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.65rem;
+        font-weight: 700;
+    }
+    
+    .pricing-split-plan-name {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--text-color, #0f172a);
+        margin-bottom: 4px;
+    }
+    
+    .pricing-split-card.featured .pricing-split-plan-name {
+        color: white;
+    }
+    
+    .pricing-split-plan-desc {
+        font-size: 0.75rem;
+        color: #64748b;
+        margin-bottom: 12px;
+        line-height: 1.4;
+    }
+    
+    .pricing-split-card.featured .pricing-split-plan-desc {
+        color: rgba(255,255,255,0.8);
+    }
+    
+    .pricing-split-price {
+        display: flex;
+        align-items: baseline;
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border-color, #e5e7eb);
+    }
+    
+    .pricing-split-card.featured .pricing-split-price {
+        border-color: rgba(255,255,255,0.2);
+    }
+    
+    .pricing-split-currency {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--color-primary, #4f46e5);
+        align-self: flex-start;
+        margin-top: 4px;
+    }
+    
+    .pricing-split-card.featured .pricing-split-currency {
+        color: white;
+    }
+    
+    .pricing-split-amount {
+        font-size: 1.75rem;
+        font-weight: 900;
+        color: var(--text-color, #0f172a);
+        line-height: 1;
+    }
+    
+    .pricing-split-card.featured .pricing-split-amount {
+        color: white;
+    }
+    
+    .pricing-split-period {
+        font-size: 0.7rem;
+        color: #64748b;
+        margin-left: 2px;
+    }
+    
+    .pricing-split-card.featured .pricing-split-period {
+        color: rgba(255,255,255,0.8);
+    }
+    
+    .pricing-split-features {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 15px 0;
+    }
+    
+    .pricing-split-features li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 5px 0;
+        font-size: 0.75rem;
+        color: #475569;
+    }
+    
+    .pricing-split-card.featured .pricing-split-features li {
+        color: rgba(255,255,255,0.95);
+    }
+    
+    .pricing-split-features li i {
+        width: 16px;
+        height: 16px;
+        background: linear-gradient(135deg, #10b981, #059669);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.55rem;
+        flex-shrink: 0;
+    }
+    
+    .pricing-split-card.featured .pricing-split-features li i {
+        background: rgba(255,255,255,0.25);
+    }
+    
+    /* Buttons */
+    .btn-outline-split {
+        display: block;
+        background: var(--section-alt-bg, #f8fafc);
+        border: 1px solid var(--color-primary, #4f46e5);
+        color: var(--color-primary, #4f46e5);
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.8rem;
+        text-align: center;
+        text-decoration: none;
+        transition: all 0.3s;
+        width: 100%;
+    }
+    
+    .btn-outline-split:hover {
+        background: var(--color-primary, #4f46e5);
+        color: white;
+    }
+    
+    .btn-primary-split {
+        display: block;
+        background: white;
+        border: none;
+        color: var(--color-primary, #4f46e5);
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.8rem;
+        text-align: center;
+        text-decoration: none;
+        transition: all 0.3s;
+        width: 100%;
+    }
+    
+    .btn-primary-split:hover {
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        color: var(--color-primary, #4f46e5);
+    }
+    
+    /* Dark Mode */
+    [data-theme="dark"] .pricing-split-section {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    }
+    
+    [data-theme="dark"] .pricing-split-card {
+        background: #1e293b;
+        border-color: #334155;
+    }
+    
+    [data-theme="dark"] .pricing-split-title,
+    [data-theme="dark"] .pricing-split-amount {
+        color: white;
+    }
+    
+    [data-theme="dark"] .pricing-split-plan-name {
+        color: white;
+    }
+    
+    [data-theme="dark"] .pricing-split-plan-desc,
+    [data-theme="dark"] .pricing-split-features li,
+    [data-theme="dark"] .pricing-split-period {
+        color: #94a3b8;
+    }
+    
+    [data-theme="dark"] .btn-outline-split {
+        background: #1e293b;
+        color: white;
+        border-color: #6366f1;
+    }
+    
+    [data-theme="dark"] .btn-outline-split:hover {
+        background: #6366f1;
+        color: white;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+        .pricing-split-row {
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        .pricing-split-left {
+            flex: none;
+            max-width: 100%;
+            text-align: center;
+        }
+        
+        .pricing-split-toggle {
+            justify-content: center;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .pricing-split-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .pricing-split-card.featured {
+            transform: scale(1);
+        }
+        
+        .pricing-split-card.featured:hover {
+            transform: translateY(-5px);
+        }
+    }
+</style>
+
+<script>
+    function togglePricingPeriod(period) {
+        const options = document.querySelectorAll('.pricing-toggle-option');
+        const amounts = document.querySelectorAll('.pricing-split-amount');
+        const periods = document.querySelectorAll('.pricing-split-period');
+        
+        options.forEach(opt => opt.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+        
+        amounts.forEach(el => {
+            const monthly = el.dataset.monthly;
+            const yearly = el.dataset.yearly;
+            el.textContent = period === 'yearly' ? yearly : monthly;
+        });
+        
+        periods.forEach(el => {
+            el.textContent = '/' + (period === 'yearly' ? 'yr' : 'mo');
+        });
+    }
+</script>
+@endif
+
+{{-- =========================================================
+     12. FAQ SECTION (Design 8: Split Layout Pro)
+     ========================================================= --}}
+@if($faqs->isNotEmpty())
+<section id="faq" class="faq-split-section">
+    <div class="container">
+        <div class="row g-4 faq-split-row">
+            {{-- Left Side - Info Card --}}
+            <div class="col-lg-4">
+                <div class="faq-split-card reveal-on-scroll h-100">
+                    <div class="faq-card-icon">
+                        <i class="fas fa-question"></i>
+                    </div>
+                    <h3 class="faq-card-title">Frequently Asked Questions</h3>
+                    <p class="faq-card-desc">Quick answers to common questions about my services.</p>
+                    
+                    <div class="faq-card-divider"></div>
+                    
+                    <p class="faq-card-contact-label">Need more help?</p>
+                    <a href="mailto:{{ $settings['contact_email'] ?? 'contact@example.com' }}" class="faq-card-email">
+                        <i class="fas fa-envelope me-2"></i>
+                        {{ $settings['contact_email'] ?? 'contact@example.com' }}
+                    </a>
+                </div>
+            </div>
+            
+            {{-- Right Side - FAQ List --}}
+            <div class="col-lg-8">
+                <div class="faq-split-list reveal-on-scroll h-100">
+                    @foreach($faqs as $index => $faq)
+                    <div class="faq-split-item {{ $index === 0 ? 'active' : '' }}" data-faq-id="{{ $faq->id }}">
+                        <div class="faq-split-question">
+                            <div class="faq-split-icon">
+                                <i class="fas {{ $index === 0 ? 'fa-minus' : 'fa-plus' }}"></i>
+                            </div>
+                            <span>{{ $faq->question }}</span>
+                        </div>
+                        <div class="faq-split-answer">
+                            {!! $faq->answer !!}
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* ===== FAQ SPLIT SECTION ===== */
+    .faq-split-section {
+        padding: 50px 0;
+        background: #ffffff;
+    }
+    
+    .faq-split-row {
+        align-items: stretch;
+    }
+    
+    /* Left Card - Simple Blue */
+    .faq-split-card {
+        background: #2563eb;
+        border-radius: 16px;
+        padding: 30px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        color: white;
+    }
+    
+    .faq-card-icon {
+        width: 50px;
+        height: 50px;
+        background: rgba(255,255,255,0.15);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        margin-bottom: 15px;
+    }
+    
+    .faq-card-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 8px;
+    }
+    
+    .faq-card-desc {
+        font-size: 0.9rem;
+        color: rgba(255,255,255,0.8);
+        margin-bottom: 20px;
+        line-height: 1.5;
+    }
+    
+    .faq-card-divider {
+        height: 1px;
+        background: rgba(255,255,255,0.2);
+        margin: 15px 0;
+    }
+    
+    .faq-card-contact-label {
+        font-size: 0.85rem;
+        color: rgba(255,255,255,0.8);
+        margin-bottom: 8px;
+    }
+    
+    .faq-card-email {
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        background: rgba(255,255,255,0.15);
+        border-radius: 8px;
+        color: white;
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: all 0.3s;
+    }
+    
+    .faq-card-email:hover {
+        background: rgba(255,255,255,0.25);
+        color: white;
+    }
+    
+    /* Right Card - FAQ List */
+    .faq-split-list {
+        background: var(--card-bg, white);
+        border-radius: 16px;
+        padding: 25px;
+        border: 1px solid #d1d5db;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    
+    /* FAQ List */
+    .faq-split-list {
+        background: #eff6ff;
+        border-radius: 16px;
+        padding: 20px;
+        border: 1px solid #dbeafe;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    
+    .faq-split-item {
+        border-bottom: 1px solid #e5e7eb;
+        padding: 14px 0;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .faq-split-item:last-child {
+        border-bottom: none;
+    }
+    
+    .faq-split-item.active {
+        border-bottom: 2px solid #2563eb;
+    }
+    
+    .faq-split-question {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    .faq-split-icon {
+        width: 30px;
+        height: 30px;
+        background: #2563eb;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 0.65rem;
+        flex-shrink: 0;
+        transition: all 0.3s;
+    }
+    
+    .faq-split-item:not(.active) .faq-split-icon {
+        background: #f1f5f9;
+        color: #2563eb;
+    }
+    
+    .faq-split-question span {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: var(--text-color, #0f172a);
+        flex-grow: 1;
+    }
+    
+    .faq-split-answer {
+        padding-left: 42px;
+        padding-top: 8px;
+        display: none;
+    }
+    
+    .faq-split-item.active .faq-split-answer {
+        display: block;
+    }
+    
+    .faq-split-answer p {
+        font-size: 0.85rem;
+        color: #64748b;
+        margin: 0;
+        line-height: 1.5;
+    }
+    
+    .faq-split-answer a {
+        color: #2563eb;
+        text-decoration: none;
+    }
+    
+    .faq-split-answer a:hover {
+        text-decoration: underline;
+    }
+    
+    /* Hover Effect */
+    .faq-split-item:hover .faq-split-question span {
+        color: #2563eb;
+    }
+    
+    /* Dark Mode */
+    [data-theme="dark"] .faq-split-section {
+        background: #0c4a6e;
+    }
+    
+    [data-theme="dark"] .faq-split-list {
+        background: #1e293b;
+        border-color: #334155;
+    }
+    
+    [data-theme="dark"] .faq-split-card {
+        background: #1e40af;
+    }
+    
+    [data-theme="dark"] .faq-split-question span {
+        color: white;
+    }
+    
+    [data-theme="dark"] .faq-split-answer p {
+        color: #94a3b8;
+    }
+    
+    [data-theme="dark"] .faq-split-item {
+        border-color: #334155;
+    }
+    
+    [data-theme="dark"] .faq-split-item:not(.active) .faq-split-icon {
+        background: #334155;
+        color: #60a5fa;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+        .faq-split-card {
+            position: static;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const faqItems = document.querySelectorAll('.faq-split-item');
+        
+        faqItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const isActive = this.classList.contains('active');
+                
+                // Close all
+                faqItems.forEach(i => {
+                    i.classList.remove('active');
+                    i.querySelector('.faq-split-icon i').className = 'fas fa-plus';
+                });
+                
+                // Open clicked (if it wasn't already open)
+                if (!isActive) {
+                    this.classList.add('active');
+                    this.querySelector('.faq-split-icon i').className = 'fas fa-minus';
+                }
+            });
+        });
+    });
+</script>
+@endif
+
+{{-- =========================================================
+     13. RESUME CTA
+     ========================================================= --}}
+<section id="resume-cta" class="section-padding section-2">
+    <div class="container">
+        <div class="row align-items-stretch g-4">
+            <div class="col-lg-7 reveal-on-scroll">
+                <div class="h-100 d-flex flex-column justify-content-center">
+                    <span class="section-eyebrow">My Resume</span>
+                    <h2 class="section-title mb-3">Want to see my full profile?</h2>
+                    <p class="text-muted mb-4">Get a comprehensive overview of my skills, experience, education, and certifications. Download or preview my resume in multiple professional templates.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="{{ route('resume') }}" class="btn btn-primary-custom">
+                            <i class="fa-solid fa-eye me-2"></i>View Resume
+                        </a>
+                        <a href="{{ route('resume.preview') }}" target="_blank" class="btn btn-outline-custom">
+                            <i class="fa-solid fa-file-pdf me-2"></i>Preview PDF
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 reveal-on-scroll">
+                <div class="resume-preview-box h-100 p-4 bg-white rounded-4 shadow-sm d-flex flex-column align-items-center justify-content-center text-center">
+                    <i class="fa-solid fa-file-lines text-primary-custom" style="font-size: 4rem;"></i>
+                    <h5 class="mt-3 mb-2">Professional Resume</h5>
+                    <p class="text-muted small mb-0">Multiple templates available</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- =========================================================
+     14. CONTACT
+     ========================================================= --}}
+<section id="contact" class="py-5 section-1">
+    <div class="container">
+        
+        {{-- Design 6: Centered Content - Vertical Layout (Content Top, Form Bottom) --}}
+        <style>
+            .contact-vertical-section {
+                background: #ffffff;
+                border-radius: 20px;
+                overflow: hidden;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+                border: 1px solid #d1d5db;
+            }
+            
+            .contact-vertical-top {
+                background: linear-gradient(135deg, var(--color-primary, #2563EB), var(--color-primary-dark, #1d4ed8));
+                padding: 24px 32px;
+                color: #fff;
+            }
+            
+            .contact-vertical-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                margin-bottom: 8px;
+                color: #ffffff;
+            }
+            
+            .contact-vertical-subtitle {
+                font-size: 0.9rem;
+                opacity: 0.9;
+                margin-bottom: 0;
+                color: rgba(255, 255, 255, 0.9);
+            }
+            
+            .contact-vertical-info {
+                display: flex;
+                justify-content: flex-end;
+                gap: 16px;
+                flex-wrap: wrap;
+            }
+            
+            .contact-vertical-info-item {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                font-size: 0.85rem;
+            }
+            
+            .contact-vertical-info-icon {
+                width: 28px;
+                height: 28px;
+                background: rgba(255,255,255,0.2);
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.75rem;
+                flex-shrink: 0;
+            }
+            
+            .contact-vertical-bottom {
+                padding: 28px 32px;
+            }
+            
+            .contact-vertical-form-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+                margin-bottom: 12px;
+            }
+            
+            .contact-vertical-input {
+                width: 100%;
+                padding: 10px 14px;
+                border: 1px solid #d1d5db;
+                border-radius: 8px;
+                font-size: 0.9rem;
+                transition: all 0.3s;
+            }
+            
+            .contact-vertical-input:focus {
+                outline: none;
+                border-color: var(--color-primary, #2563EB);
+                box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            }
+            
+            .contact-vertical-textarea {
+                width: 100%;
+                padding: 10px 14px;
+                border: 1px solid #d1d5db;
+                border-radius: 8px;
+                font-size: 0.9rem;
+                resize: none;
+                height: 80px;
+                transition: all 0.3s;
+            }
+            
+            .contact-vertical-textarea:focus {
+                outline: none;
+                border-color: var(--color-primary, #2563EB);
+                box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            }
+            
+            .contact-vertical-btn {
+                background: var(--color-primary, #2563EB);
+                color: #fff;
+                padding: 10px 24px;
+                border-radius: 8px;
+                border: none;
+                font-weight: 600;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: all 0.3s;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                width: 100%;
+            }
+            
+            .contact-vertical-btn:hover {
+                background: var(--color-primary-dark, #1d4ed8);
+            }
+            
+            .contact-vertical-map-container {
+                width: 100%;
+                height: 100%;
+                min-height: 250px;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                border: 1px solid #d1d5db;
+            }
+            
+            .contact-vertical-map-container iframe,
+            .contact-vertical-map-container #homeContactMap {
+                width: 100%;
+                height: 100%;
+                min-height: 250px;
+                border: none;
+            }
+            
+            .contact-vertical-map-placeholder {
+                min-height: 250px;
+            }
+            
+            @media (max-width: 576px) {
+                .contact-vertical-form-grid {
+                    grid-template-columns: 1fr;
+                }
+                .contact-vertical-info {
+                    flex-direction: column;
+                    gap: 12px;
+                }
+                .contact-vertical-map-container,
+                .contact-vertical-map-container iframe {
+                    min-height: 200px;
+                }
+            }
+            
+            @media (max-width: 991px) {
+                .contact-vertical-map-container,
+                .contact-vertical-map-container iframe {
+                    min-height: 200px;
+                    margin-top: 20px;
+                }
+            }
+            
+            [data-theme="dark"] .contact-vertical-section {
+                background: #1e293b;
+            }
+            [data-theme="dark"] .contact-vertical-input,
+            [data-theme="dark"] .contact-vertical-textarea {
+                background: #0f172a;
+                border-color: #334155;
+                color: #f1f5f9;
+            }
+            [data-theme="dark"] .contact-vertical-input::placeholder,
+            [data-theme="dark"] .contact-vertical-textarea::placeholder {
+                color: #64748b;
+            }
+        </style>
+        
+        <div class="contact-vertical-section reveal-on-scroll">
+            <div class="contact-vertical-top">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h3 class="contact-vertical-title">{{ page_content('home', 'contact_title', app()->getLocale()) }}</h3>
+                        <p class="contact-vertical-subtitle">{{ page_content('home', 'contact_text', app()->getLocale()) }}</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="contact-vertical-info text-end">
+                            @if($about->email ?? false)
+                                <div class="contact-vertical-info-item">
+                                    <div class="contact-vertical-info-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <span>{{ Str::limit($about->email, 25) }}</span>
+                                </div>
+                            @endif
+                            @if($about->phone ?? false)
+                                <div class="contact-vertical-info-item">
+                                    <div class="contact-vertical-info-icon">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <span>{{ $about->phone }}</span>
+                                </div>
+                            @endif
+                            @if($about->address ?? false)
+                                <div class="contact-vertical-info-item">
+                                    <div class="contact-vertical-info-icon">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <span>{{ Str::limit($about->address, 18) }}</span>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-vertical-bottom">
+                <div class="row g-4 align-items-stretch">
+                    <div class="col-lg-7 d-flex">
+                        @if($about->google_map)
+                            <div class="contact-vertical-map-container">
+                                <div id="homeContactMap"></div>
+                            </div>
+                        @else
+                            <div class="contact-vertical-map-placeholder d-flex align-items-center justify-content-center" style="background: #f8f9fa; border-radius: 12px; border: 1px solid #d1d5db;">
+                                <div class="text-center text-muted">
+                                    <i class="fas fa-map-marker-alt fa-2x mb-2"></i>
+                                    <p class="mb-0 small">Map location will appear here</p>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="col-lg-5 d-flex">
+                        <form id="contactForm" action="{{ route('contact.store') }}" method="POST" class="w-100 d-flex flex-column justify-content-center">
+                            @csrf
+                            <div class="contact-vertical-form-grid">
+                                <input type="text" name="name" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_name', app()->getLocale()) }}" required>
+                                <input type="email" name="email" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_email', app()->getLocale()) }}" required>
+                                <input type="text" name="phone" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_phone', app()->getLocale()) }}">
+                                <input type="text" name="subject" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_subject', app()->getLocale()) }}">
+                            </div>
+                            <textarea name="message" class="contact-vertical-textarea" placeholder="{{ page_content('home', 'contact_form_message', app()->getLocale()) }}" required></textarea>
+                            <button type="submit" class="contact-vertical-btn mt-3">
+                                <i class="fas fa-paper-plane"></i>
+                                {{ page_content('home', 'contact_form_button', app()->getLocale()) }}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+@endsection
+
+@push('styles')
+<style>
+    .cursor {
+        animation: blink 1s infinite;
+    }
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+    
+    /* Modern Testimonial Dots - Compact */
+    .custom-carousel-indicators {
+        position: relative;
+        margin-top: 1rem;
+        margin-bottom: 0;
+        justify-content: center;
+        gap: 4px;
+    }
+    .custom-carousel-indicators button {
+        width: 6px !important;
+        height: 6px !important;
+        border-radius: 50% !important;
+        border: none !important;
+        background: #dee2e6 !important;
+        opacity: 1 !important;
+        transition: all 0.3s ease !important;
+        padding: 0 !important;
+        margin: 0 2px !important;
+        min-width: 6px !important;
+        min-height: 6px !important;
+    }
+    .custom-carousel-indicators button:hover {
+        background: #adb5bd !important;
+        transform: scale(1.3) !important;
+    }
+    .custom-carousel-indicators button.active {
+        background: var(--bs-primary) !important;
+        width: 18px !important;
+        border-radius: 3px !important;
+    }
+    
+    /* Resume Preview Box */
+    .resume-preview-box {
+        transition: all 0.3s ease;
+    }
+    .resume-preview-box:hover {
+        transform: scale(1.05);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+    }
+</style>
+@endpush
+
+@if($about->google_map)
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+@endif
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const typedText = document.getElementById('typed-text');
+    if (!typedText) return;
+    
+    const phrases = [
+        @foreach(range(1, 6) as $i)
+        '{{ page_content('home', 'typing_text_' . $i, app()->getLocale()) ?: '' }}',
+        @endforeach
+    ].filter(text => text.trim() !== '');
+    
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typeSpeed = 100;
+    
+    function type() {
+        const currentPhrase = phrases[phraseIndex];
+        
+        if (isDeleting) {
+            typedText.textContent = currentPhrase.substring(0, charIndex - 1);
+            charIndex--;
+            typeSpeed = 50;
+        } else {
+            typedText.textContent = currentPhrase.substring(0, charIndex + 1);
+            charIndex++;
+            typeSpeed = 100;
+        }
+        
+        if (!isDeleting && charIndex === currentPhrase.length) {
+            typeSpeed = 2000;
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            typeSpeed = 500;
+        }
+        
+        setTimeout(type, typeSpeed);
+    }
+    
+    setTimeout(type, 1000);
+});
+
+// Home Contact Map - Leaflet
+@if($about->google_map)
+const homeMapUrl = @json($about->google_map);
+const homeCoordMatch = homeMapUrl.match(/@(-?\d+\.?\d*),(-?\d+\.?\d*)/);
+const homeAddress = @json($about->address ?? 'Location');
+
+if (homeCoordMatch) {
+    const homeLat = parseFloat(homeCoordMatch[1]);
+    const homeLon = parseFloat(homeCoordMatch[2]);
+    
+    // Initialize map after a small delay to ensure container is ready
+    setTimeout(function() {
+        if (document.getElementById('homeContactMap')) {
+            const map = L.map('homeContactMap', {
+                center: [homeLat, homeLon],
+                zoom: 15,
+                zoomControl: false,
+                dragging: false,
+                scrollWheelZoom: false,
+                doubleClickZoom: false,
+                touchZoom: false
+            });
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+            
+            const marker = L.marker([homeLat, homeLon]).addTo(map);
+            marker.bindPopup('<b>' + homeAddress + '</b>').openPopup();
+            
+            // Click on map to open in Google Maps
+            map.on('click', function() {
+                window.open('https://www.google.com/maps?q=' + homeLat + ',' + homeLon, '_blank');
+            });
+        }
+    }, 100);
+}
+@endif
+</script>
+@endpush
