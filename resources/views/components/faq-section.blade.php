@@ -3,10 +3,11 @@
 @if($faqs->count() > 0)
 <section class="section section-2 faq-section pt-5 pb-5" id="faq">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="accordion faq-accordion" id="faqAccordion">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="accordion faq-accordion" id="faqAccordionLeft">
                     @foreach($faqs as $index => $faq)
+                        @if($index % 2 === 0)
                         <div class="accordion-item border-0 mb-3" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
                             <h3 class="accordion-header">
                                 <button class="accordion-button {{ $index === 0 ? '' : 'collapsed' }}" 
@@ -19,12 +20,39 @@
                             </h3>
                             <div id="faq-{{ $faq->id }}" 
                                  class="accordion-collapse collapse {{ $index === 0 ? 'show' : '' }}" 
-                                 data-bs-parent="#faqAccordion">
+                                 data-bs-parent="#faqAccordionLeft">
                                 <div class="accordion-body">
                                     <p class="mb-0">{{ $faq->answer }}</p>
                                 </div>
                             </div>
                         </div>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="accordion faq-accordion" id="faqAccordionRight">
+                    @foreach($faqs as $index => $faq)
+                        @if($index % 2 === 1)
+                        <div class="accordion-item border-0 mb-3" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" 
+                                        type="button" 
+                                        data-bs-toggle="collapse" 
+                                        data-bs-target="#faq-{{ $faq->id }}"
+                                        aria-expanded="false">
+                                    <span class="faq-question">{{ $faq->question }}</span>
+                                </button>
+                            </h3>
+                            <div id="faq-{{ $faq->id }}" 
+                                 class="accordion-collapse collapse" 
+                                 data-bs-parent="#faqAccordionRight">
+                                <div class="accordion-body">
+                                    <p class="mb-0">{{ $faq->answer }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
                     @endforeach
                 </div>
             </div>
