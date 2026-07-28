@@ -624,7 +624,7 @@ a {
 .project-card:hover,
 .blog-card:hover,
 .testimonial-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(0);
   box-shadow: var(--shadow-soft);
   border-color: transparent;
 }
