@@ -28,6 +28,7 @@ class About extends Model
         'facebook',
         'twitter',
         'instagram',
+        'google_map',
     ];
 
     public function getPhotoUrlAttribute(): string

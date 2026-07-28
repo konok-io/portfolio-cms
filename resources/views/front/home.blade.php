@@ -2188,7 +2188,7 @@
             <div class="contact-vertical-bottom">
                 <div class="row g-4 align-items-stretch">
                     <div class="col-lg-7 d-flex">
-                        @if($siteSetting->google_map)
+                        @if($about->google_map)
                             <div class="contact-vertical-map-container w-100">
                                 <div id="homeContactMap" style="width: 100%; height: 100%; min-height: 250px; border-radius: 12px;"></div>
                             </div>
@@ -2278,12 +2278,12 @@
 </style>
 @endpush
 
-@if($siteSetting->google_map)
+@if($about->google_map)
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 @endif
 
 @push('scripts')
-@if($siteSetting->google_map)
+@if($about->google_map)
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 @endif
 <script>
@@ -2331,10 +2331,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Home Contact Map - Leaflet
-@if($siteSetting->google_map)
-const homeMapUrl = "{{ addslashes($siteSetting->google_map) }}";
+@if($about->google_map)
+const homeMapUrl = "{{ addslashes($about->google_map) }}";
 const homeCoordMatch = homeMapUrl.match(/@(-?\d+\.?\d*),(-?\d+\.?\d*)/);
-const homeAddress = "{{ addslashes($siteSetting->address ?? 'Location') }}";
+const homeAddress = "{{ addslashes($about->address ?? 'Location') }}";
 
 if (homeCoordMatch) {
     const homeLat = parseFloat(homeCoordMatch[1]);

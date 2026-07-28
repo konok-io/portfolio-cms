@@ -48,51 +48,14 @@
                             <label class="form-label-admin">Phone</label>
                             <input type="text" name="phone" class="form-control" value="{{ old('phone', $setting->phone) }}">
                         </div>
-                        <div class="col-12">
-                            <label class="form-label-admin">Address</label>
-                            <textarea name="address" class="form-control" rows="2" placeholder="123 Main Street, City, Country">{{ old('address', $setting->address) }}</textarea>
-                        </div>
-                        <div class="col-12">
-                            <label class="form-label-admin">Google Map URL</label>
-                            <input type="url" name="google_map" class="form-control" value="{{ old('google_map', $setting->google_map) }}" placeholder="https://www.google.com/maps/@26.2760657,50.2151092,15z">
-                            <small class="text-muted d-block mt-1 text-start">Paste a Google Maps share link (e.g., https://www.google.com/maps/@26.2760657,50.2151092,15z)</small>
-                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="admin-card">
-                <div class="card-header-custom">Social Links</div>
+                <div class="card-header-custom">WhatsApp Chat Settings</div>
                 <div class="card-body-custom">
                     <div class="row g-3">
-                        <div class="col-md-6">
-                            <label class="form-label-admin"><i class="fa-brands fa-facebook me-1"></i> Facebook</label>
-                            <input type="url" name="facebook" class="form-control" value="{{ old('facebook', $setting->facebook) }}">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label-admin"><i class="fa-brands fa-x-twitter me-1"></i> Twitter / X</label>
-                            <input type="url" name="twitter" class="form-control" value="{{ old('twitter', $setting->twitter) }}">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label-admin"><i class="fa-brands fa-linkedin me-1"></i> LinkedIn</label>
-                            <input type="url" name="linkedin" class="form-control" value="{{ old('linkedin', $setting->linkedin) }}">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label-admin"><i class="fa-brands fa-github me-1"></i> GitHub</label>
-                            <input type="url" name="github" class="form-control" value="{{ old('github', $setting->github) }}">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label-admin"><i class="fa-brands fa-instagram me-1"></i> Instagram</label>
-                            <input type="url" name="instagram" class="form-control" value="{{ old('instagram', $setting->instagram) }}">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label-admin"><i class="fa-brands fa-youtube me-1"></i> YouTube</label>
-                            <input type="url" name="youtube" class="form-control" value="{{ old('youtube', $setting->youtube) }}">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label-admin"><i class="fa-brands fa-whatsapp me-1"></i> WhatsApp</label>
-                            <input type="url" name="whatsapp" class="form-control" value="{{ old('whatsapp', $setting->whatsapp) }}">
-                        </div>
                         <div class="col-md-6">
                             <label class="form-label-admin"><i class="fa-brands fa-whatsapp me-1"></i> WhatsApp Number <small class="text-muted">(for chat link)</small></label>
                             <input type="text" name="whatsapp_number" class="form-control" value="{{ old('whatsapp_number', $setting->whatsapp_number) }}" placeholder="8801712345678">
@@ -101,22 +64,6 @@
                         <div class="col-12">
                             <label class="form-label-admin"><i class="fa-solid fa-comment me-1"></i> WhatsApp Default Message</label>
                             <input type="text" name="whatsapp_default_message" class="form-control" value="{{ old('whatsapp_default_message', $setting->whatsapp_default_message) }}" placeholder="Hello! I would like to inquire about your services.">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label-admin"><i class="fa-brands fa-tiktok me-1"></i> TikTok</label>
-                            <input type="url" name="tiktok" class="form-control" value="{{ old('tiktok', $setting->tiktok) }}">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label-admin"><i class="fa-brands fa-snapchat me-1"></i> Snapchat</label>
-                            <input type="url" name="snapchat" class="form-control" value="{{ old('snapchat', $setting->snapchat) }}">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label-admin"><i class="fa-brands fa-pinterest me-1"></i> Pinterest</label>
-                            <input type="url" name="pinterest" class="form-control" value="{{ old('pinterest', $setting->pinterest) }}">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label-admin"><i class="fa-brands fa-discord me-1"></i> Discord</label>
-                            <input type="url" name="discord" class="form-control" value="{{ old('discord', $setting->discord) }}">
                         </div>
                     </div>
                 </div>

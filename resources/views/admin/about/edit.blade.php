@@ -69,6 +69,11 @@
                             <label class="form-label-admin">Address</label>
                             <input type="text" name="address" class="form-control" value="{{ old('address', $about->address) }}">
                         </div>
+                        <div class="col-12">
+                            <label class="form-label-admin">Google Map URL</label>
+                            <input type="url" name="google_map" class="form-control" value="{{ old('google_map', $about->google_map) }}" placeholder="https://www.google.com/maps/@26.2760657,50.2151092,15z">
+                            <small class="text-muted">Paste a Google Maps share link to show location on the homepage contact section.</small>
+                        </div>
                     </div>
                 </div>
             </div>
