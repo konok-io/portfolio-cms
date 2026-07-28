@@ -2333,7 +2333,7 @@ document.addEventListener('DOMContentLoaded', function() {
 @if($siteSetting->google_map)
 const homeMapUrl = "{{ addslashes($siteSetting->google_map) }}";
 const homeCoordMatch = homeMapUrl.match(/@(-?\d+\.?\d*),(-?\d+\.?\d*)/);
-const homeAddress = "{{ addslashes($about->address ?? 'Location') }}";
+const homeAddress = "{{ addslashes($siteSetting->address ?? 'Location') }}";
 
 if (homeCoordMatch) {
     const homeLat = parseFloat(homeCoordMatch[1]);
