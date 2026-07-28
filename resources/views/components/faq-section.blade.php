@@ -1,7 +1,7 @@
 @props(['faqs' => collect()])
 
 @if($faqs->count() > 0)
-<section class="section section-2 faq-section pt-5" id="faq">
+<section class="section section-2 faq-section pt-5 pb-5" id="faq">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">

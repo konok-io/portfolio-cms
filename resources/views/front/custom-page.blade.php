@@ -18,17 +18,10 @@
         </div>
 
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-12 text-center">
-                <h1 class="display-4 fw-bold mb-3">
-                    {{ $customPageContent['title']['default'] ?? $customPageContent['title']['en'] ?? $page->title }}
-                </h1>
-                @if(isset($customPageContent['subtitle']['default']) || isset($customPageContent['subtitle']['en']))
-                    <p class="lead text-muted">
-                        {{ $customPageContent['subtitle']['default'] ?? $customPageContent['subtitle']['en'] ?? '' }}
-                    </p>
-                @endif
-            </div>
+        <div class="text-center mb-0">
+            <h1 class="section-title text-white">
+                {{ $customPageContent['title']['default'] ?? $customPageContent['title']['en'] ?? $page->title }}
+            </h1>
         </div>
     </div>
 </section>

@@ -18,13 +18,9 @@
         </div>
 
     <div class="container">
-        <div class="row align-items-center mb-5">
-            <div class="col-12 text-center">
-                <h1 class="display-4 fw-bold mb-3">{{ $pageContent['title']['default'] ?? $pageContent['title']['en'] ?? 'Pricing' }}</h1>
-                @if($pageContent['subtitle']['default'] ?? $pageContent['subtitle']['en'])
-                    <p class="lead text-muted mb-0">{{ $pageContent['subtitle']['default'] ?? $pageContent['subtitle']['en'] }}</p>
-                @endif
-            </div>
+        <div class="text-center mb-0">
+            <span class="section-eyebrow text-white">Pricing</span>
+            <h1 class="section-title text-white">Pricing Plans</h1>
         </div>
     </div>
 </section>

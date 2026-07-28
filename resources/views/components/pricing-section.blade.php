@@ -1,15 +1,8 @@
 @props(['plans' => collect()])
 
 @if($plans->count() > 0)
-<section class="section bg-light-custom pricing-section" id="pricing">
+<section class="section section-2 pricing-section pt-5 pb-5" id="pricing">
     <div class="container">
-        <div class="row justify-content-center text-center mb-5" data-aos="fade-up">
-            <div class="col-lg-8">
-                <span class="eyebrow text-primary mb-3 d-inline-block">{{ __('pricing_plans') }}</span>
-                <h2 class="section-title">{{ __('pricing') }}</h2>
-                <p class="lead text-muted">{{ __('Choose the perfect plan for your needs') }}</p>
-            </div>
-        </div>
 
         <!-- Pricing Toggle -->
         <div class="row justify-content-center mb-5" data-aos="fade-up">
