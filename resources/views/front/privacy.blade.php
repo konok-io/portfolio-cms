@@ -351,7 +351,7 @@
         flex-shrink: 0;
         width: 50px;
         height: 50px;
-        background: linear-gradient(135deg, #2563eb, #7c3aed);
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
         color: white;
         border-radius: 12px;
         display: flex;
@@ -409,7 +409,7 @@
         flex-shrink: 0;
         width: 40px;
         height: 40px;
-        background: linear-gradient(135deg, #2563eb, #7c3aed);
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
         color: white;
         border-radius: 10px;
         display: flex;
@@ -491,7 +491,7 @@
     .sharing-icon {
         width: 50px;
         height: 50px;
-        background: linear-gradient(135deg, #2563eb, #7c3aed);
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
         color: white;
         border-radius: 50%;
         display: flex;
@@ -673,12 +673,12 @@
     
     /* Contact Grid */
     .policy-contact {
-        background: linear-gradient(135deg, #2563eb08, #7c3aed08);
+        background: linear-gradient(135deg, #2563eb08, #3b82f608);
         border-color: #bfdbfe;
     }
     
     [data-theme="dark"] .policy-contact {
-        background: linear-gradient(135deg, #2563eb15, #7c3aed15);
+        background: linear-gradient(135deg, #2563eb15, #3b82f615);
         border-color: #3D3970;
     }
     
@@ -704,7 +704,7 @@
     .contact-icon {
         width: 50px;
         height: 50px;
-        background: linear-gradient(135deg, #2563eb, #7c3aed);
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
         color: white;
         border-radius: 12px;
         display: flex;

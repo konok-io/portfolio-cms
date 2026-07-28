@@ -350,7 +350,7 @@
         flex-shrink: 0;
         width: 50px;
         height: 50px;
-        background: linear-gradient(135deg, #2563eb, #7c3aed);
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
         color: white;
         border-radius: 12px;
         display: flex;
@@ -508,7 +508,7 @@
     .step-number {
         width: 35px;
         height: 35px;
-        background: linear-gradient(135deg, #2563eb, #7c3aed);
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
         color: white;
         border-radius: 50%;
         display: flex;
@@ -623,7 +623,7 @@
         top: 0.6rem;
         width: 8px;
         height: 8px;
-        background: linear-gradient(135deg, #2563eb, #7c3aed);
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
         border-radius: 50%;
     }
     
@@ -664,12 +664,12 @@
     
     /* Contact Grid */
     .policy-contact {
-        background: linear-gradient(135deg, #2563eb08, #7c3aed08);
+        background: linear-gradient(135deg, #2563eb08, #3b82f608);
         border-color: #bfdbfe;
     }
     
     [data-theme="dark"] .policy-contact {
-        background: linear-gradient(135deg, #2563eb15, #7c3aed15);
+        background: linear-gradient(135deg, #2563eb15, #3b82f615);
         border-color: #3D3970;
     }
     
@@ -695,7 +695,7 @@
     .contact-icon {
         width: 50px;
         height: 50px;
-        background: linear-gradient(135deg, #2563eb, #7c3aed);
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
         color: white;
         border-radius: 12px;
         display: flex;
