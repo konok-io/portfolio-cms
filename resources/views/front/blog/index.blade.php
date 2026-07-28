@@ -52,35 +52,194 @@
                         <a href="{{ route('blog.index') }}" class="btn btn-outline-primary">{{ page_content('blog', 'empty_button', app()->getLocale()) }}</a>
                     </div>
                 @else
-                    <div class="row g-4">
+                    <style>
+                        .blog-horizontal-row {
+                            display: grid;
+                            grid-template-columns: repeat(2, 1fr);
+                            gap: 24px;
+                        }
+                        
+                        .blog-horizontal-card {
+                            display: flex;
+                            flex-direction: row;
+                            background: #ffffff;
+                            border-radius: 16px;
+                            overflow: hidden;
+                            transition: all 0.3s ease;
+                            border: 1px solid #e2e8f0;
+                            min-height: 200px;
+                        }
+                        
+                        .blog-horizontal-card:hover {
+                            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.12);
+                            border-color: var(--color-primary, #2563EB);
+                            transform: translateY(-5px);
+                        }
+                        
+                        .blog-horizontal-img {
+                            width: 35%;
+                            min-width: 140px;
+                            flex-shrink: 0;
+                            position: relative;
+                            overflow: hidden;
+                            background: #e2e8f0;
+                        }
+                        
+                        .blog-horizontal-img img {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            object-position: center;
+                            transition: transform 0.4s ease;
+                        }
+                        
+                        .blog-horizontal-card:hover .blog-horizontal-img img {
+                            transform: scale(1.05);
+                        }
+                        
+                        .blog-horizontal-content {
+                            width: 65%;
+                            padding: 16px 20px;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                        }
+                        
+                        .blog-horizontal-badge {
+                            display: inline-block;
+                            background: var(--color-primary, #2563EB);
+                            color: #fff;
+                            padding: 3px 10px;
+                            border-radius: 20px;
+                            font-size: 0.65rem;
+                            font-weight: 600;
+                            margin-bottom: 8px;
+                            width: fit-content;
+                        }
+                        
+                        .blog-horizontal-title {
+                            font-size: 0.95rem;
+                            font-weight: 700;
+                            color: var(--color-secondary, #0F172A);
+                            margin-bottom: 6px;
+                            line-height: 1.3;
+                            transition: color 0.3s ease;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                        }
+                        
+                        .blog-horizontal-card:hover .blog-horizontal-title {
+                            color: var(--color-primary, #2563EB);
+                        }
+                        
+                        .blog-horizontal-excerpt {
+                            color: #64748b;
+                            font-size: 0.8rem;
+                            line-height: 1.5;
+                            margin-bottom: 10px;
+                            flex: 1;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                        }
+                        
+                        .blog-horizontal-meta {
+                            display: flex;
+                            justify-content: space-between;
+                            font-size: 0.7rem;
+                            color: #94a3b8;
+                        }
+                        
+                        .blog-horizontal-meta span {
+                            display: flex;
+                            align-items: center;
+                            gap: 4px;
+                        }
+                        
+                        .blog-horizontal-meta i {
+                            color: var(--color-primary, #2563EB);
+                            font-size: 0.65rem;
+                        }
+                        
+                        .blog-horizontal-link {
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 4px;
+                            color: var(--color-primary, #2563EB);
+                            font-weight: 600;
+                            font-size: 0.75rem;
+                            text-decoration: none;
+                            margin-top: 8px;
+                            transition: gap 0.3s ease;
+                        }
+                        
+                        .blog-horizontal-link:hover {
+                            gap: 8px;
+                            color: var(--color-primary-dark, #1d4ed8);
+                        }
+                        
+                        @media (max-width: 992px) {
+                            .blog-horizontal-row {
+                                grid-template-columns: 1fr;
+                            }
+                            .blog-horizontal-card {
+                                flex-direction: column;
+                            }
+                            .blog-horizontal-img {
+                                width: 100%;
+                                height: 180px;
+                            }
+                        }
+                        
+                        [data-theme="dark"] .blog-horizontal-card {
+                            background: #1e293b;
+                            border-color: #334155;
+                        }
+                        [data-theme="dark"] .blog-horizontal-title {
+                            color: #f1f5f9;
+                        }
+                        [data-theme="dark"] .blog-horizontal-excerpt {
+                            color: #94a3b8;
+                        }
+                        [data-theme="dark"] .blog-horizontal-meta {
+                            color: #64748b;
+                        }
+                    </style>
+
+                    <div class="blog-horizontal-row">
                         @foreach($blogs as $blog)
-                            <div class="col-md-6">
-                                <div class="blog-card h-100">
-                                    <div class="blog-img-wrap">
-                                        <img src="{{ $blog->featured_image_url ?? 'https://placehold.co/600x400/0F172A/ffffff?text=' . urlencode($blog->title) }}" alt="{{ $blog->alt_text ?? $blog->title }}">
+                            <div class="blog-horizontal-card reveal-on-scroll">
+                                <div class="blog-horizontal-img">
+                                    <img src="{{ $blog->featured_image_url ?? 'https://placehold.co/600x400/2563EB/ffffff?text=' . urlencode($blog->title) }}" 
+                                         alt="{{ $blog->alt_text ?? $blog->title }}" 
+                                         loading="lazy">
+                                </div>
+                                <div class="blog-horizontal-content">
+                                    @if($blog->category)
+                                        <span class="blog-horizontal-badge">{{ $blog->category->name }}</span>
+                                    @endif
+                                    <h3 class="blog-horizontal-title">{{ $blog->title }}</h3>
+                                    <p class="blog-horizontal-excerpt">{{ $blog->short_description }}</p>
+                                    <div class="blog-horizontal-meta">
+                                        <span>
+                                            <i class="far fa-calendar-alt"></i>
+                                            {{ $blog->published_at?->format('M d, Y') }}
+                                        </span>
+                                        <span>
+                                            <i class="far fa-eye"></i>
+                                            {{ $blog->views ?? 0 }}
+                                        </span>
                                     </div>
-                                    <div class="p-3">
-                                        <div class="d-flex justify-content-between small text-muted mb-2">
-                                            @if($blog->category)
-                                                <a href="{{ route('blog.index', ['category' => $blog->category->slug]) }}" class="text-accent-custom fw-semibold text-decoration-none">
-                                                    {{ $blog->category->name }}
-                                                </a>
-                                            @endif
-                                            <span>{{ $blog->published_at?->format('M d, Y') }}</span>
-                                        </div>
-                                        <h6 class="mb-2"><a href="{{ route('blog.show', $blog->slug) }}" class="text-decoration-none text-dark">{{ $blog->title }}</a></h6>
-                                        <p class="text-muted small">{{ $blog->short_description }}</p>
-                                        @if($blog->tags->isNotEmpty())
-                                            <div class="mb-2">
-                                                @foreach($blog->tags->take(3) as $tag)
-                                                    <a href="{{ route('blog.index', ['tag' => $tag->slug]) }}" class="badge bg-secondary text-decoration-none">{{ $tag->name }}</a>
-                                                @endforeach
-                                            </div>
-                                        @endif
-                                        <a href="{{ route('blog.show', $blog->slug) }}" class="small text-primary-custom fw-semibold">
-                                            Read More <i class="fa-solid fa-arrow-right ms-1"></i>
-                                        </a>
-                                    </div>
+                                    <a href="{{ route('blog.show', $blog->slug) }}" class="blog-horizontal-link">
+                                        Read More
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
                                 </div>
                             </div>
                         @endforeach
