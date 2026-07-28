@@ -13,56 +13,33 @@
 
 @section('content')
 
-{{-- Page header --}}
-<section class="page-title-section section-padding">
-    <div class="shape-container">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-        <div class="shape shape-4"></div>
-        <div class="shape shape-5"></div>
-        <div class="shape shape-6"></div>
-        <div class="shape shape-7"></div>
-        <div class="shape shape-8"></div>
-    </div>
-
+<section class="section-padding section-2">
     <div class="container">
         {{-- Breadcrumb --}}
         <x-breadcrumb :items="$breadcrumbs" />
 
-        <div class="mb-0">
-            @if($blog->category)
-                <span class="section-eyebrow">{{ $blog->category->name }}</span>
-            @endif
-            <h1 class="section-title">{{ $blog->title }}</h1>
-            <div class="d-flex flex-wrap gap-4 small text-white-50 mt-3">
-                <span><i class="fa-solid fa-user me-1"></i>{{ $blog->author->name ?? 'Admin' }}</span>
-                <span><i class="fa-regular fa-calendar me-1"></i>{{ $blog->published_at?->format('M d, Y') }}</span>
-                <span><i class="fa-regular fa-clock me-1"></i>{{ ceil(strlen(strip_tags($blog->description)) / 1000) }} min read</span>
-                <span><i class="fa-regular fa-eye me-1"></i>{{ $blog->views }} views</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-{{-- Blog content --}}
-<section class="section-padding section-2">
-    <div class="container">
         <div class="row g-5">
             <div class="col-lg-8">
-                <img src="{{ $blog->featured_image_url ?? 'https://placehold.co/1000x600/0F172A/ffffff?text=' . urlencode($blog->title) }}"
-                     alt="{{ $blog->title }}" class="img-fluid rounded-4 shadow-sm mb-4 w-100" style="aspect-ratio: 16/9; object-fit: cover;" loading="lazy">
+                <div class="mb-4">
+                    @if($blog->category)
+                        <span class="section-eyebrow">{{ $blog->category->name }}</span>
+                    @endif
+                    <h1 class="section-title">{{ $blog->title }}</h1>
+                </div>
+
+                <img src="{{ $blog->featured_image_url ?? 'https://placehold.co/1000x600/2563EB/ffffff?text=' . urlencode($blog->title) }}"
+                     alt="{{ $blog->alt_text ?? $blog->title }}" class="img-fluid rounded-4 shadow-sm mb-4 w-100" style="aspect-ratio: 16/9; object-fit: cover;" loading="lazy">
 
                 <article class="content-body">
                     {!! $blog->description !!}
                 </article>
 
-                {{-- Social Share Buttons - Professional --}}
+                {{-- Social Share Buttons --}}
                 <div class="share-section mt-4 pt-4 border-top">
                     <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
                         <div>
                             <h6 class="mb-1 share-title">Share this article</h6>
-                            <p class="text-muted small mb-0">If you found this helpful, share it with your network</p>
+                            <p class="text-muted small mb-0">If you found this helpful, share it with others</p>
                         </div>
                         <div class="share-buttons">
                             <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->url()) }}" target="_blank" class="share-btn facebook" title="Share on Facebook">
@@ -90,23 +67,21 @@
                 </div>
 
                 @if($relatedBlogs->isNotEmpty())
-                    <div class="mt-5 pt-4 border-top">
-                        <h5 class="mb-4">Related Articles</h5>
-                        <div class="row g-4">
-                            @foreach($relatedBlogs as $related)
-                                <div class="col-md-4">
-                                    <div class="blog-card h-100">
-                                        <div class="blog-img-wrap">
-                                            <img src="{{ $related->featured_image_url ?? 'https://placehold.co/600x400/0F172A/ffffff?text=' . urlencode($related->title) }}" alt="{{ $related->title }}">
-                                        </div>
-                                        <div class="p-3">
-                                            <h6 class="mb-2"><a href="{{ route('blog.show', $related->slug) }}" class="text-decoration-none text-dark">{{ $related->title }}</a></h6>
-                                            <a href="{{ route('blog.show', $related->slug) }}" class="small text-primary-custom fw-semibold">Read More</a>
-                                        </div>
+                    <h5 class="mt-5 mb-4">Related Articles</h5>
+                    <div class="row g-4">
+                        @foreach($relatedBlogs as $related)
+                            <div class="col-md-4">
+                                <div class="blog-card h-100">
+                                    <div class="blog-img-wrap">
+                                        <img src="{{ $related->featured_image_url ?? 'https://placehold.co/600x400/2563EB/ffffff?text=' . urlencode($related->title) }}" alt="{{ $related->alt_text ?? $related->title }}">
+                                    </div>
+                                    <div class="p-3">
+                                        <h6 class="mb-2"><a href="{{ route('blog.show', $related->slug) }}" class="text-decoration-none text-dark">{{ $related->title }}</a></h6>
+                                        <a href="{{ route('blog.show', $related->slug) }}" class="small text-primary-custom fw-semibold">Read More <i class="fa-solid fa-arrow-right ms-1"></i></a>
                                     </div>
                                 </div>
-                            @endforeach
-                        </div>
+                            </div>
+                        @endforeach
                     </div>
                 @endif
                 
@@ -141,22 +116,10 @@
                                         <input type="email" name="email" class="form-control" required placeholder="your@email.com">
                                     </div>
                                     <div class="col-12">
-                                        <label class="form-label">Website</label>
-                                        <input type="url" name="website" class="form-control" placeholder="https://yoursite.com">
-                                    </div>
-                                    <div class="col-12">
                                         <label class="form-label">Comment *</label>
                                         <textarea name="comment" class="form-control" rows="4" required placeholder="Share your thoughts..."></textarea>
                                     </div>
                                     <div class="col-12">
-                                        @if($siteSetting->isRecaptchaEnabled())
-                                            <div class="mb-3">
-                                                <div class="g-recaptcha" data-sitekey="{{ $siteSetting->recaptcha_site_key }}"></div>
-                                                @error('recaptcha')
-                                                    <div class="text-danger small mt-1">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        @endif
                                         <button type="submit" class="btn btn-primary-custom">
                                             <i class="fa-solid fa-paper-plane me-2"></i>Post Comment
                                         </button>
@@ -178,7 +141,7 @@
                             <div class="comment-item mb-4">
                                 <div class="d-flex gap-3">
                                     <div class="flex-shrink-0">
-                                        <img src="https://ui-avatars.com/api/?name={{ urlencode($comment->name) }}&background=4F2FE8&color=fff" alt="{{ $comment->name }}" width="48" height="48" class="rounded-circle">
+                                        <img src="https://ui-avatars.com/api/?name={{ urlencode($comment->name) }}&background=2563EB&color=fff" alt="{{ $comment->name }}" width="48" height="48" class="rounded-circle">
                                     </div>
                                     <div class="flex-grow-1">
                                         <div class="bg-light rounded-3 p-3">
@@ -188,24 +151,6 @@
                                             </div>
                                             <p class="mb-0">{{ $comment->comment }}</p>
                                         </div>
-                                        @if($comment->replies->where('is_approved', true)->isNotEmpty())
-                                            @foreach($comment->replies->where('is_approved', true) as $reply)
-                                                <div class="d-flex gap-3 mt-3 ms-4">
-                                                    <div class="flex-shrink-0">
-                                                        <img src="https://ui-avatars.com/api/?name={{ urlencode($reply->name) }}&background=3A356E&color=fff" alt="{{ $reply->name }}" width="36" height="36" class="rounded-circle">
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        <div class="bg-light rounded-3 p-3">
-                                                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                                                <strong>{{ $reply->name }}</strong>
-                                                                <small class="text-muted">{{ $reply->created_at->diffForHumans() }}</small>
-                                                            </div>
-                                                            <p class="mb-0">{{ $reply->comment }}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -216,15 +161,44 @@
 
             <div class="col-lg-4">
                 <div class="p-4 rounded-4 border shadow-sm bg-white sticky-top" style="top: 100px;">
-                    <h6 class="mb-3">About the Author</h6>
-                    <div class="d-flex align-items-center gap-3 mb-3">
-                        <img src="{{ $blog->author->avatar_url ?? 'https://ui-avatars.com/api/?name=Admin&background=2563EB&color=fff' }}" alt="Author" width="56" height="56" class="rounded-circle object-fit-cover">
-                        <div>
-                            <h6 class="mb-0">{{ $blog->author->name ?? 'Admin' }}</h6>
-                            <span class="small text-muted">Author</span>
+                    <h6 class="mb-3">Article Details</h6>
+                    <ul class="list-unstyled small mb-4">
+                        <li class="d-flex justify-content-between py-2 border-bottom">
+                            <span class="text-muted">Author</span>
+                            <span class="fw-semibold">{{ $blog->author->name ?? 'Admin' }}</span>
+                        </li>
+                        @if($blog->category)
+                            <li class="d-flex justify-content-between py-2 border-bottom">
+                                <span class="text-muted">Category</span>
+                                <span class="fw-semibold">{{ $blog->category->name }}</span>
+                            </li>
+                        @endif
+                        <li class="d-flex justify-content-between py-2 border-bottom">
+                            <span class="text-muted">Published</span>
+                            <span class="fw-semibold">{{ $blog->published_at?->format('M d, Y') }}</span>
+                        </li>
+                        <li class="d-flex justify-content-between py-2 border-bottom">
+                            <span class="text-muted">Read Time</span>
+                            <span class="fw-semibold">{{ ceil(strlen(strip_tags($blog->description)) / 1000) }} min</span>
+                        </li>
+                        <li class="d-flex justify-content-between py-2">
+                            <span class="text-muted">Views</span>
+                            <span class="fw-semibold">{{ $blog->views }}</span>
+                        </li>
+                    </ul>
+
+                    @if($blog->tags->isNotEmpty())
+                        <h6 class="mb-2 small text-muted">Tags</h6>
+                        <div class="d-flex flex-wrap gap-2 mb-4">
+                            @foreach($blog->tags as $tag)
+                                <a href="{{ route('blog.index', ['tag' => $tag->slug]) }}" class="badge bg-secondary text-decoration-none">{{ $tag->name }}</a>
+                            @endforeach
                         </div>
-                    </div>
-                    <a href="{{ route('home') }}#contact" class="btn btn-primary-custom w-100">Get in Touch</a>
+                    @endif
+                    
+                    <a href="{{ route('home') }}#contact" class="btn btn-primary-custom w-100">
+                        <i class="fa-solid fa-paper-plane me-2"></i>Get in Touch
+                    </a>
                 </div>
             </div>
         </div>
@@ -238,9 +212,3 @@
 </section>
 
 @endsection
-
-@push('scripts')
-@if($siteSetting->isRecaptchaEnabled())
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-@endif
-@endpush
