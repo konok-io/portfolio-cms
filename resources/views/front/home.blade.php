@@ -2280,12 +2280,10 @@
 
 @if($about->google_map)
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 @endif
 
 @push('scripts')
-@if($about->google_map)
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-@endif
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const typedText = document.getElementById('typed-text');
