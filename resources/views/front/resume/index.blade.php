@@ -9,12 +9,32 @@ $resumeSubtitle = $pageContent['subtitle'][app()->getLocale()] ?? $pageContent['
 @endphp
 
 @section('content')
-<section class="section-padding" style="padding-top: 8rem;">
+{{-- Page Header --}}
+<section class="page-title-section section-padding">
+    <div class="shape-container">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+        <div class="shape shape-5"></div>
+        <div class="shape shape-6"></div>
+        <div class="shape shape-7"></div>
+        <div class="shape shape-8"></div>
+    </div>
+
+    <div class="container">
+        <div class="text-center mb-0">
+            <span class="section-eyebrow text-white">{{ $pageContent['eyebrow']['default'] ?? $pageContent['eyebrow']['en'] ?? 'My Resume' }}</span>
+            <h1 class="section-title text-white">{{ $resumeTitle }}</h1>
+        </div>
+    </div>
+</section>
+
+{{-- Content Section --}}
+<section class="section-padding section-2">
     <div class="container">
         <div class="text-center mb-5">
-            <span class="section-eyebrow">{{ $pageContent['eyebrow'][app()->getLocale()] ?? $pageContent['eyebrow']['en'] ?? 'My Resume' }}</span>
-            <h1 class="section-title">{{ $resumeTitle }}</h1>
-            <p class="text-muted">{{ $resumeSubtitle }}</p>
+            <p class="lead text-muted">{{ $resumeSubtitle }}</p>
         </div>
 
         <!-- Template Selection -->
