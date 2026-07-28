@@ -2203,14 +2203,23 @@
                         </form>
                     </div>
                     <div class="col-lg-5">
-                        <div class="contact-vertical-map-container">
-                            <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.0893721814336!2d90.41237091498304!3d23.81216839220696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7a0f70deb73%3A0x30c36498f90fe023!2sDhaka%2C%20Bangladesh!5e0!3m2!1sen!2s!4v1610000000000!5m2!1sen!2s"
-                                allowfullscreen="" 
-                                loading="lazy" 
-                                referrerpolicy="no-referrer-when-downgrade">
-                            </iframe>
-                        </div>
+                        @if($siteSetting->google_map)
+                            <div class="contact-vertical-map-container">
+                                <iframe 
+                                    src="{{ $siteSetting->google_map }}"
+                                    allowfullscreen="" 
+                                    loading="lazy" 
+                                    referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+                            </div>
+                        @else
+                            <div class="contact-vertical-map-placeholder d-flex align-items-center justify-content-center" style="min-height: 250px; background: #f8f9fa; border-radius: 12px; border: 1px solid #d1d5db;">
+                                <div class="text-center text-muted">
+                                    <i class="fas fa-map-marker-alt fa-2x mb-2"></i>
+                                    <p class="mb-0 small">Map location will appear here</p>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
