@@ -936,14 +936,14 @@ a {
 
 /* Page title sections - blue background with multiple scattered circular shapes */
 .page-title-section {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  background: linear-gradient(135deg, var(--color-secondary) 0%, #1e293b 100%);
   padding-top: 40px;
   padding-bottom: 40px;
   position: relative;
   overflow: hidden;
 }
 
-/* Multiple circular shapes scattered across the section */
+/* Subtle shapes for depth */
 .page-title-section .shape-container {
   position: absolute;
   top: 0;
@@ -957,7 +957,7 @@ a {
 .page-title-section .shape {
   position: absolute;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.05) 100%);
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
 }
 
 /* Shape 1 - Top Right Large */
@@ -1062,13 +1062,13 @@ a {
   }
 }
 
-/* Dark mode - page title section with scattered shapes */
+/* Dark mode - page title section */
 [data-theme="dark"] .page-title-section {
-  background: linear-gradient(135deg, #1e3a5f 0%, #1a1a2e 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
 }
 
 [data-theme="dark"] .page-title-section .shape {
-  background: linear-gradient(135deg, rgba(103, 232, 249, 0.2) 0%, rgba(103, 232, 249, 0.03) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
 }
 
 [data-theme="dark"] .page-title-section .section-eyebrow,
