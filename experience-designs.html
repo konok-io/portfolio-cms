@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Experience Designs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            min-height: 100vh;
+        }
+        .page-header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: linear-gradient(180deg, #0f0f15 0%, #0a0a0f 100%);
+        }
+        .page-header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+        .page-header p { color: #888; font-size: 1.1rem; }
+        
+        .design-card {
+            background: #111118;
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 24px;
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+        .design-preview { padding: 60px 40px; }
+        .design-info { padding: 25px 30px; background: #0d0d12; border-top: 1px solid rgba(255,255,255,0.05); }
+        .design-info h3 { font-family: 'Space Grotesk'; font-size: 1.3rem; margin-bottom: 8px; color: #fff; }
+        .design-info p { color: #666; font-size: 0.9rem; margin: 0; }
+        .design-number {
+            position: absolute; top: 15px; right: 15px;
+            background: rgba(102, 126, 234, 0.2); color: #667eea;
+            padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+        }
+
+        /* ==================== DESIGN 1: Modern Cards ==================== */
+        .exp-1 {
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            padding: 80px 40px;
+            position: relative;
+        }
+        .exp-1::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(37,99,235,0.03) 0%, rgba(139,92,246,0.03) 100%);
+        }
+        .exp-1-content { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+        .exp-1-header { margin-bottom: 60px; }
+        .exp-1-header span {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(37,99,235,0.1); color: #2563EB;
+            padding: 8px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .exp-1-header h2 {
+            font-family: 'Space Grotesk'; font-size: 2.5rem; font-weight: 700;
+            color: #111; margin-bottom: 10px;
+        }
+        .exp-1-header p { color: #6b7280; font-size: 1.1rem; max-width: 500px; }
+        .exp-1-cards { display: flex; flex-direction: column; gap: 24px; }
+        .exp-1-card {
+            background: #fff; border-radius: 20px; padding: 30px 35px;
+            border: 1px solid #e5e7eb; box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            display: flex; gap: 30px; align-items: flex-start;
+            transition: all 0.3s ease;
+        }
+        .exp-1-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(37,99,235,0.12);
+            border-color: rgba(37,99,235,0.3);
+        }
+        .exp-1-card-left { flex-shrink: 0; }
+        .exp-1-year {
+            width: 70px; height: 70px; background: linear-gradient(135deg, #2563EB, #7c3aed);
+            border-radius: 16px; display: flex; align-items: center; justify-content: center;
+            color: #fff; font-weight: 700; font-size: 0.85rem; text-align: center; line-height: 1.2;
+        }
+        .exp-1-card-right { flex: 1; }
+        .exp-1-card-header {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            margin-bottom: 12px; flex-wrap: wrap; gap: 10px;
+        }
+        .exp-1-card h3 { font-size: 1.25rem; font-weight: 700; color: #111; margin: 0; }
+        .exp-1-duration {
+            background: #f3f4f6; color: #374151; padding: 6px 14px; border-radius: 50px;
+            font-size: 0.8rem; font-weight: 600;
+        }
+        .exp-1-company {
+            display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+        }
+        .exp-1-company-icon {
+            width: 28px; height: 28px; background: linear-gradient(135deg, #2563EB, #7c3aed);
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+        }
+        .exp-1-company-icon i { color: #fff; font-size: 0.75rem; }
+        .exp-1-company span { color: #2563EB; font-weight: 600; font-size: 0.95rem; }
+        .exp-1-card p { color: #6b7280; font-size: 0.9rem; line-height: 1.6; margin: 0; }
+
+        /* ==================== DESIGN 2: Vertical Line Modern ==================== */
+        .exp-2 {
+            background: #0f0f0f; padding: 80px 40px; position: relative;
+        }
+        .exp-2-content { max-width: 900px; margin: 0 auto; }
+        .exp-2-header { margin-bottom: 60px; text-align: center; }
+        .exp-2-header span {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(0,212,170,0.1); color: #00d4aa;
+            padding: 8px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .exp-2-header h2 {
+            font-family: 'Space Grotesk'; font-size: 2.5rem; font-weight: 700;
+            color: #fff; margin-bottom: 10px;
+        }
+        .exp-2-header p { color: #888; font-size: 1.1rem; }
+        .exp-2-timeline { position: relative; padding-left: 40px; }
+        .exp-2-timeline::before {
+            content: ''; position: absolute; left: 15px; top: 0; bottom: 0;
+            width: 2px; background: linear-gradient(180deg, #00d4aa, #667eea);
+        }
+        .exp-2-item { position: relative; margin-bottom: 40px; }
+        .exp-2-item:last-child { margin-bottom: 0; }
+        .exp-2-item::before {
+            content: ''; position: absolute; left: -33px; top: 8px;
+            width: 16px; height: 16px; background: #00d4aa;
+            border-radius: 50%; border: 3px solid #0f0f0f;
+            box-shadow: 0 0 0 4px rgba(0,212,170,0.2);
+        }
+        .exp-2-card {
+            background: #1a1a24; border-radius: 20px; padding: 28px 32px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+        .exp-2-card:hover {
+            background: #1f1f2e; border-color: rgba(0,212,170,0.2);
+            transform: translateX(10px);
+        }
+        .exp-2-top {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 15px; flex-wrap: wrap; gap: 10px;
+        }
+        .exp-2-card h3 { font-size: 1.3rem; font-weight: 700; color: #fff; margin: 0; }
+        .exp-2-badge {
+            background: linear-gradient(135deg, #00d4aa, #00a884);
+            color: #0f0f0f; padding: 6px 16px; border-radius: 50px;
+            font-size: 0.8rem; font-weight: 700;
+        }
+        .exp-2-company {
+            display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+        }
+        .exp-2-company i { color: #00d4aa; font-size: 1rem; }
+        .exp-2-company span { color: #00d4aa; font-weight: 600; font-size: 0.95rem; }
+        .exp-2-card p { color: #888; font-size: 0.9rem; line-height: 1.6; margin: 0; }
+
+        /* ==================== DESIGN 3: Glassmorphism ==================== */
+        .exp-3 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 40px; position: relative; overflow: hidden;
+        }
+        .exp-3::before {
+            content: ''; position: absolute; top: -50%; right: -20%;
+            width: 600px; height: 600px; background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        .exp-3::after {
+            content: ''; position: absolute; bottom: -30%; left: -10%;
+            width: 400px; height: 400px; background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+        .exp-3-content { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+        .exp-3-header { margin-bottom: 60px; text-align: center; }
+        .exp-3-header span {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.2); color: #fff;
+            padding: 8px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .exp-3-header h2 {
+            font-family: 'Space Grotesk'; font-size: 2.5rem; font-weight: 700;
+            color: #fff; margin-bottom: 10px;
+        }
+        .exp-3-header p { color: rgba(255,255,255,0.8); font-size: 1.1rem; }
+        .exp-3-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; }
+        .exp-3-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 24px; padding: 32px;
+            transition: all 0.3s ease;
+        }
+        .exp-3-card:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-8px);
+        }
+        .exp-3-icon {
+            width: 56px; height: 56px; background: rgba(255,255,255,0.2);
+            border-radius: 16px; display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px;
+        }
+        .exp-3-icon i { color: #fff; font-size: 1.5rem; }
+        .exp-3-card h3 { font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 12px; }
+        .exp-3-company {
+            display: flex; align-items: center; gap: 8px; margin-bottom: 15px;
+        }
+        .exp-3-company i { color: rgba(255,255,255,0.8); }
+        .exp-3-company span { color: rgba(255,255,255,0.9); font-weight: 600; }
+        .exp-3-bottom {
+            display: flex; justify-content: space-between; align-items: center;
+            padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        .exp-3-duration { color: rgba(255,255,255,0.8); font-size: 0.85rem; font-weight: 500; }
+        .exp-3-arrow { color: rgba(255,255,255,0.6); font-size: 1.2rem; }
+        .exp-3-card > p { color: rgba(255,255,255,0.7); font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px; }
+
+        /* ==================== DESIGN 4: Minimal Clean ==================== */
+        .exp-4 {
+            background: #fafafa; padding: 80px 40px;
+        }
+        .exp-4-content { max-width: 900px; margin: 0 auto; }
+        .exp-4-header { margin-bottom: 60px; }
+        .exp-4-header span {
+            display: inline-block; font-size: 0.75rem; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: #2563EB; margin-bottom: 12px;
+        }
+        .exp-4-header h2 {
+            font-family: 'Inter'; font-size: 2.8rem; font-weight: 800;
+            color: #111; margin-bottom: 15px; letter-spacing: -1px;
+        }
+        .exp-4-header p { color: #6b7280; font-size: 1.1rem; max-width: 450px; }
+        .exp-4-list { list-style: none; padding: 0; margin: 0; }
+        .exp-4-item {
+            display: flex; gap: 30px; padding: 35px 0;
+            border-bottom: 1px solid #e5e7eb;
+            align-items: flex-start;
+        }
+        .exp-4-item:last-child { border-bottom: none; }
+        .exp-4-date {
+            width: 100px; flex-shrink: 0; text-align: right;
+        }
+        .exp-4-date-year {
+            font-size: 0.85rem; font-weight: 700; color: #111;
+        }
+        .exp-4-date-range {
+            font-size: 0.75rem; color: #9ca3af; margin-top: 4px;
+        }
+        .exp-4-content { flex: 1; }
+        .exp-4-content h3 {
+            font-size: 1.4rem; font-weight: 700; color: #111; margin-bottom: 8px;
+        }
+        .exp-4-content .company {
+            font-size: 1rem; font-weight: 600; color: #2563EB; margin-bottom: 12px;
+            display: block;
+        }
+        .exp-4-content p { color: #6b7280; font-size: 0.95rem; line-height: 1.7; margin: 0; }
+
+        /* ==================== DESIGN 5: Tech Stack Style ==================== */
+        .exp-5 {
+            background: #0a0a0f; padding: 80px 40px;
+            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+        .exp-5-content { max-width: 1100px; margin: 0 auto; }
+        .exp-5-header { margin-bottom: 60px; text-align: center; }
+        .exp-5-header span {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(139,92,246,0.1); color: #a78bfa;
+            padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600;
+            margin-bottom: 15px; border: 1px solid rgba(139,92,246,0.2);
+        }
+        .exp-5-header h2 {
+            font-family: 'Space Grotesk'; font-size: 2.5rem; font-weight: 700;
+            color: #fff; margin-bottom: 10px;
+        }
+        .exp-5-header p { color: #6b7280; font-size: 1.1rem; }
+        .exp-5-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .exp-5-card {
+            background: #13131a; border: 1px solid rgba(139,92,246,0.15);
+            border-radius: 16px; padding: 28px;
+            transition: all 0.3s ease;
+        }
+        .exp-5-card:hover {
+            border-color: rgba(139,92,246,0.4);
+            box-shadow: 0 0 30px rgba(139,92,246,0.1);
+        }
+        .exp-5-top {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        .exp-5-card h3 { font-size: 1.2rem; font-weight: 700; color: #fff; margin: 0; }
+        .exp-5-id {
+            font-family: 'Space Grotesk'; font-size: 2rem; font-weight: 700;
+            color: rgba(139,92,246,0.2);
+        }
+        .exp-5-company {
+            display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+        }
+        .exp-5-dot {
+            width: 8px; height: 8px; background: #a78bfa; border-radius: 50%;
+        }
+        .exp-5-company span { color: #a78bfa; font-weight: 600; }
+        .exp-5-card > p { color: #888; font-size: 0.85rem; line-height: 1.6; margin-bottom: 15px; }
+        .exp-5-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+        .exp-5-tag {
+            background: rgba(139,92,246,0.1); color: #a78bfa;
+            padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 500;
+        }
+        .exp-5-duration {
+            margin-top: 15px; padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .exp-5-duration i { color: #6b7280; }
+        .exp-5-duration span { color: #6b7280; font-size: 0.8rem; }
+
+        /* ==================== DESIGN 6: Alternating Cards ==================== */
+        .exp-6 {
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            padding: 80px 40px;
+        }
+        .exp-6-content { max-width: 1000px; margin: 0 auto; }
+        .exp-6-header { margin-bottom: 80px; text-align: center; }
+        .exp-6-header span {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(249,115,22,0.15); color: #f97316;
+            padding: 8px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .exp-6-header h2 {
+            font-family: 'Space Grotesk'; font-size: 2.5rem; font-weight: 700;
+            color: #fff; margin-bottom: 10px;
+        }
+        .exp-6-header p { color: #9ca3af; font-size: 1.1rem; }
+        .exp-6-timeline { position: relative; }
+        .exp-6-timeline::before {
+            content: ''; position: absolute; left: 50%; top: 0; bottom: 0;
+            width: 2px; background: rgba(249,115,22,0.3); transform: translateX(-50%);
+        }
+        .exp-6-item {
+            display: flex; align-items: flex-start; margin-bottom: 50px;
+            position: relative;
+        }
+        .exp-6-item:nth-child(even) { flex-direction: row-reverse; }
+        .exp-6-item:last-child { margin-bottom: 0; }
+        .exp-6-left, .exp-6-right { width: 45%; }
+        .exp-6-center {
+            width: 10%; display: flex; justify-content: center;
+            position: relative; z-index: 1;
+        }
+        .exp-6-dot {
+            width: 20px; height: 20px; background: #f97316;
+            border-radius: 50%; border: 4px solid #1a1a2e;
+            box-shadow: 0 0 0 4px rgba(249,115,22,0.3);
+        }
+        .exp-6-card {
+            background: #1f1f35; border: 1px solid rgba(249,115,22,0.15);
+            border-radius: 16px; padding: 25px;
+            transition: all 0.3s ease;
+        }
+        .exp-6-card:hover {
+            border-color: rgba(249,115,22,0.4);
+            transform: scale(1.02);
+        }
+        .exp-6-card h3 { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+        .exp-6-company {
+            display: flex; align-items: center; gap: 8px; margin-bottom: 12px;
+        }
+        .exp-6-company i { color: #f97316; }
+        .exp-6-company span { color: #f97316; font-weight: 600; }
+        .exp-6-duration {
+            background: rgba(249,115,22,0.1); color: #f97316;
+            padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 600;
+            display: inline-block; margin-bottom: 12px;
+        }
+        .exp-6-card > p { color: #9ca3af; font-size: 0.85rem; line-height: 1.6; margin: 0; }
+
+        /* ==================== DESIGN 7: Horizontal Scroll ==================== */
+        .exp-7 {
+            background: #fff; padding: 80px 40px;
+        }
+        .exp-7-content { max-width: 100%; }
+        .exp-7-header { margin-bottom: 50px; }
+        .exp-7-header span {
+            display: inline-block; font-size: 0.75rem; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: #2563EB; margin-bottom: 12px;
+        }
+        .exp-7-header h2 {
+            font-family: 'Inter'; font-size: 2.5rem; font-weight: 800;
+            color: #111; margin-bottom: 10px;
+        }
+        .exp-7-header p { color: #6b7280; font-size: 1.1rem; }
+        .exp-7-scroll {
+            display: flex; gap: 24px; overflow-x: auto; padding-bottom: 20px;
+            scroll-snap-type: x mandatory;
+        }
+        .exp-7-scroll::-webkit-scrollbar { height: 6px; }
+        .exp-7-scroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 3px; }
+        .exp-7-scroll::-webkit-scrollbar-thumb { background: #2563EB; border-radius: 3px; }
+        .exp-7-card {
+            min-width: 380px; background: #f9fafb; border: 1px solid #e5e7eb;
+            border-radius: 20px; padding: 30px; scroll-snap-align: start;
+            transition: all 0.3s ease; flex-shrink: 0;
+        }
+        .exp-7-card:hover {
+            background: #fff; border-color: #2563EB;
+            box-shadow: 0 10px 30px rgba(37,99,235,0.1);
+        }
+        .exp-7-top {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        .exp-7-icon {
+            width: 50px; height: 50px; background: linear-gradient(135deg, #2563EB, #7c3aed);
+            border-radius: 14px; display: flex; align-items: center; justify-content: center;
+        }
+        .exp-7-icon i { color: #fff; font-size: 1.3rem; }
+        .exp-7-num {
+            font-family: 'Space Grotesk'; font-size: 3rem; font-weight: 700;
+            color: #f3f4f6; line-height: 1;
+        }
+        .exp-7-card h3 { font-size: 1.3rem; font-weight: 700; color: #111; margin-bottom: 10px; }
+        .exp-7-company {
+            display: flex; align-items: center; gap: 8px; margin-bottom: 15px;
+        }
+        .exp-7-company i { color: #2563EB; }
+        .exp-7-company span { color: #2563EB; font-weight: 600; }
+        .exp-7-duration {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: #e0e7ff; color: #3730a3; padding: 6px 12px; border-radius: 8px;
+            font-size: 0.8rem; font-weight: 600; margin-bottom: 15px;
+        }
+        .exp-7-card > p { color: #6b7280; font-size: 0.9rem; line-height: 1.6; margin: 0; }
+
+        /* ==================== DESIGN 8: Stacked Cards ==================== */
+        .exp-8 {
+            background: #f8fafc; padding: 80px 40px;
+        }
+        .exp-8-content { max-width: 900px; margin: 0 auto; }
+        .exp-8-header { margin-bottom: 60px; }
+        .exp-8-header span {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(16,185,129,0.1); color: #10b981;
+            padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .exp-8-header h2 {
+            font-family: 'Inter'; font-size: 2.5rem; font-weight: 800;
+            color: #111; margin-bottom: 10px;
+        }
+        .exp-8-header p { color: #6b7280; font-size: 1.1rem; }
+        .exp-8-stack { position: relative; }
+        .exp-8-card {
+            background: #fff; border-radius: 24px; padding: 35px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            margin-bottom: 24px; position: relative; z-index: 1;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+        .exp-8-card:hover {
+            box-shadow: 0 15px 40px rgba(16,185,129,0.1);
+            border-color: rgba(16,185,129,0.3);
+        }
+        .exp-8-card::before {
+            content: ''; position: absolute; top: -12px; left: 40px;
+            width: 24px; height: 24px; background: #10b981; border-radius: 50%;
+            border: 4px solid #f8fafc;
+        }
+        .exp-8-card:not(:first-child)::after {
+            content: ''; position: absolute; top: -24px; left: 44px;
+            width: 2px; height: 24px; background: #e5e7eb;
+        }
+        .exp-8-top {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            margin-bottom: 15px; flex-wrap: wrap; gap: 10px;
+        }
+        .exp-8-card h3 { font-size: 1.4rem; font-weight: 700; color: #111; margin: 0; }
+        .exp-8-badge {
+            background: #ecfdf5; color: #059669; padding: 6px 14px;
+            border-radius: 8px; font-size: 0.8rem; font-weight: 600;
+        }
+        .exp-8-company {
+            display: flex; align-items: center; gap: 10px; margin-bottom: 15px;
+        }
+        .exp-8-company-icon {
+            width: 32px; height: 32px; background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+        }
+        .exp-8-company-icon i { color: #fff; font-size: 0.85rem; }
+        .exp-8-company span { color: #10b981; font-weight: 600; }
+        .exp-8-desc { color: #6b7280; font-size: 0.95rem; line-height: 1.7; margin: 0; }
+
+        /* ==================== DESIGN 9: Floating Cards ==================== */
+        .exp-9 {
+            background: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%);
+            padding: 80px 40px;
+        }
+        .exp-9-content { max-width: 1200px; margin: 0 auto; }
+        .exp-9-header { margin-bottom: 60px; text-align: center; }
+        .exp-9-header span {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(236,72,153,0.15); color: #ec4899;
+            padding: 8px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .exp-9-header h2 {
+            font-family: 'Space Grotesk'; font-size: 2.5rem; font-weight: 700;
+            color: #fff; margin-bottom: 10px;
+        }
+        .exp-9-header p { color: #9ca3af; font-size: 1.1rem; }
+        .exp-9-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+        .exp-9-card {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px; padding: 32px; position: relative; overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        .exp-9-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 4px; background: linear-gradient(90deg, #ec4899, #8b5cf6);
+            transform: scaleX(0); transition: transform 0.4s ease;
+        }
+        .exp-9-card:hover { transform: translateY(-10px); }
+        .exp-9-card:hover::before { transform: scaleX(1); }
+        .exp-9-card:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(236,72,153,0.3);
+        }
+        .exp-9-num {
+            font-family: 'Space Grotesk'; font-size: 4rem; font-weight: 700;
+            color: rgba(236,72,153,0.1); position: absolute; top: 15px; right: 20px;
+        }
+        .exp-9-card h3 { font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 15px; }
+        .exp-9-company {
+            display: flex; align-items: center; gap: 10px; margin-bottom: 15px;
+        }
+        .exp-9-company-dot {
+            width: 10px; height: 10px; background: #ec4899; border-radius: 50%;
+        }
+        .exp-9-company span { color: #ec4899; font-weight: 600; }
+        .exp-9-card > p { color: #9ca3af; font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px; }
+        .exp-9-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .exp-9-duration { color: #6b7280; font-size: 0.85rem; }
+        .exp-9-link { color: #ec4899; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+        .exp-9-link:hover { text-decoration: underline; }
+
+        /* ==================== DESIGN 10: Terminal Style ==================== */
+        .exp-10 {
+            background: #1e1e2e; padding: 80px 40px;
+        }
+        .exp-10-content { max-width: 900px; margin: 0 auto; }
+        .exp-10-header { margin-bottom: 50px; }
+        .exp-10-header span {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: #2a2a3c; color: #89b4fa;
+            padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600;
+            margin-bottom: 15px; font-family: 'Courier New', monospace;
+        }
+        .exp-10-header h2 {
+            font-family: 'Inter'; font-size: 2.2rem; font-weight: 700;
+            color: #cdd6f4; margin-bottom: 10px;
+        }
+        .exp-10-header p { color: #6c7086; font-size: 1rem; font-family: 'Courier New', monospace; }
+        .exp-10-window {
+            background: #181825; border-radius: 12px; overflow: hidden;
+            border: 1px solid #313244;
+        }
+        .exp-10-bar {
+            background: #181825; padding: 12px 16px; display: flex; align-items: center; gap: 8px;
+            border-bottom: 1px solid #313244;
+        }
+        .exp-10-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .exp-10-dot:nth-child(1) { background: #f38ba8; }
+        .exp-10-dot:nth-child(2) { background: #f9e2af; }
+        .exp-10-dot:nth-child(3) { background: #a6e3a1; }
+        .exp-10-bar span {
+            margin-left: auto; color: #6c7086; font-size: 0.8rem;
+            font-family: 'Courier New', monospace;
+        }
+        .exp-10-body { padding: 25px; font-family: 'Courier New', monospace; }
+        .exp-10-item { margin-bottom: 25px; }
+        .exp-10-item:last-child { margin-bottom: 0; }
+        .exp-10-item-header { margin-bottom: 8px; }
+        .exp-10-item-header span { color: #89b4fa; }
+        .exp-10-item h3 { color: #cdd6f4; font-size: 1.1rem; margin-bottom: 5px; display: inline; }
+        .exp-10-company { color: #a6e3a1; margin-bottom: 8px; display: block; }
+        .exp-10-duration { color: #fab387; font-size: 0.85rem; }
+        .exp-10-item > p { color: #6c7086; font-size: 0.85rem; line-height: 1.6; margin-top: 8px; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .exp-6-timeline::before { left: 20px; }
+            .exp-6-item, .exp-6-item:nth-child(even) { flex-direction: column; }
+            .exp-6-left, .exp-6-right { width: 100%; }
+            .exp-6-center { display: none; }
+            .exp-5-grid { grid-template-columns: 1fr; }
+            .exp-7-card { min-width: 300px; }
+            .page-header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-header">
+    <h1>Work Experience Designs</h1>
+    <p>10 Unique & Professional Premium Designs</p>
+</div>
+
+<div class="container pb-5">
+
+    <!-- ========== DESIGN 1: Modern Cards ========== -->
+    <div class="design-card" style="position: relative;">
+        <span class="design-number">01</span>
+        <div class="design-preview" style="padding: 0;">
+            <div class="exp-1">
+                <div class="exp-1-content">
+                    <div class="exp-1-header">
+                        <span><i class="fas fa-briefcase"></i> Career Path</span>
+                        <h2>Work Experience</h2>
+                        <p>Roles and companies that have shaped how I build software today.</p>
+                    </div>
+                    <div class="exp-1-cards">
+                        <div class="exp-1-card">
+                            <div class="exp-1-card-left">
+                                <div class="exp-1-year">2023<br>Present</div>
+                            </div>
+                            <div class="exp-1-card-right">
+                                <div class="exp-1-card-header">
+                                    <h3>Senior Full Stack Developer</h3>
+                                    <span class="exp-1-duration">2 Years</span>
+                                </div>
+                                <div class="exp-1-company">
+                                    <div class="exp-1-company-icon"><i class="fas fa-building"></i></div>
+                                    <span>TechCorp Inc.</span>
+                                </div>
+                                <p>Led development of scalable web applications serving 1M+ users. Implemented CI/CD pipelines reducing deployment time by 60%.</p>
+                            </div>
+                        </div>
+                        <div class="exp-1-card">
+                            <div class="exp-1-card-left">
+                                <div class="exp-1-year">2021<br>2023</div>
+                            </div>
+                            <div class="exp-1-card-right">
+                                <div class="exp-1-card-header">
+                                    <h3>Full Stack Developer</h3>
+                                    <span class="exp-1-duration">2 Years</span>
+                                </div>
+                                <div class="exp-1-company">
+                                    <div class="exp-1-company-icon"><i class="fas fa-building"></i></div>
+                                    <span>StartupXYZ</span>
+                                </div>
+                                <p>Built MVP from scratch serving 50K+ daily active users. Reduced page load time by 45% through optimization.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="design-info">
+            <h3>Modern Cards</h3>
+            <p>Clean white cards with gradient year badges, company icons</p>
+        </div>
+    </div>
+
+    <!-- ========== DESIGN 2: Vertical Line Modern ========== -->
+    <div class="design-card" style="position: relative;">
+        <span class="design-number">02</span>
+        <div class="design-preview" style="padding: 0;">
+            <div class="exp-2">
+                <div class="exp-2-content">
+                    <div class="exp-2-header">
+                        <span><i class="fas fa-terminal"></i> Terminal</span>
+                        <h2>Work Experience</h2>
+                        <p>// career.log</p>
+                    </div>
+                    <div class="exp-2-timeline">
+                        <div class="exp-2-item">
+                            <div class="exp-2-card">
+                                <div class="exp-2-top">
+                                    <h3>Senior Developer</h3>
+                                    <span class="exp-2-badge">2023 - Now</span>
+                                </div>
+                                <div class="exp-2-company">
+                                    <i class="fas fa-code"></i>
+                                    <span>TechCorp Inc.</span>
+                                </div>
+                                <p>Leading a team of 5 developers, architecting microservices, and mentoring junior engineers.</p>
+                            </div>
+                        </div>
+                        <div class="exp-2-item">
+                            <div class="exp-2-card">
+                                <div class="exp-2-top">
+                                    <h3>Full Stack Developer</h3>
+                                    <span class="exp-2-badge">2021 - 2023</span>
+                                </div>
+                                <div class="exp-2-company">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>StartupXYZ</span>
+                                </div>
+                                <p>Built scalable applications from ground up. Implemented real-time features using WebSockets.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="design-info">
+            <h3>Vertical Line Modern</h3>
+            <p>Dark theme with teal accent, animated timeline, dark cards</p>
+        </div>
+    </div>
+
+    <!-- ========== DESIGN 3: Glassmorphism ========== -->
+    <div class="design-card" style="position: relative;">
+        <span class="design-number">03</span>
+        <div class="design-preview" style="padding: 0;">
+            <div class="exp-3">
+                <div class="exp-3-content">
+                    <div class="exp-3-header">
+                        <span><i class="fas fa-sparkles"></i> Experience</span>
+                        <h2>Work Experience</h2>
+                        <p>A journey of growth and achievements</p>
+                    </div>
+                    <div class="exp-3-grid">
+                        <div class="exp-3-card">
+                            <div class="exp-3-icon"><i class="fas fa-code"></i></div>
+                            <h3>Senior Developer</h3>
+                            <div class="exp-3-company">
+                                <i class="fas fa-building"></i>
+                                <span>TechCorp Inc.</span>
+                            </div>
+                            <p>Architecting enterprise solutions and leading high-performance teams.</p>
+                            <div class="exp-3-bottom">
+                                <span class="exp-3-duration">2023 - Present</span>
+                                <i class="fas fa-arrow-right exp-3-arrow"></i>
+                            </div>
+                        </div>
+                        <div class="exp-3-card">
+                            <div class="exp-3-icon"><i class="fas fa-layer-group"></i></div>
+                            <h3>Full Stack Dev</h3>
+                            <div class="exp-3-company">
+                                <i class="fas fa-rocket"></i>
+                                <span>StartupXYZ</span>
+                            </div>
+                            <p>Built 15+ client projects from concept to deployment.</p>
+                            <div class="exp-3-bottom">
+                                <span class="exp-3-duration">2021 - 2023</span>
+                                <i class="fas fa-arrow-right exp-3-arrow"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="design-info">
+            <h3>Glassmorphism</h3>
+            <p>Gradient purple-pink background, glass effect cards, modern feel</p>
+        </div>
+    </div>
+
+    <!-- ========== DESIGN 4: Minimal Clean ========== -->
+    <div class="design-card" style="position: relative;">
+        <span class="design-number">04</span>
+        <div class="design-preview" style="padding: 0;">
+            <div class="exp-4">
+                <div class="exp-4-content">
+                    <div class="exp-4-header">
+                        <span>Career Path</span>
+                        <h2>Work Experience</h2>
+                        <p>A timeline of professional growth</p>
+                    </div>
+                    <div class="exp-4-list">
+                        <div class="exp-4-item">
+                            <div class="exp-4-date">
+                                <div class="exp-4-date-year">2023</div>
+                                <div class="exp-4-date-range">Jan - Now</div>
+                            </div>
+                            <div class="exp-4-content">
+                                <h3>Senior Full Stack Developer</h3>
+                                <span class="company">TechCorp Inc.</span>
+                                <p>Leading development teams, architecting cloud-native solutions, and mentoring junior developers across the organization.</p>
+                            </div>
+                        </div>
+                        <div class="exp-4-item">
+                            <div class="exp-4-date">
+                                <div class="exp-4-date-year">2021</div>
+                                <div class="exp-4-date-range">Mar - Dec</div>
+                            </div>
+                            <div class="exp-4-content">
+                                <h3>Full Stack Developer</h3>
+                                <span class="company">StartupXYZ</span>
+                                <p>Built scalable applications serving thousands of users daily with focus on performance and user experience.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="design-info">
+            <h3>Minimal Clean</h3>
+            <p>Ultra clean, left date column, minimal design, light theme</p>
+        </div>
+    </div>
+
+    <!-- ========== DESIGN 5: Tech Stack Style ========== -->
+    <div class="design-card" style="position: relative;">
+        <span class="design-number">05</span>
+        <div class="design-preview" style="padding: 0;">
+            <div class="exp-5">
+                <div class="exp-5-content">
+                    <div class="exp-5-header">
+                        <span><i class="fas fa-code-branch"></i> career.json</span>
+                        <h2>Work Experience</h2>
+                        <p>Skills and experience built over the years</p>
+                    </div>
+                    <div class="exp-5-grid">
+                        <div class="exp-5-card">
+                            <div class="exp-5-top">
+                                <h3>Senior Developer</h3>
+                                <span class="exp-5-id">01</span>
+                            </div>
+                            <div class="exp-5-company">
+                                <span class="exp-5-dot"></span>
+                                <span>TechCorp Inc.</span>
+                            </div>
+                            <p>Architecting enterprise solutions, leading dev teams, implementing best practices.</p>
+                            <div class="exp-5-tags">
+                                <span class="exp-5-tag">Laravel</span>
+                                <span class="exp-5-tag">Vue.js</span>
+                                <span class="exp-5-tag">AWS</span>
+                            </div>
+                            <div class="exp-5-duration">
+                                <i class="far fa-clock"></i>
+                                <span>2023 - Present</span>
+                            </div>
+                        </div>
+                        <div class="exp-5-card">
+                            <div class="exp-5-top">
+                                <h3>Full Stack Dev</h3>
+                                <span class="exp-5-id">02</span>
+                            </div>
+                            <div class="exp-5-company">
+                                <span class="exp-5-dot"></span>
+                                <span>StartupXYZ</span>
+                            </div>
+                            <p>Built MVPs, integrated APIs, optimized performance for high-traffic applications.</p>
+                            <div class="exp-5-tags">
+                                <span class="exp-5-tag">React</span>
+                                <span class="exp-5-tag">Node.js</span>
+                                <span class="exp-5-tag">MongoDB</span>
+                            </div>
+                            <div class="exp-5-duration">
+                                <i class="far fa-clock"></i>
+                                <span>2021 - 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="design-info">
+            <h3>Tech Stack Style</h3>
+            <p>Dot grid background, purple accent, tech tags, dark theme</p>
+        </div>
+    </div>
+
+    <!-- ========== DESIGN 6: Alternating Cards ========== -->
+    <div class="design-card" style="position: relative;">
+        <span class="design-number">06</span>
+        <div class="design-preview" style="padding: 0;">
+            <div class="exp-6">
+                <div class="exp-6-content">
+                    <div class="exp-6-header">
+                        <span><i class="fas fa-route"></i> Journey</span>
+                        <h2>Work Experience</h2>
+                        <p>Left and right alternating timeline</p>
+                    </div>
+                    <div class="exp-6-timeline">
+                        <div class="exp-6-item">
+                            <div class="exp-6-left">
+                                <div class="exp-6-card">
+                                    <h3>Senior Developer</h3>
+                                    <div class="exp-6-company">
+                                        <i class="fas fa-building"></i>
+                                        <span>TechCorp Inc.</span>
+                                    </div>
+                                    <span class="exp-6-duration">2023 - Present</span>
+                                    <p>Leading teams, architecture decisions, mentoring developers.</p>
+                                </div>
+                            </div>
+                            <div class="exp-6-center"><div class="exp-6-dot"></div></div>
+                            <div class="exp-6-right"></div>
+                        </div>
+                        <div class="exp-6-item">
+                            <div class="exp-6-left"></div>
+                            <div class="exp-6-center"><div class="exp-6-dot"></div></div>
+                            <div class="exp-6-right">
+                                <div class="exp-6-card">
+                                    <h3>Full Stack Dev</h3>
+                                    <div class="exp-6-company">
+                                        <i class="fas fa-rocket"></i>
+                                        <span>StartupXYZ</span>
+                                    </div>
+                                    <span class="exp-6-duration">2021 - 2023</span>
+                                    <p>Built scalable apps, implemented CI/CD, optimized performance.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="design-info">
+            <h3>Alternating Cards</h3>
+            <p>Left-right alternating layout, center timeline, orange accent</p>
+        </div>
+    </div>
+
+    <!-- ========== DESIGN 7: Horizontal Scroll ========== -->
+    <div class="design-card" style="position: relative;">
+        <span class="design-number">07</span>
+        <div class="design-preview" style="padding: 0;">
+            <div class="exp-7">
+                <div class="exp-7-content">
+                    <div class="exp-7-header">
+                        <span>Career Timeline</span>
+                        <h2>Work Experience</h2>
+                        <p>Scroll horizontally to explore my journey</p>
+                    </div>
+                    <div class="exp-7-scroll">
+                        <div class="exp-7-card">
+                            <div class="exp-7-top">
+                                <div class="exp-7-icon"><i class="fas fa-code"></i></div>
+                                <span class="exp-7-num">01</span>
+                            </div>
+                            <h3>Senior Developer</h3>
+                            <div class="exp-7-company">
+                                <i class="fas fa-building"></i>
+                                <span>TechCorp Inc.</span>
+                            </div>
+                            <span class="exp-7-duration"><i class="far fa-calendar"></i> 2023 - Present</span>
+                            <p>Leading development teams and architecting enterprise solutions.</p>
+                        </div>
+                        <div class="exp-7-card">
+                            <div class="exp-7-top">
+                                <div class="exp-7-icon"><i class="fas fa-layer-group"></i></div>
+                                <span class="exp-7-num">02</span>
+                            </div>
+                            <h3>Full Stack Dev</h3>
+                            <div class="exp-7-company">
+                                <i class="fas fa-rocket"></i>
+                                <span>StartupXYZ</span>
+                            </div>
+                            <span class="exp-7-duration"><i class="far fa-calendar"></i> 2021 - 2023</span>
+                            <p>Built MVPs and scaled applications serving thousands of users.</p>
+                        </div>
+                        <div class="exp-7-card">
+                            <div class="exp-7-top">
+                                <div class="exp-7-icon"><i class="fas fa-palette"></i></div>
+                                <span class="exp-7-num">03</span>
+                            </div>
+                            <h3>Frontend Dev</h3>
+                            <div class="exp-7-company">
+                                <i class="fas fa-store"></i>
+                                <span>AgencyPro</span>
+                            </div>
+                            <span class="exp-7-duration"><i class="far fa-calendar"></i> 2019 - 2021</span>
+                            <p>Created stunning UIs for 30+ client projects.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="design-info">
+            <h3>Horizontal Scroll</h3>
+            <p>Swipeable cards, scroll snap, numbered cards, clean white</p>
+        </div>
+    </div>
+
+    <!-- ========== DESIGN 8: Stacked Cards ========== -->
+    <div class="design-card" style="position: relative;">
+        <span class="design-number">08</span>
+        <div class="design-preview" style="padding: 0;">
+            <div class="exp-8">
+                <div class="exp-8-content">
+                    <div class="exp-8-header">
+                        <span><i class="fas fa-layer-group"></i> Stacked</span>
+                        <h2>Work Experience</h2>
+                        <p>Connected timeline with stacked cards</p>
+                    </div>
+                    <div class="exp-8-stack">
+                        <div class="exp-8-card">
+                            <div class="exp-8-top">
+                                <h3>Senior Full Stack Developer</h3>
+                                <span class="exp-8-badge">Current</span>
+                            </div>
+                            <div class="exp-8-company">
+                                <div class="exp-8-company-icon"><i class="fas fa-building"></i></div>
+                                <span>TechCorp Inc.</span>
+                            </div>
+                            <p class="exp-8-desc">Architecting and leading development of cloud-native applications. Managing a team of 5 developers while ensuring code quality and best practices.</p>
+                        </div>
+                        <div class="exp-8-card">
+                            <div class="exp-8-top">
+                                <h3>Full Stack Developer</h3>
+                                <span class="exp-8-badge">Past</span>
+                            </div>
+                            <div class="exp-8-company">
+                                <div class="exp-8-company-icon"><i class="fas fa-rocket"></i></div>
+                                <span>StartupXYZ</span>
+                            </div>
+                            <p class="exp-8-desc">Built scalable web applications from ground up. Implemented real-time features and optimized database queries for better performance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="design-info">
+            <h3>Stacked Cards</h3>
+            <p>Connected with dots, green accent, clean light theme</p>
+        </div>
+    </div>
+
+    <!-- ========== DESIGN 9: Floating Cards ========== -->
+    <div class="design-card" style="position: relative;">
+        <span class="design-number">09</span>
+        <div class="design-preview" style="padding: 0;">
+            <div class="exp-9">
+                <div class="exp-9-content">
+                    <div class="exp-9-header">
+                        <span><i class="fas fa-star"></i> Highlights</span>
+                        <h2>Work Experience</h2>
+                        <p>Key roles and achievements</p>
+                    </div>
+                    <div class="exp-9-grid">
+                        <div class="exp-9-card">
+                            <span class="exp-9-num">01</span>
+                            <h3>Senior Developer</h3>
+                            <div class="exp-9-company">
+                                <span class="exp-9-company-dot"></span>
+                                <span>TechCorp Inc.</span>
+                            </div>
+                            <p>Leading teams, architecting solutions, and driving technical innovation across the organization.</p>
+                            <div class="exp-9-footer">
+                                <span class="exp-9-duration">2023 - Present</span>
+                                <a href="#" class="exp-9-link">Details →</a>
+                            </div>
+                        </div>
+                        <div class="exp-9-card">
+                            <span class="exp-9-num">02</span>
+                            <h3>Full Stack Dev</h3>
+                            <div class="exp-9-company">
+                                <span class="exp-9-company-dot"></span>
+                                <span>StartupXYZ</span>
+                            </div>
+                            <p>Built and scaled applications serving thousands of daily active users with focus on performance.</p>
+                            <div class="exp-9-footer">
+                                <span class="exp-9-duration">2021 - 2023</span>
+                                <a href="#" class="exp-9-link">Details →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="design-info">
+            <h3>Floating Cards</h3>
+            <p>Pink-purple gradient, floating hover effect, dark theme</p>
+        </div>
+    </div>
+
+    <!-- ========== DESIGN 10: Terminal Style ========== -->
+    <div class="design-card" style="position: relative;">
+        <span class="design-number">10</span>
+        <div class="design-preview" style="padding: 0;">
+            <div class="exp-10">
+                <div class="exp-10-content">
+                    <div class="exp-10-header">
+                        <span>~/career $</span>
+                        <h2>Work Experience</h2>
+                        <p>// cat experience.json</p>
+                    </div>
+                    <div class="exp-10-window">
+                        <div class="exp-10-bar">
+                            <span class="exp-10-dot"></span>
+                            <span class="exp-10-dot"></span>
+                            <span class="exp-10-dot"></span>
+                            <span>experience.json</span>
+                        </div>
+                        <div class="exp-10-body">
+                            <div class="exp-10-item">
+                                <div class="exp-10-item-header">
+                                    <span>$</span>
+                                </div>
+                                <h3>Senior Developer</h3>
+                                <span class="exp-10-company">@TechCorp Inc. // 2023-Present</span>
+                                <div class="exp-10-duration">Duration: 2 Years</div>
+                                <p>→ Leading development teams, architecting microservices</p>
+                            </div>
+                            <div class="exp-10-item">
+                                <div class="exp-10-item-header">
+                                    <span>$</span>
+                                </div>
+                                <h3>Full Stack Developer</h3>
+                                <span class="exp-10-company">@StartupXYZ // 2021-2023</span>
+                                <div class="exp-10-duration">Duration: 2 Years</div>
+                                <p>→ Built MVPs, implemented real-time features</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="design-info">
+            <h3>Terminal Style</h3>
+            <p>macOS window, code editor look, developer aesthetic, dark theme</p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

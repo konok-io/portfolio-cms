@@ -36,6 +36,11 @@ class Blog extends Model
             'views'        => 'integer',
         ];
     }
+    
+    public function incrementViewCount(): void
+    {
+        $this->increment('views');
+    }
 
     protected static function booted(): void
     {
@@ -72,6 +77,21 @@ class Blog extends Model
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'blog_tag');
+    }
+    
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->whereNull('parent_id')->orderByDesc('created_at');
+    }
+    
+    public function allComments()
+    {
+        return $this->hasMany(Comment::class)->orderByDesc('created_at');
     }
 
     public function getFeaturedImageUrlAttribute(): ?string

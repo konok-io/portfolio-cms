@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             AboutSeeder::class,
             SettingSeeder::class,
             SeoSettingSeeder::class,
+            PageContentSeeder::class,
             SkillSeeder::class,
             ServiceSeeder::class,
             ExperienceSeeder::class,

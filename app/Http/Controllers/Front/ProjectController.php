@@ -37,6 +37,9 @@ class ProjectController extends Controller
     {
         abort_if(! $project->is_active, 404);
 
+        // Increment view count
+        $project->incrementViewCount();
+        
         $project->load(['category', 'gallery', 'tags']);
 
         // Get prev/next projects
@@ -87,5 +90,20 @@ class ProjectController extends Controller
         }
 
         return view('front.projects.show', compact('project', 'relatedProjects', 'prevProject', 'nextProject'));
+    }
+    
+    public function download(Project $project)
+    {
+        abort_if(! $project->is_active, 404);
+        
+        // Increment download count
+        $project->incrementDownloadCount();
+        
+        // If there's a project_url, redirect to it
+        if ($project->project_url) {
+            return redirect($project->project_url);
+        }
+        
+        return back();
     }
 }

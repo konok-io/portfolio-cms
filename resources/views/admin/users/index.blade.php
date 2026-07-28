@@ -46,6 +46,9 @@
                             @endif
                         </td>
                         <td class="text-end">
+                            <a href="{{ route('admin.users.export', $user) }}" class="btn btn-sm btn-outline-primary" title="Export User Data">
+                                <i class="fa-solid fa-download"></i>
+                            </a>
                             <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-pen"></i></a>
                             @if($user->id !== auth()->id())
                                 <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="d-inline" data-confirm-delete="Delete this user?">

@@ -37,6 +37,20 @@ class SettingController extends Controller
             'instagram' => ['nullable', 'url', 'max:255'],
             'youtube' => ['nullable', 'url', 'max:255'],
             'maintenance_mode' => ['nullable', 'in:1'],
+            'recaptcha_site_key' => ['nullable', 'string', 'max:255'],
+            'recaptcha_secret_key' => ['nullable', 'string', 'max:255'],
+            'recaptcha_enabled' => ['nullable', 'in:1'],
+            'google_analytics_id' => ['nullable', 'string', 'max:50'],
+            'google_tag_manager_id' => ['nullable', 'string', 'max:50'],
+            'analytics_enabled' => ['nullable', 'in:1'],
+            'mail_driver' => ['nullable', 'string', 'max:50'],
+            'mail_host' => ['nullable', 'string', 'max:255'],
+            'mail_port' => ['nullable', 'string', 'max:10'],
+            'mail_username' => ['nullable', 'string', 'max:255'],
+            'mail_password' => ['nullable', 'string', 'max:255'],
+            'mail_encryption' => ['nullable', 'string', 'max:10'],
+            'mail_from_address' => ['nullable', 'email', 'max:255'],
+            'mail_from_name' => ['nullable', 'string', 'max:255'],
         ]);
 
         if ($request->hasFile('logo')) {
@@ -53,11 +67,34 @@ class SettingController extends Controller
             $validated['favicon'] = $request->file('favicon')->store('settings', 'public');
         }
 
-        // Handle maintenance_mode checkbox (only sends 1 when checked)
+        // Handle maintenance_mode checkbox
         $validated['maintenance_mode'] = $request->has('maintenance_mode') ? 1 : 0;
+        
+        // Handle recaptcha_enabled checkbox
+        $validated['recaptcha_enabled'] = $request->has('recaptcha_enabled') ? 1 : 0;
+
+        // Handle analytics_enabled checkbox
+        $validated['analytics_enabled'] = $request->has('analytics_enabled') ? 1 : 0;
 
         $setting->update($validated);
 
         return redirect()->route('admin.settings.edit')->with('success', 'Settings updated successfully.');
+    }
+    
+    public function testMail(Request $request)
+    {
+        $setting = Setting::instance();
+        $setting->applyMailConfig();
+        
+        try {
+            \Illuminate\Support\Facades\Mail::raw('This is a test email from Portfolio CMS.', function ($message) use ($setting, $request) {
+                $message->to($request->input('test_email'))
+                    ->subject('Portfolio CMS - Test Email');
+            });
+            
+            return response()->json(['success' => true, 'message' => 'Test email sent successfully!']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Failed to send test email: ' . $e->getMessage()], 500);
+        }
     }
 }

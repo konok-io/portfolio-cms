@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design 8: Hexagonal/Circle Cards</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #fdf2f8;
+            min-height: 100vh;
+            padding: 60px 20px;
+        }
+        .pricing-section {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            color: #0f172a;
+            margin-bottom: 10px;
+            font-weight: 800;
+            font-size: 2.5rem;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 60px;
+        }
+        .pricing-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: white;
+            border-radius: 24px;
+            height: 100%;
+            transition: all 0.4s;
+        }
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(236, 72, 153, 0.15);
+        }
+        .pricing-card.featured {
+            background: white;
+            box-shadow: 0 25px 80px rgba(236, 72, 153, 0.25);
+            transform: scale(1.08);
+        }
+        .pricing-card.featured:hover {
+            transform: scale(1.08) translateY(-10px);
+        }
+        .price-circle {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #fbcfe8, #f9a8d4);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.2);
+        }
+        .price-circle span:first-child {
+            font-size: 0.75rem;
+            color: #be185d;
+            font-weight: 600;
+        }
+        .price-circle span:last-child {
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: #be185d;
+        }
+        .featured .price-circle {
+            background: linear-gradient(135deg, #ec4899, #db2777);
+            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.4);
+        }
+        .featured .price-circle span {
+            color: white;
+        }
+        .plan-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+        .plan-desc {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+        .features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .features li {
+            padding: 12px 0;
+            color: #475569;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .features li:last-child {
+            border-bottom: none;
+        }
+        .btn-select {
+            background: white;
+            border: 2px solid #ec4899;
+            color: #ec4899;
+            padding: 14px 35px;
+            border-radius: 30px;
+            width: 100%;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .btn-select:hover {
+            background: #ec4899;
+            color: white;
+        }
+        .featured .btn-select {
+            background: linear-gradient(135deg, #ec4899, #db2777);
+            border: none;
+            color: white;
+        }
+        .featured .btn-select:hover {
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.5);
+        }
+        .badge-best {
+            display: inline-block;
+            background: linear-gradient(135deg, #ec4899, #db2777);
+            color: white;
+            padding: 5px 18px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <section class="pricing-section">
+        <h1 class="section-title">Our Pricing</h1>
+        <p class="section-subtitle">Simple pricing. No surprises.</p>
+        
+        <div class="row g-5 justify-content-center">
+            <!-- Basic -->
+            <div class="col-lg-3 col-md-5">
+                <div class="pricing-card">
+                    <div class="price-circle">
+                        <span>FROM</span>
+                        <span>$9</span>
+                    </div>
+                    <h3 class="plan-name">Basic Plan</h3>
+                    <p class="plan-desc">Perfect for getting started</p>
+                    <ul class="features">
+                        <li><i class="fas fa-check-circle text-pink-400 me-2"></i> 5 Projects</li>
+                        <li><i class="fas fa-check-circle text-pink-400 me-2"></i> Email Support</li>
+                        <li><i class="fas fa-check-circle text-pink-400 me-2"></i> 5GB Storage</li>
+                        <li><i class="fas fa-check-circle text-pink-400 me-2"></i> Basic Analytics</li>
+                    </ul>
+                    <button class="btn-select">Select Plan</button>
+                </div>
+            </div>
+            
+            <!-- Pro -->
+            <div class="col-lg-3 col-md-5">
+                <div class="pricing-card featured">
+                    <span class="badge-best">BEST VALUE</span>
+                    <div class="price-circle">
+                        <span>FROM</span>
+                        <span>$29</span>
+                    </div>
+                    <h3 class="plan-name">Pro Plan</h3>
+                    <p class="plan-desc">For growing businesses</p>
+                    <ul class="features">
+                        <li><i class="fas fa-check-circle text-pink-500 me-2"></i> Unlimited Projects</li>
+                        <li><i class="fas fa-check-circle text-pink-500 me-2"></i> Priority Support</li>
+                        <li><i class="fas fa-check-circle text-pink-500 me-2"></i> 100GB Storage</li>
+                        <li><i class="fas fa-check-circle text-pink-500 me-2"></i> Advanced Analytics</li>
+                    </ul>
+                    <button class="btn-select">Select Plan</button>
+                </div>
+            </div>
+            
+            <!-- Enterprise -->
+            <div class="col-lg-3 col-md-5">
+                <div class="pricing-card">
+                    <div class="price-circle">
+                        <span>FROM</span>
+                        <span>$79</span>
+                    </div>
+                    <h3 class="plan-name">Enterprise</h3>
+                    <p class="plan-desc">For large organizations</p>
+                    <ul class="features">
+                        <li><i class="fas fa-check-circle text-pink-400 me-2"></i> Everything Unlimited</li>
+                        <li><i class="fas fa-check-circle text-pink-400 me-2"></i> Dedicated Manager</li>
+                        <li><i class="fas fa-check-circle text-pink-400 me-2"></i> Unlimited Storage</li>
+                        <li><i class="fas fa-check-circle text-pink-400 me-2"></i> Custom Solutions</li>
+                    </ul>
+                    <button class="btn-select">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

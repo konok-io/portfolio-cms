@@ -1,23 +1,23 @@
 @extends('front.layouts.app')
 
-@section('title', 'About ' . ($about->name ?? '') . ' | ' . ($siteSetting->site_name ?? 'Portfolio'))
+@section('title', page_content('about', 'page_title', app()->getLocale()) . ' | ' . ($siteSetting->site_name ?? 'Portfolio'))
 @section('meta_description', $about->short_intro ?? 'Learn more about me, my background and approach.')
 
 @section('content')
 
 {{-- Page header --}}
-<section class="section-padding section-alt">
+<section class="section-padding section-1">
     <div class="container">
-        <div class="text-center">
-            <span class="section-eyebrow">Get to know me</span>
-            <h1 class="section-title">About Me</h1>
+        <div class="text-center mb-5">
+            <span class="section-eyebrow">{{ page_content('about', 'page_eyebrow', app()->getLocale()) }}</span>
+            <h1 class="section-title">{{ page_content('about', 'page_title', app()->getLocale()) }}</h1>
             <p class="section-subtitle mx-auto">{{ $about->short_intro ?? 'A little about who I am and what I do.' }}</p>
         </div>
     </div>
 </section>
 
 {{-- Intro: photo + bio --}}
-<section class="section-padding">
+<section class="section-padding section-2">
     <div class="container">
         <div class="row gy-5 align-items-stretch" style="--img-col: 30%; --text-col: 70%;">
             <div class="reveal-on-scroll d-flex align-items-stretch" style="width: var(--img-col); flex: 0 0 var(--img-col);">
@@ -90,7 +90,7 @@
                     </div>
                 </div>
 
-                <a href="{{ route('home') }}#contact" class="btn btn-primary-custom">
+                <a href="{{ route('contact') }}" class="btn btn-primary-custom">
                     <i class="fa-solid fa-paper-plane me-2"></i>Hire Me
                 </a>
             </div>
@@ -100,7 +100,7 @@
 
 {{-- Skills --}}
 @if($skills->isNotEmpty())
-<section class="section-padding section-alt">
+<section class="section-padding section-1">
     <div class="container">
         <div class="text-center mb-5 reveal-on-scroll">
             <span class="section-eyebrow">My Skills</span>
@@ -129,24 +129,47 @@
 
 {{-- Experience --}}
 @if($experiences->isNotEmpty())
-<section class="section-padding">
+<section class="exp-section section-padding section-2">
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-4 reveal-on-scroll">
-                <span class="section-eyebrow">Career Path</span>
-                <h2 class="section-title">Work Experience</h2>
-                <p class="section-subtitle">Roles and companies that have shaped how I build software today.</p>
+                <div class="exp-header">
+                    <span class="exp-eyebrow">
+                        <i class="fas fa-briefcase"></i>
+                        {{ __('Career Path') }}
+                    </span>
+                    <h2 class="exp-title">{{ __('Work Experience') }}</h2>
+                    <p class="exp-subtitle">Roles and companies that have shaped how I build software today.</p>
+                </div>
             </div>
             <div class="col-lg-8">
-                <div class="timeline">
-                    @foreach($experiences as $experience)
-                        <div class="timeline-item reveal-on-scroll">
-                            <div class="d-flex justify-content-between flex-wrap gap-2">
-                                <h5 class="mb-1">{{ $experience->designation }}</h5>
-                                <span class="badge bg-primary-custom">{{ $experience->duration }}</span>
+                <div class="exp-timeline">
+                    @php
+                        $totalExperiences = $experiences->count();
+                    @endphp
+                    @foreach($experiences as $index => $experience)
+                        @php
+                            // Calculate position number: newest gets highest number
+                            $position = $totalExperiences - $index;
+                            $positionStr = str_pad($position, 2, '0', STR_PAD_LEFT);
+                        @endphp
+                        <div class="exp-card reveal-on-scroll">
+                            <div class="exp-card-left">
+                                <div class="exp-number">{{ $positionStr }}</div>
                             </div>
-                            <p class="text-primary-custom fw-semibold small mb-2">{{ $experience->company_name }}</p>
-                            <p class="text-muted small mb-0">{{ $experience->description }}</p>
+                            <div class="exp-card-right">
+                                <div class="exp-card-header">
+                                    <h3>{{ $experience->designation }}</h3>
+                                    <span class="exp-duration-badge">{{ $experience->duration }}</span>
+                                </div>
+                                <div class="exp-company">
+                                    <div class="exp-company-icon">
+                                        <i class="fas fa-building"></i>
+                                    </div>
+                                    <span>{{ $experience->company_name }}</span>
+                                </div>
+                                <p>{{ $experience->description }}</p>
+                            </div>
                         </div>
                     @endforeach
                 </div>
@@ -154,11 +177,189 @@
         </div>
     </div>
 </section>
+
+<style>
+    /* Experience Section - Premium Design */
+    .exp-section {
+        position: relative;
+    }
+    
+    .exp-header {
+        position: sticky;
+        top: 100px;
+    }
+    
+    .exp-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(37, 99, 235, 0.1);
+        color: var(--color-primary);
+        padding: 8px 16px;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+    
+    .exp-title {
+        font-family: var(--font-heading);
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--color-secondary);
+        margin-bottom: 15px;
+        line-height: 1.2;
+    }
+    
+    .exp-subtitle {
+        color: var(--text-muted);
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+    
+    .exp-timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+    
+    .exp-card {
+        background: var(--card-bg);
+        border-radius: 20px;
+        padding: 30px 35px;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        display: flex;
+        gap: 30px;
+        align-items: flex-start;
+        transition: all 0.3s ease;
+    }
+    
+    .exp-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.12);
+        border-color: rgba(37, 99, 235, 0.3);
+    }
+    
+    .exp-card-left {
+        flex-shrink: 0;
+    }
+    
+    .exp-number {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 1.5rem;
+        text-align: center;
+        line-height: 1;
+    }
+    
+    .exp-card-right {
+        flex: 1;
+    }
+    
+    .exp-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .exp-card-header h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--color-secondary);
+        margin: 0;
+    }
+    
+    .exp-duration-badge {
+        background: var(--bg-tertiary);
+        color: var(--text-secondary);
+        padding: 6px 14px;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+    
+    .exp-company {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+    
+    .exp-company-icon {
+        width: 28px;
+        height: 28px;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .exp-company-icon i {
+        color: #fff;
+        font-size: 0.75rem;
+    }
+    
+    .exp-company span {
+        color: var(--color-primary);
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+    
+    .exp-card-right p {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin: 0;
+    }
+    
+    /* Dark Mode - Experience */
+    [data-theme="dark"] .exp-eyebrow {
+        background: rgba(37, 99, 235, 0.15);
+        color: var(--color-primary-light);
+    }
+    
+    [data-theme="dark"] .exp-duration-badge {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--text-muted);
+    }
+    
+    [data-theme="dark"] .exp-card:hover {
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+    }
+    
+    @media (max-width: 768px) {
+        .exp-card {
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .exp-header {
+            position: relative;
+            top: 0;
+        }
+        
+        .exp-title {
+            font-size: 2rem;
+        }
+    }
+</style>
 @endif
 
 {{-- Education --}}
 @if($educations->isNotEmpty())
-<section class="section-padding">
+<section class="section-padding section-1">
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-4 reveal-on-scroll">

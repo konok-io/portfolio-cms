@@ -1,53 +1,62 @@
 @extends('front.layouts.app')
 
-@section('title', 'Services | ' . ($siteSetting->site_name ?? 'Portfolio'))
-@section('meta_description', 'Services I offer — end-to-end web development to help your idea reach production.')
+@section('title', page_content('services', 'page_title', app()->getLocale()) . ' | ' . ($siteSetting->site_name ?? 'Portfolio'))
+@section('meta_description', page_content('services', 'page_subtitle', app()->getLocale()))
 
 @section('content')
 
 {{-- Page header --}}
-<section class="section-padding section-alt">
+<section class="section-padding section-1">
     <div class="container">
-        <div class="text-center">
-            <span class="section-eyebrow">What I Offer</span>
-            <h1 class="section-title">Services</h1>
-            <p class="section-subtitle mx-auto">End-to-end web development services to help your idea reach production.</p>
+        <div class="text-center mb-5">
+            <span class="section-eyebrow">{{ page_content('services', 'page_eyebrow', app()->getLocale()) }}</span>
+            <h1 class="section-title">{{ page_content('services', 'page_title', app()->getLocale()) }}</h1>
+            <p class="section-subtitle mx-auto">{{ page_content('services', 'page_subtitle', app()->getLocale()) }}</p>
         </div>
     </div>
 </section>
 
 {{-- Services grid --}}
-<section class="section-padding">
+<section class="section-padding section-2">
     <div class="container">
         @if($services->isNotEmpty())
-            <div class="row g-4">
-                @foreach($services as $service)
-                    <div class="col-md-6 col-lg-4 reveal-on-scroll">
-                        <a href="{{ route('services.show', $service->slug ?? Str::slug($service->name)) }}" class="text-decoration-none">
-                            <div class="service-card h-100">
-                                <div class="icon-box">
+            <div class="services-grid">
+                @foreach($services as $index => $service)
+                    <div class="service-card reveal-on-scroll">
+                        <span class="service-number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                        
+                        <div class="card-left">
+                            <div class="icon-box">
+                                @if($service->svg_icon)
+                                    {!! $service->svg_icon !!}
+                                @else
                                     <i class="{{ $service->icon ?? 'fa-solid fa-gear' }}"></i>
-                                </div>
-                                <h5 class="mb-2">{{ $service->name }}</h5>
-                                <p class="text-muted small mb-3">{{ Str::limit($service->description, 100) }}</p>
-                                <span class="btn btn-sm btn-outline-custom mt-auto">Learn More <i class="fa-solid fa-arrow-right ms-1"></i></span>
+                                @endif
                             </div>
-                        </a>
+                            <a href="{{ route('services.show', $service->slug ?? Str::slug($service->name)) }}" class="btn-view">
+                                {{ page_content('services', 'page_button', app()->getLocale()) }} <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        
+                        <div class="card-right">
+                            <h3>{{ $service->name }}</h3>
+                            <p>{{ Str::limit($service->description, 120) }}</p>
+                        </div>
                     </div>
                 @endforeach
             </div>
         @else
             <div class="text-center text-muted py-5">
                 <i class="fa-solid fa-gear fa-2x mb-3 d-block"></i>
-                No services have been added yet.
+                {{ page_content('services', 'empty_text', app()->getLocale()) }}
             </div>
         @endif
 
         {{-- Call to action --}}
         <div class="text-center mt-5 reveal-on-scroll">
-            <h4 class="mb-3">Have a project in mind?</h4>
-            <a href="{{ route('home') }}#contact" class="btn btn-primary-custom">
-                <i class="fa-solid fa-paper-plane me-2"></i>Hire Me
+            <h4 class="mb-3">{{ page_content('services', 'cta_heading', app()->getLocale()) }}</h4>
+            <a href="{{ route('quote') }}" class="btn btn-primary-custom">
+                <i class="fa-solid fa-paper-plane me-2"></i>{{ page_content('services', 'cta_button', app()->getLocale()) }}
             </a>
         </div>
     </div>

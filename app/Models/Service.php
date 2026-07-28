@@ -16,6 +16,7 @@ class Service extends Model
         'name',
         'slug',
         'icon',
+        'svg_icon',
         'description',
         'content',
         'image',
@@ -55,5 +56,15 @@ class Service extends Model
     public function getRouteKeyName(): string
     {
         return 'slug';
+    }
+
+    public function getDisplayIconAttribute(): ?string
+    {
+        return $this->svg_icon ?? $this->icon;
+    }
+
+    public function hasSvgIcon(): bool
+    {
+        return !empty($this->svg_icon);
     }
 }

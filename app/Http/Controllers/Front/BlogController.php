@@ -41,8 +41,8 @@ class BlogController extends Controller
     {
         abort_if($blog->status !== 'published', 404);
 
-        $blog->increment('views');
-        $blog->load(['category', 'author']);
+        $blog->incrementViewCount();
+        $blog->load(['category', 'author', 'allComments', 'allComments.replies']);
 
         $relatedBlogs = Blog::published()
             ->where('id', '!=', $blog->id)

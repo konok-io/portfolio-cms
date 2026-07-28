@@ -27,6 +27,9 @@ class ResumeSetting extends Model
         'include_education',
         'include_projects',
         'include_certifications',
+        'cv_file',
+        'cv_filename',
+        'use_custom_cv',
     ];
 
     protected $casts = [
@@ -36,6 +39,7 @@ class ResumeSetting extends Model
         'include_education' => 'boolean',
         'include_projects' => 'boolean',
         'include_certifications' => 'boolean',
+        'use_custom_cv' => 'boolean',
         'heading_color' => 'string',
         'text_color' => 'string',
         'background_color' => 'string',
@@ -44,6 +48,14 @@ class ResumeSetting extends Model
         'footer_bg_color' => 'string',
         'footer_text_color' => 'string',
     ];
+
+    /**
+     * Get CV file URL
+     */
+    public function getCvFileUrlAttribute(): ?string
+    {
+        return $this->cv_file ? asset('storage/' . $this->cv_file) : null;
+    }
 
     /**
      * Get single instance

@@ -1,22 +1,22 @@
 @extends('front.layouts.app')
-@section('title', 'Contact | ' . ($siteSetting->site_name ?? 'Portfolio CMS'))
-@section('meta_description', 'Get in touch with us. We would love to hear from you. Feel free to send me a message about your project or inquiry.')
+@section('title', page_content('contact', 'page_title', app()->getLocale()) . ' | ' . ($siteSetting->site_name ?? 'Portfolio CMS'))
+@section('meta_description', page_content('contact', 'page_subtitle', app()->getLocale()))
 
 @section('content')
-<section class="contact-page-section">
+<section class="contact-page-section section-padding section-1">
     <div class="container py-5">
         {{-- Breadcrumb --}}
         <nav aria-label="breadcrumb" class="mb-4">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fa-solid fa-home"></i></a></li>
-                <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                <li class="breadcrumb-item active" aria-current="page">{{ page_content('contact', 'page_title', app()->getLocale()) }}</li>
             </ol>
         </nav>
 
         <div class="text-center mb-5">
-            <span class="section-eyebrow">Get In Touch</span>
-            <h1 class="section-title">Let's Work Together</h1>
-            <p class="section-subtitle mx-auto">Have a project in mind? Fill out the form below and I'll get back to you within 24 hours.</p>
+            <span class="section-1eyebrow">{{ page_content('contact', 'page_eyebrow', app()->getLocale()) }}</span>
+            <h1 class="section-1title">{{ page_content('contact', 'page_title', app()->getLocale()) }}</h1>
+            <p class="section-1subtitle mx-auto">{{ page_content('contact', 'page_subtitle', app()->getLocale()) }}</p>
         </div>
 
         <div class="row g-5">
@@ -28,6 +28,12 @@
 
                     <form action="{{ route('contact.store') }}" method="POST" class="contact-form">
                         @csrf
+                        
+                        {{-- Honeypot spam protection - hidden from users --}}
+                        <div class="honeypot-field" aria-hidden="true">
+                            <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+                        </div>
+                        
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="name" class="form-label">Your Name <span class="text-danger">*</span></label>
@@ -48,7 +54,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label for="phone" class="form-label">Phone Number</label>
+                                <label for="phone" class="form-label">{{ page_content('contact', 'form_phone', app()->getLocale()) }}</label>
                                 <input type="tel" class="form-control @error('phone') is-invalid @enderror" 
                                        id="phone" name="phone" value="{{ old('phone') }}">
                                 @error('phone')
@@ -57,7 +63,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label for="subject" class="form-label">Subject</label>
+                                <label for="subject" class="form-label">{{ page_content('contact', 'form_subject', app()->getLocale()) }}</label>
                                 <input type="text" class="form-control @error('subject') is-invalid @enderror" 
                                        id="subject" name="subject" value="{{ old('subject') }}">
                                 @error('subject')
@@ -66,7 +72,7 @@
                             </div>
 
                             <div class="col-12">
-                                <label for="message" class="form-label">Your Message <span class="text-danger">*</span></label>
+                                <label for="message" class="form-label">{{ page_content('contact', 'form_message', app()->getLocale()) }} <span class="text-danger">*</span></label>
                                 <textarea class="form-control @error('message') is-invalid @enderror" 
                                           id="message" name="message" rows="5" required>{{ old('message') }}</textarea>
                                 @error('message')
@@ -75,8 +81,16 @@
                             </div>
 
                             <div class="col-12">
+                                @if($siteSetting->isRecaptchaEnabled())
+                                    <div class="mb-3">
+                                        <div class="g-recaptcha" data-sitekey="{{ $siteSetting->recaptcha_site_key }}"></div>
+                                        @error('recaptcha')
+                                            <div class="text-danger small mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                @endif
                                 <button type="submit" class="btn btn-primary-custom btn-lg">
-                                    <i class="fa-solid fa-paper-plane me-2"></i>Send Message
+                                    <i class="fa-solid fa-paper-plane me-2"></i>{{ page_content('contact', 'form_button', app()->getLocale()) }}
                                 </button>
                             </div>
                         </div>
@@ -140,6 +154,9 @@
 @endsection
 
 @push('scripts')
+@if($siteSetting->isRecaptchaEnabled())
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+@endif
 @if($siteSetting->google_map)
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -185,11 +202,11 @@ document.addEventListener('DOMContentLoaded', function() {
 @push('styles')
 <style>
 .contact-page-section {
-    background: linear-gradient(180deg, #ffffff 0%, #f0f7ff 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #f5f5fa 100%);
     min-height: 100vh;
 }
 [data-theme="dark"] .contact-page-section {
-    background: linear-gradient(180deg, #0A0A1F 0%, #12102E 100%);
+    background: linear-gradient(180deg, #0A0A1F 0%, #161630 100%);
 }
 .contact-form-card,
 .contact-info-card {

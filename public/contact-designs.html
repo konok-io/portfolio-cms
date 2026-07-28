@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কন্টাক্ট সেকশন ডিজাইন কালেকশন - ২০টি ডাবল কলাম ডিজাইন</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans Bengali', sans-serif; background: #0f0f23; color: #ffffff; line-height: 1.6; }
+        
+        .design-card { background: linear-gradient(145deg, #1a1a2e, #161625); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; overflow: hidden; margin-bottom: 40px; transition: all 0.3s ease; }
+        .design-card:hover { transform: translateY(-5px); box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2); border-color: rgba(99, 102, 241, 0.3); }
+        .design-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; }
+        .design-number { background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 50px; font-size: 14px; font-weight: 600; }
+        .design-preview { padding: 40px; }
+        
+        /* Common Styles */
+        .contact-section { border-radius: 24px; padding: 50px; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .info-card { padding: 40px; border-radius: 20px; }
+        .form-card { padding: 40px; border-radius: 20px; }
+        .contact-input { width: 100%; padding: 16px 20px; border-radius: 12px; border: 1px solid; transition: all 0.3s; }
+        .contact-btn { padding: 16px 40px; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; border: none; }
+        .contact-btn:hover { transform: translateY(-2px); }
+        .contact-icon { width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+        .info-item { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+        
+        /* ===== DESIGN 1: Glass Morphism ===== */
+        .d1-bg { background: linear-gradient(135deg, #1a1a2e 0%, #2d1f47 100%); position: relative; overflow: hidden; }
+        .d1-bg::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%); animation: float 6s ease-in-out infinite; }
+        .d1-info { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .d1-form { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .d1-input { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.1); color: #fff; }
+        .d1-input:focus { border-color: #a855f7; background: rgba(255, 255, 255, 0.1); outline: none; }
+        .d1-input::placeholder { color: rgba(255, 255, 255, 0.5); }
+        .d1-btn { background: linear-gradient(135deg, #a855f7, #ec4899); color: #fff; }
+        .d1-icon { background: linear-gradient(135deg, #a855f7, #ec4899); }
+        
+        /* ===== DESIGN 2: Gradient Mesh ===== */
+        .d2-bg { background: #0a0a1a; position: relative; overflow: hidden; }
+        .d2-mesh { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.3) 0%, transparent 50%); }
+        .d2-content { position: relative; z-index: 1; }
+        .d2-info { background: linear-gradient(180deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); border: 1px solid rgba(59, 130, 246, 0.2); }
+        .d2-form { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .d2-input { background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.1); color: #fff; }
+        .d2-input:focus { border-color: #3b82f6; background: rgba(59, 130, 246, 0.1); outline: none; }
+        .d2-btn { background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: #fff; }
+        .d2-icon { background: rgba(59, 130, 246, 0.2); border: 2px solid rgba(59, 130, 246, 0.5); border-radius: 50%; }
+        
+        /* ===== DESIGN 3: Cyberpunk ===== */
+        .d3-bg { background: #050510; position: relative; }
+        .d3-bg::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, #00f0ff, #b000ff, #00f0ff); animation: borderGlow 3s linear infinite; }
+        .d3-grid { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px); background-size: 50px 50px; }
+        .d3-content { position: relative; z-index: 1; }
+        .d3-info { background: rgba(0, 0, 0, 0.3); border: 1px solid #00f0ff; }
+        .d3-form { background: rgba(0, 240, 255, 0.05); border: 1px solid rgba(0, 240, 255, 0.2); }
+        .d3-input { background: rgba(0, 0, 0, 0.5); border: 1px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; }
+        .d3-input:focus { outline: none; box-shadow: 0 0 20px rgba(0, 240, 255, 0.3); }
+        .d3-input::placeholder { color: rgba(0, 240, 255, 0.5); }
+        .d3-btn { background: transparent; border: 2px solid #b000ff; color: #b000ff; text-transform: uppercase; letter-spacing: 2px; }
+        .d3-btn:hover { background: #b000ff; color: #fff; }
+        .d3-icon { background: rgba(0, 240, 255, 0.1); border: 2px solid #00f0ff; border-radius: 50%; animation: pulse 2s infinite; }
+        
+        /* ===== DESIGN 4: Elegant Minimal ===== */
+        .d4-bg { background: linear-gradient(135deg, #fafafa, #f0f0f0); }
+        .d4-info { background: #fff; }
+        .d4-form { background: #fff; }
+        .d4-input { background: #f5f5f5; border: 2px solid #e5e5e5; color: #1a1a1a; }
+        .d4-input:focus { border-color: #1a1a1a; outline: none; }
+        .d4-btn { background: #1a1a1a; color: #fff; }
+        .d4-btn:hover { background: #333; }
+        .d4-line { width: 60px; height: 4px; background: #1a1a1a; border-radius: 2px; }
+        .d4-dot { width: 12px; height: 12px; background: #1a1a1a; border-radius: 50%; flex-shrink: 0; }
+        
+        /* ===== DESIGN 5: Neon Glow ===== */
+        .d5-bg { background: #0d0d0d; position: relative; overflow: hidden; }
+        .d5-glow-1 { position: absolute; width: 300px; height: 300px; background: #ff006e; border-radius: 50%; filter: blur(100px); opacity: 0.5; top: -100px; left: -100px; }
+        .d5-glow-2 { position: absolute; width: 300px; height: 300px; background: #3a86ff; border-radius: 50%; filter: blur(100px); opacity: 0.5; bottom: -100px; right: -100px; }
+        .d5-content { position: relative; z-index: 1; }
+        .d5-info { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 0, 110, 0.3); }
+        .d5-form { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .d5-input { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.2); color: #fff; }
+        .d5-input:focus { border-color: #ff006e; box-shadow: 0 0 30px rgba(255, 0, 110, 0.2); outline: none; }
+        .d5-btn { background: linear-gradient(135deg, #ff006e, #8338ec); color: #fff; }
+        .d5-icon { background: rgba(255, 0, 110, 0.1); border: 1px solid rgba(255, 0, 110, 0.5); border-radius: 16px; }
+        
+        /* ===== DESIGN 6: Split Colors ===== */
+        .d6-container { display: grid; grid-template-columns: 1fr 1fr; border-radius: 24px; overflow: hidden; }
+        .d6-left { background: linear-gradient(180deg, #1e1e2e, #2d1f3d); padding: 50px; display: flex; flex-direction: column; justify-content: center; }
+        .d6-right { background: #fff; padding: 50px; }
+        .d6-input { background: #f5f5f5; border: 2px solid transparent; color: #1a1a1a; }
+        .d6-input:focus { border-color: #1e1e2e; background: #fff; outline: none; }
+        .d6-btn { background: #1e1e2e; color: #fff; }
+        .d6-social { width: 50px; height: 50px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s; text-decoration: none; color: #fff; }
+        .d6-social:hover { background: rgba(255, 255, 255, 0.2); transform: translateY(-3px); color: #fff; }
+        
+        /* ===== DESIGN 7: Card Stack ===== */
+        .d7-bg { background: #f8fafc; }
+        .d7-info { background: #fff; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); }
+        .d7-form { background: #fff; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); position: relative; }
+        .d7-form::before { content: ''; position: absolute; top: -10px; left: 20px; right: 20px; height: 20px; background: rgba(0, 0, 0, 0.02); border-radius: 20px 20px 0 0; }
+        .d7-input { background: #f8fafc; border: 2px solid #e2e8f0; color: #1a1a1a; }
+        .d7-input:focus { border-color: #6366f1; outline: none; }
+        .d7-btn { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff; }
+        .d7-info-icon { background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 12px; }
+        
+        /* ===== DESIGN 8: Floating Shapes ===== */
+        .d8-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); position: relative; overflow: hidden; }
+        .d8-shape { position: absolute; border-radius: 50%; background: rgba(255, 255, 255, 0.1); animation: floatShape 6s ease-in-out infinite; }
+        .d8-shape-1 { width: 200px; height: 200px; top: -100px; right: -50px; animation-delay: 0s; }
+        .d8-shape-2 { width: 150px; height: 150px; bottom: -50px; left: -50px; animation-delay: 2s; }
+        .d8-content { position: relative; z-index: 1; }
+        .d8-info { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .d8-form { background: rgba(255, 255, 255, 0.9); }
+        .d8-input { background: #fff; border: none; color: #1a1a1a; }
+        .d8-input:focus { outline: none; background: #fff; }
+        .d8-btn { background: #764ba2; color: #fff; }
+        
+        /* ===== DESIGN 9: Timeline Style ===== */
+        .d9-bg { background: #0a0a0a; }
+        .d9-info { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); position: relative; }
+        .d9-timeline { padding-left: 30px; }
+        .d9-timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, #f59e0b, #ef4444, #8b5cf6); }
+        .d9-timeline-item { position: relative; padding: 15px 0; }
+        .d9-timeline-item::before { content: ''; position: absolute; left: -28px; top: 22px; width: 12px; height: 12px; border-radius: 50%; border: 2px solid; }
+        .d9-form { background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .d9-input { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.1); color: #fff; }
+        .d9-input:focus { border-color: #f59e0b; outline: none; }
+        .d9-btn { background: linear-gradient(135deg, #f59e0b, #ef4444); color: #fff; }
+        
+        /* ===== DESIGN 10: 3D Card Effect ===== */
+        .d10-bg { background: #f0f4f8; perspective: 1000px; }
+        .d10-info { background: linear-gradient(135deg, #0ea5e9, #06b6d4); border-radius: 20px; padding: 40px; }
+        .d10-form { background: #fff; border-radius: 20px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); transform: rotateX(5deg); transition: transform 0.5s; }
+        .d10-form:hover { transform: rotateX(0deg); }
+        .d10-input { background: #f8fafc; border: 2px solid #e2e8f0; color: #1a1a1a; }
+        .d10-input:focus { border-color: #0ea5e9; box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1); outline: none; }
+        .d10-btn { background: linear-gradient(135deg, #0ea5e9, #06b6d4); color: #fff; box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3); }
+        
+        /* ===== DESIGN 11: Brutalist ===== */
+        .d11-bg { background: #fff; border: 4px solid #000; }
+        .d11-info { background: #000; padding: 40px; }
+        .d11-form { border: 3px solid #000; padding: 40px; }
+        .d11-input { background: #fff; border: 3px solid #000; border-radius: 0; color: #000; font-weight: 500; }
+        .d11-input:focus { border-color: #ff0000; outline: none; }
+        .d11-btn { background: #000; color: #fff; border-radius: 0; font-weight: 800; text-transform: uppercase; }
+        .d11-btn:hover { background: #ff0000; border-color: #ff0000; }
+        .d11-block { background: #000; color: #fff; padding: 30px; font-weight: 800; font-size: 48px; display: inline-block; margin-bottom: 20px; }
+        
+        /* ===== DESIGN 12: Soft Gradient ===== */
+        .d12-bg { background: linear-gradient(135deg, #fee2e2, #fef3c7, #dbeafe); }
+        .d12-info { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.5); }
+        .d12-form { background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(255, 255, 255, 0.5); }
+        .d12-input { background: rgba(255, 255, 255, 0.9); border: 2px solid rgba(0, 0, 0, 0.1); color: #1a1a1a; }
+        .d12-input:focus { border-color: #f43f5e; outline: none; }
+        .d12-btn { background: linear-gradient(135deg, #f43f5e, #e11d48); color: #fff; }
+        .d12-circle { width: 100px; height: 100px; background: linear-gradient(135deg, #f43f5e, #fb923c); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; color: #fff; }
+        
+        /* ===== DESIGN 13: Dark Elegant ===== */
+        .d13-bg { background: linear-gradient(135deg, #0c0c1d, #1a1a2e); }
+        .d13-info { border: 1px solid rgba(255, 255, 255, 0.1); }
+        .d13-form { border: 1px solid rgba(255, 255, 255, 0.1); }
+        .d13-input { background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.1); color: #fff; }
+        .d13-input:focus { border-color: #fbbf24; outline: none; }
+        .d13-btn { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #0c0c1d; }
+        .d13-icon { background: linear-gradient(135deg, #fbbf24, #f59e0b); border-radius: 50%; }
+        
+        /* ===== DESIGN 14: Orbital ===== */
+        .d14-bg { background: #0a0a0a; position: relative; overflow: hidden; }
+        .d14-orbit { position: absolute; border: 1px dashed rgba(139, 92, 246, 0.3); border-radius: 50%; }
+        .d14-orbit-1 { width: 400px; height: 400px; top: 50%; left: 25%; transform: translate(-50%, -50%); }
+        .d14-orbit-2 { width: 500px; height: 500px; top: 50%; left: 25%; transform: translate(-50%, -50%); animation: rotateOrbit 20s linear infinite; }
+        .d14-orbit-3 { width: 600px; height: 600px; top: 50%; left: 25%; transform: translate(-50%, -50%); animation: rotateOrbit 30s linear infinite reverse; }
+        .d14-center { position: absolute; top: 50%; left: 25%; transform: translate(-50%, -50%); width: 100px; height: 100px; background: linear-gradient(135deg, #8b5cf6, #a855f7); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; z-index: 1; }
+        .d14-content { position: relative; z-index: 2; }
+        .d14-info { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(139, 92, 246, 0.3); }
+        .d14-form { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .d14-input { background: rgba(255, 255, 255, 0.05); border-color: rgba(139, 92, 246, 0.3); color: #fff; }
+        .d14-input:focus { border-color: #8b5cf6; outline: none; }
+        .d14-btn { background: linear-gradient(135deg, #8b5cf6, #a855f7); color: #fff; }
+        
+        /* ===== DESIGN 15: Tech Grid ===== */
+        .d15-bg { background: #0f172a; position: relative; overflow: hidden; }
+        .d15-grid { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(56, 189, 248, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(56, 189, 248, 0.1) 1px, transparent 1px); background-size: 30px 30px; }
+        .d15-content { position: relative; z-index: 1; }
+        .d15-info { background: rgba(56, 189, 248, 0.05); border: 1px solid rgba(56, 189, 248, 0.2); }
+        .d15-form { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .d15-input { background: rgba(56, 189, 248, 0.05); border-color: rgba(56, 189, 248, 0.2); color: #fff; }
+        .d15-input:focus { border-color: #38bdf8; outline: none; }
+        .d15-btn { background: linear-gradient(135deg, #38bdf8, #0ea5e9); color: #0f172a; }
+        .d15-hexagon { width: 80px; height: 80px; background: linear-gradient(135deg, #38bdf8, #0ea5e9); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); display: flex; align-items: center; justify-content: center; font-size: 30px; color: #0f172a; flex-shrink: 0; }
+        
+        /* ===== DESIGN 16: Organic Shape ===== */
+        .d16-bg { background: linear-gradient(135deg, #134e5e, #71b280); position: relative; overflow: hidden; }
+        .d16-blob { position: absolute; background: rgba(255, 255, 255, 0.1); border-radius: 50%; filter: blur(40px); }
+        .d16-blob-1 { width: 300px; height: 300px; top: -100px; right: -50px; }
+        .d16-blob-2 { width: 200px; height: 200px; bottom: -50px; left: 20%; }
+        .d16-content { position: relative; z-index: 1; }
+        .d16-info { background: rgba(255, 255, 255, 0.95); }
+        .d16-form { background: rgba(255, 255, 255, 0.95); }
+        .d16-input { background: #f0fdf4; border: 2px solid #bbf7d0; color: #1a1a1a; }
+        .d16-input:focus { border-color: #71b280; outline: none; }
+        .d16-btn { background: linear-gradient(135deg, #134e5e, #71b280); color: #fff; }
+        .d16-icon-circle { background: linear-gradient(135deg, #134e5e, #71b280); }
+        
+        /* ===== DESIGN 17: Double Border ===== */
+        .d17-bg { background: #1a1a2e; }
+        .d17-info { border: 2px solid rgba(255, 255, 255, 0.1); }
+        .d17-form { border: 2px solid rgba(255, 255, 255, 0.1); }
+        .d17-input { background: transparent; border: none; border-bottom: 2px solid rgba(255, 255, 255, 0.2); border-radius: 0; color: #fff; padding-left: 0; }
+        .d17-input:focus { border-bottom-color: #f472b6; outline: none; }
+        .d17-btn { background: transparent; border: 2px solid #f472b6; color: #f472b6; border-radius: 50px; }
+        .d17-btn:hover { background: #f472b6; color: #1a1a2e; }
+        .d17-accent { width: 100px; height: 4px; background: linear-gradient(90deg, #f472b6, #a78bfa); border-radius: 2px; }
+        .d17-icon { background: linear-gradient(135deg, #f472b6, #a78bfa); border-radius: 50%; }
+        
+        /* ===== DESIGN 18: Glass Split ===== */
+        .d18-container { display: grid; grid-template-columns: 1fr 1.2fr; border-radius: 24px; overflow: hidden; }
+        .d18-left { background: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(139, 92, 246, 0.8)); backdrop-filter: blur(20px); padding: 50px; display: flex; flex-direction: column; justify-content: center; }
+        .d18-right { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); padding: 50px; }
+        .d18-input { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; }
+        .d18-input::placeholder { color: rgba(255, 255, 255, 0.6); }
+        .d18-input:focus { background: rgba(255, 255, 255, 0.15); outline: none; }
+        .d18-btn { background: #fff; color: #764ba2; font-weight: 700; }
+        
+        /* ===== DESIGN 19: Layered Cards ===== */
+        .d19-bg { background: linear-gradient(135deg, #f43f5e, #fb923c); position: relative; }
+        .d19-info { background: rgba(255, 255, 255, 0.95); position: relative; z-index: 2; }
+        .d19-form { background: rgba(255, 255, 255, 0.95); position: relative; z-index: 2; }
+        .d19-input { background: rgba(255, 255, 255, 0.9); border: 2px solid rgba(0, 0, 0, 0.1); color: #1a1a1a; }
+        .d19-input:focus { border-color: #f43f5e; outline: none; }
+        .d19-btn { background: #f43f5e; color: #fff; }
+        
+        /* ===== DESIGN 20: Animated Border ===== */
+        .d20-bg { background: #0a0a1a; position: relative; overflow: hidden; }
+        .d20-border { position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 24px; padding: 3px; background: linear-gradient(90deg, #00f0ff, #00ff88, #00f0ff); background-size: 200% 100%; animation: borderFlow 3s linear infinite; -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+        .d20-content { position: relative; z-index: 1; }
+        .d20-info { background: rgba(0, 0, 0, 0.3); }
+        .d20-form { background: rgba(0, 0, 0, 0.3); }
+        .d20-input { background: rgba(255, 255, 255, 0.03); border-color: rgba(0, 240, 255, 0.2); color: #fff; }
+        .d20-input:focus { border-color: #00f0ff; box-shadow: 0 0 20px rgba(0, 240, 255, 0.2); outline: none; }
+        .d20-btn { background: transparent; border: 2px solid #00ff88; color: #00ff88; }
+        .d20-btn:hover { background: #00ff88; color: #0a0a1a; }
+        .d20-icon { background: rgba(0, 240, 255, 0.1); border: 2px solid #00f0ff; border-radius: 50%; animation: iconPulse 2s infinite; }
+        
+        /* Animations */
+        @keyframes float { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(30px, -30px); } }
+        @keyframes borderGlow { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+        @keyframes floatShape { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-30px) rotate(180deg); } }
+        @keyframes rotateOrbit { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+        @keyframes borderFlow { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+        @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.4); } 50% { box-shadow: 0 0 0 20px rgba(0, 240, 255, 0); } }
+        @keyframes iconPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.4); } 50% { box-shadow: 0 0 0 30px rgba(0, 240, 255, 0); } }
+        
+        /* Nav Dots */
+        .nav-dots { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 10px; z-index: 1000; }
+        .nav-dot { width: 12px; height: 12px; background: rgba(255, 255, 255, 0.3); border-radius: 50%; cursor: pointer; transition: all 0.3s; }
+        .nav-dot:hover, .nav-dot.active { background: #667eea; transform: scale(1.2); }
+        
+        /* Header */
+        .header-section { background: linear-gradient(135deg, #1a1a2e, #2d1f47); padding: 80px 40px; text-align: center; margin-bottom: 40px; }
+        .header-section h1 { font-size: 48px; font-weight: 800; margin-bottom: 20px; background: linear-gradient(135deg, #667eea, #764ba2, #f093fb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .header-section p { font-size: 20px; color: rgba(255, 255, 255, 0.7); max-width: 600px; margin: 0 auto; }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .contact-grid { grid-template-columns: 1fr; gap: 30px; }
+            .d6-container, .d18-container { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .design-preview { padding: 20px; }
+            .contact-section { padding: 30px; }
+            .info-card, .form-card { padding: 30px; }
+            .header-section h1 { font-size: 32px; }
+        }
+        
+        /* Text Colors */
+        .text-dark { color: #1a1a1a; }
+        .text-muted-dark { color: #666; }
+    </style>
+</head>
+<body>
+    <!-- Navigation Dots -->
+    <div class="nav-dots">
+        <div class="nav-dot active" onclick="scrollToDesign(1)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(2)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(3)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(4)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(5)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(6)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(7)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(8)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(9)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(10)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(11)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(12)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(13)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(14)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(15)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(16)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(17)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(18)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(19)"></div>
+        <div class="nav-dot" onclick="scrollToDesign(20)"></div>
+    </div>
+    
+    <div class="header-section">
+        <h1>কন্টাক্ট সেকশন ডিজাইন কালেকশন</h1>
+        <p>২০টি ইউনিক ডাবল কলাম ডিজাইন - বামে তথ্য, ডানে ফর্ম</p>
+    </div>
+    
+    <div class="container px-4">
+        
+        <!-- DESIGN 1 -->
+        <div class="design-card" id="design1">
+            <div class="design-header"><h3>DESIGN 1: Glass Morphism</h3><span class="design-number">01 / 20</span></div>
+            <div class="design-preview">
+                <div class="contact-section d1-bg">
+                    <div class="contact-grid">
+                        <div class="info-card d1-info">
+                            <h2 class="mb-4" style="font-size: 32px; font-weight: 700;">যোগাযোগ করুন</h2>
+                            <p class="mb-4" style="color: rgba(255,255,255,0.7);">আপনার যেকোনো প্রশ্ন বা প্রয়োজনে আমাদের সাথে যোগাযোগ করুন।</p>
+                            <div class="info-item">
+                                <div class="contact-icon d1-icon"><i class="fa-solid fa-envelope"></i></div>
+                                <div><small style="color: rgba(255,255,255,0.5);">ইমেইল</small><div style="font-weight: 600;">hello@example.com</div></div>
+                            </div>
+                            <div class="info-item">
+                                <div class="contact-icon d1-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div><small style="color: rgba(255,255,255,0.5);">ফোন</small><div style="font-weight: 600;">+880 1234 567890</div></div>
+                            </div>
+                            <div class="info-item">
+                                <div class="contact-icon d1-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                <div><small style="color: rgba(255,255,255,0.5);">ঠিকানা</small><div style="font-weight: 600;">ঢাকা, বাংলাদেশ</div></div>
+                            </div>
+                        </div>
+                        <div class="form-card d1-form">
+                            <h4 class="mb-4">মেসেজ পাঠান</h4>
+                            <input type="text" class="contact-input d1-input mb-3" placeholder="আপনার নাম">
+                            <input type="email" class="contact-input d1-input mb-3" placeholder="ইমেইল ঠিকানা">
+                            <input type="text" class="contact-input d1-input mb-3" placeholder="সাবজেক্ট">
+                            <textarea class="contact-input d1-input mb-4" rows="4" placeholder="আপনার মেসেজ লিখুন"></textarea>
+                            <button class="contact-btn d1-btn w-100"><i class="fa-solid fa-paper-plane"></i> মেসেজ পাঠান</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 2 -->
+        <div class="design-card" id="design2">
+            <div class="design-header" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6);"><h3>DESIGN 2: Gradient Mesh</h3><span class="design-number">02 / 20</span></div>
+            <div class="design-preview">
+                <div class="contact-section d2-bg">
+                    <div class="d2-mesh"></div>
+                    <div class="contact-grid d2-content">
+                        <div class="info-card d2-info">
+                            <div class="d-flex align-items-center gap-3 mb-4">
+                                <div class="contact-icon d2-icon" style="width:80px;height:80px;font-size:28px;"><i class="fa-solid fa-headset"></i></div>
+                                <h2 style="font-size: 28px; font-weight: 700;">যোগাযোগ করুন</h2>
+                            </div>
+                            <p class="mb-4" style="color: rgba(255,255,255,0.7);">আপনার যেকোনো প্রশ্ন বা পরামর্শের জন্য আমাদের সাথে যোগাযোগ করুন।</p>
+                            <div class="info-item">
+                                <div class="contact-icon d2-icon"><i class="fa-solid fa-envelope"></i></div>
+                                <div style="font-weight: 600;">hello@example.com</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="contact-icon d2-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div style="font-weight: 600;">+880 1234 567890</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="contact-icon d2-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                <div style="font-weight: 600;">ঢাকা, বাংলাদেশ</div>
+                            </div>
+                        </div>
+                        <div class="form-card d2-form">
+                            <h4 class="mb-4">মেসেজ পাঠান</h4>
+                            <div class="row g-3">
+                                <div class="col-md-6"><input type="text" class="contact-input d2-input" placeholder="নাম"></div>
+                                <div class="col-md-6"><input type="email" class="contact-input d2-input" placeholder="ইমেইল"></div>
+                                <div class="col-12"><input type="text" class="contact-input d2-input" placeholder="সাবজেক্ট"></div>
+                                <div class="col-12"><textarea class="contact-input d2-input" rows="3" placeholder="মেসেজ"></textarea></div>
+                                <div class="col-12"><button class="contact-btn d2-btn w-100"><i class="fa-solid fa-paper-plane"></i> পাঠান</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 3 -->
+        <div class="design-card" id="design3">
+            <div class="design-header" style="background: linear-gradient(135deg, #00f0ff, #b000ff);"><h3>DESIGN 3: Cyberpunk</h3><span class="design-number">03 / 20</span></div>
+            <div class="design-preview">
+                <div class="contact-section d3-bg">
+                    <div class="d3-grid"></div>
+                    <div class="contact-grid d3-content">
+                        <div class="info-card d3-info text-center">
+                            <div class="contact-icon d3-icon mx-auto mb-4" style="width:100px;height:100px;font-size:40px;"><i class="fa-solid fa-headset"></i></div>
+                            <h2 style="font-size: 32px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; color: #00f0ff;">যোগাযোগ</h2>
+                            <p style="color: rgba(255,255,255,0.6); margin-top: 16px;">24/7 সাপোর্ট উপলব্ধ</p>
+                            <div class="mt-4">
+                                <p style="color: #00f0ff;"><i class="fa-solid fa-envelope me-2"></i>hello@example.com</p>
+                                <p style="color: #b000ff;"><i class="fa-solid fa-phone me-2"></i>+880 1234 567890</p>
+                            </div>
+                        </div>
+                        <div class="form-card d3-form">
+                            <h4 class="mb-4" style="color: #00f0ff;">মেসেজ পাঠান</h4>
+                            <div class="row g-3">
+                                <div class="col-md-6"><input type="text" class="contact-input d3-input" placeholder="নাম"></div>
+                                <div class="col-md-6"><input type="email" class="contact-input d3-input" placeholder="ইমেইল"></div>
+                                <div class="col-12"><input type="text" class="contact-input d3-input" placeholder="সাবজেক্ট"></div>
+                                <div class="col-12"><textarea class="contact-input d3-input" rows="3" placeholder="মেসেজ"></textarea></div>
+                                <div class="col-12"><button class="contact-btn d3-btn w-100"><i class="fa-solid fa-rocket me-2"></i> সেন্ড মেসেজ</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 4 -->
+        <div class="design-card" id="design4">
+            <div class="design-header" style="background: linear-gradient(135deg, #1a1a1a, #333);"><h3>DESIGN 4: Elegant Minimal</h3><span class="design-number">04 / 20</span></div>
+            <div class="design-preview">
+                <div class="contact-section d4-bg">
+                    <div class="contact-grid">
+                        <div class="info-card d4-info">
+                            <div class="d4-line mb-4"></div>
+                            <h2 style="font-size: 40px; font-weight: 300;" class="text-dark mb-4">যোগাযোগ<br>করুন</h2>
+                            <p class="text-muted-dark mb-4">আপনার যেকোনো প্রশ্ন বা পরামর্শের জন্য আমাদের সাথে যোগাযোগ করুন।</p>
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <div class="d4-dot"></div>
+                                <span class="text-dark" style="font-weight: 500;">hello@example.com</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <div class="d4-dot"></div>
+                                <span class="text-dark" style="font-weight: 500;">+880 1234 567890</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="d4-dot"></div>
+                                <span class="text-dark" style="font-weight: 500;">ঢাকা, বাংলাদেশ</span>
+                            </div>
+                        </div>
+                        <div class="form-card d4-form">
+                            <h4 class="mb-4 text-dark">মেসেজ পাঠান</h4>
+                            <div class="row g-3">
+                                <div class="col-md-6"><input type="text" class="contact-input d4-input" placeholder="নাম"></div>
+                                <div class="col-md-6"><input type="email" class="contact-input d4-input" placeholder="ইমেইল"></div>
+                                <div class="col-12"><input type="text" class="contact-input d4-input" placeholder="সাবজেক্ট"></div>
+                                <div class="col-12"><textarea class="contact-input d4-input" rows="4" placeholder="মেসেজ"></textarea></div>
+                                <div class="col-12"><button class="contact-btn d4-btn w-100"><i class="fa-solid fa-arrow-right me-2"></i> পাঠান</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 5 -->
+        <div class="design-card" id="design5">
+            <div class="design-header" style="background: linear-gradient(135deg, #ff006e, #3a86ff);"><h3>DESIGN 5: Neon Glow</h3><span class="design-number">05 / 20</span></div>
+            <div class="design-preview">
+                <div class="contact-section d5-bg">
+                    <div class="d5-glow-1"></div>
+                    <div class="d5-glow-2"></div>
+                    <div class="contact-grid d5-content">
+                        <div class="info-card d5-info">
+                            <h2 class="mb-4" style="font-size: 32px; font-weight: 800; background: linear-gradient(135deg, #ff006e, #3a86ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">যোগাযোগ করুন</h2>
+                            <p class="mb-4" style="color: rgba(255,255,255,0.7);">আমাদের সাথে যোগাযোগ করতে নিচের ফর্ম ব্যবহার করুন</p>
+                            <div class="info-item">
+                                <div class="contact-icon d5-icon"><i class="fa-solid fa-envelope" style="color:#ff006e;"></i></div>
+                                <div><small style="color: rgba(255,255,255,0.5);">ইমেইল</small><div style="font-weight: 600;">hello@example.com</div></div>
+                            </div>
+                            <div class="info-item">
+                                <div class="contact-icon d5-icon"><i class="fa-solid fa-phone" style="color:#3a86ff;"></i></div>
+                                <div><small style="color: rgba(255,255,255,0.5);">ফোন</small><div style="font-weight: 600;">+880 1234 567890</div></div>
+                            </div>
+                        </div>
+                        <div class="form-card d5-form">
+                            <h4 class="mb-4">মেসেজ পাঠান</h4>
+                            <div class="row g-3">
+                                <div class="col-md-6"><input type="text" class="contact-input d5-input" placeholder="নাম"></div>
+                                <div class="col-md-6"><input type="email" class="contact-input d5-input" placeholder="ইমেইল"></div>
+                                <div class="col-12"><input type="text" class="contact-input d5-input" placeholder="ফোন"></div>
+                                <div class="col-12"><input type="text" class="contact-input d5-input" placeholder="সাবজেক্ট"></div>
+                                <div class="col-12"><textarea class="contact-input d5-input" rows="3" placeholder="মেসেজ"></textarea></div>
+                                <div class="col-12"><button class="contact-btn d5-btn w-100"><i class="fa-solid fa-paper-plane me-2"></i> পাঠান</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 6 -->
+        <div class="design-card" id="design6">
+            <div class="design-header" style="background: linear-gradient(135deg, #1e1e2e, #3d2c5e);"><h3>DESIGN 6: Split Colors</h3><span class="design-number">06 / 20</span></div>
+            <div class="design-preview">
+                <div class="d6-container">
+                    <div class="d6-left">
+                        <span style="color: rgba(255,255,255,0.5); font-size: 14px; text-transform: uppercase; letter-spacing: 3px;">যোগাযোগ</span>
+                        <h2 style="font-size: 36px; font-weight: 700; margin: 20px 0;">আমাদের সাথে<br>কথা বলুন</h2>
+                        <p style="color: rgba(255,255,255,0.6); margin-bottom: 30px;">আপনার যেকোনো প্রশ্ন বা পরামর্শের জন্য আমরা এখানে আছি।</p>
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center gap-3 mb-3"><i class="fa-solid fa-envelope" style="color: #a78bfa;"></i><span>hello@example.com</span></div>
+                            <div class="d-flex align-items-center gap-3 mb-3"><i class="fa-solid fa-phone" style="color: #a78bfa;"></i><span>+880 1234 567890</span></div>
+                            <div class="d-flex align-items-center gap-3"><i class="fa-solid fa-location-dot" style="color: #a78bfa;"></i><span>ঢাকা, বাংলাদেশ</span></div>
+                        </div>
+                        <div class="d-flex gap-3">
+                            <a href="#" class="d6-social"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="d6-social"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="d6-social"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" class="d6-social"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="d6-right">
+                        <h3 class="mb-4 text-dark" style="font-size: 24px;">মেসেজ পাঠান</h3>
+                        <div class="row g-3">
+                            <div class="col-md-6"><input type="text" class="contact-input d6-input" placeholder="নাম"></div>
+                            <div class="col-md-6"><input type="email" class="contact-input d6-input" placeholder="ইমেইল"></div>
+                            <div class="col-12"><input type="text" class="contact-input d6-input" placeholder="সাবজেক্ট"></div>
+                            <div class="col-12"><textarea class="contact-input d6-input" rows="4" placeholder="মেসেজ"></textarea></div>
+                            <div class="col-12"><button class="contact-btn d6-btn w-100"><i class="fa-solid fa-paper-plane me-2"></i> পাঠান</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 7 -->
+        <div class="design-card" id="design7">
+            <div class="design-header" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);"><h3>DESIGN 7: Card Stack</h3><span class="design-number">07 / 20</span></div>
+            <div class="design-preview">
+                <div class="contact-section d7-bg">
+                    <div class="contact-grid">
+                        <div class="info-card d7-info">
+                            <h3 class="mb-4 text-dark">যোগাযোগ করুন</h3>
+                            <p class="text-muted-dark mb-4">আপনার যেকোনো প্রশ্ন বা পরামর্শের জন্য আমাদের সাথে যোগাযোগ করুন।</p>
+                            <div class="info-item">
+                                <div class="contact-icon d7-info-icon"><i class="fa-solid fa-envelope"></i></div>
+                                <div class="text-dark"><h5 style="margin-bottom:4px;">ইমেইল</h5><p style="color:#666;margin:0;">hello@example.com</p></div>
+                            </div>
+                            <div class="info-item">
+                                <div class="contact-icon d7-info-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div class="text-dark"><h5 style="margin-bottom:4px;">ফোন</h5><p style="color:#666;margin:0;">+880 1234 567890</p></div>
+                            </div>
+                            <div class="info-item">
+                                <div class="contact-icon d7-info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="text-dark"><h5 style="margin-bottom:4px;">ঠিকানা</h5><p style="color:#666;margin:0;">ঢাকা, বাংলাদেশ</p></div>
+                            </div>
+                        </div>
+                        <div class="form-card d7-form">
+                            <h3 class="mb-4 text-dark">মেসেজ পাঠান</h3>
+                            <div class="row g-3">
+                                <div class="col-md-6"><input type="text" class="contact-input d7-input" placeholder="নাম"></div>
+                                <div class="col-md-6"><input type="email" class="contact-input d7-input" placeholder="ইমেইল"></div>
+                                <div class="col-12"><input type="text" class="contact-input d7-input" placeholder="সাবজেক্ট"></div>
+                                <div class="col-12"><textarea class="contact-input d7-input" rows="4" placeholder="মেসেজ"></textarea></div>
+                                <div class="col-12"><button class="contact-btn d7-btn w-100"><i class="fa-solid fa-paper-plane me-2"></i> পাঠান</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 8 -->
+        <div class="design-card" id="design8">
+            <div class="design-header" style="background: linear-gradient(135deg, #667eea, #764ba2);"><h3>DESIGN 8: Floating Shapes</h3><span class="design-number">08 / 20</span></div>
+            <div class="design-preview">
+                <div class="contact-section d8-bg">
+                    <div class="d8-shape d8-shape-1"></div>
+                    <div class="d8-shape d8-shape-2"></div>
+                    <div class="contact-grid d8-content">
+                        <div class="info-card d8-info">
+                            <h2 class="mb-4" style="font-size: 32px; font-weight: 700;">যোগাযোগ করুন</h2>
+                            <p class="mb-4" style="opacity: 0.9;">আপনার প্রশ্নের উত্তর দিতে আমরা প্রস্তুত</p>
+                            <div class="info-item">
+                                <div class="contact-icon" style="background:rgba(255,255,255,0.3);"><i class="fa-solid fa-envelope"></i></div>
+                                <div style="font-weight: 600;">hello@example.com</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="contact-icon" style="background:rgba(255,255,255,0.3);"><i class="fa-solid fa-phone"></i></div>
+                                <div style="font-weight: 600;">+880 1234 567890</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="contact-icon" style="background:rgba(255,255,255,0.3);"><i class="fa-solid fa-location-dot"></i></div>
+                                <div style="font-weight: 600;">ঢাকা, বাংলাদেশ</div>
+                            </div>
+                        </div>
+                        <div class="form-card d8-form">
+                            <h4 class="mb-3 text-dark">মেসেজ পাঠান</h4>
+                            <div class="row g-3">
+                                <div class="col-md-6"><input type="text" class="contact-input d8-input" placeholder="নাম"></div>
+                                <div class="col-md-6"><input type="email" class="contact-input d8-input" placeholder="ইমেইল"></div>
+                                <div class="col-12"><input type="text" class="contact-input d8-input" placeholder="ফোন"></div>
+                                <div class="col-12"><textarea class="contact-input d8-input" rows="3" placeholder="মেসেজ"></textarea></div>
+                                <div class="col-12"><button class="contact-btn d8-btn w-100"><i class="fa-solid fa-paper-plane me-2"></i> পাঠান</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 9 -->
+        <div class="design-card" id="design9">
+            <div class="design-header" style="background: linear-gradient(135deg, #f59e0b, #ef4444, #8b5cf6);"><h3>DESIGN 9: Timeline Style</h3><span class="design-number">09 / 20</span></div>
+            <div class="design-preview">
+                <div class="contact-section d9-bg">
+                    <div class="contact-grid">
+                        <div class="info-card d9-info">
+                            <h2 class="mb-4" style="font-size: 32px; font-weight: 700;">যোগাযোগ<br>করুন</h2>
+                            <div class="d9-timeline mt-4">
+                                <div class="d9-timeline-item">
+                                    <h5 style="color: #f59e0b;">ইমেইল</h5>
+                                    <p style="color: rgba(255,255,255,0.6);">hello@example.com</p>
+                                </div>
+                                <div class="d9-timeline-item">
+                                    <h5 style="color: #ef4444;">ফোন</h5>
+                                    <p style="color: rgba(255,255,255,0.6);">+880 1234 567890</p>
+                                </div>
+                                <div class="d9-timeline-item">
+                                    <h5 style="color: #8b5cf6;">ঠিকানা</h5>
+                                    <p style="color: rgba(255,255,255,0.6);">ঢাকা, বাংলাদেশ</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-card d9-form">
+                            <h4 class="mb-4">মেসেজ পাঠান</h4>
+                            <div class="row g-3">
+                                <div class="col-md-6"><input type="text" class="contact-input d9-input" placeholder="নাম"></div>
+                                <div class="col-md-6"><input type="email" class="contact-input d9-input" placeholder="ইমেইল"></div>
+                                <div class="col-12"><input type="text" class="contact-input d9-input" placeholder="সাবজেক্ট"></div>
+                                <div class="col-12"><textarea class="contact-input d9-input" rows="4" placeholder="মেসেজ"></textarea></div>
+                                <div class="col-12"><button class="contact-btn d9-btn w-100"><i class="fa-solid fa-paper-plane me-2"></i> পাঠান</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 10 -->
+        <div class="design-card" id="design10">
+            <div class="design-header" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);"><h3>DESIGN 10: 3D Card Effect</h3><span class="design-number">10 / 20</span></div>
+            <div class="design-preview">
+                <div class="contact-section d10-bg">
+                    <div class="contact-grid">
+                        <div class="d10-info">
+                            <div class="contact-icon mx-auto mb-4" style="background:rgba(255,255,255,0.2);width:80px;height:80px;border-radius:20px;"><i class="fa-solid fa-headset" style="font-size:32px;"></i></div>
+                            <h3 class="mb-3" style="font-size: 28px;">যোগাযোগ করুন</h3>
+                            <p style="opacity: 0.8; margin-bottom: 30px;">আপনার যেকোনো প্রশ্ন বা প্রয়োজনে আমাদের সাথে যোগাযোগ করুন।</p>
+                            <div class="mb-2"><i class="fa-solid fa-envelope me-2"></i>hello@example.com</div>
+                            <div class="mb-2"><i class="fa-solid fa-phone me-2"></i>+880 1234 567890</div>
+                            <div><i class="fa-solid fa-location-dot me-2"></i>ঢাকা, বাংলাদেশ</div>
+                        </div>
+                        <div class="form-card d10-form">
+                            <h3 class="mb-4 text-dark">মেসেজ পাঠান</h3>
+                            <div class="row g-3">
+                                <div class="col-md-6"><input type="text" class="contact-input d10-input" placeholder="নাম"></div>
+                                <div class="col-md-6"><input type="email" class="contact-input d10-input" placeholder="ইমেইল"></div>
+                                <div class="col-12"><input type="text" class="contact-input d10-input" placeholder="সাবজেক্ট"></div>
+                                <div class="col-12"><textarea class="contact-input d10-input" rows="4" placeholder="মেসেজ"></textarea></div>
+                                <div class="col-12"><button class="contact-btn d10-btn w-100"><i class="fa-solid fa-paper-plane me-2"></i> পাঠান</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 11 -->
+        <div class="design-card" id="design11">
+            <div class="design-header" style="background: #000;"><h3>DESIGN 11: Brutalist</h3><span class="design-number">11 / 20</span></div>
+            <div class="design-preview">
+                <div class="contact-section d11-bg">
+                    <div class="contact-grid">
+                        <div class="info-card d11-info">
+                            <div class="d11-block">01</div>
+                            <h2 class="mb-4" style="font-size: 36px; font-weight: 900; color: #fff;">যোগাযোগ<br>করুন</h2>
+                            <div>
+                                <p style="font-weight: 700; color: #fff;">hello@example.com</p>
+                                <p style="font-weight: 700; color: #fff;">+880 1234 567890</p>
+                                <p style="font-weight: 700; color: #fff;">ঢাকা, বাংলাদেশ</p>
+                            </div>
+                        </div>
+                        <div class="form-card d11-form">
+                            <h3 class="mb-4 text-dark" style="font-weight: 800;">মেসেজ পাঠান</h3>
+                            <div class="row g-3">
+                                <div class="col-md-6"><input type="text" class="contact-input d11-input" placeholder="নাম"></div>
+                                <div class="col-md-6"><input type="email" class="contact-input d11-input" placeholder="ইমেইল"></div>
+                                <div class="col-12"><input type="text" class="contact-input d11-input" placeholder="সাবজেক্ট"></div>
+                                <div class="col-12"><textarea class="contact-input d11-input" rows="4" placeholder="মেসেজ"></textarea></div>
+                                <div class="col-12"><button class="contact-btn d11-btn w-100"><i class="fa-solid fa-arrow-right me-2"></i> পাঠান</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 12 -->
+        <div class="design-card" id="design12">
+            <div class="design-header" style="background: linear-gradient(135deg, #f43f5e, #fb923c);"><h3>DESIGN 12: Soft Gradient</h3><span class="design-number">12 / 20</span></div>
+            <div class="design-preview">
+                <div class="contact-section d12-bg">
+                    <div class="contact-grid">
+                        <div class="info-card d12-info text-center">
+                            <div class="d12-circle mx-auto mb-4"><i class="fa-solid fa-envelope"></i></div>
+                            <h2 class="mb-3 text-dark" style="font-size: 32px; font-weight: 700;">যোগাযোগ করুন</h2>
+                            <p class="text-muted-dark mb-4">আপনার মেসেজের জন্য ধন্যবাদ</p>
+                            <div class="text-dark">
+                                <p class="mb-2"><i class="fa-solid fa-envelope me-2"></i>hello@example.com</p>
+                                <p class="mb-2"><i class="fa-solid fa-phone me-2"></i>+880 1234 567890</p>
+                                <p><i class="fa-solid fa-location-dot me-2"></i>ঢাকা, বাংলাদেশ</p>
+                            </div>
+                        </div>
+                        <div class="form-card d12-form">
+                            <h3 class="mb-4 text-dark">মেসেজ পাঠান</h3>
+                            <div class="row g-3">
+                                <div class="col-md-6"><input type="text" class="contact-input d12-input" placeholder="নাম"></div>
+                                <div class="col-md-6"><input type="email" class="contact-input d12-input" placeholder="ইমেইল"></div>
+                                <div class="col-12"><input type="text" class="contact-input d12-input" placeholder="সাবজেক্ট"></div>
+                                <div class="col-12"><textarea class="contact-input d12-input" rows="4" placeholder="মেসেজ"></textarea></div>
+                                <div class="col-12 text-center"><button class="contact-btn d12-btn"><i class="fa-solid fa-paper-plane me-2"></i> পাঠান</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 13 -->
+        <div class="design-card" id="design13">
+            <div class="design-header" style="background: linear-gradient(135deg, #fbbf24, #f59e0b);"><h3>DESIGN 13: Dark Elegant</h3><span class="design-number">13 / 20</span></div>
+            <div class="design-preview">
+                <div class="contact-section d13-bg">
+                    <div class="contact-grid">
+                        <div class="info-card d13-info text-center">
+                            <div class="contact-icon d13-icon mx-auto mb-4" style="width:80px;height:80px;"><i class="fa-solid fa-paper-plane" style="color:#0c0c1d;font-size:28px;"></i></div>
+                            <h2 class="mb-3" style="font-size: 32px; font-weight: 700;">যোগাযোগ করুন</h2>
+                            <p style="color: rgba(255,255,255,0.6);">আপনার যেকোনো প্রশ্ন বা পরামর্শের জন্য আমাদের সাথে যোগাযোগ করুন।</p>
+                        </div>
+                        <div class="form-card d13-form">
+                            <h4 class="mb-4">মেসেজ পাঠান</h4>
+                            <div class="row g-3">
+                                <div class="col-md-6"><input type="text" class="contact-input d13-input" placeholder="নাম"></div>
+                                <div class="col-md-6"><input type="email" class="contact-input d13-input" placeholder="ইমেইল"></div>
+                                <div class="col-12"><input type="text" class="contact-input d13-input" placeholder="সাবজেক্ট"></div>
+                                <div class="col-12"><textarea class="contact-input d13-input" rows="4" placeholder="মেসেজ"></textarea></div>
+                                <div class="col-12"><button class="contact-btn d13-btn w-100"><i class="fa-solid fa-paper-plane me-2"></i> পাঠান</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 14 -->
+        <div class="design-card" id="design14">
+            <div class="design-header" style="background: linear-gradient(135deg, #8b5cf6, #a855f7);"><h3>DESIGN 14: Orbital</h3><span class="design-number">14 / 20</span></div>
+            <div class="design-preview">
+                <div class="contact-section d14-bg">
+                    <div class="d14-orbit d14-orbit-1"></div>
+                    <div class="d14-orbit d14-orbit-2"></div>
+                    <div class="d14-orbit d14-orbit-3"></div>
+                    <div class="d14-center"><i class="fa-solid fa-headset"></i></div>
+                    <div class="contact-grid d14-content">
+                        <div class="info-card d14-info">
+                            <h2 class="mb-4" style="font-size: 32px; font-weight: 700;">যোগাযোগ করুন</h2>
+                            <p class="mb-4" style="color: rgba(255,255,255,0.7);">আমাদের সাথে যোগাযোগ করতে নিচের ফর্ম পূরণ করুন</p>
+                            <div class="info-item">
+                                <div class="contact-icon" style="background:rgba(139,92,246,0.2);"><i class="fa-solid fa-envelope" style="color:#8b5cf6;"></i></div>
+                                <div style="font-weight: 600;">hello@example.com</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="contact-icon" style="background:rgba(139,92,246,0.2);"><i class="fa-solid fa-phone" style="color:#8b5cf6;"></i></div>
+                                <div style="font-weight: 600;">+880 1234 567890</div>
+                            </div>
+                        </div>
+                        <div class="form-card d14-form">
+                            <h4 class="mb-4">মেসেজ পাঠান</h4>
+                            <div class="row g-3">
+                                <div class="col-md-6"><input type="text" class="contact-input d14-input" placeholder="নাম"></div>
+                                <div class="col-md-6"><input type="email" class="contact-input d14-input" placeholder="ইমেইল"></div>
+                                <div class="col-12"><input type="text" class="contact-input d14-input" placeholder="সাবজেক্ট"></div>
+                                <div class="col-12"><textarea class="contact-input d14-input" rows="4" placeholder="মেসেজ"></textarea></div>
+                                <div class="col-12"><button class="contact-btn d14-btn w-100"><i class="fa-solid fa-paper-plane me-2"></i> পাঠান</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 15 -->
+        <div class="design-card" id="design15">
+            <div class="design-header" style="background: linear-gradient(135deg, #38bdf8, #0ea5e9);"><h3>DESIGN 15: Tech Grid</h3><span class="design-number">15 / 20</span></div>
+            <div class="design-preview">
+                <div class="contact-section d15-bg">
+                    <div class="d15-grid"></div>
+                    <div class="contact-grid d15-content">
+                        <div class="info-card d15-info">
+                            <div class="d-flex align-items-center gap-4 mb-4">
+                                <div class="d15-hexagon"><i class="fa-solid fa-headset"></i></div>
+                                <h2 style="font-size: 32px; font-weight: 700; margin: 0;">যোগাযোগ</h2>
+                            </div>
+                            <p class="mb-4" style="color: rgba(255,255,255,0.7);">আপনার যেকোনো প্রশ্ন বা পরামর্শের জন্য আমাদের সাথে যোগাযোগ করুন।</p>
+                            <div class="info-item">
+                                <div class="contact-icon" style="background:rgba(56,189,248,0.2);"><i class="fa-solid fa-envelope" style="color:#38bdf8;"></i></div>
+                                <div style="font-weight: 600;">hello@example.com</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="contact-icon" style="background:rgba(56,189,248,0.2);"><i class="fa-solid fa-phone" style="color:#38bdf8;"></i></div>
+                                <div style="font-weight: 600;">+880 1234 567890</div>
+                            </div>
+                        </div>
+                        <div class="form-card d15-form">
+                            <h4 class="mb-4">মেসেজ পাঠান</h4>
+                            <div class="row g-3">
+                                <div class="col-md-6"><input type="text" class="contact-input d15-input" placeholder="নাম"></div>
+                                <div class="col-md-6"><input type="email" class="contact-input d15-input" placeholder="ইমেইল"></div>
+                                <div class="col-12"><input type="text" class="contact-input d15-input" placeholder="সাবজেক্ট"></div>
+                                <div class="col-12"><textarea class="contact-input d15-input" rows="4" placeholder="মেসেজ"></textarea></div>
+                                <div class="col-12"><button class="contact-btn d15-btn w-100"><i class="fa-solid fa-paper-plane me-2"></i> পাঠান</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 16 -->
+        <div class="design-card" id="design16">
+            <div class="design-header" style="background: linear-gradient(135deg, #134e5e, #71b280);"><h3>DESIGN 16: Organic Shape</h3><span class="design-number">16 / 20</span></div>
+            <div class="design-preview">
+                <div class="contact-section d16-bg">
+                    <div class="d16-blob d16-blob-1"></div>
+                    <div class="d16-blob d16-blob-2"></div>
+                    <div class="contact-grid d16-content">
+                        <div class="info-card d16-info">
+                            <h2 class="mb-4 text-dark" style="font-size: 32px; font-weight: 700;">যোগাযোগ করুন</h2>
+                            <p class="text-muted-dark mb-4">আপনার যেকোনো প্রশ্ন বা পরামর্শের জন্য আমরা এখানে আছি।</p>
+                            <div class="info-item">
+                                <div class="contact-icon d16-icon-circle"><i class="fa-solid fa-envelope" style="font-size:20px;"></i></div>
+                                <div class="text-dark"><small style="opacity:0.6;">ইমেইল</small><p style="margin:0;font-weight:600;">hello@example.com</p></div>
+                            </div>
+                            <div class="info-item">
+                                <div class="contact-icon d16-icon-circle"><i class="fa-solid fa-phone" style="font-size:20px;"></i></div>
+                                <div class="text-dark"><small style="opacity:0.6;">ফোন</small><p style="margin:0;font-weight:600;">+880 1234 567890</p></div>
+                            </div>
+                            <div class="info-item">
+                                <div class="contact-icon d16-icon-circle"><i class="fa-solid fa-location-dot" style="font-size:20px;"></i></div>
+                                <div class="text-dark"><small style="opacity:0.6;">ঠিকানা</small><p style="margin:0;font-weight:600;">ঢাকা, বাংলাদেশ</p></div>
+                            </div>
+                        </div>
+                        <div class="form-card d16-form">
+                            <h3 class="mb-4 text-dark">মেসেজ পাঠান</h3>
+                            <div class="row g-3">
+                                <div class="col-md-6"><input type="text" class="contact-input d16-input" placeholder="নাম"></div>
+                                <div class="col-md-6"><input type="email" class="contact-input d16-input" placeholder="ইমেইল"></div>
+                                <div class="col-12"><input type="text" class="contact-input d16-input" placeholder="সাবজেক্ট"></div>
+                                <div class="col-12"><textarea class="contact-input d16-input" rows="4" placeholder="মেসেজ"></textarea></div>
+                                <div class="col-12"><button class="contact-btn d16-btn w-100"><i class="fa-solid fa-paper-plane me-2"></i> পাঠান</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 17 -->
+        <div class="design-card" id="design17">
+            <div class="design-header" style="background: linear-gradient(135deg, #f472b6, #a78bfa);"><h3>DESIGN 17: Double Border</h3><span class="design-number">17 / 20</span></div>
+            <div class="design-preview">
+                <div class="contact-section d17-bg">
+                    <div class="contact-grid">
+                        <div class="info-card d17-info">
+                            <span style="color: #f472b6; font-size: 14px; text-transform: uppercase; letter-spacing: 3px;">যোগাযোগ করুন</span>
+                            <h2 class="mb-4" style="font-size: 36px; font-weight: 700;">আমাদের সাথে<br>কথা বলুন</h2>
+                            <div class="d17-accent mb-4"></div>
+                            <p style="color: rgba(255,255,255,0.6); margin-bottom: 30px;">আপনার যেকোনো প্রশ্ন বা পরামর্শের জন্য আমরা সবসময় প্রস্তুত।</p>
+                            <div class="info-item">
+                                <div class="contact-icon d17-icon"><i class="fa-solid fa-envelope" style="color:#f472b6;"></i></div>
+                                <div><small style="color:rgba(255,255,255,0.5);">ইমেইল</small><p style="font-weight:600;margin:0;">hello@example.com</p></div>
+                            </div>
+                            <div class="info-item">
+                                <div class="contact-icon d17-icon"><i class="fa-solid fa-phone" style="color:#a78bfa;"></i></div>
+                                <div><small style="color:rgba(255,255,255,0.5);">ফোন</small><p style="font-weight:600;margin:0;">+880 1234 567890</p></div>
+                            </div>
+                        </div>
+                        <div class="form-card d17-form">
+                            <h4 class="mb-4">মেসেজ পাঠান</h4>
+                            <div class="row g-4">
+                                <div class="col-md-6"><input type="text" class="contact-input d17-input" placeholder="নাম"></div>
+                                <div class="col-md-6"><input type="email" class="contact-input d17-input" placeholder="ইমেইল"></div>
+                                <div class="col-12"><input type="text" class="contact-input d17-input" placeholder="ফোন"></div>
+                                <div class="col-12"><input type="text" class="contact-input d17-input" placeholder="সাবজেক্ট"></div>
+                                <div class="col-12"><textarea class="contact-input d17-input" rows="3" placeholder="মেসেজ"></textarea></div>
+                                <div class="col-12"><button class="contact-btn d17-btn"><i class="fa-solid fa-paper-plane me-2"></i> পাঠান</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 18 -->
+        <div class="design-card" id="design18">
+            <div class="design-header" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6);"><h3>DESIGN 18: Glass Split</h3><span class="design-number">18 / 20</span></div>
+            <div class="design-preview">
+                <div class="d18-container">
+                    <div class="d18-left">
+                        <h2 class="mb-4" style="font-size: 32px; font-weight: 700;">যোগাযোগ করুন</h2>
+                        <p class="mb-4" style="opacity: 0.9;">আপনার যেকোনো প্রশ্ন বা পরামর্শের জন্য আমাদের সাথে যোগাযোগ করুন।</p>
+                        <div class="mb-3"><small style="opacity: 0.7;">ইমেইল</small><p style="font-weight: 600; margin: 4px 0;">hello@example.com</p></div>
+                        <div class="mb-3"><small style="opacity: 0.7;">ফোন</small><p style="font-weight: 600; margin: 4px 0;">+880 1234 567890</p></div>
+                        <div><small style="opacity: 0.7;">ঠিকানা</small><p style="font-weight: 600; margin: 4px 0;">ঢাকা, বাংলাদেশ</p></div>
+                    </div>
+                    <div class="d18-right">
+                        <h3 class="mb-4" style="font-size: 24px;">মেসেজ পাঠান</h3>
+                        <div class="row g-3">
+                            <div class="col-md-6"><input type="text" class="contact-input d18-input" placeholder="নাম"></div>
+                            <div class="col-md-6"><input type="email" class="contact-input d18-input" placeholder="ইমেইল"></div>
+                            <div class="col-12"><input type="text" class="contact-input d18-input" placeholder="সাবজেক্ট"></div>
+                            <div class="col-12"><textarea class="contact-input d18-input" rows="4" placeholder="মেসেজ" style="resize:none;"></textarea></div>
+                            <div class="col-12"><button class="contact-btn d18-btn w-100"><i class="fa-solid fa-paper-plane me-2"></i> পাঠান</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 19 -->
+        <div class="design-card" id="design19">
+            <div class="design-header" style="background: linear-gradient(135deg, #f43f5e, #fb923c);"><h3>DESIGN 19: Layered Cards</h3><span class="design-number">19 / 20</span></div>
+            <div class="design-preview">
+                <div class="contact-section d19-bg">
+                    <div class="contact-grid">
+                        <div class="info-card d19-info">
+                            <h2 class="mb-4 text-dark" style="font-size: 32px; font-weight: 700;">যোগাযোগ করুন</h2>
+                            <p class="text-muted-dark mb-4">আপনার যেকোনো প্রশ্ন বা পরামর্শের জন্য আমাদের সাথে যোগাযোগ করুন।</p>
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <i class="fa-solid fa-envelope text-dark" style="font-size:20px;"></i>
+                                <span class="text-dark">hello@example.com</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <i class="fa-solid fa-phone text-dark" style="font-size:20px;"></i>
+                                <span class="text-dark">+880 1234 567890</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <i class="fa-solid fa-location-dot text-dark" style="font-size:20px;"></i>
+                                <span class="text-dark">ঢাকা, বাংলাদেশ</span>
+                            </div>
+                        </div>
+                        <div class="form-card d19-form">
+                            <h3 class="mb-4 text-dark">মেসেজ পাঠান</h3>
+                            <div class="row g-3">
+                                <div class="col-md-6"><input type="text" class="contact-input d19-input" placeholder="নাম"></div>
+                                <div class="col-md-6"><input type="email" class="contact-input d19-input" placeholder="ইমেইল"></div>
+                                <div class="col-12"><input type="text" class="contact-input d19-input" placeholder="সাবজেক্ট"></div>
+                                <div class="col-12"><textarea class="contact-input d19-input" rows="4" placeholder="মেসেজ"></textarea></div>
+                                <div class="col-12"><button class="contact-btn d19-btn w-100"><i class="fa-solid fa-paper-plane me-2"></i> পাঠান</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESIGN 20 -->
+        <div class="design-card" id="design20">
+            <div class="design-header" style="background: linear-gradient(135deg, #00f0ff, #00ff88);"><h3>DESIGN 20: Animated Border</h3><span class="design-number">20 / 20</span></div>
+            <div class="design-preview">
+                <div class="contact-section d20-bg">
+                    <div class="d20-border"></div>
+                    <div class="contact-grid d20-content">
+                        <div class="info-card d20-info text-center">
+                            <div class="contact-icon d20-icon mx-auto mb-4" style="width:100px;height:100px;font-size:40px;"><i class="fa-solid fa-headset"></i></div>
+                            <h2 class="mb-3" style="font-size: 32px; font-weight: 700;">যোগাযোগ করুন</h2>
+                            <p style="color: rgba(255,255,255,0.7);">আপনার যেকোনো প্রশ্ন বা পরামর্শের জন্য আমরা এখানে আছি</p>
+                            <div class="mt-4">
+                                <p style="color:#00f0ff;margin:8px 0;"><i class="fa-solid fa-envelope me-2"></i>hello@example.com</p>
+                                <p style="color:#00ff88;margin:8px 0;"><i class="fa-solid fa-phone me-2"></i>+880 1234 567890</p>
+                                <p style="color:#00f0ff;margin:8px 0;"><i class="fa-solid fa-location-dot me-2"></i>ঢাকা, বাংলাদেশ</p>
+                            </div>
+                        </div>
+                        <div class="form-card d20-form">
+                            <h4 class="mb-4">মেসেজ পাঠান</h4>
+                            <div class="row g-3">
+                                <div class="col-md-6"><input type="text" class="contact-input d20-input" placeholder="নাম"></div>
+                                <div class="col-md-6"><input type="email" class="contact-input d20-input" placeholder="ইমেইল"></div>
+                                <div class="col-12"><input type="text" class="contact-input d20-input" placeholder="সাবজেক্ট"></div>
+                                <div class="col-12"><textarea class="contact-input d20-input" rows="4" placeholder="মেসেজ"></textarea></div>
+                                <div class="col-12"><button class="contact-btn d20-btn w-100"><i class="fa-solid fa-paper-plane me-2"></i> পাঠান</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div style="text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #1a1a2e, #2d1f47);">
+        <h3 style="font-size: 28px; margin-bottom: 20px;">আপনার পছন্দের ডিজাইন সিলেক্ট করুন!</h3>
+        <p style="color: rgba(255,255,255,0.7); margin-bottom: 30px;">যেকোনো ডিজাইনের নম্বর আমাকে জানান, আমি সাইটে ডাইনামিকভাবে এপ্লাই করে দিবো</p>
+        <button onclick="scrollToTop()" style="background: linear-gradient(135deg, #667eea, #764ba2); border: none; padding: 16px 40px; border-radius: 50px; color: #fff; font-weight: 600; cursor: pointer;">
+            <i class="fa-solid fa-arrow-up me-2"></i>উপরে যান
+        </button>
+    </div>
+    
+    <script>
+        function scrollToDesign(num) {
+            const design = document.getElementById('design' + num);
+            if (design) design.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        window.addEventListener('scroll', function() {
+            const cards = document.querySelectorAll('.design-card');
+            const dots = document.querySelectorAll('.nav-dot');
+            cards.forEach((card, index) => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                    dots.forEach(d => d.classList.remove('active'));
+                    if (dots[index]) dots[index].classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

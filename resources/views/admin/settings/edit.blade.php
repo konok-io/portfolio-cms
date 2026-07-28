@@ -89,6 +89,203 @@
                             <label class="form-label-admin"><i class="fa-brands fa-youtube me-1"></i> YouTube</label>
                             <input type="url" name="youtube" class="form-control" value="{{ old('youtube', $setting->youtube) }}">
                         </div>
+                        <div class="col-md-6">
+                            <label class="form-label-admin"><i class="fa-brands fa-whatsapp me-1"></i> WhatsApp</label>
+                            <input type="url" name="whatsapp" class="form-control" value="{{ old('whatsapp', $setting->whatsapp) }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-admin"><i class="fa-brands fa-whatsapp me-1"></i> WhatsApp Number <small class="text-muted">(for chat link)</small></label>
+                            <input type="text" name="whatsapp_number" class="form-control" value="{{ old('whatsapp_number', $setting->whatsapp_number) }}" placeholder="8801712345678">
+                            <small class="text-muted">Format: Country code + number (no + or spaces)</small>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label-admin"><i class="fa-solid fa-comment me-1"></i> WhatsApp Default Message</label>
+                            <input type="text" name="whatsapp_default_message" class="form-control" value="{{ old('whatsapp_default_message', $setting->whatsapp_default_message) }}" placeholder="Hello! I would like to inquire about your services.">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-admin"><i class="fa-brands fa-tiktok me-1"></i> TikTok</label>
+                            <input type="url" name="tiktok" class="form-control" value="{{ old('tiktok', $setting->tiktok) }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-admin"><i class="fa-brands fa-snapchat me-1"></i> Snapchat</label>
+                            <input type="url" name="snapchat" class="form-control" value="{{ old('snapchat', $setting->snapchat) }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-admin"><i class="fa-brands fa-pinterest me-1"></i> Pinterest</label>
+                            <input type="url" name="pinterest" class="form-control" value="{{ old('pinterest', $setting->pinterest) }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-admin"><i class="fa-brands fa-discord me-1"></i> Discord</label>
+                            <input type="url" name="discord" class="form-control" value="{{ old('discord', $setting->discord) }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header-custom">Cookie Consent Settings</div>
+                <div class="card-body-custom">
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="cookieConsentEnabled" name="cookie_consent_enabled" value="1" {{ old('cookie_consent_enabled', $setting->cookie_consent_enabled ?? true) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="cookieConsentEnabled">Enable Cookie Consent Banner</label>
+                    </div>
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="cookieEssentialOnly" name="cookie_essential_only" value="1" {{ old('cookie_essential_only', $setting->cookie_essential_only ?? false) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="cookieEssentialOnly">Essential Cookies Only (No Analytics/Marketing)</label>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label-admin">Cookie Expiry (Days)</label>
+                            <input type="number" name="cookie_expiry_days" class="form-control" value="{{ old('cookie_expiry_days', $setting->cookie_expiry_days ?? 365) }}" min="1" max="365">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header-custom">reCAPTCHA Settings</div>
+                <div class="card-body-custom">
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="recaptchaEnabled" name="recaptcha_enabled" value="1" {{ old('recaptcha_enabled', $setting->recaptcha_enabled ?? false) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="recaptchaEnabled">Enable reCAPTCHA</label>
+                    </div>
+                    <p class="text-muted small mb-3">Get your keys from <a href="https://www.google.com/recaptcha/admin" target="_blank">Google reCAPTCHA</a>. Select "reCAPTCHA v2" with "I'm not a robot" checkbox.</p>
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label-admin">Site Key</label>
+                            <input type="text" name="recaptcha_site_key" class="form-control" value="{{ old('recaptcha_site_key', $setting->recaptcha_site_key) }}" placeholder="6Le...">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label-admin">Secret Key</label>
+                            <input type="text" name="recaptcha_secret_key" class="form-control" value="{{ old('recaptcha_secret_key', $setting->recaptcha_secret_key) }}" placeholder="6Le...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header-custom">Analytics Settings</div>
+                <div class="card-body-custom">
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="analyticsEnabled" name="analytics_enabled" value="1" {{ old('analytics_enabled', $setting->analytics_enabled ?? false) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="analyticsEnabled">Enable Analytics</label>
+                    </div>
+                    <p class="text-muted small mb-3">Track visitor behavior and website performance. Get your tracking IDs from <a href="https://analytics.google.com" target="_blank">Google Analytics</a> or <a href="https://tagmanager.google.com" target="_blank">Google Tag Manager</a>.</p>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label-admin">Google Analytics ID <small class="text-muted">(GA4)</small></label>
+                            <input type="text" name="google_analytics_id" class="form-control" value="{{ old('google_analytics_id', $setting->google_analytics_id) }}" placeholder="G-XXXXXXXXXX">
+                            <small class="text-muted">Format: G-XXXXXXXXXX or GTM-XXXXXXX</small>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-admin">Google Tag Manager ID <small class="text-muted">(GTM)</small></label>
+                            <input type="text" name="google_tag_manager_id" class="form-control" value="{{ old('google_tag_manager_id', $setting->google_tag_manager_id) }}" placeholder="GTM-XXXXXXX">
+                            <small class="text-muted">Format: GTM-XXXXXXX</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header-custom">404 Error Page Settings</div>
+                <div class="card-body-custom">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label-admin">404 Page Title</label>
+                            <input type="text" name="404_title" class="form-control" value="{{ old('404_title', $setting->{'404_title'}) }}" placeholder="Page Not Found">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label-admin">404 Page Message</label>
+                            <textarea name="404_message" class="form-control" rows="2" placeholder="Oops! The page you're looking for doesn't exist...">{{ old('404_message', $setting->{'404_message'}) }}</textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-admin">Button Text</label>
+                            <input type="text" name="404_button_text" class="form-control" value="{{ old('404_button_text', $setting->{'404_button_text'}) }}" placeholder="Back to Home">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-admin">Icon <small class="text-muted">(FontAwesome class)</small></label>
+                            <input type="text" name="404_icon" class="form-control" value="{{ old('404_icon', $setting->{'404_icon'}) }}" placeholder="fa-compass">
+                            <small class="text-muted">Examples: fa-compass, fa-search, fa-ghost, fa-map</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header-custom">Coming Soon Page Settings</div>
+                <div class="card-body-custom">
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="comingSoonEnabled" name="coming_soon_enabled" value="1" {{ old('coming_soon_enabled', $setting->coming_soon_enabled ?? false) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="comingSoonEnabled">Enable Coming Soon Page</label>
+                    </div>
+                    <p class="text-muted small mb-3">When enabled, visitors will see the coming soon page instead of the main content. Enable this when you're working on the site.</p>
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label-admin">Coming Soon Title</label>
+                            <input type="text" name="coming_soon_title" class="form-control" value="{{ old('coming_soon_title', $setting->coming_soon_title) }}" placeholder="Coming Soon">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label-admin">Coming Soon Message</label>
+                            <textarea name="coming_soon_message" class="form-control" rows="2" placeholder="We're working on something exciting. Stay tuned!">{{ old('coming_soon_message', $setting->coming_soon_message) }}</textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-admin">Launch Date & Time</label>
+                            <input type="datetime-local" name="coming_soon_date" class="form-control" value="{{ old('coming_soon_date', $setting->coming_soon_date ? \Carbon\Carbon::parse($setting->coming_soon_date)->format('Y-m-d\TH:i') : '') }}">
+                            <small class="text-muted">Countdown will show until this date</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header-custom">SMTP / Email Settings</div>
+                <div class="card-body-custom">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label-admin">Mail Driver</label>
+                            <select name="mail_driver" class="form-select">
+                                <option value="smtp" {{ ($setting->mail_driver ?? 'smtp') === 'smtp' ? 'selected' : '' }}>SMTP</option>
+                                <option value="mailgun" {{ ($setting->mail_driver ?? 'smtp') === 'mailgun' ? 'selected' : '' }}>Mailgun</option>
+                                <option value="postmark" {{ ($setting->mail_driver ?? 'smtp') === 'postmark' ? 'selected' : '' }}>Postmark</option>
+                                <option value="sendmail" {{ ($setting->mail_driver ?? 'smtp') === 'sendmail' ? 'selected' : '' }}>Sendmail</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label-admin">SMTP Host</label>
+                            <input type="text" name="mail_host" class="form-control" value="{{ old('mail_host', $setting->mail_host) }}" placeholder="smtp.gmail.com">
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label-admin">SMTP Port</label>
+                            <input type="text" name="mail_port" class="form-control" value="{{ old('mail_port', $setting->mail_port ?? '587') }}" placeholder="587">
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label-admin">Encryption</label>
+                            <select name="mail_encryption" class="form-select">
+                                <option value="tls" {{ ($setting->mail_encryption ?? 'tls') === 'tls' ? 'selected' : '' }}>TLS</option>
+                                <option value="ssl" {{ ($setting->mail_encryption ?? 'tls') === 'ssl' ? 'selected' : '' }}>SSL</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label-admin">Username</label>
+                            <input type="text" name="mail_username" class="form-control" value="{{ old('mail_username', $setting->mail_username) }}" placeholder="your@email.com">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label-admin">Password</label>
+                            <input type="password" name="mail_password" class="form-control" value="{{ old('mail_password', $setting->mail_password) }}" placeholder="App password">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label-admin">From Address</label>
+                            <input type="email" name="mail_from_address" class="form-control" value="{{ old('mail_from_address', $setting->mail_from_address) }}" placeholder="noreply@example.com">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label-admin">From Name</label>
+                            <input type="text" name="mail_from_name" class="form-control" value="{{ old('mail_from_name', $setting->mail_from_name) }}" placeholder="Portfolio CMS">
+                        </div>
+                        <div class="col-12">
+                            <button type="button" class="btn btn-outline-secondary w-100" id="testMailBtn">
+                                <i class="fa-solid fa-paper-plane me-2"></i>Send Test Email
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -245,8 +442,106 @@
             <button type="submit" class="btn btn-admin-primary w-100 py-2">
                 <i class="fa-solid fa-floppy-disk me-2"></i>Save Settings
             </button>
+
+            <hr class="my-3">
+
+            <div class="d-grid gap-2">
+                <button type="button" class="btn btn-outline-secondary" id="clearCacheBtn">
+                    <i class="fa-solid fa-broom me-2"></i>Clear Cache
+                </button>
+                <button type="button" class="btn btn-outline-primary" id="optimizeBtn">
+                    <i class="fa-solid fa-rocket me-2"></i>Optimize Application
+                </button>
+            </div>
         </div>
     </div>
 </form>
 
 @endsection
+
+@push('scripts')
+<script>
+document.getElementById('clearCacheBtn')?.addEventListener('click', function() {
+    if (!confirm('Clear all application caches?')) return;
+    
+    const btn = this;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Clearing...';
+    
+    fetch('{{ route('admin.cache.clear') }}', {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(r => r.json())
+    .then(data => {
+        alert(data.message);
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-broom me-2"></i>Clear Cache';
+    })
+    .catch(() => {
+        alert('Error clearing cache');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-broom me-2"></i>Clear Cache';
+    });
+});
+
+document.getElementById('optimizeBtn')?.addEventListener('click', function() {
+    if (!confirm('Optimize application (create config, route, and view caches)?')) return;
+    
+    const btn = this;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Optimizing...';
+    
+    fetch('{{ route('admin.cache.optimize') }}', {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(r => r.json())
+    .then(data => {
+        alert(data.message);
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-rocket me-2"></i>Optimize Application';
+    })
+    .catch(() => {
+        alert('Error optimizing');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-rocket me-2"></i>Optimize Application';
+    });
+});
+
+document.getElementById('testMailBtn')?.addEventListener('click', function() {
+    const testEmail = prompt('Enter email address to send test email:');
+    if (!testEmail) return;
+    
+    const btn = this;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending...';
+    
+    fetch('{{ route('admin.settings.testMail') }}', {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ test_email: testEmail }),
+    })
+    .then(r => r.json())
+    .then(data => {
+        alert(data.message);
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i>Send Test Email';
+    })
+    .catch(() => {
+        alert('Error sending test email');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i>Send Test Email';
+    });
+});
+</script>
+@endpush

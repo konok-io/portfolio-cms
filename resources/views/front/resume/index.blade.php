@@ -1,18 +1,20 @@
 @extends('front.layouts.app')
 
-@section('title', 'Resume - ' . ($siteSetting->site_name ?? 'Portfolio'))
+@section('title', ($pageContent['title'][app()->getLocale()] ?? $pageContent['title']['en'] ?? 'Resume') . ' - ' . ($siteSetting->site_name ?? 'Portfolio'))
 
 @php
 $currentTemplate = request('template') ?? $settings->template ?? 'modern';
+$resumeTitle = $pageContent['title'][app()->getLocale()] ?? $pageContent['title']['en'] ?? 'Professional Portfolio';
+$resumeSubtitle = $pageContent['subtitle'][app()->getLocale()] ?? $pageContent['subtitle']['en'] ?? 'A comprehensive overview of my skills, experience, and achievements';
 @endphp
 
 @section('content')
 <section class="section-padding" style="padding-top: 8rem;">
     <div class="container">
         <div class="text-center mb-5">
-            <span class="section-eyebrow">My Resume</span>
-            <h1 class="section-title">Professional Portfolio</h1>
-            <p class="text-muted">A comprehensive overview of my skills, experience, and achievements</p>
+            <span class="section-eyebrow">{{ $pageContent['eyebrow'][app()->getLocale()] ?? $pageContent['eyebrow']['en'] ?? 'My Resume' }}</span>
+            <h1 class="section-title">{{ $resumeTitle }}</h1>
+            <p class="text-muted">{{ $resumeSubtitle }}</p>
         </div>
 
         <!-- Template Selection -->

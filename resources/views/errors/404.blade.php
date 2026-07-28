@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found</title>
+    <title>404 - {{ $siteSetting->site_name ?? 'Page Not Found' }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -84,16 +84,16 @@
             <div class="col-lg-6">
                 <div class="error-container">
                     <div class="illustration">
-                        <i class="fas fa-compass"></i>
+                        <i class="{{ $siteSetting->get404Icon() }}"></i>
                     </div>
                     <div class="error-code">404</div>
-                    <h1 class="error-title">Page Not Found</h1>
+                    <h1 class="error-title">{{ $siteSetting->get404Title() }}</h1>
                     <p class="error-message">
-                        Oops! The page you're looking for doesn't exist or has been moved.
+                        {{ $siteSetting->get404Message() }}
                     </p>
                     <a href="{{ url('/') }}" class="btn-home">
                         <i class="fas fa-home"></i>
-                        Back to Home
+                        {{ $siteSetting->get404ButtonText() }}
                     </a>
                 </div>
             </div>

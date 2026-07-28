@@ -8,10 +8,13 @@ use App\Models\Blog;
 use App\Models\Certification;
 use App\Models\Education;
 use App\Models\Experience;
+use App\Models\Faq;
+use App\Models\PricingPlan;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\Skill;
 use App\Models\Testimonial;
+use App\Models\WhyChooseMe;
 
 class HomeController extends Controller
 {
@@ -25,13 +28,28 @@ class HomeController extends Controller
         ]);
 
         $skills         = Skill::active()->ordered()->get();
-        $services       = Service::active()->ordered()->get();
+        $services       = Service::active()->ordered()->take(6)->get();
         $experiences    = Experience::ordered()->get();
         $educations     = Education::ordered()->get();
-        $projects       = Project::active()->ordered()->with('category')->take(8)->get();
+        $projects       = Project::active()->ordered()->with('category')->take(4)->get();
         $testimonials   = Testimonial::active()->ordered()->get();
         $blogs          = Blog::published()->with('category')->latest('published_at')->take(3)->get();
         $certifications = Certification::where('is_active', true)->orderBy('sort_order')->get();
+        $whyChooseMe    = WhyChooseMe::getActive();
+        
+        // FAQ, Pricing, and Resume data for home page sections
+        $faqs           = Faq::getActive()->take(4);
+        $pricingPlans  = PricingPlan::getActive()->take(3);
+
+        // Skills section titles from page_content
+        $locale = app()->getLocale();
+        $skillsSectionTitle = page_content('home', 'skills_eyebrow', $locale) ?: 'My Skills';
+        $skillsTitle = page_content('home', 'skills_title', $locale) ?: 'Technologies I Work With';
+        $skillsSubtitle = page_content('home', 'skills_subtitle', $locale) ?: 'A snapshot of the tools and languages I use to bring projects to life.';
+
+        // Why Choose Me section titles
+        $whyChooseMeTitle = page_content('home', 'why_title', $locale) ?: 'Why Choose Me For Your Next Project?';
+        $whyChooseMeSubtitle = page_content('home', 'why_subtitle', $locale) ?: 'Discover what sets me apart and why clients trust me with their projects.';
 
         return view('front.home', compact(
             'about',
@@ -42,7 +60,15 @@ class HomeController extends Controller
             'projects',
             'testimonials',
             'blogs',
-            'certifications'
+            'certifications',
+            'skillsSectionTitle',
+            'skillsTitle',
+            'skillsSubtitle',
+            'whyChooseMe',
+            'whyChooseMeTitle',
+            'whyChooseMeSubtitle',
+            'faqs',
+            'pricingPlans'
         ));
     }
 }

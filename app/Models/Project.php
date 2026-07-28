@@ -27,6 +27,8 @@ class Project extends Model
         'is_featured',
         'is_active',
         'sort_order',
+        'view_count',
+        'download_count',
     ];
 
     protected function casts(): array
@@ -35,7 +37,19 @@ class Project extends Model
             'is_featured' => 'boolean',
             'is_active'   => 'boolean',
             'sort_order'  => 'integer',
+            'view_count'  => 'integer',
+            'download_count' => 'integer',
         ];
+    }
+    
+    public function incrementViewCount(): void
+    {
+        $this->increment('view_count');
+    }
+    
+    public function incrementDownloadCount(): void
+    {
+        $this->increment('download_count');
     }
 
     protected static function booted(): void

@@ -4,6 +4,7 @@
 $languages = [
     'en' => ['name' => 'English', 'flag' => '🇺🇸'],
     'bn' => ['name' => 'বাংলা', 'flag' => '🇧🇩'],
+    'ar' => ['name' => 'العربية', 'flag' => '🇸🇦'],
 ];
 $currentLocale = app()->getLocale();
 @endphp

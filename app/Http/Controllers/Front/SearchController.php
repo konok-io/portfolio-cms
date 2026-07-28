@@ -14,8 +14,12 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         $query = $request->get('q', '');
-        
+        $isLive = $request->boolean('live');
+
         if (empty($query)) {
+            if ($isLive) {
+                return response()->json(['total' => 0, 'projects' => [], 'blogs' => [], 'services' => [], 'pages' => []]);
+            }
             return redirect()->back();
         }
 
@@ -24,7 +28,7 @@ class SearchController extends Controller
                 $q->where('title', 'like', "%{$query}%")
                   ->orWhere('description', 'like', "%{$query}%");
             })
-            ->limit(5)
+            ->limit($isLive ? 3 : 5)
             ->get();
 
         $blogs = Blog::published()
@@ -32,7 +36,7 @@ class SearchController extends Controller
                 $q->where('title', 'like', "%{$query}%")
                   ->orWhere('short_description', 'like', "%{$query}%");
             })
-            ->limit(5)
+            ->limit($isLive ? 3 : 5)
             ->get();
 
         $services = Service::active()
@@ -40,7 +44,7 @@ class SearchController extends Controller
                 $q->where('name', 'like', "%{$query}%")
                   ->orWhere('description', 'like', "%{$query}%");
             })
-            ->limit(5)
+            ->limit($isLive ? 3 : 5)
             ->get();
 
         $pages = CustomPage::where('is_published', true)
@@ -48,8 +52,41 @@ class SearchController extends Controller
                 $q->where('title', 'like', "%{$query}%")
                   ->orWhere('content', 'like', "%{$query}%");
             })
-            ->limit(5)
+            ->limit($isLive ? 2 : 5)
             ->get();
+
+        // Return JSON for live search
+        if ($isLive) {
+            return response()->json([
+                'total' => $projects->count() + $blogs->count() + $services->count() + $pages->count(),
+                'projects' => $projects->map(function($p) {
+                    return [
+                        'title' => $p->title,
+                        'url' => route('projects.show', $p->slug),
+                        'category' => $p->category?->name
+                    ];
+                }),
+                'blogs' => $blogs->map(function($b) {
+                    return [
+                        'title' => $b->title,
+                        'url' => route('blog.show', $b->slug),
+                        'category' => $b->category?->name
+                    ];
+                }),
+                'services' => $services->map(function($s) {
+                    return [
+                        'title' => $s->title,
+                        'url' => route('services')
+                    ];
+                }),
+                'pages' => $pages->map(function($p) {
+                    return [
+                        'title' => $p->title,
+                        'url' => route('page.show', $p->slug)
+                    ];
+                })
+            ]);
+        }
 
         $totalResults = $projects->count() + $blogs->count() + $services->count() + $pages->count();
 

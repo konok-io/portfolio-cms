@@ -1,15 +1,18 @@
 @extends('front.layouts.app')
 
-@section('seo_title', 'Pricing - ' . ($siteSetting->site_name ?? 'Portfolio'))
+@section('seo_title', ($pageContent['title'][app()->getLocale()] ?? $pageContent['title']['en'] ?? 'Pricing') . ' - ' . ($siteSetting->site_name ?? 'Portfolio'))
+@section('meta_description', $pageContent['subtitle'][app()->getLocale()] ?? $pageContent['subtitle']['en'] ?? 'View our transparent pricing plans.')
 
 @section('content')
 <!-- Page Header -->
-<section class="page-header">
+<section class="page-header section-padding section-1">
     <div class="container">
-        <div class="row align-items-center">
+        <div class="row align-items-center mb-5">
             <div class="col-12 text-center">
-                <h1 class="display-4 fw-bold mb-3">{{ __('pricing_plans') }}</h1>
-                <p class="lead text-muted mb-0">{{ __('Choose the perfect plan for your needs') }}</p>
+                <h1 class="display-4 fw-bold mb-3">{{ $pageContent['title'][app()->getLocale()] ?? $pageContent['title']['en'] ?? __('pricing_plans') }}</h1>
+                @if($pageContent['subtitle'][app()->getLocale()] ?? $pageContent['subtitle']['en'])
+                    <p class="lead text-muted mb-0">{{ $pageContent['subtitle'][app()->getLocale()] ?? $pageContent['subtitle']['en'] }}</p>
+                @endif
             </div>
         </div>
     </div>

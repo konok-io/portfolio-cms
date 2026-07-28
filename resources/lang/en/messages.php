@@ -107,6 +107,13 @@ return [
     // Footer
     'copyright' => 'All rights reserved.',
     'follow_me' => 'Follow Me',
+    'footer' => [
+        'contact' => 'Contact',
+        'contact_title' => 'Contact',
+        'newsletter' => 'Newsletter',
+        'newsletter_title' => 'Newsletter',
+        'quick_links' => 'Quick Links',
+    ],
     
     // FAQ
     'faq' => 'Frequently Asked Questions',

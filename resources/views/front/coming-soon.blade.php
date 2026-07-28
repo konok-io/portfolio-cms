@@ -1,6 +1,7 @@
 @extends('front.layouts.app')
 
-@section('title', 'Coming Soon')
+@section('seo_title', $siteSetting->getComingSoonTitle() . ' - ' . $siteSetting->site_name)
+@section('meta_description', $siteSetting->getComingSoonMessage())
 
 @section('content')
 <section class="py-5" style="min-height: 80vh; display: flex; align-items: center;">
@@ -10,9 +11,10 @@
                 <div class="coming-soon-icon mb-4">
                     <i class="fas fa-clock"></i>
                 </div>
-                <h1 class="mb-3">Coming Soon</h1>
-                <p class="lead text-muted mb-5">We're working on something exciting. Stay tuned!</p>
+                <h1 class="mb-3">{{ $siteSetting->getComingSoonTitle() }}</h1>
+                <p class="lead text-muted mb-5">{{ $siteSetting->getComingSoonMessage() }}</p>
                 
+                @if($siteSetting->getComingSoonDate())
                 <div class="countdown-container mb-5">
                     <div class="row justify-content-center gap-3">
                         <div class="col-5 col-md-3">
@@ -41,16 +43,31 @@
                         </div>
                     </div>
                 </div>
+                @endif
 
                 <div class="social-links">
                     <p class="text-muted mb-3">Follow us for updates:</p>
-                    <div class="d-flex gap-3 justify-content-center">
-                        <a href="#" class="btn btn-outline-primary">
-                            <i class="fab fa-twitter me-2"></i>Twitter
-                        </a>
-                        <a href="#" class="btn btn-outline-primary">
-                            <i class="fab fa-linkedin me-2"></i>LinkedIn
-                        </a>
+                    <div class="d-flex gap-3 justify-content-center flex-wrap">
+                        @if($siteSetting->facebook)
+                            <a href="{{ $siteSetting->facebook }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary" aria-label="Follow us on Facebook">
+                                <i class="fab fa-facebook me-2"></i>Facebook
+                            </a>
+                        @endif
+                        @if($siteSetting->twitter)
+                            <a href="{{ $siteSetting->twitter }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary" aria-label="Follow us on Twitter">
+                                <i class="fab fa-twitter me-2"></i>Twitter
+                            </a>
+                        @endif
+                        @if($siteSetting->linkedin)
+                            <a href="{{ $siteSetting->linkedin }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary" aria-label="Connect on LinkedIn">
+                                <i class="fab fa-linkedin me-2"></i>LinkedIn
+                            </a>
+                        @endif
+                        @if($siteSetting->instagram)
+                            <a href="{{ $siteSetting->instagram }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary" aria-label="Follow us on Instagram">
+                                <i class="fab fa-instagram me-2"></i>Instagram
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -59,15 +76,23 @@
 </section>
 @endsection
 
+@if($siteSetting->getComingSoonDate())
 @push('scripts')
 <script>
-    // Set countdown to 7 days from now
-    const countdownDate = new Date();
-    countdownDate.setDate(countdownDate.getDate() + 7);
+    // Set countdown to configured date
+    const countdownDate = new Date('{{ $siteSetting->getComingSoonDate()->toIsoStringString() }}').getTime();
     
     function updateCountdown() {
         const now = new Date().getTime();
         const distance = countdownDate - now;
+        
+        if (distance < 0) {
+            document.getElementById('days').textContent = '00';
+            document.getElementById('hours').textContent = '00';
+            document.getElementById('minutes').textContent = '00';
+            document.getElementById('seconds').textContent = '00';
+            return;
+        }
         
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -84,6 +109,7 @@
     updateCountdown();
 </script>
 @endpush
+@endif
 
 @push('styles')
 <style>

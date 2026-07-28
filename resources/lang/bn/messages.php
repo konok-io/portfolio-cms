@@ -107,6 +107,13 @@ return [
     // Footer
     'copyright' => 'সর্বস্বত্ব সংরক্ষিত।',
     'follow_me' => 'আমাকে ফলো করুন',
+    'footer' => [
+        'contact' => 'যোগাযোগ',
+        'contact_title' => 'যোগাযোগ',
+        'newsletter' => 'নিউজলেটার',
+        'newsletter_title' => 'নিউজলেটার',
+        'quick_links' => 'দ্রুত লিংক',
+    ],
     
     // FAQ
     'faq' => 'সাধারণ জিজ্ঞাসা',

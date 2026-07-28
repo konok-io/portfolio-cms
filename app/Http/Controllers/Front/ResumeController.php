@@ -8,12 +8,14 @@ use App\Models\Blog;
 use App\Models\Certification;
 use App\Models\Education;
 use App\Models\Experience;
+use App\Models\PageContent;
 use App\Models\Project;
 use App\Models\ResumeSetting;
 use App\Models\Service;
 use App\Models\Skill;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class ResumeController extends Controller
 {
@@ -31,6 +33,8 @@ class ResumeController extends Controller
         $educations = Education::ordered()->get();
         $projects = Project::active()->ordered()->with('category')->limit(5)->get();
         $certifications = Certification::where('is_active', true)->orderBy('sort_order')->get();
+
+        View::share('pageContent', PageContent::getPage('resume'));
 
         return view('front.resume.index', compact(
             'settings',

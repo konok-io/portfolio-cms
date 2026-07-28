@@ -1,23 +1,23 @@
 @extends('front.layouts.app')
 
-@section('title', 'Portfolio | ' . ($siteSetting->site_name ?? 'Portfolio CMS'))
-@section('meta_description', 'Browse a complete list of projects and case studies.')
+@section('title', page_content('portfolio', 'page_title', app()->getLocale()) . ' | ' . ($siteSetting->site_name ?? 'Portfolio CMS'))
+@section('meta_description', page_content('portfolio', 'page_subtitle', app()->getLocale()))
 
 @section('content')
 
-<section class="section-padding section-alt" style="padding-top: 8rem;">
+<section class="section-padding section-1">
     <div class="container">
         <div class="text-center mb-5">
-            <span class="section-eyebrow">Portfolio</span>
-            <h1 class="section-title">All Projects</h1>
-            <p class="section-subtitle mx-auto">Browse through a complete collection of my recent work, filtered by category or tag.</p>
+            <span class="section-eyebrow">{{ page_content('portfolio', 'page_eyebrow', app()->getLocale()) }}</span>
+            <h1 class="section-title">{{ page_content('portfolio', 'page_title', app()->getLocale()) }}</h1>
+            <p class="section-subtitle mx-auto">{{ page_content('portfolio', 'page_subtitle', app()->getLocale()) }}</p>
         </div>
 
         {{-- Category Filter --}}
         @if($categories->isNotEmpty())
             <div class="d-flex flex-wrap justify-content-center gap-2 mb-3">
                 <a href="{{ route('projects.index', request()->except(['category', 'tag'])) }}" 
-                   class="filter-pill {{ !request('category') ? 'active' : '' }}">All</a>
+                   class="filter-pill {{ !request('category') ? 'active' : '' }}">{{ page_content('portfolio', 'filter_all', app()->getLocale()) }}</a>
                 @foreach($categories as $category)
                     <a href="{{ route('projects.index', array_merge(request()->except(['tag']), ['category' => $category->slug])) }}"
                        class="filter-pill {{ request('category') === $category->slug ? 'active' : '' }}">
@@ -44,7 +44,7 @@
         @if(request('tag') || request('category'))
             <div class="text-center mb-4">
                 <span class="badge bg-primary">
-                    Filter: {{ request('category') ? 'Category: ' . request('category') : '' }}
+                    {{ page_content('portfolio', 'filter_label', app()->getLocale()) }}: {{ request('category') ? 'Category: ' . request('category') : '' }}
                     {{ request('tag') ? 'Tag: ' . request('tag') : '' }}
                     <a href="{{ route('projects.index') }}" class="text-white ms-2">&times;</a>
                 </span>
