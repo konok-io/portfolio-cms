@@ -13,37 +13,43 @@
 
 @section('content')
 
+{{-- Page header --}}
 <section class="page-title-section section-padding">
-        <div class="shape-container">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-            <div class="shape shape-4"></div>
-            <div class="shape shape-5"></div>
-            <div class="shape shape-6"></div>
-            <div class="shape shape-7"></div>
-            <div class="shape shape-8"></div>
-        </div>
+    <div class="shape-container">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+        <div class="shape shape-5"></div>
+        <div class="shape shape-6"></div>
+        <div class="shape shape-7"></div>
+        <div class="shape shape-8"></div>
+    </div>
 
     <div class="container">
         {{-- Breadcrumb --}}
         <x-breadcrumb :items="$breadcrumbs" />
 
+        <div class="mb-0">
+            @if($blog->category)
+                <span class="section-eyebrow">{{ $blog->category->name }}</span>
+            @endif
+            <h1 class="section-title">{{ $blog->title }}</h1>
+            <div class="d-flex flex-wrap gap-4 small text-muted mt-3">
+                <span><i class="fa-solid fa-user me-1"></i>{{ $blog->author->name ?? 'Admin' }}</span>
+                <span><i class="fa-regular fa-calendar me-1"></i>{{ $blog->published_at?->format('M d, Y') }}</span>
+                <span><i class="fa-regular fa-clock me-1"></i>{{ ceil(strlen(strip_tags($blog->description)) / 1000) }} min read</span>
+                <span><i class="fa-regular fa-eye me-1"></i>{{ $blog->views }} views</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- Blog content --}}
+<section class="section-padding section-2">
+    <div class="container">
         <div class="row g-5">
             <div class="col-lg-8">
-                <div class="mb-4">
-                    @if($blog->category)
-                        <span class="section-eyebrow">{{ $blog->category->name }}</span>
-                    @endif
-                    <h1 class="section-title">{{ $blog->title }}</h1>
-                    <div class="d-flex flex-wrap gap-4 small text-muted mt-3">
-                        <span><i class="fa-solid fa-user me-1"></i>{{ $blog->author->name ?? 'Admin' }}</span>
-                        <span><i class="fa-regular fa-calendar me-1"></i>{{ $blog->published_at?->format('M d, Y') }}</span>
-                        <span><i class="fa-regular fa-clock me-1"></i>{{ ceil(strlen(strip_tags($blog->description)) / 1000) }} min read</span>
-                        <span><i class="fa-regular fa-eye me-1"></i>{{ $blog->views }} views</span>
-                    </div>
-                </div>
-
                 <img src="{{ $blog->featured_image_url ?? 'https://placehold.co/1000x600/0F172A/ffffff?text=' . urlencode($blog->title) }}"
                      alt="{{ $blog->title }}" class="img-fluid rounded-4 shadow-sm mb-4 w-100" style="aspect-ratio: 16/9; object-fit: cover;" loading="lazy">
 
@@ -209,7 +215,7 @@
             </div>
 
             <div class="col-lg-4">
-                <div class="p-4 rounded-4 border shadow-sm sticky-top" style="top: 100px;">
+                <div class="p-4 rounded-4 border shadow-sm bg-white sticky-top" style="top: 100px;">
                     <h6 class="mb-3">About the Author</h6>
                     <div class="d-flex align-items-center gap-3 mb-3">
                         <img src="{{ $blog->author->avatar_url ?? 'https://ui-avatars.com/api/?name=Admin&background=2563EB&color=fff' }}" alt="Author" width="56" height="56" class="rounded-circle object-fit-cover">
