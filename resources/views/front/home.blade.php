@@ -865,24 +865,6 @@
                 flex-shrink: 0;
             }
             
-            .cred-horizontal-header-right a {
-                background: var(--color-primary, #2563EB);
-                color: #fff;
-                padding: 8px 20px;
-                border-radius: 8px;
-                font-weight: 600;
-                font-size: 0.85rem;
-                text-decoration: none;
-                transition: all 0.3s;
-                display: inline-flex;
-                align-items: center;
-                gap: 6px;
-            }
-            
-            .cred-horizontal-header-right a:hover {
-                background: var(--color-primary-dark, #1d4ed8);
-            }
-            
             .cred-horizontal-grid {
                 display: grid;
                 grid-template-columns: repeat(4, 1fr);
@@ -985,8 +967,8 @@
                 </div>
                 @if($certifications->count() > 4)
                 <div class="cred-horizontal-header-right">
-                    <a href="{{ route('certifications') }}">
-                        View All <i class="fa-solid fa-arrow-right"></i>
+                    <a href="{{ route('certifications') }}" class="btn btn-primary-custom">
+                        View All Certifications <i class="fa-solid fa-arrow-right ms-1"></i>
                     </a>
                 </div>
                 @endif
