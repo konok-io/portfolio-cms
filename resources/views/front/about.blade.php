@@ -100,26 +100,154 @@
 
 {{-- Skills --}}
 @if($skills->isNotEmpty())
-<section class="section-padding section-1">
+<section id="skills" class="section-padding section-1">
     <div class="container">
-        <div class="text-center mb-5 reveal-on-scroll">
-            <span class="section-eyebrow">My Skills</span>
-            <h2 class="section-title">Technologies I work with</h2>
-            <p class="section-subtitle mx-auto">A snapshot of the tools and languages I use to bring projects to life.</p>
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
+            <div class="text-center text-lg-start reveal-on-scroll">
+                <span class="section-eyebrow">My Skills</span>
+                <h2 class="section-title mb-2">Technologies I work with</h2>
+                <p class="section-subtitle mx-auto mx-lg-0">A snapshot of the tools and languages I use to bring projects to life.</p>
+            </div>
         </div>
-        <div class="row g-4">
+        
+        <style>
+            .tech-stack-grid {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 20px;
+            }
+            
+            @media (max-width: 1200px) {
+                .tech-stack-grid { grid-template-columns: repeat(4, 1fr); }
+            }
+            @media (max-width: 992px) {
+                .tech-stack-grid { grid-template-columns: repeat(3, 1fr); }
+            }
+            @media (max-width: 768px) {
+                .tech-stack-grid { grid-template-columns: repeat(2, 1fr); }
+            }
+            @media (max-width: 576px) {
+                .tech-stack-grid { grid-template-columns: 1fr; }
+            }
+            
+            .tech-card {
+                background: #fff;
+                border: 1px solid #d1d5db;
+                border-radius: 16px;
+                padding: 25px 15px;
+                text-align: center;
+                transition: all 0.3s;
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .tech-card::before {
+                content: '';
+                position: absolute;
+                top: -30px;
+                right: -30px;
+                width: 80px;
+                height: 80px;
+                background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%);
+                border-radius: 50%;
+                opacity: 0.15;
+                transition: all 0.3s;
+            }
+            
+            .tech-card:hover {
+                transform: translateY(-8px);
+                border-color: #2563EB;
+                box-shadow: 0 15px 40px rgba(37, 99, 235, 0.15);
+            }
+            
+            .tech-card:hover::before {
+                opacity: 0.3;
+                top: -40px;
+                right: -40px;
+                width: 100px;
+                height: 100px;
+            }
+            
+            .tech-icon {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+                color: #2563EB;
+                transition: transform 0.3s;
+            }
+            
+            .tech-card:hover .tech-icon {
+                transform: scale(1.15);
+            }
+            
+            .tech-name {
+                color: #1a1a2e;
+                font-weight: 600;
+                margin-bottom: 5px;
+                font-size: 1rem;
+            }
+            
+            .tech-category {
+                color: #6b7280;
+                font-size: 0.8rem;
+                margin-bottom: 10px;
+            }
+            
+            .tech-percentage {
+                background: #2563EB;
+                color: #fff;
+                padding: 4px 12px;
+                border-radius: 20px;
+                font-size: 0.75rem;
+                font-weight: 600;
+                display: inline-block;
+            }
+            
+            /* Dark Theme */
+            [data-theme="dark"] .tech-card {
+                background: #171433;
+                border-color: rgba(103, 232, 249, 0.15);
+            }
+            
+            [data-theme="dark"] .tech-name {
+                color: #fff;
+            }
+            
+            [data-theme="dark"] .tech-category {
+                color: #a8a4c8;
+            }
+            
+            [data-theme="dark"] .tech-card:hover {
+                border-color: #67E8F9;
+                box-shadow: 0 15px 40px rgba(103, 232, 249, 0.15);
+            }
+            
+            [data-theme="dark"] .tech-card::before {
+                background: linear-gradient(135deg, #67E8F9 0%, #67E8F9 100%);
+            }
+            
+            [data-theme="dark"] .tech-icon {
+                color: #67E8F9;
+            }
+            
+            [data-theme="dark"] .tech-percentage {
+                background: #67E8F9;
+                color: #0A0A1F;
+            }
+        </style>
+        
+        <div class="tech-stack-grid">
             @foreach($skills as $skill)
-                <div class="col-md-6 reveal-on-scroll">
-                    <div class="d-flex justify-content-between mb-2">
-                        <span class="fw-semibold">
-                            @if($skill->icon)<i class="{{ $skill->icon }} me-2 text-primary-custom"></i>@endif
-                            {{ $skill->name }}
-                        </span>
-                        <span class="text-muted small">{{ $skill->percentage }}%</span>
+                <div class="tech-card reveal-on-scroll">
+                    <div class="tech-icon">
+                        @if($skill->icon)
+                            <i class="{{ $skill->icon }}"></i>
+                        @else
+                            <i class="fa-solid fa-code"></i>
+                        @endif
                     </div>
-                    <div class="skill-progress">
-                        <div class="skill-progress-bar" data-percentage="{{ $skill->percentage }}"></div>
-                    </div>
+                    <div class="tech-name">{{ $skill->name }}</div>
+                    <div class="tech-category">{{ $skill->category ?? 'Technical' }}</div>
+                    <div class="tech-percentage">{{ $skill->percentage }}%</div>
                 </div>
             @endforeach
         </div>
@@ -160,6 +288,8 @@
 @if($educations->isNotEmpty())
 <section id="education" class="section-padding section-2" style="background-color: var(--color-primary);">
     <div class="container">
+        
+        {{-- Education Horizontal Cards Style --}}
         <style>
             #education .section-eyebrow,
             #education .section-title,
@@ -218,68 +348,79 @@
                 gap: 16px;
             }
             
-            .edu-hz-text {
-                text-align: left;
+            .edu-hz-left {
+                flex: 1;
             }
             
-            .edu-hz-degree {
-                font-weight: 600;
-                color: #1e293b;
-                margin-bottom: 2px;
-                font-size: 1rem;
-            }
-            
-            .edu-hz-institution {
-                color: #64748b;
-                font-size: 0.85rem;
-            }
-            
-            .edu-hz-duration {
-                background: rgba(37, 99, 235, 0.1);
-                color: var(--color-primary, #2563EB);
-                padding: 6px 12px;
-                border-radius: 50px;
+            .edu-hz-year {
                 font-size: 0.75rem;
-                font-weight: 600;
-                white-space: nowrap;
-                flex-shrink: 0;
+                color: var(--color-secondary, #7c3aed);
+                font-weight: 700;
+                margin-bottom: 4px;
             }
             
-            @media (max-width: 576px) {
-                .edu-hz-content {
-                    flex-direction: column;
-                    align-items: flex-start;
-                    gap: 8px;
-                }
+            .edu-hz-title {
+                font-size: 1rem;
+                font-weight: 700;
+                color: #1e293b;
+                margin-bottom: 4px;
+            }
+            
+            .edu-hz-company {
+                font-size: 0.85rem;
+                color: #64748b;
+            }
+            
+            .edu-hz-desc {
+                font-size: 0.8rem;
+                color: #475569;
+                line-height: 1.5;
+                max-width: 280px;
+                text-align: right;
+            }
+            
+            @media (max-width: 768px) {
                 .edu-hz-card {
                     flex-direction: column;
                     text-align: center;
-                    gap: 12px;
                 }
-                .edu-hz-text {
+                .edu-hz-content {
+                    flex-direction: column;
+                }
+                .edu-hz-desc {
                     text-align: center;
+                    max-width: 100%;
                 }
             }
         </style>
         
-        <div class="edu-hz-section">
-            <div class="edu-hz-list">
-                @foreach($educations as $education)
-                    <div class="edu-hz-card reveal-on-scroll">
-                        <div class="edu-hz-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="edu-hz-content">
-                            <div class="edu-hz-text">
-                                <div class="edu-hz-degree">{{ $education->degree }}</div>
-                                <div class="edu-hz-institution">{{ $education->institution }}</div>
+        <div class="row gy-5">
+            <div class="col-lg-4 reveal-on-scroll">
+                <span class="section-eyebrow">Academic Background</span>
+                <h2 class="section-title">Education</h2>
+                <p class="section-subtitle">My academic foundation in computer science and technology.</p>
+            </div>
+            <div class="col-lg-8">
+                <div class="edu-hz-list">
+                    @foreach($educations as $education)
+                        <div class="edu-hz-card reveal-on-scroll">
+                            <div class="edu-hz-icon">
+                                <i class="fas fa-graduation-cap"></i>
                             </div>
-                            <span class="edu-hz-duration">{{ $education->duration }}</span>
+                            <div class="edu-hz-content">
+                                <div class="edu-hz-left">
+                                    <div class="edu-hz-year">{{ $education->duration }}</div>
+                                    <div class="edu-hz-title">{{ $education->degree }}</div>
+                                    <div class="edu-hz-company">{{ $education->institute_name }}</div>
+                                </div>
+                                <div class="edu-hz-desc">{{ $education->description }}</div>
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
+        
     </div>
 </section>
 @endif
