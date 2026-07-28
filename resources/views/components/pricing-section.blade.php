@@ -233,6 +233,10 @@
         color: white;
     }
     
+    .pricing-split-card.featured .pricing-split-plan-desc {
+        color: rgba(255,255,255,0.85);
+    }
+    
     .pricing-split-plan-desc {
         font-size: 0.75rem;
         color: #64748b;
@@ -242,10 +246,6 @@
     
     [data-theme="dark"] .pricing-split-plan-desc {
         color: #A8A4C8;
-    }
-    
-    .pricing-split-card.featured .pricing-split-plan-desc {
-        color: rgba(255,255,255,0.8);
     }
     
     .pricing-split-price {
