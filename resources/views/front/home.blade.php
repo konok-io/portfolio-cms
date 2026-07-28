@@ -2186,7 +2186,7 @@
             </div>
             <div class="contact-vertical-bottom">
                 <div class="row g-4">
-                    <div class="col-lg-5">
+                    <div class="col-lg-7">
                         @if($siteSetting->google_map)
                             <div class="contact-vertical-map-container">
                                 <div id="homeContactMap" style="width: 100%; height: 100%; min-height: 250px; border-radius: 12px;"></div>
@@ -2200,7 +2200,7 @@
                             </div>
                         @endif
                     </div>
-                    <div class="col-lg-7">
+                    <div class="col-lg-5">
                         <form id="contactForm" action="{{ route('contact.store') }}" method="POST">
                             @csrf
                             <div class="contact-vertical-form-grid">
