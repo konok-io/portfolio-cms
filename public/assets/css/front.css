@@ -895,7 +895,7 @@ a {
 .timeline-item::before {
   content: attr(data-number);
   position: absolute;
-  left: -2.55rem;
+  left: -2.7rem;
   top: 4px;
   width: 28px;
   height: 28px;
