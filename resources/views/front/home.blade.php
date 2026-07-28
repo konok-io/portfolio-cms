@@ -2333,6 +2333,7 @@ document.addEventListener('DOMContentLoaded', function() {
 @if($siteSetting->google_map)
 const homeMapUrl = "{{ addslashes($siteSetting->google_map) }}";
 const homeCoordMatch = homeMapUrl.match(/@(-?\d+\.?\d*),(-?\d+\.?\d*)/);
+const homeAddress = "{{ addslashes($about->address ?? 'Location') }}";
 
 if (homeCoordMatch) {
     const homeLat = parseFloat(homeCoordMatch[1]);
@@ -2345,7 +2346,7 @@ if (homeCoordMatch) {
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap contributors'
             }).addTo(map);
-            L.marker([homeLat, homeLon]).addTo(map);
+            L.marker([homeLat, homeLon]).addTo(map).bindPopup('<b>' + homeAddress + '</b>').openPopup();
         }
     }, 100);
 }
