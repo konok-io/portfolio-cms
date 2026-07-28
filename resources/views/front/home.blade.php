@@ -248,9 +248,7 @@
                 <h2 class="section-title mb-2">{{ $skillsTitle }}</h2>
                 <p class="section-subtitle mx-auto mx-lg-0">{{ $skillsSubtitle }}</p>
             </div>
-            <a href="{{ route('about') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">
-                <i class="fa-solid fa-eye me-2"></i>{{ __('View All Skills') }}
-            </a>
+            <a href="{{ route('about') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">View All</a>
         </div>
         
         <style>
@@ -410,7 +408,7 @@
                 <h2 class="section-title mb-2">Selected Projects</h2>
                 <p class="section-subtitle mx-auto mx-lg-0">A few of the projects I've recently designed and built.</p>
             </div>
-            <a href="{{ route('projects.index') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">View All Projects</a>
+            <a href="{{ route('projects.index') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">View All</a>
         </div>
         <div class="row g-4">
             @foreach($projects as $project)
@@ -621,9 +619,7 @@
                 <h2 class="section-title mb-0">What clients say about working with me</h2>
             </div>
             @if($testimonials->count() > 3)
-            <a href="{{ route('testimonials') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">
-                View All Feedback <i class="fa-solid fa-arrow-right ms-2"></i>
-            </a>
+            <a href="{{ route('testimonials') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">View All</a>
             @endif
         </div>
         
@@ -967,9 +963,7 @@
                 </div>
                 @if($certifications->count() > 4)
                 <div class="cred-horizontal-header-right">
-                    <a href="{{ route('certifications') }}" class="btn btn-primary-custom">
-                        View All Certifications <i class="fa-solid fa-arrow-right ms-1"></i>
-                    </a>
+                    <a href="{{ route('certifications') }}" class="btn btn-outline-custom">View All</a>
                 </div>
                 @endif
             </div>
