@@ -13,6 +13,11 @@
             <p class="section-subtitle mx-auto">{{ page_content('portfolio', 'page_subtitle', app()->getLocale()) }}</p>
         </div>
 
+        </section>
+
+{{-- Projects Content Section --}}
+<section class="section-padding section-1">
+    <div class="container">
         {{-- Category Filter --}}
         @if($categories->isNotEmpty())
             <div class="d-flex flex-wrap justify-content-center gap-2 mb-3">
