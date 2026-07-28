@@ -2205,12 +2205,7 @@
                     <div class="col-lg-5">
                         @if($siteSetting->google_map)
                             <div class="contact-vertical-map-container">
-                                <iframe 
-                                    src="{{ $siteSetting->google_map }}"
-                                    allowfullscreen="" 
-                                    loading="lazy" 
-                                    referrerpolicy="no-referrer-when-downgrade">
-                                </iframe>
+                                <div id="homeContactMap" style="width: 100%; height: 100%; min-height: 250px; border-radius: 12px;"></div>
                             </div>
                         @else
                             <div class="contact-vertical-map-placeholder d-flex align-items-center justify-content-center" style="min-height: 250px; background: #f8f9fa; border-radius: 12px; border: 1px solid #d1d5db;">
@@ -2282,7 +2277,14 @@
 </style>
 @endpush
 
+@if($siteSetting->google_map)
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+@endif
+
 @push('scripts')
+@if($siteSetting->google_map)
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+@endif
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const typedText = document.getElementById('typed-text');
@@ -2326,5 +2328,27 @@ document.addEventListener('DOMContentLoaded', function() {
     
     setTimeout(type, 1000);
 });
+
+// Home Contact Map - Leaflet
+@if($siteSetting->google_map)
+const homeMapUrl = "{{ addslashes($siteSetting->google_map) }}";
+const homeCoordMatch = homeMapUrl.match(/@(-?\d+\.?\d*),(-?\d+\.?\d*)/);
+
+if (homeCoordMatch) {
+    const homeLat = parseFloat(homeCoordMatch[1]);
+    const homeLon = parseFloat(homeCoordMatch[2]);
+    
+    // Initialize map after a small delay to ensure container is ready
+    setTimeout(function() {
+        if (document.getElementById('homeContactMap')) {
+            const map = L.map('homeContactMap').setView([homeLat, homeLon], 15);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+            L.marker([homeLat, homeLon]).addTo(map);
+        }
+    }, 100);
+}
+@endif
 </script>
 @endpush
