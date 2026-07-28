@@ -2343,11 +2343,23 @@ if (homeCoordMatch) {
     // Initialize map after a small delay to ensure container is ready
     setTimeout(function() {
         if (document.getElementById('homeContactMap')) {
-            const map = L.map('homeContactMap').setView([homeLat, homeLon], 15);
+            const map = L.map('homeContactMap', {
+                center: [homeLat, homeLon],
+                zoom: 15,
+                zoomControl: true,
+                scrollWheelZoom: true
+            });
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap contributors'
             }).addTo(map);
-            L.marker([homeLat, homeLon]).addTo(map).bindPopup('<b>' + homeAddress + '</b>').openPopup();
+            
+            const marker = L.marker([homeLat, homeLon]).addTo(map);
+            marker.bindPopup('<b>' + homeAddress + '</b>').openPopup();
+            
+            // Click on map to open in Google Maps
+            map.on('click', function() {
+                window.open('https://www.google.com/maps?q=' + homeLat + ',' + homeLon, '_blank');
+            });
         }
     }, 100);
 }
