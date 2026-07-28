@@ -1777,9 +1777,9 @@ body.has-header main {
     align-items: center;
     justify-content: center;
     gap: 0;
-    padding: 24px 20px;
+    padding: 10px;
     background: var(--color-primary);
-    min-width: 140px;
+    min-width: 120px;
     flex-shrink: 0;
 }
 
@@ -1830,7 +1830,7 @@ body.has-header main {
 
 .card-right {
     flex: 1;
-    padding: 24px;
+    padding: 10px;
     background: #fff;
     display: flex;
     flex-direction: column;
