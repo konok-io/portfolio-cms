@@ -1817,8 +1817,8 @@ body.has-header main {
 }
 
 .btn-view:hover {
-    background: #bfdbfe;
-    color: var(--color-primary);
+    background: #000;
+    color: #fff;
 }
 
 .btn-view i {
