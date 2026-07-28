@@ -935,9 +935,7 @@ a {
 }
 
 /* Page title sections - site primary blue background with reduced padding */
-.page-title-section,
-.section-padding.section-1,
-section.section-1 {
+.page-title-section {
   background: var(--color-primary);
   padding-top: 40px;
   padding-bottom: 40px;
@@ -966,18 +964,14 @@ section.section-1 {
     padding-top: 40px;
     padding-bottom: 40px;
   }
-  .page-title-section,
-  .section-padding.section-1,
-  section.section-1 {
+  .page-title-section {
     padding-top: 30px;
     padding-bottom: 30px;
   }
 }
 
 /* Dark mode - page title section */
-[data-theme="dark"] .page-title-section,
-[data-theme="dark"] .section-padding.section-1,
-[data-theme="dark"] section.section-1 {
+[data-theme="dark"] .page-title-section {
   background: #1e3a5f;
 }
 .site-footer h5 {
