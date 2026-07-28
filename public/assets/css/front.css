@@ -1709,7 +1709,7 @@ a [class*="far"] {
   border-radius: 8px;
   padding: 0 15px;
   height: 40px;
-  width: 1000px;
+  max-width: 1000px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   display: none;
   align-items: center;
@@ -2069,5 +2069,67 @@ body.has-header main {
     .card-left {
         min-width: auto;
         padding: 20px;
+    }
+}
+
+/* Hero Decorations Responsive */
+@media (max-width: 991px) {
+    .hero-section::before {
+        width: 300px;
+        height: 300px;
+        right: -40px;
+    }
+    .hero-section::after {
+        width: 280px;
+        height: 280px;
+        left: -40px;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero-section::before {
+        width: 200px;
+        height: 200px;
+        right: -20px;
+        top: -50px;
+    }
+    .hero-section::after {
+        width: 180px;
+        height: 180px;
+        left: -20px;
+        bottom: -70px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section::before,
+    .hero-section::after {
+        display: none;
+    }
+}
+
+/* Hero Badge Floating Responsive */
+@media (max-width: 991px) {
+    .hero-photo-frame .badge-floating {
+        left: -15px;
+        bottom: 12px;
+        padding: 0.6rem 1rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero-photo-frame .badge-floating {
+        left: 10px;
+        bottom: 10px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-photo-frame .badge-floating {
+        left: auto;
+        right: 10px;
+        bottom: -15px;
+        transform: none;
     }
 }

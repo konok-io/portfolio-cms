@@ -1,6 +1,7 @@
 @extends('front.layouts.app')
 
-@section('title', ($pageContent['title'][app()->getLocale()] ?? $pageContent['title']['en'] ?? 'Resume') . ' - ' . ($siteSetting->site_name ?? 'Portfolio'))
+@section('seo_title', 'Resume')
+@section('meta_description', 'Professional portfolio showcasing skills, experience, and achievements.')
 
 @php
 $currentTemplate = request('template') ?? $settings->template ?? 'modern';

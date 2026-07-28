@@ -45,6 +45,7 @@ class BlogController extends Controller
         $blog->load(['category', 'author', 'allComments', 'allComments.replies']);
 
         $relatedBlogs = Blog::published()
+            ->with(['category', 'author'])
             ->where('id', '!=', $blog->id)
             ->when($blog->blog_category_id, function ($q) use ($blog) {
                 $q->where('blog_category_id', $blog->blog_category_id);

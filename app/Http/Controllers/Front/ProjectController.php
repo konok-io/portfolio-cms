@@ -42,8 +42,9 @@ class ProjectController extends Controller
         
         $project->load(['category', 'gallery', 'tags']);
 
-        // Get prev/next projects
+        // Get prev/next projects with eager loading
         $prevProject = Project::active()
+            ->with('category')
             ->where('sort_order', '<', $project->sort_order)
             ->orWhere(function ($q) use ($project) {
                 $q->where('sort_order', $project->sort_order)
@@ -54,6 +55,7 @@ class ProjectController extends Controller
             ->first();
             
         $nextProject = Project::active()
+            ->with('category')
             ->where(function ($q) use ($project) {
                 $q->where('sort_order', '>', $project->sort_order)
                   ->orWhere(function ($q2) use ($project) {
@@ -67,7 +69,7 @@ class ProjectController extends Controller
 
         $relatedProjects = Project::active()
             ->where('id', '!=', $project->id)
-            ->with('tags')
+            ->with(['category', 'tags'])
             ->where(function ($q) use ($project) {
                 // Same category
                 $q->where('project_category_id', $project->project_category_id)

@@ -82,7 +82,7 @@
                                 @if($project->category)
                                     <span class="project-category-tag">{{ $project->category->name }}</span>
                                 @endif
-                                <img src="{{ $project->featured_image_url ?? 'https://placehold.co/600x450/2563EB/ffffff?text=' . urlencode($project->title) }}" alt="{{ $project->alt_text ?? $project->title }}">
+                                <img src="{{ $project->featured_image_url ?? 'https://placehold.co/600x450/2563EB/ffffff?text=' . urlencode($project->title) }}" alt="{{ $project->alt_text ?? $project->title }}" loading="lazy">
                             </div>
                             <div class="p-3">
                                 <h6 class="mb-1">{{ $project->title }}</h6>

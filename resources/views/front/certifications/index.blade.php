@@ -1,5 +1,8 @@
 @extends('front.layouts.app')
-@section('title', 'Certifications & Badges - ' . ($siteSetting->site_name ?? 'Portfolio'))
+
+@section('seo_title', 'Certifications & Badges')
+@section('meta_description', 'Professional certifications and achievements that validate expertise.')
+
 @section('content')
 <section class="page-title-section section-padding py-5">
     <div class="container">
@@ -17,7 +20,9 @@
                             <img src="{{ asset('storage/' . $cert->badge_image) }}" 
                                  alt="{{ $cert->name }}" 
                                  class="cert-badge mb-3"
-                                 style="width: 100px; height: 100px; object-fit: contain;">
+                                 style="width: 100px; height: 100px; object-fit: contain;"
+                                 loading="lazy"
+                                 width="100" height="100">
                         @else
                             <div class="cert-icon mx-auto mb-3" style="width: 80px; height: 80px;">
                                 <i class="fa-solid fa-certificate" style="font-size: 3rem;"></i>

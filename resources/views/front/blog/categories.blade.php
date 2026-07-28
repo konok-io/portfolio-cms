@@ -1,6 +1,7 @@
 @extends('front.layouts.app')
 
 @section('seo_title', 'Blog Categories')
+@section('meta_description', 'Browse all blog categories and find topics that interest you.')
 
 @section('content')
 <section class="page-title-section section-padding">

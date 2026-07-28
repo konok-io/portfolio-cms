@@ -24,6 +24,7 @@ class SearchController extends Controller
         }
 
         $projects = Project::active()
+            ->with('category')
             ->where(function ($q) use ($query) {
                 $q->where('title', 'like', "%{$query}%")
                   ->orWhere('description', 'like', "%{$query}%");
@@ -32,6 +33,7 @@ class SearchController extends Controller
             ->get();
 
         $blogs = Blog::published()
+            ->with('category')
             ->where(function ($q) use ($query) {
                 $q->where('title', 'like', "%{$query}%")
                   ->orWhere('short_description', 'like', "%{$query}%");

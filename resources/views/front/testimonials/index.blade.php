@@ -1,5 +1,8 @@
 @extends('front.layouts.app')
-@section('title', 'Client Testimonials - ' . ($siteSetting->site_name ?? 'Portfolio'))
+
+@section('seo_title', 'Client Testimonials')
+@section('meta_description', 'Read what clients have to say about working with me.')
+
 @section('content')
 <section class="section-padding section-2 py-5">
     <div class="container">

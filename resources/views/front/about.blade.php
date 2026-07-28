@@ -34,7 +34,9 @@
             <div class="reveal-on-scroll d-flex align-items-stretch" style="width: var(--img-col); flex: 0 0 var(--img-col);">
                 <img src="{{ $about->photo_url }}"
                      alt="{{ $about->name ?? 'Profile photo' }}"
-                     class="img-fluid rounded-4 shadow-sm w-100" style="height: 100%; object-fit: cover;">
+                     class="img-fluid rounded-4 shadow-sm w-100" style="height: 100%; object-fit: cover;"
+                     loading="eager"
+                     width="400" height="500">
             </div>
             <div class="reveal-on-scroll" style="width: var(--text-col); flex: 0 0 var(--text-col);">
                 <span class="section-eyebrow">{{ $about->title ?? 'Web Developer' }}</span>
@@ -553,7 +555,7 @@
                 @endif
                     <div class="cred-horizontal-icon">
                         @if($cert->badge_image)
-                            <img src="{{ asset('storage/' . $cert->badge_image) }}" alt="{{ $cert->name }}">
+                            <img src="{{ asset('storage/' . $cert->badge_image) }}" alt="{{ $cert->name }}" loading="lazy">
                         @else
                             <i class="fa-solid fa-certificate"></i>
                         @endif

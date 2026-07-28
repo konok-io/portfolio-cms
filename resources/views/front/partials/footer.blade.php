@@ -6,19 +6,19 @@
                 <p class="small mb-3">{{ page_content('footer', 'tagline', app()->getLocale()) ?? 'Building thoughtful, modern web experiences — from idea to launch.' }}</p>
                 <div class="footer-social">
                     @if($siteSetting->facebook ?? false)
-                        <a href="{{ $siteSetting->facebook }}" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="{{ $siteSetting->facebook }}" target="_blank" rel="noopener" aria-label="Follow us on Facebook"><i class="fa-brands fa-facebook-f"></i></a>
                     @endif
                     @if($siteSetting->twitter ?? false)
-                        <a href="{{ $siteSetting->twitter }}" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="{{ $siteSetting->twitter }}" target="_blank" rel="noopener" aria-label="Follow us on Twitter"><i class="fa-brands fa-x-twitter"></i></a>
                     @endif
                     @if($siteSetting->linkedin ?? false)
-                        <a href="{{ $siteSetting->linkedin }}" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="{{ $siteSetting->linkedin }}" target="_blank" rel="noopener" aria-label="Connect on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                     @endif
                     @if($siteSetting->github ?? false)
-                        <a href="{{ $siteSetting->github }}" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+                        <a href="{{ $siteSetting->github }}" target="_blank" rel="noopener" aria-label="View GitHub profile"><i class="fa-brands fa-github"></i></a>
                     @endif
                     @if($siteSetting->instagram ?? false)
-                        <a href="{{ $siteSetting->instagram }}" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="{{ $siteSetting->instagram }}" target="_blank" rel="noopener" aria-label="Follow us on Instagram"><i class="fa-brands fa-instagram"></i></a>
                     @endif
                 </div>
             </div>
@@ -68,7 +68,7 @@
                         <input type="text" name="website_url" tabindex="-1" autocomplete="off">
                     </div>
                     <input type="email" name="email" class="form-control form-control-sm @error('email') is-invalid @enderror" placeholder="{{ page_content('footer', 'newsletter_placeholder', app()->getLocale()) ?? 'Your email address' }}" aria-label="Email" required>
-                    <button class="btn btn-sm btn-primary-custom" type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                    <button class="btn btn-sm btn-primary-custom" type="submit" aria-label="Subscribe"><i class="fa-solid fa-paper-plane"></i></button>
                 </form>
                 @error('email')<div class="text-danger small mt-1">{{ $message }}</div>@enderror
             </div>

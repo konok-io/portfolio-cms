@@ -73,7 +73,7 @@
                             <div class="col-md-4">
                                 <div class="blog-card h-100">
                                     <div class="blog-img-wrap">
-                                        <img src="{{ $related->featured_image_url ?? 'https://placehold.co/600x400/2563EB/ffffff?text=' . urlencode($related->title) }}" alt="{{ $related->alt_text ?? $related->title }}">
+                                        <img src="{{ $related->featured_image_url ?? 'https://placehold.co/600x400/2563EB/ffffff?text=' . urlencode($related->title) }}" alt="{{ $related->alt_text ?? $related->title }}" loading="lazy">
                                     </div>
                                     <div class="p-3">
                                         <h6 class="mb-2"><a href="{{ route('blog.show', $related->slug) }}" class="text-decoration-none text-dark">{{ $related->title }}</a></h6>

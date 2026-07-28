@@ -437,7 +437,7 @@
                             @if($project->category)
                                 <span class="project-category-tag">{{ $project->category->name }}</span>
                             @endif
-                            <img src="{{ $project->featured_image_url ?? 'https://placehold.co/600x450/2563EB/ffffff?text=' . urlencode($project->title) }}" alt="{{ $project->alt_text ?? $project->title }}" loading="lazy">
+                            <img src="{{ $project->featured_image_url ?? 'https://placehold.co/600x450/2563EB/ffffff?text=' . urlencode($project->title) }}" alt="{{ $project->alt_text ?? $project->title }}" loading="lazy" width="600" height="450">
                         </div>
                         <div class="p-3">
                             <h6 class="mb-1">{{ $project->title }}</h6>
@@ -817,7 +817,7 @@
                                             <div class="testimonial-author">
                                                 <div class="testimonial-avatar">
                                                     @if($testimonial->photo_url)
-                                                        <img src="{{ $testimonial->photo_url }}" alt="{{ $testimonial->client_name }}">
+                                                        <img src="{{ $testimonial->photo_url }}" alt="{{ $testimonial->client_name }}" loading="lazy">
                                                     @else
                                                         {{ substr($testimonial->client_name, 0, 1) }}
                                                     @endif
@@ -983,7 +983,7 @@
                 @endif
                     <div class="cred-horizontal-icon">
                         @if($cert->badge_image)
-                            <img src="{{ asset('storage/' . $cert->badge_image) }}" alt="{{ $cert->name }}">
+                            <img src="{{ asset('storage/' . $cert->badge_image) }}" alt="{{ $cert->name }}" loading="lazy">
                         @else
                             <i class="fa-solid fa-certificate"></i>
                         @endif
@@ -1188,7 +1188,8 @@
                     <div class="blog-horizontal-img">
                         <img src="{{ $blog->featured_image_url ?? 'https://placehold.co/600x400/2563EB/ffffff?text=' . urlencode($blog->title) }}" 
                              alt="{{ $blog->alt_text ?? $blog->title }}" 
-                             loading="lazy">
+                             loading="lazy"
+                             width="600" height="400">
                     </div>
                     <div class="blog-horizontal-content">
                         @if($blog->category)

@@ -18,7 +18,7 @@
 
     <div class="container">
         <div class="text-center mb-0">
-            <h1 class="section-1title">{{ page_content('search', 'page_title', app()->getLocale()) }}</h1>
+            <h1 class="section-title">{{ page_content('search', 'page_title', app()->getLocale()) }}</h1>
             <p class="text-muted">Found {{ $totalResults }} results for "{{ $query }}"</p>
         </div>
 
@@ -47,7 +47,7 @@
                                 <div class="col-md-6 col-lg-4">
                                     <div class="project-card h-100">
                                         <div class="project-img-wrap">
-                                            <img src="{{ $project->featured_image_url ?? 'https://placehold.co/600x450/2563EB/ffffff?text=Project' }}" alt="{{ $project->title }}">
+                                            <img src="{{ $project->featured_image_url ?? 'https://placehold.co/600x450/2563EB/ffffff?text=Project' }}" alt="{{ $project->title }}" loading="lazy">
                                         </div>
                                         <div class="p-3">
                                             <h6 class="mb-1">{{ $project->title }}</h6>
@@ -72,7 +72,7 @@
                                 <div class="col-md-6 col-lg-4">
                                     <div class="blog-card h-100">
                                         <div class="blog-img-wrap">
-                                            <img src="{{ $blog->featured_image_url ?? 'https://placehold.co/600x400/0F172A/ffffff?text=Blog' }}" alt="{{ $blog->title }}">
+                                            <img src="{{ $blog->featured_image_url ?? 'https://placehold.co/600x400/0F172A/ffffff?text=Blog' }}" alt="{{ $blog->title }}" loading="lazy">
                                         </div>
                                         <div class="p-3">
                                             @if($blog->category)
