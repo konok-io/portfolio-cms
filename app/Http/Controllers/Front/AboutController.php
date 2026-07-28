@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\Certification;
 use App\Models\Education;
 use App\Models\Experience;
 use App\Models\Skill;
@@ -18,10 +19,11 @@ class AboutController extends Controller
             'short_intro' => 'Welcome to my portfolio.',
         ]);
 
-        $skills      = Skill::active()->ordered()->get();
-        $experiences = Experience::ordered()->get();
-        $educations  = Education::ordered()->get();
+        $skills        = Skill::active()->ordered()->get();
+        $experiences   = Experience::ordered()->get();
+        $educations    = Education::ordered()->get();
+        $certifications = Certification::ordered()->get();
 
-        return view('front.about', compact('about', 'skills', 'experiences', 'educations'));
+        return view('front.about', compact('about', 'skills', 'experiences', 'educations', 'certifications'));
     }
 }
