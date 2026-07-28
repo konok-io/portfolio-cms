@@ -26,139 +26,276 @@
     </div>
 </section>
 
-{{-- Contact content --}}
-<section class="section-padding section-2">
+{{-- Contact Section - Same as Home Page --}}
+<section class="section-padding section-1">
     <div class="container">
-        <div class="row g-5">
-            <div class="col-lg-7">
-                <div class="contact-form-card">
-                    @if(session('success'))
-                        <div class="alert alert-success">{{ session('success') }}</div>
-                    @endif
-
-                    <form action="{{ route('contact.store') }}" method="POST" class="contact-form">
-                        @csrf
-                        
-                        {{-- Honeypot spam protection - hidden from users --}}
-                        <div class="honeypot-field" aria-hidden="true">
-                            <input type="text" name="website_url" tabindex="-1" autocomplete="off">
-                        </div>
-                        
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="name" class="form-label">Your Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" 
-                                       id="name" name="name" value="{{ old('name') }}" required>
-                                @error('name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" 
-                                       id="email" name="email" value="{{ old('email') }}" required>
-                                @error('email')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="phone" class="form-label">{{ page_content('contact', 'form_phone', app()->getLocale()) }}</label>
-                                <input type="tel" class="form-control @error('phone') is-invalid @enderror" 
-                                       id="phone" name="phone" value="{{ old('phone') }}">
-                                @error('phone')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="subject" class="form-label">{{ page_content('contact', 'form_subject', app()->getLocale()) }}</label>
-                                <input type="text" class="form-control @error('subject') is-invalid @enderror" 
-                                       id="subject" name="subject" value="{{ old('subject') }}">
-                                @error('subject')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="col-12">
-                                <label for="message" class="form-label">{{ page_content('contact', 'form_message', app()->getLocale()) }} <span class="text-danger">*</span></label>
-                                <textarea class="form-control @error('message') is-invalid @enderror" 
-                                          id="message" name="message" rows="5" required>{{ old('message') }}</textarea>
-                                @error('message')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="col-12">
-                                @if($siteSetting->isRecaptchaEnabled())
-                                    <div class="mb-3">
-                                        <div class="g-recaptcha" data-sitekey="{{ $siteSetting->recaptcha_site_key }}"></div>
-                                        @error('recaptcha')
-                                            <div class="text-danger small mt-1">{{ $message }}</div>
-                                        @enderror
+        
+        <style>
+            .contact-vertical-section {
+                background: #ffffff;
+                border-radius: 20px;
+                overflow: hidden;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+                border: 1px solid #d1d5db;
+            }
+            
+            .contact-vertical-top {
+                background: linear-gradient(135deg, var(--color-primary, #2563EB), var(--color-primary-dark, #1d4ed8));
+                padding: 24px 32px;
+                color: #fff;
+            }
+            
+            .contact-vertical-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                margin-bottom: 8px;
+                color: #ffffff;
+            }
+            
+            .contact-vertical-subtitle {
+                font-size: 0.9rem;
+                opacity: 0.9;
+                margin-bottom: 0;
+                color: rgba(255, 255, 255, 0.9);
+            }
+            
+            .contact-vertical-info {
+                display: flex;
+                justify-content: flex-end;
+                gap: 16px;
+                flex-wrap: wrap;
+            }
+            
+            .contact-vertical-info-item {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                font-size: 0.85rem;
+            }
+            
+            .contact-vertical-info-icon {
+                width: 28px;
+                height: 28px;
+                background: rgba(255,255,255,0.2);
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.75rem;
+                flex-shrink: 0;
+            }
+            
+            .contact-vertical-bottom {
+                padding: 28px 32px;
+            }
+            
+            .contact-vertical-form-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+                margin-bottom: 12px;
+            }
+            
+            .contact-vertical-input {
+                width: 100%;
+                padding: 10px 14px;
+                border: 1px solid #d1d5db;
+                border-radius: 8px;
+                font-size: 0.9rem;
+                transition: all 0.3s;
+            }
+            
+            .contact-vertical-input:focus {
+                outline: none;
+                border-color: var(--color-primary, #2563EB);
+                box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            }
+            
+            .contact-vertical-textarea {
+                width: 100%;
+                padding: 10px 14px;
+                border: 1px solid #d1d5db;
+                border-radius: 8px;
+                font-size: 0.9rem;
+                resize: none;
+                height: 80px;
+                transition: all 0.3s;
+            }
+            
+            .contact-vertical-textarea:focus {
+                outline: none;
+                border-color: var(--color-primary, #2563EB);
+                box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            }
+            
+            .contact-vertical-btn {
+                background: var(--color-primary, #2563EB);
+                color: #fff;
+                padding: 10px 24px;
+                border-radius: 8px;
+                border: none;
+                font-weight: 600;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: all 0.3s;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                width: 100%;
+            }
+            
+            .contact-vertical-btn:hover {
+                background: var(--color-primary-dark, #1d4ed8);
+            }
+            
+            .contact-vertical-map-container {
+                width: 100%;
+                height: 100%;
+                min-height: 250px;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                border: 1px solid #d1d5db;
+            }
+            
+            .contact-vertical-map-container iframe,
+            .contact-vertical-map-container #contactPageMap {
+                width: 100%;
+                height: 100%;
+                min-height: 250px;
+                border: none;
+            }
+            
+            .contact-vertical-map-placeholder {
+                min-height: 250px;
+            }
+            
+            @media (max-width: 576px) {
+                .contact-vertical-form-grid {
+                    grid-template-columns: 1fr;
+                }
+                .contact-vertical-info {
+                    flex-direction: column;
+                    gap: 12px;
+                }
+                .contact-vertical-map-container,
+                .contact-vertical-map-container iframe {
+                    min-height: 200px;
+                }
+            }
+            
+            @media (max-width: 991px) {
+                .contact-vertical-map-container,
+                .contact-vertical-map-container iframe {
+                    min-height: 200px;
+                    margin-top: 20px;
+                }
+            }
+            
+            [data-theme="dark"] .contact-vertical-section {
+                background: #1e293b;
+            }
+            [data-theme="dark"] .contact-vertical-input,
+            [data-theme="dark"] .contact-vertical-textarea {
+                background: #0f172a;
+                border-color: #334155;
+                color: #f1f5f9;
+            }
+            [data-theme="dark"] .contact-vertical-input::placeholder,
+            [data-theme="dark"] .contact-vertical-textarea::placeholder {
+                color: #64748b;
+            }
+        </style>
+        
+        <div class="contact-vertical-section reveal-on-scroll">
+            <div class="contact-vertical-top">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h3 class="contact-vertical-title">{{ page_content('contact', 'contact_title', app()->getLocale()) }}</h3>
+                        <p class="contact-vertical-subtitle">{{ page_content('contact', 'contact_text', app()->getLocale()) }}</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="contact-vertical-info text-end">
+                            @if($siteSetting->email)
+                                <div class="contact-vertical-info-item">
+                                    <div class="contact-vertical-info-icon">
+                                        <i class="fas fa-envelope"></i>
                                     </div>
-                                @endif
-                                <button type="submit" class="btn btn-primary-custom btn-lg">
-                                    <i class="fa-solid fa-paper-plane me-2"></i>{{ page_content('contact', 'form_button', app()->getLocale()) }}
-                                </button>
-                            </div>
+                                    <span>{{ Str::limit($siteSetting->email, 30) }}</span>
+                                </div>
+                            @endif
+                            @if($siteSetting->phone)
+                                <div class="contact-vertical-info-item">
+                                    <div class="contact-vertical-info-icon">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <span>{{ $siteSetting->phone }}</span>
+                                </div>
+                            @endif
+                            @if($siteSetting->address)
+                                <div class="contact-vertical-info-item">
+                                    <div class="contact-vertical-info-icon">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <span>{{ Str::limit($siteSetting->address, 25) }}</span>
+                                </div>
+                            @endif
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
-
-            <div class="col-lg-5">
-                <div class="contact-info-card">
-                    <h3 class="mb-4">Contact Information</h3>
-                    
-                    @if($siteSetting->email)
-                    <div class="contact-info-item mb-4">
-                        <div class="contact-icon">
-                            <i class="fa-solid fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h5>Email</h5>
-                            <a href="mailto:{{ $siteSetting->email }}">{{ $siteSetting->email }}</a>
-                        </div>
+            <div class="contact-vertical-bottom">
+                @if(session('success'))
+                    <div class="alert alert-success mb-4">{{ session('success') }}</div>
+                @endif
+                <div class="row g-4 align-items-stretch">
+                    <div class="col-lg-7 d-flex">
+                        @if($siteSetting->google_map)
+                            <div class="contact-vertical-map-container">
+                                <div id="contactPageMap"></div>
+                            </div>
+                        @else
+                            <div class="contact-vertical-map-placeholder d-flex align-items-center justify-content-center w-100" style="background: #f8f9fa; border-radius: 12px; border: 1px solid #d1d5db;">
+                                <div class="text-center text-muted">
+                                    <i class="fas fa-map-marker-alt fa-2x mb-2"></i>
+                                    <p class="mb-0 small">Map location will appear here</p>
+                                </div>
+                            </div>
+                        @endif
                     </div>
-                    @endif
-
-                    @if($siteSetting->phone)
-                    <div class="contact-info-item mb-4">
-                        <div class="contact-icon">
-                            <i class="fa-solid fa-phone"></i>
-                        </div>
-                        <div>
-                            <h5>Phone</h5>
-                            <a href="tel:{{ $siteSetting->phone }}">{{ $siteSetting->phone }}</a>
-                        </div>
+                    <div class="col-lg-5 d-flex">
+                        <form action="{{ route('contact.store') }}" method="POST" class="w-100 d-flex flex-column justify-content-center">
+                            @csrf
+                            {{-- Honeypot spam protection - hidden from users --}}
+                            <div class="honeypot-field" aria-hidden="true">
+                                <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+                            </div>
+                            <div class="contact-vertical-form-grid">
+                                <input type="text" name="name" class="contact-vertical-input" placeholder="Your Name *" value="{{ old('name') }}" required>
+                                <input type="email" name="email" class="contact-vertical-input" placeholder="Email Address *" value="{{ old('email') }}" required>
+                                <input type="tel" name="phone" class="contact-vertical-input" placeholder="{{ page_content('contact', 'form_phone', app()->getLocale()) }}" value="{{ old('phone') }}">
+                                <input type="text" name="subject" class="contact-vertical-input" placeholder="{{ page_content('contact', 'form_subject', app()->getLocale()) }}" value="{{ old('subject') }}">
+                            </div>
+                            <textarea name="message" class="contact-vertical-textarea" placeholder="{{ page_content('contact', 'form_message', app()->getLocale()) }} *" required>{{ old('message') }}</textarea>
+                            @if($siteSetting->isRecaptchaEnabled())
+                                <div class="mb-3 mt-2">
+                                    <div class="g-recaptcha" data-sitekey="{{ $siteSetting->recaptcha_site_key }}"></div>
+                                    @error('recaptcha')
+                                        <div class="text-danger small mt-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            @endif
+                            <button type="submit" class="contact-vertical-btn mt-3">
+                                <i class="fas fa-paper-plane"></i>
+                                {{ page_content('contact', 'form_button', app()->getLocale()) }}
+                            </button>
+                        </form>
                     </div>
-                    @endif
-
-                    @if($siteSetting->address)
-                    <div class="contact-info-item mb-4">
-                        <div class="contact-icon">
-                            <i class="fa-solid fa-location-dot"></i>
-                        </div>
-                        <div>
-                            <h5>Address</h5>
-                            <p class="mb-0">{{ $siteSetting->address }}</p>
-                        </div>
-                    </div>
-                    @endif
-
-                    @if($siteSetting->google_map)
-                    <div class="google-map mt-4" id="contactMap"></div>
-                    @else
-                    <div class="google-map-placeholder mt-4">
-                        <i class="fa-solid fa-map-location-dot"></i>
-                        <p>Map location will appear here</p>
-                    </div>
-                    @endif
                 </div>
             </div>
         </div>
+        
     </div>
 </section>
 @endsection
@@ -172,7 +309,7 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const map = L.map('contactMap').setView([0, 0], 13);
+    const map = L.map('contactPageMap').setView([0, 0], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
@@ -180,7 +317,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const mapUrl = "{{ addslashes($siteSetting->google_map) }}";
     const address = "{{ addslashes($siteSetting->address ?? '') }}";
     
-    // Extract coordinates from Google Maps URL if present
     const coordMatch = mapUrl.match(/@(-?\d+\.?\d*),(-?\d+\.?\d*)/);
     
     if (coordMatch) {
@@ -190,7 +326,6 @@ document.addEventListener('DOMContentLoaded', function() {
         L.marker([lat, lon]).addTo(map)
             .bindPopup(address || 'Location').openPopup();
     } else {
-        // Fallback: search by address
         const searchQuery = address || mapUrl;
         fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(searchQuery)}`)
             .then(r => r.json())
@@ -207,92 +342,4 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 @endif
-@endpush
-
-@push('styles')
-<style>
-.contact-form-card,
-.contact-info-card {
-    background: #fff;
-    border-radius: 16px;
-    padding: 2rem;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    height: 100%;
-}
-[data-theme="dark"] .contact-form-card,
-[data-theme="dark"] .contact-info-card {
-    background: #171433;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-}
-.contact-info-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-}
-.contact-icon {
-    width: 48px;
-    height: 48px;
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 1.2rem;
-    flex-shrink: 0;
-}
-.contact-info-item h5 {
-    font-size: 0.9rem;
-    color: var(--color-muted);
-    margin-bottom: 0.25rem;
-}
-.contact-info-item p,
-.contact-info-item a {
-    color: var(--color-secondary);
-    text-decoration: none;
-    transition: color 0.3s;
-}
-[data-theme="dark"] .contact-info-item p,
-[data-theme="dark"] .contact-info-item a {
-    color: #EDECFF;
-}
-.contact-info-item a:hover {
-    color: var(--color-primary);
-}
-.google-map {
-    border-radius: 12px;
-    overflow: hidden;
-}
-.google-map, #contactMap {
-    height: 250px;
-    border-radius: 12px;
-    z-index: 1;
-}
-.google-map iframe {
-    width: 100%;
-    height: 200px;
-    border: 0;
-}
-.google-map-placeholder {
-    background: #f8fafc;
-    border: 2px dashed #e2e8f0;
-    border-radius: 12px;
-    padding: 2rem;
-    text-align: center;
-    color: #94a3b8;
-}
-[data-theme="dark"] .google-map-placeholder {
-    background: #12102E;
-    border-color: #2C2860;
-    color: #6B6790;
-}
-.google-map-placeholder i {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-}
-.google-map-placeholder p {
-    margin: 0;
-    font-size: 0.9rem;
-}
-</style>
 @endpush
