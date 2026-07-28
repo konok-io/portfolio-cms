@@ -285,13 +285,14 @@
             .tech-card::before {
                 content: '';
                 position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 3px;
-                background: linear-gradient(90deg, #2563EB, #3B82F6);
-                opacity: 0;
-                transition: opacity 0.3s;
+                top: -30px;
+                right: -30px;
+                width: 80px;
+                height: 80px;
+                background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%);
+                border-radius: 50%;
+                opacity: 0.15;
+                transition: all 0.3s;
             }
             
             .tech-card:hover {
@@ -301,7 +302,11 @@
             }
             
             .tech-card:hover::before {
-                opacity: 1;
+                opacity: 0.3;
+                top: -40px;
+                right: -40px;
+                width: 100px;
+                height: 100px;
             }
             
             .tech-icon {
@@ -358,7 +363,7 @@
             }
             
             [data-theme="dark"] .tech-card::before {
-                background: linear-gradient(90deg, #67E8F9, #67E8F9);
+                background: linear-gradient(135deg, #67E8F9 0%, #67E8F9 100%);
             }
             
             [data-theme="dark"] .tech-icon {
