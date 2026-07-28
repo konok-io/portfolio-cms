@@ -130,16 +130,16 @@ $resumeSubtitle = $pageContent['subtitle'][app()->getLocale()] ?? $pageContent['
 }
 
 [data-theme="dark"] .template-btn {
-    border-color: #8B7BF4;
-    color: #8B7BF4;
+    border-color: #3b82f6;
+    color: #3b82f6;
 }
 
 [data-theme="dark"] .template-btn:hover {
-    background: rgba(139, 123, 244, 0.15);
+    background: rgba(59, 130, 246, 0.15);
 }
 
 [data-theme="dark"] .template-btn.active {
-    background: linear-gradient(135deg, #4F2FE8, #22D3EE);
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
     border-color: transparent;
     color: white;
 }

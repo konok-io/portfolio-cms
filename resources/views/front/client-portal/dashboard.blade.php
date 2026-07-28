@@ -165,7 +165,7 @@
 }
 .circle {
     fill: none;
-    stroke: var(--color-primary, #4F2FE8);
+    stroke: var(--color-primary, #2563eb);
     stroke-width: 3.8;
     stroke-linecap: round;
     animation: progress 1s ease-out forwards;
@@ -183,7 +183,7 @@
     transition: all 0.3s ease;
 }
 .file-card:hover {
-    border-color: var(--color-primary, #4F2FE8) !important;
+    border-color: var(--color-primary, #2563eb) !important;
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }

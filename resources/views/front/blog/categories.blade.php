@@ -75,7 +75,7 @@
 .category-icon {
     width: 50px;
     height: 50px;
-    background: linear-gradient(135deg, #4F2FE8, #7C3AED);
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
     border-radius: 12px;
     display: flex;
     align-items: center;

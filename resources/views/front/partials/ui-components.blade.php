@@ -103,7 +103,7 @@
     top: 0;
     left: 0;
     height: 3px;
-    background: linear-gradient(90deg, var(--color-primary, #4F2FE8), var(--color-secondary, #7B61FF));
+    background: linear-gradient(90deg, var(--color-primary, #2563eb), var(--color-secondary, #3b82f6));
     width: 0%;
     z-index: 9999;
     transition: width 0.1s ease-out;
@@ -117,7 +117,7 @@
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: var(--color-primary, #4F2FE8);
+    background: var(--color-primary, #2563eb);
     color: white;
     border: none;
     cursor: pointer;
@@ -139,7 +139,7 @@
 }
 
 .back-to-top:hover {
-    background: var(--color-secondary, #7B61FF);
+    background: var(--color-secondary, #3b82f6);
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(79, 47, 232, 0.4);
 }
@@ -668,7 +668,7 @@ styleSheet.textContent = `
     .newsletter-popup-icon {
         width: 64px;
         height: 64px;
-        background: linear-gradient(135deg, #2563eb 0%, #4F2FE8 100%);
+        background: linear-gradient(135deg, #2563eb 0%, #2563eb 100%);
         border-radius: 50%;
         display: flex;
         align-items: center;

@@ -48,7 +48,7 @@
 .header-design-2 .navbar-brand {
     font-weight: 800;
     font-size: 1.75rem;
-    background: linear-gradient(135deg, #2563EB, #4F2FE8);
+    background: linear-gradient(135deg, #2563EB, #2563eb);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -233,7 +233,7 @@
 }
 .header-design-6 .nav-wrapper {
     border-bottom: 4px solid;
-    border-image: linear-gradient(90deg, #2563EB, #4F2FE8, #2563EB) 1;
+    border-image: linear-gradient(90deg, #2563EB, #2563eb, #2563EB) 1;
 }
 .header-design-6 .navbar-brand {
     font-weight: 800;
@@ -357,7 +357,7 @@
 .header-design-9 .navbar-brand {
     font-weight: 800;
     font-size: 1.5rem;
-    background: linear-gradient(135deg, #2563EB, #4F2FE8);
+    background: linear-gradient(135deg, #2563EB, #2563eb);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

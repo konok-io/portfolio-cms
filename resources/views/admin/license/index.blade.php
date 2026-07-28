@@ -3,7 +3,7 @@
 
 @section('content')
 <style>
-    .lic-hero{background:linear-gradient(135deg,#4F2FE8,#7C3AED 60%,#C026D3);border-radius:16px;padding:28px;color:#fff;margin-bottom:20px}
+    .lic-hero{background:linear-gradient(135deg,#2563eb,#3b82f6 60%,#C026D3);border-radius:16px;padding:28px;color:#fff;margin-bottom:20px}
     .lic-hero h2{font-weight:700;font-size:24px;margin-bottom:6px;color:#fff}
     .lic-hero p{color:rgba(255,255,255,.85);font-size:14px;margin:0}
     .lic-card{background:#fff;border:1px solid #e2e2e8;border-radius:14px;padding:22px}

@@ -29,7 +29,7 @@
         .header {
             text-align: center;
             padding-bottom: 25px;
-            border-bottom: 2px solid #4F2FE8;
+            border-bottom: 2px solid #2563eb;
             margin-bottom: 25px;
         }
         
@@ -41,7 +41,7 @@
         
         .header .title {
             font-size: 16px;
-            color: #4F2FE8;
+            color: #2563eb;
             margin-bottom: 10px;
         }
         
@@ -62,7 +62,7 @@
         .section-title {
             font-size: 14px;
             font-weight: bold;
-            color: #4F2FE8;
+            color: #2563eb;
             text-transform: uppercase;
             letter-spacing: 1px;
             padding-bottom: 8px;
@@ -153,7 +153,7 @@
         
         .project-tag {
             background: #e8f0fe;
-            color: #4F2FE8;
+            color: #2563eb;
             padding: 2px 6px;
             border-radius: 3px;
             font-size: 8px;
@@ -172,7 +172,7 @@
             background: #fafafa;
             padding: 10px;
             border-radius: 4px;
-            border-left: 3px solid #4F2FE8;
+            border-left: 3px solid #2563eb;
         }
         
         .service-title {
@@ -195,7 +195,7 @@
         }
         
         .cert-icon {
-            color: #4F2FE8;
+            color: #2563eb;
             margin-right: 8px;
         }
         
