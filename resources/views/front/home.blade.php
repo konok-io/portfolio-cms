@@ -636,17 +636,12 @@
             transition: all 0.3s;
             border: 1px solid #e2e8f0;
             padding: 10px;
-            position: relative;
-            outline: 3px solid transparent;
-            outline-offset: 0;
         }
         
         .testimonial-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 35px rgba(37, 99, 235, 0.15);
             border-color: var(--color-primary, #2563EB);
-            outline: 3px solid var(--color-primary, #2563EB);
-            outline-offset: 2px;
         }
         
         .testimonial-header {
