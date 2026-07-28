@@ -2093,6 +2093,22 @@
                 background: var(--color-primary-dark, #1d4ed8);
             }
             
+            .contact-vertical-map-container {
+                width: 100%;
+                height: 100%;
+                min-height: 250px;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+            
+            .contact-vertical-map-container iframe {
+                width: 100%;
+                height: 100%;
+                min-height: 250px;
+                border: none;
+            }
+            
             @media (max-width: 576px) {
                 .contact-vertical-form-grid {
                     grid-template-columns: 1fr;
@@ -2100,6 +2116,18 @@
                 .contact-vertical-info {
                     flex-direction: column;
                     gap: 12px;
+                }
+                .contact-vertical-map-container,
+                .contact-vertical-map-container iframe {
+                    min-height: 200px;
+                }
+            }
+            
+            @media (max-width: 991px) {
+                .contact-vertical-map-container,
+                .contact-vertical-map-container iframe {
+                    min-height: 200px;
+                    margin-top: 20px;
                 }
             }
             
@@ -2156,20 +2184,34 @@
                 </div>
             </div>
             <div class="contact-vertical-bottom">
-                <form id="contactForm" action="{{ route('contact.store') }}" method="POST">
-                    @csrf
-                    <div class="contact-vertical-form-grid">
-                        <input type="text" name="name" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_name', app()->getLocale()) }}" required>
-                        <input type="email" name="email" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_email', app()->getLocale()) }}" required>
-                        <input type="text" name="phone" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_phone', app()->getLocale()) }}">
-                        <input type="text" name="subject" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_subject', app()->getLocale()) }}">
+                <div class="row g-4">
+                    <div class="col-lg-7">
+                        <form id="contactForm" action="{{ route('contact.store') }}" method="POST">
+                            @csrf
+                            <div class="contact-vertical-form-grid">
+                                <input type="text" name="name" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_name', app()->getLocale()) }}" required>
+                                <input type="email" name="email" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_email', app()->getLocale()) }}" required>
+                                <input type="text" name="phone" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_phone', app()->getLocale()) }}">
+                                <input type="text" name="subject" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_subject', app()->getLocale()) }}">
+                            </div>
+                            <textarea name="message" class="contact-vertical-textarea" placeholder="{{ page_content('home', 'contact_form_message', app()->getLocale()) }}" required></textarea>
+                            <button type="submit" class="contact-vertical-btn mt-3">
+                                <i class="fas fa-paper-plane"></i>
+                                {{ page_content('home', 'contact_form_button', app()->getLocale()) }}
+                            </button>
+                        </form>
                     </div>
-                    <textarea name="message" class="contact-vertical-textarea" placeholder="{{ page_content('home', 'contact_form_message', app()->getLocale()) }}" required></textarea>
-                    <button type="submit" class="contact-vertical-btn mt-3">
-                        <i class="fas fa-paper-plane"></i>
-                        {{ page_content('home', 'contact_form_button', app()->getLocale()) }}
-                    </button>
-                </form>
+                    <div class="col-lg-5">
+                        <div class="contact-vertical-map-container">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.0893721814336!2d90.41237091498304!3d23.81216839220696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7a0f70deb73%3A0x30c36498f90fe023!2sDhaka%2C%20Bangladesh!5e0!3m2!1sen!2s!4v1610000000000!5m2!1sen!2s"
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         
