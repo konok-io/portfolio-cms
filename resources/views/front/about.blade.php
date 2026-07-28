@@ -351,7 +351,7 @@
 
 {{-- Education --}}
 @if($educations->isNotEmpty())
-<section class="section-padding section-2">
+<section class="section-padding" style="background: linear-gradient(135deg, #dbeafe, #eff6ff);">
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-4 reveal-on-scroll">
