@@ -2332,9 +2332,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Home Contact Map - Leaflet
 @if($about->google_map)
-const homeMapUrl = "{{ addslashes($about->google_map) }}";
+const homeMapUrl = @json($about->google_map);
 const homeCoordMatch = homeMapUrl.match(/@(-?\d+\.?\d*),(-?\d+\.?\d*)/);
-const homeAddress = "{{ addslashes($about->address ?? 'Location') }}";
+const homeAddress = @json($about->address ?? 'Location');
 
 if (homeCoordMatch) {
     const homeLat = parseFloat(homeCoordMatch[1]);
