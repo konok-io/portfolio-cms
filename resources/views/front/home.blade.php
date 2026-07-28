@@ -2127,7 +2127,7 @@
                         <p class="contact-vertical-subtitle">{{ page_content('home', 'contact_text', app()->getLocale()) }}</p>
                     </div>
                     <div class="col-lg-6">
-                        <div class="contact-vertical-info">
+                        <div class="contact-vertical-info text-end">
                             @if($about->email ?? false)
                                 <div class="contact-vertical-info-item">
                                     <div class="contact-vertical-info-icon">
