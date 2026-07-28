@@ -122,10 +122,10 @@
     .why-h-card::before {
         content: '';
         position: absolute;
-        top: -30px;
-        right: -30px;
-        width: 80px;
-        height: 80px;
+        top: -40px;
+        left: -40px;
+        width: 120px;
+        height: 120px;
         background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%);
         border-radius: 50%;
         opacity: 0.15;
@@ -149,11 +149,11 @@
     }
 
     .why-h-card:hover::before {
-        opacity: 0.3;
-        top: -40px;
-        right: -40px;
-        width: 100px;
-        height: 100px;
+        opacity: 0.25;
+        top: -50px;
+        left: -50px;
+        width: 150px;
+        height: 150px;
     }
 
     .why-h-card:hover::after {
@@ -229,7 +229,7 @@
     }
 
     [data-theme="dark"] .why-h-card:hover::before {
-        opacity: 0.3;
+        opacity: 0.25;
     }
 
     [data-theme="dark"] .why-h-card:hover .why-h-icon {
