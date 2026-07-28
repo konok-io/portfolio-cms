@@ -13,7 +13,7 @@
             </ol>
         </nav>
 
-        <div class="text-center mb-5">
+        <div class="text-center mb-0">
             <span class="section-1eyebrow">{{ page_content('contact', 'page_eyebrow', app()->getLocale()) }}</span>
             <h1 class="section-1title">{{ page_content('contact', 'page_title', app()->getLocale()) }}</h1>
             <p class="section-1subtitle mx-auto">{{ page_content('contact', 'page_subtitle', app()->getLocale()) }}</p>

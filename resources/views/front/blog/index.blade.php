@@ -18,7 +18,7 @@
         </div>
 
     <div class="container">
-        <div class="text-center mb-5">
+        <div class="text-center mb-0">
             <span class="section-eyebrow">{{ page_content('blog', 'page_eyebrow', app()->getLocale()) }}</span>
             <h1 class="section-title">{{ page_content('blog', 'page_title', app()->getLocale()) }}</h1>
             <p class="section-subtitle mx-auto">{{ page_content('blog', 'page_subtitle', app()->getLocale()) }}</p>

@@ -26,7 +26,7 @@
             </ol>
         </nav>
 
-        <div class="text-center mb-5">
+        <div class="text-center mb-0">
             <span class="section-eyebrow">Category</span>
             <h1 class="section-title">{{ $category->name }}</h1>
             @if($category->description)

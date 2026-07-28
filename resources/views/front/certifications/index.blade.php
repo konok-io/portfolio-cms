@@ -3,7 +3,7 @@
 @section('content')
 <section class="page-title-section section-padding py-5">
     <div class="container">
-        <div class="text-center mb-5">
+        <div class="text-center mb-0">
             <span class="section-eyebrow">Credentials</span>
             <h1 class="section-title">Certifications & Badges</h1>
             <p class="section-subtitle mx-auto">Professional certifications and achievements that validate my expertise.</p>

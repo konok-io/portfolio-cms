@@ -17,7 +17,7 @@
         </div>
 
     <div class="container">
-        <div class="text-center mb-5">
+        <div class="text-center mb-0">
             <h1 class="section-1title">{{ page_content('search', 'page_title', app()->getLocale()) }}</h1>
             <p class="text-muted">Found {{ $totalResults }} results for "{{ $query }}"</p>
         </div>

@@ -25,7 +25,7 @@
             </ol>
         </nav>
 
-        <div class="text-center mb-5">
+        <div class="text-center mb-0">
             <h1 class="section-title">Blog Categories</h1>
             <p class="lead text-muted">Browse articles by topic</p>
         </div>

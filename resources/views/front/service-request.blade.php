@@ -27,7 +27,7 @@
 
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <div class="text-center mb-5">
+                <div class="text-center mb-0">
                     <span class="section-eyebrow">Get Started</span>
                     <h1 class="section-title">Request a Quote</h1>
                     <p class="lead text-muted">Tell us about your project and we'll get back to you within 24 hours.</p>
