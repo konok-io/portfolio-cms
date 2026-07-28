@@ -612,163 +612,187 @@
      8. TESTIMONIALS
      ========================================================= --}}
 @if($testimonials->isNotEmpty())
-<section id="testimonials" class="section-padding section-1">
-    <div class="container">
-        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5 gap-3">
-            <div class="text-center text-lg-start reveal-on-scroll">
+<section id="testimonials" class="section-padding section-2">
+    
+    {{-- Header Section - Outside container (on section background) --}}
+    <div class="container mb-4">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 reveal-on-scroll">
+            <div class="text-center text-lg-start">
                 <span class="section-eyebrow">Client Feedback</span>
                 <h2 class="section-title mb-0">What clients say about working with me</h2>
             </div>
             @if($testimonials->count() > 3)
-            <a href="{{ route('testimonials') }}" class="btn btn-outline-custom flex-shrink-0 reveal-on-scroll">View All <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            <a href="{{ route('testimonials') }}" class="btn btn-outline-custom flex-shrink-0">View All <i class="fa-solid fa-arrow-right ms-1"></i></a>
             @endif
         </div>
+    </div>
+    
+    {{-- Cards Section - Inside container --}}
+    <style>
+        .test-glass-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 24px;
+            height: 100%;
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
+        }
         
-        {{-- Glass Card Styles --}}
-        <style>
-            .test-glass-card {
-                background: #ffffff;
-                border-radius: 16px;
-                padding: 24px;
-                height: 100%;
-                transition: all 0.3s;
-            }
-            
-            .test-glass-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            }
-            
-            .test-glass-header {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin-bottom: 16px;
-            }
-            
-            .test-glass-author {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-            
-            .test-glass-avatar {
-                width: 44px;
-                height: 44px;
-                background: #2563eb;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: #fff;
-                font-weight: 700;
-                font-size: 1rem;
-                overflow: hidden;
-                flex-shrink: 0;
-            }
-            
-            .test-glass-avatar img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-            
-            .test-glass-author-info {
-                display: flex;
-                flex-direction: column;
-            }
-            
-            .test-glass-name {
-                font-size: 0.85rem;
-                font-weight: 700;
-                color: #1e293b;
-            }
-            
-            .test-glass-role {
-                font-size: 0.7rem;
-                color: #64748b;
-            }
-            
-            .test-glass-quote-stars {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-end;
-                gap: 4px;
-            }
-            
-            .test-glass-quote {
-                color: #2563eb;
-                font-size: 1.8rem;
-                line-height: 1;
-            }
-            
-            .test-glass-stars {
-                color: #f59e0b;
-                font-size: 0.75rem;
-            }
-            
-            .test-glass-content {
-                display: flex;
-                align-items: flex-start;
-                gap: 12px;
-            }
-            
-            .test-glass-content .test-glass-quote-icon {
-                color: #2563eb;
-                font-size: 1.5rem;
-                line-height: 1;
-                flex-shrink: 0;
-                margin-top: 2px;
-            }
-            
-            .test-glass-text {
-                font-size: 0.9rem;
-                color: #475569;
-                line-height: 1.7;
-                flex: 1;
-            }
-            
-            /* Carousel styles */
+        .test-glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border-color: var(--color-primary, #2563EB);
+        }
+        
+        .test-glass-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        
+        .test-glass-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .test-glass-avatar {
+            width: 44px;
+            height: 44px;
+            background: var(--color-primary, #2563EB);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .test-glass-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .test-glass-author-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .test-glass-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        
+        .test-glass-role {
+            font-size: 0.7rem;
+            color: #64748b;
+        }
+        
+        .test-glass-quote-stars {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+        }
+        
+        .test-glass-quote {
+            color: var(--color-primary, #2563EB);
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+        
+        .test-glass-stars {
+            color: #f59e0b;
+            font-size: 0.75rem;
+        }
+        
+        .test-glass-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .test-glass-content .test-glass-quote-icon {
+            color: var(--color-primary, #2563EB);
+            font-size: 1.5rem;
+            line-height: 1;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .test-glass-text {
+            font-size: 0.9rem;
+            color: #475569;
+            line-height: 1.7;
+            flex: 1;
+        }
+        
+        /* Carousel styles */
+        .test-glass-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 50px 40px 60px;
+            position: relative;
+        }
+        
+        .test-glass-section .carousel-indicators {
+            bottom: 10px;
+            margin-bottom: 0;
+        }
+        
+        .test-glass-section .carousel-indicators button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(37, 99, 235, 0.3);
+            border: 2px solid rgba(37, 99, 235, 0.5);
+            margin: 0 5px;
+            opacity: 1;
+        }
+        
+        .test-glass-section .carousel-indicators button.active {
+            background-color: #2563eb;
+            border-color: #2563eb;
+        }
+        
+        @media (max-width: 992px) {
             .test-glass-section {
-                background: rgba(37, 99, 235, 0.15);
-                border-radius: 20px;
-                padding: 50px 40px 60px;
-                position: relative;
+                padding: 40px 30px 50px;
             }
-            
-            .test-glass-section .carousel-indicators {
-                bottom: 10px;
-                margin-bottom: 0;
-            }
-            
-            .test-glass-section .carousel-indicators button {
-                width: 12px;
-                height: 12px;
-                border-radius: 50%;
-                background-color: rgba(37, 99, 235, 0.3);
-                border: 2px solid rgba(37, 99, 235, 0.5);
-                margin: 0 5px;
-                opacity: 1;
-            }
-            
-            .test-glass-section .carousel-indicators button.active {
-                background-color: #2563eb;
-                border-color: #2563eb;
-            }
-            
-            @media (max-width: 992px) {
-                .test-glass-section {
-                    padding: 40px 30px 50px;
-                }
-            }
-            
-            @media (max-width: 576px) {
-                .test-glass-section {
-                    padding: 30px 20px 45px;
-                }
-            }
-        </style>
+        }
         
+        @media (max-width: 576px) {
+            .test-glass-section {
+                padding: 30px 20px 45px;
+            }
+        }
+        
+        [data-theme="dark"] .test-glass-card {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        [data-theme="dark"] .test-glass-card:hover {
+            border-color: var(--color-primary, #2563EB);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.2);
+        }
+        [data-theme="dark"] .test-glass-name {
+            color: #f1f5f9;
+        }
+        [data-theme="dark"] .test-glass-text {
+            color: #cbd5e1;
+        }
+        [data-theme="dark"] .test-glass-section {
+            background: #1e293b;
+        }
+    </style>
+    
+    <div class="container">
         <div id="testimonialCarousel" class="test-glass-section carousel slide reveal-on-scroll" data-bs-ride="carousel" data-bs-interval="5000">
             <div class="carousel-inner">
                 @foreach($testimonials->chunk(3) as $index => $testimonialGroup)
