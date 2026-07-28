@@ -1794,6 +1794,7 @@ body.has-header main {
     color: #fff;
     font-size: 1.5rem;
     transition: all 0.35s ease;
+    margin-bottom: 10px;
 }
 
 .service-card:hover .icon-box {
