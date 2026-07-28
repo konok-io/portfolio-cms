@@ -4,7 +4,7 @@
 @section('meta_description', 'Request a personalized quote for your project. Tell us about your requirements and get a detailed estimate within 24 hours.')
 
 @section('content')
-<section class="section-padding section-1">
+<section class="page-title-section section-padding section-1">
     <div class="container">
         {{-- Breadcrumb --}}
         <nav aria-label="breadcrumb" class="mb-4">

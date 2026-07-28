@@ -934,10 +934,13 @@ a {
   padding-bottom: 60px;
 }
 
-/* Page title sections - reduced padding */
-.section-padding:first-child {
+/* Page title sections - light blue background with reduced padding */
+.page-title-section,
+.section-padding.section-1,
+section.section-1 {
+  background: #eff6ff;
   padding-top: 40px;
-  padding-bottom: 30px;
+  padding-bottom: 40px;
 }
 
 @media (max-width: 991px) {
@@ -948,10 +951,19 @@ a {
     padding-top: 40px;
     padding-bottom: 40px;
   }
-  .section-padding:first-child {
+  .page-title-section,
+  .section-padding.section-1,
+  section.section-1 {
     padding-top: 30px;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
   }
+}
+
+/* Dark mode - page title section */
+[data-theme="dark"] .page-title-section,
+[data-theme="dark"] .section-padding.section-1,
+[data-theme="dark"] section.section-1 {
+  background: #1f1f3a;
 }
 .site-footer h5 {
   color: #fff;

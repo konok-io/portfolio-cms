@@ -3,7 +3,7 @@
 @section('meta_description', page_content('contact', 'page_subtitle', app()->getLocale()))
 
 @section('content')
-<section class="contact-page-section section-padding section-1">
+<section class="contact-page-section page-title-section section-padding section-1">
     <div class="container py-5">
         {{-- Breadcrumb --}}
         <nav aria-label="breadcrumb" class="mb-4">
