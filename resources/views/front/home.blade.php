@@ -505,8 +505,9 @@
             }
             
             .edu-hz-card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
                 border-color: var(--color-secondary, #7c3aed);
-                background: linear-gradient(135deg, rgba(124, 58, 237, 0.02), rgba(37, 99, 235, 0.02));
             }
             
             .edu-hz-icon {
