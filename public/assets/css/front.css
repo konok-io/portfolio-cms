@@ -934,7 +934,7 @@ a {
   padding-bottom: 60px;
 }
 
-/* Page title sections - blue background with circular gradient shape (like tech cards) */
+/* Page title sections - blue background with multiple scattered circular shapes */
 .page-title-section {
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   padding-top: 40px;
@@ -943,29 +943,85 @@ a {
   overflow: hidden;
 }
 
-/* Circular gradient shape - top right corner (like tech-card::before) */
-.page-title-section::before {
-  content: '';
-  position: absolute;
-  top: -50px;
-  right: -50px;
-  width: 150px;
-  height: 150px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 100%);
-  border-radius: 50%;
-  transition: all 0.4s ease;
-}
-
-/* Subtle inner glow */
-.page-title-section::after {
-  content: '';
+/* Multiple circular shapes scattered across the section */
+.page-title-section .shape-container {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+  overflow: hidden;
   pointer-events: none;
+}
+
+.page-title-section .shape {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.05) 100%);
+}
+
+/* Shape 1 - Top Right Large */
+.page-title-section .shape-1 {
+  width: 200px;
+  height: 200px;
+  top: -60px;
+  right: -60px;
+}
+
+/* Shape 2 - Top Left Medium */
+.page-title-section .shape-2 {
+  width: 120px;
+  height: 120px;
+  top: -30px;
+  left: 10%;
+}
+
+/* Shape 3 - Bottom Left Large */
+.page-title-section .shape-3 {
+  width: 180px;
+  height: 180px;
+  bottom: -80px;
+  left: -40px;
+}
+
+/* Shape 4 - Bottom Right Medium */
+.page-title-section .shape-4 {
+  width: 100px;
+  height: 100px;
+  bottom: -30px;
+  right: 15%;
+}
+
+/* Shape 5 - Center Right Small */
+.page-title-section .shape-5 {
+  width: 60px;
+  height: 60px;
+  top: 30%;
+  right: 5%;
+}
+
+/* Shape 6 - Center Left Small */
+.page-title-section .shape-6 {
+  width: 45px;
+  height: 45px;
+  top: 50%;
+  left: 3%;
+}
+
+/* Shape 7 - Top Center Tiny */
+.page-title-section .shape-7 {
+  width: 30px;
+  height: 30px;
+  top: 15%;
+  right: 30%;
+}
+
+/* Shape 8 - Bottom Center Medium */
+.page-title-section .shape-8 {
+  width: 80px;
+  height: 80px;
+  bottom: 10%;
+  left: 40%;
 }
 
 /* Glassmorphism overlay effect */
@@ -1006,17 +1062,13 @@ a {
   }
 }
 
-/* Dark mode - page title section with circular shape */
+/* Dark mode - page title section with scattered shapes */
 [data-theme="dark"] .page-title-section {
   background: linear-gradient(135deg, #1e3a5f 0%, #1a1a2e 100%);
 }
 
-[data-theme="dark"] .page-title-section::before {
-  background: linear-gradient(135deg, rgba(103, 232, 249, 0.3) 0%, rgba(103, 232, 249, 0.05) 100%);
-}
-
-[data-theme="dark"] .page-title-section::after {
-  background: radial-gradient(ellipse at 30% 20%, rgba(103, 232, 249, 0.15) 0%, transparent 50%);
+[data-theme="dark"] .page-title-section .shape {
+  background: linear-gradient(135deg, rgba(103, 232, 249, 0.2) 0%, rgba(103, 232, 249, 0.03) 100%);
 }
 
 [data-theme="dark"] .page-title-section .section-eyebrow,
