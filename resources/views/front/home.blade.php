@@ -2095,8 +2095,7 @@
             
             .contact-vertical-map-container {
                 width: 100%;
-                height: 100%;
-                min-height: 250px;
+                height: 280px;
                 border-radius: 12px;
                 overflow: hidden;
                 box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -2107,8 +2106,11 @@
             .contact-vertical-map-container #homeContactMap {
                 width: 100%;
                 height: 100%;
-                min-height: 250px;
                 border: none;
+            }
+            
+            .contact-vertical-map-placeholder {
+                height: 280px;
             }
             
             @media (max-width: 576px) {
@@ -2120,15 +2122,15 @@
                     gap: 12px;
                 }
                 .contact-vertical-map-container,
-                .contact-vertical-map-container iframe {
-                    min-height: 200px;
+                .contact-vertical-map-placeholder {
+                    height: 200px;
                 }
             }
             
             @media (max-width: 991px) {
                 .contact-vertical-map-container,
-                .contact-vertical-map-container iframe {
-                    min-height: 200px;
+                .contact-vertical-map-placeholder {
+                    height: 200px;
                     margin-top: 20px;
                 }
             }
@@ -2189,11 +2191,11 @@
                 <div class="row g-4 align-items-stretch">
                     <div class="col-lg-7 d-flex">
                         @if($about->google_map)
-                            <div class="contact-vertical-map-container w-100">
-                                <div id="homeContactMap" style="width: 100%; height: 100%; min-height: 250px; border-radius: 12px;"></div>
+                            <div class="contact-vertical-map-container">
+                                <div id="homeContactMap"></div>
                             </div>
                         @else
-                            <div class="contact-vertical-map-placeholder d-flex align-items-center justify-content-center w-100" style="min-height: 250px; background: #f8f9fa; border-radius: 12px; border: 1px solid #d1d5db;">
+                            <div class="contact-vertical-map-placeholder d-flex align-items-center justify-content-center" style="background: #f8f9fa; border-radius: 12px; border: 1px solid #d1d5db;">
                                 <div class="text-center text-muted">
                                     <i class="fas fa-map-marker-alt fa-2x mb-2"></i>
                                     <p class="mb-0 small">Map location will appear here</p>
