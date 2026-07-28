@@ -402,7 +402,7 @@
             </div>
             <div class="col-lg-8">
                 <div class="edu-hz-list">
-                    @foreach($educations as $education)
+                    @foreach($educations->sortByDesc('duration') as $education)
                         <div class="edu-hz-card reveal-on-scroll">
                             <div class="edu-hz-icon">
                                 <i class="fas fa-graduation-cap"></i>

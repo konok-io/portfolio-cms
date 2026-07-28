@@ -603,23 +603,29 @@
                 <p class="section-subtitle">My academic foundation in computer science and technology.</p>
             </div>
             <div class="col-lg-8">
-                <div class="edu-hz-list">
-                    @foreach($educations as $education)
-                        <div class="edu-hz-card reveal-on-scroll">
-                            <div class="edu-hz-icon">
-                                <i class="fas fa-graduation-cap"></i>
-                            </div>
-                            <div class="edu-hz-content">
-                                <div class="edu-hz-left">
-                                    <div class="edu-hz-year">{{ $education->duration }}</div>
-                                    <div class="edu-hz-title">{{ $education->degree }}</div>
-                                    <div class="edu-hz-company">{{ $education->institute_name }}</div>
-                                </div>
-                                <div class="edu-hz-desc">{{ $education->description }}</div>
-                            </div>
+                @if($educations->isNotEmpty())
+                    @php $latestEducation = $educations->sortByDesc('duration')->first(); @endphp
+                    <div class="edu-hz-card reveal-on-scroll" style="max-width: 100%;">
+                        <div class="edu-hz-icon" style="width: 60px; height: 60px; font-size: 1.3rem;">
+                            <i class="fas fa-graduation-cap"></i>
                         </div>
-                    @endforeach
-                </div>
+                        <div class="edu-hz-content">
+                            <div class="edu-hz-left">
+                                <div class="edu-hz-year">{{ $latestEducation->duration }}</div>
+                                <div class="edu-hz-title" style="font-size: 1.15rem;">{{ $latestEducation->degree }}</div>
+                                <div class="edu-hz-company">{{ $latestEducation->institute_name }}</div>
+                            </div>
+                            <div class="edu-hz-desc">{{ $latestEducation->description }}</div>
+                        </div>
+                    </div>
+                    @if($educations->count() > 1)
+                        <div class="text-center mt-3">
+                            <a href="{{ route('about') }}#education" class="btn btn-sm btn-outline-light">
+                                View All Education <i class="fa-solid fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    @endif
+                @endif
             </div>
         </div>
         
