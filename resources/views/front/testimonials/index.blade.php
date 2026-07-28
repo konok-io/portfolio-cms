@@ -211,12 +211,23 @@
 
 @section('content')
 {{-- Page Title Section --}}
-<section class="page-title-section">
+<section class="page-title-section section-padding">
+    <div class="shape-container">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+        <div class="shape shape-5"></div>
+        <div class="shape shape-6"></div>
+        <div class="shape shape-7"></div>
+        <div class="shape shape-8"></div>
+    </div>
+
     <div class="container">
-        <div class="text-center position-relative" style="z-index: 1;">
+        <div class="text-center mb-0">
             <span class="section-eyebrow">Client Feedback</span>
-            <h1>What Clients Say</h1>
-            <p class="section-subtitle">Read what my clients have to say about working with me.</p>
+            <h1 class="section-title">What Clients Say</h1>
+            <p class="section-subtitle mx-auto">Read what my clients have to say about working with me.</p>
         </div>
     </div>
 </section>
