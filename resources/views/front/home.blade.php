@@ -827,183 +827,144 @@
      ========================================================= --}}
 @if($certifications->isNotEmpty())
 <section id="certifications" class="section-padding section-2">
-    <div class="container">
-        
-        {{-- Design 9: Horizontal List Style --}}
-        <style>
-            .cred-horizontal-section {
-                background: #ffffff;
-                border-radius: 20px;
-                padding: 40px;
-            }
-            
-            .cred-horizontal-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 32px;
-                flex-wrap: wrap;
-                gap: 16px;
-            }
-            
-            .cred-horizontal-header-left h2 {
-                font-size: 1.5rem;
-                font-weight: 700;
-                color: var(--color-secondary, #1e293b);
-                margin-bottom: 4px;
-            }
-            
-            .cred-horizontal-header-left p {
-                color: #64748b;
-                font-size: 0.9rem;
-            }
-            
-            .cred-horizontal-header-right {
-                flex-shrink: 0;
-            }
-            
-            .cred-horizontal-grid {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 20px;
-            }
-            
-            .cred-horizontal-card {
-                background: #eff6ff;
-                border-radius: 12px;
-                padding: 16px 20px;
-                display: flex;
-                align-items: center;
-                gap: 16px;
-                transition: all 0.3s;
-                cursor: pointer;
-                border: 1px solid #dbeafe;
-            }
-            
-            .cred-horizontal-card:hover {
-                box-shadow: 0 8px 25px rgba(37, 99, 235, 0.15);
-                transform: translateY(-2px);
-            }
-            
-            .cred-horizontal-icon {
-                width: 44px;
-                height: 44px;
-                background: var(--color-primary, #2563EB);
-                border-radius: 10px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 1.1rem;
-                color: #fff;
-                flex-shrink: 0;
-            }
-            
-            .cred-horizontal-icon img {
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
-                border-radius: 6px;
-            }
-            
-            .cred-horizontal-text {
-                text-align: left;
-                min-width: 0;
-            }
-            
-            .cred-horizontal-name {
-                font-size: 0.9rem;
-                font-weight: 600;
-                color: #1e293b;
-                margin-bottom: 2px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-            
-            .cred-horizontal-org {
-                font-size: 0.75rem;
-                color: #64748b;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-            
-            @media (max-width: 992px) {
-                .cred-horizontal-grid {
-                    grid-template-columns: repeat(2, 1fr);
-                }
-            }
-            
-            @media (max-width: 576px) {
-                .cred-horizontal-grid {
-                    grid-template-columns: 1fr;
-                }
-                .cred-horizontal-section {
-                    padding: 28px 20px;
-                }
-            }
-            
-            [data-theme="dark"] .cred-horizontal-section {
-                background: #1e293b;
-            }
-            [data-theme="dark"] .cred-horizontal-card {
-                background: rgba(255, 255, 255, 0.05);
-                border-color: #334155;
-            }
-            [data-theme="dark"] .cred-horizontal-card:hover {
-                box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
-                background: rgba(255, 255, 255, 0.08);
-            }
-            [data-theme="dark"] .cred-horizontal-icon {
-                background: var(--color-primary, #2563EB);
-            }
-            [data-theme="dark"] .cred-horizontal-name {
-                color: #f1f5f9;
-            }
-            [data-theme="dark"] .cred-horizontal-org {
-                color: #94a3b8;
-            }
-        </style>
-        
-        <div class="cred-horizontal-section reveal-on-scroll">
-            <div class="cred-horizontal-header">
-                <div class="cred-horizontal-header-left">
-                    <h2>Certifications & Badges</h2>
-                    <p>Professional certifications and achievements</p>
-                </div>
-                @if($certifications->count() > 4)
-                <div class="cred-horizontal-header-right">
-                    <a href="{{ route('certifications') }}" class="btn btn-outline-custom">View All <i class="fa-solid fa-arrow-right ms-1"></i></a>
-                </div>
-                @endif
+    
+    {{-- Header Section - Outside container (on section background) --}}
+    <div class="container mb-4">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 reveal-on-scroll">
+            <div class="text-center text-lg-start">
+                <span class="section-eyebrow">Credentials</span>
+                <h2 class="section-title mb-2">Certifications & Badges</h2>
+                <p class="section-subtitle mx-auto mx-lg-0">Professional certifications and achievements</p>
             </div>
-            <div class="cred-horizontal-grid">
-                @foreach($certifications->take(4) as $cert)
-                    @if($cert->credential_url)
-                        <a href="{{ $cert->credential_url }}" target="_blank" class="cred-horizontal-card" style="text-decoration: none;">
-                    @else
-                        <div class="cred-horizontal-card">
-                    @endif
-                        <div class="cred-horizontal-icon">
-                            @if($cert->badge_image)
-                                <img src="{{ asset('storage/' . $cert->badge_image) }}" alt="{{ $cert->name }}">
-                            @else
-                                <i class="fa-solid fa-certificate"></i>
-                            @endif
-                        </div>
-                        <div class="cred-horizontal-text">
-                            <div class="cred-horizontal-name">{{ $cert->name }}</div>
-                            <div class="cred-horizontal-org">{{ $cert->issuer }}</div>
-                        </div>
-                    @if($cert->credential_url)
-                        </a>
-                    @else
-                        </div>
-                    @endif
-                @endforeach
-            </div>
+            @if($certifications->count() > 4)
+            <a href="{{ route('certifications') }}" class="btn btn-outline-custom flex-shrink-0">View All <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            @endif
         </div>
+    </div>
+    
+    {{-- Cards Section - Inside container --}}
+    <style>
+        .cred-horizontal-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
         
+        .cred-horizontal-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .cred-horizontal-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            border-color: var(--color-primary, #2563EB);
+        }
+        
+        .cred-horizontal-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--color-primary, #2563EB);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        
+        .cred-horizontal-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 6px;
+        }
+        
+        .cred-horizontal-text {
+            text-align: left;
+            min-width: 0;
+        }
+        
+        .cred-horizontal-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .cred-horizontal-org {
+            font-size: 0.75rem;
+            color: #64748b;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        @media (max-width: 992px) {
+            .cred-horizontal-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .cred-horizontal-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        [data-theme="dark"] .cred-horizontal-card {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        [data-theme="dark"] .cred-horizontal-card:hover {
+            border-color: var(--color-primary, #2563EB);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+        }
+        [data-theme="dark"] .cred-horizontal-name {
+            color: #f1f5f9;
+        }
+        [data-theme="dark"] .cred-horizontal-org {
+            color: #94a3b8;
+        }
+    </style>
+    
+    <div class="container">
+        <div class="cred-horizontal-grid">
+            @foreach($certifications->take(4) as $cert)
+                @if($cert->credential_url)
+                    <a href="{{ $cert->credential_url }}" target="_blank" class="cred-horizontal-card" style="text-decoration: none;">
+                @else
+                    <div class="cred-horizontal-card">
+                @endif
+                    <div class="cred-horizontal-icon">
+                        @if($cert->badge_image)
+                            <img src="{{ asset('storage/' . $cert->badge_image) }}" alt="{{ $cert->name }}">
+                        @else
+                            <i class="fa-solid fa-certificate"></i>
+                        @endif
+                    </div>
+                    <div class="cred-horizontal-text">
+                        <div class="cred-horizontal-name">{{ $cert->name }}</div>
+                        <div class="cred-horizontal-org">{{ $cert->issuer }}</div>
+                    </div>
+                @if($cert->credential_url)
+                    </a>
+                @else
+                    </div>
+                @endif
+            @endforeach
+        </div>
     </div>
 </section>
 @endif
