@@ -6,60 +6,6 @@
 
 @push('styles')
 <style>
-    /* Page Title Section */
-    .page-title-section {
-        background: var(--color-primary, #2563EB);
-        padding: 80px 0 60px;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .page-title-section::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        right: -10%;
-        width: 400px;
-        height: 400px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-    }
-    
-    .page-title-section::after {
-        content: '';
-        position: absolute;
-        bottom: -30%;
-        left: -5%;
-        width: 300px;
-        height: 300px;
-        background: rgba(255, 255, 255, 0.08);
-        border-radius: 50%;
-    }
-    
-    .page-title-section .section-eyebrow {
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 0.875rem;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-        display: block;
-    }
-    
-    .page-title-section h1 {
-        color: #ffffff;
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin-bottom: 0.75rem;
-    }
-    
-    .page-title-section .section-subtitle {
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 1.1rem;
-        max-width: 600px;
-        margin: 0 auto;
-    }
-
     /* Blog Meta */
     .blog-meta-single {
         color: rgba(255, 255, 255, 0.85);
@@ -70,15 +16,6 @@
     }
     .blog-meta-single span {
         margin: 0 8px;
-    }
-    
-    @media (max-width: 768px) {
-        .page-title-section {
-            padding: 60px 0 40px;
-        }
-        .page-title-section h1 {
-            font-size: 2rem;
-        }
     }
 </style>
 @endpush
@@ -93,13 +30,24 @@
 @section('content')
 
 {{-- Page Title Section --}}
-<section class="page-title-section">
+<section class="page-title-section section-padding">
+    <div class="shape-container">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+        <div class="shape shape-5"></div>
+        <div class="shape shape-6"></div>
+        <div class="shape shape-7"></div>
+        <div class="shape shape-8"></div>
+    </div>
+
     <div class="container">
-        <div class="text-center position-relative" style="z-index: 1;">
+        <div class="text-center mb-0">
             @if($blog->category)
                 <span class="section-eyebrow">{{ $blog->category->name }}</span>
             @endif
-            <h1>{{ $blog->title }}</h1>
+            <h1 class="section-title">{{ $blog->title }}</h1>
             <div class="blog-meta-single mt-3">
                 <span><i class="fas fa-calendar"></i> {{ $blog->published_at?->format('M d, Y') }}</span>
                 <span><i class="fas fa-clock"></i> {{ ceil(strlen(strip_tags($blog->description)) / 1000) }} min read</span>

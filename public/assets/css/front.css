@@ -936,7 +936,7 @@ a {
 
 /* Page title sections - blue background with multiple scattered circular shapes */
 .page-title-section {
-  background: linear-gradient(135deg, var(--color-secondary) 0%, #1e293b 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, #1d4ed8 100%);
   padding-top: 40px;
   padding-bottom: 40px;
   position: relative;

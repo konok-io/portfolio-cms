@@ -6,69 +6,6 @@
 
 @push('styles')
 <style>
-    /* Page Title Section */
-    .page-title-section {
-        background: var(--color-primary, #2563EB);
-        padding: 80px 0 60px;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .page-title-section::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        right: -10%;
-        width: 400px;
-        height: 400px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-    }
-    
-    .page-title-section::after {
-        content: '';
-        position: absolute;
-        bottom: -30%;
-        left: -5%;
-        width: 300px;
-        height: 300px;
-        background: rgba(255, 255, 255, 0.08);
-        border-radius: 50%;
-    }
-    
-    .page-title-section .section-eyebrow {
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 0.875rem;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-        display: block;
-    }
-    
-    .page-title-section h1 {
-        color: #ffffff;
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin-bottom: 0.75rem;
-    }
-    
-    .page-title-section .section-subtitle {
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 1.1rem;
-        max-width: 600px;
-        margin: 0 auto;
-    }
-    
-    @media (max-width: 768px) {
-        .page-title-section {
-            padding: 60px 0 40px;
-        }
-        .page-title-section h1 {
-            font-size: 2rem;
-        }
-    }
-
     /* Testimonial Card Styles */
     .testimonial-card {
         background: #eff6ff;
