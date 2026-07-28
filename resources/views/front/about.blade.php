@@ -144,10 +144,18 @@
             </div>
             <div class="col-lg-8">
                 <div class="exp-timeline">
+                    @php
+                        $totalExperiences = $experiences->count();
+                    @endphp
                     @foreach($experiences as $index => $experience)
+                        @php
+                            // Calculate position number: newest gets highest number
+                            $position = $totalExperiences - $index;
+                            $positionStr = str_pad($position, 2, '0', STR_PAD_LEFT);
+                        @endphp
                         <div class="exp-card reveal-on-scroll">
                             <div class="exp-card-left">
-                                <div class="exp-year">{{ str_replace('-', '<br>', $experience->duration) }}</div>
+                                <div class="exp-number">{{ $positionStr }}</div>
                             </div>
                             <div class="exp-card-right">
                                 <div class="exp-card-header">
@@ -237,7 +245,7 @@
         flex-shrink: 0;
     }
     
-    .exp-year {
+    .exp-number {
         width: 70px;
         height: 70px;
         background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
@@ -247,9 +255,9 @@
         justify-content: center;
         color: #fff;
         font-weight: 700;
-        font-size: 0.85rem;
+        font-size: 1.5rem;
         text-align: center;
-        line-height: 1.2;
+        line-height: 1;
     }
     
     .exp-card-right {
