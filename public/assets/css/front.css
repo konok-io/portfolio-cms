@@ -1836,6 +1836,29 @@ body.has-header main {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-right::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%);
+    border-radius: 50%;
+    opacity: 0.08;
+    transition: all 0.3s;
+}
+
+.service-card:hover .card-right::before {
+    opacity: 0.15;
+    top: -40px;
+    right: -40px;
+    width: 100px;
+    height: 100px;
 }
 
 .card-right h3 {
