@@ -612,9 +612,9 @@
      8. TESTIMONIALS
      ========================================================= --}}
 @if($testimonials->isNotEmpty())
-<section id="testimonials" class="section-padding section-2">
+<section id="testimonials" class="section-padding">
     
-    {{-- Header Section - Outside container (on section background) --}}
+    {{-- Header Section --}}
     <div class="container mb-4">
         <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 reveal-on-scroll">
             <div class="text-center text-lg-start">
@@ -627,39 +627,41 @@
         </div>
     </div>
     
-    {{-- Cards Section - Inside container --}}
+    {{-- Cards Section - Full Width --}}
     <style>
-        .test-glass-card {
+        .testimonial-card {
             background: #ffffff;
             border-radius: 16px;
-            padding: 24px;
+            overflow: hidden;
             height: 100%;
             transition: all 0.3s;
             border: 1px solid #e2e8f0;
         }
         
-        .test-glass-card:hover {
+        .testimonial-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
             border-color: var(--color-primary, #2563EB);
         }
         
-        .test-glass-header {
+        .testimonial-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 16px;
+            padding: 16px 20px;
+            background: #eff6ff;
+            border-bottom: 1px solid #dbeafe;
         }
         
-        .test-glass-author {
+        .testimonial-author {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         
-        .test-glass-avatar {
-            width: 44px;
-            height: 44px;
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
             background: var(--color-primary, #2563EB);
             border-radius: 50%;
             display: flex;
@@ -672,128 +674,107 @@
             flex-shrink: 0;
         }
         
-        .test-glass-avatar img {
+        .testimonial-avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
         
-        .test-glass-author-info {
+        .testimonial-author-info {
             display: flex;
             flex-direction: column;
         }
         
-        .test-glass-name {
-            font-size: 0.85rem;
+        .testimonial-name {
+            font-size: 0.9rem;
             font-weight: 700;
             color: #1e293b;
         }
         
-        .test-glass-role {
-            font-size: 0.7rem;
+        .testimonial-role {
+            font-size: 0.75rem;
             color: #64748b;
         }
         
-        .test-glass-quote-stars {
+        .testimonial-rating {
             display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 4px;
+            gap: 2px;
         }
         
-        .test-glass-quote {
-            color: var(--color-primary, #2563EB);
-            font-size: 1.8rem;
-            line-height: 1;
-        }
-        
-        .test-glass-stars {
+        .testimonial-rating i {
             color: #f59e0b;
-            font-size: 0.75rem;
+            font-size: 0.85rem;
         }
         
-        .test-glass-content {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
+        .testimonial-body {
+            padding: 20px;
         }
         
-        .test-glass-content .test-glass-quote-icon {
+        .testimonial-quote-icon {
             color: var(--color-primary, #2563EB);
             font-size: 1.5rem;
-            line-height: 1;
-            flex-shrink: 0;
-            margin-top: 2px;
+            margin-bottom: 12px;
         }
         
-        .test-glass-text {
+        .testimonial-text {
             font-size: 0.9rem;
             color: #475569;
             line-height: 1.7;
-            flex: 1;
         }
         
         /* Carousel styles */
-        .test-glass-section {
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 50px 40px 60px;
-            position: relative;
+        .testimonial-wrapper {
+            padding: 0 15px;
         }
         
-        .test-glass-section .carousel-indicators {
-            bottom: 10px;
+        .testimonial-wrapper .carousel-indicators {
+            bottom: -25px;
             margin-bottom: 0;
         }
         
-        .test-glass-section .carousel-indicators button {
-            width: 12px;
-            height: 12px;
+        .testimonial-wrapper .carousel-indicators button {
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            background-color: rgba(37, 99, 235, 0.3);
-            border: 2px solid rgba(37, 99, 235, 0.5);
-            margin: 0 5px;
+            background-color: #d1d5db;
+            border: none;
+            margin: 0 4px;
             opacity: 1;
         }
         
-        .test-glass-section .carousel-indicators button.active {
-            background-color: #2563eb;
-            border-color: #2563eb;
-        }
-        
-        @media (max-width: 992px) {
-            .test-glass-section {
-                padding: 40px 30px 50px;
-            }
+        .testimonial-wrapper .carousel-indicators button.active {
+            background-color: var(--color-primary, #2563EB);
         }
         
         @media (max-width: 576px) {
-            .test-glass-section {
-                padding: 30px 20px 45px;
+            .testimonial-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
             }
         }
         
-        [data-theme="dark"] .test-glass-card {
+        [data-theme="dark"] .testimonial-card {
             background: #1e293b;
             border-color: #334155;
         }
-        [data-theme="dark"] .test-glass-card:hover {
+        [data-theme="dark"] .testimonial-card:hover {
             border-color: var(--color-primary, #2563EB);
             box-shadow: 0 15px 35px rgba(37, 99, 235, 0.2);
         }
-        [data-theme="dark"] .test-glass-name {
+        [data-theme="dark"] .testimonial-header {
+            background: rgba(37, 99, 235, 0.15);
+            border-color: #334155;
+        }
+        [data-theme="dark"] .testimonial-name {
             color: #f1f5f9;
         }
-        [data-theme="dark"] .test-glass-text {
+        [data-theme="dark"] .testimonial-text {
             color: #cbd5e1;
-        }
-        [data-theme="dark"] .test-glass-section {
-            background: #1e293b;
         }
     </style>
     
-    {{-- Cards Section - Full Width (No Container) --}}
-    <div id="testimonialCarousel" class="test-glass-section carousel slide reveal-on-scroll" data-bs-ride="carousel" data-bs-interval="5000">
+    <div id="testimonialCarousel" class="carousel slide reveal-on-scroll" data-bs-ride="carousel" data-bs-interval="5000">
         <div class="carousel-inner">
             @foreach($testimonials->chunk(3) as $index => $testimonialGroup)
                 <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
@@ -801,32 +782,30 @@
                         <div class="row g-4">
                             @foreach($testimonialGroup as $testimonial)
                                 <div class="col-md-6 col-lg-4">
-                                    <div class="test-glass-card">
-                                        <div class="test-glass-header">
-                                            <div class="test-glass-author">
-                                                <div class="test-glass-avatar">
+                                    <div class="testimonial-card">
+                                        <div class="testimonial-header">
+                                            <div class="testimonial-author">
+                                                <div class="testimonial-avatar">
                                                     @if($testimonial->photo_url)
                                                         <img src="{{ $testimonial->photo_url }}" alt="{{ $testimonial->client_name }}">
                                                     @else
                                                         {{ substr($testimonial->client_name, 0, 1) }}
                                                     @endif
                                                 </div>
-                                                <div class="test-glass-author-info">
-                                                    <span class="test-glass-name">{{ $testimonial->client_name }}</span>
-                                                    <span class="test-glass-role">{{ $testimonial->company }}</span>
+                                                <div class="testimonial-author-info">
+                                                    <span class="testimonial-name">{{ $testimonial->client_name }}</span>
+                                                    <span class="testimonial-role">{{ $testimonial->company }}</span>
                                                 </div>
                                             </div>
-                                            <div class="test-glass-quote-stars">
-                                                <div class="test-glass-stars">
-                                                    @for($i = 1; $i <= 5; $i++)
-                                                        <i class="fas fa-star"></i>
-                                                    @endfor
-                                                </div>
+                                            <div class="testimonial-rating">
+                                                @for($i = 1; $i <= 5; $i++)
+                                                    <i class="fas fa-star"></i>
+                                                @endfor
                                             </div>
                                         </div>
-                                        <div class="test-glass-content">
-                                            <div class="test-glass-quote-icon"><i class="fas fa-quote-left"></i></div>
-                                            <p class="test-glass-text">{{ $testimonial->review }}</p>
+                                        <div class="testimonial-body">
+                                            <div class="testimonial-quote-icon"><i class="fas fa-quote-left"></i></div>
+                                            <p class="testimonial-text">{{ $testimonial->review }}</p>
                                         </div>
                                     </div>
                                 </div>
