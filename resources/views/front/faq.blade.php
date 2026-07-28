@@ -1,7 +1,7 @@
 @extends('front.layouts.app')
 
-@section('seo_title', ($pageContent['title'][app()->getLocale()] ?? $pageContent['title']['en'] ?? 'FAQ') . ' - ' . ($siteSetting->site_name ?? 'Portfolio'))
-@section('meta_description', $pageContent['subtitle'][app()->getLocale()] ?? $pageContent['subtitle']['en'] ?? 'Find answers to frequently asked questions.')
+@section('seo_title', ($pageContent['title']['default'] ?? $pageContent['title']['en'] ?? 'FAQ') . ' - ' . ($siteSetting->site_name ?? 'Portfolio'))
+@section('meta_description', $pageContent['subtitle']['default'] ?? $pageContent['subtitle']['en'] ?? 'Find answers to frequently asked questions.')
 
 @section('content')
 <!-- Page Header -->
