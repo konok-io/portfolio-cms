@@ -869,7 +869,7 @@
             }
             
             .cred-horizontal-card {
-                background: var(--color-primary, #2563EB);
+                background: #eff6ff;
                 border-radius: 12px;
                 padding: 16px 20px;
                 display: flex;
@@ -877,17 +877,18 @@
                 gap: 16px;
                 transition: all 0.3s;
                 cursor: pointer;
+                border: 1px solid #dbeafe;
             }
             
             .cred-horizontal-card:hover {
-                box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+                box-shadow: 0 8px 25px rgba(37, 99, 235, 0.15);
                 transform: translateY(-2px);
             }
             
             .cred-horizontal-icon {
                 width: 44px;
                 height: 44px;
-                background: rgba(255, 255, 255, 0.2);
+                background: var(--color-primary, #2563EB);
                 border-radius: 10px;
                 display: flex;
                 align-items: center;
@@ -912,7 +913,7 @@
             .cred-horizontal-name {
                 font-size: 0.9rem;
                 font-weight: 600;
-                color: #ffffff;
+                color: #1e293b;
                 margin-bottom: 2px;
                 white-space: nowrap;
                 overflow: hidden;
@@ -921,7 +922,7 @@
             
             .cred-horizontal-org {
                 font-size: 0.75rem;
-                color: rgba(255, 255, 255, 0.8);
+                color: #64748b;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -946,13 +947,21 @@
                 background: #1e293b;
             }
             [data-theme="dark"] .cred-horizontal-card {
-                background: var(--color-primary, #2563EB);
+                background: rgba(255, 255, 255, 0.05);
+                border-color: #334155;
             }
             [data-theme="dark"] .cred-horizontal-card:hover {
-                box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+                box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+                background: rgba(255, 255, 255, 0.08);
             }
             [data-theme="dark"] .cred-horizontal-icon {
-                background: rgba(255, 255, 255, 0.15);
+                background: var(--color-primary, #2563EB);
+            }
+            [data-theme="dark"] .cred-horizontal-name {
+                color: #f1f5f9;
+            }
+            [data-theme="dark"] .cred-horizontal-org {
+                color: #94a3b8;
             }
         </style>
         
