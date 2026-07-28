@@ -351,7 +351,7 @@
 
 {{-- Education --}}
 @if($educations->isNotEmpty())
-<section class="section-padding section-1">
+<section class="section-padding section-2">
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-4 reveal-on-scroll">
