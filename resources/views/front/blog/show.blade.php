@@ -35,7 +35,7 @@
                 <span class="section-eyebrow">{{ $blog->category->name }}</span>
             @endif
             <h1 class="section-title">{{ $blog->title }}</h1>
-            <div class="d-flex flex-wrap gap-4 small text-muted mt-3">
+            <div class="d-flex flex-wrap gap-4 small text-white-50 mt-3">
                 <span><i class="fa-solid fa-user me-1"></i>{{ $blog->author->name ?? 'Admin' }}</span>
                 <span><i class="fa-regular fa-calendar me-1"></i>{{ $blog->published_at?->format('M d, Y') }}</span>
                 <span><i class="fa-regular fa-clock me-1"></i>{{ ceil(strlen(strip_tags($blog->description)) / 1000) }} min read</span>
