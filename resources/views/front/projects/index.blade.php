@@ -65,7 +65,7 @@
         @else
             <div class="row g-4">
                 @foreach($projects as $project)
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-md-6 col-lg-3">
                         <div class="project-card">
                             <div class="project-img-wrap">
                                 @if($project->category)
