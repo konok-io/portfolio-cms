@@ -325,6 +325,10 @@
         font-size: 0.7rem;
     }
     
+    .pricing-split-card.featured .pricing-split-features li {
+        color: rgba(255,255,255,0.95);
+    }
+    
     .pricing-split-card.featured .pricing-split-features li i {
         color: #34d399;
     }
