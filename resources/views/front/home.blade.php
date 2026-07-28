@@ -122,11 +122,14 @@
     .why-h-card::before {
         content: '';
         position: absolute;
-        inset: 0;
-        background: linear-gradient(135deg, var(--why-primary), var(--why-primary-dark));
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        z-index: 0;
+        top: -30px;
+        right: -30px;
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%);
+        border-radius: 50%;
+        opacity: 0.15;
+        transition: all 0.3s;
     }
 
     .why-h-card::after {
@@ -146,7 +149,11 @@
     }
 
     .why-h-card:hover::before {
-        opacity: 1;
+        opacity: 0.3;
+        top: -40px;
+        right: -40px;
+        width: 100px;
+        height: 100px;
     }
 
     .why-h-card:hover::after {
@@ -170,9 +177,9 @@
     }
 
     .why-h-card:hover .why-h-icon {
-        background: rgba(255,255,255,0.2);
-        color: #fff;
-        transform: scale(1.1) rotate(-5deg);
+        background: #dbeafe;
+        color: var(--why-primary);
+        transform: scale(1.1);
     }
 
     .why-h-card h3 {
@@ -185,8 +192,6 @@
         color: var(--why-text-dark);
     }
 
-    .why-h-card:hover h3 { color: #fff; }
-
     .why-h-card p {
         font-size: 0.9rem;
         line-height: 1.6;
@@ -195,10 +200,6 @@
         position: relative;
         z-index: 1;
         margin: 0;
-    }
-
-    .why-h-card:hover p { 
-        color: rgba(255,255,255,0.9);
     }
 
     .card-number {
@@ -213,14 +214,27 @@
         z-index: 1;
     }
 
-    .why-h-card:hover .card-number {
-        color: rgba(255,255,255,0.15);
-    }
-
     /* Dark Mode - Why Choose Me Cards */
     [data-theme="dark"] .why-h-card {
         background: #1f1f3a;
         border-color: #2d2d52;
+    }
+
+    [data-theme="dark"] .why-h-card::before {
+        background: linear-gradient(135deg, #67E8F9 0%, #67E8F9 100%);
+    }
+
+    [data-theme="dark"] .why-h-card:hover {
+        box-shadow: 0 20px 40px rgba(103, 232, 249, 0.2);
+    }
+
+    [data-theme="dark"] .why-h-card:hover::before {
+        opacity: 0.3;
+    }
+
+    [data-theme="dark"] .why-h-card:hover .why-h-icon {
+        background: rgba(103, 232, 249, 0.2);
+        color: #67E8F9;
     }
 
     [data-theme="dark"] .why-h-card h3 {
@@ -232,7 +246,7 @@
     }
 
     [data-theme="dark"] .why-h-card .card-number {
-        color: rgba(37, 99, 235, 0.15);
+        color: rgba(103, 232, 249, 0.15);
     }
 </style>
 
