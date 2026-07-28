@@ -440,15 +440,10 @@
 @if($certifications->isNotEmpty())
 <section id="certifications" class="section-padding section-1">
     <div class="container mb-4">
-        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 reveal-on-scroll">
-            <div class="text-center text-lg-start">
-                <span class="section-eyebrow">Credentials</span>
-                <h2 class="section-title mb-2">Certifications & Badges</h2>
-                <p class="section-subtitle mx-auto mx-lg-0">Professional certifications and achievements</p>
-            </div>
-            @if($certifications->count() > 4)
-            <a href="{{ route('certifications') }}" class="btn btn-outline-custom flex-shrink-0">View All <i class="fa-solid fa-arrow-right ms-1"></i></a>
-            @endif
+        <div class="text-center text-lg-start reveal-on-scroll">
+            <span class="section-eyebrow">Credentials</span>
+            <h2 class="section-title mb-2">Certifications & Badges</h2>
+            <p class="section-subtitle mx-auto mx-lg-0">Professional certifications and achievements</p>
         </div>
     </div>
 
