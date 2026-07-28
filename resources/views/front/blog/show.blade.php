@@ -4,6 +4,85 @@
 @section('meta_description', $blog->meta_description ?: \Illuminate\Support\Str::limit(strip_tags($blog->description), 160))
 @section('meta_keywords', $blog->meta_keywords)
 
+@push('styles')
+<style>
+    /* Page Title Section */
+    .page-title-section {
+        background: var(--color-primary, #2563EB);
+        padding: 80px 0 60px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .page-title-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 400px;
+        height: 400px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+    }
+    
+    .page-title-section::after {
+        content: '';
+        position: absolute;
+        bottom: -30%;
+        left: -5%;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+    }
+    
+    .page-title-section .section-eyebrow {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+    
+    .page-title-section h1 {
+        color: #ffffff;
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 0.75rem;
+    }
+    
+    .page-title-section .section-subtitle {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    /* Blog Meta */
+    .blog-meta-single {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.95rem;
+    }
+    .blog-meta-single i {
+        margin-right: 4px;
+    }
+    .blog-meta-single span {
+        margin: 0 8px;
+    }
+    
+    @media (max-width: 768px) {
+        .page-title-section {
+            padding: 60px 0 40px;
+        }
+        .page-title-section h1 {
+            font-size: 2rem;
+        }
+    }
+</style>
+@endpush
+
 @php
     $breadcrumbs = [
         ['title' => 'Blog', 'url' => route('blog.index')],
@@ -13,20 +92,34 @@
 
 @section('content')
 
+{{-- Page Title Section --}}
+<section class="page-title-section">
+    <div class="container">
+        <div class="text-center position-relative" style="z-index: 1;">
+            @if($blog->category)
+                <span class="section-eyebrow">{{ $blog->category->name }}</span>
+            @endif
+            <h1>{{ $blog->title }}</h1>
+            <div class="blog-meta-single mt-3">
+                <span><i class="fas fa-calendar"></i> {{ $blog->published_at?->format('M d, Y') }}</span>
+                <span><i class="fas fa-clock"></i> {{ ceil(strlen(strip_tags($blog->description)) / 1000) }} min read</span>
+                <span><i class="fas fa-eye"></i> {{ $blog->views }} views</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- Breadcrumb --}}
+<div class="bg-light py-2">
+    <div class="container">
+        <x-breadcrumb :items="$breadcrumbs" />
+    </div>
+</div>
+
 <section class="section-padding section-2">
     <div class="container">
-        {{-- Breadcrumb --}}
-        <x-breadcrumb :items="$breadcrumbs" />
-
         <div class="row g-5">
             <div class="col-lg-8">
-                <div class="mb-4">
-                    @if($blog->category)
-                        <span class="section-eyebrow">{{ $blog->category->name }}</span>
-                    @endif
-                    <h1 class="section-title">{{ $blog->title }}</h1>
-                </div>
-
                 <img src="{{ $blog->featured_image_url ?? 'https://placehold.co/1000x600/2563EB/ffffff?text=' . urlencode($blog->title) }}"
                      alt="{{ $blog->alt_text ?? $blog->title }}" class="img-fluid rounded-4 shadow-sm mb-4 w-100" style="aspect-ratio: 16/9; object-fit: cover;" loading="lazy">
 
