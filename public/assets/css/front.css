@@ -934,9 +934,11 @@ a {
   padding-bottom: 60px;
 }
 
-/* Page title sections - site primary blue background with reduced padding */
+/* Page title sections - white background with blue border (shape) */
 .page-title-section {
-  background: var(--color-primary);
+  background: #fff;
+  border: 3px solid var(--color-primary);
+  border-radius: 12px;
   padding-top: 40px;
   padding-bottom: 40px;
 }
@@ -950,10 +952,13 @@ a {
 .page-title-section .section-1subtitle,
 .page-title-section h1,
 .page-title-section h2,
-.page-title-section p,
 .page-title-section .breadcrumb-item,
 .page-title-section .breadcrumb-item a {
-  color: #fff !important;
+  color: var(--color-primary) !important;
+}
+
+.page-title-section p {
+  color: #6b7280 !important;
 }
 
 @media (max-width: 991px) {
@@ -972,7 +977,22 @@ a {
 
 /* Dark mode - page title section */
 [data-theme="dark"] .page-title-section {
-  background: #1e3a5f;
+  background: #1a1a2e;
+  border-color: #60a5fa;
+}
+
+[data-theme="dark"] .page-title-section .section-eyebrow,
+[data-theme="dark"] .page-title-section .section-title,
+[data-theme="dark"] .page-title-section .section-subtitle,
+[data-theme="dark"] .page-title-section h1,
+[data-theme="dark"] .page-title-section h2,
+[data-theme="dark"] .page-title-section .breadcrumb-item,
+[data-theme="dark"] .page-title-section .breadcrumb-item a {
+  color: #60a5fa !important;
+}
+
+[data-theme="dark"] .page-title-section p {
+  color: #9ca3af !important;
 }
 
 /* Dark mode - alternating sections */
