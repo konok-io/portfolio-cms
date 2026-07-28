@@ -222,7 +222,7 @@
 </section>
 
 {{-- Testimonials Section --}}
-<section class="section-padding section-2">
+<section class="section-padding">
     <div class="container">
         <div class="row g-4">
             @forelse($testimonials as $testimonial)
