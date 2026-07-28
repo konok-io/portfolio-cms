@@ -639,7 +639,6 @@
         }
         
         .testimonial-card:hover {
-            transform: translateY(-3px);
             box-shadow: 0 15px 35px rgba(37, 99, 235, 0.15);
             border-color: var(--color-primary, #2563EB);
         }
