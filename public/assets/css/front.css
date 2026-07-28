@@ -1786,7 +1786,7 @@ body.has-header main {
 .icon-box {
     width: 64px;
     height: 64px;
-    background: #fff;
+    background: #dbeafe;
     border-radius: 16px;
     display: flex;
     align-items: center;
@@ -1798,7 +1798,7 @@ body.has-header main {
 }
 
 .service-card:hover .icon-box {
-    background: #fff;
+    background: #bfdbfe;
     transform: scale(1.1);
 }
 
@@ -1807,7 +1807,7 @@ body.has-header main {
     align-items: center;
     gap: 6px;
     padding: 8px 16px;
-    background: #fff;
+    background: #dbeafe;
     color: var(--color-primary);
     border-radius: 50px;
     font-weight: 600;
@@ -1817,7 +1817,7 @@ body.has-header main {
 }
 
 .btn-view:hover {
-    background: #fff;
+    background: #bfdbfe;
     color: var(--color-primary);
 }
 
