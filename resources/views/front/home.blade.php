@@ -1285,7 +1285,7 @@
     
     .pricing-split-eyebrow {
         display: inline-block;
-        background: linear-gradient(135deg, var(--color-primary, #4f46e5), var(--color-secondary, #06b6d4));
+        background: var(--color-primary, #2563EB);
         color: white;
         padding: 6px 16px;
         border-radius: 20px;
@@ -1342,7 +1342,7 @@
     }
     
     .pricing-toggle-option.active {
-        background: linear-gradient(135deg, var(--color-primary, #4f46e5), var(--color-secondary, #06b6d4));
+        background: var(--color-primary, #2563EB);
     }
     
     .pricing-toggle-option.active span:first-of-type {
@@ -1387,21 +1387,21 @@
     }
     
     .pricing-split-card:hover {
-        border-color: var(--color-primary, #4f46e5);
+        border-color: var(--color-primary, #2563EB);
         box-shadow: 0 10px 30px rgba(0,0,0,0.06);
     }
     
     .pricing-split-card.featured {
-        background: linear-gradient(135deg, var(--color-primary, #4f46e5), var(--color-secondary, #06b6d4));
+        background: var(--color-primary, #2563EB);
         color: white;
         border: none;
-        box-shadow: 0 20px 40px rgba(79, 70, 229, 0.25);
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.25);
         transform: scale(1.02);
     }
     
     .pricing-split-card.featured:hover {
         transform: scale(1.02);
-        box-shadow: 0 25px 50px rgba(79, 70, 229, 0.35);
+        box-shadow: 0 25px 50px rgba(37, 99, 235, 0.35);
     }
     
     .pricing-split-badge {
