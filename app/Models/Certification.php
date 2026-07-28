@@ -43,6 +43,26 @@ class Certification extends Model
     }
 
     /**
+     * Scope to filter active certifications only
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true)
+            ->where(function ($query) {
+                $query->whereNull('expiry_date')
+                    ->orWhere('expiry_date', '>=', now());
+            });
+    }
+
+    /**
+     * Scope to order certifications by sort_order
+     */
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('sort_order')->orderBy('id');
+    }
+
+    /**
      * Get active certifications
      */
     public static function getActive()
