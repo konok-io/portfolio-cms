@@ -5,7 +5,8 @@
     'items' => [],
     'separator' => 'fa-solid fa-chevron-right',
     'showHome' => true,
-    'class' => ''
+    'class' => '',
+    'darkBg' => false
 ])
 
 @php
@@ -34,7 +35,7 @@
 @endphp
 
 @if(count($breadcrumbs) > 1)
-    <nav aria-label="breadcrumb" class="breadcrumb-nav {{ $class }}">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav {{ $class }}{{ $darkBg ? ' breadcrumb-light' : '' }}">
         <ol class="breadcrumb">
             @foreach($breadcrumbs as $index => $crumb)
                 @if($crumb['active'] || $loop->last)
@@ -100,6 +101,26 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+/* Light breadcrumb for dark backgrounds */
+.breadcrumb-light .breadcrumb-item,
+.breadcrumb-light .breadcrumb-item a {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.breadcrumb-light .breadcrumb-item a:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+.breadcrumb-light .breadcrumb-separator {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.breadcrumb-light .breadcrumb-item.active,
+.breadcrumb-light .breadcrumb-current {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
 }
 
 [data-theme="dark"] .breadcrumb-item {
