@@ -2103,7 +2103,8 @@
                 border: 1px solid #d1d5db;
             }
             
-            .contact-vertical-map-container iframe {
+            .contact-vertical-map-container iframe,
+            .contact-vertical-map-container #homeContactMap {
                 width: 100%;
                 height: 100%;
                 min-height: 250px;
@@ -2185,14 +2186,14 @@
                 </div>
             </div>
             <div class="contact-vertical-bottom">
-                <div class="row g-4">
-                    <div class="col-lg-7">
+                <div class="row g-4 align-items-stretch">
+                    <div class="col-lg-7 d-flex">
                         @if($siteSetting->google_map)
-                            <div class="contact-vertical-map-container">
+                            <div class="contact-vertical-map-container w-100">
                                 <div id="homeContactMap" style="width: 100%; height: 100%; min-height: 250px; border-radius: 12px;"></div>
                             </div>
                         @else
-                            <div class="contact-vertical-map-placeholder d-flex align-items-center justify-content-center" style="min-height: 250px; background: #f8f9fa; border-radius: 12px; border: 1px solid #d1d5db;">
+                            <div class="contact-vertical-map-placeholder d-flex align-items-center justify-content-center w-100" style="min-height: 250px; background: #f8f9fa; border-radius: 12px; border: 1px solid #d1d5db;">
                                 <div class="text-center text-muted">
                                     <i class="fas fa-map-marker-alt fa-2x mb-2"></i>
                                     <p class="mb-0 small">Map location will appear here</p>
@@ -2200,8 +2201,8 @@
                             </div>
                         @endif
                     </div>
-                    <div class="col-lg-5">
-                        <form id="contactForm" action="{{ route('contact.store') }}" method="POST">
+                    <div class="col-lg-5 d-flex">
+                        <form id="contactForm" action="{{ route('contact.store') }}" method="POST" class="w-100 d-flex flex-column justify-content-center">
                             @csrf
                             <div class="contact-vertical-form-grid">
                                 <input type="text" name="name" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_name', app()->getLocale()) }}" required>
