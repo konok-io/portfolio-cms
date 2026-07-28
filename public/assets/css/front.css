@@ -1817,9 +1817,9 @@ body.has-header main {
 }
 
 .btn-view:hover {
-    background: #000;
+    background: var(--color-primary);
     color: #fff;
-    border: 2px solid #93c5fd;
+    border: 2px solid var(--color-primary);
 }
 
 .btn-view i {
