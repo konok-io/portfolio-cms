@@ -1807,7 +1807,7 @@ body.has-header main {
     align-items: center;
     gap: 6px;
     padding: 8px 16px;
-    background: #dbeafe;
+    background: #fff;
     color: var(--color-primary);
     border-radius: 50px;
     font-weight: 600;
