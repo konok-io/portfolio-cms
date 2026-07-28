@@ -21,11 +21,11 @@
         <div class="row align-items-center">
             <div class="col-12 text-center">
                 <h1 class="display-4 fw-bold mb-3">
-                    {{ $customPageContent['title'][app()->getLocale()] ?? $customPageContent['title']['en'] ?? $page->title }}
+                    {{ $customPageContent['title']['default'] ?? $customPageContent['title']['en'] ?? $page->title }}
                 </h1>
-                @if(isset($customPageContent['subtitle'][app()->getLocale()]) || isset($customPageContent['subtitle']['en']))
+                @if(isset($customPageContent['subtitle']['default']) || isset($customPageContent['subtitle']['en']))
                     <p class="lead text-muted">
-                        {{ $customPageContent['subtitle'][app()->getLocale()] ?? $customPageContent['subtitle']['en'] ?? '' }}
+                        {{ $customPageContent['subtitle']['default'] ?? $customPageContent['subtitle']['en'] ?? '' }}
                     </p>
                 @endif
             </div>

@@ -20,9 +20,9 @@
     <div class="container">
         <div class="row align-items-center mb-5">
             <div class="col-12 text-center">
-                <h1 class="display-4 fw-bold mb-3">{{ $pageContent['title'][app()->getLocale()] ?? $pageContent['title']['en'] ?? __('frequently_asked_questions') }}</h1>
-                @if($pageContent['subtitle'][app()->getLocale()] ?? $pageContent['subtitle']['en'])
-                    <p class="lead text-muted mb-0">{{ $pageContent['subtitle'][app()->getLocale()] ?? $pageContent['subtitle']['en'] }}</p>
+                <h1 class="display-4 fw-bold mb-3">{{ $pageContent['title']['default'] ?? $pageContent['title']['en'] ?? 'FAQ' }}</h1>
+                @if($pageContent['subtitle']['default'] ?? $pageContent['subtitle']['en'])
+                    <p class="lead text-muted mb-0">{{ $pageContent['subtitle']['default'] ?? $pageContent['subtitle']['en'] }}</p>
                 @endif
             </div>
         </div>
