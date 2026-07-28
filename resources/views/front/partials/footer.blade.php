@@ -1,4 +1,4 @@
-<footer class="site-footer pt-5 pb-4 mt-auto">
+<footer class="site-footer pt-5 pb-4">
     <div class="container">
         <div class="row gy-4">
             <div class="col-lg-3">

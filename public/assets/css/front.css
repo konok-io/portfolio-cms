@@ -917,26 +917,40 @@ a {
 .site-footer {
   background: var(--color-secondary);
   color: #cbd5e1;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
 }
 .site-footer .row {
   align-items: flex-start;
 }
 
-/* Main content padding for fixed header and footer */
+/* Main content padding for fixed header */
 .main-content {
   padding-top: 80px;
-  padding-bottom: 100px;
+  padding-bottom: 0;
+}
+
+/* All page sections - consistent padding top and bottom */
+.section-padding {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+/* Page title sections - reduced padding */
+.section-padding:first-child {
+  padding-top: 40px;
+  padding-bottom: 30px;
 }
 
 @media (max-width: 991px) {
   .main-content {
     padding-top: 70px;
-    padding-bottom: 80px;
+  }
+  .section-padding {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  .section-padding:first-child {
+    padding-top: 30px;
+    padding-bottom: 20px;
   }
 }
 .site-footer h5 {
