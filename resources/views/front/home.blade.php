@@ -2100,6 +2100,7 @@
                 border-radius: 12px;
                 overflow: hidden;
                 box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                border: 1px solid #d1d5db;
             }
             
             .contact-vertical-map-container iframe {
