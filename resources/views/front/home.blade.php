@@ -632,17 +632,34 @@
         .testimonial-card {
             background: #eff6ff;
             border-radius: 16px;
-            overflow: hidden;
             height: 100%;
             transition: all 0.3s;
-            border: 1px solid #e2e8f0;
+            border: 2px solid #e2e8f0;
             padding: 10px;
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--color-primary, #2563EB);
+            border-radius: 16px 16px 0 0;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
         
         .testimonial-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: 0 15px 35px rgba(37, 99, 235, 0.15);
             border-color: var(--color-primary, #2563EB);
+        }
+        
+        .testimonial-card:hover::before {
+            opacity: 1;
         }
         
         .testimonial-header {
