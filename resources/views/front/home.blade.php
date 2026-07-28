@@ -471,11 +471,19 @@
      7. EDUCATION
      ========================================================= --}}
 @if($educations->isNotEmpty())
-<section id="education" class="section-padding section-2">
+<section id="education" class="section-padding" style="background-color: var(--color-primary);">
     <div class="container">
         
         {{-- Education Horizontal Cards Style --}}
         <style>
+            #education .section-eyebrow,
+            #education .section-title,
+            #education .section-subtitle {
+                color: #fff;
+            }
+            #education .section-eyebrow {
+                background: rgba(255,255,255,0.2);
+            }
             .edu-hz-section {
                 max-width: 900px;
                 margin: 0 auto;

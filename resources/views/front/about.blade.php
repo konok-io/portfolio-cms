@@ -351,24 +351,24 @@
 
 {{-- Education --}}
 @if($educations->isNotEmpty())
-<section class="section-padding" style="background: linear-gradient(135deg, #dbeafe, #eff6ff);">
+<section class="section-padding" style="background-color: var(--color-primary);">
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-4 reveal-on-scroll">
-                <span class="section-eyebrow">Academic Background</span>
-                <h2 class="section-title">Education</h2>
-                <p class="section-subtitle">My academic foundation in computer science and technology.</p>
+                <span class="section-eyebrow" style="background: rgba(255,255,255,0.2); color: #fff;">Academic Background</span>
+                <h2 class="section-title" style="color: #fff;">Education</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">My academic foundation in computer science and technology.</p>
             </div>
             <div class="col-lg-8">
-                <div class="timeline">
+                <div class="timeline" style="border-color: rgba(255,255,255,0.3);">
                     @foreach($educations as $education)
-                        <div class="timeline-item reveal-on-scroll">
+                        <div class="timeline-item reveal-on-scroll" style="color: #fff;">
                             <div class="d-flex justify-content-between flex-wrap gap-2">
-                                <h5 class="mb-1">{{ $education->degree }}</h5>
-                                <span class="badge bg-secondary-custom">{{ $education->duration }}</span>
+                                <h5 class="mb-1" style="color: #fff;">{{ $education->degree }}</h5>
+                                <span class="badge" style="background: rgba(255,255,255,0.2); color: #fff;">{{ $education->duration }}</span>
                             </div>
-                            <p class="text-primary-custom fw-semibold small mb-2">{{ $education->institute_name }}</p>
-                            <p class="text-muted small mb-0">{{ $education->description }}</p>
+                            <p class="fw-semibold small mb-2" style="color: rgba(255,255,255,0.9);">{{ $education->institute_name }}</p>
+                            <p class="small mb-0" style="color: rgba(255,255,255,0.7);">{{ $education->description }}</p>
                         </div>
                     @endforeach
                 </div>
