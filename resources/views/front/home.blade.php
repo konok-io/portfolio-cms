@@ -792,11 +792,12 @@
         }
     </style>
     
-    <div class="container">
-        <div id="testimonialCarousel" class="test-glass-section carousel slide reveal-on-scroll" data-bs-ride="carousel" data-bs-interval="5000">
-            <div class="carousel-inner">
-                @foreach($testimonials->chunk(3) as $index => $testimonialGroup)
-                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+    {{-- Cards Section - Full Width (No Container) --}}
+    <div id="testimonialCarousel" class="test-glass-section carousel slide reveal-on-scroll" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-inner">
+            @foreach($testimonials->chunk(3) as $index => $testimonialGroup)
+                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                    <div class="container">
                         <div class="row g-4">
                             @foreach($testimonialGroup as $testimonial)
                                 <div class="col-md-6 col-lg-4">
@@ -832,16 +833,16 @@
                             @endforeach
                         </div>
                     </div>
+                </div>
+            @endforeach
+        </div>
+        @if($testimonials->count() > 3)
+            <div class="carousel-indicators">
+                @foreach($testimonials->chunk(3) as $index => $group)
+                    <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
                 @endforeach
             </div>
-            @if($testimonials->count() > 3)
-                <div class="carousel-indicators">
-                    @foreach($testimonials->chunk(3) as $index => $group)
-                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
-                    @endforeach
-                </div>
-            @endif
-        </div>
+        @endif
     </div>
 </section>
 @endif
