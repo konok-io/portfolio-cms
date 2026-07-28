@@ -707,19 +707,24 @@
         }
         
         .testimonial-body {
-            padding: 20px;
+            padding: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
         }
         
         .testimonial-quote-icon {
             color: var(--color-primary, #2563EB);
-            font-size: 1.5rem;
-            margin-bottom: 12px;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: 2px;
         }
         
         .testimonial-text {
             font-size: 0.9rem;
             color: #475569;
             line-height: 1.7;
+            margin: 0;
         }
         
         /* Carousel styles */
@@ -804,7 +809,7 @@
                                             </div>
                                         </div>
                                         <div class="testimonial-body">
-                                            <div class="testimonial-quote-icon"><i class="fas fa-quote-left"></i></div>
+                                            <i class="fas fa-quote-left testimonial-quote-icon"></i>
                                             <p class="testimonial-text">{{ $testimonial->review }}</p>
                                         </div>
                                     </div>
