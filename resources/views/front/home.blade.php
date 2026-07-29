@@ -2218,7 +2218,7 @@
                 @endif
                 <div class="row g-4 align-items-stretch">
                     <div class="col-lg-7 d-flex">
-                        @if($siteSetting->google_map)
+                        @if($about->google_map)
                             <div class="contact-vertical-map-container">
                                 <div id="homeContactMap"></div>
                             </div>
@@ -2371,10 +2371,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Home Contact Map - Leaflet
-@if($siteSetting->google_map)
-const homeMapUrl = @json($siteSetting->google_map);
+@if($about->google_map)
+const homeMapUrl = @json($about->google_map);
 const homeCoordMatch = homeMapUrl.match(/@(-?\d+\.?\d*),(-?\d+\.?\d*)/);
-const homeAddress = @json($siteSetting->address ?? 'Location');
+const homeAddress = @json($about->address ?? 'Location');
 
 if (homeCoordMatch) {
     const homeLat = parseFloat(homeCoordMatch[1]);
