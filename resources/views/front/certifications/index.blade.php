@@ -1,14 +1,32 @@
 @extends('front.layouts.app')
 @section('title', 'Certifications & Badges - ' . ($siteSetting->site_name ?? 'Portfolio'))
 @section('content')
-<section class="page-title-section section-padding py-5">
+
+{{-- Page Title Section --}}
+<section class="page-title-section section-padding">
+    <div class="shape-container">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+        <div class="shape shape-5"></div>
+        <div class="shape shape-6"></div>
+        <div class="shape shape-7"></div>
+        <div class="shape shape-8"></div>
+    </div>
+
     <div class="container">
         <div class="text-center mb-0">
             <span class="section-eyebrow">Credentials</span>
             <h1 class="section-title">Certifications & Badges</h1>
             <p class="section-subtitle mx-auto">Professional certifications and achievements that validate my expertise.</p>
         </div>
-        
+    </div>
+</section>
+
+{{-- Certifications Grid - Light Blue --}}
+<section class="section-padding" style="background-color: var(--bg-alt, #eff6ff);">
+    <div class="container">
         <div class="row g-4">
             @forelse($certifications as $cert)
                 <div class="col-md-6 col-lg-3">
@@ -45,8 +63,15 @@
                 </div>
             @endforelse
         </div>
-        
-        <div class="text-center mt-5">
+    </div>
+</section>
+
+{{-- CTA Section - White --}}
+<section class="section-padding section-2">
+    <div class="container">
+        <div class="text-center">
+            <h3 class="mb-3">Ready to work together?</h3>
+            <p class="text-muted mb-4">Let's discuss your next project and make it happen.</p>
             <a href="{{ route('contact') }}" class="btn btn-primary-custom">
                 <i class="fa-solid fa-envelope me-2"></i>Work With Me
             </a>
