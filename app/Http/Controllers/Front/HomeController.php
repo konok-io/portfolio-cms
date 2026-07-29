@@ -12,6 +12,7 @@ use App\Models\Faq;
 use App\Models\PricingPlan;
 use App\Models\Project;
 use App\Models\Service;
+use App\Models\Setting;
 use App\Models\Skill;
 use App\Models\Testimonial;
 use App\Models\WhyChooseMe;
@@ -26,6 +27,9 @@ class HomeController extends Controller
             'title'       => 'Web Developer',
             'short_intro' => 'Welcome to my portfolio.',
         ]);
+
+        // Get site settings for contact section map
+        $siteSetting = Setting::instance();
 
         $skills         = Skill::active()->ordered()->get();
         $services       = Service::active()->ordered()->take(6)->get();
@@ -53,6 +57,7 @@ class HomeController extends Controller
 
         return view('front.home', compact(
             'about',
+            'siteSetting',
             'skills',
             'services',
             'experiences',

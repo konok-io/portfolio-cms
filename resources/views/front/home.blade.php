@@ -2184,28 +2184,28 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="contact-vertical-info text-end">
-                            @if($about->email ?? false)
+                            @if($siteSetting->email)
                                 <div class="contact-vertical-info-item">
                                     <div class="contact-vertical-info-icon">
                                         <i class="fas fa-envelope"></i>
                                     </div>
-                                    <span>{{ Str::limit($about->email, 25) }}</span>
+                                    <span>{{ Str::limit($siteSetting->email, 25) }}</span>
                                 </div>
                             @endif
-                            @if($about->phone ?? false)
+                            @if($siteSetting->phone)
                                 <div class="contact-vertical-info-item">
                                     <div class="contact-vertical-info-icon">
                                         <i class="fas fa-phone"></i>
                                     </div>
-                                    <span>{{ $about->phone }}</span>
+                                    <span>{{ $siteSetting->phone }}</span>
                                 </div>
                             @endif
-                            @if($about->address ?? false)
+                            @if($siteSetting->address)
                                 <div class="contact-vertical-info-item">
                                     <div class="contact-vertical-info-icon">
                                         <i class="fas fa-map-marker-alt"></i>
                                     </div>
-                                    <span>{{ Str::limit($about->address, 18) }}</span>
+                                    <span>{{ Str::limit($siteSetting->address, 18) }}</span>
                                 </div>
                             @endif
                         </div>
@@ -2218,7 +2218,7 @@
                 @endif
                 <div class="row g-4 align-items-stretch">
                     <div class="col-lg-7 d-flex">
-                        @if($about->google_map)
+                        @if($siteSetting->google_map)
                             <div class="contact-vertical-map-container">
                                 <div id="homeContactMap"></div>
                             </div>
@@ -2371,10 +2371,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Home Contact Map - Leaflet
-@if($about->google_map)
-const homeMapUrl = @json($about->google_map);
+@if($siteSetting->google_map)
+const homeMapUrl = @json($siteSetting->google_map);
 const homeCoordMatch = homeMapUrl.match(/@(-?\d+\.?\d*),(-?\d+\.?\d*)/);
-const homeAddress = @json($about->address ?? 'Location');
+const homeAddress = @json($siteSetting->address ?? 'Location');
 
 if (homeCoordMatch) {
     const homeLat = parseFloat(homeCoordMatch[1]);
