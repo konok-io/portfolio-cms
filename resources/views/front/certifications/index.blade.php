@@ -1,4 +1,113 @@
 @extends('front.layouts.app')
+
+@section('styles')
+<style>
+    .cert-page-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+    }
+    
+    .cert-page-card {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 20px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        transition: all 0.3s;
+        cursor: pointer;
+        border: 1px solid #e2e8f0;
+        text-decoration: none;
+    }
+    
+    .cert-page-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        border-color: var(--color-primary, #2563EB);
+    }
+    
+    .cert-page-icon {
+        width: 50px;
+        height: 50px;
+        background: var(--color-primary, #2563EB);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        color: #fff;
+        flex-shrink: 0;
+    }
+    
+    .cert-page-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 6px;
+    }
+    
+    .cert-page-text {
+        text-align: left;
+        min-width: 0;
+    }
+    
+    .cert-page-name {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .cert-page-org {
+        font-size: 0.75rem;
+        color: #64748b;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .cert-page-date {
+        font-size: 0.7rem;
+        color: var(--color-primary);
+        margin-top: 2px;
+    }
+    
+    [data-theme="dark"] .cert-page-card {
+        background: #1e293b;
+        border-color: #334155;
+    }
+    
+    [data-theme="dark"] .cert-page-card:hover {
+        border-color: var(--color-primary, #2563EB);
+        box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+    }
+    
+    [data-theme="dark"] .cert-page-name {
+        color: #f1f5f9;
+    }
+    
+    [data-theme="dark"] .cert-page-org {
+        color: #94a3b8;
+    }
+    
+    @media (max-width: 992px) {
+        .cert-page-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .cert-page-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+@endsection
+
 @section('title', 'Certifications & Badges - ' . ($siteSetting->site_name ?? 'Portfolio'))
 @section('content')
 
@@ -28,25 +137,25 @@
 <section class="section-padding section-1">
     <div class="container">
         @if($certifications->isNotEmpty())
-        <div class="cred-horizontal-grid">
+        <div class="cert-page-grid">
             @foreach($certifications as $cert)
                 @if($cert->credential_url)
-                    <a href="{{ $cert->credential_url }}" target="_blank" class="cred-horizontal-card" style="text-decoration: none;">
+                    <a href="{{ $cert->credential_url }}" target="_blank" class="cert-page-card">
                 @else
-                    <div class="cred-horizontal-card">
+                    <div class="cert-page-card">
                 @endif
-                    <div class="cred-horizontal-icon">
+                    <div class="cert-page-icon">
                         @if($cert->badge_image)
                             <img src="{{ asset('storage/' . $cert->badge_image) }}" alt="{{ $cert->name }}">
                         @else
                             <i class="fa-solid fa-certificate"></i>
                         @endif
                     </div>
-                    <div class="cred-horizontal-text">
-                        <div class="cred-horizontal-name">{{ $cert->name }}</div>
-                        <div class="cred-horizontal-org">{{ $cert->issuer }}</div>
+                    <div class="cert-page-text">
+                        <div class="cert-page-name">{{ $cert->name }}</div>
+                        <div class="cert-page-org">{{ $cert->issuer }}</div>
                         @if($cert->issue_date)
-                            <div class="cred-horizontal-date">{{ $cert->issue_date?->format('M Y') }}</div>
+                            <div class="cert-page-date">{{ $cert->issue_date?->format('M Y') }}</div>
                         @endif
                     </div>
                 @if($cert->credential_url)
@@ -65,138 +174,35 @@
     </div>
 </section>
 
-@push('styles')
-<style>
-    .cred-horizontal-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 16px;
-    }
-    
-    .cred-horizontal-date {
-        font-size: 0.7rem;
-        color: var(--color-primary);
-        margin-top: 2px;
-    }
-    
-    /* Section 1 background styles for horizontal cards */
-    .section-1 .cred-horizontal-card {
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
-    }
-    
-    .section-1 .cred-horizontal-card:hover {
-        border-color: var(--color-primary, #2563EB);
-    }
-    
-    .section-1 .cred-horizontal-name {
-        color: #1e293b;
-    }
-    
-    .section-1 .cred-horizontal-org {
-        color: #64748b;
-    }
-    
-    /* Section 2 background styles - blue section */
-    .section-2 .cred-horizontal-card {
-        background: #eff6ff;
-        border: 1px solid #dbeafe;
-    }
-    
-    .section-2 .cred-horizontal-card:hover {
-        border-color: var(--color-primary, #2563EB);
-        box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15);
-    }
-    
-    .section-2 .cred-horizontal-name {
-        color: #1e293b;
-    }
-    
-    .section-2 .cred-horizontal-org {
-        color: #64748b;
-    }
-    
-    /* Dark mode for section 1 */
-    [data-theme="dark"] .section-1 .cred-horizontal-card {
-        background: #1e293b;
-        border-color: #334155;
-    }
-    
-    [data-theme="dark"] .section-1 .cred-horizontal-card:hover {
-        border-color: var(--color-primary, #2563EB);
-        box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
-    }
-    
-    [data-theme="dark"] .section-1 .cred-horizontal-name {
-        color: #f1f5f9;
-    }
-    
-    [data-theme="dark"] .section-1 .cred-horizontal-org {
-        color: #94a3b8;
-    }
-    
-    /* Dark mode for section 2 */
-    [data-theme="dark"] .section-2 .cred-horizontal-card {
-        background: #252547;
-        border-color: #3b3b6d;
-    }
-    
-    [data-theme="dark"] .section-2 .cred-horizontal-card:hover {
-        border-color: var(--color-primary, #2563EB);
-        box-shadow: 0 10px 30px rgba(37, 99, 235, 0.25);
-    }
-    
-    [data-theme="dark"] .section-2 .cred-horizontal-name {
-        color: #f1f5f9;
-    }
-    
-    [data-theme="dark"] .section-2 .cred-horizontal-org {
-        color: #94a3b8;
-    }
-    
-    @media (max-width: 992px) {
-        .cred-horizontal-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-    
-    @media (max-width: 576px) {
-        .cred-horizontal-grid {
-            grid-template-columns: 1fr;
-        }
-    }
-</style>
-@endpush
-
 {{-- Stats Section - White (Section 2) --}}
 <section class="section-padding section-2">
     <div class="container">
-        <div class="cred-horizontal-grid">
-            <div class="cred-horizontal-card">
-                <div class="cred-horizontal-icon">
-                    <i class="fa-solid fa-certificate"></i>
-                </div>
-                <div class="cred-horizontal-text">
-                    <div class="cred-horizontal-name">{{ $certifications->count() }}+</div>
-                    <div class="cred-horizontal-org">Certifications</div>
-                </div>
-            </div>
-            <div class="cred-horizontal-card">
-                <div class="cred-horizontal-icon">
-                    <i class="fa-solid fa-award"></i>
-                </div>
-                <div class="cred-horizontal-text">
-                    <div class="cred-horizontal-name">{{ $certifications->where('credential_url', '!=', null)->count() }}</div>
-                    <div class="cred-horizontal-org">Verified</div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4 col-lg-3">
+                <div class="text-center">
+                    <div class="mb-2">
+                        <i class="fa-solid fa-certificate text-primary-custom" style="font-size: 2.5rem;"></i>
+                    </div>
+                    <h3 class="mb-1">{{ $certifications->count() }}+</h3>
+                    <p class="text-muted mb-0">Certifications</p>
                 </div>
             </div>
-            <div class="cred-horizontal-card">
-                <div class="cred-horizontal-icon">
-                    <i class="fa-solid fa-building"></i>
+            <div class="col-md-4 col-lg-3">
+                <div class="text-center">
+                    <div class="mb-2">
+                        <i class="fa-solid fa-award text-primary-custom" style="font-size: 2.5rem;"></i>
+                    </div>
+                    <h3 class="mb-1">{{ $certifications->where('credential_url', '!=', null)->count() }}</h3>
+                    <p class="text-muted mb-0">Verified</p>
                 </div>
-                <div class="cred-horizontal-text">
-                    <div class="cred-horizontal-name">{{ $certifications->pluck('issuer')->unique()->count() }}</div>
-                    <div class="cred-horizontal-org">Issuing Organizations</div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="text-center">
+                    <div class="mb-2">
+                        <i class="fa-solid fa-building text-primary-custom" style="font-size: 2.5rem;"></i>
+                    </div>
+                    <h3 class="mb-1">{{ $certifications->pluck('issuer')->unique()->count() }}</h3>
+                    <p class="text-muted mb-0">Issuing Organizations</p>
                 </div>
             </div>
         </div>
