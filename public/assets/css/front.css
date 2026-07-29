@@ -1952,7 +1952,7 @@ body.has-header main {
     justify-content: center;
     gap: 0;
     padding: 10px;
-    background: var(--color-primary);
+    background: #0F172A;
     min-width: 120px;
     flex-shrink: 0;
 }
@@ -1960,12 +1960,12 @@ body.has-header main {
 .icon-box {
     width: 64px;
     height: 64px;
-    background: #dbeafe;
+    background: rgba(255,255,255,0.1);
     border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-primary);
+    color: #fff;
     font-size: 1.5rem;
     transition: all 0.35s ease;
     margin-bottom: 10px;
@@ -1973,28 +1973,30 @@ body.has-header main {
 }
 
 .service-card:hover .icon-box {
-    background: #bfdbfe;
+    background: rgba(255,255,255,0.2);
     transform: scale(1.1);
 }
 
 .btn-view {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 6px;
-    padding: 8px 16px;
-    background: #fff;
-    color: var(--color-primary);
+    padding: 8px 12px;
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
     border-radius: 50px;
     font-weight: 600;
     font-size: 0.8rem;
     transition: all 0.3s ease;
     text-decoration: none;
+    width: 64px;
 }
 
 .btn-view:hover {
-    background: #1e293b;
-    color: #fff;
-    border: 2px solid #93c5fd;
+    background: #fff;
+    color: #0F172A;
 }
 
 .btn-view i {
