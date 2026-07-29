@@ -21,284 +21,386 @@
         <div class="text-center mb-0">
             <span class="section-eyebrow text-white">Legal</span>
             <h1 class="section-title text-white">Privacy Policy</h1>
+            <p class="section-subtitle mx-auto">Your privacy matters to us. Learn how we protect your data.</p>
         </div>
     </div>
 </section>
 
 {{-- Content Section --}}
-<section class="section-padding section-2 py-5">
+<section class="section-padding section-2">
     <div class="container">
-        <div class="policy-intro mb-5">
-            <p class="lead">Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.</p>
-            <p class="text-muted"><small><i class="fa-regular fa-calendar me-1"></i>Last updated: {{ now()->format('F d, Y') }}</small></p>
+        {{-- Last Updated Banner --}}
+        <div class="last-updated-banner mb-5">
+            <i class="fa-solid fa-calendar-check me-2"></i>
+            <span>Last updated: {{ now()->format('F d, Y') }}</span>
         </div>
 
-        <div class="policy-sections">
-            {{-- Section 1 --}}
-            <div class="policy-card mb-4" data-aos="fade-up">
-                <div class="policy-number">01</div>
-                <div class="policy-content">
-                    <h2 class="policy-title">Information We Collect</h2>
-                    <p>We may collect the following types of information:</p>
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <div class="info-item">
-                                <div class="info-icon"><i class="fa-solid fa-user"></i></div>
-                                <div>
-                                    <strong>Personal Data</strong>
-                                    <p class="mb-0">Name, email address, phone number, and other contact details you provide when filling out forms or contacting us.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="info-item">
-                                <div class="info-icon"><i class="fa-solid fa-chart-line"></i></div>
-                                <div>
-                                    <strong>Usage Data</strong>
-                                    <p class="mb-0">Information about how you access and use our website, including your IP address, browser type, and pages visited.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="info-item">
-                                <div class="info-icon"><i class="fa-solid fa-cookie-bite"></i></div>
-                                <div>
-                                    <strong>Cookies</strong>
-                                    <p class="mb-0">We use cookies to enhance your browsing experience. Manage preferences through our cookie consent banner.</p>
-                                </div>
-                            </div>
-                        </div>
+        {{-- Quick Navigation --}}
+        <div class="quick-nav mb-5">
+            <div class="quick-nav-scroll">
+                <a href="#information" class="quick-nav-item">
+                    <i class="fa-solid fa-database"></i>
+                    <span>Information</span>
+                </a>
+                <a href="#usage" class="quick-nav-item">
+                    <i class="fa-solid fa-gears"></i>
+                    <span>How We Use</span>
+                </a>
+                <a href="#sharing" class="quick-nav-item">
+                    <i class="fa-solid fa-share-nodes"></i>
+                    <span>Data Sharing</span>
+                </a>
+                <a href="#security" class="quick-nav-item">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Security</span>
+                </a>
+                <a href="#rights" class="quick-nav-item">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                    <span>Your Rights</span>
+                </a>
+                <a href="#cookies" class="quick-nav-item">
+                    <i class="fa-solid fa-cookie-bite"></i>
+                    <span>Cookies</span>
+                </a>
+                <a href="#contact" class="quick-nav-item">
+                    <i class="fa-solid fa-headset"></i>
+                    <span>Contact</span>
+                </a>
+            </div>
+        </div>
+
+        {{-- Section 1: Information We Collect --}}
+        <div class="privacy-section mb-5" id="information" data-aos="fade-up">
+            <div class="privacy-section-header">
+                <div class="privacy-section-icon">
+                    <i class="fa-solid fa-database"></i>
+                </div>
+                <div>
+                    <h2 class="privacy-section-title">Information We Collect</h2>
+                    <p class="privacy-section-desc">We collect various types of information to provide and improve our services.</p>
+                </div>
+            </div>
+            <div class="privacy-cards-grid">
+                <div class="privacy-card">
+                    <div class="privacy-card-icon">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <h4>Personal Data</h4>
+                    <p>Name, email, phone, and contact details you provide when filling forms or contacting us.</p>
+                </div>
+                <div class="privacy-card">
+                    <div class="privacy-card-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h4>Usage Data</h4>
+                    <p>IP address, browser type, pages visited, and how you interact with our website.</p>
+                </div>
+                <div class="privacy-card">
+                    <div class="privacy-card-icon">
+                        <i class="fa-solid fa-cookie-bite"></i>
+                    </div>
+                    <h4>Cookies</h4>
+                    <p>Small data files stored on your device to enhance your browsing experience.</p>
+                </div>
+            </div>
+        </div>
+
+        {{-- Section 2: How We Use --}}
+        <div class="privacy-section mb-5" id="usage" data-aos="fade-up">
+            <div class="privacy-section-header">
+                <div class="privacy-section-icon">
+                    <i class="fa-solid fa-gears"></i>
+                </div>
+                <div>
+                    <h2 class="privacy-section-title">How We Use Your Information</h2>
+                    <p class="privacy-section-desc">We use collected data to power our services and continuously improve your experience.</p>
+                </div>
+            </div>
+            <div class="usage-list">
+                <div class="usage-item">
+                    <div class="usage-icon"><i class="fa-solid fa-wrench"></i></div>
+                    <div class="usage-text">
+                        <h5>Service Provision</h5>
+                        <p>Provide, maintain, and personalize our website services.</p>
+                    </div>
+                </div>
+                <div class="usage-item">
+                    <div class="usage-icon"><i class="fa-solid fa-headset"></i></div>
+                    <div class="usage-text">
+                        <h5>Customer Support</h5>
+                        <p>Respond to inquiries and provide technical assistance.</p>
+                    </div>
+                </div>
+                <div class="usage-item">
+                    <div class="usage-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+                    <div class="usage-text">
+                        <h5>Communications</h5>
+                        <p>Send newsletters, updates, and marketing communications.</p>
+                    </div>
+                </div>
+                <div class="usage-item">
+                    <div class="usage-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                    <div class="usage-text">
+                        <h5>Analytics</h5>
+                        <p>Analyze usage patterns to improve user experience.</p>
+                    </div>
+                </div>
+                <div class="usage-item">
+                    <div class="usage-icon"><i class="fa-solid fa-shield"></i></div>
+                    <div class="usage-text">
+                        <h5>Security</h5>
+                        <p>Detect and prevent fraud, spam, and security threats.</p>
                     </div>
                 </div>
             </div>
+        </div>
 
-            {{-- Section 2 --}}
-            <div class="policy-card mb-4" data-aos="fade-up">
-                <div class="policy-number">02</div>
-                <div class="policy-content">
-                    <h2 class="policy-title">How We Use Your Information</h2>
-                    <p>We use the collected information for the following purposes:</p>
-                    <div class="row g-3">
-                        <div class="col-md-4">
-                            <div class="feature-item">
-                                <i class="fa-solid fa-gear"></i>
-                                <span>Provide and maintain our services</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="feature-item">
-                                <i class="fa-solid fa-headset"></i>
-                                <span>Respond to inquiries and support</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="feature-item">
-                                <i class="fa-solid fa-envelope"></i>
-                                <span>Send newsletters and updates</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="feature-item">
-                                <i class="fa-solid fa-magnifying-glass-chart"></i>
-                                <span>Analyze and improve user experience</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="feature-item">
-                                <i class="fa-solid fa-shield-halved"></i>
-                                <span>Detect and prevent security threats</span>
-                            </div>
-                        </div>
+        {{-- Section 3: Data Sharing --}}
+        <div class="privacy-section mb-5" id="sharing" data-aos="fade-up">
+            <div class="privacy-section-header">
+                <div class="privacy-section-icon">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </div>
+                <div>
+                    <h2 class="privacy-section-title">Data Sharing and Disclosure</h2>
+                    <p class="privacy-section-desc">We do not sell your personal information. Data may only be shared in specific circumstances.</p>
+                </div>
+            </div>
+            <div class="sharing-cards">
+                <div class="sharing-card">
+                    <div class="sharing-card-icon">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                    <h4>Service Providers</h4>
+                    <p>Trusted third-party services for hosting, analytics, email delivery, and payment processing.</p>
+                </div>
+                <div class="sharing-card">
+                    <div class="sharing-card-icon">
+                        <i class="fa-solid fa-gavel"></i>
+                    </div>
+                    <h4>Legal Requirements</h4>
+                    <p>When required by law, court order, or to protect our legal rights.</p>
+                </div>
+                <div class="sharing-card">
+                    <div class="sharing-card-icon">
+                        <i class="fa-solid fa-building-columns"></i>
+                    </div>
+                    <h4>Business Transfers</h4>
+                    <p>In case of merger, acquisition, or sale of assets, your data may be transferred.</p>
+                </div>
+            </div>
+        </div>
+
+        {{-- Section 4: Data Security --}}
+        <div class="privacy-section mb-5" id="security" data-aos="fade-up">
+            <div class="privacy-section-header">
+                <div class="privacy-section-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                    <h2 class="privacy-section-title">Data Security</h2>
+                    <p class="privacy-section-desc">We implement robust security measures to protect your personal information.</p>
+                </div>
+            </div>
+            <div class="security-features">
+                <div class="security-feature">
+                    <div class="security-feature-icon"><i class="fa-solid fa-lock"></i></div>
+                    <div class="security-feature-text">
+                        <h5>SSL Encryption</h5>
+                        <p>All data transmitted between your browser and our servers is encrypted.</p>
+                    </div>
+                </div>
+                <div class="security-feature">
+                    <div class="security-feature-icon"><i class="fa-solid fa-database"></i></div>
+                    <div class="security-feature-text">
+                        <h5>Secure Storage</h5>
+                        <p>Data is stored on secure servers with access controls and regular backups.</p>
+                    </div>
+                </div>
+                <div class="security-feature">
+                    <div class="security-feature-icon"><i class="fa-solid fa-user-check"></i></div>
+                    <div class="security-feature-text">
+                        <h5>Access Control</h5>
+                        <p>Strict access controls limit who can access your personal information.</p>
+                    </div>
+                </div>
+                <div class="security-feature">
+                    <div class="security-feature-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                    <div class="security-feature-text">
+                        <h5>Regular Audits</h5>
+                        <p>We conduct regular security audits and vulnerability assessments.</p>
                     </div>
                 </div>
             </div>
+        </div>
 
-            {{-- Section 3 --}}
-            <div class="policy-card mb-4" data-aos="fade-up">
-                <div class="policy-number">03</div>
-                <div class="policy-content">
-                    <h2 class="policy-title">Data Sharing and Disclosure</h2>
-                    <p class="mb-4">We do not sell your personal information. We may share your data with:</p>
-                    <div class="sharing-grid">
-                        <div class="sharing-card">
-                            <div class="sharing-icon"><i class="fa-solid fa-server"></i></div>
-                            <h4>Service Providers</h4>
-                            <p>Third-party companies that help us operate our website (hosting, analytics, email services)</p>
-                        </div>
-                        <div class="sharing-card">
-                            <div class="sharing-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-                            <h4>Legal Requirements</h4>
-                            <p>When required by law or to protect our rights</p>
-                        </div>
-                        <div class="sharing-card">
-                            <div class="sharing-icon"><i class="fa-solid fa-building"></i></div>
-                            <h4>Business Transfers</h4>
-                            <p>In case of a merger or acquisition, your data may be transferred</p>
-                        </div>
-                    </div>
+        {{-- Section 5: Your Rights --}}
+        <div class="privacy-section mb-5" id="rights" data-aos="fade-up">
+            <div class="privacy-section-header">
+                <div class="privacy-section-icon">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                </div>
+                <div>
+                    <h2 class="privacy-section-title">Your Privacy Rights</h2>
+                    <p class="privacy-section-desc">You have full control over your personal data. Exercise your rights anytime.</p>
                 </div>
             </div>
-
-            {{-- Section 4 --}}
-            <div class="policy-card mb-4" data-aos="fade-up">
-                <div class="policy-number">04</div>
-                <div class="policy-content">
-                    <h2 class="policy-title">Data Security</h2>
-                    <p>We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction.</p>
-                    <div class="security-badges">
-                        <span class="security-badge"><i class="fa-solid fa-lock me-1"></i>SSL Encrypted</span>
-                        <span class="security-badge"><i class="fa-solid fa-shield me-1"></i>Secure Servers</span>
-                        <span class="security-badge"><i class="fa-solid fa-user-shield me-1"></i>Access Control</span>
-                    </div>
+            <div class="rights-grid">
+                <div class="right-card">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <h5>Access</h5>
+                    <p>Request copies of your personal data</p>
+                </div>
+                <div class="right-card">
+                    <i class="fa-solid fa-pen"></i>
+                    <h5>Correction</h5>
+                    <p>Update or correct inaccurate data</p>
+                </div>
+                <div class="right-card">
+                    <i class="fa-solid fa-trash-can"></i>
+                    <h5>Deletion</h5>
+                    <p>Request deletion of your data</p>
+                </div>
+                <div class="right-card">
+                    <i class="fa-solid fa-pause-circle"></i>
+                    <h5>Restriction</h5>
+                    <p>Limit how we process your data</p>
+                </div>
+                <div class="right-card">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    <h5>Portability</h5>
+                    <p>Get your data in portable format</p>
+                </div>
+                <div class="right-card">
+                    <i class="fa-solid fa-hand"></i>
+                    <h5>Objection</h5>
+                    <p>Object to specific processing</p>
                 </div>
             </div>
+        </div>
 
-            {{-- Section 5 --}}
-            <div class="policy-card mb-4" data-aos="fade-up">
-                <div class="policy-number">05</div>
-                <div class="policy-content">
-                    <h2 class="policy-title">Your Rights <span class="badge bg-primary ms-2">GDPR</span></h2>
-                    <p>If you are a resident of the European Economic Area (EEA), you have the following rights:</p>
-                    <div class="rights-grid">
-                        <div class="right-item">
-                            <i class="fa-solid fa-file-contract"></i>
-                            <div>
-                                <strong>Right to Access</strong>
-                                <span>Request a copy of your personal data</span>
-                            </div>
-                        </div>
-                        <div class="right-item">
-                            <i class="fa-solid fa-pen"></i>
-                            <div>
-                                <strong>Right to Rectification</strong>
-                                <span>Request correction of inaccurate data</span>
-                            </div>
-                        </div>
-                        <div class="right-item">
-                            <i class="fa-solid fa-trash"></i>
-                            <div>
-                                <strong>Right to Erasure</strong>
-                                <span>Request deletion of your personal data</span>
-                            </div>
-                        </div>
-                        <div class="right-item">
-                            <i class="fa-solid fa-pause-circle"></i>
-                            <div>
-                                <strong>Right to Restrict</strong>
-                                <span>Request limitation of data processing</span>
-                            </div>
-                        </div>
-                        <div class="right-item">
-                            <i class="fa-solid fa-download"></i>
-                            <div>
-                                <strong>Right to Portability</strong>
-                                <span>Receive your data in a structured format</span>
-                            </div>
-                        </div>
-                        <div class="right-item">
-                            <i class="fa-solid fa-ban"></i>
-                            <div>
-                                <strong>Right to Object</strong>
-                                <span>Object to processing of your personal data</span>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="mt-4"><i class="fa-solid fa-envelope me-2 text-primary"></i>To exercise these rights, please contact us at <a href="mailto:{{ $siteSetting->email ?? 'privacy@example.com' }}" class="text-primary">{{ $siteSetting->email ?? 'privacy@example.com' }}</a></p>
+        {{-- Section 6: Cookies --}}
+        <div class="privacy-section mb-5" id="cookies" data-aos="fade-up">
+            <div class="privacy-section-header">
+                <div class="privacy-section-icon">
+                    <i class="fa-solid fa-cookie-bite"></i>
+                </div>
+                <div>
+                    <h2 class="privacy-section-title">Cookies Policy</h2>
+                    <p class="privacy-section-desc">We use cookies to enhance your browsing experience. Manage your preferences anytime.</p>
                 </div>
             </div>
-
-            {{-- Section 6 --}}
-            <div class="policy-card mb-4" data-aos="fade-up">
-                <div class="policy-number">06</div>
-                <div class="policy-content">
-                    <h2 class="policy-title">Cookies</h2>
-                    <p class="mb-4">We use the following types of cookies:</p>
-                    <div class="cookies-grid">
-                        <div class="cookie-card essential">
-                            <div class="cookie-icon"><i class="fa-solid fa-asterisk"></i></div>
+            <div class="cookie-types">
+                <div class="cookie-type essential">
+                    <div class="cookie-type-header">
+                        <div class="cookie-type-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div>
                             <h5>Essential Cookies</h5>
-                            <p>Required for the website to function properly</p>
+                            <span class="badge-required">Required</span>
                         </div>
-                        <div class="cookie-card analytics">
-                            <div class="cookie-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                    </div>
+                    <p>Necessary for the website to function. Cannot be disabled as they are required for core functionality.</p>
+                </div>
+                <div class="cookie-type analytics">
+                    <div class="cookie-type-header">
+                        <div class="cookie-type-icon"><i class="fa-solid fa-chart-simple"></i></div>
+                        <div>
                             <h5>Analytics Cookies</h5>
-                            <p>Help us understand how visitors use our site</p>
+                            <span class="badge-optional">Optional</span>
                         </div>
-                        <div class="cookie-card marketing">
-                            <div class="cookie-icon"><i class="fa-solid fa-bullhorn"></i></div>
+                    </div>
+                    <p>Help us understand how visitors interact with our website by collecting anonymous data.</p>
+                </div>
+                <div class="cookie-type marketing">
+                    <div class="cookie-type-header">
+                        <div class="cookie-type-icon"><i class="fa-solid fa-bullhorn"></i></div>
+                        <div>
                             <h5>Marketing Cookies</h5>
-                            <p>Used to deliver relevant advertisements (with consent)</p>
+                            <span class="badge-optional">Optional</span>
                         </div>
                     </div>
-                    <p class="text-muted mt-4"><i class="fa-solid fa-info-circle me-1"></i>You can manage your cookie preferences at any time by clicking "Cookie Settings" in our footer.</p>
+                    <p>Used to deliver relevant advertisements and track campaign performance across websites.</p>
                 </div>
             </div>
+        </div>
 
-            {{-- Section 7 --}}
-            <div class="policy-card mb-4" data-aos="fade-up">
-                <div class="policy-number">07</div>
-                <div class="policy-content">
-                    <h2 class="policy-title">Third-Party Links</h2>
-                    <p>Our website may contain links to third-party websites. We are not responsible for the privacy practices of these external sites. We encourage you to read their privacy policies before providing any personal information.</p>
+        {{-- Section 7: Children's Privacy --}}
+        <div class="privacy-section mb-5" id="children" data-aos="fade-up">
+            <div class="privacy-section-header">
+                <div class="privacy-section-icon">
+                    <i class="fa-solid fa-children"></i>
+                </div>
+                <div>
+                    <h2 class="privacy-section-title">Children's Privacy</h2>
+                    <p class="privacy-section-desc">Protecting the privacy of young users is our priority.</p>
                 </div>
             </div>
+            <div class="children-notice">
+                <i class="fa-solid fa-info-circle"></i>
+                <p>Our services are not intended for individuals under the age of 16. We do not knowingly collect personal information from children. If we become aware of any such collection, we will immediately delete the information.</p>
+            </div>
+        </div>
 
-            {{-- Section 8 --}}
-            <div class="policy-card mb-4" data-aos="fade-up">
-                <div class="policy-number">08</div>
-                <div class="policy-content">
-                    <h2 class="policy-title">Children's Privacy</h2>
-                    <p>Our services are not intended for individuals under the age of 16. We do not knowingly collect personal information from children. If you believe we have inadvertently collected such information, please contact us immediately.</p>
+        {{-- Section 8: Changes --}}
+        <div class="privacy-section mb-5" id="changes" data-aos="fade-up">
+            <div class="privacy-section-header">
+                <div class="privacy-section-icon">
+                    <i class="fa-solid fa-rotate"></i>
+                </div>
+                <div>
+                    <h2 class="privacy-section-title">Policy Updates</h2>
+                    <p class="privacy-section-desc">We may update this policy to reflect changes in our practices.</p>
                 </div>
             </div>
+            <p class="update-text">We will notify you of any material changes by posting the new Privacy Policy on this page and updating the "Last updated" date. We encourage you to review this Privacy Policy periodically for any changes.</p>
+        </div>
 
-            {{-- Section 9 --}}
-            <div class="policy-card mb-4" data-aos="fade-up">
-                <div class="policy-number">09</div>
-                <div class="policy-content">
-                    <h2 class="policy-title">Changes to This Policy</h2>
-                    <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the "Last updated" date.</p>
-                    <div class="alert alert-info">
-                        <i class="fa-solid fa-lightbulb me-2"></i><strong>Tip:</strong> We encourage you to review this policy periodically for any changes.
+        {{-- Section 9: Contact --}}
+        <div class="privacy-contact-section" id="contact" data-aos="fade-up">
+            <div class="privacy-contact-header">
+                <h2><i class="fa-solid fa-headset me-2"></i>Get in Touch</h2>
+                <p>Have questions about our privacy practices? We're here to help.</p>
+            </div>
+            <div class="contact-methods">
+                @if($siteSetting->email)
+                <a href="mailto:{{ $siteSetting->email }}" class="contact-method">
+                    <div class="contact-method-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div>
+                        <span>Email Us</span>
+                        <strong>{{ $siteSetting->email }}</strong>
                     </div>
-                </div>
-            </div>
-
-            {{-- Section 10 - Contact --}}
-            <div class="policy-card policy-contact" data-aos="fade-up">
-                <div class="policy-number">10</div>
-                <div class="policy-content">
-                    <h2 class="policy-title">Contact Us</h2>
-                    <p>If you have any questions about this Privacy Policy, please don't hesitate to reach out to us:</p>
-                    <div class="contact-grid">
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
-                            <div>
-                                <strong>Email</strong>
-                                <a href="mailto:{{ $siteSetting->email ?? 'privacy@example.com' }}">{{ $siteSetting->email ?? 'privacy@example.com' }}</a>
-                            </div>
-                        </div>
-                        @if($siteSetting->phone ?? false)
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
-                            <div>
-                                <strong>Phone</strong>
-                                <a href="tel:{{ $siteSetting->phone }}">{{ $siteSetting->phone }}</a>
-                            </div>
-                        </div>
-                        @endif
-                        @if($siteSetting->address ?? false)
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
-                            <div>
-                                <strong>Address</strong>
-                                <span>{{ $siteSetting->address }}</span>
-                            </div>
-                        </div>
-                        @endif
+                </a>
+                @endif
+                @if($siteSetting->phone)
+                <a href="tel:{{ $siteSetting->phone }}" class="contact-method">
+                    <div class="contact-method-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div>
+                        <span>Call Us</span>
+                        <strong>{{ $siteSetting->phone }}</strong>
                     </div>
-                </div>
+                </a>
+                @endif
+                <a href="{{ route('contact') }}" class="contact-method">
+                    <div class="contact-method-icon"><i class="fa-solid fa-comment-dots"></i></div>
+                    <div>
+                        <span>Contact Form</span>
+                        <strong>Send a Message</strong>
+                    </div>
+                </a>
             </div>
+        </div>
+    </div>
+</section>
+
+{{-- CTA Section --}}
+<section class="section-padding section-1">
+    <div class="container">
+        <div class="text-center">
+            <h3 class="mb-3">Have More Questions?</h3>
+            <p class="text-muted mb-4">Our team is ready to assist you with any privacy-related concerns.</p>
+            <a href="{{ route('contact') }}" class="btn btn-primary-custom">
+                <i class="fa-solid fa-envelope me-2"></i>Contact Us
+            </a>
         </div>
     </div>
 </section>
@@ -306,241 +408,447 @@
 
 @push('styles')
 <style>
-    .policy-intro {
-        text-align: center;
-        max-width: 800px;
-        margin: 0 auto 3rem;
+    /* Last Updated Banner */
+    .last-updated-banner {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(59, 130, 246, 0.1));
+        border: 1px solid rgba(37, 99, 235, 0.2);
+        border-radius: 50px;
+        color: var(--color-primary);
+        font-weight: 500;
+        font-size: 0.9rem;
     }
     
-    .policy-intro .lead {
-        font-size: 1.15rem;
-        color: #475569;
+    [data-theme="dark"] .last-updated-banner {
+        background: rgba(59, 130, 246, 0.15);
+        border-color: rgba(59, 130, 246, 0.3);
+        color: #93c5fd;
     }
     
-    [data-theme="dark"] .policy-intro .lead {
-        color: #CBD5E1;
+    /* Quick Navigation */
+    .quick-nav {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 10px;
     }
     
-    .policy-card {
+    .quick-nav-scroll {
         display: flex;
-        gap: 2rem;
-        background: white;
-        border-radius: 16px;
+        gap: 12px;
+        min-width: max-content;
+    }
+    
+    .quick-nav-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 18px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 50px;
+        color: #475569;
+        font-size: 0.85rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+    
+    .quick-nav-item:hover {
+        background: var(--color-primary);
+        border-color: var(--color-primary);
+        color: #ffffff;
+        transform: translateY(-2px);
+    }
+    
+    .quick-nav-item i {
+        font-size: 0.9rem;
+    }
+    
+    [data-theme="dark"] .quick-nav-item {
+        background: #1e293b;
+        border-color: #334155;
+        color: #94a3b8;
+    }
+    
+    [data-theme="dark"] .quick-nav-item:hover {
+        background: var(--color-primary);
+        border-color: var(--color-primary);
+        color: #ffffff;
+    }
+    
+    /* Privacy Section */
+    .privacy-section {
+        background: #ffffff;
+        border-radius: 20px;
         padding: 2rem;
-        margin-bottom: 1.5rem;
-        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.04);
         border: 1px solid #e2e8f0;
         transition: all 0.3s ease;
     }
     
-    .policy-card:hover {
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-        transform: translateY(-2px);
+    .privacy-section:hover {
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        transform: translateY(-3px);
     }
     
-    [data-theme="dark"] .policy-card {
-        background: #171433;
-        border-color: #2C2860;
+    [data-theme="dark"] .privacy-section {
+        background: #1e293b;
+        border-color: #334155;
     }
     
-    [data-theme="dark"] .policy-card:hover {
-        border-color: #3D3970;
+    .privacy-section-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #e2e8f0;
     }
     
-    .policy-number {
-        flex-shrink: 0;
-        width: 50px;
-        height: 50px;
+    [data-theme="dark"] .privacy-section-header {
+        border-color: #334155;
+    }
+    
+    .privacy-section-icon {
+        width: 56px;
+        height: 56px;
         background: linear-gradient(135deg, #2563eb, #3b82f6);
-        color: white;
-        border-radius: 12px;
+        border-radius: 16px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-weight: 800;
-        font-size: 1.1rem;
+        color: #ffffff;
+        font-size: 1.3rem;
+        flex-shrink: 0;
     }
     
-    .policy-content {
-        flex: 1;
-    }
-    
-    .policy-title {
-        font-size: 1.35rem;
+    .privacy-section-title {
+        font-size: 1.5rem;
         font-weight: 700;
         color: #1e293b;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
     }
     
-    [data-theme="dark"] .policy-title {
-        color: #fff;
+    [data-theme="dark"] .privacy-section-title {
+        color: #f1f5f9;
     }
     
-    .policy-title .badge {
-        font-size: 0.65rem;
-        font-weight: 600;
-        vertical-align: middle;
-    }
-    
-    .policy-content p {
+    .privacy-section-desc {
         color: #64748b;
-        line-height: 1.7;
-    }
-    
-    [data-theme="dark"] .policy-content p {
-        color: #A8A4C8;
-    }
-    
-    /* Info Items */
-    .info-item {
-        display: flex;
-        gap: 1rem;
-        padding: 1rem;
-        background: #f8fafc;
-        border-radius: 10px;
-        height: 100%;
-    }
-    
-    [data-theme="dark"] .info-item {
-        background: #0f0f2d;
-    }
-    
-    .info-icon {
-        flex-shrink: 0;
-        width: 40px;
-        height: 40px;
-        background: linear-gradient(135deg, #2563eb, #3b82f6);
-        color: white;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.9rem;
-    }
-    
-    .info-item strong {
-        display: block;
-        color: #1e293b;
-        margin-bottom: 0.25rem;
-    }
-    
-    [data-theme="dark"] .info-item strong {
-        color: #fff;
-    }
-    
-    .info-item p {
-        font-size: 0.85rem;
-        margin-bottom: 0;
-    }
-    
-    /* Feature Items */
-    .feature-item {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 1rem;
-        background: #f8fafc;
-        border-radius: 10px;
-        height: 100%;
-    }
-    
-    [data-theme="dark"] .feature-item {
-        background: #0f0f2d;
-    }
-    
-    .feature-item i {
-        color: #2563eb;
         font-size: 1rem;
+        margin: 0;
     }
     
-    .feature-item span {
-        color: #475569;
-        font-size: 0.9rem;
+    [data-theme="dark"] .privacy-section-desc {
+        color: #94a3b8;
     }
     
-    [data-theme="dark"] .feature-item span {
-        color: #CBD5E1;
-    }
-    
-    /* Sharing Grid */
-    .sharing-grid {
+    /* Privacy Cards Grid */
+    .privacy-cards-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
     }
     
+    @media (max-width: 992px) {
+        .privacy-cards-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .privacy-cards-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    .privacy-card {
+        background: #f8fafc;
+        border-radius: 16px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+    }
+    
+    .privacy-card:hover {
+        background: #eff6ff;
+        border-color: #bfdbfe;
+        transform: translateY(-5px);
+    }
+    
+    [data-theme="dark"] .privacy-card {
+        background: #0f0f2d;
+    }
+    
+    [data-theme="dark"] .privacy-card:hover {
+        background: rgba(37, 99, 235, 0.1);
+        border-color: rgba(37, 99, 235, 0.3);
+    }
+    
+    .privacy-card-icon {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 1.2rem;
+        margin: 0 auto 1rem;
+    }
+    
+    .privacy-card h4 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 0.5rem;
+    }
+    
+    [data-theme="dark"] .privacy-card h4 {
+        color: #f1f5f9;
+    }
+    
+    .privacy-card p {
+        font-size: 0.9rem;
+        color: #64748b;
+        margin: 0;
+        line-height: 1.6;
+    }
+    
+    [data-theme="dark"] .privacy-card p {
+        color: #94a3b8;
+    }
+    
+    /* Usage List */
+    .usage-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .usage-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.25rem;
+        background: #f8fafc;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+    
+    .usage-item:hover {
+        background: #eff6ff;
+        transform: translateX(5px);
+    }
+    
+    [data-theme="dark"] .usage-item {
+        background: #0f0f2d;
+    }
+    
+    [data-theme="dark"] .usage-item:hover {
+        background: rgba(37, 99, 235, 0.1);
+    }
+    
+    .usage-icon {
+        width: 45px;
+        height: 45px;
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 1rem;
+        flex-shrink: 0;
+    }
+    
+    .usage-text h5 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 0.25rem;
+    }
+    
+    [data-theme="dark"] .usage-text h5 {
+        color: #f1f5f9;
+    }
+    
+    .usage-text p {
+        font-size: 0.9rem;
+        color: #64748b;
+        margin: 0;
+    }
+    
+    [data-theme="dark"] .usage-text p {
+        color: #94a3b8;
+    }
+    
+    /* Sharing Cards */
+    .sharing-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+    
     @media (max-width: 768px) {
-        .sharing-grid {
+        .sharing-cards {
             grid-template-columns: 1fr;
         }
     }
     
     .sharing-card {
-        text-align: center;
-        padding: 1.5rem;
         background: #f8fafc;
-        border-radius: 12px;
+        border-radius: 16px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
         border: 1px solid #e2e8f0;
+    }
+    
+    .sharing-card:hover {
+        background: #eff6ff;
+        border-color: #bfdbfe;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15);
     }
     
     [data-theme="dark"] .sharing-card {
         background: #0f0f2d;
-        border-color: #2C2860;
+        border-color: #334155;
     }
     
-    .sharing-icon {
-        width: 50px;
-        height: 50px;
+    [data-theme="dark"] .sharing-card:hover {
+        background: rgba(37, 99, 235, 0.1);
+        border-color: rgba(37, 99, 235, 0.3);
+    }
+    
+    .sharing-card-icon {
+        width: 60px;
+        height: 60px;
         background: linear-gradient(135deg, #2563eb, #3b82f6);
-        color: white;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
+        color: #ffffff;
+        font-size: 1.5rem;
         margin: 0 auto 1rem;
-        font-size: 1.2rem;
     }
     
     .sharing-card h4 {
-        font-size: 1rem;
+        font-size: 1.1rem;
         font-weight: 700;
         color: #1e293b;
         margin-bottom: 0.5rem;
     }
     
     [data-theme="dark"] .sharing-card h4 {
-        color: #fff;
+        color: #f1f5f9;
     }
     
     .sharing-card p {
-        font-size: 0.85rem;
-        margin-bottom: 0;
+        font-size: 0.9rem;
+        color: #64748b;
+        margin: 0;
+        line-height: 1.6;
     }
     
-    /* Security Badges */
-    .security-badges {
+    [data-theme="dark"] .sharing-card p {
+        color: #94a3b8;
+    }
+    
+    /* Security Features */
+    .security-features {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    @media (max-width: 768px) {
+        .security-features {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    .security-feature {
         display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-        margin-top: 1rem;
-    }
-    
-    .security-badge {
-        display: inline-flex;
-        align-items: center;
-        padding: 0.5rem 1rem;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.5rem;
         background: #f0fdf4;
-        color: #166534;
-        border-radius: 50px;
-        font-size: 0.8rem;
-        font-weight: 600;
+        border-radius: 16px;
         border: 1px solid #bbf7d0;
     }
     
-    [data-theme="dark"] .security-badge {
+    .security-feature:nth-child(2),
+    .security-feature:nth-child(4) {
+        background: #eff6ff;
+        border-color: #bfdbfe;
+    }
+    
+    [data-theme="dark"] .security-feature {
         background: rgba(34, 197, 94, 0.1);
+        border-color: rgba(34, 197, 94, 0.2);
+    }
+    
+    [data-theme="dark"] .security-feature:nth-child(2),
+    [data-theme="dark"] .security-feature:nth-child(4) {
+        background: rgba(37, 99, 235, 0.1);
+        border-color: rgba(37, 99, 235, 0.2);
+    }
+    
+    .security-feature-icon {
+        width: 50px;
+        height: 50px;
+        background: #16a34a;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+    
+    .security-feature:nth-child(2) .security-feature-icon,
+    .security-feature:nth-child(4) .security-feature-icon {
+        background: #2563eb;
+    }
+    
+    .security-feature-text h5 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #166534;
+        margin-bottom: 0.25rem;
+    }
+    
+    .security-feature:nth-child(2) .security-feature-text h5,
+    .security-feature:nth-child(4) .security-feature-text h5 {
+        color: #1d4ed8;
+    }
+    
+    [data-theme="dark"] .security-feature-text h5 {
         color: #4ade80;
-        border-color: rgba(34, 197, 94, 0.3);
+    }
+    
+    .security-feature-text p {
+        font-size: 0.85rem;
+        color: #15803d;
+        margin: 0;
+    }
+    
+    .security-feature:nth-child(2) .security-feature-text p,
+    .security-feature:nth-child(4) .security-feature-text p {
+        color: #1e40af;
+    }
+    
+    [data-theme="dark"] .security-feature-text p {
+        color: #86efac;
     }
     
     /* Rights Grid */
@@ -556,218 +864,319 @@
         }
     }
     
-    .right-item {
-        display: flex;
-        gap: 0.75rem;
-        padding: 1rem;
-        background: #f8fafc;
-        border-radius: 10px;
-    }
-    
-    [data-theme="dark"] .right-item {
-        background: #0f0f2d;
-    }
-    
-    .right-item i {
-        color: #2563eb;
-        font-size: 1.1rem;
-        margin-top: 0.15rem;
-    }
-    
-    .right-item strong {
-        display: block;
-        color: #1e293b;
-        font-size: 0.9rem;
-        margin-bottom: 0.15rem;
-    }
-    
-    [data-theme="dark"] .right-item strong {
-        color: #fff;
-    }
-    
-    .right-item span {
-        font-size: 0.8rem;
-        color: #64748b;
-    }
-    
-    /* Cookies Grid */
-    .cookies-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-    }
-    
-    @media (max-width: 768px) {
-        .cookies-grid {
+    @media (max-width: 576px) {
+        .rights-grid {
             grid-template-columns: 1fr;
         }
     }
     
-    .cookie-card {
+    .right-card {
+        background: #f8fafc;
+        border-radius: 16px;
         padding: 1.5rem;
-        border-radius: 12px;
         text-align: center;
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
     }
     
-    .cookie-card.essential {
+    .right-card:hover {
         background: #eff6ff;
-        border: 1px solid #bfdbfe;
+        border-color: #bfdbfe;
+        transform: translateY(-5px);
     }
     
-    .cookie-card.analytics {
+    [data-theme="dark"] .right-card {
+        background: #0f0f2d;
+    }
+    
+    [data-theme="dark"] .right-card:hover {
+        background: rgba(37, 99, 235, 0.1);
+        border-color: rgba(37, 99, 235, 0.3);
+    }
+    
+    .right-card i {
+        font-size: 1.5rem;
+        color: var(--color-primary);
+        margin-bottom: 0.75rem;
+    }
+    
+    .right-card h5 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 0.25rem;
+    }
+    
+    [data-theme="dark"] .right-card h5 {
+        color: #f1f5f9;
+    }
+    
+    .right-card p {
+        font-size: 0.85rem;
+        color: #64748b;
+        margin: 0;
+    }
+    
+    [data-theme="dark"] .right-card p {
+        color: #94a3b8;
+    }
+    
+    /* Cookie Types */
+    .cookie-types {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .cookie-type {
+        padding: 1.5rem;
+        border-radius: 16px;
+        border: 1px solid;
+    }
+    
+    .cookie-type.essential {
+        background: #eff6ff;
+        border-color: #bfdbfe;
+    }
+    
+    .cookie-type.analytics {
         background: #f0fdf4;
-        border: 1px solid #bbf7d0;
+        border-color: #bbf7d0;
     }
     
-    .cookie-card.marketing {
+    .cookie-type.marketing {
         background: #fef3c7;
-        border: 1px solid #fde68a;
+        border-color: #fde68a;
     }
     
-    [data-theme="dark"] .cookie-card {
+    [data-theme="dark"] .cookie-type {
         background: #0f0f2d !important;
-        border-color: #2C2860 !important;
+        border-color: #334155 !important;
     }
     
-    .cookie-icon {
+    .cookie-type-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .cookie-type-icon {
         width: 45px;
         height: 45px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 auto 0.75rem;
-        font-size: 1rem;
-    }
-    
-    .cookie-card.essential .cookie-icon {
-        background: #2563eb;
-        color: white;
-    }
-    
-    .cookie-card.analytics .cookie-icon {
-        background: #16a34a;
-        color: white;
-    }
-    
-    .cookie-card.marketing .cookie-icon {
-        background: #d97706;
-        color: white;
-    }
-    
-    .cookie-card h5 {
-        font-size: 0.95rem;
-        font-weight: 700;
-        color: #1e293b;
-        margin-bottom: 0.5rem;
-    }
-    
-    [data-theme="dark"] .cookie-card h5 {
-        color: #fff;
-    }
-    
-    .cookie-card p {
-        font-size: 0.8rem;
-        margin-bottom: 0;
-    }
-    
-    /* Contact Grid */
-    .policy-contact {
-        background: linear-gradient(135deg, #2563eb08, #3b82f608);
-        border-color: #bfdbfe;
-    }
-    
-    [data-theme="dark"] .policy-contact {
-        background: linear-gradient(135deg, #2563eb15, #3b82f615);
-        border-color: #3D3970;
-    }
-    
-    .contact-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
-        margin-top: 1.5rem;
-    }
-    
-    @media (max-width: 768px) {
-        .contact-grid {
-            grid-template-columns: 1fr;
-        }
-    }
-    
-    .contact-item {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
-    
-    .contact-icon {
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, #2563eb, #3b82f6);
-        color: white;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        color: #ffffff;
         font-size: 1.1rem;
         flex-shrink: 0;
     }
     
-    .contact-item strong {
-        display: block;
+    .cookie-type.essential .cookie-type-icon {
+        background: #2563eb;
+    }
+    
+    .cookie-type.analytics .cookie-type-icon {
+        background: #16a34a;
+    }
+    
+    .cookie-type.marketing .cookie-type-icon {
+        background: #d97706;
+    }
+    
+    .cookie-type-header h5 {
+        font-size: 1.1rem;
+        font-weight: 700;
         color: #1e293b;
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
         margin-bottom: 0.25rem;
     }
     
-    [data-theme="dark"] .contact-item strong {
-        color: #fff;
+    [data-theme="dark"] .cookie-type-header h5 {
+        color: #f1f5f9;
     }
     
-    .contact-item a,
-    .contact-item span {
-        color: #2563eb;
+    .badge-required {
+        display: inline-block;
+        padding: 2px 10px;
+        background: #2563eb;
+        color: #ffffff;
+        border-radius: 50px;
+        font-size: 0.7rem;
         font-weight: 600;
+        text-transform: uppercase;
+    }
+    
+    .badge-optional {
+        display: inline-block;
+        padding: 2px 10px;
+        background: #16a34a;
+        color: #ffffff;
+        border-radius: 50px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    
+    .cookie-type p {
+        font-size: 0.9rem;
+        color: #475569;
+        margin: 0;
+        padding-left: 61px;
+        line-height: 1.6;
+    }
+    
+    [data-theme="dark"] .cookie-type p {
+        color: #94a3b8;
+    }
+    
+    /* Children Notice */
+    .children-notice {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.5rem;
+        background: #fef3c7;
+        border-radius: 16px;
+        border: 1px solid #fde68a;
+    }
+    
+    .children-notice i {
+        font-size: 1.5rem;
+        color: #d97706;
+        flex-shrink: 0;
+    }
+    
+    .children-notice p {
         font-size: 0.95rem;
+        color: #92400e;
+        margin: 0;
+        line-height: 1.6;
     }
     
-    .contact-item a:hover {
-        text-decoration: underline;
+    [data-theme="dark"] .children-notice {
+        background: rgba(217, 119, 6, 0.1);
+        border-color: rgba(217, 119, 6, 0.3);
     }
     
-    /* Alert */
-    .alert-info {
-        background: #eff6ff;
-        border: 1px solid #bfdbfe;
-        color: #1e40af;
-        border-radius: 10px;
-        padding: 1rem;
+    [data-theme="dark"] .children-notice i {
+        color: #fbbf24;
     }
     
-    [data-theme="dark"] .alert-info {
-        background: rgba(37, 99, 235, 0.1);
-        border-color: rgba(37, 99, 235, 0.3);
-        color: #93c5fd;
+    [data-theme="dark"] .children-notice p {
+        color: #fcd34d;
+    }
+    
+    /* Update Text */
+    .update-text {
+        font-size: 0.95rem;
+        color: #475569;
+        line-height: 1.8;
+    }
+    
+    [data-theme="dark"] .update-text {
+        color: #94a3b8;
+    }
+    
+    /* Contact Section */
+    .privacy-contact-section {
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
+        border-radius: 24px;
+        padding: 3rem;
+        text-align: center;
+        color: #ffffff;
+    }
+    
+    .privacy-contact-header h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+    
+    .privacy-contact-header p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        margin-bottom: 2rem;
+    }
+    
+    .contact-methods {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    
+    .contact-method {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.5rem;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 16px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .contact-method:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateY(-3px);
+    }
+    
+    .contact-method-icon {
+        width: 45px;
+        height: 45px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+    }
+    
+    .contact-method span {
+        display: block;
+        font-size: 0.8rem;
+        opacity: 0.8;
+    }
+    
+    .contact-method strong {
+        display: block;
+        font-size: 0.95rem;
+        color: #ffffff;
+    }
+    
+    @media (max-width: 768px) {
+        .privacy-contact-section {
+            padding: 2rem 1.5rem;
+        }
+        
+        .contact-methods {
+            flex-direction: column;
+        }
+        
+        .contact-method {
+            justify-content: flex-start;
+        }
     }
     
     /* Responsive */
     @media (max-width: 768px) {
-        .policy-card {
+        .privacy-section-header {
             flex-direction: column;
-            gap: 1rem;
+            align-items: center;
+            text-align: center;
         }
         
-        .policy-number {
-            width: 40px;
-            height: 40px;
-            font-size: 0.95rem;
+        .privacy-section-icon {
+            width: 50px;
+            height: 50px;
+            font-size: 1.1rem;
         }
         
-        .policy-title {
-            font-size: 1.2rem;
+        .privacy-section-title {
+            font-size: 1.3rem;
         }
     }
 </style>
