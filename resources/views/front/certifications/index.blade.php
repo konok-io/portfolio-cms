@@ -1,113 +1,5 @@
 @extends('front.layouts.app')
 
-@section('styles')
-<style>
-    .cert-page-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 16px;
-    }
-    
-    .cert-page-card {
-        background: #ffffff;
-        border-radius: 16px;
-        padding: 20px 24px;
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        transition: all 0.3s;
-        cursor: pointer;
-        border: 1px solid #e2e8f0;
-        text-decoration: none;
-    }
-    
-    .cert-page-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-        border-color: var(--color-primary, #2563EB);
-    }
-    
-    .cert-page-icon {
-        width: 50px;
-        height: 50px;
-        background: var(--color-primary, #2563EB);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.1rem;
-        color: #fff;
-        flex-shrink: 0;
-    }
-    
-    .cert-page-icon img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        border-radius: 6px;
-    }
-    
-    .cert-page-text {
-        text-align: left;
-        min-width: 0;
-    }
-    
-    .cert-page-name {
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #1e293b;
-        margin-bottom: 2px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    
-    .cert-page-org {
-        font-size: 0.75rem;
-        color: #64748b;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    
-    .cert-page-date {
-        font-size: 0.7rem;
-        color: var(--color-primary);
-        margin-top: 2px;
-    }
-    
-    [data-theme="dark"] .cert-page-card {
-        background: #1e293b;
-        border-color: #334155;
-    }
-    
-    [data-theme="dark"] .cert-page-card:hover {
-        border-color: var(--color-primary, #2563EB);
-        box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
-    }
-    
-    [data-theme="dark"] .cert-page-name {
-        color: #f1f5f9;
-    }
-    
-    [data-theme="dark"] .cert-page-org {
-        color: #94a3b8;
-    }
-    
-    @media (max-width: 992px) {
-        .cert-page-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-    
-    @media (max-width: 576px) {
-        .cert-page-grid {
-            grid-template-columns: 1fr;
-        }
-    }
-</style>
-@endsection
-
 @section('title', 'Certifications & Badges - ' . ($siteSetting->site_name ?? 'Portfolio'))
 @section('content')
 
@@ -135,28 +27,123 @@
 
 {{-- Certifications Grid - Light Blue (Section 1) --}}
 <section class="section-padding section-1">
+    
+    <style>
+        .cert-horizontal-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .cert-horizontal-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid #e2e8f0;
+            text-decoration: none;
+        }
+        
+        .cert-horizontal-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            border-color: var(--color-primary, #2563EB);
+        }
+        
+        .cert-horizontal-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--color-primary, #2563EB);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        
+        .cert-horizontal-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 6px;
+        }
+        
+        .cert-horizontal-text {
+            text-align: left;
+            min-width: 0;
+        }
+        
+        .cert-horizontal-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .cert-horizontal-org {
+            font-size: 0.75rem;
+            color: #64748b;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        @media (max-width: 992px) {
+            .cert-horizontal-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .cert-horizontal-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        [data-theme="dark"] .cert-horizontal-card {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        [data-theme="dark"] .cert-horizontal-card:hover {
+            border-color: var(--color-primary, #2563EB);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+        }
+        [data-theme="dark"] .cert-horizontal-name {
+            color: #f1f5f9;
+        }
+        [data-theme="dark"] .cert-horizontal-org {
+            color: #94a3b8;
+        }
+    </style>
+    
     <div class="container">
         @if($certifications->isNotEmpty())
-        <div class="cert-page-grid">
+        <div class="cert-horizontal-grid">
             @foreach($certifications as $cert)
                 @if($cert->credential_url)
-                    <a href="{{ $cert->credential_url }}" target="_blank" class="cert-page-card">
+                    <a href="{{ $cert->credential_url }}" target="_blank" class="cert-horizontal-card">
                 @else
-                    <div class="cert-page-card">
+                    <div class="cert-horizontal-card">
                 @endif
-                    <div class="cert-page-icon">
+                    <div class="cert-horizontal-icon">
                         @if($cert->badge_image)
                             <img src="{{ asset('storage/' . $cert->badge_image) }}" alt="{{ $cert->name }}">
                         @else
                             <i class="fa-solid fa-certificate"></i>
                         @endif
                     </div>
-                    <div class="cert-page-text">
-                        <div class="cert-page-name">{{ $cert->name }}</div>
-                        <div class="cert-page-org">{{ $cert->issuer }}</div>
-                        @if($cert->issue_date)
-                            <div class="cert-page-date">{{ $cert->issue_date?->format('M Y') }}</div>
-                        @endif
+                    <div class="cert-horizontal-text">
+                        <div class="cert-horizontal-name">{{ $cert->name }}</div>
+                        <div class="cert-horizontal-org">{{ $cert->issuer }}</div>
                     </div>
                 @if($cert->credential_url)
                     </a>
