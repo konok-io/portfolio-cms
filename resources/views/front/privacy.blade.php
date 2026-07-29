@@ -1539,42 +1539,32 @@
         align-items: center;
         gap: 1rem;
         padding: 1rem 1.5rem;
-        background: rgba(255,255,255,0.1);
-        border: 1px solid rgba(255,255,255,0.2);
+        background: rgba(255,255,255,0.95);
+        border: 1px solid rgba(255,255,255,0.3);
         border-radius: 16px;
         text-decoration: none;
         transition: all 0.3s ease;
         min-width: 200px;
+        backdrop-filter: blur(10px);
     }
     
     .contact-option:hover {
-        background: rgba(255,255,255,0.2);
+        background: #ffffff;
         transform: translateY(-5px);
-    }
-    
-    .contact-option.primary {
-        background: rgba(255,255,255,0.95);
-    }
-    
-    .contact-option.primary .contact-option-text span,
-    .contact-option.primary .contact-option-text strong {
-        color: #1e40af;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.2);
     }
     
     .contact-option-icon {
         width: 48px;
         height: 48px;
-        background: rgba(255,255,255,0.15);
+        background: linear-gradient(135deg, #1e40af, #3b82f6);
         border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 1.2rem;
-    }
-    
-    .contact-option.primary .contact-option-icon {
-        background: #1e40af;
         color: #ffffff;
+        flex-shrink: 0;
     }
     
     .contact-option-text {
@@ -1584,17 +1574,19 @@
     .contact-option-text span {
         display: block;
         font-size: 0.8rem;
-        opacity: 0.8;
+        color: rgba(30, 64, 175, 0.7);
     }
     
     .contact-option-text strong {
         display: block;
         font-size: 0.95rem;
-        color: #ffffff;
+        color: #1e40af;
+        font-weight: 700;
     }
     
     .contact-arrow {
         margin-left: auto;
+        color: #1e40af;
         opacity: 0.5;
         transition: all 0.3s ease;
     }
