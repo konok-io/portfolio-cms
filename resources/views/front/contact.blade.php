@@ -217,28 +217,28 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="contact-vertical-info text-end">
-                            @if($siteSetting->email)
+                            @if($about->email)
                                 <div class="contact-vertical-info-item">
                                     <div class="contact-vertical-info-icon">
                                         <i class="fas fa-envelope"></i>
                                     </div>
-                                    <span>{{ Str::limit($siteSetting->email, 30) }}</span>
+                                    <span>{{ Str::limit($about->email, 30) }}</span>
                                 </div>
                             @endif
-                            @if($siteSetting->phone)
+                            @if($about->phone)
                                 <div class="contact-vertical-info-item">
                                     <div class="contact-vertical-info-icon">
                                         <i class="fas fa-phone"></i>
                                     </div>
-                                    <span>{{ $siteSetting->phone }}</span>
+                                    <span>{{ $about->phone }}</span>
                                 </div>
                             @endif
-                            @if($siteSetting->address)
+                            @if($about->address)
                                 <div class="contact-vertical-info-item">
                                     <div class="contact-vertical-info-icon">
                                         <i class="fas fa-map-marker-alt"></i>
                                     </div>
-                                    <span>{{ Str::limit($siteSetting->address, 25) }}</span>
+                                    <span>{{ Str::limit($about->address, 25) }}</span>
                                 </div>
                             @endif
                         </div>
@@ -251,7 +251,7 @@
                 @endif
                 <div class="row g-4 align-items-stretch">
                     <div class="col-lg-7 d-flex">
-                        @if($siteSetting->google_map)
+                        @if($about->google_map)
                             <div class="contact-vertical-map-container">
                                 <div id="contactPageMap"></div>
                             </div>
@@ -304,7 +304,7 @@
 @if($siteSetting->isRecaptchaEnabled())
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 @endif
-@if($siteSetting->google_map)
+@if($about->google_map)
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
@@ -314,8 +314,8 @@ document.addEventListener('DOMContentLoaded', function() {
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
     
-    const mapUrl = "{{ addslashes($siteSetting->google_map) }}";
-    const address = "{{ addslashes($siteSetting->address ?? '') }}";
+    const mapUrl = "{{ addslashes($about->google_map) }}";
+    const address = "{{ addslashes($about->address ?? '') }}";
     
     const coordMatch = mapUrl.match(/@(-?\d+\.?\d*),(-?\d+\.?\d*)/);
     

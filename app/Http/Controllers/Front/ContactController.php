@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\About;
 use App\Models\ContactMessage;
 use App\Models\Setting;
 use App\Models\User;
@@ -15,9 +16,11 @@ class ContactController extends Controller
     public function index()
     {
         $siteSetting = Setting::instance();
+        $about = About::first() ?? new About();
 
         return view('front.contact', [
             'siteSetting' => $siteSetting,
+            'about' => $about,
         ]);
     }
 
