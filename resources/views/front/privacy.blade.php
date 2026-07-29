@@ -632,8 +632,8 @@
     }
     
     [data-theme="dark"] .privacy-toc {
-        background: #1e293b;
-        border-color: #334155;
+        background: #1a1a3e;
+        border-color: #3d3a70;
     }
     
     .toc-header {
@@ -648,8 +648,8 @@
     }
     
     [data-theme="dark"] .toc-header {
-        color: #f1f5f9;
-        border-color: #334155;
+        color: #e8e6f2;
+        border-color: #3d3a70;
     }
     
     .toc-grid {
@@ -677,12 +677,12 @@
     }
     
     [data-theme="dark"] .toc-item {
-        background: #0f0f2d;
+        background: #0f0f23;
     }
     
     [data-theme="dark"] .toc-item:hover {
-        background: rgba(37, 99, 235, 0.15);
-        border-color: rgba(37, 99, 235, 0.3);
+        background: rgba(59, 130, 246, 0.15);
+        border-color: rgba(59, 130, 246, 0.3);
     }
     
     .toc-number {
@@ -702,7 +702,7 @@
     }
     
     [data-theme="dark"] .toc-text {
-        color: #94a3b8;
+        color: #a8a4c8;
     }
     
     .toc-arrow {
@@ -730,8 +730,8 @@
     }
     
     [data-theme="dark"] .privacy-block {
-        background: #1e293b;
-        border-color: #334155;
+        background: #1a1a3e;
+        border-color: #3d3a70;
     }
     
     .block-header {
@@ -744,7 +744,7 @@
     }
     
     [data-theme="dark"] .block-header {
-        border-color: #334155;
+        border-color: #3d3a70;
     }
     
     .block-number {
@@ -762,7 +762,7 @@
     }
     
     [data-theme="dark"] .block-title {
-        color: #f1f5f9;
+        color: #e8e6f2;
     }
     
     .block-desc {
@@ -772,7 +772,7 @@
     }
     
     [data-theme="dark"] .block-desc {
-        color: #94a3b8;
+        color: #a8a4c8;
     }
     
     /* Info Cards */
@@ -823,12 +823,12 @@
     }
     
     [data-theme="dark"] .info-card {
-        background: #0f0f2d;
-        border-color: #334155;
+        background: #0f0f23;
+        border-color: #3d3a70;
     }
     
     [data-theme="dark"] .info-card:hover {
-        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.25);
+        box-shadow: 0 20px 40px rgba(59, 130, 246, 0.25);
     }
     
     .info-card-inner {
@@ -868,7 +868,7 @@
     }
     
     [data-theme="dark"] .info-card h4 {
-        color: #f1f5f9;
+        color: #e8e6f2;
     }
     
     .info-card p {
@@ -998,8 +998,8 @@
     }
     
     [data-theme="dark"] .sharing-card {
-        background: #0f0f2d;
-        border-color: #334155;
+        background: #0f0f23;
+        border-color: #3d3a70;
     }
     
     .sharing-icon-wrap {
@@ -1055,7 +1055,7 @@
     }
     
     [data-theme="dark"] .sharing-content h4 {
-        color: #f1f5f9;
+        color: #e8e6f2;
     }
     
     .sharing-content p {

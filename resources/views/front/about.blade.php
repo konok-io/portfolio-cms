@@ -215,12 +215,12 @@
             
             /* Dark Theme */
             [data-theme="dark"] .tech-card {
-                background: #171433;
-                border-color: rgba(103, 232, 249, 0.15);
+                background: #1a1a3e;
+                border-color: rgba(103, 232, 249, 0.2);
             }
             
             [data-theme="dark"] .tech-name {
-                color: #fff;
+                color: #e8e6f2;
             }
             
             [data-theme="dark"] .tech-category {
@@ -228,21 +228,21 @@
             }
             
             [data-theme="dark"] .tech-card:hover {
-                border-color: #67E8F9;
-                box-shadow: 0 15px 40px rgba(103, 232, 249, 0.15);
+                border-color: #67e8f9;
+                box-shadow: 0 15px 40px rgba(103, 232, 249, 0.2);
             }
             
             [data-theme="dark"] .tech-card::before {
-                background: linear-gradient(135deg, #67E8F9 0%, #67E8F9 100%);
+                background: linear-gradient(135deg, #67e8f9 0%, #67e8f9 100%);
             }
             
             [data-theme="dark"] .tech-icon {
-                color: #67E8F9;
+                color: #67e8f9;
             }
             
             [data-theme="dark"] .tech-percentage {
-                background: #67E8F9;
-                color: #0A0A1F;
+                background: #67e8f9;
+                color: #0f0f23;
             }
         </style>
         
@@ -528,18 +528,18 @@
         }
 
         [data-theme="dark"] .cred-horizontal-card {
-            background: #1e293b;
-            border-color: #334155;
+            background: #1a1a3e;
+            border-color: #3d3a70;
         }
         [data-theme="dark"] .cred-horizontal-card:hover {
-            border-color: var(--color-primary, #2563EB);
-            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+            border-color: #3b82f6;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
         }
         [data-theme="dark"] .cred-horizontal-name {
-            color: #f1f5f9;
+            color: #e8e6f2;
         }
         [data-theme="dark"] .cred-horizontal-org {
-            color: #94a3b8;
+            color: #a8a4c8;
         }
     </style>
 

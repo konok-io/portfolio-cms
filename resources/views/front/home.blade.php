@@ -216,16 +216,18 @@
 
     /* Dark Mode - Why Choose Me Cards */
     [data-theme="dark"] .why-h-card {
-        background: #1a1a2e;
-        border-color: #60a5fa;
+        background: #1a1a3e;
+        border-color: #3d3a70;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     }
 
     [data-theme="dark"] .why-h-card::before {
-        background: linear-gradient(135deg, #60a5fa 0%, #60a5fa 100%);
+        background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
     }
 
     [data-theme="dark"] .why-h-card:hover {
-        box-shadow: 0 20px 40px rgba(96, 165, 250, 0.3);
+        box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        border-color: #3b82f6;
     }
 
     [data-theme="dark"] .why-h-card:hover::before {
@@ -238,11 +240,11 @@
     }
 
     [data-theme="dark"] .why-h-card h3 {
-        color: #f3f4f6;
+        color: #e8e6f2;
     }
 
     [data-theme="dark"] .why-h-card p {
-        color: #d1d5db;
+        color: #a8a4c8;
     }
 
     [data-theme="dark"] .why-h-card .card-number {
@@ -359,12 +361,12 @@
             
             /* Dark Theme */
             [data-theme="dark"] .tech-card {
-                background: #171433;
-                border-color: rgba(103, 232, 249, 0.15);
+                background: #1a1a3e;
+                border-color: rgba(103, 232, 249, 0.2);
             }
             
             [data-theme="dark"] .tech-name {
-                color: #fff;
+                color: #e8e6f2;
             }
             
             [data-theme="dark"] .tech-category {
@@ -372,21 +374,21 @@
             }
             
             [data-theme="dark"] .tech-card:hover {
-                border-color: #67E8F9;
-                box-shadow: 0 15px 40px rgba(103, 232, 249, 0.15);
+                border-color: #67e8f9;
+                box-shadow: 0 15px 40px rgba(103, 232, 249, 0.2);
             }
             
             [data-theme="dark"] .tech-card::before {
-                background: linear-gradient(135deg, #67E8F9 0%, #67E8F9 100%);
+                background: linear-gradient(135deg, #67e8f9 0%, #67e8f9 100%);
             }
             
             [data-theme="dark"] .tech-icon {
-                color: #67E8F9;
+                color: #67e8f9;
             }
             
             [data-theme="dark"] .tech-percentage {
-                background: #67E8F9;
-                color: #0A0A1F;
+                background: #67e8f9;
+                color: #0f0f23;
             }
         </style>
         
@@ -783,22 +785,22 @@
         }
         
         [data-theme="dark"] .testimonial-card {
-            background: #1e293b;
-            border-color: #334155;
+            background: #1a1a3e;
+            border-color: #3d3a70;
         }
         [data-theme="dark"] .testimonial-card:hover {
-            border-color: var(--color-primary, #2563EB);
-            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.2);
+            border-color: #3b82f6;
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.2);
         }
         [data-theme="dark"] .testimonial-header {
-            background: rgba(37, 99, 235, 0.15);
-            border-color: #334155;
+            background: rgba(59, 130, 246, 0.15);
+            border-color: #3d3a70;
         }
         [data-theme="dark"] .testimonial-name {
-            color: #f1f5f9;
+            color: #e8e6f2;
         }
         [data-theme="dark"] .testimonial-text {
-            color: #cbd5e1;
+            color: #a8a4c8;
         }
     </style>
     
@@ -956,18 +958,18 @@
         }
         
         [data-theme="dark"] .cred-horizontal-card {
-            background: #1e293b;
-            border-color: #334155;
+            background: #1a1a3e;
+            border-color: #3d3a70;
         }
         [data-theme="dark"] .cred-horizontal-card:hover {
-            border-color: var(--color-primary, #2563EB);
-            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+            border-color: #3b82f6;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
         }
         [data-theme="dark"] .cred-horizontal-name {
-            color: #f1f5f9;
+            color: #e8e6f2;
         }
         [data-theme="dark"] .cred-horizontal-org {
-            color: #94a3b8;
+            color: #a8a4c8;
         }
     </style>
     
@@ -1166,17 +1168,17 @@
             
             /* Dark mode */
             [data-theme="dark"] .blog-horizontal-card {
-                background: #1e293b;
-                border-color: #334155;
+                background: #1a1a3e;
+                border-color: #3d3a70;
             }
             [data-theme="dark"] .blog-horizontal-title {
-                color: #f1f5f9;
+                color: #e8e6f2;
             }
             [data-theme="dark"] .blog-horizontal-excerpt {
-                color: #94a3b8;
+                color: #a8a4c8;
             }
             [data-theme="dark"] .blog-horizontal-meta {
-                color: #64748b;
+                color: #8b8aa0;
             }
         </style>
         
@@ -1584,38 +1586,38 @@
     
     /* Dark Mode */
     [data-theme="dark"] .pricing-split-section {
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        background: linear-gradient(135deg, #0f0f23 0%, #12102e 100%);
     }
     
     [data-theme="dark"] .pricing-split-card {
-        background: #1e293b;
-        border-color: #334155;
+        background: #1a1a3e;
+        border-color: #3d3a70;
     }
     
     [data-theme="dark"] .pricing-split-title,
     [data-theme="dark"] .pricing-split-amount {
-        color: white;
+        color: #e8e6f2;
     }
     
     [data-theme="dark"] .pricing-split-plan-name {
-        color: white;
+        color: #e8e6f2;
     }
     
     [data-theme="dark"] .pricing-split-plan-desc,
     [data-theme="dark"] .pricing-split-features li,
     [data-theme="dark"] .pricing-split-period {
-        color: #94a3b8;
+        color: #a8a4c8;
     }
     
     [data-theme="dark"] .btn-outline-split {
-        background: #1e293b;
-        color: white;
-        border-color: #6366f1;
+        background: #1a1a3e;
+        color: #e8e6f2;
+        border-color: #3b82f6;
     }
     
     [data-theme="dark"] .btn-outline-split:hover {
-        background: #6366f1;
-        color: white;
+        background: #3b82f6;
+        color: #fff;
     }
     
     /* Responsive */
@@ -1896,32 +1898,32 @@
     
     /* Dark Mode */
     [data-theme="dark"] .faq-split-section {
-        background: #0c4a6e;
+        background: #0f0f23;
     }
     
     [data-theme="dark"] .faq-split-list {
-        background: #1e293b;
-        border-color: #334155;
+        background: #1a1a3e;
+        border-color: #3d3a70;
     }
     
     [data-theme="dark"] .faq-split-card {
-        background: #1e40af;
+        background: #1e3a5f;
     }
     
     [data-theme="dark"] .faq-split-question span {
-        color: white;
+        color: #e8e6f2;
     }
     
     [data-theme="dark"] .faq-split-answer p {
-        color: #94a3b8;
+        color: #a8a4c8;
     }
     
     [data-theme="dark"] .faq-split-item {
-        border-color: #334155;
+        border-color: #3d3a70;
     }
     
     [data-theme="dark"] .faq-split-item:not(.active) .faq-split-icon {
-        background: #334155;
+        background: #252550;
         color: #60a5fa;
     }
     
@@ -2161,17 +2163,18 @@
             }
             
             [data-theme="dark"] .contact-vertical-section {
-                background: #1e293b;
+                background: #1a1a3e;
+                border-color: #3d3a70;
             }
             [data-theme="dark"] .contact-vertical-input,
             [data-theme="dark"] .contact-vertical-textarea {
-                background: #0f172a;
-                border-color: #334155;
-                color: #f1f5f9;
+                background: #0f0f23;
+                border-color: #3d3a70;
+                color: #e8e6f2;
             }
             [data-theme="dark"] .contact-vertical-input::placeholder,
             [data-theme="dark"] .contact-vertical-textarea::placeholder {
-                color: #64748b;
+                color: #8b8aa0;
             }
         </style>
         

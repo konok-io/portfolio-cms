@@ -194,17 +194,18 @@
             }
             
             [data-theme="dark"] .contact-vertical-section {
-                background: #1e293b;
+                background: #1a1a3e;
+                border-color: #3d3a70;
             }
             [data-theme="dark"] .contact-vertical-input,
             [data-theme="dark"] .contact-vertical-textarea {
-                background: #0f172a;
-                border-color: #334155;
-                color: #f1f5f9;
+                background: #0f0f23;
+                border-color: #3d3a70;
+                color: #e8e6f2;
             }
             [data-theme="dark"] .contact-vertical-input::placeholder,
             [data-theme="dark"] .contact-vertical-textarea::placeholder {
-                color: #64748b;
+                color: #8b8aa0;
             }
         </style>
         
