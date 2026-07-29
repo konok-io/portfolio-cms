@@ -45,7 +45,7 @@
                                 @endif
                             </div>
                             <a href="{{ route('services.show', $service->slug ?? Str::slug($service->name)) }}" class="btn-view">
-                                {{ page_content('services', 'page_button', app()->getLocale()) }} <i class="fa-solid fa-arrow-right"></i>
+                                {{ __('View') }} <i class="fa-solid fa-arrow-right"></i>
                             </a>
                         </div>
                         
