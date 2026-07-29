@@ -1868,6 +1868,15 @@ body.has-header main {
     border-color: var(--color-primary);
 }
 
+/* Hover background change for section-1 cards */
+.section-1 .service-card:hover {
+    background: #ffffff;
+}
+
+.section-1 .service-card:hover .card-right {
+    background: #ffffff;
+}
+
 .service-number {
     position: absolute;
     top: 15px;
@@ -1962,6 +1971,8 @@ body.has-header main {
     transition: all 0.3s ease;
     text-decoration: none;
     width: 64px;
+    position: relative;
+    z-index: 10;
 }
 
 .btn-view:hover {
