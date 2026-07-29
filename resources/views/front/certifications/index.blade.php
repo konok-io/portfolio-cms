@@ -30,30 +30,31 @@
         <div class="row g-4">
             @forelse($certifications as $cert)
                 <div class="col-md-6 col-lg-3">
-                    <div class="certification-card h-100 text-center p-4">
-                        @if($cert->badge_image)
-                            <img src="{{ asset('storage/' . $cert->badge_image) }}" 
-                                 alt="{{ $cert->name }}" 
-                                 class="cert-badge mb-3"
-                                 style="width: 100px; height: 100px; object-fit: contain;">
-                        @else
-                            <div class="cert-icon mx-auto mb-3" style="width: 80px; height: 80px;">
-                                <i class="fa-solid fa-certificate" style="font-size: 3rem;"></i>
-                            </div>
-                        @endif
-                        <h5 class="mb-2">{{ $cert->name }}</h5>
-                        <p class="small text-muted mb-1">{{ $cert->issuer }}</p>
-                        <span class="small text-accent-custom">{{ $cert->issue_date?->format('M Y') }}</span>
-                        @if($cert->description)
-                            <p class="small text-muted mt-2">{{ $cert->description }}</p>
-                        @endif
-                        @if($cert->credential_url)
-                            <div class="mt-3">
-                                <a href="{{ $cert->credential_url }}" target="_blank" class="btn btn-outline-custom">
-                                    <i class="fa-solid fa-external-link me-1"></i>Verify Certificate
-                                </a>
-                            </div>
-                        @endif
+                    <div class="certification-card h-100">
+                        <div class="cert-card-content text-center p-4">
+                            @if($cert->badge_image)
+                                <img src="{{ asset('storage/' . $cert->badge_image) }}" 
+                                     alt="{{ $cert->name }}" 
+                                     class="cert-badge">
+                            @else
+                                <div class="cert-icon">
+                                    <i class="fa-solid fa-certificate"></i>
+                                </div>
+                            @endif
+                            <h5 class="mb-2">{{ $cert->name }}</h5>
+                            <p class="small text-muted mb-1">{{ $cert->issuer }}</p>
+                            <span class="small text-accent-custom">{{ $cert->issue_date?->format('M Y') }}</span>
+                            @if($cert->description)
+                                <p class="small text-muted mt-2">{{ $cert->description }}</p>
+                            @endif
+                            @if($cert->credential_url)
+                                <div class="mt-3">
+                                    <a href="{{ $cert->credential_url }}" target="_blank" class="btn btn-sm btn-outline-custom">
+                                        <i class="fa-solid fa-external-link me-1"></i>Verify
+                                    </a>
+                                </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
             @empty

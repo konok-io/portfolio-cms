@@ -1443,17 +1443,35 @@ a [class*="far"] {
    CERTIFICATION CARDS
    ========================================================= */
 .certification-card {
-  background: var(--white);
-  border-radius: 16px;
+  background: #ffffff;
   border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.section-1 .certification-card {
+  background: #eff6ff;
+  border-color: #dbeafe;
+}
+
+.section-3 .certification-card {
+  background: #eff6ff;
+  border-color: #dbeafe;
+}
+
+.certification-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-soft);
+  border-color: transparent;
 }
 
 .cert-icon {
   width: 80px;
   height: 80px;
-  margin: 0 auto;
-  background: linear-gradient(135deg, rgba(79, 47, 232, 0.1), rgba(34, 211, 238, 0.1));
-  border-radius: 50%;
+  margin: 0 auto 1rem;
+  background: rgba(37, 99, 235, 0.08);
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1467,38 +1485,55 @@ a [class*="far"] {
 }
 
 .certification-card:hover .cert-icon {
-  background: linear-gradient(135deg, #4f46e5, #2563eb);
+  background: rgba(37, 99, 235, 0.15);
 }
 
 .certification-card:hover .cert-icon i {
-  color: #ffffff;
+  color: var(--color-primary);
 }
 
 .cert-badge {
-  border-radius: 50%;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.certification-card:hover .cert-badge {
+  transform: scale(1.05);
 }
 
 /* Dark mode for certifications */
 [data-theme="dark"] .certification-card {
-  background: #171433;
-  border-color: #2C2860;
+  background: #252547;
+  border-color: #3b3b6d;
+}
+
+[data-theme="dark"] .section-1 .certification-card,
+[data-theme="dark"] .section-3 .certification-card {
+  background: #1f1f3a;
+  border-color: #3b3b6d;
+}
+
+[data-theme="dark"] .certification-card:hover {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
 [data-theme="dark"] .cert-icon {
-  background: linear-gradient(135deg, rgba(79, 47, 232, 0.2), rgba(34, 211, 238, 0.2));
+  background: rgba(59, 130, 246, 0.15);
 }
 
 [data-theme="dark"] .cert-icon i {
-  color: #8B7BF0;
+  color: #60a5fa;
 }
 
 [data-theme="dark"] .certification-card:hover .cert-icon {
-  background: linear-gradient(135deg, #4f46e5, #2563eb);
+  background: rgba(59, 130, 246, 0.25);
 }
 
 [data-theme="dark"] .certification-card:hover .cert-icon i {
-  color: #ffffff;
+  color: #93c5fd;
 }
 
 /* WhatsApp Floating Button */
