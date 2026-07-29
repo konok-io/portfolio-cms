@@ -2213,6 +2213,9 @@
                 </div>
             </div>
             <div class="contact-vertical-bottom">
+                @if(session('success'))
+                    <div class="alert alert-success mb-4">{{ session('success') }}</div>
+                @endif
                 <div class="row g-4 align-items-stretch">
                     <div class="col-lg-7 d-flex">
                         @if($about->google_map)
@@ -2231,13 +2234,25 @@
                     <div class="col-lg-5 d-flex">
                         <form id="contactForm" action="{{ route('contact.store') }}" method="POST" class="w-100 d-flex flex-column justify-content-center">
                             @csrf
-                            <div class="contact-vertical-form-grid">
-                                <input type="text" name="name" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_name', app()->getLocale()) }}" required>
-                                <input type="email" name="email" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_email', app()->getLocale()) }}" required>
-                                <input type="text" name="phone" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_phone', app()->getLocale()) }}">
-                                <input type="text" name="subject" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_subject', app()->getLocale()) }}">
+                            {{-- Honeypot spam protection - hidden from users --}}
+                            <div class="honeypot-field" aria-hidden="true">
+                                <input type="text" name="website_url" tabindex="-1" autocomplete="off">
                             </div>
-                            <textarea name="message" class="contact-vertical-textarea" placeholder="{{ page_content('home', 'contact_form_message', app()->getLocale()) }}" required></textarea>
+                            <div class="contact-vertical-form-grid">
+                                <input type="text" name="name" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_name', app()->getLocale()) }}" value="{{ old('name') }}" required>
+                                <input type="email" name="email" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_email', app()->getLocale()) }}" value="{{ old('email') }}" required>
+                                <input type="text" name="phone" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_phone', app()->getLocale()) }}" value="{{ old('phone') }}">
+                                <input type="text" name="subject" class="contact-vertical-input" placeholder="{{ page_content('home', 'contact_form_subject', app()->getLocale()) }}" value="{{ old('subject') }}">
+                            </div>
+                            <textarea name="message" class="contact-vertical-textarea" placeholder="{{ page_content('home', 'contact_form_message', app()->getLocale()) }}" required>{{ old('message') }}</textarea>
+                            @if($siteSetting->isRecaptchaEnabled())
+                                <div class="mb-3 mt-2">
+                                    <div class="g-recaptcha" data-sitekey="{{ $siteSetting->recaptcha_site_key }}"></div>
+                                    @error('recaptcha')
+                                        <div class="text-danger small mt-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            @endif
                             <button type="submit" class="contact-vertical-btn mt-3">
                                 <i class="fas fa-paper-plane"></i>
                                 {{ page_content('home', 'contact_form_button', app()->getLocale()) }}
@@ -2394,3 +2409,9 @@ if (homeCoordMatch) {
 @endif
 </script>
 @endpush
+
+@if($siteSetting->isRecaptchaEnabled())
+@push('scripts')
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+@endpush
+@endif
