@@ -25,16 +25,33 @@
                 <form method="POST" action="{{ route('admin.menu.store') }}">
                     @csrf
                     <div class="mb-3">
-                        <label class="form-label-admin">Title <span class="required-star">*</span></label>
-                        <input type="text" name="title" class="form-control" required placeholder="e.g., Services">
+                        <label class="form-label-admin">Name <span class="required-star">*</span></label>
+                        <input type="text" name="name" class="form-control" required placeholder="e.g., Services">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label-admin">URL <span class="required-star">*</span></label>
-                        <input type="text" name="url" class="form-control" required placeholder="e.g., /services">
+                        <label class="form-label-admin">Route</label>
+                        <input type="text" name="route" class="form-control" placeholder="e.g., services.index">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label-admin">URL</label>
+                        <input type="text" name="url" class="form-control" placeholder="e.g., /services (optional if route is set)">
                     </div>
                     <div class="mb-3">
                         <label class="form-label-admin">Icon (FontAwesome class)</label>
                         <input type="text" name="icon" class="form-control" placeholder="e.g., fa-solid fa-briefcase">
+                    </div>
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            <label class="form-label-admin">Order</label>
+                            <input type="number" name="order" class="form-control" value="1" min="0">
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label class="form-label-admin">Menu Type</label>
+                            <select name="menu_type" class="form-select">
+                                <option value="header">Header</option>
+                                <option value="footer">Footer</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label-admin">Target</label>
@@ -74,10 +91,10 @@
                                 <tr>
                                     <th style="width:40px"></th>
                                     <th>Order</th>
-                                    <th>Title</th>
-                                    <th>URL</th>
+                                    <th>Name</th>
+                                    <th>Route/URL</th>
                                     <th>Icon</th>
-                                    <th>Target</th>
+                                    <th>Type</th>
                                     <th>Status</th>
                                     <th style="width:150px">Actions</th>
                                 </tr>
@@ -88,12 +105,12 @@
                                         <td>
                                             <i class="fa-solid fa-grip handle" style="cursor:grab"></i>
                                         </td>
-                                        <td>{{ $item->position }}</td>
+                                        <td>{{ $item->order }}</td>
                                         <td>
-                                            <strong>{{ $item->title }}</strong>
+                                            <strong>{{ $item->name }}</strong>
                                         </td>
                                         <td>
-                                            <small class="text-break">{{ $item->url }}</small>
+                                            <small class="text-break">{{ $item->route ?? $item->url ?? '-' }}</small>
                                         </td>
                                         <td>
                                             @if($item->icon)
@@ -103,11 +120,9 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if($item->target === '_blank')
-                                                <span class="badge bg-secondary">New tab</span>
-                                            @else
-                                                <span class="badge bg-light text-dark">Same tab</span>
-                                            @endif
+                                            <span class="badge bg-{{ $item->menu_type === 'header' ? 'primary' : 'info' }}">
+                                                {{ ucfirst($item->menu_type) }}
+                                            </span>
                                         </td>
                                         <td>
                                             @if($item->is_active)
@@ -143,16 +158,33 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="mb-3">
-                                                            <label class="form-label">Title</label>
-                                                            <input type="text" name="title" class="form-control" value="{{ $item->title }}" required>
+                                                            <label class="form-label">Name</label>
+                                                            <input type="text" name="name" class="form-control" value="{{ $item->name }}" required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Route</label>
+                                                            <input type="text" name="route" class="form-control" value="{{ $item->route }}" placeholder="e.g., services.index">
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">URL</label>
-                                                            <input type="text" name="url" class="form-control" value="{{ $item->url }}" required>
+                                                            <input type="text" name="url" class="form-control" value="{{ $item->url }}" placeholder="e.g., /services">
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Icon (FontAwesome class)</label>
                                                             <input type="text" name="icon" class="form-control" value="{{ $item->icon }}" placeholder="e.g., fa-solid fa-briefcase">
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-6 mb-3">
+                                                                <label class="form-label">Order</label>
+                                                                <input type="number" name="order" class="form-control" value="{{ $item->order }}">
+                                                            </div>
+                                                            <div class="col-6 mb-3">
+                                                                <label class="form-label">Menu Type</label>
+                                                                <select name="menu_type" class="form-select">
+                                                                    <option value="header" {{ $item->menu_type === 'header' ? 'selected' : '' }}>Header</option>
+                                                                    <option value="footer" {{ $item->menu_type === 'footer' ? 'selected' : '' }}>Footer</option>
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Target</label>
@@ -160,10 +192,6 @@
                                                                 <option value="_self" {{ $item->target === '_self' ? 'selected' : '' }}>Same window</option>
                                                                 <option value="_blank" {{ $item->target === '_blank' ? 'selected' : '' }}>New window</option>
                                                             </select>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Position</label>
-                                                            <input type="number" name="position" class="form-control" value="{{ $item->position }}">
                                                         </div>
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" name="is_active" value="1" id="isActive{{ $item->id }}" {{ $item->is_active ? 'checked' : '' }}>

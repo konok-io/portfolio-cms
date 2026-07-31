@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             ContactMessageSeeder::class,
             VisitorSeeder::class,
             NewFeaturesSeeder::class,
+            MenuItemSeeder::class,
         ]);
     }
 }
