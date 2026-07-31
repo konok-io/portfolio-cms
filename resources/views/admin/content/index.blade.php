@@ -1,35 +1,86 @@
 @extends('admin.layouts.app')
 @section('title', 'Content Settings')
 @section('content')
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h3 class="card-title mb-0">Content Settings - {{ $pages[$activeTab]['name'] ?? 'Unknown' }}</h3>
-                    @if(session('success'))
-                        <span class="badge bg-success">{{ session('success') }}</span>
-                    @endif
+<div class="container-fluid py-4">
+    <div class="admin-page-header mb-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="h3 mb-1"><i class="fa-solid fa-pen-to-square me-2"></i>Content Settings</h1>
+                <p class="text-muted mb-0">Manage all page content, labels, and text in multiple languages</p>
+            </div>
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show py-2 px-3 mb-0" role="alert">
+                    <i class="fa-solid fa-check-circle me-2"></i>{{ session('success') }}
+                    <button type="button" class="btn-close btn-close-sm py-0" data-bs-dismiss="alert"></button>
                 </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="list-group">
-                                @foreach($pages as $pageKey => $page)
-                                    <a href="{{ route('admin.content.index', ['tab' => $pageKey]) }}"
-                                       class="list-group-item list-group-item-action d-flex justify-content-between align-items-center {{ $activeTab === $pageKey ? 'active' : '' }}">
-                                        <span>{{ $page['name'] }}</span>
-                                        @if(isset($page['is_custom']))
-                                            <span class="badge bg-primary badge-sm">Custom</span>
-                                        @endif
-                                    </a>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="col-md-9">
-                            @php
-                                $currentPage = $pages[$activeTab] ?? null;
-                                $pageContent = $content[$activeTab] ?? [];
+            @endif
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-3">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0"><i class="fa-solid fa-list me-2 text-primary"></i>Pages</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="list-group list-group-flush rounded-0">
+                        @foreach($pages as $pageKey => $page)
+                            <a href="{{ route('admin.content.index', ['tab' => $pageKey]) }}"
+                               class="list-group-item list-group-item-action d-flex justify-content-between align-items-center py-3 {{ $activeTab === $pageKey ? 'active' : '' }}">
+                                <div class="d-flex align-items-center">
+                                    @switch($pageKey)
+                                        @case('home')
+                                            <i class="fa-solid fa-home me-2 opacity-75"></i>
+                                            @break
+                                        @case('about')
+                                            <i class="fa-solid fa-user me-2 opacity-75"></i>
+                                            @break
+                                        @case('services')
+                                            <i class="fa-solid fa-briefcase me-2 opacity-75"></i>
+                                            @break
+                                        @case('portfolio')
+                                            <i class="fa-solid fa-folder-open me-2 opacity-75"></i>
+                                            @break
+                                        @case('blog')
+                                            <i class="fa-solid fa-blog me-2 opacity-75"></i>
+                                            @break
+                                        @case('contact')
+                                            <i class="fa-solid fa-envelope me-2 opacity-75"></i>
+                                            @break
+                                        @case('faq')
+                                            <i class="fa-solid fa-circle-question me-2 opacity-75"></i>
+                                            @break
+                                        @case('resume')
+                                            <i class="fa-solid fa-file-alt me-2 opacity-75"></i>
+                                            @break
+                                        @case('pricing')
+                                            <i class="fa-solid fa-tag me-2 opacity-75"></i>
+                                            @break
+                                        @case('footer')
+                                            <i class="fa-solid fa-shoe-prints me-2 opacity-75"></i>
+                                            @break
+                                        @case('search')
+                                            <i class="fa-solid fa-magnifying-glass me-2 opacity-75"></i>
+                                            @break
+                                        @default
+                                            <i class="fa-solid fa-file-lines me-2 opacity-75"></i>
+                                    @endswitch
+                                    <span>{{ $page['name'] }}</span>
+                                </div>
+                                @if(isset($page['is_custom']))
+                                    <span class="badge bg-primary badge-sm">Custom</span>
+                                @endif
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            @php
+                $currentPage = $pages[$activeTab] ?? null;
+                $pageContent = $content[$activeTab] ?? [];
                                 
                                 // Determine sections to display
                                 $sectionsToShow = [];
@@ -43,11 +94,19 @@
                             @endphp
 
                             @if($currentPage && !empty($sectionsToShow))
+                                <div class="card border-0 shadow-sm mb-4">
+                                    <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+                                        <h5 class="mb-0"><i class="fa-solid fa-pen-nib me-2 text-primary"></i>{{ $currentPage['name'] }}</h5>
+                                        @if($hasMultipleSections)
+                                            <span class="badge bg-info"><i class="fa-solid fa-arrows-up-down-left-right me-1"></i> Drag to reorder</span>
+                                        @endif
+                                    </div>
+                                    <div class="card-body p-0">
                                 @if($hasMultipleSections)
-                                <div class="alert alert-info d-flex align-items-center mb-3" role="alert">
-                                    <i class="fa-solid fa-arrows-up-down-left-right me-2"></i>
-                                    <div>
-                                        <strong>Drag the grip icon (⋮⋮)</strong> to reorder sections. Click section headers to expand/collapse and edit content.
+                                <div class="alert alert-info mb-0 rounded-0" role="alert">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fa-solid fa-lightbulb me-2"></i>
+                                        <small><strong>Tip:</strong> Drag the grip icon (⋮⋮) to reorder sections. Click section headers to expand/collapse and edit content.</small>
                                     </div>
                                 </div>
                                 @endif
@@ -270,26 +329,28 @@
                                             @endif
                                         @endforeach
                                     </div>
+                                    </div>
                                     
                                     <input type="hidden" name="sections_order" id="sections_order" value="{{ implode(',', $sectionsOrder) }}">
                                     
-                                    <div class="mt-3">
+                                    <div class="p-3 bg-light border-top">
                                         <button type="submit" class="btn btn-primary">
-                                            <i class="fa-solid fa-save me-1"></i> Save Changes
+                                            <i class="fa-solid fa-save me-2"></i> Save Changes
                                         </button>
                                     </div>
                                 </form>
                             @elseif($currentPage)
-                                <div class="alert alert-warning">
+                                <div class="alert alert-warning m-3">
                                     <i class="fa-solid fa-triangle-exclamation me-2"></i>
                                     No content sections configured for this page.
                                 </div>
                             @else
-                                <div class="alert alert-danger">
+                                <div class="alert alert-danger m-3">
                                     <i class="fa-solid fa-circle-xmark me-2"></i>
                                     Page not found.
                                 </div>
                             @endif
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -307,6 +368,9 @@
 .handle { color: #6c757d; }
 .collapse-icon { transition: transform 0.3s; }
 .section-item:has(.accordion-collapse.show) .collapse-icon { transform: rotate(180deg); }
+.list-group-item { transition: all 0.2s; }
+.list-group-item:hover { transform: translateX(4px); }
+.list-group-item.active { font-weight: 600; }
 </style>
 @endsection
 

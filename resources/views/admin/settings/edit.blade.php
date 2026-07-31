@@ -240,22 +240,45 @@
 
         <div class="col-lg-4">
             <div class="admin-card mb-3">
-                <div class="card-header-custom">Logo</div>
-                <div class="card-body-custom text-center">
+                <div class="card-header-custom d-flex justify-content-between align-items-center">
+                    <span><i class="fa-solid fa-image me-2"></i>Logo & Branding</span>
+                </div>
+                <div class="card-body-custom">
+                    <div class="text-center mb-3">
+                        <div class="logo-preview-container p-3 bg-light rounded" style="border: 2px dashed #dee2e6;">
+                            @if($setting->logo_url)
+                                <img src="{{ $setting->logo_url }}" id="logoPreview" class="img-fluid" style="max-height:80px;" alt="Logo preview">
+                            @else
+                                <div id="logoPreviewPlaceholder" class="text-muted">
+                                    <i class="fa-solid fa-image fa-3x mb-2 opacity-25"></i>
+                                    <p class="small mb-0">No logo uploaded</p>
+                                </div>
+                                <img id="logoPreview" class="img-fluid d-none" style="max-height:80px;" alt="Logo preview">
+                            @endif
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label-admin"><i class="fa-solid fa-upload me-1"></i> Upload Logo</label>
+                        <input type="file" name="logo" class="form-control" accept="image/*" data-preview-target="#logoPreview">
+                        <small class="text-muted d-block mt-1">Recommended: PNG or SVG with transparent background. Max 1MB.</small>
+                    </div>
                     @if($setting->logo_url)
-                        <img src="{{ $setting->logo_url }}" id="logoPreview" class="mb-3" style="max-height:60px;">
-                    @else
-                        <img id="logoPreview" src="https://placehold.co/200x60/f1f5f9/64748b?text=Logo" class="mb-3 w-100">
+                        <div class="mb-3">
+                            <a href="{{ $setting->logo_url }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                <i class="fa-solid fa-external-link-alt me-1"></i> View Current Logo
+                            </a>
+                        </div>
                     @endif
-                    <input type="file" name="logo" class="form-control" accept="image/*" data-preview-target="#logoPreview">
                     <hr>
-                    <label class="form-label text-start w-100 fw-semibold">Show in header</label>
-                    <select name="header_display" class="form-select">
-                        <option value="text" {{ ($setting->header_display ?? 'text') === 'text' ? 'selected' : '' }}>Website name (text) only</option>
-                        <option value="logo" {{ ($setting->header_display ?? 'text') === 'logo' ? 'selected' : '' }}>Logo only</option>
-                        <option value="both" {{ ($setting->header_display ?? 'text') === 'both' ? 'selected' : '' }}>Logo + website name</option>
-                    </select>
-                    <small class="text-muted d-block mt-2 text-start">Choose what appears in the site header. "Logo only" needs a logo uploaded.</small>
+                    <div class="mb-3">
+                        <label class="form-label-admin"><i class="fa-solid fa-eye me-1"></i> Header Display</label>
+                        <select name="header_display" class="form-select">
+                            <option value="text" {{ ($setting->header_display ?? 'text') === 'text' ? 'selected' : '' }}>Website name only</option>
+                            <option value="logo" {{ ($setting->header_display ?? 'text') === 'logo' ? 'selected' : '' }}>Logo only</option>
+                            <option value="both" {{ ($setting->header_display ?? 'text') === 'both' ? 'selected' : '' }}>Logo + Website name</option>
+                        </select>
+                        <small class="text-muted d-block mt-1">Choose what appears in the site header.</small>
+                    </div>
                     <hr>
                     <label class="form-label text-start w-100 fw-semibold">Default Language</label>
                     <select name="default_language" class="form-select">
@@ -375,14 +398,29 @@
             </div>
 
             <div class="admin-card mb-3">
-                <div class="card-header-custom">Favicon</div>
-                <div class="card-body-custom text-center">
+                <div class="card-header-custom"><i class="fa-solid fa-star me-2"></i>Favicon (Site Icon)</div>
+                <div class="card-body-custom">
+                    <div class="text-center mb-3">
+                        <div class="favicon-preview-container p-3 bg-light rounded d-inline-block" style="border: 2px dashed #dee2e6;">
+                            @if($setting->favicon_url)
+                                <img src="{{ $setting->favicon_url }}" id="faviconPreview" style="width:64px;height:64px;object-fit:contain;" alt="Favicon preview">
+                            @else
+                                <img id="faviconPreview" src="https://placehold.co/64x64/f1f5f9/64748b?text=Fav" alt="Favicon preview">
+                            @endif
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label-admin"><i class="fa-solid fa-upload me-1"></i> Upload Favicon</label>
+                        <input type="file" name="favicon" class="form-control" accept="image/*" data-preview-target="#faviconPreview">
+                        <small class="text-muted d-block mt-1">Recommended: 32x32 or 64x64 PNG/ICO. Max 512KB.</small>
+                    </div>
                     @if($setting->favicon_url)
-                        <img src="{{ $setting->favicon_url }}" id="faviconPreview" class="mb-3" style="width:48px;height:48px;">
-                    @else
-                        <img id="faviconPreview" src="https://placehold.co/48x48/f1f5f9/64748b?text=Fav" class="mb-3">
+                        <div class="text-center">
+                            <a href="{{ $setting->favicon_url }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                <i class="fa-solid fa-external-link-alt me-1"></i> View Current Favicon
+                            </a>
+                        </div>
                     @endif
-                    <input type="file" name="favicon" class="form-control" accept="image/*" data-preview-target="#faviconPreview">
                 </div>
             </div>
 

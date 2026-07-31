@@ -1,7 +1,26 @@
 <nav class="navbar navbar-expand-lg sticky-top site-navbar">
     <div class="container">
-        @php($headerDisplay = $siteSetting->header_display ?? 'text')
-        <a class="navbar-brand d-flex align-items-center gap-2" href="{{ route('home') }}">
+        {{-- Mobile Logo & Toggler Row --}}
+        <div class="mobile-nav-header d-flex d-lg-none align-items-center w-100">
+            {{-- Logo (shown on mobile before menu) --}}
+            @php($headerDisplay = $siteSetting->header_display ?? 'text')
+            <a class="mobile-logo me-auto d-flex align-items-center gap-2" href="{{ route('home') }}">
+                @if(($headerDisplay === 'logo' || $headerDisplay === 'both') && ($siteSetting->logo_url ?? false))
+                    <img src="{{ $siteSetting->logo_url }}" alt="{{ $siteSetting->site_name }}" height="36">
+                @endif
+                @if($headerDisplay === 'text' || $headerDisplay === 'both' || !($siteSetting->logo_url ?? false))
+                    <span class="mobile-site-name">{{ $siteSetting->site_name ?? 'Portfolio' }}</span>
+                @endif
+            </a>
+            
+            {{-- Mobile Menu Toggle (3 dots/hamburger) --}}
+            <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+
+        {{-- Desktop Brand (hidden on mobile) --}}
+        <a class="navbar-brand d-none d-lg-flex align-items-center gap-2" href="{{ route('home') }}">
             @if(($headerDisplay === 'logo' || $headerDisplay === 'both') && ($siteSetting->logo_url ?? false))
                 <img src="{{ $siteSetting->logo_url }}" alt="{{ $siteSetting->site_name }}" height="36">
             @endif
@@ -9,10 +28,6 @@
                 <span>{{ $siteSetting->site_name ?? 'Portfolio' }}</span>
             @endif
         </a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
         <div class="collapse navbar-collapse" id="mainNav">
             {{-- Pill Navigation Container --}}

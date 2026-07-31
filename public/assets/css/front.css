@@ -339,6 +339,34 @@ a {
   color: var(--color-secondary);
 }
 
+/* Mobile Nav Header - Logo + Toggle side by side */
+.mobile-nav-header {
+  padding: 0.5rem 0;
+}
+.mobile-logo {
+  text-decoration: none;
+  color: var(--color-secondary);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+.mobile-logo img {
+  max-height: 32px;
+  width: auto;
+}
+.mobile-site-name {
+  font-size: 1.1rem;
+}
+.navbar-toggler {
+  border: none;
+  padding: 0.5rem;
+  background: transparent;
+  cursor: pointer;
+}
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
 /* Pill Navigation Styles */
 .pill-nav-wrapper {
   display: flex;
@@ -770,6 +798,14 @@ a {
 
 [data-theme="dark"] .site-navbar .navbar-brand {
     color: #ffffff;
+}
+
+[data-theme="dark"] .mobile-logo {
+    color: #ffffff;
+}
+
+[data-theme="dark"] .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 [data-theme="dark"] .pill-nav {
